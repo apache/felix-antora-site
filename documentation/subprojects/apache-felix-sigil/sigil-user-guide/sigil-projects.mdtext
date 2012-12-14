@@ -1,0 +1,62 @@
+Title: Sigil Projects
+
+# Sigil Projects
+
+This page is meant as an overview of how to set up sigil projects, for an in depth look at the file format see [Sigil Properties]({{ refs.sigil-properties.path }}).
+### Basics
+
+<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sigil.properties</B></DIV><DIV class="codeContent panelContent">
+    -bundles: org.foo
+    -version: 1.0.0
+    -exports: org.foo.api
+    -imports: org.foo.api
+    -sourcedirs: src
+
+
+This describes a bundle with symbolic name org.foo that has version 1.0.0 and embeds all java classes found in the folder src within our bundle. It exports the package org.foo.api and imports the package org.foo.api. If we assume that the src folder contains classes in the package org.foo.api then both the exports and imports will also inherit the version from the bundle (as no explicit version is specified).
+
+### Version management
+
+If we wanted to have explicit control we could do:
+
+<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sigil.properties</B></DIV><DIV class="codeContent panelContent">
+    -bundles: org.foo
+    -version: 1.1.0
+    -exports: org.foo.api;version=1.1.1
+    -imports: org.foo.api;version=[1.0,1.2)
+    -sourcedirs: src
+
+
+### Multi project builds
+
+You can also set default versions and import ranges in your project hierarchy so leaf projects inherit the version strategy of their parent:
+
+
+    + project
+       + sigil-defaults.properties
+       + leaf-project
+          + sigil.properties
+          + src
+             + org
+                + foo
+                   + api
+                      + Foo.java
+
+
+If we define in sigil-defaults.properties:
+
+<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sigil-defaults.properties</B></DIV><DIV class="codeContent panelContent">
+    version: 1.1.0
+    package;org.foo.api: [1.0,1.2)
+
+
+Then we could change our sigil.properties file to:
+
+<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sigil.properties</B></DIV><DIV class="codeContent panelContent">
+    -bundles: org.foo
+    -exports: org.foo.api;version=1.1.1
+    -imports: org.foo.api
+    -sourcedirs: src
+
+
+Where the bundle version and the import range is inherited from the package;org.foo.api property from the parent sigil-defaults.properties file.

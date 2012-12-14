@@ -1,0 +1,115 @@
+Title: Apache Felix Log
+
+# Apache Felix Log
+
+The OSGi Service Compendium specification defines a general purpose Log Service for the OSGi Platform. It is a very simple specification that doesn't provide all the functionality commonly available in enterprise-level logging tools, but its extensible service model can be used to build fairly sophisticated logging solutions.
+
+The Log Service specification defines four main entities:
+
+* *`org.osgi.service.log.LogService`* - service interface to log information, including log level, message, exception, and `ServiceReference` that generated the log.
+* *`org.osgi.service.log.LogReaderService`* - service interface to add and remove `LogListener` instances and to retrieve recent log entries.
+* *`org.osgi.service.log.LogEntry`* - interface defining a log entry.
+* *`org.osgi.service.log.LogListener`* - interface defining a listener for log entries, which is notified about new log entries.
+
+## Accessing the log service
+
+To access a `LogService` instance it is necessary to look it up in the OSGi service registry as demonstrated in the following code snippet:
+
+
+    public class Activator implements BundleActivator
+    {
+        public void start(BundleContext context) throws Exception 
+        {	
+            ServiceReference ref = context.getServiceReference(LogService.class.getName());
+            if (ref != null)
+            {
+                LogService log = (LogService) context.getService(ref);
+    
+                // Use the log...
+            }
+        }
+    
+        //..
+
+
+It is possible, and advisable, to use more sophisticated service acquisition mechanisms like a Service Tracker, Dynamic Services or iPOJO.
+
+## Using the log service
+
+The `LogService` interface provides four methods for logging:
+
+
+    public interface LogService
+    {
+        //..
+    
+        // Log a message specifying a log level
+        public log(int level, java.lang.String message)  
+    
+        // Log an exception
+        public log(int level, java.lang.String message, java.lang.Throwable exception)  
+    
+        // Log a message specifying the ServiceReference that generated it
+        public log(ServiceReference sr, int level, java.lang.String message)  
+    
+        // Log a message specifying the ServiceReference and exception
+        public log(ServiceReference sr, int level, java.lang.String message, java.lang.Throwable exception)  
+    }	
+
+
+Log levels are defined in the same interface:
+
+* `LogService.LOG_DEBUG`
+* `LogService.LOG_INFO`
+* `LogService.LOG_WARNING`
+* `LogService.LOG_ERROR`
+
+## Retrieving log entries
+
+The `LogReaderService` provides a `getLog()` method to retrieve an `Enumeration` of the latest log entries. The following code snippets demonstrates how to retrieve it from the service registry and use it:
+
+
+    ServiceReference ref = context.getServiceReference(LogReaderService.class.getName());
+    if (ref != null)
+    {
+        LogReaderService reader = (LogReaderService) context.getService(ref);	
+        Enumeration<LogEntry> latestLogs = reader.getLog();
+    }
+
+
+## Creating and registering a `LogListener`
+
+The Log Service specification doesn't define any particular entity to store, display, or write log entries; it's up to the developer to implement this functionality or to choose an available implementation capable of doing that. To create such a bundle, the first step is to create an implementation of the `LogListener` interface. The following code shows a simple implementation that echoes the log message:
+
+
+    public class LogWriter implements LogListener
+    {
+        // Invoked by the log service implementation for each log entry
+        public void logged(LogEntry entry) 
+        {
+            System.out.println(entry.getMessage());
+        }
+    }
+
+
+The only method to implement is `logged()` method, which is called every time a log entry is created in the associated logging service. A `LogListener` implementation must be registered with the `LogReaderService` so it can start receiving log entries, as demonstrated in the following code snippet:
+
+
+    ServiceReference ref = context.getServiceReference(LogReaderService.class.getName());
+    if (ref != null)
+    {
+        LogReaderService reader = (LogReaderService) context.getService(ref);
+        reader.addLogListener(new LogWriter());
+    }
+
+
+
+## Setup of Apache Felix Log Service
+
+The Apache Felix Log Service bundle doesn't have any specific dependency on Felix, so it can run on any OSGi container. For its configuration, it will use the following optional system properties:
+ 	 
+|Property|Default|Description|
+|--|--|--|
+|`org.apache.felix.log.maxSize`|100|The maximum size of the log history. A value of -1 means the log has no maximum size; a value of 0 means that no historical information is maintained|
+|`org.apache.felix.log.storeDebug`|false|Determines whether or not debug messages will be stored in the history|
+

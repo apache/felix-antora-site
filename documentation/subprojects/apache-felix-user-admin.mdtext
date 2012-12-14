@@ -1,0 +1,14 @@
+Title: Apache Felix User Admin
+
+# Apache Felix User Admin
+
+{include:Apache Felix User Admin - Introduction}
+
+## Table of contents
+
+* [Background]({{ refs.apache-felix-user-admin-background.path }}) explains the problem being solved and the main design goals;
+* [Getting Started]({{ refs.apache-felix-user-admin-getting-started.path }}) helps you with the basic concepts by example;
+* [Using the file store]({{ refs.apache-felix-user-admin-file-store.path }}) helps you with using the file-based repository store;
+* [Using the MongoDB store]({{ refs.apache-felix-user-admin-mongodb-store.path }}) helps you with using the MongoDB-based repository store;
+* [Writing custom repository stores]({{ refs.apache-felix-user-admin-custom-repository-store.path }}) helps you in writing your own repository store.
+

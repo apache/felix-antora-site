@@ -1,0 +1,39 @@
+Title: Sigil Contributing
+
+### Status
+
+Sigil is currently being migrated to Apache Felix from it's original home on http://sigil.codecauldron.org. As part of this migration it has been decided to go for a completely self hosted mode of development - i.e. use Sigil to build Sigil.
+
+### Issues:
+
+Please help development of Sigil by reporting issues and contributing patches [here](http://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&&pid=12310100&component=12312962&resolution=-1&sorter/field=priority&sorter/order=DESC).
+
+### Build Instructions
+
+If you want to try it out or contribute here are the steps to build Sigil in it's current form:
+
+1. Check out or update the Felix trunk (i.e., svn checkout http://svn.apache.org/repos/asf/felix/trunk felix)
+1. cd felix/sigil
+1. ant clean dist 
+
+The ant build will probably take a *long* time on first pass as it needs to download a lot of large eclipse dependencies first time around. But after this first pass the secondary builds should run quickly i.e. seconds not minutes. By way of a brief explanation of what is going on in this build.
+
+1. I've hosted a prebuilt sigil-ivy-plugin at http://people.apache.org/~dsavage/sigil/
+1. The ant build downloads ivy, sigil-plugin, bnd and equinox.common.jar and stores them in $felix-svn/sigil/cache/ant/lib
+1. Ivy caches a set of remote bundles that sigil can't yet index (i.e. no obr index to these resources yet)
+1. Sigil creates local indexes of ivy cached bundles (just indexes filesystem)
+1. Sigil builds all projects in $felix-svn/sigil/common and $felix-svn/sigil/eclipse using the meta data from the various sigil.properties files. Import-Package or Require-Bundle dependencies expressed in the sigil.properties file are resolved from either: the local workspace; the local cached repo; or the spring enterprise bundle repository (for which we do have an OBR index).
+
+### Testing
+Currently the Sigil build does not create an eclipse update site, but it will generate the plugins to install in eclipse:
+
+
+    # ls site/plugins
+    bndlib.jar                                      org.apache.felix.sigil.common.junit.jar         org.apache.felix.sigil.eclipse.help.jar         org.apache.felix.sigil.eclipse.ui.jar
+    com.springsource.org.apache.commons.lang.jar    org.apache.felix.sigil.common.obr.jar           org.apache.felix.sigil.eclipse.obr.jar          org.apache.felix.sigil.eclipse.utils.jar
+    org.apache.felix.sigil.common.core.jar          org.apache.felix.sigil.eclipse.core.jar         org.apache.felix.sigil.eclipse.search.jar
+
+
+You can copy these bundles to your dropins directory of your Eclipse install to get Eclipse to manually install these bundles from the file system.
+
+Please let us know if you have any problems, questions, or want to help out via the Felix [dev]({{ refs.mailto-dev-felix-apache-org.path }}) email list.

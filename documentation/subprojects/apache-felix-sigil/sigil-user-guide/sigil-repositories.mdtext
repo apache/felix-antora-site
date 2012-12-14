@@ -1,0 +1,8 @@
+Title: Sigil Repositories
+
+Repositories are where the external dependencies for your project live. Sigil resolves and downloads dependencies for OSGi bundles via an extensible repository interface.
+
+Current implementations provided in Sigil are:
+{children}
+
+To add a repository to your workspace go to the Eclipse preferences panel (OS specific instructions) then navigate to Sigil -> Repositories. You can add, edit or remove repositories from here.

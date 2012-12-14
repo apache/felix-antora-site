@@ -1,0 +1,11 @@
+Title: Apache Felix Dependency Manager - Introduction
+
+## Introduction
+
+In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services.
+
+These components, that both publish services and depend on other services, form networks that are often dynamic in nature. That makes managing these dependencies something the developer needs to take into account.
+
+Whilst the OSGi framework provides the low-level building blocks to do that in the form of service listeners and trackers, these should not be used directly by developers. Instead, a more declarative approach works best, and the Dependency Manager provides this in the form of a declarative API that allows you to dynamically declare and change dependencies.
+
+On top of that, a set of OSGi design patterns are defined that can be used as building blocks for more complex applications.

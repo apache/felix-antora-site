@@ -1,0 +1,25 @@
+Title: Board Report (2009-09)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+*Community*
+* Added new committers: David Savage, Derek Baum, Tim Moloney, Pierre de Rop, and Sten Roger Sandvik.
+
+*Software*
+* Recent contributions:
+** Sigil contribution from Paremus committed to SVN.
+** Sten Roger Sandvik contributed improved OSGi HTTP Service implementation, which was voted on and is going through IP clearance currently.
+* Recent subproject releases:
+** Bundle Repository (1.4.1)
+** Config Admin (1.2.0, 1.2.4) - Updated to align with R4.2; used as the OSGi RI.
+** File Install (1.2.0, 2.0.0)
+** Framework (1.8.1, 2.0.0) - The latest release aligns the framework implementation with OSGi 4.2.
+** iPOJO (1.4.0)
+** Main (1.8.1, 2.0.0) - Improves configuring framework, aligns with latest framework release.
+** Metatype (1.0.4)
+** HTTP Service Jetty (1.0.1) - Minor maintenance release.
+** Shell (1.4.0) - Added some new commands for inspecting framework state and other minor improvements.
+** Shell TUI (1.4.0) - Minor bug fix release.
+
+*Licensing and other issues*
+* None.

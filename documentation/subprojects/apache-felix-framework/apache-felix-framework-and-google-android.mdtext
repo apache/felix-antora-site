@@ -1,0 +1,115 @@
+Title: Apache Felix Framework and Google Android
+
+# Apache Felix Framework and Google Android
+                                                                                                                      
+The purpose of this document is to explain how to use [Apache Felix](http://felix.apache.org) on Google's new mobile phone platform - [Android|http://code.google.com/android].
+ 
+## Dalvik VM
+
+Google Android SDK allows developers to write Java code in order to create Android applications. Instead of a regular Java Virtual Machine that executes this code, a special-purpose virtual machine named Dalvik is being used in order to comply with mobile platform requirements. Dalvik does not use Java bytecode format, but, a tool named dx, included in the Android SDK, transforms the Java class files of Java classes compiled by a regular Java compiler into another class file format (the .dex format) (the conversion is not done at runtime).
+
+## Preparing bundles
+
+Although Felix, since version 1.0.3, has built in support for Android, there are still some things needed to be done in order to successfully make use of it ( you will need to install [Android SDK](http://code.google.com/android/download.html) and you should have <android*SDK*HOME>/tools added to system PATH variable). The zip file available for download has been created in the same manner.
+
+*Step 1*: Each JAR file you use, either as a Felix library or as a bundle, should contain its DEX equivalent. This means that you must first create a DEX file for your JAR:
+
+
+    dx --dex --output=classes.dex JAR_file.jar
+
+
+Then you must add the DEX file to your JAR file:
+
+
+    aapt add JAR_file.jar classes.dex
+
+
+*Step 2*: The processed JARs should be made available to Android by transferring them to the emulator:
+
+
+    emulator &
+    adb push JAR_file.jar path_emulator/JAR_file.jar
+
+
+*Step 3*: Referring to the sample project for a concrete example, these steps are preformed:
+
+
+    osgi-android: /
+    \- bin
+    \- bundle
+    \- conf
+    \- felix.sh
+
+
+Prepare the Felix JAR:
+
+
+    export PATH=<path-to-android>/tools:$PATH
+    cd bin
+    dx --dex --output=classes.dex felix.jar
+    aapt add felix.jar classes.dex
+
+
+Prepare the bundle JARS:
+
+
+    cd bundle
+    dx --dex --output=classes.dex org.apache.felix.shell-1.0.0.jar
+    aapt add org.apache.felix.shell-1.0.0.jar classes.dex
+    dx --dex --output=classes.dex org.apache.felix.shell.tui-1.0.0.jar
+    aapt add org.apache.felix.shell.tui-1.0.0.jar classes.dex
+    dx --dex --output=classes.dex EnglishDictionary.jar
+    aapt add EnglishDictionary.jar classes.dex
+    dx --dex --output=classes.dex FrenchDictionary.jar
+    aapt add FrenchDictionary.jar classes.dex
+    dx --dex --output=classes.dex SpellChecker.jar
+    aapt add SpellChecker.jar classes.dex
+
+
+Transfer all of them to the emulator (note that you need some kind of unix-like shell, such as the Mac OS X terminal or Linux):
+
+
+    cd osgi-android
+    emulator &
+    find * -type f -exec adb push {} /data/felix/{} \;
+
+
+ 
+## Launching Felix
+
+Once you've done that, you should be able to launch Felix and the bundles on Android: start emulator shell, change directory to the location of your Felix files and execute felix.sh.
+
+
+    adb shell
+    cd /data/felix
+    sh felix.sh
+
+
+`felix.sh` contains a Unix shell command that launches Felix main class using the actual runtime of the emulator.
+
+
+    /system/bin/dalvikvm -Xbootclasspath:/system/framework/core.jar \
+      -classpath bin/felix.jar org.apache.felix.main.Main
+
+
+If all went well, you should see the Felix command line shell now. Type "help" for further instructions.
+
+You may now install and launch EnglishDictionary, FrenchDictionary, and SpellChecker bundles to test how Felix is working. These are all examples from the Apache Felix OSGi tutorial and correspond to [Apache Felix Tutorial Example 2]({{ refs.apache-felix-tutorial-example-2.path }}), [Apache Felix Tutorial Example 2b], and [Apache Felix Tutorial Example 5] respectively.
+
+    * *EnglishDictionary* - supplies a Dictionary service implementation with the following collection of words "welcome", "to", "the", "osgi", "tutorial"
+    * *FrenchDictionary* - supplies a Dictionary service implementation with the following collection of words "bienvenue", "au", "tutoriel", "osgi"
+    * *SpellChecker* - supplies a spell checker that retrieves the first Dictionary implementation it finds and checks if the word you've entered is in the dictionary or not.
+
+
+    start file:bundle/EnglishDictionary.jar
+    start file:bundle/FrenchDictionary.jar
+    start file:bundle/SpellChecker.jar
+
+
+## Embedding Felix
+
+Apache Felix can also be integrated with an Android application. To achieve this, you need to embed Felix into `onCreate()` method of your Activity class (see Android docs for more details on how to use an Activity) and process your bundles as shown above.
+ 
+## Download
+
+The project zip file [osgi-android.zip]({{ refs.documentation-osgi-android-felix-1-4-android-sdk-1-0-zip.path }})

@@ -1,0 +1,24 @@
+Title: menu2
+
+
+{style:import=http://cayenne.apache.org/css/master.css}
+
+# Coucou
+
+|aaa|BBB|
+|--|--|
+|aaa|bbb|
+
+## Foo
+
+{panel}
+this is a panel
+{panel}
+
+{code:java}
+public void class Foo {
+}
+
+    
+    
+    

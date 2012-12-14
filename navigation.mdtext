@@ -1,0 +1,18 @@
+Title: Navigation
+
+* [news]({{ refs.news.path }})
+* [license](http://www.apache.org/licenses/)
+* [downloads](http://felix.apache.org/site/downloads.cgi)
+* [documentation]({{ refs.documentation.path }})
+* [mailing lists]({{ refs.mailinglists.path }})
+* [contributing]({{ refs.contributing.path }})
+* [asf](http://www.apache.org/)
+* [security](http://www.apache.org/security/)
+* [sponsorship](http://www.apache.org/foundation/sponsorship.html)
+* [sponsors](http://www.apache.org/foundation/thanks.html)
+<!-- ApacheCon Ad -->
+<iframe src="http://www.apache.org/ads/button.html"
+style="border-width:0; float: left" frameborder="0" scrolling="no"
+width="135" height="135"></iframe>
+<p style="height: 100px">
+<!-- ApacheCon Ad -->

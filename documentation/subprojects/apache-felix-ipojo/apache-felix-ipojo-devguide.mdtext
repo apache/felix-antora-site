@@ -1,0 +1,12 @@
+Title: apache-felix-ipojo-devguide
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+# iPOJO Developer Guide
+*This page contains pages of the the iPOJO developer guide*
+
+{children}
+
+{include:apache-felix-ipojo-footer}

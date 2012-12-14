@@ -1,0 +1,22 @@
+Title: Board Report (2009-03)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Community
+* Niclas Hedhman stepped down from the Felix PMC.
+* Additional contributions from David Bosschaert of the CXF community for patches to Felix to support distributed OSGi features from the next OSGi specification release.
+* Proposed contribution of new OSGi shell from Peter Kriens, based on a proposed new OSGi R4.2 specification.
+* Received code contributions for File Install subproject from community members Sahoo and Filippo Diotalevi.
+* Marcel did a 15 minute lightning talk about Dynamic Deployment with Apache Felix at FOSDEM '09 in Brussels.
+
+Software
+* Attempt to integrate PAX Logging into Felix has apparently been abandoned due to lack of time by those involved.
+* Preparing to release version 1.6.0 of Felix.
+* Released version 1.4.1 of Felix (includes Framework 1.4.1 and Main 1.4.1); there were several small fixes and improvements in this release, but the main focus was to release patches needed by the CXF community to support distributed services.
+* Released various other subprojects (e.g., iPOJO 1.2.0, Web Console 1.2.2, Remote Shell 1.0.4, Config Admin 1.0.10, Maven Bundle Plugin 2.0.0).
+* Checked in a testing harness for both bundles and the framework itself based on bnd (from Peter Kriens).
+* Added ConfigAdmin support and support for NIO for HTTPS to the HTTP Service implementation.
+* Committed Device Access specification implementation, which was contributed by Dennis Geurts.
+
+Licensing and other issues
+* None.

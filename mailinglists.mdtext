@@ -1,0 +1,11 @@
+Title: mailinglists
+
+# Mailing lists
+
+The following mailing lists have been established for Apache Felix. For each list, there is a subscribe, unsubscribe, and archive link.
+
+|Name|Subscribe|Unsubscribe|Archive|
+|--|--|--|--|
+|*Felix Users* - For people using Felix subprojects and/or developing bundles. |[Subscribe]({{ refs.mailto-users-subscribe-felix-apache-org.path }})|[Unsubscribe|mailto:users-unsubscribe@felix.apache.org]|[www.mail-archive.com|http://www.mail-archive.com/users%40felix.apache.org/]|
+|*Felix Dev* - For people interested in the internal development of Felix subprojects. |[Subscribe]({{ refs.mailto-dev-subscribe-felix-apache-org.path }})|[Unsubscribe|mailto:dev-unsubscribe@felix.apache.org]|[www.mail-archive.com|http://www.mail-archive.com/dev%40felix.apache.org/]|
+|*Felix Commits* - For people intested in Felix subproject code changes. |[Subscribe]({{ refs.mailto-commits-subscribe-felix-apache-org.path }})|[Unsubscribe|mailto:commits-unsubscribe@felix.apache.org]|[www.mail-archive.com|http://www.mail-archive.com/commits%40felix.apache.org/]|

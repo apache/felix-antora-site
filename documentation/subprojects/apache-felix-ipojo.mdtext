@@ -1,0 +1,93 @@
+Title: Apache Felix iPOJO
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+*iPOJO* is a service component runtime aiming to simplify OSGi application development. It natively supports ALL the dynamism of OSGi. Based on the concept of `POJO`, application logic is developed easily. Non-functional properties are just *injected* in the component at runtime.
+  
+  
+  
+  
+iPOJO's points of strength include:
+* components are developed as POJOs - nothing else is required!
+* the component model is extensible, so feel free to adapt it to your needs
+* the standard component model manages service providing and service dependencies, and so can require any other OSGi services
+* iPOJO manages the component instance lifecycle and the environment dynamics as never before possible
+* iPOJO provides a powerful composition system to create highly dynamic applications
+* iPOJO supports annotations, XML, and a Java-based API to define components 
+
+  
+  
+
+
+<div class="smallboxes" style="margin-left:auto; margin-right:auto; width:824px">
+<table>
+<tr>
+<td>
+<div class="smallbox" style="margin-left:10px; margin-right:10px">
+	<div class="smallbox-title">
+		<img src="http://felix.apache.org/ipojo/site/status_online.png"> <b>Why choose iPOJO ?</b>
+	</div>
+	<div class="smallbox-content">
+	<ul> 
+	<li>[iPOJO at Schneider Electric]({{ refs.apache-felix-ipojo-successstories-schneider.path }})</li>
+	<li>[iPOJO at Ubidreams]({{ refs.apache-felix-ipojo-successstories-ugasp.path }}) </li>
+	<li>[others success stories]({{ refs.apache-felix-ipojo-successstories.path }})</li>
+	<li>[iPOJO Key points]({{ refs.apache-felix-ipojo-keypoints.path }})</li> 
+	<li>[Why choose iPOJO ]({{ refs.-apache-felix-ipojo-why-choose-ipojo.path }})</li>
+	</ul>
+	</div>
+</div>
+</td>
+<td>
+<div class="smallbox" style="margin-left:10px; margin-right:10px">
+	<div class="smallbox-title">
+		<img src="http://felix.apache.org/ipojo/site/cog.png"> <b>Getting started</b>
+	</div>
+	<div class="smallbox-content">
+	<ul>
+        <li>[Downloads]({{ refs.download.path }})</li>
+	<li>[iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }})</li>
+        <li>[Using Annotations]({{ refs.how-to-use-ipojo-annotations.path }})</li>
+        <li>[Maven tutorial]({{ refs.ipojo-hello-word-maven-based-tutorial.path }})</li>
+        <li>[Support]({{ refs.ipojo-support.path }})</li>
+	</ul>
+	</div>
+</div>
+</td>
+<td>
+<div class="smallbox" style="margin-left:10px; margin-right:10px">
+	<div class="smallbox-title">
+		<img src="http://felix.apache.org/ipojo/site/user_edit.png"> <b>The developer corner</b>
+	</div>
+	<div class="smallbox-content">
+	<ul>
+	<li>[Describing components]({{ refs.describing-components.path }})</li>
+	<li>[iPOJO Reference Card]({{ refs.ipojo-reference-card.path }})</li>
+	<li>[Eclipse Integration]({{ refs.apache-felix-ipojo-eclipse-integration.path }})</li>
+        <li>[Online Manipulator]({{ refs.apache-felix-ipojo-online-manipulator.path }})</li>
+        <li>[FAQ]({{ refs.ipojo-faq.path }})</li>
+	</ul>
+	</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+
+
+
+The easiest way to get involved in iPOJO is to try it out. See the [iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }}) tutorial for how to get up and running with the iPOJO framework and the downloads page for more information on acquiring iPOJO & related tools.
+
+You can also have a look to [this](http://felix.apache.org/site/presentations.data/ipojo-berlin-20080611.pdf) presentation describing iPOJO main features.
+  
+  
+
+## What's new
+
+{{ refs.ipojo-news.headers.excerpt }}
+* [all news...]({{ refs.ipojo-news.path }})
+
+
+{include:apache-felix-ipojo-footer}

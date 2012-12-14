@@ -1,0 +1,131 @@
+Title: downloads
+
+# Downloads
+
+To get the latest development release of Apache Felix, you can check out the [sources]({{ refs.source-code.path }}) and [build Felix|Building Felix] yourself. Otherwise, the releases below are available for download. To install, just download and extract. These [KEYS|http://www.apache.org/dist/felix/KEYS] can be used to verify the release archive.
+
+All Apache Felix products are distributed under the terms of The Apache Software License (version 2.0). See our [license page]({{ refs.license.path }}), or the LICENSE file included in each distribution.
+
+## Mirrors
+
+Use the links below to download binary or source distributions of Apache Felix from one of our mirrors.
+
+You are currently using *\[preferred\]({{ refs.preferred.path }})*. If you encounter a problem with this mirror, please select another mirror. If all mirrors are failing, there are backup mirrors (at the end of the mirrors list) that should be available.
+If the mirror displayed above is labeled *preferred*, then please reload this page by [clicking here](http://felix.apache.org/site/downloads.cgi).
+
+
+<form action="[location]({{ refs.location.path }})" method="get" id="SelectMirror">
+Other mirrors: </P><select name="Preferred">
+[if-any http]({{ refs.if-any-http.path }})
+[for http]({{ refs.for-http.path }})<option value="[http]">[http]</option>[end]
+[end]({{ refs.end.path }})
+[if-any ftp]({{ refs.if-any-ftp.path }})
+[for ftp]({{ refs.for-ftp.path }})<option value="[ftp]">[ftp]</option>[end]
+[end]({{ refs.end.path }})
+[if-any backup]({{ refs.if-any-backup.path }})
+[for backup]({{ refs.for-backup.path }})<option value="[backup]">[backup] (backup)</option>[end]
+[end]({{ refs.end.path }})
+</select>
+<input type="submit" value="Change"></input>
+</form>
+
+  
+  
+### Felix Framework Distribution
+| Artifact | Version | Binary |
+|--|--|--|
+| Felix Framework Distribution | 4.0.3 | {felixdownload:bin}org.apache.felix.main.distribution-4.0.3{felixdownload} |
+### Subprojects
+{HTMLcomment:hidden}Please keep the list in alphabetical order{HTMLcomment}
+| Artifact | Version | Binary | Source |
+|--|--|--|--|
+| AutoConf Resource Processor | 0.1.0 | {felixdownload:jar}org.apache.felix.deployment.rp.autoconf-0.1.0{felixdownload} | {felixdownload:bin}org.apache.felix.deployment.rp.autoconf-0.1.0-project{felixdownload} |
+| Bundle Repository | 1.6.6 | {felixdownload:jar}org.apache.felix.bundlerepository-1.6.6{felixdownload} | {felixdownload:bin}org.apache.felix.bundlerepository-1.6.6-source-release{felixdownload} |
+| Configuration Admin | 1.6.0 | {felixdownload:jar}org.apache.felix.configadmin-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.configadmin-1.6.0-source-release{felixdownload} |
+| Dependency Manager | 3.0.0 | {felixdownload:jar}org.apache.felix.dependencymanager-3.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.dependencymanager-3.0.0-project{felixdownload} |
+| Dependency Manager Annotation | 3.0.0 | {felixdownload:jar}org.apache.felix.dependencymanager.annotation-3.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.dependencymanager.annotation-3.0.0-project{felixdownload} |
+| Dependency Manager Compat | 3.0.0 | {felixdownload:jar}org.apache.felix.dependencymanager.compat-3.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.dependencymanager.compat-3.0.0-project{felixdownload} |
+| Dependency Manager Runtime | 3.0.0 | {felixdownload:jar}org.apache.felix.dependencymanager.runtime-3.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.dependencymanager.runtime-3.0.0-project{felixdownload} |
+| Dependency Manager Shell | 3.0.0 | {felixdownload:jar}org.apache.felix.dependencymanager.shell-3.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.dependencymanager.shell-3.0.0-project{felixdownload} |
+| Deployment Admin | 0.9.0 | {felixdownload:jar}org.apache.felix.deploymentadmin-0.9.0{felixdownload} | {felixdownload:bin}org.apache.felix.deploymentadmin-0.9.0-project{felixdownload} |
+| Event Admin | 1.3.0 | {felixdownload:jar}org.apache.felix.eventadmin-1.3.0{felixdownload} | {felixdownload:bin}org.apache.felix.eventadmin-1.3.0-source-release{felixdownload} |
+| File Install | 3.2.4 | {felixdownload:jar}org.apache.felix.fileinstall-3.2.4{felixdownload} | {felixdownload:bin}org.apache.felix.fileinstall-3.2.4-source-release{felixdownload} |
+| Framework | 4.0.3 | {felixdownload:jar}org.apache.felix.framework-4.0.3{felixdownload} | {felixdownload:bin}org.apache.felix.framework-4.0.3-source-release{felixdownload} |
+| Framework Security | 2.0.1 | {felixdownload:jar}org.apache.felix.framework.security-2.0.1{felixdownload} | {felixdownload:bin}org.apache.felix.framework.security-2.0.1-source-release{felixdownload} |
+| Gogo Runtime | 0.10.0 | {felixdownload:jar}org.apache.felix.gogo.runtime-0.10.0{felixdownload} | {felixdownload:bin}org.apache.felix.gogo.runtime-0.10.0-project{felixdownload} | 
+| Gogo Shell | 0.10.0 | {felixdownload:jar}org.apache.felix.gogo.shell-0.10.0{felixdownload} | {felixdownload:bin}org.apache.felix.gogo.shell-0.10.0-project{felixdownload} | 
+| Gogo Command | 0.12.0 | {felixdownload:jar}org.apache.felix.gogo.command-0.12.0{felixdownload} |{felixdownload:bin}org.apache.felix.gogo.command-0.12.0-project{felixdownload} | 
+| HTTP Service API | 2.2.0 | {felixdownload:jar}org.apache.felix.http.api-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.api-2.2.0-project{felixdownload} |
+| HTTP Service Base | 2.2.0 | {felixdownload:jar}org.apache.felix.http.base-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.base-2.2.0-project{felixdownload} |
+| HTTP Service Bridge | 2.2.0 | {felixdownload:jar}org.apache.felix.http.bridge-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.bridge-2.2.0-project{felixdownload} |
+| HTTP Service Bundle | 2.2.0 | {felixdownload:jar}org.apache.felix.http.bundle-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.bundle-2.2.0-project{felixdownload} |
+| HTTP Service Jetty | 2.2.0 | {felixdownload:jar}org.apache.felix.http.jetty-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.jetty-2.2.0-project{felixdownload} |
+| HTTP Service Proxy | 2.2.0 | {felixdownload:jar}org.apache.felix.http.proxy-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.jetty-2.2.0-project{felixdownload} |
+| HTTP Service Whiteboard | 2.2.0 | {felixdownload:jar}org.apache.felix.http.whiteboard-2.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.http.whiteboard-2.2.0-project{felixdownload} |
+| iPOJO | 1.8.4 | {felixdownload:jar}org.apache.felix.ipojo-1.8.4{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo-1.8.4-project{felixdownload} |
+| iPOJO Architecture Command for the Felix Shell| 1.6.0 | {felixdownload:jar}org.apache.felix.ipojo.arch-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.arch-1.6.0-project{felixdownload}|
+| iPOJO Architecture Command for Gogo | 1.0.1 | {felixdownload:jar}org.apache.felix.ipojo.arch.gogo-1.0.1{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.arch.gogo-1.0.1-project{felixdownload}|
+| iPOJO Composite | 1.8.4 | {felixdownload:jar}org.apache.felix.ipojo.composite-1.8.4{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.composite-1.8.4-project{felixdownload}|
+| iPOJO Annotations | 1.8.4 | {felixdownload:jar}org.apache.felix.ipojo.annotations-1.8.4{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.annotations-1.8.4-project{felixdownload}|
+| iPOJO Ant Task | 1.8.6 | {felixdownload:jar}org.apache.felix.ipojo.ant-1.8.6{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.ant-1.8.6-project{felixdownload}|
+| iPOJO BND Plugin | 1.8.6 | {felixdownload:jar}bnd-ipojo-plugin-1.8.6{felixdownload} | {felixdownload:bin}bnd-ipojo-plugin-1.8.6-project{felixdownload}|
+| iPOJO WebConsole Plugin | 1.6.0 | {felixdownload:jar}org.apache.felix.ipojo.webconsole-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.webconsole-1.6.0-project{felixdownload}|
+| iPOJO API | 1.6.0 | {felixdownload:jar}org.apache.felix.ipojo.api-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.api-1.6.0-project{felixdownload}|
+| iPOJO Manipulator | 1.8.6 | {felixdownload:jar}org.apache.felix.ipojo.manipulator-1.8.6{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.manipulator-1.8.6-project{felixdownload}|
+| iPOJO Whiteboard pattern handler | 1.6.0 | {felixdownload:jar}org.apache.felix.ipojo.handler.whiteboard-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.handler.whiteboard-1.6.0-project{felixdownload}|
+| iPOJO Extender pattern handler | 1.4.0 | {felixdownload:jar}org.apache.felix.ipojo.handler.extender-1.4.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.handler.extender-1.4.0-project{felixdownload}|
+| iPOJO JMX handler | 1.4.0 | {felixdownload:jar}org.apache.felix.ipojo.handler.jmx-1.4.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.handler.jmx-1.4.0-project{felixdownload}|
+| iPOJO Event Admin handler | 1.8.0 | {felixdownload:jar}org.apache.felix.ipojo.handler.eventadmin-1.8.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.handler.eventadmin-1.8.0-project{felixdownload}|
+| iPOJO Temporal Dependency handler | 1.6.0 | {felixdownload:jar}org.apache.felix.ipojo.handler.temporal-1.6.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.handler.temporal-1.6.0-project{felixdownload}|
+| junit4osgi | 1.0.0 | {felixdownload:jar}org.apache.felix.ipojo.junit4osgi-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.junit4osgi-1.0.0-project{felixdownload}|
+| junit4osgi - shell command | 1.0.0 | {felixdownload:jar}org.apache.felix.ipojo.junit4osgi.felix-command-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.junit4osgi.felix-command-1.0.0-project{felixdownload}|
+| junit4osgi - swing gui | 1.0.0 | {felixdownload:jar}org.apache.felix.ipojo.junit4osgi.swing-gui-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.ipojo.junit4osgi.swing-gui-1.0.0-project{felixdownload}|
+| Lightweight HTTP Service Core | 0.1.4 | {felixdownload:jar}org.apache.felix.httplite.core-0.1.4{felixdownload} | {felixdownload:bin}org.apache.felix.httplite.core-0.1.4-project{felixdownload} |
+| Lightweight HTTP Service Complete | 0.1.4 | {felixdownload:jar}org.apache.felix.httplite.complete-0.1.4{felixdownload} | {felixdownload:bin}org.apache.felix.httplite.complete-0.1.2-project{felixdownload} |
+| Log | 1.0.1 | {felixdownload:jar}org.apache.felix.log-1.0.1{felixdownload} | {felixdownload:bin}org.apache.felix.log-1.0.1-project{felixdownload} |
+| Main | 4.0.3 | {felixdownload:jar}org.apache.felix.main-4.0.3{felixdownload} | {felixdownload:bin}org.apache.felix.main-4.0.3-project{felixdownload} |
+| Metatype | 1.0.6 | {felixdownload:jar}org.apache.felix.metatype-1.0.6{felixdownload} | {felixdownload:bin}org.apache.felix.metatype-1.0.6-source-release{felixdownload} |
+| OSGi OBR service API | 1.0.2 | {felixdownload:jar}org.osgi.service.obr-1.0.2{felixdownload} | {felixdownload:bin}org.osgi.service.obr-1.0.2-project{felixdownload} |
+| Preferences | 1.0.4 | {felixdownload:jar}org.apache.felix.prefs-1.0.4{felixdownload} | {felixdownload:bin}org.apache.felix.prefs-1.0.4-project{felixdownload} |
+| Remote Shell | 1.1.2 | {felixdownload:jar}org.apache.felix.shell.remote-1.1.2{felixdownload} | {felixdownload:bin}org.apache.felix.shell.remote-1.1.2-project{felixdownload} |
+| SCR (Declarative Services) | 1.6.2 | {felixdownload:jar}org.apache.felix.scr-1.6.2{felixdownload} | {felixdownload:bin}org.apache.felix.scr-1.6.2-source-release{felixdownload} |
+| SCR Annotations | 1.7.0 | {felixdownload:jar}org.apache.felix.scr.annotations-1.7.0{felixdownload} | {felixdownload:bin}org.apache.felix.scr.annotations-1.7.0-project{felixdownload} |
+| SCR DS Annotations | 1.2.0 | {felixdownload:jar}org.apache.felix.scr.ds-annotations-1.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.scr.ds-annotations-1.2.0-project{felixdownload} |
+| SCR Generator | 1.3.0 | {felixdownload:jar}org.apache.felix.scr.generator-1.3.0{felixdownload} | {felixdownload:bin}org.apache.felix.scr.generator-1.3.0-project{felixdownload} |
+| Shell | 1.4.3 | {felixdownload:jar}org.apache.felix.shell-1.4.3{felixdownload} | {felixdownload:bin}org.apache.felix.shell-1.4.3-project{felixdownload} |
+| Shell Text UI | 1.4.1 | {felixdownload:jar}org.apache.felix.shell.tui-1.4.1{felixdownload} | {felixdownload:bin}org.apache.felix.shell.tui-1.4.1-project{felixdownload} |
+| UPnP Base Driver | 0.8.0 | For JDK 1.4+ {felixdownload:jar}org.apache.felix.upnp.basedriver-0.8.0{felixdownload} 
+For JDK 1.3 {felixdownload:jar}org.apache.felix.upnp.basedriver-0.8.0-jdk13{felixdownload} | {felixdownload:bin}org.apache.felix.upnp.basedriver-0.8.0-project{felixdownload} |
+| UPnP Extra | 0.4.0 |  {felixdownload:jar}org.apache.felix.upnp.extra-0.4.0{felixdownload} | {felixdownload:bin}org.apache.felix.upnp.extra-0.4.0-project{felixdownload} |
+| UPnP Tester | 0.4.0 |  {felixdownload:jar}org.apache.felix.upnp.tester-0.4.0{felixdownload} | {felixdownload:bin}org.apache.felix.upnp.tester-0.4.0-project{felixdownload} |
+| User Admin | 1.0.3 | {felixdownload:jar}org.apache.felix.useradmin-1.0.3{felixdownload} | {felixdownload:bin}org.apache.felix.useradmin-1.0.3-project{felixdownload} |
+| User Admin File-based store | 1.0.2 | {felixdownload:jar}org.apache.felix.useradmin.filestore-1.0.2{felixdownload} | {felixdownload:bin}org.apache.felix.useradmin.filestore-1.0.2-project{felixdownload} |
+| User Admin MongoDB-based store | 1.0.1 | {felixdownload:jar}org.apache.felix.useradmin.mongodb-1.0.1{felixdownload} | {felixdownload:bin}org.apache.felix.useradmin.mongodb-1.0.1-project{felixdownload} |
+| Utils | 1.2.0 |  {felixdownload:jar}org.apache.felix.utils-1.2.0{felixdownload} | {felixdownload:bin}org.apache.felix.utils-1.2.0-source-release{felixdownload} |
+| Web Console | 4.0.0 | {felixdownload:jar}org.apache.felix.webconsole-4.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole-4.0.0-source-release{felixdownload} |
+| Web Console DS Plugin | 1.0.0 | {felixdownload:jar}org.apache.felix.webconsole.plugins.ds-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.ds-1.0.0-source-release{felixdownload} |
+| Web Console Event Admin Plugin | 1.0.2 | {felixdownload:jar}org.apache.felix.webconsole.plugins.event-1.0.2{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.event-1.0.2-project{felixdownload} |
+| Web Console Memory Usage Plugin | 1.0.4 | {felixdownload:jar}org.apache.felix.webconsole.plugins.memoryusage-1.0.4{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.memoryusage-1.0.4-source-release{felixdownload} |
+| Web Console OBR Plugin | 1.0.0 | {felixdownload:jar}org.apache.felix.webconsole.plugins.obr-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.obr-1.0.0-source-release{felixdownload} |
+| Web Console PackageAdmin Plugin | 1.0.0 | {felixdownload:jar}org.apache.felix.webconsole.plugins.packageadmin-1.0.0{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.packageadmin-1.0.0-source-release{felixdownload} |
+| Web Console UPNP Plugin | 1.0.2 | {felixdownload:jar}org.apache.felix.webconsole.plugins.upnp-1.0.2{felixdownload} | {felixdownload:bin}org.apache.felix.webconsole.plugins.upnp-1.0.2-source-release{felixdownload} |
+| Web Console ServiceDiagnostics Plugin | 0.1.1 | {felixdownload:jar}org.apache.felix.servicediagnostics.plugin-0.1.1{felixdownload} | {felixdownload:bin}org.apache.felix.servicediagnostics.plugin-0.1.1-source-release{felixdownload} |
+
+
+### Maven Plugins
+{HTMLcomment:hidden}Please keep the list in alphabetical order{HTMLcomment}
+| Artifact | Version | Binary | Source |
+|--|--|--|--|
+| Maven Bundle Plugin | 2.3.7 | {felixdownload:jar}maven-bundle-plugin-2.3.7{felixdownload} | {felixdownload:bin}maven-bundle-plugin-2.3.7-source-release{felixdownload} |
+| Maven iPOJO Plugin | 1.8.4 | {felixdownload:jar}maven-ipojo-plugin-1.8.4{felixdownload} | {felixdownload:bin}maven-ipojo-plugin-1.8.4-project{felixdownload} |
+| Maven junit4osgi Plugin | 1.0.0 | {felixdownload:jar}maven-junit4osgi-plugin-1.0.0{felixdownload} | {felixdownload:bin}maven-junit4osgi-plugin-1.0.0-project{felixdownload} |
+| Maven OBR Plugin | 1.2.0 | {felixdownload:jar}maven-obr-plugin-1.2.0{felixdownload} | {felixdownload:bin}maven-obr-plugin-1.2.0-project{felixdownload} |
+| Maven SCR Plugin | 1.9.0 | {felixdownload:jar}maven-scr-plugin-1.9.0{felixdownload} | {felixdownload:bin}maven-scr-plugin-1.9.0-project{felixdownload} |
+
+
+### Ant Tasks
+
+| SCR Ant Task | 1.3.0 | {felixdownload:jar}org.apache.felix.scr.ant-1.3.0{felixdownload} | {felixdownload:bin}org.apache.felix.scr.ant-1.3.0-project{felixdownload} |
+
+
+If you are looking for previous releases of Apache Felix, have a look in the [archives](http://archive.apache.org/dist/felix/).

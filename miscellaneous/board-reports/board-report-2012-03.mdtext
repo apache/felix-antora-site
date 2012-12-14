@@ -1,0 +1,29 @@
+Title: Board Report (2012-03)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+*Community* 
+* Normal mailing list and bug reporting activity.
+* Reuben Garrett has volunteered to work on the iPOJO documentation.
+* Benedikt Ritter has volunteered to work on improving documentation on our wiki.
+
+*Software*
+* Recent subproject releases:
+** iPOJO Manipulator (1.8.2)
+** Lightweight OSGi HTTP Service (0.1.4)
+** Maven Bundle Plugin (2.3.7)
+** Service Diagnostics Web Console Plugin (0.1.1) - First release of contributed project by Arjun Panday.
+** Utils (1.1.2)
+
+*Project Branding*
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open
+** TM missing from all Logos
+* Project Metadata: done
+
+*Licensing and other issues* 
+* None.

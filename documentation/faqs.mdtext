@@ -1,0 +1,8 @@
+Title: FAQs
+
+# Frequently Asked Questions
+
+* [OSGi FAQ]({{ refs.apache-felix-osgi-faq.path }}) - Contains answers to general OSGi-related questions.
+* [Framework FAQ]({{ refs.apache-felix-framework-faq.path }}) - Contains answers to questions that are specifically related to Felix' OSGi framework implementation.
+* [Bundle Plugin FAQ]({{ refs.apache-felix-bundle-plugin-faq.path }}) - Contains answers to questions about the Felix maven-bundle-plugin
+* [SCR Plugin FAQ]({{ refs.apache-felix-scr-plugin-faq.path }}) - Contains answers to questions about the Felix maven-scr-plugin

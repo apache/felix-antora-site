@@ -1,0 +1,35 @@
+Title: Apache Felix Sigil Eclipse Features
+
+## Project Editor
+
+Double click on a sigil.properties file to open it in the project editor. From here you can control the main features of your project, including:
+* bundle headers
+* bundle contents
+* dependencies (i.e. import-package, require-bundle etc)
+* exports (package exports, sca composites, etc)
+
+To link to other OSGi bundles (either in the workspace or from an external repository) just add the appropriate OSGi dependencies and Sigil will resolve a bundle and add it to your classpath. To link to non OSGi bundles you can use the standard project build path tool to add jars - if you want these jars to be included in your built bundle, add them to the classpath table on the contents tab.
+
+## Quick Fix
+
+Sigil provides a number of quick fix options whilst editing java files. If a class needs to be imported to the bundle classpath press the quick fix icon in the left hand border (or ctrl+1 - by default) to search for a package export that provides the class and add it to the project's classpath.
+
+## Repositories
+
+Repositories are where the external dependencies for your project live. For more information see the [overview]({{ refs.sigil-repositories.path }}).
+
+## Views
+
+Sigil provides a number of views to help aid the developer. To open these views open them via "Window \-> Show View \-> Other" and navigate to the Sigil sub section.
+
+### Bundle Dependency View
+
+Select a sigil.properties file to show the dependencies for that project.
+
+!bundle-dependency-view.png|thumbnail!
+
+### Repository View
+
+The repository view allows the developer to browse the contents of a repository via a tree view.
+
+!bundle-repository-view.png|thumbnail!

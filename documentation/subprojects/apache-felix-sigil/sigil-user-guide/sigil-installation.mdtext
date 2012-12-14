@@ -1,0 +1,43 @@
+Title: Sigil Installation
+
+# Sigil Installation
+
+We're currently in the process of setting up the Sigil build - the last remaining task here is set up of the build on the apache bamboo servers. In the mean time we have set up a daily build hosted at Sigils previous home (codecauldron.org).
+
+### Daily builds
+
+If you feel like living on the edge you can install Sigil from the daily build at code cauldron - as it is a daily build please be careful when using this in your development environments - i.e. ensure you have code checked into version control. There shouldn't be any major problems as the code is being used to develop Sigil itself - but it is only fare to give the warning. 
+
+The daily build is hosted here:
+
+http://ci.codecauldron.org/hudson/job/sigil-apache-daily/
+
+##### Eclipse Update Site
+
+Add the following update site to Eclipse 3.4, 3.5 or 3.5.1
+
+http://ci.codecauldron.org/hudson/job/sigil-apache-daily/lastSuccessfulBuild/artifact/sigil/site/
+
+##### Ivy plugin
+
+The ivy plugin is available here:
+
+[org.apache.felix.sigil.ivy.resolver.jar](http://ci.codecauldron.org/hudson/job/sigil-apache-daily/lastSuccessfulBuild/artifact/sigil/site/ivy/org.apache.felix.sigil.ivy.resolver.jar)
+
+### Build from source
+
+The following script is useful to ensure builds are created with incremental timestamps vs 0.9.0.SNAPSHOT.
+
+<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>release.sh</B></DIV><DIV class="codeContent panelContent">
+    now=$(date +%Y%m%d_%H%M%S)
+    ant -DbuildVersion=0.9.0.$now clean dist
+
+
+To build (note the first build can take a /long/ time as various dependencies need to be cached - but subsequent builds take an order of 10's of seconds)
+
+    svn co http://svn.apache.org/repos/asf/felix/trunk/sigil sigil-trunk
+    cd sigil-trunk
+    sh release.sh
+
+
+Then add an update site to eclipse under `file:/path-to/sigil-trunk/site`.

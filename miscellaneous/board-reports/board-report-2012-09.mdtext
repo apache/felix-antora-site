@@ -1,0 +1,31 @@
+Title: Board Report (2012-09)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+*Community* 
+* Felix Meschberger appointed new chair by the ASF board (June 20th)
+* Jan Willem Janssen has been added as a committer (Aug 7th)
+
+*Software*
+* Recent subproject releases:
+** Framework, Main, and Main Distribution 4.0.3 (July 6th)
+** SCR Generator 1.2.0 (Aug 23rd)
+** SCR Annotations 1.7.0 (Aug 23rd)
+** DS Annotations 1.2.0 (Aug 23rd)
+** Maven SCR Plugin 1.8.0 (Aug 23rd)
+** SCR Ant Task 1.2.0 (Aug 23rd)
+* Donation of UserAdmin implementation (Aug 21nd)
+
+*Project Branding*
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open
+* TM missing from all Logos
+* Project Metadata: done
+
+
+*Licensing and other issues* 
+* None

@@ -1,0 +1,159 @@
+Title: apache-felix-ipojo-header
+
+{style:import=http://felix.apache.org/ipojo/site/superfish.css}
+{style:import=http://felix.apache.org/ipojo/site/style.css}
+
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shCore.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushCSharp.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushPhp.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushJScript.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushVb.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushSql.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushXml.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushShell.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushDelphi.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushPython.js"></script>
+<script class="javascript" src="http://cwiki.apache.org/confluence/download/resources/confluence.ext.code:code/shBrushJava.js"></script>
+
+<script type="text/javascript" src="http://felix.apache.org/ipojo/site/jquery-1.js"></script>
+<script type="text/javascript" src="http://felix.apache.org/ipojo/site/hoverIntent.js"></script>
+<script type="text/javascript" src="http://felix.apache.org/ipojo/site/superfish.js"></script> 
+<script type="text/javascript" src="http://felix.apache.org/ipojo/site/supersubs.js"></script> 
+
+<script type="text/javascript"> 
+ 
+    $(document).ready(function(){ 
+        $("ul.sf-menu").supersubs({ 
+            minWidth:    14,   // minimum width of sub-menus in em units 
+            maxWidth:    30,   // maximum width of sub-menus in em units 
+            extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+                               // due to slight rounding differences and font-family 
+        }).superfish();  // call supersubs first, then superfish, so that subs are 
+                         // not display:none when measuring. Call before initialising 
+                         // containing tabs for same reason. 
+    }); 
+ 
+</script>
+<div class="main">
+<div class="page-header"/>
+<img src="http://felix.apache.org/ipojo/site/header.png" class="header">
+<a href="http://ipojo.org"><img src="http://felix.apache.org/ipojo/site/ipojo.png" width="225" class="header-logo"></a>
+<ul class="sf-menu sf-js-enabled sf-shadow" id="ipojo-menu">
+<li class="current">
+<!-- Menu Overview -->
+<a href="#" class="sf-with-ul">Overview<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+<ul>
+	<li>
+	[Home]({{ refs.apache-felix-ipojo.path }})							
+	</li>
+	<li>
+	[Why choose iPOJO]({{ refs.apache-felix-ipojo-why-choose-ipojo.path }})
+	</li>
+	<li>
+	[Success stories]({{ refs.apache-felix-ipojo-successstories.path }})
+	</li>
+	<li>
+	[Features]({{ refs.apache-felix-ipojo-feature-overview.path }})
+	</li>
+</ul>
+</li>	
+
+<li class="">			
+<!-- Menu download -->
+<li>
+[Download ]({{ refs.-download.path }})
+</li>
+
+<li class="">					
+<!-- Menu Documentation -->
+<a href="#" class="sf-with-ul">Documentation<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+<ul>
+    <!-- sub-menu : getting started -->
+    <li class="">
+    <a href="#" class="sf-with-ul">Getting Started<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+    <ul>
+     <li>[iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }})</li>
+     <li>[Using Annotations]({{ refs.how-to-use-ipojo-annotations.path }})</li>
+     <li>[Maven tutorial]({{ refs.ipojo-hello-word-maven-based-tutorial.path }})</li>
+     <li>[Advanced tutorial]({{ refs.ipojo-advanced-tutorial.path }})</li>
+     <li>[Using Distributed OSGi]({{ refs.apache-felix-ipojo-dosgi.path }})</li>
+     <li>[Application Composition]({{ refs.ipojo-composition-tutorial.path }})</li>
+    </ul>
+    </li> <!-- end of getting started -->
+    <!-- sub menu : Describing Components -->
+     <li class="">
+        <a href="http://felix.apache.org/site/describing-components.html" class="sf-with-ul">Describing components<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+        <ul>
+        <li>[Requiring a service]({{ refs.service-requirement-handler.path }})</li>
+        <li>[Providing a service]({{ refs.providing-osgi-services.path }})</li>
+        <li>[Lifecycle management]({{ refs.lifecycle-callback-handler.path }})</li>
+        <li>[Configuration]({{ refs.configuration-handler.path }})</li>
+        <li>[Introspection]({{ refs.architecture-handler.path }})</li>
+        <li>[Impacting the lifecycle]({{ refs.controller-lifecycle-handler.path }})</li>
+        <li>[Asynchronous communication]({{ refs.event-admin-handlers.path }})</li>
+        <li>[JMX management]({{ refs.ipojo-jmx-handler.path }})</li>
+        <li>[Extender pattern]({{ refs.extender-pattern-handler.path }})</li>
+        <li>[Whiteboard pattern]({{ refs.white-board-pattern-handler.path }})</li>
+        <li>[Temporal dependencies]({{ refs.temporal-service-dependency.path }})</li>
+        </ul>
+     </li> <!-- End of describing components -->
+    <!-- sub-menu : User Guide -->
+    <li class="">
+    <a href="" class="sf-with-ul">User Guide<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+        <ul>
+        <li>[iPOJO and config admin]({{ refs.felix-combining-ipojo-and-configuration-admin.path }})</li>
+        <li>[Factories and Instances]({{ refs.felix-how-to-use-ipojo-factories.path }})</li>
+        <li>[XML Schemas]({{ refs.using-xml-schemas.path }})</li>
+        <li>[API]({{ refs.apache-felix-ipojo-api.path }})</li>
+        <li>[Testing components]({{ refs.apache-felix-ipojo-testing-components.path }})</li>
+        <li>[Eclipse Integration]({{ refs.apache-felix-ipojo-eclipse-integration.path }})</li>
+        <li>[FAQ]({{ refs.ipojo-faq.path }})</li>
+        <li>[Reference Card]({{ refs.ipojo-reference-card.path }})</li>
+        </ul>
+    </li> <!-- end of user guide -->
+    <!-- sub-menu : Dev Guide -->
+    <li> 
+    <a href="#" class="sf-with-ul">Advanced Topics<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+       <ul>
+        <li>[Javadoc](http://felix.apache.org/ipojo/api/1.6.0)</li>
+        <li>[Handler development]({{ refs.-how-to-write-your-own-handler.path }})</li>
+        <li>[Manipulation Metadata ]({{ refs.-how-to-use-ipojo-manipulation-metadata.path }})</li>
+        <li>[Dive into the iPOJO Manipulation depths]({{ refs.dive-into-the-ipojo-manipulation-depths.path }})</li>
+       </ul>
+    </li> <!-- End of Dev guide -->
+</ul> 
+</li> <!-- End of doc -->
+<!-- Menu 4 : Tools -->
+<li class="">
+<a href="#" class="sf-with-ul">Tools<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+<ul>
+   <li>[Ant Task]({{ refs.ipojo-ant-task.path }})</li>
+   <li>[Eclipse Plugin]({{ refs.ipojo-eclipse-plug-in.path }})</li>
+   <li>[Maven Plugin]({{ refs.ipojo-maven-plug-in.path }})</li>
+   <li>[`arch` shell command]({{ refs.felix-ipojo-arch-command.path }})</li>
+   <li>[Online Manipulator]({{ refs.apache-felix-ipojo-online-manipulator.path }})</li>
+   <li>[Webconsole plugin]({{ refs.ipojo-webconsole-plugin.path }})</li>
+   <li>[Junit4OSGi]({{ refs.apache-felix-ipojo-junit4osgi.path }})</li>
+</ul>   
+</li><!-- End of tools -->	
+<!-- Menu 5 : Support -->
+<li>
+[Support ]({{ refs.-ipojo-support.path }})
+</li>
+<!-- End of the menu 5 -->			
+<!-- Menu 6 : Misc -->
+<li class="">
+<a href="#" class="sf-with-ul">Misc<span class="sf-sub-indicator"> »</span><span class="sf-sub-indicator"> »</span></a>
+<ul>
+   <li>[Supported JVMs]({{ refs.apache-felix-ipojo-supportedvms.path }})</li>
+   <li>[Supported OSGi Implementations]({{ refs.apache-felix-ipojo-supportedosgi.path }})</li>
+   <li>[iPOJO's Dark Side Blog](http://ipojo-dark-side.blogspot.com)</li>
+   <li>[Article & Presentations]({{ refs.article-presentations.path }})</li>
+   <li><a href="http://www.apache.org/">ASF</a></li>
+   <li><a href="http://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+   <li><a href="http://www.apache.org/foundation/thanks.html">Sponsors</a></li>
+</ul>
+</li><!-- End of misc -->
+</ul> <!-- End of the menu -->
+</div> <!-- Page header -->
+

@@ -1,0 +1,81 @@
+Title: ipojo-support
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+# Support
+
+*Two types of support are provided for Apache Felix iPOJO. The community support is free but relies on the availability of iPOJO developers. Professional supports are provided by companies guarantying a fast and efficient feedback.*
+
+
+## Community Support
+
+### Mailing List
+
+iPOJO is hosted as an Apache Felix sub-project, you can ask questions by sending mails to the Felix mailing lists. There is two mailing list:
+* The users mailing list
+* The developer mailing list
+
+Subscribe to the Felix users mailing list by sending a message to [mailto:users-subscribe@felix.apache.org]({{ refs.mailto-users-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [mailto:users@felix.apache.org].
+Either, if you want to be involved, subscribe to the Felix dev mailing list by sending a message to [mailto:dev-subscribe@felix.apache.org]({{ refs.mailto-dev-subscribe-felix-apache-org.path }}); after subscribing, email ideas or feedback to [mailto:dev@felix.apache.org].
+
+### Bug Tracker
+
+If you want a features, an improvement or report a bug, feel free to open an issue on the Apache Felix bug tracker:
+* Go to the [https://issues.apache.org/jira/browse/FELIX](https://issues.apache.org/jira/browse/FELIX) page
+* Create an account or log in.
+* Open the 'Create a new issue in project Felix' form.
+* Then, select the Felix project and the issue type (improvement, bug, wish, new feature...)
+* At the second step, select the *iPOJO* component and fill out the form (please select the affected version only)
+* Finally click on the create button
+
+You can also watch the issue to monitor progress. The iPOJO team tries to give you quick and frequent feedback on issues.
+
+## Professional Support
+
+Companies listed below provide professional support (training, mentoring, consulting, development...) for Apache Felix iPOJO.
+
+### akquinet
+
+
+{section}
+{column:width=75%} 
+
+<p style="padding:5px; text-align:justify;">
+akquinet AG is a high-performance IT consulting company for standard solutions, customized development, and outsourcing - operating internationally. It has been a long-serving and active participant In the Open Source movement. Taking Java, OSGi, JEE, SAP, and Microsoft as a basis, akquinet advises with respect to processes and industry in the selection, implementation, and optimization of IT solutions. Working agilely, akquinet develops customized software and integrates existing system environments as well as operating customer systems securely and reliably in high-performance computer centers.
+<br/><br/>
+akquinet possesses a lot of experience in OSGi development and in modular applications. akquinet provides support for Apache Felix and Apache Felix iPOJO as well as training, consulting, mentoring and development for modular / OSGi-based applications and mobile solutions. It also provides <a href="http://www.akquinet.de/content/java-sap/mobile-solutions-und-osgi/modular-solutions/osgi-jumppack.html">OSGi Jumpacks</a> to efficiently develop OSGi applications. For more information, visit the <a href="http://www.akquinet.de/content/java-sap/mobile-solutions-und-osgi.html">akquinet web site</a>.
+</p>
+
+{column}
+{column:width=25%}
+!http://www.akquinet.de/fileadmin/img/akquinet*logo*neu_k.JPG|align=center!
+{column}
+{section}
+
+  
+  
+  
+  
+
+
+<div class="box">
+	<div class="box-blue-header">
+	<div class="box-blue-title">
+		<img src="http://felix.apache.org/ipojo/site/information.gif"> <b>Want to be listed here ?</b>
+	</div>
+	</div>
+	<div class="box-blue-content">
+If your company also provides professional support for Apache Felix iPOJO, just send a message to [dev@felix.apache.org]({{ refs.mailto-dev-felix-apache-org.path }}) with the company description.
+	</div>
+	<div class="box-blue-footer"></div>
+</div>
+
+
+  
+  
+  
+  
+
+{include:apache-felix-ipojo-footer}

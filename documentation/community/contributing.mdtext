@@ -1,0 +1,20 @@
+Title: Contributing
+
+# Contributing
+
+Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help support Felix, this page is intended as a starting point for specific contribution ideas. To further understand how the Felix community operates, refer to the [Community Roles and Processes]({{ refs.apache-felix-community-roles-and-processes.path }}) document and/or join the [mailing lists|mailinglists].
+
+The Felix project organizes its "to do" list using the [JIRA](http://issues.apache.org/jira/browse/Felix) issue tracking system. Specific items from Felix' JIRA issue tracking system are highlighted on this page, but are not limited to it. The purpose of the list here is to highlight issues that are either more important or serve as good entry points for new contributors.
+
+It is important to point out that you do not need to be a programmer to contribute to Felix. As such, we will break out the list of issues below for non-programmers and programmers.
+
+## Non-Programmers
+
+* Improve web site or documentation (e.g., create/propose FAQ entries). There is no specific JIRA issue for this task, but any contributions could be posted as new JIRA issues for the [Documentation](http://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&mode=hide&pid=12310100&sorter/order=DESC&sorter/field=priority&resolution=-1&component=12312255) component.
+* Define a compatibility documentation legend for bundle subprojects. [FELIX-537](http://issues.apache.org/jira/browse/FELIX-537)
+
+## Programmers
+
+* Write tests for the framework and/or its sub-projects, either using JUnit or the new [BND testing harness](http://felix.apache.org/site/bnd-testing-harness.html)
+* Work on an installer that can install Felix as a daemon/service. [Installer issues](https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&mode=hide&pid=12310100&sorter/order=DESC&sorter/field=priority&resolution=-1&component=12310803)
+* Browse issues in [JIRA](http://issues.apache.org/jira/browse/Felix) and submit a patch.

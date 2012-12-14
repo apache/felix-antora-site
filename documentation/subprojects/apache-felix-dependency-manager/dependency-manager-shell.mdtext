@@ -1,0 +1,21 @@
+Title: Dependency Manager Shell
+Excerpt: The shell bundle for the dependency manager extends the shell with one new command called "dm". This command can be used to list all services and dependencies that are under control of the dependency manager.
+
+# Introduction
+
+The shell bundle for the dependency manager extends the shell with one new command called "dm". This command can be used to list all services and dependencies that are under control of the dependency manager.
+
+You can use the following arguments to influence the output:
+- "notavail" will only list services that are not available for some reason, which can be helpful when debugging when you're wondering why certain services do not appear.
+- "compact" will use a more compact output format, which has the downside of being a bit more cryptic.
+- "nodeps" will only list the services, but not their dependencies.
+- <bundleid> ... a list of one or more bundle identifiers in case you want to restrict the output to those bundles only.
+
+# Usage
+
+
+    
+
+
+
+    

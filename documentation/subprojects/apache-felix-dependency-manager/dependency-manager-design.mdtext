@@ -1,0 +1,12 @@
+Title: Dependency Manager Design
+Excerpt: The dependency manager is a dedicated component for managing dependencies. When using service trackers or listeners, a substantial amount of code needs to be written to track other services and act on changes. From a logical point of view, through a bundle you're managing one or more services. Each service can have zero or more dependencies that can either be required or optional. Required dependencies must be available before the service can even do its work, optional dependencies are used only if they're available.
+
+The dependency manager is a dedicated component for managing dependencies. When using service trackers or listeners, a substantial amount of code needs to be written to track other services and act on changes. From a logical point of view, through a bundle you're managing one or more services. Each service can have zero or more dependencies that can either be required or optional. Required dependencies must be available before the service can even do its work, optional dependencies are used only if they're available.
+
+So as a programmer, you just want to specify these services and dependencies. The design of the dependency manager focusses on this. The class diagram below shows the DependencyActivatorBase, which is an implementation of BundleActivator. You implement the init() and destroy() methods which are directly related to the start() and stop() methods of the activator. The DependencyManager, which is passed as an argument to these methods, can then be used to define the services and dependencies. It takes care of tracking and activating the service once the dependencies have been resolved.
+
+(!) TODO class diagram
+
+Effectively, this mechanism extends the state diagram for a bundle, as shown in the OSGi specification. The overall state diagram can now be seen in the figure below. As soon as the bundle is in the active state, it starts tracking required dependencies. When they're resolved, the bundle starts tracking the optional dependencies.
+
+(!) TODO state diagram

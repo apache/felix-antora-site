@@ -1,0 +1,7 @@
+Title: Apache Felix Deployment Admin
+
+# Apache Felix Deployment Admin
+
+This project implements the OSGi Deployment Admin specification; please consult the OSGi Compendium Specification for more information. Currently, no release of this subproject is available, but the source is available in our SVN repository here:
+
+    [http://svn.apache.org/repos/asf/felix/trunk/deploymentadmin/](http://svn.apache.org/repos/asf/felix/trunk/deploymentadmin/)

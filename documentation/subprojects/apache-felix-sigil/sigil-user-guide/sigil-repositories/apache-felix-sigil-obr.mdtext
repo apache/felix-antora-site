@@ -1,0 +1,32 @@
+Title: Apache Felix Sigil OBR
+
+## Overview
+
+The OSGi Bundle Repository is an XML index to allow external tools to find out what contents an OSGi bundle provides and a link to a location where the bundle can be downloaded.
+
+You can generate your own repositories using the [bindex](http://www.osgi.org/Repository/BIndex) utility from the OSGi Alliance. If you do create your own repository and it's usable by the public let us know and we'll add it to the list below.
+
+## Available Repositories
+
+The following is a list of OBR repositories.
+- Felix Repository
+
+    http://felix.apache.org/obr/releases.xml 
+
+- Knopflerfish
+
+    http://www.knopflerfish.org/repo/bindex.xml
+
+- [OSGi Bundle Repository](http://www.osgi.org/Repository/HomePage):
+
+    http://www.osgi.org/obr/browse?cmd=repository&_xml=1
+
+- Sonatype OSGi Central
+
+    http://osgi.sonatype.org/content/groups/osgi-central-obr/.meta/obr.xml
+
+- [Spring Enterprise Bundle Repository](http://www.springsource.com/repository/app/):
+
+    http://sigil.codecauldron.org/spring-external.obr
+    http://sigil.codecauldron.org/spring-release.obr
+

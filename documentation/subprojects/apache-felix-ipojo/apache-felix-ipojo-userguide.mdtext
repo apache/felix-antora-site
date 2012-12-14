@@ -1,0 +1,12 @@
+Title: apache-felix-ipojo-userguide
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+# User Guide
+This page references pages composing the iPOJO User Guide:
+{children}
+  
+  
+{include:apache-felix-ipojo-footer}

@@ -1,0 +1,19 @@
+Title: Apache Felix Dependency Manager - How To Build
+
+# Building Dependency Manager from trunk
+
+## Checkout from trunk:
+
+svn checkout [http://svn.apache.org/repos/asf/felix/trunk/dependencymanager](http://svn.apache.org/repos/asf/felix/trunk/dependencymanager) dependencymanager
+
+## Compilation
+
+mvn \-Dpackaging=plugins \-Dmaven.test.skip=true install
+
+## Installation
+
+* Deploy the Dependency Manager core bundle: dependencymanager/core/target/core/target/org.apache.felix.dependencymanager-3.x.x-SNAPSHOT.jar.
+
+* Optionally deploy the Dependency Manager Shell: dependencymanager/shell/target/org.apache.felix.dependencymanager.shell-3.x.x-SNAPSHOT.jar
+
+* If you are using annotations, deploy the Dependency Manager Runtime bundle: dependencymanager/runtime/target/org.apache.felix.dependencymanager.runtime-3.x.x-SNAPSHOT.jar

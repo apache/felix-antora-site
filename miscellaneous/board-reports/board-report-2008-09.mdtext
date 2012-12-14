@@ -1,0 +1,18 @@
+Title: Board Report (2008-09)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Community
+* Presented iPOJO at the OSGi Community Event in Berlin in June.
+* Added committers Edward Yakop and Makas Lau for Log Service contribution.
+* Received a contribution from Dieter Wimberger for a bundle that provides simple remote telnet access to the Felix shell.
+* Receiving web site documentation contributions from Richard Jackson; Richard has been granted karma to modify the wiki for his contributions.
+
+Software
+* Still working on incorporating the new Log Service contribution from PAX; largely delayed due to a naming issue and lack of time.
+* Release version 1.2.0 of Felix (includes Framework 1.2.0, Main 1.2.0, Shell 1.0.2, Shell TUI 1.0.2, Bundle Repository 1.2.0). This release marks the first steps toward bundle fragment support in Felix, which is one of the last major hurdles to full OSGi R4 specification compliance; however, there is still plenty of work to be done to complete this feature.
+* Released various other subprojects (e.g., iPOJO, UPnP, SCR, Maven SCR Plugin, Maven Bundle Plugin, File Install).
+* Working on creating an official bundle repository to make it easier for the community to use subprojects.
+
+Licensing and other issues
+* None.

@@ -1,0 +1,126 @@
+Title: Apache Felix Dependency Manager - Using Annotations - Quick Start
+
+# Quick Start
+
+This sections presents a simple "Hello World" component defined using annotations, and also explains how to build the bundle using either Bnd, Ant, or Maven.
+
+## Hello World Component
+
+
+    package org.apache.felix.dependencymanager.samples.annotation.hello;
+    
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.Start;
+    
+    @Component
+    public class HelloWorld {
+        @Start
+        public void activate() {
+           System.out.println("Hello world !");
+        }
+    }
+
+
+## Compiling with Bnd:
+
+The annotations must be processed at compilation phase and you have to use a special Bnd plugin (declared using the "-plugin" bnd directive):
+
+
+    Bundle-Name: Hello World Using Dependency Manager Annotations
+    Bundle-SymbolicName: org.apache.felix.dependencymanager.samples.annotation.hello
+    Import-Package: *
+    Private-Package: org.apache.felix.dependencymanager.samples.annotation.hello
+    -plugin org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=warn
+
+
+## Compiling with Ant:
+
+Since Bnd provides a Ant task, you can use the bnd directives above with the following build.xml:
+(it is assumed that directives.bnd, bnd.jar, json-20070829.jar and org.apache.felix.dependencymanager.annotation.jar are in the current directory)
+
+
+    <project name="TestDM" default="bnd">
+    	<property name="bnd" value="bnd.jar" />
+    	<property name="json" value="json-20070829.jar" />
+    	<property name="dmannot" value="org.apache.felix.dependencymanager.annotation.jar" />
+    
+    	<target name="compile">
+    		<delete dir="target/classes" quiet="yes" />
+    		<mkdir dir="target/classes" />
+    		<javac srcdir="src/main/java" destdir="target/classes" classpath="${dmannot}" />
+    	</target>
+    
+    	<target name="bnd" depends="compile">
+    		<taskdef resource="aQute/bnd/ant/taskdef.properties" classpath="${dmannot}:${bnd}:${json}" />
+    		<bnd classpath="target/classes" eclipse="false" files="directives.bnd" output="org.apache.felix.dependencymanager.samples.annotation.hello.jar" />
+    	</target>
+    </project>
+
+
+## Compiling with Maven:
+
+When compiling with Maven, you have to use the Dependency Manager Maven annotation plugin:
+
+
+    <?xml version="1.0"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    	<modelVersion>4.0.0</modelVersion>
+    	<properties>
+    		<osgi.version>4.2.0</osgi.version>
+    	</properties>
+    	<name>Hello World Using Dependency Manager Annotations</name>
+    	<groupId>org.apache.felix</groupId>
+    	<artifactId>org.apache.felix.dependencymanager.samples.annotation.hello</artifactId>
+    	<version>3.0.0-SNAPSHOT</version>
+    	<packaging>bundle</packaging>
+    	<dependencies>
+    		<dependency>
+    			<groupId>${pom.groupId}</groupId>
+    			<artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+    			<version>3.0.0</version>
+    		</dependency>
+    	</dependencies>
+    	<build>
+    		<plugins>
+    			<plugin>
+    				<groupId>org.apache.maven.plugins</groupId>
+    				<artifactId>maven-compiler-plugin</artifactId>
+    				<configuration>
+    					<source>1.5</source>
+    					<target>1.5</target>
+    				</configuration>
+    			</plugin>
+    			<plugin>
+    				<groupId>org.apache.felix</groupId>
+    				<artifactId>maven-bundle-plugin</artifactId>
+    				<version>2.3.4</version>
+    				<extensions>true</extensions>
+    				<configuration>
+    					<instructions>
+    						<Bundle-Name>Hello World Using Dependency Manager Annotations</Bundle-Name>
+    						<Bundle-SymbolicName>org.apache.felix.dependencymanager.samples.annotation.hello</Bundle-SymbolicName>
+    						<Import-Package>*</Import-Package>
+    						<Private-Package>org.apache.felix.dependencymanager.samples.annotation.hello</Private-Package>
+    					</instructions>
+    				</configuration>
+    			</plugin>
+    			<plugin>
+    				<groupId>org.apache.felix</groupId>
+    				<artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+    				<version>3.0.0</version>
+    				<executions>
+    					<execution>
+    						<goals>
+    							<goal>scan</goal>
+    						</goals>
+    						<configuration>
+    							<log>info</log>
+    						</configuration>
+    					</execution>
+    				</executions>
+    			</plugin>
+    		</plugins>
+    	</build>
+    </project>
+

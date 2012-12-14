@@ -1,0 +1,12 @@
+Title: Extending the Apache Felix Web Console
+
+# Extending the Apache Felix Web Console
+
+The [Apache Felix Web Console]({{ refs.apache-felix-web-console.path }}) is extensible in various ways described no these pages:
+
+* [Providing Web Console Plugins]({{ refs.providing-web-console-plugins.path }})
+* [Providing Resources]({{ refs.providing-resources.path }})
+* [Branding the Web Console]({{ refs.branding-the-web-console.path }})
+* [Web Console Output Templating]({{ refs.web-console-output-templating.path }})
+* [Web Console Logging]({{ refs.web-console-logging.path }})
+* [Web Console Security Provider]({{ refs.web-console-security-provider.path }})

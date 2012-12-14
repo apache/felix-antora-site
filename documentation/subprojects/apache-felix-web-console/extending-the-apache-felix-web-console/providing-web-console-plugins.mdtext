@@ -1,0 +1,64 @@
+Title: Providing Web Console Plugins
+
+# Providing Web Console Plugins
+
+
+The Web Console can be extended by registering an OSGi service for the interface `javax.servlet.Servlet` with the service property `felix.webconsole.label` set to the label (last segment in the URL) of the page. The respective service is called a Web Console Plugin or a plugin for short.
+
+The most basic plugin is a plain old Servlet whose `service(ServletRequest, ServletResponse)` method is called by the Apache Felix Web Console. Before calling the servlet the web console sets two request attributes helping the plugin rendering the response:
+
+
+* *`felix.webconsole.appRoot`* -- This request attribute of type `String` provides the absolute path of the Web Console root. This path consists of the servlet context path (from <code>ServletRequest.getContextPath()</code>) and the Web Console servlet path (from `HttpServletRequest.getServletPath()`, `/system/console` by default). This attribute can be used to provide absolute links to resources (images, CSS, scripts, etc.) or other plugins. This request attribute is available to client side JavaScript as the global *`appRoot`* variable.
+* *`felix.webconsole.pluginRoot`* -- This request attribute of type `String` provides the absolute path of the current plugin. This path consists of the servlet context path (from <code>ServletRequest.getContextPath()</code>), the Web Console servlet path (from `HttpServletRequest.getServletPath()`, `/system/console` by default) and the plugin label. This attribute can be used to provide absolute links to the plugin itself. This request attribute is available to client side JavaScript as the global *`pluginRoot`* variable.
+* *`felix.webconsole.labelMap`* -- This request attribute of type `Map` provides a mapping of labels to page titles of registered console plugins. This map may be used to render a navigation of the console plugins such as the `AbstractWebConsolePlugin.renderTopNavigation` method does. The keys and values of the map are of type `String`.
+
+To help rendering the response the Apache Felix Web Console bundle provides two options: One option is to extend the `AbstractWebConsolePlugin` overwriting the `renderContent` method. The other option is to register the servlet with another service registration property to indicate the desire to wrap the response.
+
+
+
+## Extending The AbstractWebConsolePlugin
+
+To leverage the rendering of the common header and footer around the plugin's data area, the plugin can extend the abstract `org.apache.felix.webconsole.AbstractWebConsolePlugin` class implementing the following methods:
+
+* *`renderContext(HttpServletRequest, HttpServletResponse)`* -- This method is called to render the actual plugin data area.
+* *`getLabel()`* -- Returns the last path segment of the plugin page. This should return the value to which the `felix.webconsole.label` service registration propery is set.
+* *`getTitle()`* -- Returns a human readable title to be displayed at the top of the plugin page.
+* *`getCssReferences()`* -- See the section *Providing CSS Files* below.
+
+To fully leverage the `AbstractWebConsolePlugin` it must be initialiazed before registering the extension as a service. Likewise after unregistering the service, the plugin should be destroyed. To this avail the following methods are provided in the `AbstractWebConsolePlugin`:
+
+* *`activateBundle(BundleContext)`* -- Initializes the plugin with the `BundleContext` and prepares some data to be rendered in the header and footer areas.
+* *`deactivate()`* -- Destroys the plugin.
+
+In addition to these OSGi-oriented setup methods the Web Console itself will call the `Servlet.init(ServletConfig)` method before putting the plugin into service and the `Servlet.destroy()` method when the plugin is removed.
+
+
+#### Providing CSS Files
+
+Part of rendering the header, the `AbstractWebConsolePlugin` also emits links to CSS files to include for displaying the page. Since such CSS links may only be present in the header section of the generated HTML the `getCssReferences()` method is provided. This method is called to create links for additional CSS files. The default implementation of this method returns `null` meaning no additional CSS links to be rendered. Extensions of the `AbstractWebConsolePlugin` may overwrite this method to provide a list of CSS links.
+
+The CSS links provided by the `getCssReferences()` method may be absolute or relative paths, though relative paths are recommended. Relative paths are turned into absolute path by prepending them with the value of the `felix.webconsole.appRoot` request attribute.
+
+
+
+## Transparent Response Wrapping
+
+While being very simple and straight forward, extending the `AbstractWebConsolePlugin` actually creates a binding from the plugin provider bundle to the Web Console bundle, which may be undesired. To support the use case of wanting the benefits of the `AbstractWebConsolePlugin` but wiring independency of the Web Console, a plugin servlet may be registered with a second service registration property (besides the required `felix.webconsole.label`):
+
+* *`felix.webconsole.title`* -- If registered servlet does not extend the `AbstractWebConsolePlugin` but provides this property (of type `String`) the servlet is wrapped in an adapter to the `AbstractWebConsolePlugin` which calls `Servlet.service(ServletRequest, ServletResponse)` method on behalf of the `renderContent` implementation.
+* *`felix.webconsole.css`* -- Defines a single string, an array of strings or a Collection of strings to be used as the values provided by the `getCssReferences()` method. This property is optional. If this property is missing or if the value does not have the correct type, the `getCssReferences()` just returns `null` assuming there are no additional CSS resources to reference.
+
+
+The wrapper around the plugin itself extends the `AbstractWebConsolePlugin` as follows:
+
+* *`renderContext(HttpServletRequest, HttpServletResponse)`* -- Calls the `service(HttpServletRequest, HttpServletResponse)` method of the plugin to render the actual contents of the plugin.
+* *`getLabel()`* -- Returns the value of the `felix.webconsole.label` service registration property of the plugin.
+* *`getTitle()`* -- Returns the value of the `felix.webconsole.title` service registration property of the plugin.
+* *`getCssReferences()`* -- Returns the values of the `felix.webconsole.css` service registration property of the plugin.
+* *`service(ServletRequest, ServletResponse)`* -- If the request method is `GET` the `service(ServletRequest, ServletResponse)` method of the `AbstractWebConsolePlugin` is called which ultimately calls the `service` method. For all other requests, the `service(ServletRequest, ServletResponse)` method of the plugin is called directly to have the plugin handle any non-`GET` requests directly.
+
+
+Please note, that sometimes it is not desirable to have the `AbstractWebConsolePlugin` render the header and footer of the response. For this reason, the `AbstractWebConsolePlugin` only renders the header and footer if the request to such a wrapped plugin either has no extension or if the extension is `.html`. For any other extension, e.g. `.txt` or `.json`, the header and footer is not rendered and the `service` method of the plugin is directly called.
+
+
+It is suggested that plugins extend from the `javax.servlet.http.HttpServlet` class and implement the appropriate `doXxx(HttpServletRequest, HttpServletResponse)` methods such as `doGet` and `doPost`. In addition, unless non-GET requests are handled through AJAX calls, it is suggested that non-GET requests return a redirect after processing the request.

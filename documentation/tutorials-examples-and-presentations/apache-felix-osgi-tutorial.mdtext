@@ -1,0 +1,20 @@
+Title: Apache Felix OSGi Tutorial
+
+# Apache Felix OSGi Tutorial
+
+This tutorial creates successively more complex OSGi bundles to illustrate most of the features and functionality offered by the OSGi framework.
+
+Trails:
+
+* [Apache Felix Tutorial Example 1]({{ refs.apache-felix-tutorial-example-1.path }}): A bundle that listens for OSGi service events.
+* [Apache Felix Tutorial Example 2]({{ refs.apache-felix-tutorial-example-2.path }}): A bundle that implements a dictionary service.
+* [Apache Felix Tutorial Example 2b]({{ refs.apache-felix-tutorial-example-2b.path }}): A bundle that implements another dictionary service.
+* [Apache Felix Tutorial Example 3]({{ refs.apache-felix-tutorial-example-3.path }}): A bundle that implements a simple dictionary service client.
+* [Apache Felix Tutorial Example 4]({{ refs.apache-felix-tutorial-example-4.path }}): A bundle that implements a more robust dictionary service client.
+* [Apache Felix Tutorial Example 5]({{ refs.apache-felix-tutorial-example-5.path }}): A bundle that implements a dictionary service client using the Service Tracker.
+* [Apache Felix Tutorial Example 6]({{ refs.apache-felix-tutorial-example-6.path }}): A bundle that implements a spell checker service using dictionary services.
+* [Apache Felix Tutorial Example 7]({{ refs.apache-felix-tutorial-example-7.path }}): A bundle that implements a spell checker service client.
+* [Apache Felix Tutorial Example 8]({{ refs.apache-felix-tutorial-example-8.path }}): A bundle that implements a spell checker service using Service Binder.
+* [Apache Felix Tutorial Example 9]({{ refs.apache-felix-tutorial-example-9.path }}): A bundle that implements a spell checker service using Dependency Manager. Coming soon...
+* [Apache Felix Tutorial Example 10]({{ refs.apache-felix-tutorial-example-10.path }}): A bundle that implements a spell checker service using Declarative Services. Coming soon...
+* [Apache Felix Tutorial Example 11]({{ refs.apache-felix-tutorial-example-11.path }}): A bundle that implements a spell checker service using iPOJO. Coming soon...

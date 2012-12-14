@@ -1,0 +1,30 @@
+Title: Sigil Road Map
+
+The Sigil framework is aiming for an initial 1.0.0 release which includes the following features:
+
+* Migration of existing build functionality from http://sigil.codecauldron.org
+* Runtime support using RFC 132 launching api
+* Self hosting (sigil builds sigil)
+
+After this there are a number of usability improvements we'd like to make that will come in a number of minor releases after 1.0.0 these may include:
+
+* Common IDE/Headless repository configuration
+* Common version handling (version inheritance in IDE is currently implicit vs explicit)
+* Refactoring support (dealing with moving packages from one bundle to another - auto add/remove import/export package)
+* Source code linking in IDE (to aid debugging)
+* Improve migration tools
+
+Also in the medium and longer term there are a number of directions we could take, and it depends on interest from the community as to where Sigil goes in the future. Some potential ideas that have been discussed so far:
+
+* Netbeans Integration - OSGi aware classpath syntax highlighting, repository management, debug support etc.
+* PDE Integration - why does the world need two eclipse OSGi development environments?
+* Maven Integration - combine with Maven Bundle Plugin? Maven 3.0?
+* Resolver enhancements - common resolver API shared by Felix, OBR and Sigil?
+* Integration with iPojo eclipse plugins
+* Extensions for DS and Blueprint development
+* Improved search support
+* Analysis tools and API's
+
+Please help by discussing requirements at the Felix [Dev]({{ refs.mailto-dev-felix-apache-org.path }}) Mailing lists.
+
+

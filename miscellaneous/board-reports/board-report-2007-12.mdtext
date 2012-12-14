@@ -1,0 +1,23 @@
+Title: Board Report (2007-12)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Community
+* Added Felix Meschberger to the PMC.
+* Presented at ApacheCon in Atlanta; see writeup at [InfoQ](http://www.infoq.com/news/2007/12/felix-osgi-container).
+* Discussion was raised on the mailing lists about defining a road map for officially releasing more subprojects. The general consensus is that we really need to start working on releases of all reasonably stable subprojects. Hopefully, this will start to happen over the next month or two.
+* Peter Kriens announced his desire to donate his FileInstall bundle; the paperwork has been started, but an official vote is needed.
+* Karl Pauls announced that he was able to get Felix working on Google's Android, see his [blog](http://blog.luminis.nl/luminis/entry/osgi*on*google*android*using); we need to determine if we can incorporate his changes into the trunk.
+
+Software
+* Released `1.0.1` version of core Felix sub-projects (i.e., framework and main). This release fixed mostly minor bugs discovered since the prior release, although there were a few minor new features added as well.
+* Preparing `1.0.2` release of core Felix sub-projects (i.e., framework and main); changes to include:
+** Refinements to specification interpretation and/or compliance. (FELIX-383)
+** Additional improvements to make the framework easier to embed in other projects. (FELIX-359, FELIX-380, FELIX-388, FELIX-393, FELIX-414, FELIX-428)
+** Various small bug fixes. (FELIX-371, FELIX-381, FELIX-394, FELIX-416)
+* Updates to numerous subprojects, including iPOJO, Bundle Plugin, and SCR Plugin.
+* Clement Escoffier introduced the Maven OBR plugin, which makes it possible for us to generate bundle repository files for deploying bundles, which has been integrated with the Bundle Plugin.
+
+Licensing and other issues
+* The paperwork for Peter Kriens' grant was incorrectly recorded (his name, the company name, and the donated code were all misspelled), so we are trying to get that fixed.
+* Need to finalize OSGi TCK access by getting OSGi Alliance TCK license executed by the board, I would assume.

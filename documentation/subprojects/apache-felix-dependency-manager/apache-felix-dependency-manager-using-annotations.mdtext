@@ -1,0 +1,16 @@
+Title: Apache Felix Dependency Manager - Using Annotations
+
+# Using Annotations
+
+Dependency Manager provides a compact and versatile java API,  allowing to declaratively and programmatically register, acquire, and  manage dynamic OSGi services. But since recently, support for  annotations has been introduced in Dependency Manager, and you can also  manage your service component dependencies using Java 5 annotations. In  this chapter, we will detail the Dependency Manager Annotations which  can be used to describe service components. We will also discuss the DM  component lifecycle and how components can interract with the dynamic  OSGi service model.
+
+# Table of Contents
+
+* [Quick Start]({{ refs.apache-felix-dependency-manager-using-annotations-quick-start.path }}) Provides a "Hello World" example, and shows how to compile it.
+* ﻿﻿[Spell Checker Sample]({{ refs.apache-felix-dependency-manager-using-annotations-quick-tour.path }}) Helps you with the basic concepts using a full SpellChecker sample code.
+* [Writing Components]({{ refs.apache-felix-dependency-manager-using-annotations-components.path }}) Explains how to write DM service components using annotations.
+* [Using Dependencies]({{ refs.apache-felix-dependency-manager-using-annotations-dependencies.path }}) Explains how to annotate dependencies for a given component.
+* [Lifecycle]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle.path }}) Explains the DM component lifecycle and how components interact with the dynamic OSGI service model.
+* [Composition]({{ refs.apache-felix-dependency-manager-using-annotations-composition.path }}) Explains how a component may be implemented using multiple object instances.
+
+# 

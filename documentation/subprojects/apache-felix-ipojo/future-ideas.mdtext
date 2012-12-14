@@ -1,0 +1,20 @@
+Title: Future Ideas
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+# iPOJO Future Ideas
+
+This page documents various ideas to be considered in the future, but not currently on the road map.
+
+## Service Property Injection
+
+Access to service properties is sometimes necessary to gain access to service configuration or as a way to defer service object creation. Currently, the only way to access service properties is via a service callback method that accepts a `ServiceReference` object. The downside of this approach is that it ties your component to the OSGi API. Other possibilities include adding support for:
+
+1. Service property injection into component fields.
+  
+  
+  
+  
+{include:apache-felix-ipojo-footer}

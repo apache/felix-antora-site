@@ -1,0 +1,13 @@
+Title: Getting Started
+
+# Getting Started
+
+For first-time users, here are a few links that might get you started more quickly:
+
+* [Downloads](http://felix.apache.org/site/downloads.cgi) - Go to the download page and download and extract the Felix release.
+* [Launching Felix]({{ refs.apache-felix-framework-usage-documentation.path }}) - Go to the Felix usage page to learn how to launch the Felix framework.
+* [OSGi tutorial]({{ refs.apache-felix-osgi-tutorial.path }}) - Go to the tutorial page to learn some OSGi basics.
+* [OSGi FAQ]({{ refs.apache-felix-osgi-faq.path }}) - Check out the OSGi FAQ for answers to common questions.
+* [Documentation]({{ refs.documentation.path }}) - Search the documentation pages for additional examples and presentations or subproject documentation to learn about specific subprojects.
+
+If you are unable to find the documentation you need, please ask on the [mailing lists]({{ refs.mailinglists.path }}). Also, feedback on improving the documentation and/or organization of this site is welcome.

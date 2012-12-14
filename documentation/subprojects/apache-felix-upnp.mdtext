@@ -1,0 +1,21 @@
+Title: Apache Felix UPnP
+
+# Felix UPnP Documentation
+
+
+## Introduction&nbsp;
+
+The Felix UPnP project provides an implementation of the OSGi UPnP specification (version 1.1) as described in the [OSGi Service Compendium (Release 4)](http://www.osgi.org/Specifications/HomePage) . The specification is implemented by the *org.apache.felix.upnp.basedriver* bundle and it comes with other bundles, which have been developed to ease the writing and testing of UPnP code.
+
+The OSGi UPnP specification defines a set of interfaces which should be used by the developers in order to write UPnP Devices and UPnP Control Points on the OSGi Service Platform. From the OSGi point of view, UPnP devices are services registered with the framework, thus the different phases of the UPnP protocol stack, as defined in the [UPnP™ Device Architecture (UDA 1.0)](http://www.upnp.org/resources/documents/CleanUPnPDA101-20031202s.pdf), have been mapped to the discovery and notification mechanisms offered by the OSGi framework.
+
+The specification defines a UPnP Base Driver component that acts as software bridge between UPnP networks and OSGi. Developers writing UPnP code do not need to interact directly with the driver through some API. The driver works in background by exporting the registered services as UPnP devices, and by registering as services the UPnP devices discovered on UPnP networks. However, the Felix UPnP project has defined few additional interfaces, so a base knowledge of the way the UPnP Base Driver works is useful and will help developers to write their code.
+
+&nbsp;Table of Content:
+1. [Getting Started ]({{ refs.-upnp-getting-started.path }})
+1. [Overview of the Base Driver Architecture ]({{ refs.-upnp-driver-architecture.path }})
+1. [Testing UPnP devices ]({{ refs.-upnp-testing-devices.path }})
+1. [The UPnP examples ]({{ refs.-upnp-examples.path }})
+1. [Writing UPnP Devices and Control Points ]({{ refs.-upnp-writing-cd-and-cp.path }})
+1. [Known issues ]({{ refs.-upnp-known-issues.path }})
+1. [Acknowledgments ]({{ refs.-upnp-acknowledgments.path }})

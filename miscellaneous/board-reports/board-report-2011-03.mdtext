@@ -1,0 +1,30 @@
+Title: Board Report (2011-03)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+*Community* 
+* No significant community activity other than the normal participation in mailing lists and bug reporting.
+
+*Software*
+* Recent subproject releases: 
+** File Install (3.1.2, 3.1.4, 3.1.6, 3.1.10) 
+** Framework and Main launcher (3.0.7, 3.0.8, 3.0.9)
+** Framework Security (1.4.1)
+** Gogo Command, Runtime, and Shell (0.8.0)
+** Http Service (2.2.0)
+** iPOJO Core, Annotations, Manipulator, Composite, Maven Plugin, and Ant task (1.8.0)
+** iPOJO Web Console Plugin (1.6.0)
+** Maven Bundle Plugin (2.2.0, 2.3.4) 
+** Web Console (3.1.8)
+** EventAdmin (1.2.10)
+
+*Project Branding*
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open
+** TM missing from all Logos
+* Project Metadata: done
+
+*Licensing and other issues* 
+* Discussed the proper way to handle version numbers for canceled release votes (e.g., canceling a release vote to fix an issue). The community was split between allowing the version number to be reused on the subsequent release versus disallowing it. Since there was no consensus, we decided to not enforce a policy and simply let the person performing the release decide.

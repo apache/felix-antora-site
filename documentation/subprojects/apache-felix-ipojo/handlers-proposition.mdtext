@@ -1,0 +1,17 @@
+Title: Handlers Proposition
+
+This page gathers *future* handlers for iPOJO. Some handlers are planned or are under study.
+
+## Component Binding
+
+* WireAdmin : this handler allows components to push or to receive data via the Wire Admin. Either the component will be connected to an existing wire, either a new wire will be created.
+* SCA Wire : this handler allows simply to create a static binding between 2 components.
+
+## Component Management
+
+* Dependency Manager : this handler will implement the dependency manager interfaces. It will allow to add/remove provided service and service depednency dynamically.
+
+## Misc
+
+* CronService : this handler allows a component to be notified *periodically* via a Cron Service.
+* MonitorAdmin

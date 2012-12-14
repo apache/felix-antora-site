@@ -1,24 +1,38 @@
-Title:     Home Page
-Notice:    Licensed to the Apache Software Foundation (ASF) under one
-           or more contributor license agreements.  See the NOTICE file
-           distributed with this work for additional information
-           regarding copyright ownership.  The ASF licenses this file
-           to you under the Apache License, Version 2.0 (the
-           "License"); you may not use this file except in compliance
-           with the License.  You may obtain a copy of the License at
-           .
-             http://www.apache.org/licenses/LICENSE-2.0
-           .
-           Unless required by applicable law or agreed to in writing,
-           software distributed under the License is distributed on an
-           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-           KIND, either express or implied.  See the License for the
-           specific language governing permissions and limitations
-           under the License.
+Title: Index
 
-# Welcome
+# Welcome to Apache Felix
 
-Welcome to the Apache CMS.  Please see the following resources for further help:
+Apache Felix is a community effort to implement the [OSGi R4 Service Platform](http://www2.osgi.org/Specifications/HomePage) and other interesting OSGi-related technologies under the Apache license. The OSGi specifications originally targeted embedded devices and home services gateways, but they are ideally suited for any project interested in the principles of modularity, component-orientation, and/or service-orientation. OSGi technology combines aspects of these aforementioned principles to define a dynamic service deployment framework that is amenable to remote management.
 
- - <http://www.apache.org/dev/cmsref.html>
- - <http://wiki.apache.org/general/ApacheCms2010>
+# News 
+
+{{ refs.news.headers.excerpt }}
+
+Refer to the news [archive]({{ refs.news.path }}) for all news.
+
+# Apache Felix Subprojects
+
+The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology; the following list summarizes each released subproject:
+
+* [Config Admin]({{ refs.apache-felix-config-admin.path }}) - An implementation of the OSGi Configuration Admin service specification for managing bundle configuration properties.
+* [Dependency Manager]({{ refs.apache-felix-dependency-manager.path }}) - An API-based component model to simplify OSGi-based development.
+* [Event Admin]({{ refs.apache-felix-event-admin.path }}) - An implementation of the OSGi Event Admin service specification for event-based communication.
+* [File Install]({{ refs.apache-felix-file-install.path }}) - A simple, directory-based management agent for managing bundle deployment.
+* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R4.2 core framework.
+* [Gogo]({{ refs.apache-felix-gogo.path }}) - An advanced shell for interacting with OSGi frameworks.
+* [HTTP Service]({{ refs.apache-felix-http-service.path }}) - An implementation of the OSGi HTTP Service specification.
+* [iPOJO]({{ refs.apache-felix-ipojo.path }}) - A sophisticated service-oriented component model to simplify OSGi-based development.
+* [Log]({{ refs.apache-felix-log.path }}) - A simple, memory-based implementation of the OSGi Log service specification.
+* [Maven Bundle Plugin]({{ refs.apache-felix-maven-bundle-plugin-bnd.path }}) - A Maven plugin to simplify building bundles.
+* [Maven SCR Plugin]({{ refs.apache-felix-maven-scr-plugin.path }}) - A Maven plugin to simplify using Declarative Services.
+* [Metatype]({{ refs.apache-felix-metatype-service.path }}) - An implementation of the OSGi Metatype service to describe types needed by bundles.
+* [OSGi Bundle Repository]({{ refs.apache-felix-osgi-bundle-repository.path }}) - A bundle repository service to simplify discovering and deploying bundles and their dependencies.
+* [Preferences]({{ refs.apache-felix-preferences-service.path }}) - An implementation of the OSGi Preferences service specification for storing settings and preferences.
+* [Remote Shell]({{ refs.apache-felix-remote-shell.path }}) - A remote, text-based interface to the Apache Felix Shell.
+* [Service Component Runtime]({{ refs.apache-felix-service-component-runtime.path }}) - An implementation of the OSGi Declarative Services specification providing a service-oriented component model to simplify OSGi-based development.
+* [Shell]({{ refs.apache-felix-shell.path }}) - A very simple shell service implemented as a bundle for interacting with an OSGi framework instance.
+* [Shell TUI]({{ refs.apache-felix-shell-tui.path }}) - A simple, text-based interface to the Apache Felix Shell.
+* [UPnP]({{ refs.apache-felix-upnp.path }}) - An implementation of the OSGi UPnP Device service specification for UPnP device integration.
+* [Web Console]({{ refs.apache-felix-web-console.path }}) - A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
+
+Several other unreleased subprojects also exist, please refer to the [Subprojects]({{ refs.subprojects.path }}) page for more. To see some projects using Felix subprojects, refer to the [community|Projects Using Felix] documentation.

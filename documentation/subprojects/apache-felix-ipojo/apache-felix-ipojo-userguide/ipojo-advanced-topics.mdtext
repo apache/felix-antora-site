@@ -1,0 +1,19 @@
+Title: iPOJO Advanced Topics
+
+{include:apache-felix-ipojo-header}
+
+<div class="content">
+
+# Advanced Topics
+
+*This page presents some advanced features.*
+
+* [Combining iPOJO and Configuration Admin]({{ refs.combining-ipojo-and-configuration-admin.path }})
+* [Constructing POJO objects with factory methods]({{ refs.constructing-pojo-objects-with-factory-methods.path }})
+* [How-to use iPOJO factories]({{ refs.how-to-use-ipojo-factories.path }})
+* [iPOJO Hierarchical Composition Overview]({{ refs.ipojo-hierarchical-composition-overview.path }})
+  
+  
+  
+  
+{include:apache-felix-ipojo-footer}

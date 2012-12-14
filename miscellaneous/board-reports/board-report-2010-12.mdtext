@@ -1,0 +1,29 @@
+Title: Board Report (2010-12)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+*Community* 
+* User Nick Wilson offered to contribute an implementation of the Monitor Admin service specification to Felix. The community voted to accept this contribution. At this point, we are awaiting paperwork to proceed to IP clearance.
+* Carsten, Felix and Marcel were amongst the speakers in the Felix/OSGi track at ApacheCon, where there were a lot of OSGi related talks, even outside of this track.
+
+*Software*
+* Felix Framework 3.0 plus Framework Security Provider 1.4 have been certified R4.2 compliant and are now listed at the OSGi Alliance web site.
+* Recent subproject releases:
+** Event Admin (1.2.6, 1.2.8)
+** File Install (3.1.0)
+** Framework (3.0.3, 3.0.4, 3.0.5, 3.0.6) - Several minor bug fix and performance improvement maintenance releases.
+** Gogo Command, Runtime, and Shell (0.6.1) - Maintenance releases for OSGi-based shell.
+** iPOJO Arch for Gogo (1.0.1)
+** iPOJO Core (1.6.6, 1.6.8)
+** Main (3.0.3, 3.0.4, 3.0.5, 3.0.6) - Several framework launcher releases to track Framework releases.
+** Maven SCR Plugin (1.6.0)
+** Remote Shell (1.1.2) - Maintenance release to provide remote access to Gogo or legacy Felix shell.
+** SCR Annotations (1.4.0)
+** SCR Ant Task (1.0.0)
+** SCR Generator (1.0.0)
+** Utils (1.1.0)
+** Web Console (3.1.6)
+
+
+*Licensing and other issues* 
+* Regarding the issue raised in last board report of how to handle provisional OSGi API in Felix bundles, we have decided for now that the best approach is to avoid it and use our own parallel API structure or subclassing where appropriate. Our provisional OSGi API policy is documented at http://felix.apache.org/site/provisional-osgi-api-policy.html in our developer documentation.

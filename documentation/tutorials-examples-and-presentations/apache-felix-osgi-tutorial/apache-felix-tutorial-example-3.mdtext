@@ -1,0 +1,149 @@
+Title: Apache Felix Tutorial Example 3
+
+Example 3 - Dictionary Client Bundle
+
+This example creates a bundle that is a client of the dictionary service implemented in Example 2. In the following source code, our bundle uses its bundle context to query for a dictionary service. Our client bundle uses the first dictionary service it finds and if none are found it simply prints a message saying so and stops. Using an OSGi service is the same as using any Java interface, we simply need to cast it to the known dictionary service interface. The source code for our bundle is as follows in a file called `Activator.java`:
+
+
+    /*
+     * Apache Felix OSGi tutorial.
+    **/
+    
+    package tutorial.example3;
+    
+    import java.io.BufferedReader;
+    import java.io.InputStreamReader;
+    import java.io.IOException;
+    
+    import org.osgi.framework.BundleActivator;
+    import org.osgi.framework.BundleContext;
+    import org.osgi.framework.ServiceReference;
+    
+    import tutorial.example2.service.DictionaryService;
+    
+    /**
+     * This class implements a bundle that uses a dictionary
+     * service to check for the proper spelling of a word by
+     * check for its existence in the dictionary. This bundle
+     * uses the first service that it finds and does not monitor
+     * the dynamic availability of the service (i.e., it does not
+     * listen for the arrival or departure of dictionary services).
+     * When starting this bundle, the thread calling the start()
+     * method is used to read words from standard input. You can
+     * stop checking words by entering an empty line, but to start
+     * checking words again you must stop and then restart the bundle.
+    **/
+    public class Activator implements BundleActivator
+    {
+        /**
+         * Implements BundleActivator.start(). Queries for
+         * all available dictionary services. If none are found it
+         * simply prints a message and returns, otherwise it reads
+         * words from standard input and checks for their existence
+         * from the first dictionary that it finds.
+         * (NOTE: It is very bad practice to use the calling thread
+         * to perform a lengthy process like this; this is only done
+         * for the purpose of the tutorial.)
+         * @param context the framework context for the bundle.
+        **/
+        public void start(BundleContext context) throws Exception
+        {
+            // Query for all service references matching any language.
+            ServiceReference[] refs = context.getServiceReferences(
+                DictionaryService.class.getName(), "(Language=*)");
+    
+            if (refs != null)
+            {
+                try
+                {
+                    System.out.println("Enter a blank line to exit.");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+                    String word = "";
+    
+                    // Loop endlessly.
+                    while (true)
+                    {
+                        // Ask the user to enter a word.
+                        System.out.print("Enter word: ");
+                        word = in.readLine();
+    
+                        // If the user entered a blank line, then
+                        // exit the loop.
+                        if (word.length() == 0)
+                        {
+                            break;
+                        }
+    
+                        // First, get a dictionary service and then check
+                        // if the word is correct.
+                        DictionaryService dictionary =
+                            (DictionaryService) context.getService(refs[0]);
+                        if (dictionary.checkWord(word))
+                        {
+                            System.out.println("Correct.");
+                        }
+                        else
+                        {
+                            System.out.println("Incorrect.");
+                        }
+    
+                        // Unget the dictionary service.
+                        context.ungetService(refs[0]);
+                    }
+                } catch (IOException ex) { }
+            }
+            else
+            {
+                System.out.println("Couldn't find any dictionary service...");
+            }
+        }
+    
+        /**
+         * Implements BundleActivator.stop(). Does nothing since
+         * the framework will automatically unget any used services.
+         * @param context the framework context for the bundle.
+        **/
+        public void stop(BundleContext context)
+        {
+            // NOTE: The service is automatically released.
+        }
+    }
+
+
+Note that we do not need to unget or release the service in the `stop()` method, because the OSGi framework will automatically do so for us. We must create a `manifest.mf` file that contains the meta-data for our bundle; the manifest file contains the following:
+
+
+    Bundle-Name: Dictionary client
+    Bundle-Description: A bundle that uses the dictionary service if it finds it at startup
+    Bundle-Vendor: Apache Felix
+    Bundle-Version: 1.0.0
+    Bundle-Activator: tutorial.example3.Activator
+    Import-Package: org.osgi.framework,
+     tutorial.example2.service
+
+
+We specify the bundle's activator class via the `Bundle-Activator` attribute and also specify that our class imports the OSGi core framework package and the dictionary service interface package via the `Import-Package` attribute. The dictionary service interface package will be fulfilled by the bundle in Example 2, which exports this package. The OSGi framework will automatically handle the details of resolving import packages. (Note: Make sure your manifest file ends in a trailing carriage return or else the last line will be ignored.)
+
+To compile our source code, we need to have the `felix.jar` file (found in Felix' `bin` directory) and the `example2.jar` file in our class path. We compile the source file using a command like:
+
+
+    javac -d c:\classes *.java
+
+
+This command compiles all source files and outputs the generated classes into a subdirectory of the `c:\classes` directory; this subdirectory is `tutorial\example3`, named after the package we specified in the source file. For the above command to work, the `c:\classes` directory must exist. After compiling, we need to create a JAR file containing the generated package directories. We will also add our manifest file that contains the bundle's meta-data to the JAR file. To create the JAR file, we issue the command:
+
+
+    jar cfm example3.jar manifest.mf -C c:\classes tutorial\example3
+
+
+This command creates a JAR file using the manifest file we created and includes all of the classes in the `tutorial\example3` directory inside of the `c:\classes` directory. Once the JAR file is created, we are ready to install and start the bundle.
+
+To run Felix, we follow the instructions described in usage.html. When we start Felix, it asks for a profile name, we will put all of our bundles in a profile named `tutorial`. After running Felix, we should check that all tutorial bundles are stopped, except for the English dictionary service bundle from Example 2. We can use the Felix `lb` shell command to get a list of all bundles, their state, and their bundle identifier number. If the Example 2 bundle is not active, we should start the bundle using the `start` command along with the bundle's identifier number displayed by the `lb` command and `stop` any other unneeded tutorial bundles using the `stop` command. (Note: Felix uses some bundles to provide its command shell, so do not stop these bundles.) Now we can install and start our dictionary client bundle. Assuming that we created our bundle in the directory `c:\tutorial`, we can install and start it in Felix' shell using the following command:
+
+
+    start file:/c:/tutorial/example3.jar
+
+
+The above command installs and starts the bundle in a single step; it is also possible to install and start the bundle in two steps by using the Felix `install` and start shell commands. When we start the bundle, it will use the shell thread to prompt us for words. Enter one word at a time to check the words and enter a blank line to stop checking words. To restart the bundle, we must use the Felix shell `lb` command to get the bundle identifier number for the bundle and first use the `stop` command to stop the bundle, then the `start` command to restart it. To test the dictionary service, enter any of the words in the dictionary (e.g., "welcome", "to", "the", "OSGi", "tutorial") or any word not in the dictionary.
+
+This example client is simple enough and, in fact, is too simple. What would happen if the dictionary service were to unregister suddenly? Our client would throw a null pointer exception when it tried to access the service object. This dynamic service availability issue is a central tenent of the OSGi service model. As a result, we must make our client more robust in dealing with such situations. In Example 4, we explore a slightly more complicated dictionary client that dynamically monitors service availability.

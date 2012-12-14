@@ -1,0 +1,244 @@
+Title: Apache Felix Dependency Manager - Using Annotations - Lifecycle
+
+# Annotations - Lifecycle
+
+
+
+
+A component has a lifecycle that controls when it is started or stopped. A bundle must be started before the DM Runtime can process its components. When the bundle is started, the DM Runtime then parses a specific *DependencyManager-Component* manifest header, which points to a list of descriptors describing all annotated components. Such descriptors are actually generated at compilation time, and annotation are not reflectively parsed at runtime. Only the descriptor is used to process the components. For each component, the DM Runtime first ensures that all dependencies are satisfied before activating it. Likewise, the component is deactivated when some of the required dependencies are not available anymore or when the bundle is stopped. Unless the bundle is stopped, components may be deactivated and reactivated, depending on the departure and arrival of required dependencies. The manager which is in charge of maintaining the state of components is implemented in the DM Runtime bundle (org.apache.felix.dm.runtime bundle).
+
+## Lifecycle Callbacks
+
+### Component Activation
+
+
+
+Activating a component consists of the following steps:
+1. Wait for all required dependencies to be available. When all required dependencies are available:
+1. * Instantiate the component.
+1. * Inject all required dependencies (on class fields using reflection, or by invoking callback methods).
+1. * Inject all optional dependencies defined on class fields, *possibly with a NullObject* if the dependency is not available.
+1. * Call the component init method (annotated with *@Init*). In the  Init method, you are yet allowed to add some additional dependencies  (but using the API). Alternatively, you can also configure some  dependencies dynamically (explained later, in [#Dynamic Dependency Configuration]({{ refs.-dynamic-dependency-configuration.path }})).
+1. Wait for extra dependencies optionally configured from the init() method.
+1. If the component is not using the @*LifecycleController* annotation (detailed in the [#Controlling the Lifecycle]({{ refs.-controlling-the-lifecycle.path }}) section), then:
+1. * Invoke the component start method (annotated with *@Start*).
+1. * Publish some OSGi services (if the component provides some services).
+1. * Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
+1. Else do nothing because&nbsp; the component will trigger itself the startup using the lifecycle controller.
+
+### Component Deactivation
+
+Deactivating a component consists of the following steps:
+1. If the bundle is stopped or if some required dependencies are unavailable, or if the component is deactivated by a factorySet, then:
+1. * Unbind optional dependencies (defined on callback methods). Notice that any optional dependency unavailability does not trigger the component deactivation:&nbsp; the *removed* callbacks are just invoked, if declared in the annotation.
+1. * Invoke the stop method (annotated wit *@Stop*),  and unregister some OSGi services (if the components provides some services).
+1. * invoke destroy method (annotated with *@Destroy*).
+1. * invoke *removed* callbacks for required dependencies, if any.
+
+### Example
+
+The following example shows a basic component, which uses the @Start, @Stop, annotation:
+
+    /**
+     * A Component Using lifecyce callbacks
+     */
+    @Component
+    class X implements Y {
+        @ServiceDependency
+        void bindOtherService(OtherService other) {
+           // Will be injected before we are started (because it's a required dependency).
+        }
+    
+        @Start
+        void publishing() {
+            // All required dependencies are injected: initialize our component.
+            // Once we return, our Y service will be published in the OSGi registry.
+        }
+    
+        @Stop
+        void unpublished() {
+           // We are not registered anymore in the OSGi registry.
+        }
+    }
+
+
+### 
+
+
+### Dynamic Dependency Configuration
+
+
+#### Rationale
+
+We have seen that a component may declare some dependencies and is  started when all required dependencies are available. But there are some  cases when you may need to define some dependencies filters  dynamically, possibly from data picked up from other  dependencies (like a configuration dependency for instance).
+
+So, all this is possible using *named* dependencies: When you assign a name to a dependency; for instance *@ServiceDependency(name="foo")*, then this has an impact on how the dependency is handled. Indeed, all named dependencies are calculated *after* the @Init method returns. So from your @Init method, you can then  configure your named dependencies, using data provided by  already injected dependencies.
+
+To do so, your @Init method is allowed to return a Map containing  the filters and required flags for each named dependencies. For a given  named dependency, the corresponding filter and required flag must be  stored in the Map, using the "*filter*" and "*required*" keys, prefixed with the name of the dependency.
+
+For instance, if you define a Dependency like this:
+
+
+    @ServiceDependency(name="foo")
+    FooService fooService;
+
+Then you can return this map from your @Init method:
+
+
+
+    @Init
+    Map init() {
+        return new HashMap() {{
+            put("foo.filter", "(foo=bar)");
+            put("foo.required", "false");
+        }};
+    }
+
+So, after the init method returns, the map will be used to configure  the dependency named "foo", which will then be evaluated. And once the  dependency is available, then your @Start callback will be invoked.
+
+#### Usage example:
+
+This is an example of a component X whose dependency "foo" filter is  configured from ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with our configuration. Next, we define a  dependency on the *FooService*, but this time, we declare the annotation  like this: *@ServiceDependency(*{*}{*}name="foo"*{*}*)*. As explained  above, The  ConfigurationDependency will be injected *before* the @Init method, and  the named dependency ("foo") will be calculated *after* the @Init method  returns. So, from our Init method, we just return a map which contains  the filter and required flag for the "foo" dependency, and we actually  use the configuration which has already been injected:
+
+
+    /**
+     * A component whose FooService dependency filter is configured from ConfigAdmin
+     */
+    @Component
+    class X {
+        private Dictionary m_config;
+    
+        /**
+         * Initialize our component from config ... and store the config for later usage (from our init method)
+         */
+        @ConfigurationDependency(pid="MyPid")
+        void configure(Dictionary conf) {
+             m_config = config;
+        }
+    
+        /**
+         * All unnamed dependencies are injected: we can now configure other named
+         * dependencies, using the already injected configuration.
+         * The returned Map will be used to configure our "foo" Dependency (see below)
+         */
+        @Init
+        Map init() {
+            return new HashMap() {{
+                put("foo.filter", m_config.get("filter"));
+                put("foo.required", m_config.get("required"));
+            }};
+        }
+    
+        /**
+         * This named dependency filter/required flag will be configured by our init method (see above).
+         */
+        @ServiceDependency(name="foo")
+        FooService fooService;
+    
+        /**
+         * All dependencies are injected and our service is now ready to be published.
+         */
+        @Start
+        void start() {
+        }
+    }
+
+
+
+
+## 
+
+
+## Controlling the Lifecycle
+
+As explained in the *Component Activation* section, a  component which provides a service is automatically registered into the  OSGi registry, after the @Start method returns. But it is sometimes  required to control when the service is really started/published or  unpublished/stopped.
+
+This can be done using the @LifecycleController annotation. This  annotation injects a Runnable object that can be invoked once you want  to trigger your service startup and publication.
+
+For instance, imagine that your component publishes an OSGi service,  but before, it needs to register into a DHT (Distributed Hash Table),  whose API is asynchronous: that is: the DHT API will callback you once  you are inserted into a node in the DHT. In this case, what you would  like to do is to publish your OSGi service, but only after you are  inserted into the DHT (when the DHT callbacks you) ... Such a case  is supported using the @LifecyceController annotation, which gives you  full control of when your component is *started/published* and *unpublished/stopped*.
+
+Let's illustrate this use case with a concrete example: First here is the DHT asynchronous API:
+
+
+    /**
+     * This is an element which can be inserted into the distributed hash table.
+     */
+    public interface DHTElement {
+       void inserted(); // callback used to notify that the element is inserted into the DHT
+    }
+    
+    /**
+     * This is the DHTService, which registers a DHTElement asynchronously.
+     */
+    public interface DHTService {
+       void insert(DHTElement element); // will callback element.inserted() later, once registered into the DHT.
+    }
+
+Next, here is our service, which uses the @LifecycleController in  order to take control of when the service is published into the OSGi  registry:
+
+
+
+    @Component(provides={MyService.class})
+    public class MyServiceImpl implements MyService, DHTElement {
+        @ServiceDependency
+        DHTService dht;
+    
+        @LifecycleController
+        Runnable trigger; // will fire component startup, once invoked.
+    
+        @Init
+        void init() {
+            dht.insert(this); // asynchronous, will callback us in our inserted method once registered into the DHT
+        }
+    
+        public void inserted() {
+            // We are inserted into the DHT: we can now trigger our component startup.
+            // We just invoke the runnable injected by our @LifecycleController annotation, which will trigger our
+            // service publication (we'll be called in our @Start method before)
+            trigger.run();
+        }
+    
+        @Start
+        void start() {
+            // method called only once we invoke our trigger Runnable (see inserted method).
+            // Our Service will be published once this method returns.
+        }
+    }
+
+
+## 
+
+
+## Dynamic Service Properties
+
+When a component provides an OSGi Service, the service properties are calculated as the following:
+* Any properties specified in the @Component annotation are used to provide the OSGi Service
+* Any properties provided by a FactorySet are also inserted in the published service
+* Any Dependency whose *propagate* attribute is set to true will also insert its properties to the published service
+
+But when the component needs to specify some service properties dynamically (not statically from the annotation), then it may do so by just returning a Map from the @Start callback. For instance:
+
+
+    @Component(properties={@Property(name="foo", value="bar")})
+    public class MyServiceImpl implements MyService {
+        @ConfigurationDependency(pid="MyPid", propagate=true)
+        void updated(Dictionary conf) {
+           // "conf" contains foo2=bar2, for example, and since we have set the "propagate" attribute to true, then
+           // the property will be propagated to our published service ...
+        }
+    
+        @Start
+        Map start() {
+            // Return some extra properties to be inserted along with our published properties. This map takes
+            // precedence, and may override some properties specified in our @Component annotation, or some properties
+            // propagated from our @ConfigurationDependency dependency ...
+            return new HashMap() {{ put("foo3", "bar3"); }};
+        }
+    }
+
+Here, the service MyService will be published into the OSGi registry along with the following service properties:
+* foo=bar (specified in our @Component annotation)
+* foo2=bar2 (propagated by our ConfigurationDependency dependency)
+* foo3=bar3 (specified dynamically in the map returned from our start method)
+
+Notice that properties returned by the Map take precedence over other properties, and may override some of them.

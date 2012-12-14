@@ -1,0 +1,66 @@
+Title: OSGi Specification Implementations
+
+This page lists the implementations of OSGi specifications provided by the Apache Felix project.
+
+Please help keep it updated...
+
+Current: 16. Dec 2010
+
+## Core Specification
+
+| Specification | Release or Version | Project | Version | Notes |
+|--|--|--|--|--|
+| Framework | R4.2 | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| Package Admin | 1.2 (R4.2) | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| Start Level | 1.1 (R4.2) | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| Permission Admin | R4.2 | Framework Security | 1.4.0 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| Conditional Permission Admin | R4.2 | Framework Security | 1.4.0 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| URL Handlers | 1.0 (R4.2) | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| Service Hooks | 1.0 (R4.2) | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+
+## Compendium Specification
+
+| Specification | Release or Version | Project | Version | Notes |
+|--|--|--|--|--|
+| Log Service | 1.3 (R4.2) | Log | 1.0.0 | |
+| Http Service | 1.2 (R4.2) | Http Service Projects | 2.0.4 | |
+| Device Access | 1.1 (R4.2) | ?? | ?? | --- |
+| Configuration Admin | 1.3 (R4.2) | Configuration Admin | 1.2.8 | Reference Implementation |
+| Metatype | 1.1 (R4.2) | Metatype | 1.0.4 | --- |
+| Preferences | 1.1 (R4.2) | Preferences | 1.0.4 | --- |
+| User Admin | 1.1 (R4.2) | --- | --- | --- |
+| Wire Admin | 1.0 (R4.2) | ?? | ?? | --- |
+| IO Connector | 1.0 (R4.2) | ?? | ?? | --- |
+| Initial Provisioning | 1.2 (R4.2) | ?? | ?? | --- |
+| UPnP Device | 1.1 (R4.2) | UPnP Base Driver | 0.8.0 | --- |
+| Declarative Services | 1.1 (R4.2) | SCR | 1.6.0 | Passes the R4.2 Compendium CT |
+| Event Admin | 1.2 (R4.2) | Event Admin | 1.2.8 | Passes the R4.2 Compendium CT |
+| Deployment Admin | 1.1 (R4.2) | Deployment Admin | unreleased | --- |
+| Auto Configuration | 1.0 (R4.2) | Deployment Admin Auto Conf | unreleased | --- |
+| Application Admin | 1.1 (R4.2) | --- | --- | --- |
+| DMT Admin | 1.0 (R4.2) | --- | --- | --- |
+| Monitor Admin | 1.0 (R4.2) | --- | --- | --- |
+| Foreign Application Access | 1.0 (R4.2) | --- | --- | --- |
+| Blueprint | 1.0 (R4.2) | --- | --- | Implementation provided by [Apache Aries](http://incubator.apache.org/aries) |
+| Tracker | 1.4 (R4.2) | Framework | 3.0.6 | [Certified](http://www.osgi.org/Specifications/Certified) |
+| XML Parser | 1.0 (R4.2) | --- | --- | --- |
+| Position | 1.0 (R4.2) | --- | --- | --- |
+| Measurement and State | 1.0 (R4.2) | --- | --- | --- |
+| Execution Environment | 1.3 (R4.2) | --- | --- | --- |
+
+
+## R4.3 Draft Work in Progress
+
+Drafts of the upcoming R4.3 are being published on the [OSGi Site](http://www.osgi.org/Specifications/Drafts). This section documents work in progress on implementation of these drafts.
+
+Current Draft: [Early Draft 2, 31. Aug 2010](http://www.osgi.org/Download/File?url=/download/osgi-4.3-early-draft2.pdf)
+
+| RFC | Project | Notes |
+|--|--|--|
+| 137 | | |
+| 151 | | |
+| 154 | | |
+| 147 | | |
+| 157 | | |
+| 160 | Coordinator | untested but mostly complete |
+| 165 | Configuration Admin | work in progress |

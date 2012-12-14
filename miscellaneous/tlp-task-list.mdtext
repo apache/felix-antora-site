@@ -1,0 +1,30 @@
+Title: TLP Task List
+
+# SVN Repository
+|Task|Status|
+|--|--|
+|Request SVN move|Done|
+|Update svn-authorization file|Done|
+|Verify committer access|Done|
+|Remove incubator disclaimer|Done|
+
+# Web Site
+|Task|Status|
+|--|--|
+|Request web site move|Done|
+|Verify committers have access|Done|
+|Move content to new location|Done|
+|Redirect old incubator URL to new location|Done|
+|Delete old content|Done|
+
+# Mailing Lists
+|Task|Status|
+|--|--|
+|Request mailing list move|Done|
+|Verify mailing lists|Done|
+
+# Cleanup
+|Task|Status|
+|--|--|
+|Update incubator page with graduation status|Pending|
+|Various incubator cleanup|Pending|

@@ -1,0 +1,32 @@
+Title: Board Report (2011-12)
+
+**\[SUBMITTED\]({{ refs.submitted.path }})**
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+*Community* 
+* Normal mailing list and bug reporting activity.
+* Contribution of a lightweight OSGi HTTP Service implementation (FELIX-3084) by Ken Gilmer was accepted. Ken was also voted in as a committer and has since performed his first release of his contributed code.
+* Contribution of a Service Diagnostics service and graphical Web Console plugin (FELIX-3128) by Arjun Panday was accepted. Arjun was also voted in as a committer.
+
+*Software*
+* Recent subproject releases:
+** Lightweight OSGi HTTP Service (0.1.2)
+** Framework (4.0.0, 4.0.1, 4.0.2) - Aligns with OSGi R4.3 specification.
+** Framework Security Provider (2.0.0, 2.0.1) - Aligns with OSGi R4.3 specification.
+** Main (4.0.0, 4.0.1, 4.0.2)
+** Maven Bundle Plugin (2.3.6)
+** Maven SCR Plugin (1.7.4)
+** SCR Ant Task (1.1.4)
+** SCR Generator (1.1.4)
+
+*Project Branding*
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open
+** TM missing from all Logos
+* Project Metadata: done
+
+*Licensing and other issues* 
+* None.

@@ -1,0 +1,261 @@
+Title: Apache Felix Dependency Manager - Using Annotations - Dependencies
+
+# Annotations - Dependencies
+
+This section describes the various dependencies supported with annotations.
+
+## @ServiceDependency
+
+Annotates a method or a field for injecting a Service Dependency. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
+
+Annotation attributes:
+
+* *added*: The callback method to be invoked when the service is available. This attribute is only meaningful when the annotation is applied on a class field.
+* *changed*: The callback method to be invoked when the service properties have changed.
+* *removed*: The callback method to invoke when the service is lost.
+* *timeout*: The max time in millis to wait for when the dependency is temporarily unavailable. Specifying a positive number allow to block the caller thread between service updates. Only useful for required stateless dependencies that can be replaced transparently. A Dynamic Proxy is used to wrap the actual service dependency (which must be an interface). When the dependency goes away, an attempt is made to replace it with another one which satisfies the service dependency criteria. If no service replacement is available, then any method invocation (through the dynamic proxy) will block during a configurable timeout. On timeout, an unchecked IllegalStateException exception is raised (but the service is not deactivated).
+Notice that the changed/removed callbacks are not used when the timeout parameter is > \-1.
+\-1 means no timeout at all (default). 0 means that invocation on a missing service will fail immediately. A positive number represents the max timeout in millis to wait for the service availability.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+* *propagate*: Returns true if the dependency service properties must be published along with the service. Any additional service properties specified directly are merged with these.
+
+Usage Example: Here, the MyComponent component is injected with a dependency over a "MyDependency" service.
+
+
+         @Component
+         class MyComponent {
+             @ServiceDependency(timeout=15000)
+             MyDependency dependency;
+             ...
+         }
+
+
+Usage example of a Service whose dependency filter is configured from ConfigAdmin, using a "named" dependency
+(please check [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}) for more informations about "named" dependencies):
+
+
+          /**
+            * A Service whose service dependency "otherService" filter is configured from ConfigAdmin
+            */
+          @Service
+          class X {
+              private Dictionary m_config;
+    
+              /**
+               * Initialize our service from config ... and store the config for later usage (from our init method)
+               */
+              @ConfigurationDependency(pid="MyPid")
+              void configure(Dictionary conf) {
+                   m_config = config;
+              }
+    
+              /**
+               * All unnamed dependencies are injected: we can now configure other named
+               * dependencies, using the already injected configuration.
+               * The returned Map will be used to configure our "otherService" Dependency.
+               */
+              @Init
+              Map init() {
+                  return new HashMap() {{
+                      put("otherService.filter", m_config.get("filter"));
+                      put("otherService.required", m_config.get("required"));
+                  }};
+              }
+    
+              /**
+               * This named dependency filter/required flag will be configured by our init method (see above).
+               */
+              @ServiceDependency(name="otherService")
+              void bindOtherService(OtherService other) {
+              }
+    
+              /**
+               * All dependencies are injected and our service is now ready to be published.
+               * Notice that you can also use the publisher service attribute if you need
+               * to take control on service exposition.
+               */
+              @Start
+              void start() {
+              }
+          }
+
+
+
+
+
+## @ConfigurationDependency
+
+A configuration dependency is always required, and allows you to depend on the availability of a valid configuration for your component. This dependency requires the OSGi Configuration Admin Service.
+
+Annotation attributes:
+
+* *pid*: Returns the pid for a given service (by default, the pid is the service class name).
+* *propagate*: Returns true if the configuration properties must be published along with the service. Any additional service properties specified directly are merged with these.
+* *heading*: The label used to display the tab name (or section) where the properties are displayed. Example: "Printer Service".
+* *description*: A human readable description of the PID this annotation is associated with. Example: "Configuration for the PrinterService bundle".
+* *metadata*: an array of PropertyMetadaData\[\]({{ refs..path }}) annotation describing property types (see the FactoryConfigurationAdapterService section in the "Writing Components" section.
+
+Usage Examples
+
+In the following example, the "Printer" component depends on a configuration whose PID name is "org.apache.felix.sample.Printer". This service will initialize its ip/port number from the provided configuration:
+
+
+         package org.apache.felix.sample;
+    
+         @Component
+         public class Printer {
+             @ConfigurationDependency
+             void updated(Dictionary config) {
+                 // load printer ip/port from the provided dictionary.
+             }
+         }
+
+This other example shows how to specify a configuration dependency, as well as meta data used to customize the WebConsole GUI. Using these meta data, you can specify for example the default value for your configurations data, some descriptions, the cardinality of configuration values, etc ...
+
+
+         package org.apache.felix.sample;
+    
+         @Component
+         public class Printer {
+             @ConfigurationDependency(
+                 heading = "Printer Service",
+                 description = "Declare here parameters used to configure the Printer service",
+                 metadata = {
+                     @PropertyMetaData(heading = "Ip Address",
+                                       description = "Enter the ip address for the Printer service",
+                                       defaults = { "127.0.0.1" },
+                                       type = String.class,
+                                       id = "IPADDR",
+                                       cardinality = 0),
+                     @PropertyMetaData(heading = "Port Number",
+                                       description = "Enter the port number for the Printer service",
+                                       defaults = { "4444" },
+                                       type = Integer.class,
+                                       id = "PORTNUM",
+                                       cardinality = 0)
+    
+                 }
+             )
+             void updated(Dictionary config) {
+                 // load configuration from the provided dictionary.
+             }
+
+
+## @BundleDependency
+
+A bundle dependency allows you to depend on a bundle in a certain set of states (INSTALLED\|RESOLVED\|STARTED\|...), as indicated by a state mask. You can also use a filter condition that is matched against all manifest entries. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
+
+Attributes:
+
+* *changed*: Returns the callback method to be invoked when the service have changed.
+* *removed*: Returns the callback method to invoke when the service is lost.
+* *required*: Returns whether the dependency is required or not.
+* *filter*: Returns the filter dependency
+* *stateMask*: Returns the bundle state mask (Bundle.INSTALLED \| Bundle.ACTIVE etc ...).
+* *propagate*: Specifies if the manifest headers from the bundle should be propagated to the service properties.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns.
+Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+
+Usage Examples
+
+In the following example, the "SCR" Component allows to track all bundles containing a specific "Service-Component" OSGi header, in order to load and manage all Declarative Service components specified in the SCR xml documents referenced by the header:
+
+
+         @Component
+         public class SCR {
+             @BundleDependency(required = false,
+                               removed = "unloadServiceComponents",
+                               filter = "(Service-Component=*)"
+                               stateMask = Bundle.ACTIVE)
+             void loadServiceComponents(Bundle b) {
+                 String descriptorPaths = (String) b.getHeaders().get("Service-Component");
+                 // load all service component specified in the XML descriptorPaths files ...
+             }
+    
+             void unloadServiceComponents(Bundle b) {
+                 // unload all service component we loaded from our "loadServiceComponents" method.
+             }
+         }
+
+## @ResourceDependency
+
+Annotates a method of field as a Resource Dependency. A resource dependency allows you to depend on a resource. Resources are an abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
+A resource is a URL and you can use a filter condition based on protocol, host, port, and path.
+
+Attributes:
+
+* *added*: Returns the callback method to be invoked when the service is available. This attribute is only meaningful when the annotation is applied on a class field.
+* *changed*: Returns the callback method to be invoked when the service properties have changed.
+* *removed*: Returns the callback method to invoke when the service is lost.
+* *required*: Returns whether the Service dependency is required or not.
+* *filter*: Returns the Service dependency OSGi filter.
+* *propagate*: Specifies if the resource URL properties must be propagated. If set to true, then the URL properties ("protocol"/"host"/"port"/"path") will be propagated to the service properties of the component which is using this dependency.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+
+Usage Examples
+Here, the "VideoPlayer" component plays any provided MKV video resources
+
+
+         @Component
+         public class VideoPlayer {
+             @ResourceDependency(required=false, filter="(path=/videos/*.mkv)")
+             void playResource(URL video) { ... }
+         }
+
+And here is an example of a VideoProvider, which provides some videos using a web URL. Notice that Resource providers need to depend on the DependencyManager API:
+
+
+         import java.net.MalformedURLException;
+         import java.net.URL;
+         import java.util.HashMap;
+         import java.util.Map;
+    
+         import org.apache.felix.dm.ResourceHandler;
+         import org.apache.felix.dm.ResourceUtil;
+         import org.apache.felix.dm.annotation.api.Component;
+         import org.apache.felix.dm.annotation.api.Init;
+         import org.apache.felix.dm.annotation.api.ServiceDependency;
+         import org.osgi.framework.BundleContext;
+         import org.osgi.framework.Filter;
+         import org.osgi.framework.InvalidSyntaxException;
+    
+         @Component
+         public class VideoProvider
+         {
+             // Injected by reflection
+             private volatile BundleContext context;
+             // List of known resource handlers
+             private Map<ResourceHandler, Filter> m_handlers = new HashMap<ResourceHandler, Filter>();
+             // List of known video resources
+             private URL[] m_videos;
+    
+             @Init
+             void init() throws MalformedURLException
+             {
+                m_videos = new URL[] {
+                        new URL("http://localhost:8080/videos/video1.mkv"),
+                        new URL("http://localhost:8080/videos/video2.mkv"),
+                 };
+             }
+    
+             // Track resource handlers
+             @ServiceDependency(required = false)
+             public void add(Map<String, String> serviceProperties, ResourceHandler handler) throws InvalidSyntaxException
+             {
+                 String filterString = serviceProperties.get("filter");
+                 filterString = (filterString != null) ? filterString : "(path=*)";
+                 Filter filter = context.createFilter(filterString);
+                 synchronized (this)
+                 {
+                     m_handlers.put(handler, filter);
+                 }
+                 for (URL video : m_videos)
+                 {
+                     if (filter.match(ResourceUtil.createProperties(video)))
+                     {
+                         handler.added(video);
+                     }
+                 }
+             }
+         }
+

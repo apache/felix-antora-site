@@ -1,0 +1,43 @@
+Title: DEPENDENCIES file template
+
+Each released software archive must contain a DEPENDENCIES file in it to declare third-party dependencies and their licenses. The following template should be used:
+
+
+    Apache Felix AAA
+    Copyright BBB The Apache Software Foundation
+    
+    This software was developed at the Apache Software Foundation
+    (http://www.apache.org) and may have dependencies on other
+    Apache software licensed under Apache License 2.0.
+    
+    I. Included Third-Party Software
+    
+    CCC
+    
+    II. Used Third-Party Software
+    
+    DDD
+    
+    III. Overall License Summary
+    - Apache License 2.0
+    - EEE
+
+
+Where the placeholders have the following meaning:
+
+* AAA - Name of the Felix subproject.
+* BBB - Copyright year or range of years.
+* CCC - List of third-party software included in the archive.
+* DDD - List of third-party software used (but not included) by the archive.
+* EEE - List of additional third-party licenses as a result of the dependencies.
+
+The format for an individual third-party dependency is flexible, but should try to include the name of the developing organization or individual, a URL, a copyright, and the license. For example, a dependency on OSGi software would look like this:
+
+
+    This product includes software developed at
+    The OSGi Alliance (http://www.osgi.org/).
+    Copyright (c) OSGi Alliance (2000, 2009).
+    Licensed under the Apache License 2.0.
+
+
+If you need additional examples on how to fill out a DEPENDENCIES file, look at other examples in the SVN repo or ask on the dev@felix mailing list.

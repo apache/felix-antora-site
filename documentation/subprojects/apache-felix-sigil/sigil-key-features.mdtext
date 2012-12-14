@@ -1,0 +1,28 @@
+Title: Sigil Key Features
+
+### Sigil: Key Features
+
+#### Resolves build dependencies based upon OSGi meta-data
+
+- determines compilation dependencies using the same Import-Package meta-data used by OSGi at runtime
+- avoids duplication and error
+
+#### Pluggable [repositories]({{ refs.sigil-repositories-sigil-repositories.path }}), including OBR
+
+- searches SpringSource Enterprise Bundle Repository using OBR index
+
+#### Build projects using IDE and/or command-line
+
+- IDE and command-line use same [project file]({{ refs.sigil-properties-sigil-properties-file-format.path }})
+- Currently supports [Eclipse]({{ refs.apache-felix-sigil-eclipse-sigil-eclipse-integration.path }}) and Ant/[Ivy|Sigil Ivy|Sigil ivy integration] plugins
+
+#### Simple properties-based project file
+
+- edit directly or using Eclipse Sigil project editor
+- supports multiple bundles per project
+- BND creates bundles using instructions inferred from project file
+
+#### JUnit test support
+
+- automatically resolves [JUnit]({{ refs.sigil-junit-sigil-junit-integration.path }}) test cases in a running OSGi JVM
+- generate reports in ant xml format

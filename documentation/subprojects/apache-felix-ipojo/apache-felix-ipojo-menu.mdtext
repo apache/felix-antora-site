@@ -1,0 +1,69 @@
+Title: apache-felix-ipojo-menu
+
+{style:import=http://people.apache.org/~clement/ipojo/ipojo.css}
+{span:class=ipojo-menu|id=ipojo-menu}
+###### *Overview*
+
+* [Home Page]({{ refs.apache-felix-ipojo.path }})
+* [Why choose iPOJO?]({{ refs.apache-felix-ipojo-why-choose-ipojo.path }})
+* [iPOJO Success Stories]({{ refs.apache-felix-ipojo-successstories.path }})
+* [iPOJO Feature Overview]({{ refs.apache-felix-ipojo-feature-overview.path }})
+* [Download & Install ]({{ refs.-download.path }})
+
+###### *Getting Started*
+
+* [iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }})
+* [How to use iPOJO Annotations]({{ refs.how-to-use-ipojo-annotations.path }})
+* [iPOJO Hello Word (Maven-Based) tutorial]({{ refs.ipojo-hello-word-maven-based-tutorial.path }})
+* [iPOJO Advanced Tutorial]({{ refs.ipojo-advanced-tutorial.path }})
+* [iPOJO Composition Tutorial]({{ refs.ipojo-composition-tutorial.path }})
+
+###### *User Guide*
+
+* [Describing components (handler list) ]({{ refs.-describing-components.path }})
+* [Using XML Schemas]({{ refs.using-xml-schemas.path }})
+* [Describing components with the iPOJO-API]({{ refs.apache-felix-ipojo-api.path }})
+* [Testing components]({{ refs.apache-felix-ipojo-testing-components.path }})
+* [Advanced Topics]({{ refs.ipojo-advanced-topics.path }})
+* [Eclipse Integration]({{ refs.apache-felix-ipojo-eclipse-integration.path }})
+* [FAQ]({{ refs.ipojo-faq.path }})
+* [iPOJO Reference Card]({{ refs.ipojo-reference-card.path }})
+
+###### *Tools*
+
+* [iPOJO Eclipse Plug-in]({{ refs.ipojo-eclipse-plug-in.path }})
+* [iPOJO Ant Task]({{ refs.ipojo-ant-task.path }})
+* [iPOJO Maven Plug-in]({{ refs.ipojo-maven-plug-in.path }})
+* [Online-Manipulator]({{ refs.apache-felix-ipojo-online-manipulator.path }})
+* [iPOJO Arch Command]({{ refs.ipojo-arch-command.path }})
+* [iPOJO Webconsole plugin]({{ refs.ipojo-webconsole-plugin.path }})
+* [Junit4OSGi]({{ refs.apache-felix-ipojo-junit4osgi.path }})
+
+###### *Developer Guide*
+
+* Javadoc: [1.2](http://felix.apache.org/ipojo/api/1.2.0)
+* [How to write your own handler]({{ refs.how-to-write-your-own-handler.path }})
+* [How to use iPOJO Manipulation Metadata]({{ refs.how-to-use-ipojo-manipulation-metadata.path }})
+* [Dive into the iPOJO Manipulation depths]({{ refs.dive-into-the-ipojo-manipulation-depths.path }})
+
+###### *Misc & Contact*
+
+* [Issues Tracker]({{ refs.apache-felix-ipojo-issuestracker.path }})
+* [Supported JVMs]({{ refs.apache-felix-ipojo-supportedvms.path }})
+* [Supported OSGi Implementations]({{ refs.apache-felix-ipojo-supportedosgi.path }})
+* [iPOJO's Dark Side Blog](http://ipojo-dark-side.blogspot.com)
+* [Future Ideas]({{ refs.future-ideas.path }})
+* [Article & Presentations]({{ refs.article-presentations.path }})
+
+###### Experimentation
+
+* [ipojo-test-page]({{ refs.ipojo-test-page.path }})
+
+{span}
+
+{html:output=html}
+<script>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+var pageTracker = *gat.*getTracker("UA-1518442-4");<br />pageTracker._trackPageview();
+</script>
