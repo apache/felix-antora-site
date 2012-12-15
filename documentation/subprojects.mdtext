@@ -1,5 +1,4 @@
-Title: Subprojects
+Title: Apache Felix Subproject Documentation
 
-# Apache Felix Subproject Documentation
-
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
