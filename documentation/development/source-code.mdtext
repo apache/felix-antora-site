@@ -1,8 +1,6 @@
 Title: Source Code
 
-# Source code
-
-This project uses [Subversion](http://subversion.tigris.org/) to manage its source code. Instructions on Subversion use can be found at [http://svnbook.red-bean.com/].
+This project uses [Subversion](http://subversion.apache.org/) to manage its source code. Instructions on Subversion use can be found at [http://svnbook.red-bean.com/].
 
 # Web Access
 
@@ -14,7 +12,7 @@ The following is a link to the online source repository.
 
 The Felix trunk can be checked out anonymously with the following command:
 
-
+    :::sh
     $ svn checkout http://svn.apache.org/repos/asf/felix/trunk felix-trunk
 
 
@@ -28,11 +26,11 @@ Refer to the documentation of the SCM used for more information about an access 
 
 # Access through a proxy
 
-The Subversion client can go through a proxy, if you configure it to do so. First, edit your "servers" configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory "~/.subversion". On Windows it is in "%APPDATA%\Subversion". (Try "echo %APPDATA%", note this is a hidden directory.)
+The Subversion client can go through a proxy, if you configure it to do so. First, edit your `servers` configuration file to indicate which proxy to use. The files location depends on your operating system. On Linux or Unix it is located in the directory `~/.subversion`. On Windows it is in `%APPDATA%\Subversion`. (Try `echo %APPDATA%`, note this is a hidden directory.)
 
 There are comments in the file explaining what to do. If you don't have that file, get the latest Subversion client and run any command; this will cause the configuration directory and template files to be created.
 
-Example : Edit the 'servers' file and add something like :
+Example : Edit the `servers` file and add something like :
 
 
     [global]
@@ -44,6 +42,7 @@ Example : Edit the 'servers' file and add something like :
 
 For people with checked out copies of the original incubator repository, you will need to use the "svn switch" command to associate your workspace with the new URL. The command for doing this for the trunk is:
 
-   svn switch https://svn.apache.org/repos/asf/felix/trunk
+    :::sh
+    $ svn switch https://svn.apache.org/repos/asf/felix/trunk
 
 If you have other directories checked out, e.g., sandbox or releases, then you will need to do for those too, modifying the above URL accordingly.
