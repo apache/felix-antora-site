@@ -108,7 +108,9 @@ Print a bullet pointed child page list:
 It is important to have the first part as a single line, otherwise
 the Django/Markdown combo will create a list for each entry.
 </div>
-  
+
+### Code Highlighting
+
 Code Highlighting works by indenting code by four blanks. To indicate the
 type of highlighting preced the code style text with either `:::<lexer>` to
 get high lighted code using the given `<lexer>` or `#!<lexer>` to get high
@@ -116,3 +118,37 @@ lighted code with line numbers using the given `<lexer>`. See
 <http://www.apache.org/dev/cmsref.html#code-hilighter> for main info and
 <http://pygments.org/docs/lexers/> for supported lexers
 
+
+### Manual Generation
+
+When commiting changes to pages into SVN the pages are automatically
+generated in [the staging site](http://felix.staging.apache.org).
+
+To manually generate the site or single pages the [site](http://svn.apache.org/repos/asf/felix/site)
+can be checked out from SVN. In addition Perl and Python must be installed
+for the build tools to work.
+
+To prepare for site build, the Markdown daemon has to be started:
+
+    :::sh
+    $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
+    $ export PYTHONPATH="$PWD/tools/build"
+    $ python "$PWD/tools/build/markdownd.py"
+
+The `MARKDOWN_SOCKET` environment variables is also required by the `build_site.pl`
+and `build_file.pl` scripts to connect to the Markdown daemon.
+
+To build the complete site use the `build_site.pl` script:
+
+    :::sh
+    $ tools/build/build_site.pl --source-base $PWD/trunk \
+        --target-base $PWD/trunk/target
+
+To build a single page use the `build_file.pl` script:
+
+    :::sh
+    $ tools/build/build_site.pl --source-base $PWD/trunk \
+        --target-base $PWD/trunk/target \
+        --source content/documentation.mdtext
+
+The argument to the `--source` parameter is relative to the `--source-base` folder.
