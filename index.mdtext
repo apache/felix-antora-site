@@ -43,4 +43,4 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [UPnP]({{ refs.apache-felix-upnp.path }}) - An implementation of the OSGi UPnP Device service specification for UPnP device integration.
 * [Web Console]({{ refs.apache-felix-web-console.path }}) - A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
 
-Several other unreleased subprojects also exist, please refer to the [Subprojects]({{ refs.subprojects.path }}) page for more. To see some projects using Felix subprojects, refer to the [community|Projects Using Felix] documentation.
+Several other unreleased subprojects also exist, please refer to the [Subprojects]({{ refs.subprojects.path }}) page for more. To see some projects using Felix subprojects, refer to the [Projects Using Felix]({{ refs.projects-using-felix.path }}) documentation.
