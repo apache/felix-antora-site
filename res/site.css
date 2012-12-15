@@ -172,24 +172,60 @@ td {
     padding: 3px 4px;
 }
 
-.infoMacro {
-    background-color: #D8E4F1;
-    border: 1px solid #3C78B5;
-}
-
-.noteMacro {
+.note
+{
+/*
     background-color: #FFFFCE;
     border: 1px solid #F0C000;
+*/
+    border: 1px solid #f0c000;
+    background: #ffffce url('icons/warning.gif') no-repeat 5px 5px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 28px;
 }
 
-.tipMacro {
-    background-color: #DDFFDD;
-    border: 1px solid #009900;
-}
-
-.warningMacro {
+.warning
+{
+/*
     background-color: #FFCCCC;
     border: 1px solid #CC0000;
+*/
+    border: 1px solid #f0c000;
+    background: #ffffce url('icons/forbidden.gif') no-repeat 5px 5px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 28px;
+}
+
+.info
+{
+/*
+    background-color: #D8E4F1;
+    border: 1px solid #3C78B5;
+*/
+    border: 1px solid #3c78b5;
+    background: #D8E4F1 url('icons/information.gif') no-repeat 5px 5px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 28px;
+}
+
+.tip
+{
+/*
+    background-color: #DDFFDD;
+    border: 1px solid #009900;
+*/
+    border: 1px solid #090;
+    background: #dfd url('/icons/check.gif') no-repeat 5px 5px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 28px;
 }
 
 /** Breadcrump at the top of each page */
