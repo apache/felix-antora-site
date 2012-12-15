@@ -2,4 +2,5 @@ Title: Tutorials, Examples, and Presentations
 
 # Tutorials, Examples, and Presentations
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}

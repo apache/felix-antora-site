@@ -7,6 +7,7 @@ Title: apache-felix-ipojo-devguide
 # iPOJO Developer Guide
 *This page contains pages of the the iPOJO developer guide*
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
 
 {include:apache-felix-ipojo-footer}

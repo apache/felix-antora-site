@@ -6,4 +6,5 @@ The Felix Framework subproject is an implementation of the OSGi R4.2 core framew
 
 ## Framework documentation
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}

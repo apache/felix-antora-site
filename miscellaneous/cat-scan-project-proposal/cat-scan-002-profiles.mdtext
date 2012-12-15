@@ -4,6 +4,7 @@ It does not seem reasonable to expect that all OSGi framework implementors have 
 
 ### Profiles
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
 
 {scrollbar}

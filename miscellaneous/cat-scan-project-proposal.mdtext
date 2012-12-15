@@ -8,4 +8,5 @@ Information that is collected in the form of run-logs can be used by the develop
 
 ### Table of Contents
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}

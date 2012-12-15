@@ -1,5 +1,4 @@
-Title: Community
+Title: Community Documentation
 
-# Community Documentation
-
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}

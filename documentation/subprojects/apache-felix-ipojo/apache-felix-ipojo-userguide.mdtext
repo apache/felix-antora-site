@@ -6,7 +6,8 @@ Title: apache-felix-ipojo-userguide
 
 # User Guide
 This page references pages composing the iPOJO User Guide:
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
   
   
 {include:apache-felix-ipojo-footer}

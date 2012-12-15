@@ -8,7 +8,8 @@ Title: apache-felix-ipojo-gettingstarted
 
 This page lists the tutorials for a "good" start with iPOJO framework.
 
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
   
   
 {include:apache-felix-ipojo-footer}

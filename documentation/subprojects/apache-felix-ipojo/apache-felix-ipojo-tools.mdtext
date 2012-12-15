@@ -7,7 +7,8 @@ Title: apache-felix-ipojo-tools
 # iPOJO Tools
 
 This page contains the list of provided tools helping the development of iPOJO applications:
-{children}
+{% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
+{% endfor %}
   
   
 {include:apache-felix-ipojo-footer}
