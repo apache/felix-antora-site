@@ -1,3 +1,4 @@
+translation_pending: true
 Title: iPOJO Hello Word (Maven-Based) tutorial
 
 {include:apache-felix-ipojo-header}

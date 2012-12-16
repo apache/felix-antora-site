@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Apache Felix Maven SCR Plugin
 
 The Apache Felix Maven SCR Plugin is a great tool to ease the development of OSGi components and services. Components and services are defined through annotations and the plugin creates the necessary descriptors for the OSGi Declarative Services, Config Admin and Metatype services. Starting with version 1.4.0 of the plugin, OSGi Declarative Services versions 1.0 and 1.1 are supported.

@@ -1,3 +1,4 @@
+translation_pending: true
 Title: iPOJO JMX Handler
 
 {include:apache-felix-ipojo-header}

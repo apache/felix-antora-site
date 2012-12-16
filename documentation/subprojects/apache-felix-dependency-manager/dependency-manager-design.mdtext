@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Dependency Manager Design
 Excerpt: The dependency manager is a dedicated component for managing dependencies. When using service trackers or listeners, a substantial amount of code needs to be written to track other services and act on changes. From a logical point of view, through a bundle you're managing one or more services. Each service can have zero or more dependencies that can either be required or optional. Required dependencies must be available before the service can even do its work, optional dependencies are used only if they're available.
 

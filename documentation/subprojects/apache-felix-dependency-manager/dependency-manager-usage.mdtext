@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Dependency Manager Usage
 Excerpt: Let's look at how to use this implementation. When developing an OSGi bundle that uses and possibly registers services, there are two classes in particular we need to implement. The first one is the bundle activator which controls the life-cycle of the bundle. The second one is the actual service implementation.
 

@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Apache Felix SCR Ant Task Use
 Excerpt: Using the Apache Felix SCR Ant Task to generate Declarative Services and Metatype Service descriptors during an Ant driven Build.
 

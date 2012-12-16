@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Release Management (Nexus)
 
 *This is the new release process for Apache Felix, based on the updated Maven [process](http://maven.apache.org/developers/release/releasing.html)*

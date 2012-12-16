@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Source Code
 
 This project uses [Subversion](http://subversion.apache.org/) to manage its source code. Instructions on Subversion use can be found at [http://svnbook.red-bean.com/].

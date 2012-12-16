@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Subproject Release Status
 
 This page is intended to make it easy to see at a glance the status of the Felix release process. In order to understand how to  handle source file licensing and copyright notices see [http://www.apache.org/legal/src-headers.html](http://www.apache.org/legal/src-headers.html). The initial activities that have been pointed out for preparing a successful release are:

@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Sigil Repositories
 
 Repositories are where the external dependencies for your project live. Sigil resolves and downloads dependencies for OSGi bundles via an extensible repository interface.

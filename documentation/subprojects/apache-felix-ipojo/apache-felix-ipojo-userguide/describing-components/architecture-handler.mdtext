@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Architecture Handler
 
 {include:apache-felix-ipojo-header}

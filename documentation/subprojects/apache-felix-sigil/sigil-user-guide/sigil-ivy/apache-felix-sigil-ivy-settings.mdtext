@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Apache Felix Sigil Ivy Settings
 
 The following items in ivysetting.xml need to be configured for Sigil.

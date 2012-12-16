@@ -1,8 +1,30 @@
+translation_pending: true
 Title: Documentation
 
 *The Felix web site and documentation are managed with the [Apache CMS](https://www.apache.org/dev/cms.html).
 For Apache Felix specific extensions see the [Site How-To](#site-how-to)
 section below.*
+
+<div class="info">
+<p>
+The Felix site is being converted from a Confluence exported site to an
+Apache CMS managed site. During this conversion not all pages will display
+correctly. All non-fully converted pages will show a tip box pointing to
+the original Confluence exported page for reference.
+</p>
+
+<p>
+Once migration of a page has completed the <code>translation_pending</code>
+header should be removed from the page source. After that the tip box will not be
+shown any more.
+</p>
+
+<p>
+While this page has technically been translated already, the <code>translation-pending</code>
+header is kept to remind us to remove this info box once translation has
+completed.
+</p>
+</div>
 
 In an effort to make it easier to find desired documentation, we have divided our documentation section into the following six areas:
 

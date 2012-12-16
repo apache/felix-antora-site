@@ -1,3 +1,4 @@
+translation_pending: true
 Title: Apache Felix Maven SCR Plugin Use
 Excerpt: Using the Apache Felix Maven SCR Plugin to generate Declarative Services and Metatype Service descriptors during a Maven Build
 
