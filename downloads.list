@@ -40,11 +40,11 @@ HTTP Service Bundle|org.apache.felix.http.bundle|2.2.0|project
 HTTP Service Jetty|org.apache.felix.http.jetty|2.2.0|project
 HTTP Service Proxy|org.apache.felix.http.proxy|2.2.0|project
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.0|project
-iPOJO|org.apache.felix.ipojo|1.8.4|project
+iPOJO|org.apache.felix.ipojo|1.8.6|project
 iPOJO Architecture Command for the Felix Shell|org.apache.felix.ipojo.arch|1.6.0|project
 iPOJO Architecture Command for Gogo|org.apache.felix.ipojo.arch.gogo|1.0.1|project
-iPOJO Composite|org.apache.felix.ipojo.composite|1.8.4|project
-iPOJO Annotations|org.apache.felix.ipojo.annotations|1.8.4|project
+iPOJO Composite|org.apache.felix.ipojo.composite|1.8.6|project
+iPOJO Annotations|org.apache.felix.ipojo.annotations|1.8.6|project
 iPOJO Ant Task|org.apache.felix.ipojo.ant|1.8.6|project
 iPOJO BND Plugin|bnd-ipojo-plugin|1.8.6|project
 iPOJO WebConsole Plugin|org.apache.felix.ipojo.webconsole|1.6.0|project
