@@ -1,7 +1,4 @@
-translation_pending: true
 Title: Provisional OSGi API Policy
-
-# Provisional OSGi API policy
 
 ## Overview
 
@@ -22,6 +19,14 @@ Since subprojects will still want to implement and experiment with provisional O
 1. Any provisional OSGi API must be recreated in the `org.apache.felix.*` package name space; this effectively makes it provisional Felix API.
 1. All Felix provisional API must be marked as deprecated.
 1. All Felix provisional API exported from bundles should be exported with a mandatory attribute of `status="provisional"`.
+
+For example to provisionally export the `org.apache.felix.service.metatype` package, the
+`Export-Package` statement would look something like this:
+
+    :::xml
+    <Export-Package>
+      org.apache.felix.service.metatype; version="0.1"; mandatory="status"; status="provisional"
+    </Export-Package>
 
 When working with new specifications, this will likely result in parallel package structures between the provisional OSGi and Felix APIs. When working with existing specifications, it may be necessary to create extensions to existing OSGi interfaces in the Felix package namespace.
 
