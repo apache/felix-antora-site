@@ -1,8 +1,6 @@
 translation_pending: true
 Title: Apache Felix HTTP Service
 
-# Apache Felix HTTP Service
-
 [TOC]
 
 This is an implementation of the HTTP Service Specification as described in chapter 102 of the OSGi Compendium. The goal is to provide a standard and simplified way to register servlets and resources in a Servlet container, and to associate them with URIs. It also implement a non-standard extension for registering servlet filters as well as a whiteboard implementation. Complete set of features:
