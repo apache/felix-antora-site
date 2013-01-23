@@ -26,6 +26,7 @@ So, in most cases you could just use *org.apache.felix.http.bundle* and forget a
 ## Using the HttpService
 
 The main components provided by the Apache Felix HTTP Service bundle are:
+
  * `HttpService` - Service used to dynamically register resources and servlets 
  * `HttpContext` - Additional (optional) component to handle authentication, resource and mime type mappings
  
@@ -62,6 +63,7 @@ To register a Servlet and map it to a URI, you need to retrieve the `HttpService
 In the same way, you can unregister a Servlet (for instance, in the `stop` method of the Bundle Activator) calling the `HttpService.unregister` method.
 
 As you notice in the example above, the `registerServlet` method accepts four parameters:
+
  * the Servlet alias
  * the Servlet instance
  * an additional configuration Map
@@ -191,17 +193,20 @@ The whiteboard implementation simplifies the task of registering servlets and fi
 
 
 Servlet service properties:
+
 * `alias` - Servlet alias to register with.
 * `contextId` - Id of context to register with.
 * `init.\*` - Servlet initialization values. 
 
 Filter service properties:
+
 * `pattern` - Regular expression pattern to register filter with.
 * `contextId` - Id of context to register with.
 * `service.ranking` - Where in the chain this filter should be placed. 
 * `init.\*` - Filter initialization values. 
 
 HttpContext service properties:
+
 * `contextId` - Id of context to be referenced by a servlet or filter service.
 
 ## Using the Servlet Bridge
@@ -275,6 +280,7 @@ Of the defined `EventListener` interfaces in the Servlet API, the `javax.servlet
 `ServletContext` instances are managed internally by the Http Service implementation. For each `HttpContext` instance used to register one or more servlets and/or resources a corresponding `ServletContext` instance is created. These `ServletContext` instances is partly based on the single `ServletContext` instance received from the Servlet Container --- either embedded Jetty or some external Servlet Container when using the Http Service Bridge --- and partly based on the provided `HttpContext` instance:
 
 | Method(s) | Based on ... |
+|-|-|
 | `getContextPath`, `getContext`, `getMajorVersion`, `getMinorVersion`, `getServerInfo` | Servlet Containers `ServletContext` |
 | `getResourcePaths` | `Bundle.getEntryPaths` of the bundle using the Http Service |
 | `getResource`, `getResourceAsStream` | `HttpContext.getResource` |
@@ -289,9 +295,9 @@ Of the defined `EventListener` interfaces in the Servlet API, the `javax.servlet
 
 A set of simple examples illustrating the various features are available. 
 
-* Filter registration sample: http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/
-* Servlet bridge sample: http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/
-* Whiteboard sample: http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/
+* Filter registration sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/>
+* Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>
+* Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>
 
 ## Maven Artifacts
 
