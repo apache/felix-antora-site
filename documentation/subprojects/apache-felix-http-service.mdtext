@@ -193,7 +193,7 @@ The whiteboard implementation simplifies the task of registering servlets and fi
 
 
 Servlet service properties:
-* `alias` - Servlet alias to register with.
+* `alias` - Servlet alias to register with.
 * `contextId` - Id of context to register with.
 * `init.\*` - Servlet initialization values. 
 
