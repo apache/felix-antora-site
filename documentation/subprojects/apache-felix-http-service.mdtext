@@ -1,4 +1,3 @@
-translation_pending: true
 Title: Apache Felix HTTP Service
 
 [TOC]
@@ -21,7 +20,7 @@ The Apache Felix HTTP Service project includes several bundles.
   * org.apache.felix.http.bundle - All in one bundle that includes all of the above.
   * org.apache.felix.http.proxy - Proxy that is needed inside WAR when deployed inside an application server. 
 
-So, in most cases you could just use *org.apache.felix.http.bundle* and forget about all the other ones.
+So, in most cases you could just use **org.apache.felix.http.bundle** and forget about all the other ones.
 
 ## Using the HttpService
 
@@ -32,7 +31,7 @@ The main components provided by the Apache Felix HTTP Service bundle are:
  
 Servlets created for the OSGi HTTP service don't need to have any reference to the OSGi specification (they only need to conform to the Servlet specification), like in the example:
 
-
+    :::java
     public class HelloWorld extends HttpServlet
     {
       @Override
@@ -45,7 +44,7 @@ Servlets created for the OSGi HTTP service don't need to have any reference to t
 
 To register a Servlet and map it to a URI, you need to retrieve the `HttpService` and call its `registerServlet` method:
 
-
+    :::java
     public class Activator implements BundleActivator
     {
       public void start(BundleContext context) throws Exception 
@@ -75,7 +74,7 @@ An additional configuration Map can be optionally specified; if present, all the
 
 Finally, an HttpContext object can be optionally specified to handle authentication, mime type and resource mapping. The `HttpContext` interface is quite simple:
 
-
+    :::java
     public interface HttpContext
     {
       String getMimeType(java.lang.String name); //Returns the mime type of the specified resource
@@ -86,7 +85,7 @@ Finally, an HttpContext object can be optionally specified to handle authenticat
 
 The use of a custom HttpContext is typical when you want to serve static contents with the HTTP Service. Let's see first the simplest example of resource registration (without `HttpContext`)
 
-
+    :::java
     public class Activator implements BundleActivator
     {
       public void start(BundleContext context) throws Exception 
@@ -101,11 +100,15 @@ The use of a custom HttpContext is typical when you want to serve static content
     }
 
 
-As a result of the `service.registerResources("/static", "/etc/www", null)` code, all the files available under `/etc/www` will be exposed under `/static` (f.i.  http://localhost:8080/static/001.jpg will render the /etc/www/001.jpg). However, the example above can be simplistic in practice; the HttpContext object is the solution to customize the resource handling.
+As a result of the `service.registerResources("/static", "/etc/www", null)` code, all the files
+available under `/etc/www` will be exposed under `/static` (e.g. `http://localhost:8080/static/001.jpg`
+will render the `/etc/www/001.jpg`). However, the example above can be simplistic in practice; the
+`HttpContext` object is the solution to customize the resource handling.
 
-For instance, you can set the define more complex URI to file mappings overriding the `HttpContext.getResource` method, or the correct mime type implementing the method `HttpContext.getMimeType` like in the example:
+For instance, you can set the define more complex URI to file mappings overriding the
+`HttpContext.getResource` method, or the correct mime type implementing the method `HttpContext.getMimeType` like in the example:
 
-
+    :::java
     //....
     
     public String getMimeType(String file) 
@@ -129,7 +132,7 @@ For instance, you can set the define more complex URI to file mappings overridin
 
 If you implement a customized HttpContext object, don't forget to specify it as third parameter of the `registerResources` method invocation:
 
-
+    :::java
     public class Activator implements BundleActivator
     {
       public void start(BundleContext context) throws Exception 
@@ -149,7 +152,7 @@ If you implement a customized HttpContext object, don't forget to specify it as 
 
 To be able to register filters, it is possible to get hold of `org.apache.felix.http.api.ExtHttpService`. This is exported by both jetty and the bridged implementation. Let's see the simplest example of a filter registration.
 
-
+    :::java
     public class Activator implements BundleActivator
     {
       public void start(BundleContext context) throws Exception 
@@ -171,7 +174,7 @@ To be able to register filters, it is possible to get hold of `org.apache.felix.
 
 The whiteboard implementation simplifies the task of registering servlets and filters. A servlet (or filter) can be registered by exporting it as a service. The whiteboard implementation detects all `javax.servlet.Servlet`, `javax.servlet.Filter` and `org.osgi.service.http.HttpContext` services with the right service properties. Let us illustrate the usage by registering a servlet:
 
-
+    :::java
     public class Activator implements BundleActivator
     {
       private ServiceRegistration registration;
@@ -209,15 +212,17 @@ HttpContext service properties:
 
 * `contextId` - Id of context to be referenced by a servlet or filter service.
 
+
 ## Using the Servlet Bridge
 
-The servlet bridge is used if you want to use the Http service inside a WAR deployed on a 3rd part applicaiton server. A little setup is needed for this to work:
+The servlet bridge is used if you want to use the HTTP service inside a WAR deployed on a 3rd part
+applicaiton server. A little setup is needed for this to work:
 
-* Deploy `org.apache.felix.http.proxy` jar file inside the web applicaiton (WEB-INF/lib). 
-* In a startup listener (like ServletContextListener) set the BundleContext as a servlet context attribute (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/java/org/apache/felix/http/samples/bridge/StartupListener.java)).
+* Deploy `org.apache.felix.http.proxy` jar file inside the web applicaiton (`WEB-INF/lib`). 
+* In a startup listener (like `ServletContextListener`) set the BundleContext as a servlet context attribute (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/java/org/apache/felix/http/samples/bridge/StartupListener.java)).
 * Define `org.apache.felix.http.proxy.ProxyServlet` inside your `web.xml` and register it to serve on all requests `/*` (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml)).
 * Define `org.apache.felix.http.proxy.ProxyListener` as a `<listener>` in your `web.xml` to allow HTTP Session related events to be forwarded (see the section of Servlet API Event forwarding below and [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml)).
-* Be sure to add `javax.servlet;javax.servlet.http;version=2.5` to OSGi system packages ((`org.osgi.framework.system.packages`).
+* Be sure to add `javax.servlet;javax.servlet.http;version=2.5` to OSGi system packages (`org.osgi.framework.system.packages`).
 * Deploy `org.apache.felix.http.bridge` (or `org.apache.felix.http.bundle`) inside the OSGi framework.
 
 A detailed example can be found [here](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge).
@@ -301,7 +306,7 @@ A set of simple examples illustrating the various features are available.
 
 ## Maven Artifacts
 
-
+    :::xml
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.api</artifactId>
