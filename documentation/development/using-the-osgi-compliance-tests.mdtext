@@ -1,23 +1,32 @@
-translation_pending: true
 Title: Using the OSGi Compliance Tests
 
-# Using the OSGi Complaince Tests
+The OSGi Alliance now provides Apache committers access to its Compliance Tests (CT). This
+page describes how to get access to the CTs and how to use them with Felix subprojects.
 
-The OSGi Alliance now provides Apache committers access to its Compliance Tests (CT). This page describes how to get access to the CTs and how to use them with Felix subprojects.
 
 ## Gaining Access to OSGi CTs
 
-The general process is to send a request to the jcp-open@apache.org mailing requesting access. Since redistributing the OSGi CTs is not allowed, you will need to submit an [NDA](http://www.apache.org/jcp/ApacheNDA.pdf) to be granted access to the [SVN repo|https://svn.apache.org/repos/tck/osgi-cts] containing the binaries.
+The general process is to send a request to the jcp-open@apache.org mailing requesting
+access. Since redistributing the OSGi CTs is not allowed, you will need to submit an 
+[NDA](http://www.apache.org/jcp/ApacheNDA.pdf) to be granted access to the 
+[SVN repo](https://svn.apache.org/repos/tck/osgi-cts) containing the binaries.
+
 
 ## OSGi CT Overview
 
-The CT is delivered as two JAR files, one for the core CT and one for the compendium CT. Each JAR file is composed of several other JAR files, which are the actual compliance tests. Typically, there is one JAR per specification, except for the OSGi framework. The CT uses BND as its testing harness, which in turn uses the OSGi R4.2 framework launching and embedding API to configure, launch, and install test bundles. Each test JAR file has an associated BND file which supplies the configuration BND needs to run the associated tests.
+The CT is delivered as two JAR files, one for the core CT and one for the compendium CT.
+Each JAR file is composed of several other JAR files, which are the actual compliance
+tests. Typically, there is one JAR per specification, except for the OSGi framework. The
+CT uses BND as its testing harness, which in turn uses the OSGi R4.2 framework launching
+and embedding API to configure, launch, and install test bundles. Each test JAR file has
+an associated BND file which supplies the configuration BND needs to run the associated tests.
+
 
 ## Modifying the BND files
 
 Modifying the BND files is fairly straightforward. A typical BND file looks like this:
 
-
+    :::plaintext
     # bnd pack for project org.osgi.test.cases.startlevel
     # Mon Aug 31 18:50:18 EDT 2009
     build=.
@@ -44,11 +53,13 @@ The important parts are the following settings:
 * `-runbundles` specifies the bundles to install for the tests.
 * `-runproperties` specifies configuration properties to pass into the framework.
 
-The following two examples show how to edit these files for the Felix framework and Felix bundle subprojects.
+The following two examples show how to edit these files for the Felix framework and Felix
+bundle subprojects.
 
 ## Testing the Felix framework
 
-The Felix framework is tested against the core CT. The first thing to do is extract the core CT JAR file, which includes test suites for:
+The Felix framework is tested against the core CT. The first thing to do is extract the core
+CT JAR file, which includes test suites for:
 
 * Framework core (mandatory)
 * Framework security (optional)
@@ -60,51 +71,66 @@ The Felix framework is tested against the core CT. The first thing to do is extr
 * Permission Admin (optional)
 * Conditional Permission Admin (optional)
 
-For each of the associated BND files, the `-runpath` needs to be edited to refer to the Felix framework; each one should look something like this after editing:
+For each of the associated BND files, the `-runpath` needs to be edited to refer to the Felix
+framework; each one should look something like this after editing:
 
-
+    :::plaintext
     -runpath = \
         /path/to/felix/framework/org.apache.felix.framework-2.0.2.jar;version=file, \
         jar/com.springsource.junit-3.8.2.jar;version=file;export="junit.framework;version=3.8"
 
 
-Typically, it is not necessary to change anything else in the BND files and it is normal that the `-runbundles` setting is empty, since there are no additional bundles associated with testing the framework. The exception to this is for the framework test suites for security. To test with security enabled, you will need to add the framework security provider in `-runbundles` like this:
+Typically, it is not necessary to change anything else in the BND files and it is normal that
+the `-runbundles` setting is empty, since there are no additional bundles associated with
+testing the framework. The exception to this is for the framework test suites for security.
+To test with security enabled, you will need to add the framework security provider in
+`-runbundles` like this:
 
-
+    :::plaintext
     -runbundles = \
         /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
 
 
 After editing the BND files, run the tests using:
 
-
+    :::plaintext
     source runtests
 
 
 This will run all test suites for all BND files. To run a specific test suite, do the following:
 
 
-    java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
+    :::bash
+    $ java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
 
 
 Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.
 
 <div class="note" markdown="1">
-**Be Aware**
-Tests for native code loading will fail on Java 6, so do not use this JDK for testing the framework.
+<b>Be Aware</b>
+Tests for native code loading will fail on Java 6, so do not use this JDK for testing the
+framework.
 </div>
 
-Reports for the tests suites are generated in the `reports/` subdirectory and are named after the appropriate test suite.
+Reports for the tests suites are generated in the `reports/` subdirectory and are named
+after the appropriate test suite.
+
 
 ## Testing a Felix bundle
 
-The core CT tests the framework implementation and its related services. The compendium CT tests the various non-framework-related specifications, which are implemented as bundles. For the most part, testing a bundle is similar to testing the framework.
+The core CT tests the framework implementation and its related services. The compendium CT
+tests the various non-framework-related specifications, which are implemented as bundles. For
+the most part, testing a bundle is similar to testing the framework.
 
-Extract the compendium CT JAR file to access the individual test suites. Since most compendium service specification test suites require security, it is necessary to use a framework implementation that supports security. For the Felix framework, you will have to add the security provider to the `-runbundles` to enable security. 
+Extract the compendium CT JAR file to access the individual test suites. Since most compendium
+service specification test suites require security, it is necessary to use a framework
+implementation that supports security. For the Felix framework, you will have to add the
+security provider to the `-runbundles` to enable security. 
 
-For example, to test Felix' Event Admin bundle, edit the `-runbundles` setting in `org.osgi.test.cases.event.bnd` to look something like this:
+For example, to test Felix' Event Admin bundle, edit the `-runbundles` setting in
+`org.osgi.test.cases.event.bnd` to look something like this:
 
-
+    :::plaintext
     -runbundles = \
         /path/to/felix/eventadmin/org.apache.felix.eventadmin-1.0.0.jar;version=file,\
         /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
@@ -113,17 +139,24 @@ For example, to test Felix' Event Admin bundle, edit the `-runbundles` setting i
 After editing the BND files to refer to the appropriate bundles, run the tests using:
 
 
+    :::plaintext
     source runtests
 
 
 This will run all test suites for all BND files. To run a specific test suite, do the following:
 
 
-    java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
+    :::bash
+    $ java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
 
 
-Where `<bnd-file>` specifies one or more BND files associated with the desired test suites. Reports for the tests suites are generated in the `reports/` subdirectory and are named after the appropriate test suite.
+Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.
+Reports for the tests suites are generated in the `reports/` subdirectory and are named
+after the appropriate test suite.
+
 
 ## Feedback
 
-For any questions or feedback, subscribe to the Felix developers mailing list by sending a message to [dev-subscribe@felix.apache.org]({{ refs.mailto-dev-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [dev@felix.apache.org|mailto:dev@felix.apache.org].
+For any questions or feedback, subscribe to the Felix developers mailing list by sending a
+message to [dev-subscribe@felix.apache.org](mailto:dev-subscribe@felix-apache-org); after
+subscribing, email questions or feedback to [dev@felix.apache.org](mailto:dev@felix.apache.org).
