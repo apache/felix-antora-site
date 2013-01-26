@@ -1,9 +1,8 @@
-translation_pending: true
 Title: Apache Felix Maven SCR Plugin
 
 The Apache Felix Maven SCR Plugin is a great tool to ease the development of OSGi components and services. Components and services are defined through annotations and the plugin creates the necessary descriptors for the OSGi Declarative Services, Config Admin and Metatype services. Starting with version 1.4.0 of the plugin, OSGi Declarative Services versions 1.0 and 1.1 are supported.
 
-Make sure to see the [FAQ]({{ refs.felix-apache-felix-scr-plugin-faq.path }}) for known problems.
+Make sure to see the [FAQ]({{ refs.apache-felix-scr-plugin-faq.path }}) for known problems.
 
 ## Introduction
 
@@ -22,21 +21,26 @@ Related to declarative services is configuration support. To support configurati
 The Configuration Admin Service not only allows components to get or retrieve configuration, it also provides the entry point for Management Agents to retrieve and update configuration data. To help building Management Agents the OSGi Metatype Service Specification defines a descripton model which may be used to describe data used by components and services. The configuration properties and meta type description for a given PID together are used to build the user interface to configure the service and/or component.
 
 To summarize:
+
 1. *Declarative Services* provides a means to define components (and services) through one or more XML files. Each component may get default configuration from its own definition.
 1. The *Configuration Admin Service* provides functionality to provide configuration to components and services as well as to support management tools to update (and create) configuration data.
 1. The *Metatype Service* provides a description suitable for management tools to manage configurations provided by the Configuration Admin Service. The descriptions of the data is provided in one or more XML files and associated languag binding files.
 
 ## Where to go from here
 
-* [{{ refs.apache-felix-maven-scr-plugin-use--refs-nopanel-true-apache-felix-maven-scr-plugin-use-path.headers.excerpt }}})
-* [{{ refs.apache-felix-scr-ant-task-use--refs-nopanel-true-apache-felix-scr-ant-task-use-path.headers.excerpt }}})
-* [{{ refs.scr-annotations--refs-nopanel-true-scr-annotations-path.headers.excerpt }}})
-* [{{ refs.scr-javadoc-tags--refs-nopanel-true-scr-javadoc-tags-path.headers.excerpt }}})
-* [{{ refs.extending-scr-annotations--refs-nopanel-true-extending-scr-annotations-path.headers.excerpt }}})
+* [{{ refs.apache-felix-maven-scr-plugin-use.headers.excerpt }}]({{ refs.apache-felix-maven-scr-plugin-use.path }})
+* [{{ refs.apache-felix-scr-ant-task-use.headers.excerpt }}]({{ refs.apache-felix-scr-ant-task-use.path }})
+* [{{ refs.scr-annotations.headers.excerpt }}]({{ refs.scr-annotations.path }})
+* [{{ refs.scr-javadoc-tags.headers.excerpt }}]({{ refs.scr-javadoc-tags.path }})
+* [{{ refs.extending-scr-annotations.headers.excerpt }}]({{ refs.extending-scr-annotations.path }})
+
 
 ## Differences between JavaDoc tags and annotations
 
 In general both mechanisms provide the same functionality. There are some subtle difference which are listed in this section:
+
+* JavaDoc tags are not supported in recent versions of the plugin. New features
+will only be implemented as annotations.
 * While the `metatype` flag is turned on by default for the JavaDoc tags, the default for the annotations is to generate no metadata. The reason for this is, that it turned out that services with metadata are less often used.
 * The JavaDoc support adds properties and references from super classes if the source is in the same module to a component even if the super class does not have the `@scr.component` tag. With the annotations the super class is required to have the `Component` annotation.
 * Property values are handled differently. While the JavaDoc version has an auto detection of types together with an explicit type parameter, the annotations version has several attributes. Each type has its own attribute (like `shortValue`, `intValue` and so on). This is because of a limitation in the Java annotations which only allow typed parameters.

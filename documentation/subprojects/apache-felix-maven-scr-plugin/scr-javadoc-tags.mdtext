@@ -1,24 +1,33 @@
-translation_pending: true
 Title: SCR JavaDoc Tags
 Excerpt: Using JavaDoc Tags to describe the component or service.
 
+<div class="note">
+JavaDoc tags are not supported since the Maven SCR Plugin 1.8.0 because
+annotations are a much more powerful instrument allowing
+for type safety or supporting JVM based languages such as Groovy and Scala.
+This page exists to define the support for JavaDoc tags upto Maven SCR
+Plugin version 1.7.4.
+</div>
 
 The `scr` goal of the `maven-scr-plugin` looks for the following JavaDoc tags when building component descriptors:
-* `[scr.component]({{ refs.-scr-component.path }})`
-* `[scr.property]({{ refs.-scr-property.path }})}}
-* `[scr.service]({{ refs.-scr-service.path }})`
-* `[scr.reference]({{ refs.-scr-reference.path }})`
+
+* [scr.component](#scrcomponent)
+* [scr.property](#scrproperty)
+* [scr.service](#scrservice)
+* [scr.reference](#scrreference)
 
 
 
-### scr.component
+## scr.component
 
 The `scr.component` tag is the only required tag. If this tag is not declared in the Java class comment, the class is not declared as a component.
 
 This tag is used to declare the `<component>` element of the component declaration. See section 112.4.3, Component Element, in the OSGi Service Platform Service Compendium Specification for more information. The required `<implementation>` element is automatically generated with the fully qualified name of the class containing the `scr.component` tag.
 
 Supported parameters:
+
 | *Name* | *Default Value* | *Required* | *SCR* | *Metatype* | *Description* |
+|-|-|-|-|-|-|
 | name | Fully qualified name of the Java class | no | `component.name` | `OCD.id` | Defines the Component name also used as the PID for the Configuration Admin Service |
 | ds | `true` | no | --  | --  | Whether Declarative Services descriptor is generated or not. If this parameter is not set or set to `true` the Declarative Services descriptor is generated in the service descriptor file for this component. Otherwise no Declarative Services descriptor is generated for this component. |
 | abstract | see description | no | --  | --  | This marks an abstract service description which is not added to the descriptor but intended for reuse through inheritance. This attribute defaults to `true` for abstract classes and `false` for concrete classes. |
@@ -32,20 +41,23 @@ Supported parameters:
 | create-pid | `true` | no | `service.pid` | --  | Generate the `service.pid` property if non is declared. |
 | configurationFactory | `false` | no | -- | `Designate.factoryPid` | Is this a configuration factory? (since 1.4.0) |
 
-The follwing attributes are supported since version 1.4.0 of the plugin and required a Declarative Service implementation 1.1:
+The following attributes are supported since version 1.4.0 of the plugin and required a Declarative Service implementation 1.1:
+
+| *Name* | *Default Value* | *Required* | *SCR* | *Metatype* | *Description* |
+|-|-|-|-|-|-|
 | policy | `OPTIONAL` | no | component.policy | -- | The configuration policy for this component: `optional`, `ignore`, or `require` (use lower case words) |
 | activate | `activate` | no | component.activate | -- | The name of the component activation method. |
 | deactivate | `deactivate` | no | component.deactivate | -- | The name of the component deactivation method. |
 | modified | -- | no | component.modified | -- | The name of the component modified method. |
 
-#### Abstract Service Descriptions
+### Abstract Service Descriptions
 
 If the `scr.component` tag contains the parameter `abstract` with a value of true, the containing class is regarded as an abstract class. It is not added to the service descriptor and the tags are not validated. The information about this class is added to the bundle. Classes from other bundles (or the same) can extends this abstract class and do not need to specify the references of the abstract class if they set the `inherit` parameter on the `scr.component` tag to true.
 
 This allows to create abstract classes which already provide some valuable functionality without having to deal with the details like reference definitions in each and every subclass.
 
 
-### scr.property
+## scr.property
 
 The `scr.property` tag defines properties which are made available to the component through the `ComponentContext.getProperties()` method. These tags are not strictly required but may be used by components to defined initial configuration. Additionally properties may be set here to identify the component if it is registered as a service, for example the `service.description` and `service.vendor` properties.
 
@@ -54,7 +66,9 @@ This tag may be defined in the Java Class comment of the component or in a comen
 This tag is used to declare `<property>` elements of the component declaration. See section 112.4.5, Properties and Property Elements, in the OSGi Service Platform Service Compendium Specification for more information.
 
 Supported parameters:
+
 | *Name* | *Default Value* | *Required* | *SCR* | *Metatype* | *Description* |
+|-|-|-|-|-|-|
 | name | The name of constant | yes | `property.name` | `AD.id` | The name of the property. If this tag is defined on a field with an initialization expression, the value of that expression is used as the name if the field is of type `String`. |
 | value | --  | no | `property.value` | `AD.default` | The value of the property. If the property type is not `String`, parsing of the value is done using the `valueOf(String)` method of the class defined by the property type |
 | type | `String` | no | `property.type` | `AD.type` | The type of the property value. This must be one of `String`, `Long`, `Double`, `Float`, `Integer`, `Byte`, `Char`, `Boolean` and `Short`. |
@@ -66,15 +80,17 @@ Supported parameters:
 | values\* | --  | no | --  | See below | See below for a description of parameters starting with `values`. |
 | valueRef | --  | no | --  | `AD.default` | A constant containing the value for this property. The constant can either be declared in the same class as this property or in any class that is imported. The type of the property is derived from the constant. |
 | valueRefs | --  | no | --  | See below | Same as the `values` attribute with the difference that it acts like the `valueRef` attribute and the value points to a constants defining the multi value for the property. |
+
 *Notes*:
+
 * Generating `<properties>` elements referring to bundle entries is not currently supported.
 
 
-#### Naming the property
+### Naming the property
 
 It is important to carefully define the name of properties. By using a constant of the form
 
-
+    :::java
     /** @scr.property value="default value" */
     static final String CONSTANT_NAME = "property.name";
 
@@ -82,7 +98,7 @@ It is important to carefully define the name of properties. By using a constant 
 and defining the `scr.property` tag on this constant, the name of the property is taken from the constant value. Thus it may easily be ensured, that both the property in the descriptor files and the property used by the implementation are actually the same.
 
 
-#### The `options` parameter
+### The `options` parameter
 
 Some properties may only be set to a set of possible values. To support user interfaces which provide a selection list of values or a list of checkboxes the option values and labels may be defined as parameters to the `scr.property` tag. All parameters in the form of name-value pairs occurring *after* the `options` parameter are used to build the list of available value options. The parameter name is used as the value while the parameter value is used as the label in the user interface. This label may be prepended with a `%` sign to localize the string.
 
@@ -91,7 +107,7 @@ The options are written to the `metatype.xml` file as `Option` elements inside t
 Please note, that all parameters of the `scr.property` tag occurring *after* the `options` parameter are used to build the options list. Hence no non-option value parameters should actually follow the `options` parameter.
 
 
-#### Multivalue properties
+### Multivalue properties
 
 Generally the value of a property is scalar, that is a property has a single value such as `true`, `5` or `"This is a String"`. Such scalar values are defined with the `value` parameter of the `scr.property` tag. In the case of a scalar property value, the `cardinality` parameter value is assumed to be `0` (zero) unless of course set otherwise.
 
@@ -101,7 +117,7 @@ If the cardinality of the property is not explicilty set with the `cardinality` 
 
 
 
-### scr.service
+## scr.service
 
 The `scr.service` tag defines whether and which service interfaces are provided by the component.
 
@@ -110,14 +126,17 @@ This tag is expected in the Java Class comment of the component.
 This tag is used to declare `<service>` and `<provide>` elements of the component declaration. See section 112.4.6, Service Elements, in the OSGi Service Platform Service Compendium Specification for more information.
 
 Supported parameters:
+
 | *Name* | *Default Value* | *Required* | *Descriptor* | *Description* |
+|-|-|-|-|-|
 | interface | All implemented interfaces | no | `provide.interface` | The name of the service interface provided by the component. This can either be the fully qualified  name or just the interface class name if the interface is either in the same package or is imported. If this property is not set `provide` elements will be generated for all interfaces generated by the class |
 | servicefactory | `false` | no | `service.servicefactory` | Whether the component is registered as a `ServiceFactory` or not |
+
 Omitting the `scr.service` tag will just define (and activate if required) the component but not register it as a service. Multiple `scr.service` tags may be declared each with its own `interface`. The component is registered as a `ServiceFactory` if at least on `scr.service` tag declares the `servicefactory` parameter as `true`.
 
 
 
-### scr.reference
+## scr.reference
 
 The `scr.reference` tag defines references to other services made available to the component by the Service Component Runtime.
 
@@ -126,7 +145,9 @@ This tag may be declared in the java Class comment or any Java Field to which it
 This tag is used to declare `<reference>` elements of the component declaration. See section 112.4.7, Reference Element, in the OSGi Service Platform Service Compendium Specification for more information.
 
 Supported parameters:
+
 | *Name* | *Default Value* | *Required* | *Descriptor* | *Description* |
+|-|-|-|-|-|
 | name | Name of the field | yes | `reference.name` | The local name of the reference. If the `scr.reference` tag is declared in the class comment, this parameter is required. If the tag is declared in the field comment, the default value for the `name` parameter is the name of the field |
 | interface | Type of the field | yes | `reference.interface` | The name of the service interface. This name is used by the Service Component Runtime to access the service on behalf of the component. If the `scr.reference` tag is declared in the class comment, this parameter is required. If the tag is declared in the field comment, the default value for the `interface` parameter is the type of the field |
 | cardinality | `1..1` | no | `reference.cardinality` | The cardinality of the service reference. This must be one of `0..1`, `1..1`, `0..n`, and `1..n` |
@@ -135,7 +156,7 @@ Supported parameters:
 | bind | See description | no | `reference.bind` | The name of the method to be called when the service is to be bound to the component. The default value is the name created by appending the reference `name` to the string `bind`. The method must be declared `public` or `protected` and take single argument which is declared with the service interface type |
 | unbind | See description | no | `reference.unbind` | The name of the method to be called when the service is to be unbound from the component. The default value is the name created by appending the reference `name` to the string `unbind`. The method must be declared `public` or `protected` and take single argument which is declared with the service interface type |
 | strategy | `event` | no | `reference.strategy` | The strategy used for this reference, one of `event` or `lookup` |
-|
 
 *Notes*:
+
 * If you define a reference on a field with the strategy `event` and there is no bind or unbind method, the plugin will create the necessary methods.
