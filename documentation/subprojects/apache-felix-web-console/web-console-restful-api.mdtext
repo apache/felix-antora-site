@@ -27,8 +27,12 @@ ALthough the HTTP RFC defines a number of request methods and the REST architect
 
 ### URLs
 
-`.../bundles` -- addresses all bundles in the framework
-`.../bundles/*id*` -- addresses a single bundle in the framework. The `*id*` can in this case be the bundle's ID (as per `Bundle.getBundleId()`), the bundle's symbolic name (which actually may cause multiple bundles to be addressed), or the bundle's symbolic name and version separated by a colon. Examples are `.../bundles/0`, `.../bundles/org.apache.felix.webconsole`, and `.../bundles/org.apache.felix.webconsole:3.1.4`.
+`.../bundles`
+:   addresses all bundles in the framework
+`.../bundles/*id*`
+:   addresses a single bundle in the framework. The `*id*` can in this case be the bundle's ID
+    (as per `Bundle.getBundleId()`), the bundle's symbolic name (which actually may
+    cause multiple bundles to be addressed), or the bundle's symbolic name and version separated by a colon. Examples are `.../bundles/0`, `.../bundles/org.apache.felix.webconsole`, and `.../bundles/org.apache.felix.webconsole:3.1.4`.
 
 ### GET Requests
 
@@ -37,11 +41,12 @@ GET requests are used to retrieve information on the bundles (or bundle) availab
 #### GET .../bundles.json
 
 <div class="note" markdown="1">
-Due to a bug ([FELIX-3132](https://issues.apache.org/jira/browse/FELIX-3132)) the form `.../bundles.json` only works in builds after SVN Revision 1175527. As a workaround request `.../bundles/.json`
+Due to a bug <a href="https://issues.apache.org/jira/browse/FELIX-3132">FELIX-3132</a> the form `.../bundles.json` only works in builds after SVN Revision 1175527. As a workaround request `.../bundles/.json`
 </div>
 
 Request to this URL sends back an overview of all bundles along with an overview of all bundles (bundles existing, active, fragment, resolved, installed)
 
+    :::json
     {
        "status": "Bundle information: 84 bundles in total - all 84 bundles active.",
        "s": [ 84, 81, 3, 0, 0 ],
@@ -66,7 +71,7 @@ Request to this URL sends back an overview of all bundles along with an overview
 
 This URL returns detailed information of a bundle like the bundle headers, imported packages, exported packages, importing bundles, registered services.
 
-
+    :::json
     {
         "status": "Bundle information: 84 bundles in total - all 84 bundles active.",
         "s": [
@@ -244,10 +249,10 @@ To update the bundles the `action` request method is used to indicate the action
 | Action | Requires a Bundle | Description |
 |--|--|--|
 | `refreshPackages` | no | Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with a `null` argument -- refreshing all pending bundles |
-| `install` | no | Installs (or updates) and optionally starts one or more bundles. Parameters:
-* `bundlestart` -- whether to start newly installed bundles or not. Has no influence on updated bundles.
-* `bundlestartlevel` -- the start level to set on newly installed bundles. Has no influence on updated bundles.
-* `bundlefile` -- one or more uploaded files being the bundles to install or update. The manifests in the bundles are inspected to see whether any bundle is an update or new install.
+| `install` | no | Installs (or updates) and optionally starts one or more bundles. Parameters:    
+* `bundlestart` -- whether to start newly installed bundles or not. Has no influence on updated bundles.    
+* `bundlestartlevel` -- the start level to set on newly installed bundles. Has no influence on updated bundles.    
+* `bundlefile` -- one or more uploaded files being the bundles to install or update. The manifests in the bundles are inspected to see whether any bundle is an update or new install.    
 * `refreshPackages` -- whether to call `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the installed/updated bundles after installation/update. |
 | `start` | yes | Starts the bundle |
 | `stop` | yes | Stops the bundle |
@@ -258,7 +263,7 @@ To update the bundles the `action` request method is used to indicate the action
 
 The response on those actions requiring a bundle is a simple JSON response:
 
-
+    :::json
     {
         "fragment": -- whether the bundle is a fragement
         "stateRaw": -- the state code of the bundle after executing the action
