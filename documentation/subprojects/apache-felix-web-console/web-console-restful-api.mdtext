@@ -29,6 +29,7 @@ ALthough the HTTP RFC defines a number of request methods and the REST architect
 
 `.../bundles`
 :   addresses all bundles in the framework
+
 `.../bundles/*id*`
 :   addresses a single bundle in the framework. The `*id*` can in this case be the bundle's ID
     (as per `Bundle.getBundleId()`), the bundle's symbolic name (which actually may
@@ -244,21 +245,42 @@ This URL returns detailed information of a bundle like the bundle headers, impor
 
 ### POST Requests
 
-To update the bundles the `action` request method is used to indicate the action:
+To update the bundles the `action` request parameter is used to indicate the action:
 
 | Action | Requires a Bundle | Description |
 |--|--|--|
-| `refreshPackages` | no | Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with a `null` argument -- refreshing all pending bundles |
-| `install` | no | Installs (or updates) and optionally starts one or more bundles. Parameters:    
-* `bundlestart` -- whether to start newly installed bundles or not. Has no influence on updated bundles.    
-* `bundlestartlevel` -- the start level to set on newly installed bundles. Has no influence on updated bundles.    
-* `bundlefile` -- one or more uploaded files being the bundles to install or update. The manifests in the bundles are inspected to see whether any bundle is an update or new install.    
-* `refreshPackages` -- whether to call `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the installed/updated bundles after installation/update. |
-| `start` | yes | Starts the bundle |
-| `stop` | yes | Stops the bundle |
-| `refresh` | yes | Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the bundle as its sole argument thus forcing the bundle to be rewired. |
-| `update` | yes | Calls `Bundle.update()` on the bundle or tries to update the bundle through the OBR. |
-| `uninstall` | yes | Calls `Bundle.uninstall()` on the bundle. |
+
+`refreshPackages`
+:   Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with a `null`
+    argument -- refreshing all pending bundles. This action does not require a bundle
+    in the URL and just ignores if one is provided.
+
+`install`
+:   Installs (or updates) and optionally starts one or more bundles. Parameters:
+
+    * `bundlestart` -- whether to start newly installed bundles or not. Has no influence on updated bundles.
+    * `bundlestartlevel` -- the start level to set on newly installed bundles. Has no influence on updated bundles.
+    * `bundlefile` -- one or more uploaded files being the bundles to install or update. The manifests in the bundles are inspected to see whether any bundle is an update or new install.
+    * `refreshPackages` -- whether to call `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the installed/updated bundles after installation/update.
+
+`start`
+:   Starts the bundle addressed by the request URL.
+
+`stop`
+:   Stops the bundle addressed by the request URL.
+
+`refresh`
+:   Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the
+    bundle as its sole argument thus forcing the bundle to be rewired. The bundle
+    is required to be addressed by the request URL.
+
+`update`
+:   Calls `Bundle.update()` on the bundle addressed by the request URL or tries
+    to update the bundle through the OBR.
+
+`uninstall`
+:   Calls `Bundle.uninstall()` on the bundle addressed by the request URL. After the
+    installation the framework must be refreshed (see `refreshPackages` above).
 
 
 The response on those actions requiring a bundle is a simple JSON response:
