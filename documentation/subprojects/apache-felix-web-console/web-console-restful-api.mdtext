@@ -247,21 +247,13 @@ This URL returns detailed information of a bundle like the bundle headers, impor
 
 To update the bundles the `action` request parameter is used to indicate the action:
 
-| Action | Requires a Bundle | Description |
-|--|--|--|
-
-`refreshPackages`
-:   Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with a `null`
-    argument -- refreshing all pending bundles. This action does not require a bundle
-    in the URL and just ignores if one is provided.
-
 `install`
 :   Installs (or updates) and optionally starts one or more bundles. Parameters:
 
     * `bundlestart` -- whether to start newly installed bundles or not. Has no influence on updated bundles.
     * `bundlestartlevel` -- the start level to set on newly installed bundles. Has no influence on updated bundles.
     * `bundlefile` -- one or more uploaded files being the bundles to install or update. The manifests in the bundles are inspected to see whether any bundle is an update or new install.
-    * `refreshPackages` -- whether to call `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the installed/updated bundles after installation/update.
+    * `refreshPackages` -- whether to call `PackageAdmin.refreshPackages(Bundle[])` with the installed/updated bundles after installation/update.
 
 `start`
 :   Starts the bundle addressed by the request URL.
@@ -270,7 +262,7 @@ To update the bundles the `action` request parameter is used to indicate the act
 :   Stops the bundle addressed by the request URL.
 
 `refresh`
-:   Calls `PackageAdmin.refreshPackages(Bundle[]({{ refs..path }}))` with the
+:   Calls `PackageAdmin.refreshPackages(Bundle[])` with the
     bundle as its sole argument thus forcing the bundle to be rewired. The bundle
     is required to be addressed by the request URL.
 
@@ -281,6 +273,11 @@ To update the bundles the `action` request parameter is used to indicate the act
 `uninstall`
 :   Calls `Bundle.uninstall()` on the bundle addressed by the request URL. After the
     installation the framework must be refreshed (see `refreshPackages` above).
+
+`refreshPackages`
+:   Calls `PackageAdmin.refreshPackages(Bundle[])` with a `null`
+    argument thus refreshing all pending bundles. This action does not require a bundle
+    in the URL and just ignores if one is provided.
 
 
 The response on those actions requiring a bundle is a simple JSON response:
