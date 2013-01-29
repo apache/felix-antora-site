@@ -1,13 +1,10 @@
-translation_pending: true
 Title: Web Console RESTful API
-
-# Web Console RESTful API
-
-[TOC]
 
 <div class="warning" markdown="1">
 Please note that the APIs described on this page have not been standardized or stabilized yet. As such they cannot be relied upon. They are merely a description of the current code. In future releases these APIs will be fixed to be properly RESTful.
 </div>
+
+[TOC]
 
 ## URL Space
 
