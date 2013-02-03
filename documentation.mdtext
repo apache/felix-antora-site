@@ -131,6 +131,7 @@ It is important to have the first part as a single line, otherwise
 the Django/Markdown combo will create a list for each entry.
 </div>
 
+
 ### Code Highlighting
 
 Code Highlighting works by indenting code by four blanks. To indicate the
@@ -139,6 +140,13 @@ get high lighted code using the given `<lexer>` or `#!<lexer>` to get high
 lighted code with line numbers using the given `<lexer>`. See
 <http://www.apache.org/dev/cmsref.html#code-hilighter> for main info and
 <http://pygments.org/docs/lexers/> for supported lexers
+
+
+### HTML and Markdown
+
+Markdown supports embedding HTML. But be aware that contents of HTML elements
+are not further handled by the Markdown converter. Thus it is not possible
+to embed Markdown syntax inside of HTML elements to have them converted.
 
 
 ### Manual Generation
