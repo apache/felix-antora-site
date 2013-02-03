@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Architecture Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Introspection and Architecture
@@ -46,4 +44,3 @@ In fact, when a component enables the architecture introspection, its container 
   
   
   
-{include:apache-felix-ipojo-footer}

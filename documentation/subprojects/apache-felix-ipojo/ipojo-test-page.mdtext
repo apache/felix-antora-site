@@ -1,9 +1,7 @@
 translation_pending: true
 Title: ipojo-test-page
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Title 1
 
@@ -124,4 +122,3 @@ A Table:
 </div>
 
 
-{include:apache-felix-ipojo-footer}

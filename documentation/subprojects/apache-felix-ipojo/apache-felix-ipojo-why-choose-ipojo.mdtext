@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-why-choose-ipojo
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Why choose iPOJO?
@@ -69,4 +67,3 @@ For any questions or feedback, send an email on the [mailto:users@felix.apache.o
   
   
   
-{include:apache-felix-ipojo-footer}

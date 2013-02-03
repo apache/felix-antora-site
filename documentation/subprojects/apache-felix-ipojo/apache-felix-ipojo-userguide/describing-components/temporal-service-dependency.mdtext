@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Temporal Service Dependency
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # The temporal dependency handler
 
@@ -146,4 +144,3 @@ Sources are available on the Felix trunk at the following location: [http://svn.
   
   
   
-{include:apache-felix-ipojo-footer}

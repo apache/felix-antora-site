@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-junit4osgi-architecture
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # junit4osgi framework architecture
 
@@ -40,4 +38,3 @@ The junit4OSGi framework use junit 3 because it was design and developed to test
   
   
   
-{include:apache-felix-ipojo-footer}

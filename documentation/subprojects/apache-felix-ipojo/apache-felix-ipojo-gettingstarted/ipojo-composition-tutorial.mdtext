@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Composition Tutorial
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Composition Tutorial
 *This page describes how works the composition mechanisms provided by iPOJO and how to use it. this feature allows you to design applications that will natively support the dynamism and the evolution.*
@@ -458,4 +456,3 @@ Subscribe to the Felix users mailing list by sending a message to [mailto:users-
   
   
   
-{include:apache-felix-ipojo-footer}

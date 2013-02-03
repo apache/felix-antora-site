@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-junit4osgi-maven
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # The Maven-junit4OSGi-plugin
 
@@ -212,4 +210,3 @@ mvn org.apache.maven.plugins:maven-surefire-report-plugin:2.4.3:report
         * Is able to generate Surefire-like reports
     \\
     \\
-    {include:apache-felix-ipojo-footer}

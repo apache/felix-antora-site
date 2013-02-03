@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-junit4osgi
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # The JUnit4OSGi framework: a simple test framework for OSGi
 
@@ -27,4 +25,3 @@ Interested by `junit4osgi`... start the adventure !
   
   
   
-{include:apache-felix-ipojo-footer}

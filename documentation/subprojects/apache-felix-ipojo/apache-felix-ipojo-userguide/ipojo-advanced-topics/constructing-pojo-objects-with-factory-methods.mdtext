@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Constructing POJO objects with factory methods
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Using a factory method to create POJO object
 
@@ -48,4 +46,3 @@ As for "normal" constructor, the method-factory can receive the bundle context i
   
   
   
-{include:apache-felix-ipojo-footer}

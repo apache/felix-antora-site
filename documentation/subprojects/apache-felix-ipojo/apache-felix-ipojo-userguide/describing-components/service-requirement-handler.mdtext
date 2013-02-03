@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Service Requirement Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Service Dependency Management
@@ -624,4 +622,3 @@ The `specification` attribute is generally optional except when iPOJO cannot dis
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Eclipse Plug-in
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Eclipse Plug-in
 
@@ -149,4 +147,3 @@ Subscribe to the Felix users mailing list by sending a message to [mailto:users-
   
   
   
-{include:apache-felix-ipojo-footer}

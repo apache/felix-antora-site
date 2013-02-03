@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Dive into the iPOJO Manipulation depths
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Dive into the iPOJO Manipulation depths
 
@@ -210,4 +208,3 @@ to a more elegant (and concise), with no XML:
   
   
   
-{include:apache-felix-ipojo-footer}

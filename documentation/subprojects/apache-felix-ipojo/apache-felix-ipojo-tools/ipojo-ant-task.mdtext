@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Ant Task
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # iPOJO Ant Task
@@ -130,4 +128,3 @@ Subscribe to the Felix users mailing list by sending a message to [mailto:users-
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: How-to use iPOJO factories
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Factories Principles
 
@@ -229,4 +227,3 @@ Be aware that the `updated` method is used both for instance creation (if the gi
   
   
   
-{include:apache-felix-ipojo-footer}

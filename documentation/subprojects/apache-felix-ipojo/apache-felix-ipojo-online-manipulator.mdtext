@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-online-manipulator
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Apache Felix iPOJO Online Manipulator
 
@@ -65,4 +63,3 @@ If you provide such url, it will override the contained `metadata.xml` file.
   
   
   
-{include:apache-felix-ipojo-footer}

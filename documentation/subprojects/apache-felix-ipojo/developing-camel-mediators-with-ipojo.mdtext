@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Developing Camel mediators with iPOJO
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Developing Camel mediators with iPOJO
 *The [Camel OSGi tutorial ]({{ refs.-http-activemq-apache-org-camel-tutorial-osgi-camel-part1-html.path }}) provides a very simple and neat overview of Camel. This article mentions the usage of iPOJO to implement the mediator. This document provides this implementation.*
@@ -178,4 +176,3 @@ Remarks :
   
   
   
-{include:apache-felix-ipojo-footer}

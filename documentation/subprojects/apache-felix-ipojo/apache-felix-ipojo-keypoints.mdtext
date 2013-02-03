@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-keypoints
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Key Points
 *iPOJO is a service-oriented component model. What*'*s made iPOJO different? Just read this page.*
@@ -43,4 +41,3 @@ iPOJO provides a very simple extensibility mechanism. So, you can extend iPOJO f
   
   
   
-{include:apache-felix-ipojo-footer}

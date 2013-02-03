@@ -1,9 +1,7 @@
 translation_pending: true
 Title: How to use iPOJO Annotations
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # How to use iPOJO annotations
 
@@ -390,4 +388,3 @@ External handlers can provides their own annotations. Using these annotations ju
   
   
   
-{include:apache-felix-ipojo-footer}

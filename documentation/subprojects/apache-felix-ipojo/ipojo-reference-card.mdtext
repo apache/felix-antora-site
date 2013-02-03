@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO-Reference-Card
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Declaring component types
 {code:xml|title=XML}
@@ -720,4 +718,3 @@ public class MyComponent {
   
   
   
-{include:apache-felix-ipojo-footer}

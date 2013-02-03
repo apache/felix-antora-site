@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Combining iPOJO and Configuration Admin
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Combining iPOJO and Configuration Admin
 
@@ -284,4 +282,3 @@ This page has presented how to combine the configuration admin and iPOJO. You ca
   
   
   
-{include:apache-felix-ipojo-footer}

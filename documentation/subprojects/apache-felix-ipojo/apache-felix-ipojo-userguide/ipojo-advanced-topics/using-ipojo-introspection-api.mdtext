@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Using iPOJO introspection API
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Introspecting instances
 
@@ -263,4 +261,3 @@ The last think that you can do from the `PrimitiveInstanceDescription` is to get
     With these methods you can get a property object and update its value dynamically. 
     \\
     \\
-    {include:apache-felix-ipojo-footer}

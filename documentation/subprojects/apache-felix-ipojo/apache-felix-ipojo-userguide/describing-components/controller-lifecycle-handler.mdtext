@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Controller Lifecycle Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Lifecycle Controller Handler
 
@@ -57,4 +55,3 @@ The component requires the `conf` property. iPOJO checks if this property is ins
   
   
   
-{include:apache-felix-ipojo-footer}

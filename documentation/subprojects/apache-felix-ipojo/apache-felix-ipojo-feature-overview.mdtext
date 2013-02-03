@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Apache Felix iPOJO Feature Overview
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Apache Felix iPOJO Feature Overview
 
@@ -57,4 +55,3 @@ Title: Apache Felix iPOJO Feature Overview
   
   
   
-{include:apache-felix-ipojo-footer}

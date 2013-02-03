@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Extender Pattern Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 #  The extender pattern handler
@@ -144,4 +142,3 @@ public class Extender {
     The Junit4OSGi framework, available [here|https://svn.apache.org/repos/asf/felix/trunk/ipojo/examples/junit4osgi] , uses this handler to track Junit Test Suite offered by the installed bundles. The Junit4Osgi bundle has a component using this handler to be notified when a bundle with the {{Test-Suite}} header appears or leaves.
     \\
     \\
-    {include:apache-felix-ipojo-footer}

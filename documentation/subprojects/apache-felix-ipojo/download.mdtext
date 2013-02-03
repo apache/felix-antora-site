@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Download
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Download iPOJO
@@ -62,4 +60,3 @@ iPOJO Tests use the `junit4osgi` framework and `pax exam`. To execute tests, jus
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-supportedOSGi
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Supported OSGi Implementations
 
@@ -40,4 +38,3 @@ Feel free to send a mail on the Felix mailing list, if an implementation is not 
   
   
   
-{include:apache-felix-ipojo-footer}

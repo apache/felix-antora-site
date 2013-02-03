@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Using XML Schemas
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Using XML Schemas
@@ -63,4 +61,3 @@ The manipulator embeds the iPOJO XML Schemas to avoid using a network connection
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Lifecycle Callback Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Lifecycle callbacks
 
@@ -144,4 +142,3 @@ If you instance has created several objects (called the implementation class con
   
   
   
-{include:apache-felix-ipojo-footer}

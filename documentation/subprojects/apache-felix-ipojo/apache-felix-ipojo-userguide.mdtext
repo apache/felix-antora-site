@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-userguide
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # User Guide
 This page references pages composing the iPOJO User Guide:
@@ -11,4 +9,3 @@ This page references pages composing the iPOJO User Guide:
 {% endfor %}
   
   
-{include:apache-felix-ipojo-footer}

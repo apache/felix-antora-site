@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-successstories
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # iPOJO Success Stories
@@ -68,4 +66,3 @@ You are using iPOJO, and you want to be listed there to tell how you are using i
   
   
   
-{include:apache-felix-ipojo-footer}

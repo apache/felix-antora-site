@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-tools
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Tools
 
@@ -12,4 +10,3 @@ This page contains the list of provided tools helping the development of iPOJO a
 {% endfor %}
   
   
-{include:apache-felix-ipojo-footer}

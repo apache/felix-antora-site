@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Event Admin Handlers
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Event Admin Handlers
@@ -269,4 +267,3 @@ public class PubSub {
 }
 
     \\
-    {include:apache-felix-ipojo-footer}

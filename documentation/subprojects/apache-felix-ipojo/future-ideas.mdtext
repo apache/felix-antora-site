@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Future Ideas
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Future Ideas
 
@@ -18,4 +16,3 @@ Access to service properties is sometimes necessary to gain access to service co
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO JMX Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO JMX Handler
 
@@ -233,4 +231,3 @@ public class JMXSimple {
     * description: set the method description.
     \\
     \\
-    {include:apache-felix-ipojo-footer}

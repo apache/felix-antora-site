@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Junit4OSGi
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # JUnit4OSGi : Executing Unitary and Integration Test on OSGi
@@ -192,4 +190,3 @@ The execution of these tests follows the same steps than the previous example:
   
   
   
-{include:apache-felix-ipojo-footer}

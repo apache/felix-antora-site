@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Providing OSGi services
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Providing OSGi services
 
@@ -390,4 +388,3 @@ Or by using the @PostRegistration and @PostUnregistration annotations:
     
     \\
     \\
-    {include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Webconsole Plugin
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Webconsole Plugin
 
@@ -44,4 +42,3 @@ obr start "Apache Felix Web Management Console"
     !Picture 8.png|thumbnail! !Picture 9.png|thumbnail! !Picture 10.png|thumbnail!
     \\
     \\
-    {include:apache-felix-ipojo-footer}

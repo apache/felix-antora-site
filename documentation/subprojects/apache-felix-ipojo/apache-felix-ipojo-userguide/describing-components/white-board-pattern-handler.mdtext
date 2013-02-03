@@ -1,9 +1,7 @@
 translation_pending: true
 Title: White Board Pattern Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 #  The white board pattern handler
 The objective of this handler is to simplify the development of white-board architecture. This architecture-style is based is very close to the extender architecture style but relies on services instead of bundles.
@@ -158,4 +156,3 @@ Sources are available on the Felix trunk at the following location: [http://svn.
   
   
   
-{include:apache-felix-ipojo-footer}

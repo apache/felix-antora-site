@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-junit4osgi-tutorial
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # junit4osgi quick start
@@ -312,4 +310,3 @@ So now you know everything required to run test inside OSGi. You can start devel
   
   
   
-{include:apache-felix-ipojo-footer}

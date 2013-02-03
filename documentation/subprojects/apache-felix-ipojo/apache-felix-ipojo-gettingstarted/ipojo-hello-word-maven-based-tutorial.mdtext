@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Hello Word (Maven-Based) tutorial
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Hello World
 
@@ -416,4 +414,3 @@ We saw how to use easily iPOJO to build service-oriented components. Subscribe t
   
   
   
-{include:apache-felix-ipojo-footer}

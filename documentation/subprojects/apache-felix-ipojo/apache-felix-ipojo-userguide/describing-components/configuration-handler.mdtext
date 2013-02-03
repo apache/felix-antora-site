@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Configuration Handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Configuration Handler
@@ -150,4 +148,3 @@ The callback is called *AFTER* the successful application of the reconfiguration
 
   
   
-{include:apache-felix-ipojo-footer}

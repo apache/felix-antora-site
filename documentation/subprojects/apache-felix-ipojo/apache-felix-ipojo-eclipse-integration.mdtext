@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-eclipse-integration
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Building and Running iPOJO bundles from Eclipse
@@ -64,4 +62,3 @@ public class MyComponentImpl {
     
     \\
     \\
-    {include:apache-felix-ipojo-footer}

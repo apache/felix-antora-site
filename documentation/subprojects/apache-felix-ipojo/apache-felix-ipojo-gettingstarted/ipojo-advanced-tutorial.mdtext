@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Advanced Tutorial
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # The iPOJO Snack Bar
 
@@ -514,4 +512,3 @@ This small tutorial has presented some of of the iPOJO features. Subscribe to th
   
   
   
-{include:apache-felix-ipojo-footer}

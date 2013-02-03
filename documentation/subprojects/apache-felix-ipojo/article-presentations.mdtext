@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Article & Presentations
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Presentations
 
@@ -29,4 +27,3 @@ Title: Article & Presentations
 
 * J. Bourcier, C. Escoffier, M. Desertot, C. Marin and A. Chazalet, A Dynamic SOA Home Control Gateway ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/ISCCC2006Bou.pdf)) International Service Computing Conference Contest, September 2006, Chicago, USA
 
-{include:apache-felix-ipojo-footer}

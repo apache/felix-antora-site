@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-api
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO API
 
@@ -313,4 +311,3 @@ CompositeComponentType type = new CompositeComponentType()
                 .setSpecification(Foo.class.getName())); // Exports a service
 
     \\
-    {include:apache-felix-ipojo-footer}

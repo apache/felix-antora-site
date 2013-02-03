@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Hierarchical Composition Overview
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Introduction
 
@@ -251,4 +249,3 @@ Like the rest of iPOJO, the composition model is extensible. The composite conta
   
   
   
-{include:apache-felix-ipojo-footer}

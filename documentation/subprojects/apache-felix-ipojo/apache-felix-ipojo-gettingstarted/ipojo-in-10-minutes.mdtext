@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO in 10 minutes
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # iPOJO in 10 minutes
@@ -436,4 +434,3 @@ iPOJO provides a lot of others features that you can try in the others available
   
   
   
-{include:apache-felix-ipojo-footer}

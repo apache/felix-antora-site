@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-devguide
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # iPOJO Developer Guide
 *This page contains pages of the the iPOJO developer guide*
@@ -11,4 +9,3 @@ Title: apache-felix-ipojo-devguide
 {% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
 {% endfor %}
 
-{include:apache-felix-ipojo-footer}

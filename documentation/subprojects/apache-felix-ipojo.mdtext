@@ -1,9 +1,6 @@
 translation_pending: true
 Title: Apache Felix iPOJO
 
-{include:apache-felix-ipojo-header}
-
-<div class="content">
 
 *iPOJO* is a service component runtime aiming to simplify OSGi application development. It natively supports ALL the dynamism of OSGi. Based on the concept of `POJO`, application logic is developed easily. Non-functional properties are just *injected* in the component at runtime.
   
@@ -11,6 +8,7 @@ Title: Apache Felix iPOJO
   
   
 iPOJO's points of strength include:
+
 * components are developed as POJOs - nothing else is required!
 * the component model is extensible, so feel free to adapt it to your needs
 * the standard component model manages service providing and service dependencies, and so can require any other OSGi services
@@ -32,11 +30,11 @@ iPOJO's points of strength include:
 	</div>
 	<div class="smallbox-content">
 	<ul> 
-	<li>[iPOJO at Schneider Electric]({{ refs.apache-felix-ipojo-successstories-schneider.path }})</li>
-	<li>[iPOJO at Ubidreams]({{ refs.apache-felix-ipojo-successstories-ugasp.path }}) </li>
-	<li>[others success stories]({{ refs.apache-felix-ipojo-successstories.path }})</li>
-	<li>[iPOJO Key points]({{ refs.apache-felix-ipojo-keypoints.path }})</li> 
-	<li>[Why choose iPOJO ]({{ refs.-apache-felix-ipojo-why-choose-ipojo.path }})</li>
+	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}#apache-felix-ipojo-successstories-schneider">iPOJO at Schneider Electric</a></li>
+	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}#apache-felix-ipojo-successstories-ugasp">iPOJO at Ubidreams</a> </li>
+	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}">others success stories</a></li>
+	<li><a href="{{ refs.apache-felix-ipojo-keypoints.path }}">iPOJO Key points</a></li> 
+	<li><a href="{{ refs.-apache-felix-ipojo-why-choose-ipojo.path }}">Why choose iPOJO </a></li>
 	</ul>
 	</div>
 </div>
@@ -48,11 +46,11 @@ iPOJO's points of strength include:
 	</div>
 	<div class="smallbox-content">
 	<ul>
-        <li>[Downloads]({{ refs.download.path }})</li>
-	<li>[iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }})</li>
-        <li>[Using Annotations]({{ refs.how-to-use-ipojo-annotations.path }})</li>
-        <li>[Maven tutorial]({{ refs.ipojo-hello-word-maven-based-tutorial.path }})</li>
-        <li>[Support]({{ refs.ipojo-support.path }})</li>
+        <li><a href="{{ refs.download.path }}">Downloads</a></li>
+	<li><a href="{{ refs.ipojo-in-10-minutes.path }}">iPOJO in 10 minutes</a></li>
+        <li><a href="{{ refs.how-to-use-ipojo-annotations.path }}">Using Annotations</a></li>
+        <li><a href="{{ refs.ipojo-hello-word-maven-based-tutorial.path }}">Maven tutorial</a></li>
+        <li><a href="{{ refs.ipojo-support.path }}">Support</a></li>
 	</ul>
 	</div>
 </div>
@@ -64,11 +62,11 @@ iPOJO's points of strength include:
 	</div>
 	<div class="smallbox-content">
 	<ul>
-	<li>[Describing components]({{ refs.describing-components.path }})</li>
-	<li>[iPOJO Reference Card]({{ refs.ipojo-reference-card.path }})</li>
-	<li>[Eclipse Integration]({{ refs.apache-felix-ipojo-eclipse-integration.path }})</li>
-        <li>[Online Manipulator]({{ refs.apache-felix-ipojo-online-manipulator.path }})</li>
-        <li>[FAQ]({{ refs.ipojo-faq.path }})</li>
+	<li><a href="{{ refs.describing-components.path }}">Describing components</a></li>
+	<li><a href="{{ refs.ipojo-reference-card.path }}">iPOJO Reference Card</a></li>
+	<li><a href="{{ refs.apache-felix-ipojo-eclipse-integration.path }}">Eclipse Integration</a></li>
+        <li><a href="{{ refs.apache-felix-ipojo-online-manipulator.path }}">Online Manipulator</a></li>
+        <li><a href="{{ refs.ipojo-faq.path }}">FAQ</a></li>
 	</ul>
 	</div>
 </div>
@@ -87,8 +85,7 @@ You can also have a look to [this](http://felix.apache.org/site/presentations.da
 
 ## What's new
 
-{{ refs.ipojo-news.headers.excerpt }}
+{{ refs.ipojo-news.headers.excerpt|markdown }}
 * [all news...]({{ refs.ipojo-news.path }})
 
 
-{include:apache-felix-ipojo-footer}

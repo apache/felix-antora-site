@@ -1,9 +1,7 @@
 translation_pending: true
 Title: How to write your own handler
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # How to write your iPOJO Handler
 
@@ -534,4 +532,3 @@ If you develop handler and you want to share it, feel free to contact us by send
 
   
   
-{include:apache-felix-ipojo-footer}

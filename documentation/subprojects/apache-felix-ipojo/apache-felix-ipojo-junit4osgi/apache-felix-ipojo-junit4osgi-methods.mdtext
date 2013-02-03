@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-junit4osgi-methods
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # OSGi and friends methods
 
@@ -75,4 +73,3 @@ public class MyTest extends OSGiTestCase {
     You can also implements your own helper (for specific purpose) by just implementing the {{Helper}} interface.
     \\
     \\
-    {include:apache-felix-ipojo-footer}

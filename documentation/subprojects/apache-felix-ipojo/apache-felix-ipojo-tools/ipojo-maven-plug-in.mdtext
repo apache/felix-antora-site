@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Maven Plug-in
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # How to use the iPOJO Maven Plug-in
 
@@ -241,4 +239,3 @@ It is also possible to describe iPOJO components and instances inside the pom fi
   
   
   
-{include:apache-felix-ipojo-footer}

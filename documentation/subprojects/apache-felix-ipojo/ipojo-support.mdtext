@@ -1,9 +1,7 @@
 translation_pending: true
 Title: ipojo-support
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Support
 
@@ -79,4 +77,3 @@ If your company also provides professional support for Apache Felix iPOJO, just 
   
   
 
-{include:apache-felix-ipojo-footer}

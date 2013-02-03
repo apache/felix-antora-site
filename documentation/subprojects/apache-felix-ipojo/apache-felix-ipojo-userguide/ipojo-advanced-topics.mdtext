@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Advanced Topics
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Advanced Topics
 
@@ -17,4 +15,3 @@ Title: iPOJO Advanced Topics
   
   
   
-{include:apache-felix-ipojo-footer}

@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-testing-components
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # How to test iPOJO Components
 Testing components is a required step in the application development process. This page explains strategies to test iPOJO-based components and applications.
@@ -90,4 +88,3 @@ Moreover, OPS4J Pax Exam can also be used to test iPOJO components.
   
   
   
-{include:apache-felix-ipojo-footer}

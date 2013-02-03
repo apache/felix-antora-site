@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-issuestracker
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Issues Tracker
 
@@ -18,4 +16,3 @@ Title: apache-felix-ipojo-issuestracker
   
   
   
-{include:apache-felix-ipojo-footer}

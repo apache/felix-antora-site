@@ -1,9 +1,7 @@
 translation_pending: true
 Title: apache-felix-ipojo-supportedVMs
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # Supported Java Virtual Machines
 
@@ -44,4 +42,3 @@ iPOJO 1.6+ uses smart proxy by default. On Android this is not supported, howeve
   
   
   
-{include:apache-felix-ipojo-footer}

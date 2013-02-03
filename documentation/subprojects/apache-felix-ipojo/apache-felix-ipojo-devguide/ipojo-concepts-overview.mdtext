@@ -1,9 +1,7 @@
 translation_pending: true
 Title: iPOJO Concepts Overview
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
   
   
@@ -22,4 +20,3 @@ This page is now out of date. Please update your bookmark to <a href="http://ipo
 
   
   
-{include:apache-felix-ipojo-footer}

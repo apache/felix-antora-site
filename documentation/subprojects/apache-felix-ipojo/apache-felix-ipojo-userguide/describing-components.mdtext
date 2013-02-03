@@ -1,9 +1,7 @@
 translation_pending: true
 Title: Describing components
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 
 # Describing your iPOJO components
@@ -38,4 +36,3 @@ iPOJO component model is extensible. So, you can implement your own handler mana
   
   
   
-{include:apache-felix-ipojo-footer}

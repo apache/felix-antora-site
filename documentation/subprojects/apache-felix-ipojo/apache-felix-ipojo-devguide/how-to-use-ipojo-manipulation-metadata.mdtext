@@ -1,9 +1,7 @@
 translation_pending: true
 Title: How to use iPOJO Manipulation Metadata
 
-{include:apache-felix-ipojo-header}
 
-<div class="content">
 
 # How to use iPOJO Manipulation Metadata
 
@@ -77,4 +75,3 @@ Array types are different from Java internal/reflective array types. To get the 
   
   
   
-{include:apache-felix-ipojo-footer}
