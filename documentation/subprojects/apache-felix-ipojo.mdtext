@@ -2,90 +2,78 @@ translation_pending: true
 Title: Apache Felix iPOJO
 
 
-*iPOJO* is a service component runtime aiming to simplify OSGi application development. It natively supports ALL the dynamism of OSGi. Based on the concept of `POJO`, application logic is developed easily. Non-functional properties are just *injected* in the component at runtime.
-  
-  
-  
-  
-iPOJO's points of strength include:
+<header class="jumbotron subhead">
+ 			<div class="row">
+			<div class="span6">
+				<h1>iPOJO</h1>
+				<p class="lead">A flexible and extendible service component model</p>
+			</div>	
+			<div class="span6">
+				<img src="http://placehold.it/350x150">
+			</div>	
+ 			</div>
+ 		</header>	
 
-* components are developed as POJOs - nothing else is required!
-* the component model is extensible, so feel free to adapt it to your needs
-* the standard component model manages service providing and service dependencies, and so can require any other OSGi services
-* iPOJO manages the component instance lifecycle and the environment dynamics as never before possible
-* iPOJO provides a powerful composition system to create highly dynamic applications
-* iPOJO supports annotations, XML, and a Java-based API to define components 
+<section id="section-overview">
+	<div class="row">
+ 				<div class="span6">
+ 				<h3>What's iPOJO</h3>	
+ 				<strong>iPOJO</strong> is a <em>service component runtime</em> aiming to simplify OSGi application development. It natively supports <strong>ALL</strong> the dynamism of OSGi. Based on the concept of POJO, application logic is developed easily. Non-functional properties are just injected in the component at runtime.</p>
+ 				<img src="http://placehold.it/350x150">
+ 				</div>
+ 				<div class="span6">
+ 					<h3>Main features</h3>
+ 					<ul class="icons">
+ 						<li><i class="icon-ok"></i> components are developed as POJOs - nothing else is required!</li>
+						<li><i class="icon-ok"></i> the component model is extensible, so feel free to adapt it to your needs</li>
+						<li><i class="icon-ok"></i> the standard component model manages service providing and service dependencies, and so can require any other OSGi services</li>
+						<li><i class="icon-ok"></i> iPOJO manages the component instance lifecycle and the environment dynamics as never before possible</li>
+						<li><i class="icon-ok"></i> iPOJO provides a powerful composition system to create highly dynamic applications</li>
+						<li><i class="icon-ok"></i> iPOJO supports annotations, XML, and a Java-based API to define components</li>
+					</ul>
+				</div> 					
+			</div>
+</section>
 
-  
-  
+<hr/>
 
-
-<div class="smallboxes" style="margin-left:auto; margin-right:auto; width:824px">
-<table>
-<tr>
-<td>
-<div class="smallbox" style="margin-left:10px; margin-right:10px">
-	<div class="smallbox-title">
-		<img src="http://felix.apache.org/ipojo/site/status_online.png"> <b>Why choose iPOJO ?</b>
+<section id="section-where-to-go">
+	<div class="row">
+		<div class="span4 box info">
+			<h4>Why choose iPOJO</h4>
+			<ul class="icons"> 
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-successstories.html#apache-felix-ipojo-successstories-schneider">iPOJO at Schneider Electric</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-successstories.html#apache-felix-ipojo-successstories-ugasp">iPOJO at Ubidreams</a> </li>
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-successstories.html" title="apache-felix-ipojo-successstories">others success stories</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-keypoints.html" title="apache-felix-ipojo-keypoints">iPOJO Key points</a></li> 
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-why-choose-ipojo.html" title="apache-felix-ipojo-why-choose-ipojo">Why choose iPOJO </a></li>
+		</ul>
+	</div> 					
+	<div class="span4 box info">
+		<h4>Getting started</h4>
+		<ul class="icons">
+			<li><i class="icon-chevron-right"></i> <a href="download.html" title="Download">Downloads</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="ipojo-in-10-minutes.html" title="iPOJO in 10 minutes">iPOJO in 10 minutes</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="how-to-use-ipojo-annotations.html" title="How to use iPOJO Annotations">Using Annotations</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="ipojo-hello-word-maven-based-tutorial.html" title="iPOJO Hello Word (Maven-Based) tutorial">Maven tutorial</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="ipojo-support.html" title="ipojo-support">Support</a></li>
+		</ul>
 	</div>
-	<div class="smallbox-content">
-	<ul> 
-	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}#apache-felix-ipojo-successstories-schneider">iPOJO at Schneider Electric</a></li>
-	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}#apache-felix-ipojo-successstories-ugasp">iPOJO at Ubidreams</a> </li>
-	<li><a href="{{ refs.apache-felix-ipojo-successstories.path }}">others success stories</a></li>
-	<li><a href="{{ refs.apache-felix-ipojo-keypoints.path }}">iPOJO Key points</a></li> 
-	<li><a href="{{ refs.-apache-felix-ipojo-why-choose-ipojo.path }}">Why choose iPOJO </a></li>
-	</ul>
-	</div>
-</div>
-</td>
-<td>
-<div class="smallbox" style="margin-left:10px; margin-right:10px">
-	<div class="smallbox-title">
-		<img src="http://felix.apache.org/ipojo/site/cog.png"> <b>Getting started</b>
-	</div>
-	<div class="smallbox-content">
-	<ul>
-        <li><a href="{{ refs.download.path }}">Downloads</a></li>
-	<li><a href="{{ refs.ipojo-in-10-minutes.path }}">iPOJO in 10 minutes</a></li>
-        <li><a href="{{ refs.how-to-use-ipojo-annotations.path }}">Using Annotations</a></li>
-        <li><a href="{{ refs.ipojo-hello-word-maven-based-tutorial.path }}">Maven tutorial</a></li>
-        <li><a href="{{ refs.ipojo-support.path }}">Support</a></li>
-	</ul>
-	</div>
-</div>
-</td>
-<td>
-<div class="smallbox" style="margin-left:10px; margin-right:10px">
-	<div class="smallbox-title">
-		<img src="http://felix.apache.org/ipojo/site/user_edit.png"> <b>The developer corner</b>
-	</div>
-	<div class="smallbox-content">
-	<ul>
-	<li><a href="{{ refs.describing-components.path }}">Describing components</a></li>
-	<li><a href="{{ refs.ipojo-reference-card.path }}">iPOJO Reference Card</a></li>
-	<li><a href="{{ refs.apache-felix-ipojo-eclipse-integration.path }}">Eclipse Integration</a></li>
-        <li><a href="{{ refs.apache-felix-ipojo-online-manipulator.path }}">Online Manipulator</a></li>
-        <li><a href="{{ refs.ipojo-faq.path }}">FAQ</a></li>
-	</ul>
-	</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
+	<div class="span4 box info">
+		<h4>The developer corner</h4>
+		<ul class="icons">
+			<li><i class="icon-chevron-right"></i> <a href="describing-components.html" title="Describing components">Describing components</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="ipojo-reference-card.html" title="iPOJO-Reference-Card">iPOJO Reference Card</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-eclipse-integration.html" title="apache-felix-ipojo-eclipse-integration">Eclipse Integration</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="apache-felix-ipojo-online-manipulator.html" title="apache-felix-ipojo-online-manipulator">Online Manipulator</a></li>
+			<li><i class="icon-chevron-right"></i> <a href="ipojo-faq.html" title="iPOJO FAQ">FAQ</a></li>
+		</ul>
+	</div>				
+</section>
 
-
-
-The easiest way to get involved in iPOJO is to try it out. See the [iPOJO in 10 minutes]({{ refs.ipojo-in-10-minutes.path }}) tutorial for how to get up and running with the iPOJO framework and the downloads page for more information on acquiring iPOJO & related tools.
-
-You can also have a look to [this](http://felix.apache.org/site/presentations.data/ipojo-berlin-20080611.pdf) presentation describing iPOJO main features.
-  
-  
-
-## What's new
-
+<hr/>  
+<section id="section-news">
+# News
 {{ refs.ipojo-news.headers.excerpt|markdown }}
-* [all news...]({{ refs.ipojo-news.path }})
-
-
+<i class="icon-chevron-right"></i> [all news...]({{ refs.ipojo-news.path }})
+</section>
