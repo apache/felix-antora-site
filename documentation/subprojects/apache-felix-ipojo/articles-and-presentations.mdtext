@@ -1,0 +1,21 @@
+translation_pending: true
+Title: Articles and Presentations
+
+# Presentations
+
+* "iPOJO : This Simple Life", OSGi Community Event 2008, Berlin, Germany. [Download](http://felix.apache.org/site/presentations.data/ipojo-berlin-20080611.pdf)
+* "iPOJO : A flexible service-oriented component model for dynamic systems", PHD Defense, December 2008, Grenoble, France . [Download]({{ refs.-ipojo-defense-final-pdf.path }})
+
+# Articles on iPOJO Core features
+
+* Clement Escoffier, Richard S. Hall and Philippe Lalanda, iPOJO An extensible service-oriented component framework IEEE Service Computing Conference 2007 (SCC 2007) July 2007, Salt Lake City, Utah (USA)
+* Clement Escoffier and Richard S. Hall, Dynamically Adaptable Applications with iPOJO Service Components ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/SC2007Esc.pdf)) 6th International Symposium on Software Composition (SC 2007) March 2007, Braga, Portugal
+
+
+# Articles using iPOJO
+*  Clement Escoffier, Johann Bourcier, Philippe Lalanda, Towards a Home Application Server 5th Consumer Communications and Networking Conference (CCNC 2008) January 2008, Las Vegas, Nevada (USA)
+* André Bottaro, Johann Bourcier, Clément Escoffier and Philippe Lalanda, Autonomic Context-Aware Service Composition ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/ICPS2007Bot.pdf)) 2nd IEEE International Conference on Pervasive Services (ICPS'07) July 2007, Istanbul, Turkey
+* André Bottaro, Johann Bourcier, Clément Escoffier, Didier Donsez and Philippe Lalanda, A Multi-Protocol Service-Oriented Platform for Home Control Applications ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/CCNC2007Bot.pdf)) Demonstration at IEEE Consumer Communications and Networking Conference (CCNC 2007) January 2007, Las Vegas, Nevada (USA)
+* J. Bourcier, C. Escoffier, P. Lalanda, Implementing home-control applications on service platform ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/CCNC2007Bou.pdf)) 4th IEEE Consumer Communications and Networking Conference (CCNC 2007) January 2007, Las Vegas, Nevada (USA)
+* J. Bourcier, C. Escoffier, M. Desertot, C. Marin and A. Chazalet, A Dynamic SOA Home Control Gateway ([pdf](http://www-adele.imag.fr/Les.Publications/intConferences/ISCCC2006Bou.pdf)) International Service Computing Conference Contest, September 2006, Chicago, USA
+

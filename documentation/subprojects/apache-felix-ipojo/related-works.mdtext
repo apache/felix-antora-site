@@ -1,17 +1,13 @@
 translation_pending: true
 Title: Related Works
 
-{section}
-{column:width=80%}
 # Presentations
 
 * [Service Blinder](http://www.aqute.biz/resources/2005/2005-10-OSGIWC*Service*Blinder.ppt) : Peter Kriens Presentation about "Removing Cruft" (OSGi World Congress 2005)
 
-
 # Articles
-
-* [Extending OSGi for Java Module Orientation ]({{ refs.-http-www-adele-imag-fr-index-php-option-com_equipemngt-view-publication-cid.path }})=95]
-* [Autonomous Adaptation to Dynamic Availability Using a Service-Oriented Component Model ](http://www-adele.imag.fr/Les.Publications/intConferences/ICSE2004Cer.pdf) 
+* Extending OSGi for Java Module Orientation
+* [Autonomous Adaptation to Dynamic Availability Using a Service-Oriented Component Model ](http://www-adele.imag.fr/Les.Publications/intConferences/ICSE2004Cer.pdf)
 
 # Web Sites
 
@@ -20,8 +16,4 @@ Title: Related Works
 * [Newton](http://newton.codecauldron.org/)
 * [Techne](http://wiki.ops4j.org/confluence/display/ops4j/Techne)
 * [Service Component Architecture](http://www.ibm.com/developerworks/library/specification/ws-sca/)
-{column}
-{column:width=20%}
-{include:apache-felix-ipojo-menu}
-{column}
-{section}
+

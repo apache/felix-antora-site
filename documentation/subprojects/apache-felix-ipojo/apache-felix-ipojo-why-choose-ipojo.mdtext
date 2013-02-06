@@ -11,16 +11,20 @@ Title: apache-felix-ipojo-why-choose-ipojo
 *The purpose behind iPOJO is twofold. The first goal is to simplify OSGi development to the bare necessities. This means that providing services, using services, and dealing with dynamism should require as little effort as possible from the developer. The second goal is to push beyond support for basic OSGi mechanisms and try to more seamlessly incorporate advanced features, including component configuration, synchronization, and composition. This page summaries the key point of iPOJO.*
 
 ## Simplicity
-Trying to create an OSGi-based application with services is challenging. The OSGi API is complex and a lot of knowledge about internal mechanisms has to be known to avoid synchronization issues. iPOJO provides a very simple development model; let's look:
-{code:java|Providing a service}
-@Component
-@Provides
-public class MyServiceImplementation implements MyService {
- 	//....
-}
+Trying to create an OSGi-based application with services is challenging. The OSGi API is complex and a lot of knowledge about internal mechanisms has to be known to avoid synchronization issues. iPOJO provides a very simple development model; let's have a look:
 
-    \\
-    {code:java|Requiring a service}
+To provide a service:
+
+	:::java
+	@Component
+	@Provides
+	public class MyServiceImplementation implements MyService {
+	 	//....
+	}
+
+To require a service:
+
+	:::java
     @Component
     public class MyServiceConsumer {
      	@Requires
@@ -44,13 +48,15 @@ iPOJO works on any R4.1 OSGi implementation. It also works on many Java virtual 
 Being powerful is great, but what about footprint and performances? iPOJO is small and was designed to stay small. The core size of iPOJO is approximately *205k* (compared to 816k for Guice-Peaberry and 2112k for the minimal Spring-DM configuration). In addition to the core, you only deploy the features you require. For example, if you need proxy injection, just deploy the temporal dependency  bundle (less than 70Kb).
 
 The run-time overhead of iPOJO is also small. On the [Peaberry benchmark](http://code.google.com/p/peaberry/wiki/Benchmarks), iPOJO has very good performance:
-{div:class=shell}
-Guice-Peaberry:	                     276.00 ns/call
-{color:#ff0000}iPOJO Service Dependency:            118.00 ns/call{color}
-Spring-DM:                          2384.00 ns/call
-{color:#ff0000}iPOJO Temporal Dependency:           159.00 ns/call{color}
-{color:#ff0000}iPOJO Temporal Dependency w/ proxy:  173.00 ns/call{color}
-{div}
+
+	:::sh
+	Guice-Peaberry:	                     276.00 ns/call
+	iPOJO Service Dependency:            118.00 ns/call
+	Spring-DM:                          2384.00 ns/call
+	iPOJO Temporal Dependency:           159.00 ns/call
+	iPOJO Temporal Dependency w/ proxy:  173.00 ns/call
+
+
 For French readers, you can find additional benchmarks in chapter 10 of [iPOJO - A flexible service-oriented component model for dynamic systems](http://clement.plop-plop.net/thesis/These%20-%20FINAL.pdf)
 
 ## Development support
@@ -62,7 +68,7 @@ iPOJO also provides an architecture description language to design applications 
 ## Conclusion
 [Give it a try\!]({{ refs.ipojo-in-10-minutes.path }}).
 
-For any questions or feedback, send an email on the [mailto:users@felix.apache.org]({{ refs.mailto-users-felix-apache-org.path }}) mailing list (send a mail to [mailto:users-subscribe@felix.apache.org] to subscribe).
+For any questions or feedback, send an email on the [users@felix.apache.org](mailto:users@felix.apache.org) mailing list (send a mail to [users-subscribe@felix.apache.org](mailto:users-subscribe@felix.apache.org) to subscribe).
   
   
   
