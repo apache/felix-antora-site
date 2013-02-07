@@ -8,9 +8,7 @@ Title: Architecture Handler
 
 *The architecture feature allows obtaining an architectural / component view of your systems. It exposes a snapshot of the present instances & factories, the state of these instances... Moreover; iPOJO defines an 'arch' command displaying this architecture in Felix. You need to install [the arch command]({{ refs.felix-ipojo-arch-command.path }}).*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## Reflection on component instances
 
@@ -18,8 +16,9 @@ The architecture feature does "reflection" on the iPOJO containers. It gathers i
 
 ## Metadata
 
-The architecture (i.e. instance introspection) is activated by default. To disable it, you need to add an attribute *"architecture=false"* to the component element:
+The architecture (i.e. instance introspection) is activated by default. To disable it, you need to add an attribute `architecture="false"` to the component element:
 
+	:::xml
     <component classname="org.apache.felix.ipojo.hello.impl.HelloServiceImpl" architecture="false">
 
 By default, the architecture feature is enabled.
@@ -28,6 +27,7 @@ By default, the architecture feature is enabled.
 
 A Felix command comes with the architecture handler. This command looks for all component exposing the architecture and print the information.
 
+	:::sh
     arch => displays instances name & state (equivalent to arch \-instances)
     arch -instance $instance_name => displays complete information about the instance $instance_name
     arch -factories => display the list of available factories
@@ -40,7 +40,4 @@ More info on the `arch` command are available [here]({{ refs.ipojo-arch-command.
 ## Technical information
 
 In fact, when a component enables the architecture introspection, its container exposes an `Architecture` service. Any architecture requester can obtain information about the instance. For example, the arch command requests all the architecture services and prints the information.
-  
-  
-  
   
