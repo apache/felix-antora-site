@@ -8,23 +8,22 @@ Title: Event Admin Handlers
 
 *The goal of the Event Admin Handlers is to allow event communications between iPOJO component instances. The implementation of these handlers relies on an event admin services. It enables the iPOJO component to listen to a list of topics and to receive all related events. It also allows components to send events in an easy way.*
 
-{div:class=toc}
 [TOC]
-{div}
 
-<div class="info" markdown="1">
-**change in the 1.2.0**
-The 1.2.0 version use the namespace : `org.apache.felix.ipojo.handlers.event` instead of `org.apache.felix.ipojo.handlers.event.EventAdminHandler`.
+<div class="alert alert-warning" markdown="1">
+<strong>change in the 1.2.0</strong>
+<p>The 1.2.0 version use the namespace : <code>org.apache.felix.ipojo.handlers.event</code> instead of <code>org.apache.felix.ipojo.handlers.event.EventAdminHandler</code>.</p>
 </div>
 
-<div class="info" markdown="1">
-**change in the 1.7.0**
-The `@Publisher` annotation is now deprecated and replaced by `@Publishes`.
+<div class="alert alert-warning" markdown="1">
+<strong>change in the 1.7.0</strong>
+<p>The <code>@Publisher</code> annotation is now deprecated and replaced by <code>@Publishes</code>.</p>
 </div>
 
 ## An example
 Hereafter is presented a small example :
 
+    :::java
     @Component
     @Instantiate
     public class MyComponent {
@@ -46,6 +45,7 @@ Hereafter is presented a small example :
 
 This component can also be described using the XML formalism:
 
+    :::xml
     <ipojo
         xmlns:ev="org.apache.felix.ipojo.handlers.event">
     	<component className="...MyComponent">
@@ -76,62 +76,110 @@ The handler will parse the description provided in the metadata, and register fo
 
 Here you can find all configuration options of the EventAdmin handler. As seen before, the handler contains two components : the event subscriber and the event publisher. These components can be configured, using several attributes, as described below. Some of these attributes can be (re)defined in the instance configuration.
 
-*Handler namespace :* org.apache.felix.ipojo.handlers.event
+*Handler namespace :* _org.apache.felix.ipojo.handlers.event_
+
 
 ### Event subscriber attributes
-{div:class=borderedTable}
-| Attribute name | Required | Description |
-|--|--|--|
-| *name* | YES | The name of the event subscriber, acting as a unique 			identifier. |
-| *callback* | YES | The name of the POJO's method that will be called each time an 			event is received. This method takes only one parameter, of typeorg.osgi.service.event.Eventby default, but this type can be overridden by defining the 			data-key and/or the data-type attributes. |
-| *topics* | YES\* | The comma-separated-list of the topics that the handler will 			listen to. Each event sent on a topic present in this list will be 			sent to the specified callback method. |
-  
-  
-  
-  
-  
-  
-If an event is received and it does not contain such a key, it 			is ignored (with a warning message). |
-  
-  
-Data events that are not corresponding to the specified type 			will be ignored (with a warning message). |
-| *filter* | NO\* | The event filter is used to filter incoming events before 			sending them to the callback. The syntax of this field is 			described in the OSGi EventAdmin Specification. If you don't 			specify a filter, all events sent on the listened topics will be 			considered. |
-\* These attributes can be (re)defined in the instance configuration.
-{div}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Attribute name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>name</td>
+            <td>yes</td>
+            <td>The name of the event subscriber, acting as a unique identifier.</td>
+        </tr>            
+        <tr>
+            <td>callback</td>
+            <td>yes</td>
+            <td>The name of the POJO's method that will be called each time an event is received. This method takes only one parameter, of type <code>org.osgi.service.event.Event</code> by default, but this type can be overridden by defining the data-key and/or the data-type attributes.</td>
+        </tr>
+        <tr>
+            <td>topics</td>
+            <td>yes</td>
+            <td>The comma-separated-list of the topics that the handler will listen to. Each event sent on a topic present in this list will be          sent to the specified callback method. The topics can be set in the instance configuration.</td>
+        </tr>
+        <tr>
+            <td>filter</td>
+            <td>no</td>
+            <td>The event filter is used to filter incoming events before sending them to the callback. The syntax of this field is described in the OSGi Event Admin Specification. If you don't specify a filter, all events sent on the listened topics will be considered. The filter can be set in the instance configuration.</td>
+        </tr>
+        <tr>
+            <td>data-key</td>
+            <td>no</td>
+            <td>The data key is used when you want to receive data events. This attribute's value is the key corresponding to the received data in the event's dictionary. If you use this attribute, the parameter passed to the callback method is the the value associated to this key, not the whole event. This attribute is generally used with the **data-type** attribute to specify the received object type. If an event is received and it does not contain such a key, it is ignored (with a warning message).</td>
+        </tr>
+        <tr>
+            <td>data-type</td>
+            <td>no</td>
+            <td>This attribute is associated to the data-key attribute. It specifies the type of objects (<code>java.lang.Object</code> by default) that the callback expects. It is used to determine the unique callback method (in case of multiple methods with the same name) and to check type compliance at event reception. Data events that are not corresponding to the specified type will be ignored (with a warning message).</td>
+        </tr>
+    </tbody>
+</table>
+
 ### Event publisher attributes
-{div:class=borderedTable}
-| Attribute name | Required | Description |
-|--|--|--|
-| *name* | YES | The name of the event publisher, acting as a unique identifier. |
-| *field* | YES | The name of the POJO's field that will be used to send events. 			The field is initialized at component instantiation time. The type 			of the field must be : org.apache.felix.ipojo.handlers.event.publisher.Publisher. Despite it creates a dependency between the component code and the handler, this system allows hiding the 			whole complexity of event sending. |
-| *topics* | YES\* | The comma-separated-list of the topics on which events will be sent. |
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Attribute name</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>name</td>
+            <td>yes</td>
+            <td>The name of the event publisher, acting as a unique identifier.</td>
+        </tr>            
+        <tr>
+            <td>field</td>
+            <td>yes</td>
+            <td>The name of the POJO's field that will be used to send events. The field is initialized at component instantiation time. The type of the field must be : <code>org.apache.felix.ipojo.handlers.event.publisher.Publisher</code>. Despite it creates a dependency between the component code and the handler, this system allows hiding the whole complexity of event sending.</td>
+        </tr>
+        <tr>
+            <td>topics</td>
+            <td>yes</td>
+            <td>The comma-separated-list of the topics on which events will be sent. Topics can be set in the instance configuration</td>
+        </tr>
+        <tr>
+            <td>data-key</td>
+            <td>no</td>
+            <td>The data key is used when you want to send data events. This attribute's value is the key, in the event's dictionary, in which sent data are stored. When you use the <code>sendData</code> method of the Publisher, the given object is placed in the event dictionary, associated with the specified data-key. The default value of this attribute is <code>user.data</code>.</td>
+        </tr>
+        <tr>
+            <td>synchronous</td>
+            <td>no</td>
+            <td>Determines if event sending is synchronous or not. By default, events are sent asynchronously, but you can specify there the desired behaviour of the Publisher.</td>
+        </tr>
+    </tbody>
+</table>
   
-  
-The default value of this attribute is user.data. |
-  
-  
-The default value of this attribute is "false". |
-\* These attributes can be (re)defined in the instance configuration.
-{div}
 ### Instance configuration
 
 Some of the described attributes can be (re)defined in the instance configuration section of your metadata file. Its permits to configure event management instance by instance. The following properties are used by the handler :
-* *event.topics* : overrides *topics* attribute, 	available for both subscribers and publishers configuration
-* *event.filter* : overrides *filter* attribute, 	available for subscribers configuration only.
+
+* *event.topics* : overrides *topics* attribute, available for both subscribers and publishers configuration
+* *event.filter* : overrides *filter* attribute, available for subscribers configuration only.
 
 ### Publisher interface
 
 The Publisher interface is the link between the component code and the handler. It permits to publish events on the topics specified in the component's description (or instance configuration). The implemented methods are :
-* public void send{color:#000000}(Dictionary 	content);{color}
-This method is used to send a 	standard event, with the specified content. Some specific properties 	may be added in the content to satisfy EventAdmin specification. 	(e.g., event.topic).
-* public void sendData{color:#000000}(Object 	o);{color}
-This method is the easier way to send 	data. The given object is placed in the event dictionary according 	to the *data-key* attribute (or its default value). Then, this 	dictionary is sent as a normal event.
+
+* `public void send(Dictionary content)` : This method is used to send a 	standard event, with the specified content. Some specific properties may be added in the content to satisfy EventAdmin specification (e.g., event.topic).
+* `public void sendData(Object 	o)` : This method is the easier way to send data. The given object is placed in the event dictionary according 	to the *data-key* attribute (or its default value). Then, this 	dictionary is sent as a regular event.
 
 ## Handler Architecture
 
 Here is shown the global architecture of the EventHandler : the interactions between the user components (i.e., POJO), the handler and the OSGi runtime environment.
 
-!handler-arch.png!
+<img src="handler-arch.png">
 
 ## EventHandler Features
 In this section, you will find some examples of the handler's features.
@@ -139,6 +187,7 @@ In this section, you will find some examples of the handler's features.
 ### Instance customization
 As described in the 'Instance configuration' section, you can (re)define some of the subscribers or publishers attributes. You can notice that required attributes that are not defined in the component description must be defined in the instance configuration section. Hereafter is an example of an instance configuration of this handler :
 
+    :::xml
     <ipojo>
     	<instance component="...MyComponent">
     		<property name="event.topics">
@@ -158,7 +207,7 @@ One of the most important features of the EventHandler is the capability of send
 
 First, you have define the *data-key* attribute in the publisher configuration (`dataKey` in annotations). Sent objects will be contained in the event dictionary and are accessible with the "user.data" key. 
 
-
+    :::xml
     <ipojo
         xmlns:ev="org.apache.felix.ipojo.handlers.event">
         <component className="...DataPublisher">
@@ -173,6 +222,7 @@ First, you have define the *data-key* attribute in the publisher configuration (
 
 Then you can use the *sendData* method of your configured publisher.
 
+    :::java
     import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
     //...
     public class DataPublisher ... {
@@ -189,6 +239,7 @@ Then you can use the *sendData* method of your configured publisher.
 
 The second step is to configure an event subscriber to receive such events. The *data-key* attribute's  value of the subscriber must be the same than the publisher's one. The *data-type* describes the type of received data events, and thus, must be compatible with the sent object's type (i.e., super-class or inherited interface). Then you can finally receive the sent object in the callback method. The parameter type of the callback must be the same than the data-type attribute value.
 
+    :::xml
     <ipojo
        xmlns:ev="org.apache.felix.ipojo.handlers.event">
     	<component className="...DataEventSubscriber">
@@ -202,7 +253,9 @@ The second step is to configure an event subscriber to receive such events. The 
     	<instance component="...DataEventSubscriber"/>
     </ipojo>
 
+&nbsp;
 
+    :::java
     import my.package.MyFavoriteInterface;
     //...
     public class DataEventSubscriber ... {
@@ -214,6 +267,7 @@ The second step is to configure an event subscriber to receive such events. The 
 
 
 Annotations use a different set of attributes:
+
 * data-key is replaced by `dataKey`
 * data-type is replaced by `dataType`
 
@@ -231,39 +285,38 @@ All events sent by a publisher contains the name of the component instance that 
 ### Configuring the handler with annotations
 
 It is possible to configure the handler with a simple annotations available in the annotation pack ('annotation' project in the iPOJO trunk). Here is an example of usage:
-{code:java}
-import org.apache.felix.ipojo.annotations.Component;
-import org.apache.felix.ipojo.handlers.event.Subscriber;
-import org.apache.felix.ipojo.handlers.event.Publishes
-import org.apache.felix.ipojo.handlers.event.Publisher;
-import org.osgi.service.event.Event;
+
+    :::java
+    import org.apache.felix.ipojo.annotations.Component;
+    import org.apache.felix.ipojo.handlers.event.Subscriber;
+    import org.apache.felix.ipojo.handlers.event.Publishes
+    import org.apache.felix.ipojo.handlers.event.Publisher;
+    import org.osgi.service.event.Event;
 
 
-@Component
-public class PubSub {
-    @Publishes(name="p1", synchronous=true)
-    Publisher publisher1;
-    
-    @Publishes(name="p2", synchronous=false, topics="foo,bar", data_key="data")
-    Publisher publisher2;
-    
-    @Publishes(name="p3", synchronous=true, topics="bar")
-    Publisher publisher3;
-    
-    @Subscriber(name="s1", data_key="data")
-    public void receive1(Object foo) {
-        // Process event
+    @Component
+    public class PubSub {
+        @Publishes(name="p1", synchronous=true)
+        Publisher publisher1;
+        
+        @Publishes(name="p2", synchronous=false, topics="foo,bar", data_key="data")
+        Publisher publisher2;
+        
+        @Publishes(name="p3", synchronous=true, topics="bar")
+        Publisher publisher3;
+        
+        @Subscriber(name="s1", data_key="data")
+        public void receive1(Object foo) {
+            // Process event
+        }
+        
+        @Subscriber(name="s2", topics="foo,bar", filter="(foo=true)")
+        public void receive2(Event foo) {
+            // Process event
+        }
+        
+        @Subscriber(name="s3", topics="foo", data*key="data", data*type="java.lang.String")
+        public void receive3(String foo) {
+            // Process event
+        }
     }
-    
-    @Subscriber(name="s2", topics="foo,bar", filter="(foo=true)")
-    public void receive2(Event foo) {
-        // Process event
-    }
-    
-    @Subscriber(name="s3", topics="foo", data*key="data", data*type="java.lang.String")
-    public void receive3(String foo) {
-        // Process event
-    }
-}
-
-    \\
