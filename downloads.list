@@ -88,7 +88,7 @@ Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.0
 Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.0
 Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.2
-Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.1
+Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.2
 
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
