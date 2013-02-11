@@ -5,7 +5,7 @@ Title: apache-felix-ipojo-successstories
 # iPOJO Success Stories
 *On this page, you will find comments from industrial users of iPOJO. They come from different domains such as home gateways, mobile phones, or enterprise applications.*
 
-
+<a id="schneider"></a>
 <blockquote>
 Over 90% of processors are now used for embedded applications. At Schneider Electric we believe that java is a fantastic opportunity to develop some of our applications faster and better. OSGi is an excellent way to ensure that developed java software comes with built-in best practices such as reusability, high cohesion, loose coupling, high flexibility and dynamism.But we definitely don't want our anticipation teams to spend more time on OSGi mechanisms than on Energy Management, our core business! iPOJO helps us to develop quickly, by making developing modules as simple as writing plain old java. We also use it for our open source OSGi DPWS Base Driver ('SOA for devices' forge, on <a href="http://forge.soa4d.org/">http://forge.soa4d.org/</a>). And it's not just about us: partners of the SOA4D forge are using it, too.
 </blockquote>
@@ -13,6 +13,7 @@ Over 90% of processors are now used for embedded applications. At Schneider Elec
   
 <hr/>  
 
+<a id="ugasp"></a>
 <blockquote>
 Ubiquitous Multi-player games are one of next trends of mobile games. This type of games offers new experience: users interact with the real world and with the virtual world at the same time! So, player actions such as moves, interactions with smart objects or others players impact the virtual part of the game. The state of the virtual games also impacts the possibilities in the physical part of the games. 
 Creating this kind of games requires managing several types of technologies such as embedded devices (mobile phones, PDA, sensors...), smart objects (RFID, environmental sensors...) and network connectivity (GSM, Edge, 3G, Wifi, Bluetooth...). uGasp (Ubiquitous Gaming Services Platform) is a middleware used to execute ubiquitous multi-player games. It provides an abstraction layer hiding the inherent complexity of such games. uGasp is a major evolution of the Gasp framework using a monolithic stack not suitable to embedded devices. To tackle this issue, we adopted a dynamic, modular, extensible and configurable architecture. But in order to speed up the development, uGasp is based on a service -oriented component model offering all the features "for free" and simplifying the development of dynamic applications. uGasp is based on

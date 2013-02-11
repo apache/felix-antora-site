@@ -18,7 +18,7 @@ The iPOJO byte code manipulation goals are two-fold:
 
 <img src="process.png">
 
-iPOJO follows a container approach and more specially employs [inversion of control](http://en.wikipedia.org/wiki/Inversion*of*control) and [dependency injections|http://en.wikipedia.org/wiki/Dependency_injection]. The iPOJO container manages component instantiation and injection (service, properties and so on...). To inject values and supervise the execution inside component implementation class, iPOJO uses an interception and injection framework. To facilitate this, iPOJO uses class byte code manipulation. 
+iPOJO follows a container approach and more specially employs [inversion of control](http://en.wikipedia.org/wiki/Inversion_of_control) and [dependency injections|http://en.wikipedia.org/wiki/Dependency_injection]. The iPOJO container manages component instantiation and injection (service, properties and so on...). To inject values and supervise the execution inside component implementation class, iPOJO uses an interception and injection framework. To facilitate this, iPOJO uses class byte code manipulation. 
 
 <img src="injection.png">
 
