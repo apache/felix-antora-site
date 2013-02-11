@@ -8,15 +8,14 @@ Title: Service Requirement Handler
 
 *One of the main iPOJO feature is the service injection. So, a component can consume a service without managing the service discovery, tracking and binding. iPOJO manages all these interactions and injects required service into the component. This page explains how to use services.*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## Service Requirement
 
 ### What's a service requirement?
 
 A requirement represents a required service. Therefore, it manages the service lookup and the service binding. When an instance requires a service, the handler injects directly a service object inside a field, or invokes a method when a consistent service appears (or disappears). Service requirements can be:
+
 * Simple / Aggregate : the component can require      one or several service providers
 * Mandatory / Optional : a component can declare an      optional dependency
 * Filtered : a component can filter available      providers
@@ -29,19 +28,23 @@ A requirement represents a required service. Therefore, it manages the service l
 In OSGi™, services can appear and disappear dynamically. This implies dependencies can target a provider which can appear or disappear dynamically. So, dependencies need to manage this dynamism by tracking every time available services. At any moment, a dependency can be unresolved (i.e. no more provider can fulfill the requirement). In the case of a mandatory requirement, the instance becomes invalid (an invalid instance is no more accessible externally, for example provided services are unpublished). If a service, resolving the unfilled dependency appears, the instance becomes valid. In consequence, dependencies affect directly the instance state, and must manage correctly OSGi dynamism to allow a complete unloading when a service goes away. As soon a mandatory dependency cannot be fulfilled, the instance is invalidated.
 
 By default, dependencies are managed dynamically (as previously explained). However, iPOJO supports two other types of binding policies:
+
 * Static : if a bound service disappears, the instance is invalidated and cannot be revalidated (binding broken forever)
 * Dynamic-Priority: at each injection, the *best* provider is injected, or the providers array is sorted according to the OSGi Ranking policy or to a specified sorting algorithm.
 
 ## Service Requirement Injection Mechanisms
 
 iPOJO support several types of injections:
-* Field injection: a field contains the service object. As soon as the field is used, a consistent service object is      injected. This injection type fully hides the dynamism
 
+**Field injection**: a field contains the service object. As soon as the field is used, a consistent service object is      injected. This injection type fully hides the dynamism
+
+    :::java
     @Requires
     private LogService log;
 
-* Method invocation: when a service appears, or disappears a method in the component is invoked. For each dependency, bind / unbind / modified methods are invoked to notify the component of the event.
+**Method invocation**: when a service appears, or disappears a method in the component is invoked. For each dependency, bind / unbind / modified methods are invoked to notify the component of the event.
 
+    :::java
     @Bind
     public void bindLogService(LogService log) { /*...*/ }
     @Unbind
@@ -49,30 +52,32 @@ iPOJO support several types of injections:
     @Modified
     public void modifiedLogService(LogService log) { /*...*/ }
 
-* Constructor injection: services can also be injected as constructor parameter (only if proxies are enabled). *1.7.0-SNAPSHOT*
+**Constructor injection**: services can also be injected as constructor parameter (only if proxies are enabled). *1.7.0-SNAPSHOT*
 
+    :::java
     public MyComponent(@Requires LogService log) { /*...*/ }
-
 
 Moreover, the injections types can be mixed. A component can declare a requirement containing both a field and 'binding' methods.
 
 ### Field injection
 
 Let's imagine a Hello service with one method 'getMessage' returning a "Hello Message". The following component implementation can use this service by attaching this service to a field and by using the field:
-{code:java}
-@Component
-@Instantiate
-public class HelloConsumer {
-    @Requires
-    private Hello m_hello;
 
-    public doSomething() {
-        System.out.println(m_hello.getMesage());
+    :::java
+    @Component
+    @Instantiate
+    public class HelloConsumer {
+        @Requires
+        private Hello m_hello;
+
+        public doSomething() {
+            System.out.println(m_hello.getMesage());
+        }
     }
-}
 
-    You can also use XML to describe this component type:
-    {code:xml}
+You can also use XML to describe this component type:
+
+    :::xml
     <component classname="...HelloConsumer">
         <requires field="m_hello"/>
         ...
@@ -83,11 +88,13 @@ The metadata contains a 'requires' element (representing the service dependency)
 ### Method invocation
 
 The second injection mechanism uses methods in the implementation class. By this way, the dynamics can be managed directly by the developer. Each dependency can declare three methods:
+
 * A bind method called when a service appears
 * An unbind method called when a service disappears
 * A modified method called when a service is modified (the service properties changed, but the service still matches the requirement)
 
 Moreover, callbacks can be in the component super class (in this case methods must be public). These methods can have one of these four signatures:
+
 * Without any argument: the method is just a  notification (method())
 * With the service object : the object is the  implicated service object (method(Service svc))
 * With an OSGi service reference: the service  reference appearing or disappearing (method(ServiceReference ref))
@@ -96,20 +103,22 @@ Moreover, callbacks can be in the component super class (in this case methods mu
 * With the service object and the service properties inside a Dictionary (method(Service svc, Dictionary properties))
 
 The following component implementation shows an example of implementation using this mechanism:
-{code:java}
-@Component
-public class HelloConsumer {
-  private Hello m_hello;
+    
+    :::java
+    @Component
+    public class HelloConsumer {
+      private Hello m_hello;
 
-  @Bind
-  public void bindHello(Hello h) { m_hello = h; }
-  @Unbind
-  public void unbindHello() { m_hello = null; }
-  public doSomething() { System.out.println(m_hello.getMesage()); }
-}
+      @Bind
+      public void bindHello(Hello h) { m_hello = h; }
+      @Unbind
+      public void unbindHello() { m_hello = null; }
+      public doSomething() { System.out.println(m_hello.getMesage()); }
+    }
 
-    The {{modified}} callback is not mandatory. The following XML metadata are describing the same component type:
-    {code:xml}
+The `modified` callback is not mandatory. The following XML metadata are describing the same component type:
+    
+    :::xml
     <component classname="...HelloConsumer">
     <requires>
         <callback type="bind" method="bindHello">
@@ -121,40 +130,43 @@ public class HelloConsumer {
 Note, that the different callbacks can be have different signatures. By using this mechanism, you need to be sure to manage the dynamism correctly.
 ([See note on type discovery]({{ refs.-discovery.path }}))
 
-Using the @Modified callback is also quite simple:
-{code:java}
-@Component
-public class HelloConsumer {
-  private Hello m_hello;
+Using the `@Modified` callback is also quite simple:
 
-  @Bind
-  public void bindHello(Hello h) { m_hello = h; }
-  @Unbind
-  public void unbindHello() { m_hello = null; }
-  @Modified
-  public void modifiedHello() { /* ... */ }
-  public doSomething() { System.out.println(m_hello.getMesage()); }
+    :::java
+    @Component
+    public class HelloConsumer {
+      private Hello m_hello;
 
-}
-
-    
-    h3. Using constructor injection (*1.7.0-SNAPSHOT*)
-    Services can also be injected using constructor parameters:
-
-@Component
-public class MyComponent {
-    private LogService log;
-
-    public MyComponent(@Requires LogService log) {
-        this.log = log;
+      @Bind
+      public void bindHello(Hello h) { m_hello = h; }
+      @Unbind
+      public void unbindHello() { m_hello = null; }
+      @Modified
+      public void modifiedHello() { /* ... */ }
+      public doSomething() { System.out.println(m_hello.getMesage()); }
     }
-}
 
     
-    h3. Mixing injections types
+### Using constructor injection (*1.7.0-SNAPSHOT*)
+
+Services can also be injected using constructor parameters:
+
+    :::java
+    @Component
+    public class MyComponent {
+        private LogService log;
+
+        public MyComponent(@Requires LogService log) {
+            this.log = log;
+        }
+    }
+
     
-    The different mechanisms can be used together. In this case, the field receives the value before the bind method invocation. Constructor parameters get their values during the constructor invocation. So, if the field is used in the method, the returned value will be up to date. The following component implementation uses this mechanism:
-    {code:java}
+### Mixing injections types
+    
+The different mechanisms can be used together. In this case, the field receives the value before the bind method invocation. Constructor parameters get their values during the constructor invocation. So, if the field is used in the method, the returned value will be up to date. The following component implementation uses this mechanism:
+
+    :::java
     public class HelloConsumer {
          @Requires(id="hello")
          private Hello m_hello; // Injected Field
@@ -170,6 +182,7 @@ public class MyComponent {
 
 In XML, it results in:
 
+    :::xml
     <component classname="...HelloConsumer">
         <requires  field="m_hello">
             <callback type="bind" method="bindHello">
@@ -180,6 +193,7 @@ In XML, it results in:
 
 
 The `id` attribute is used to determine which callbacks / fields go together. If ommitted, it is computed automaticcally:
+
 * for field it uses the field type.
 * for method starting with `bind` / `unbind` / `modified`, it extract the end of the method name (`bindFoo => Foo`)
 * for constructor parameter, it uses the parameter index
@@ -204,21 +218,21 @@ When a component requires several providers of the same service, it declares an 
 
 #### Aggregate Dependency with field injection
 
-{code:java}
-@Component
-public class HelloConsumer {
-     @Requires
-     private Hello m_hellos[]({{ refs..path }}); // Array => Aggregate
-     public doSomething() {
-             for(int I = 0; I < m_hellos.length; i++) { 
-                 System.out.println(m_hellos[i]({{ refs.i.path }}).getMessage());
-             }
-       }
-}
+    :::java
+    @Component
+    public class HelloConsumer {
+         @Requires
+         private Hello m_hellos[]({{ refs..path }}); // Array => Aggregate
+         public doSomething() {
+                 for(int I = 0; I < m_hellos.length; i++) { 
+                     System.out.println(m_hellos[i]({{ refs.i.path }}).getMessage());
+                 }
+           }
+    }
 
-    
-    For this component, XML metadata could be:
-    {code:xml}
+For this component, XML metadata could be:
+
+    :::xml
     <component classname="...HelloConsumer">
         <requires field="m_hellos"/>
         ...
@@ -229,32 +243,35 @@ To declare an aggregate field for field requirement, you only need to declare an
 
 Array types cannot be 'proxied'. Moreover array dependencies cannot be injected as constructor parameter.
 
-<div class="info" markdown="1">
-**Synchronization**
-The synchronization is managed by iPOJO. As soon as you are 'touching' a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method. Nested methods will share the same service object set.
+<div class="alert alert-info info" markdown="1">
+<h4>Synchronization</h4>
+<p>The synchronization is managed by iPOJO. As soon as you are 'touching' a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method. Nested methods will share the same service object set.</p>
 </div>
 
 #### Aggregate Dependency with field injection: list, vector, collection and set
 It is also possible to inject service objects inside fields of the type:
+
 * list
 * vector
 * collection
 * set
+&nbsp;
 
-{code:java}
-@Component
-public class HelloConsumer {
-     @Requires(specification="org.apache.felix.ipojo.example.Hello")
-     private List<Hello> m_hellos;
-     public doSomething() {
-             for(Hello h : m_hellos) { 
-                 System.out.println(h).getMessage());
-             }
-       }
-}
+    :::java
+    @Component
+    public class HelloConsumer {
+         @Requires(specification="org.apache.felix.ipojo.example.Hello")
+         private List<Hello> m_hellos;
+         public doSomething() {
+                 for(Hello h : m_hellos) { 
+                     System.out.println(h).getMessage());
+                 }
+           }
+    }
 
-    For this component, XML metadata could be:
-    {code:xml}
+For this component, XML metadata could be:
+
+    :::xml
     <component classname="...HelloConsumer">
         <requires field="m_hellos" specification="org.apache.felix.ipojo.example.Hello"/>
         ...
@@ -263,20 +280,20 @@ public class HelloConsumer {
 
 In this case, just use the supported type that you want. iPOJO will automatically understand that it is an aggregate dependency, and will create the collection object containing service objects. However, you must specify the service specification. Indeed, generics types cannot be discovered at runtime reliably. 
 
-<div class="info" markdown="1">
-**Service specification discovery**
-The service specification (i.e. interface) cannot be discovered when using these types as the bytecode does not provide enough information. So, you have to indicate the required service interface (with the 'specification' attribute) in the requirement description.
+<div class="alert alert-info info" markdown="1">
+<h4>Service specification discovery</h4>
+<p>The service specification (i.e. interface) cannot be discovered when using these types as the bytecode does not provide enough information. So, you have to indicate the required service interface (with the 'specification' attribute) in the requirement description.</p>
 </div>
 
-<div class="info" markdown="1">
-**How iPOJO manage the synchronization for you**
-As in the previous case, the synchronization is managed by iPOJO. As soon as you are *touching* a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method. Nested methods will share the same service object set.
+<div class="alert alert-info info" markdown="1">
+<h4>How iPOJO manage the synchronization for you</h4>
+<p>As in the previous case, the synchronization is managed by iPOJO. As soon as you are *touching* a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method. Nested methods will share the same service object set.</p>
 </div>
 
 #### Aggregate Dependency with callbacks
 
-{code:java}
-public class HelloConsumer {
+    :::java
+    public class HelloConsumer {
       private List m_hellos = new ArrayList();
       @Bind(aggregate=true)
       private void bindHello(Hello h) { m_hellos.add(h); }
@@ -288,10 +305,11 @@ public class HelloConsumer {
                   }
                 }
         }
-}
+    }
 
-    This dependency can also be described in XML as follow:
-    {code:xml}
+This dependency can also be described in XML as follow:
+
+    :::xml
     <requires  aggregate="true">
         <callback type="bind" method="bindHello">
         <callback type="unbind" method="unbindHello">
@@ -299,9 +317,9 @@ public class HelloConsumer {
 
 In this case, iPOJO cannot detect if the dependency is aggregate or not. So, you need to add the '*aggregate*' attribute. The bindHello and unbindHello will be called each time a Hello service appears or disappears.
 
-<div class="info" markdown="1">
-**Synchronization**
-To avoid the list modification during the loop, you need synchronized the block. Indeed, as the field is not an iPOJO requirement, iPOJO will not manage the synchronization.
+<div class="alert alert-info info" markdown="1">
+<h4>Synchronization</h4>
+<p>To avoid the list modification during the loop, you need synchronized the block. Indeed, as the field is not an iPOJO requirement, iPOJO will not manage the synchronization.</p>
 </div>
 
 ### Optional Requirement (Scalar)
@@ -310,19 +328,20 @@ An optional requirement does not invalidate the instance despite no providers ar
 
 #### Optional Requirement with field injection
 
-{code:java}
-@Component
-public class HelloConsumer {
-         @Requires(optional=true)
-         private Hello m_hello;
+    :::java
+    @Component
+    public class HelloConsumer {
+             @Requires(optional=true)
+             private Hello m_hello;
 
-         public doSomething() {  
-            System.out.println(m_hello.getMesage());  
-         }
-}
+             public doSomething() {  
+                System.out.println(m_hello.getMesage());  
+             }
+    }
 
-    For this component, equivalent XML metadata could be:
-    {code:xml}
+For this component, equivalent XML metadata could be:
+    
+    :::xml
     <component classname="...HelloConsumer">
         <requires field="m_hello" optional="true"/>
         ...
@@ -332,32 +351,33 @@ To declare an optional requirement, you need to add the *'optional'* attribute. 
 
 #### Optional Dependency with callbacks invocation
 
-{code:java}
-@Component
-public class HelloConsumer {
-     private Hello m_hello;
+    :::java
+    @Component
+    public class HelloConsumer {
+         private Hello m_hello;
 
-     @Bind(optional=true)
-     public void bindHello(Hello h) { m_hello = h; }
+         @Bind(optional=true)
+         public void bindHello(Hello h) { m_hello = h; }
 
-     @Unbind
-     public void unbindHello() { m_hello = null; }
+         @Unbind
+         public void unbindHello() { m_hello = null; }
 
-     public doSomething() { 
-          if(m_hello != null) { // Must be checked
-              System.out.println(m_hello.getMesage()); 
-          }
+         public doSomething() { 
+              if(m_hello != null) { // Must be checked
+                  System.out.println(m_hello.getMesage()); 
+              }
+        }
     }
-}
 
-    For this component, XML metadata could be:
-    {code:xml}
+For this component, XML metadata could be:
+
+    :::xml
     <component classname="...HelloConsumer">
-    <requires optional="true">
-        <callback type="bind" method="bindHello">
-        <callback type="unbind" method="unbindHello">
-    </requires>
-    ...
+        <requires optional="true">
+            <callback type="bind" method="bindHello">
+            <callback type="unbind" method="unbindHello">
+        </requires>
+        ...
     </component>
 
 As for field requirement, the dependency metadata needs to contain the optional attribute. iPOJO invokes the method only when a 'real' service is available, so you need to test if `m_hello` is `null` before to use it.
@@ -368,74 +388,78 @@ A dependency can be both aggregate and optional.
 
 #### Aggregate & Optional Dependency with field injection
 
-{code:java}
-@Component
-public class HelloConsumer {
-     @Requires(optional=true)
-     private Hello m_hellos[]({{ refs..path }});
+    :::java
+    @Component
+    public class HelloConsumer {
+         @Requires(optional=true)
+         private Hello m_hellos[]({{ refs..path }});
 
-     public doSomething() {
-           for(Hello h : m_hellos) { 
-             System.out.println(h.getMessage());
-           }
-     }
-}
+         public doSomething() {
+               for(Hello h : m_hellos) { 
+                 System.out.println(h.getMessage());
+               }
+         }
+    }
 
-    For this component, XML metadata could be:
-    {code:xml}
+For this component, XML metadata could be:
+
+    :::xml
     <component classname="...HelloConsumer">
-    <requires field="m_hellos" optional="true"/>
-    ...
+        <requires field="m_hellos" optional="true"/>
+        ...
     </component>
 
 To declare an optional & aggregate field requirement you need to write the optional attribute in the dependency metadata and to point on a field array. If no service available, iPOJO injects an empty array.
 
 #### Aggregate & Optional Requirement with callbacks
 
-{code:java}
-@Compoent
-public class HelloConsumer {
+    :::java
+    @Component
+    public class HelloConsumer {
 
-     private List m_hellos<Hello> = new ArrayList<Hello>();
+         private List m_hellos<Hello> = new ArrayList<Hello>();
 
-     @Bind(aggregate=true, optional=true)
-     private void bindHello(Hello h) { m_hellos.add(h); }
+         @Bind(aggregate=true, optional=true)
+         private void bindHello(Hello h) { m_hellos.add(h); }
 
-     @Unbind
-     private void unbindHello(Hello h) { m_hellos.remove(h); }
+         @Unbind
+         private void unbindHello(Hello h) { m_hellos.remove(h); }
 
-     public synchronized doSomething() {
-               for(Hello h : m_hellos) { 
-                  System.out.println(h.getMessage());
-               }
-     }
-}
+         public synchronized doSomething() {
+                   for(Hello h : m_hellos) { 
+                      System.out.println(h.getMessage());
+                   }
+         }
+    }
 
-    For this component, XML metadata could be:
-    {code:xml}
+For this component, XML metadata could be:
+    
+    :::xml
     <requires aggregate="true" optional="true">
          <callback type="bind" method="bindHello">
          <callback type="unbind" method="unbindHello">
     </requires>
 
-In this case, you need to add the *'aggregate'*attribute and the *'optional'*attribute. The `bindHello` and `unbindHello` will be called each time a Hello service appears or disappears. These bind / unbind methods are not called when binding / unbinding a Nullable object (when both field and method are used).
+In this case, you need to add the *'aggregate'* attribute and the *'optional'*attribute. The `bindHello` and `unbindHello` will be called each time a Hello service appears or disappears. These bind / unbind methods are not called when binding / unbinding a Nullable object (when both field and method are used).
 
 ### Filtered Requirement
 
 A filtered dependency applies an LDAP filter on service provider. iPOJO reuses OSGi LDAP filter ability. The following metadata illustrates how to use filters:
 
+    :::java
     @Requires(filter="(language=fr)")
     private String DictionaryService dict;
 
+&nbsp;
 
-
+    :::xml
     <requires filter="(language=fr)" field="dict"/>
-
 
 To add a filter, just add a 'filter' attribute in your dependency containing the LDAP filter. iPOJO will select only provider matching with this filter.
 
 When using a filter, you can also use the `modified` callback invoked when a matching service is *modified* but still matches the filter:
 
+    :::java
     @Component
     public class MyComponent {
     
@@ -447,12 +471,11 @@ When using a filter, you can also use the `modified` callback invoked when a mat
     
         @Modified
         public void modifiedDictionary() { ... }
-    
     }
-
 
 Moreover, filters can be customized instance by instance. It is possible to specialize / change / add the filter of a component in the instance description. It is useful when you want to create different instances of the same component, with different filter. To achieve this customization, you have to identify your dependency with the 'id' attribute. Then, you can adapt the filter of the dependency in the instance description by using the property "requires.filters". In this property you can specify each dependency identified by its id and the new value of the filter.
 
+    :::xml
     <component 
        className="org.apache.felix.ipojo.example.FilteredDependency">
     	<requires field="m_foo" fiter="(foo.property=FOO)" id="id1">
@@ -480,18 +503,20 @@ The component type declares a service dependency with the 'id1' id. This depende
 ### Targeting a specific provider
 A service dependency can choose a specific provider. To achieve this, add a 'from' attribute in your requirement description such as in:
 
+    :::java
     @Requires(from="MyHelloProvider")
     private Hello m_hello;
 
 or in XML:
 
+    :::xml
     <requires from="MyHelloProvider" field="m_hello"/>
 
 iPOJO maps the `from` attribute to a specific filter : '|(instance.name=MyHelloProvider)(service.pid=MyHelloProvider)'. Then the dependency can only be fulfilled by a service matching this filter.
 
 Moreover, from attributes can be customized instance by instance. It is possible to specialize / change / add a 'from' attribute of a component in the instance configuration. It is useful when you want to create different instances of the same component, with different 'from' clauses. To do it, you have to identify your dependency with an 'id' attribute. Then, you can adapt the 'from' of the dependency in the instance configuration by using the property "requires.from". In this property you can specify each dependency identified by its id and the 'from' value.
 
-
+    :::xml
     <component 
        className="org.apache.felix.ipojo.example.FilteredDependency"
        name="FOO">
@@ -522,38 +547,45 @@ The FOO component type declares a service dependency with the 'id1' id. This dep
 ## Binding Policies
 
 Three binding policies are supported inside iPOJO.
-* Dynamic policy (default): the binding are managed      dynamically. At each injection, the same provider is injected if the      provider is always available. Else a new one is chosen. For aggregate      dependency, the array order does not change; new providers are placed at      the end of the array.
-* Static policy: the binding is static. So, once      bound a provider cannot disappear. If it disappears, the instance is      invalidated and cannot be revalidated without stopping and restarting the      instance.
-* Dynamic-priority policy: the binding is managed      dynamically but the injected provider is selected by using a ranking      policy. Two injections can return two different providers, is a new      provider is 'better' than the previous one, despite the first one is always      available. For aggregate dependency, the array is sorted.
+
+* Dynamic policy (default): the binding are managed dynamically. At each injection, the same provider is injected if the provider is always available. Else a new one is chosen. For aggregate dependency, the array order does not change; new providers are placed at the end of the array.
+* Static policy: the binding is static. So, once bound a provider cannot disappear. If it disappears, the instance is invalidated and cannot be revalidated without stopping and restarting the instance.
+* Dynamic-priority policy: the binding is managed dynamically but the injected provider is selected by using a ranking policy. Two injections can return two different providers, is a new provider is 'better' than the previous one, despite the first one is always available. For aggregate dependency, the array is sorted.
 
 
 A static binding is declared as following:
 
+    :::java
     @Requires(policy="static")
     private Hello[] m_hellos;
 
 or
 
+    :::xml
     <requires field="m_hellos" policy="static"/>
 
 
 A dynamic-priority binding is declared as following:
 
+    :::java
     @Requires(policy="dynamic-priority")
     private Hello[] m_hellos;
 
 or
-
+    
+    :::xml
     <requires field="m_hellos" policy="dynamic-priority"/>
 
 
 By default, the dynamic-priority policy uses the OSGi service ranking policy. However, it is possible to customize the policy by adding the '*comparator*' attribute. This attribute indicates the class name of a class implementing the `java.util.Comparator` interface. iPOJO creates an instance of your comparator and uses it to sort service references (so your customized comparator needs to be able to sort OSGi Service Reference).
 
+    :::java
     @Requires(policy="dynamic-priority", comparator=MyComparator.class)
     private Hello[] m_hellos;
 
 or
 
+    :::xml
     <requires field="m_hellos" policy="dynamic-priority" comparator="great.MyComparator"/>
 
 
@@ -563,6 +595,7 @@ or
 The instance implementation can use an optional dependency without any checking. Indeed, when an instance declares an optional dependency using field injection, iPOJO create on the fly a Nullable class implementing the service specification but doing nothing (mock object). Therefore, iPOJO cannot return a service to the instance, for an optional dependency, it returns a nullable object.
 
 A nullable object returns:
+
 * Null when the method returns an object
 * 0 when the method returns an int, log, byte, short, char, float or a double
 * False when the method return a boolean
@@ -571,11 +604,13 @@ You can check if the returned object is a nullable object with the test: *"myser
 
 You can disable the Nullable pattern too (activated by default). In this case, iPOJO injects `null` instead of a *Nullable* object. So, you can just test if your field is equals to *null* to check if the service is available. To disable the Nullable pattern, you need to add the 'nullable="false"' attribute in your service dependency description as follows:
 
+    :::java
     @Requires(optional=true, nullable=false)
     private LogService m_log;
 
 or
-
+    
+    :::xml
      <requires field="m_log" optional="true" nullable="false"/>
 
 
@@ -583,22 +618,24 @@ However, you can also indicate a *default-implementation* for your optional serv
 
 For example, the following component uses a default implementation for a Log Service dependency:
 
+    :::java
     @Requires(optional=true, default-implementation=MyLogService.class)
     private LogService m_log;
 
 or
-
+    
+    :::xml
     <requires field="m_log" optional="true" 
         default-implementation=
            "org.apache.felix.ipojo.example.default.MyLogService"/>
 
 If the log service is not available, iPOJO creates an object of the 'org.apache.felix.ipojo.example.default.MyLogService' class. This object is injected instead of a Nullable object. For instance, the default implementation can print messages on the System.err stream. The nullable object does no display anything.
 
-
 ## Note about Callbacks
 Dependency manages two type of callback: bind and unbind. A callback with a type "bind" is called each type that a service provider arrives and the binding is necessary. According to the cardinality of the dependency it means:
-* Simple dependency : at the firs binding and at      each rebinding to another service provider
-* Aggregate dependencies: each time that a service      provider arrives
+
+* Simple dependency : at the firs binding and at each rebinding to another service provider
+* Aggregate dependencies: each time that a service provider arrives
 
 An unbind callback is called each time that a *used* service provider goes away. For a simple dependency this method is called each time that the used service provider goes away. For a multiple dependency this method is called each time that a service provider goes away.
 
@@ -606,14 +643,13 @@ The method can receive in argument the service object or the service reference (
 
 ## Proxies
 Since iPOJO 1.6, iPOJO injects proxy objects. Those proxies are by default smart proxies and are design to be lightweight:
+
 * for scalar requirement : the service object is a proxy
 * for aggregate dependencies : iPOJO injects a smart collections
 
 The goal of the proxies is to hide the dynamism and more particularly the dynamism. So, you can gives a service dependency to another object, using the service object still supports the dynamism. For collections, you can iterate over the collection without managing the potential departures and arrivals of services. The proxy also manage that the component class and the delegate objects shared the same services is they are accessed in the same Thread.
 
 By default iPOJO injects proxy except for arrays. Moreover, it is possible to disable the proxy injection by adding `proxy=false` to the `requires` element (or to the `@Requires` and `@Bind` annotations). It is also possible to inject dynamic proxies (if the platform does not support dynamically generated classes). To enable dynamic proxies, set the system or bundle property `ipojo.proxy.type` to `dynamic-proxy`. You can also disable completely the proxy injection by setting the system property `ipojo.proxy` to `disabled`.
-
-
 
 ## Note on service interface discovery
 
