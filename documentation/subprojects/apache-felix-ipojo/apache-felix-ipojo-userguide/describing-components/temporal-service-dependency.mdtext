@@ -1,20 +1,17 @@
 translation_pending: true
 Title: Temporal Service Dependency
 
-
-
 # The temporal dependency handler
 
 *Regular service dependencies participate to the instance lifecycle. Moreover, the injected service object is either available or not available. A temporal dependency handler is a little different and provides a different resolution pattern. Indeed, the temporal dependency does not invalidate the instance. Moreover, if not available, the temporal dependency waits (and so blocks the current thread) for a provider. Of course, the maximum waiting time can be specified. If a timeout occurs, the handler throws a Runtime Exception.*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## Using the handler
 
 First of all, you need to configure the component type to use the handler such as:
 
+    :::xml
     <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
     <component
         className="org.apache.felix.ipojo.example.Temporal">
@@ -33,8 +30,9 @@ Using the field in your code will try to find a matching service provider. If a 
 
 You can also use annotations:
 
+    :::java
     @Component
-    public class Temporal {
+    public class UseTemporal {
     
         @Temporal // was org.apache.felix.ipojo.handler.temporal.Requires before the 1.7.0
         private FooService mytemporal;
@@ -45,22 +43,26 @@ You can also use annotations:
 ## Configuration
 
 The handler has only one mandatory attributes:
+
 * Field: the implementation field supporting the dependency (not needed with annotations)
 
 The handler supports on specific optional attributes:
-* Timeout: the maximum time waited in order to find a provider (default: 3s). For an infinite timeout, the timeout value is either "infinite" or "-1".
-* OnTimeout: specifies the action to do when the timeout occurs. Four actions are supported: null, nullable, empty-array, default-implementation. By default, no action is specified, and an exception occurs when the timeout is reached.
+
+* Timeout: the maximum time waited in order to find a provider (default: 3s). For an infinite timeout, the timeout value is either `infinite` or `-1`.
+* OnTimeout: specifies the action to do when the timeout occurs. Four actions are supported: `null`, `nullable`, `empty-array`, `default-implementation`. By default, no action is specified, and an exception occurs when the timeout is reached.
 
 The attributes from "regular" dependencies are also supported (like filter).
-OnTimeout actions
+
+## OnTimeout actions
 
 When a timeout occurs, you can specify what the handler must do. By default, it throws a runtime exception. However, four others actions can be set in the 'onTimeout' attribute.
-* The null action (onTimeout="null") will return "null" instead of the service object.
-* The "nullable" action (onTimeout="nullable") will return a "Nullable" object instead of the service object. This object is a fake but can be used a regular service object. However, invoking actions on this object will do nothing. In the case of aggregate dependency, an array containing a "nullable" object is returned.
-* The empty action is only supported for aggregate dependency (the field must be an array). In this case, an empty-array is returned. (In the 1.2.0 version, the `empty-array` attribute became `empty`)
-* The default-implementation action is a little different. Instead of specifying the action, you need to specify the default-implementation (the qualified class name) that you want to use. For example onTimeout="o.a.f.i.MyDefaultLogServiceImpl". In this case, the handler will inject an instance of this object instead of a real service object. On aggregate dependency, an array with one default-implementation object is returned.
 
+* The null action (`onTimeout="null"`) will return `null` instead of the service object.
+* The nullable action (`onTimeout="nullable"`) will return a "Nullable" object instead of the service object. This object is a fake but can be used a regular service object. However, invoking actions on this object will do nothing. In the case of aggregate dependency, an array containing a "nullable" object is returned.
+* The empty action is only supported for aggregate dependency (the field must be an array). In this case, an empty array is returned. (In the 1.2.0 version, the `empty-array` attribute became `empty`)
+* The default-implementation action is a little different. Instead of specifying the action, you need to specify the default-implementation (the qualified class name) that you want to use. For example `onTimeout="o.a.f.i.MyDefaultLogServiceImpl"`. In this case, the handler will inject an instance of this object instead of a real service object. On aggregate dependency, an array with one default-implementation object is returned.
 
+    :::xml
     <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
     <component
         className="org.apache.felix.ipojo.example.Temporal">
@@ -76,6 +78,7 @@ When a timeout occurs, you can specify what the handler must do. By default, it 
 
 This is equivalent to:
 
+    :::java
     @Component
     public class Temporal {
     
@@ -88,6 +91,7 @@ This is equivalent to:
 ## Collection injection
 Temporal dependencies can also be injected inside Collection. To achieve this, the 'specification' attribute must indicates the looked specification, and the field must be a Collection.
 
+    :::xml
     <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
     <component
         className="org.apache.felix.ipojo.example.Temporal">
@@ -103,6 +107,7 @@ Temporal dependencies can also be injected inside Collection. To achieve this, t
 
 This is equivalent to:
 
+    :::java
     @Component
     public class Temporal {
     
@@ -115,11 +120,11 @@ This is equivalent to:
 ## Proxy injection
 Temporal dependencies can also be injected as proxies. So it is possible to give the temporal dependency to helper object.
 On 'scalar' dependencies, the service lookup is executed during an operation invocation. Timeout policies are also executed is the lookup failed.
-On aggregate dependencies (necessary Collection), the service lookup is executed when the iterator(), and toArray(...) methods are invoked. Timeout policies 
-are also executed if the lookup failed. Proxies are enabled by default since the 1.7.0 version.
+On aggregate dependencies (necessary Collection), the service lookup is executed when the iterator(), and toArray(...) methods are invoked. Timeout policies are also executed if the lookup failed. Proxies are enabled by default since the 1.7.0 version.
 
 To set a temporal dependency as a proxy, just add the `proxy` attribute as follows:
 
+    :::xml
     <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
     <component
         className="org.apache.felix.ipojo.example.Temporal">
@@ -134,13 +139,5 @@ To set a temporal dependency as a proxy, just add the `proxy` attribute as follo
     </iPOJO>
 
 
-By default, proxies are *enabled*. Setting proxy to `false` disables them.
-
-## Download 
-
-The handler is available on the [download]({{ refs.download.path }}) page.
-Sources are available on the Felix trunk at the following location: [http://svn.apache.org/repos/asf/felix/trunk/ipojo/handler/temporal](http://svn.apache.org/repos/asf/felix/trunk/ipojo/handler/temporal).
-  
-  
-  
+By default, proxies are **enabled**. Setting proxy to `false` disables them.
   

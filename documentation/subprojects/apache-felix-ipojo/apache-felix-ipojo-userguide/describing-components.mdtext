@@ -8,12 +8,9 @@ Title: Describing components
 
 *This section describes the different features supported by iPOJO. This page aims to answer to the following question: "What can I write in my iPOJO component descriptor?"*
 
-{div:class=toc}
-[TOC]
-{div}
-
 ## Core features
 Core features are provided with the iPOJO runtime bundles. You can use it directly, as soon as the iPOJO runtime is deployed.
+
 * [How to require a service]({{ refs.service-requirement-handler.path }})
 * [How to publish and provide a service]({{ refs.providing-osgi-services.path }})
 * [How to react to lifecycle state changes]({{ refs.lifecycle-callback-handler.path }})
