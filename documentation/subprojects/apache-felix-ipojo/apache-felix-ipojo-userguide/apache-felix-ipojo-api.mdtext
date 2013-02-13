@@ -7,29 +7,29 @@ Title: apache-felix-ipojo-api
 
 *The iPOJO API provides a third way to describe iPOJO components and instances. With the API, you can dynamically create new components types and create instances from them. Your component types are described with a Java API. To use the API, deploy and start the iPOJO-API bundle and the iPOJO core bundle.*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## A simple example
 
 Let's imagine a simple component providing a service Foo. The following code is the implementation class of our component:
-{code:java}
-package org.example.service.impl;
 
-import org.example.service.Foo;
+    :::java    
+    package org.example.service.impl;
 
-public class FooImpl implements Foo {
+    import org.example.service.Foo;
 
-    public void doSomething() {
-        // Do something...
+    public class FooImpl implements Foo {
+
+        public void doSomething() {
+            // Do something...
+        }
+
     }
 
-}
-
     
-    To create the component type and an instance of the component type just create a class, get the bundle context (either from a Bundle-Activator, or from an iPOJO component), and write the following code:
-    {code:java}
+To create the component type and an instance of the component type just create a class, get the bundle context (either from a Bundle-Activator, or from an iPOJO component), and write the following code:
+
+    :::java
     new PrimitiveComponentType()
         .setBundleContext(context)
         .setClassName(FooImpl.class.getName())
@@ -38,23 +38,24 @@ public class FooImpl implements Foo {
 
 
 So, now let's imagine another component using this service. The following code is the implementation class of this component type:
-{code:java}
-package org.example.service.impl;
 
-import org.example.service.Foo;
+    :::java
+    package org.example.service.impl;
 
-public class MyComponentImpl {
-    private Foo myFoo;
+    import org.example.service.Foo;
 
-    public void start() {
-        myFoo.doSomething();
+    public class MyComponentImpl {
+        private Foo myFoo;
+
+        public void start() {
+            myFoo.doSomething();
+        }
+
     }
 
-}
+It is a regular iPOJO component expecting to get a Foo service in the `myFoo` field. It also has a method executed when the instance is valid using the Foo service. To describe this component, just write the following lines:
 
-    
-    It is a regular iPOJO component expecting to get a Foo service in the {{myFoo}} field. It also has a method executed when the instance is valid using the Foo service. To describe this component, just write the following lines:
-    {code:java}
+    :::java
     new PrimitiveComponentType()
         .setBundleContext(context)
         .setClassName(MyComponentImpl.class.getName())
@@ -62,17 +63,12 @@ public class MyComponentImpl {
         .setValidateMethod("start")
         .createInstance();
 
-
 ## Deploying the API
 Before being able to create component types at runtime, you need to deploy 3 bundles:
+
 * iPOJO (core)
 * iPOJO Composite
 * iPOJO API
-
-You can deploy all these bundles in one step thanks to OBR:
-
-    obr start "Apache Felix iPOJO API"
-
 
 ## Primitive Component Type basics
 
@@ -87,25 +83,27 @@ To set validate and invalidate methods, just call the `setValidate(method)` and 
 ## Declaring services
 To declare that a component provides a service, add a new service to your primitive component type.
 The Service object can be configured. By default, it exposed every implemented interface (regular iPOJO behavior). So, you can:
+
  * Add service property
  * Set the creation strategy
  * Set the exposed service specifications
 
-{code:java}
-new PrimitiveComponentType()
-    .setBundleContext(context)
-    .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
-    .addService(new Service()
-        .addProperty(new ServiceProperty()
-            .setField("myServiceProperty")
-            .setName("sample.myProperty"))
-        .setCreationStrategy(Service.INSTANCE_STRATEGY))
-    .createInstance();
+ :::java
+    new PrimitiveComponentType()
+        .setBundleContext(context)
+        .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
+        .addService(new Service()
+            .addProperty(new ServiceProperty()
+                .setField("myServiceProperty")
+                .setName("sample.myProperty"))
+            .setCreationStrategy(Service.INSTANCE_STRATEGY))
+        .createInstance();
 
     
-    h2. Service Dependencies
-    To declare a service dependency, create and add a Dependency object. The dependency object offers all the iPOJO service dependency features. You can set the injected field and/or bind/unbind methods. Here is an example:
-    {code:java}
+## Service Dependencies
+To declare a service dependency, create and add a Dependency object. The dependency object offers all the iPOJO service dependency features. You can set the injected field and/or bind/unbind methods. Here is an example:
+
+    :::java
     new PrimitiveComponentType()
         .setBundleContext(context)
         .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
@@ -116,27 +114,28 @@ new PrimitiveComponentType()
            )
         .createInstance();
 
-
 ## Properties
 Thanks to the `addProperty` method, you can create component properties. Here is some example of properties:
-{code:java}
-new PrimitiveComponentType()
-    .setBundleContext(context)
-    .setClassName(MyComponentImpl.class.getName())
-    .addProperty(new Property()
-        .setField("myProperty")
-        .setValue("default-value")
+
+    :::java
+    new PrimitiveComponentType()
+        .setBundleContext(context)
+        .setClassName(MyComponentImpl.class.getName())
+        .addProperty(new Property()
+            .setField("myProperty")
+            .setValue("default-value")
+            )
+        .addProperty(new Property()
+            .setMethod("setMethod")
+            .setName("prop")
         )
-    .addProperty(new Property()
-        .setMethod("setMethod")
-        .setName("prop")
-    )
-    .createInstance();
+        .createInstance();
 
     
-    h2. Temporal Dependencies
-    Temporal dependencies are also supported: 
-    {code:java}
+## Temporal Dependencies
+Temporal dependencies are also supported: 
+
+    :::java
     new PrimitiveComponentType()
             .setBundleContext(context)
             .setClassName(MyComponentImpl.class.getName())
@@ -167,25 +166,26 @@ The API provides bridge to get access to the iPOJO introspection API. The intros
 
 ## Singleton Component Type
 If you are sure to create only one instance of your component type, you can use the singleton component type class. This is a kind of primitive component type, but when you start it (with the `create` method), it will automatically create an instance.
-{code:java}
- PrimitiveComponentType type = new SingletonComponentType()
-            .setBundleContext(context)
-            .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
-            .addDependency(new Dependency().setField("myFoo"))
-            .setValidateMethod("start");
-        
-        ((SingletonComponentType) type)
-            .setObject(new MyComponentImpl(5)) // Inject a pojo object
-            .create();// Create an instance
 
+    :::java
+     PrimitiveComponentType type = new SingletonComponentType()
+                .setBundleContext(context)
+                .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
+                .addDependency(new Dependency().setField("myFoo"))
+                .setValidateMethod("start");
+            
+            ((SingletonComponentType) type)
+                .setObject(new MyComponentImpl(5)) // Inject a pojo object
+                .create();// Create an instance
+
+The type created with the singleton component type are set to `private` by default. Instead of calling the `start` method, you have to call one of the `create` methods to start the type and create the instance.
     
-    The type created with the singleton component type are set to {{private}} by default. Instead of calling the {{start}} method, you have to call one of the {{create}} methods to start the type and create the instance.
+You can also set the contained POJO object by using the `setObject` method. The given object MUST be compatible with the component implementation class.
     
-    You can also set the contained POJO object by using the {{setObject}} method. The given object MUST be compatible with the component implementation class.
-    
-    h2. Using external handlers
-    iPOJO is extensible... So, it makes sense that the API is also extensible. So component type provides a method allowing to add external handler configuration:
-    {code:java}
+## Using external handlers
+iPOJO is extensible... So, it makes sense that the API is also extensible. So component type provides a method allowing to add external handler configuration:
+
+    :::java
     return new PrimitiveComponentType()
             .setBundleContext(context)
             .setClassName(HostImpl.class.getName())
@@ -197,117 +197,126 @@ If you are sure to create only one instance of your component type, you can use 
 
 
 The `addHandler` method allows you to add any handler description. A handler description is an object of a class implementing `org.apache.felix.ipojo.api.HandlerConfiguration`. Handler provider willing to support the API have to provide this class. For example, the example above uses `Whiteboard` that is the Whiteboard pattern handler description. This class is very simple, and is shown below:
-{code:java}
-public class Whiteboard implements HandlerConfiguration {
-    
-    public static final String NAME = "wbp";
-    
-    public static final String NAMESPACE = "org.apache.felix.ipojo.whiteboard";
-    
-    private String arrival;
-    
-    private String departure;
-    
-    private String modification;
-    
-    private String filter;
-    
-    public Whiteboard onArrival(String method) {
-        arrival = method;
-        return this;
-    }
-    
-    public Whiteboard onDeparture(String method) {
-        departure = method;
-        return this;
-    }
-    
-    public Whiteboard onModification(String method) {
-        modification = method;
-        return this;
-    }
-    
-    public Whiteboard setFilter(String fil) {
-        filter = fil;
-        return this;
-    }
 
-    public Element getElement() {
-        ensureValidity();
-        // Create the root element.
-        Element element = new Element(NAME, NAMESPACE);
-        // Mandatory attributes
-        element.addAttribute(new Attribute("onArrival", arrival));
-        element.addAttribute(new Attribute("onDeparture", departure));
-        element.addAttribute(new Attribute("filter", filter));
+    :::java
+    public class Whiteboard implements HandlerConfiguration {
         
-        // Optional attribute
-        if (modification != null) {
-            element.addAttribute(new Attribute("onModification", modification));
-        }        
+        public static final String NAME = "wbp";
         
-        return element;
-    }
-
-    private void ensureValidity() {
-        if (arrival == null) {
-            throw new IllegalStateException("The whiteboard pattern configuration must have a onArrival method");
-        }
-        if (departure == null) {
-            throw new IllegalStateException("The whiteboard pattern configuration must have a onDeparture method");
-        }
-        if (filter == null) {
-            throw new IllegalStateException("The whiteboard pattern configuration must have a filter");
+        public static final String NAMESPACE = "org.apache.felix.ipojo.whiteboard";
+        
+        private String arrival;
+        
+        private String departure;
+        
+        private String modification;
+        
+        private String filter;
+        
+        public Whiteboard onArrival(String method) {
+            arrival = method;
+            return this;
         }
         
-    }
+        public Whiteboard onDeparture(String method) {
+            departure = method;
+            return this;
+        }
+        
+        public Whiteboard onModification(String method) {
+            modification = method;
+            return this;
+        }
+        
+        public Whiteboard setFilter(String fil) {
+            filter = fil;
+            return this;
+        }
+
+        public Element getElement() {
+            ensureValidity();
+            // Create the root element.
+            Element element = new Element(NAME, NAMESPACE);
+            // Mandatory attributes
+            element.addAttribute(new Attribute("onArrival", arrival));
+            element.addAttribute(new Attribute("onDeparture", departure));
+            element.addAttribute(new Attribute("filter", filter));
+            
+            // Optional attribute
+            if (modification != null) {
+                element.addAttribute(new Attribute("onModification", modification));
+            }        
+            
+            return element;
+        }
+
+        private void ensureValidity() {
+            if (arrival == null) {
+                throw new IllegalStateException("The whiteboard pattern configuration must have a onArrival method");
+            }
+            if (departure == null) {
+                throw new IllegalStateException("The whiteboard pattern configuration must have a onDeparture method");
+            }
+            if (filter == null) {
+                throw new IllegalStateException("The whiteboard pattern configuration must have a filter");
+            }
+            
+        }
 
     
-    The only required method is {{getElement}} returning the Element-Attribute structure representing the handler configuration (this uses the internal iPOJO data format). If the metadata cannot be generated, the class throws IllegalStateExceptions.
+The only required method is `getElement` returning the `Element-Attribute` structure representing the handler configuration (this uses the internal iPOJO data format). If the metadata cannot be generated, the class throws IllegalStateExceptions.
     
-    h2. Creating composition with the API
-    The API also allows you to create iPOJO compositions in a pretty simple way. So you can create compositions:
-    * containing internal instances
-    * importing services
-    * instantiating sub-services
-    * exporting services
-    * providing services (by delegation)
+## Creating compositions with the API
+The API also allows you to create iPOJO compositions in a pretty simple way. So you can create compositions:
+
+* containing internal instances
+* importing services
+* instantiating sub-services
+* exporting services
+* providing services (by delegation)
     
-    Here are some examples:
-    {code:java|title=Contained instances}
-     PrimitiveComponentType prov = createAProvider(); // Create a primitive type
-     PrimitiveComponentType cons = createAConsumer(); // Create another primitive type
+Here are some examples:
+
+#### Creating instances inside a composite:
+
+    :::java
+    PrimitiveComponentType prov = createAProvider(); // Create a primitive type
+    PrimitiveComponentType cons = createAConsumer(); // Create another primitive type
            
-           CompositeComponentType type = new CompositeComponentType()
-               .setBundleContext(context)
-               .setComponentTypeName("comp1")
-               .addInstance(new Instance(prov.getFactory().getName())) // Create an instance in the composite
-               .addInstance(new Instance(cons.getFactory().getName())); 
-           
-           ComponentInstance ci = type.createInstance();
+    CompositeComponentType type = new CompositeComponentType()
+           .setBundleContext(context)
+           .setComponentTypeName("comp1")
+           .addInstance(new Instance(prov.getFactory().getName())) // Create an instance in the composite
+           .addInstance(new Instance(cons.getFactory().getName())); 
+       
+    ComponentInstance ci = type.createInstance();
 
-{code:java|title=Importing services}
- CompositeComponentType type = new CompositeComponentType()
+#### Importing a service
+
+    :::java
+    CompositeComponentType type = new CompositeComponentType()
            .setBundleContext(context)
            .setComponentTypeName("comp3")
-           .addSubService(new InstantiatedService() // Importation
-              .setSpecification(Foo.class.getName())
-              .setOptional(true));
+           .addSubService(new ImportedService() // Importation
+            .setSpecification(Foo.class.getName())
+            .setOptional(true));
 
-    {code:java|title=Instantiated sub-services}
-      CompositeComponentType type = new CompositeComponentType()
-               .setBundleContext(context)
-               .setComponentTypeName("comp2")
-               .addSubService(new InstantiatedService()  // Instantiated service
-                  .setSpecification(Foo.class.getName()))
-               .addInstance(new Instance(cons.getFactory().getName()));
+#### Instantiating a service
 
-{code:java|title=Exported Services}
-CompositeComponentType type = new CompositeComponentType()
+    :::java
+    CompositeComponentType type = new CompositeComponentType()
+           .setBundleContext(context)
+           .setComponentTypeName("comp2")
+           .addSubService(new InstantiatedService()  // Instantiated service
+           .setSpecification(Foo.class.getName()))
+           .addInstance(new Instance(cons.getFactory().getName()));
+
+#### Exporting a service
+
+    :::java
+    CompositeComponentType type = new CompositeComponentType()
            .setBundleContext(context)
            .setComponentTypeName("compExport")
            .addSubService(new InstantiatedService().setSpecification(Foo.class.getName()))
            .addService(new ExportedService()
-                .setSpecification(Foo.class.getName())); // Exports a service
-
-    \\
+           .setSpecification(Foo.class.getName())); // Exports a service
