@@ -1,4 +1,6 @@
 Options FollowSymLinks
+Options +Indexes 
+
 #RewriteEngine On
 
 # RewriteBase /ipojo/schemas/
