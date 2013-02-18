@@ -7,6 +7,7 @@ Excerpt: * The Dependency Manager Core, Annotation, Runtime version 3.1.0 and Co
     * The UserAdmin file-store 1.0.2 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (December 06, 2012)
     * The UserAdmin MongoDB-store 1.0.1 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (December 06, 2012)
 
+* The Apache Felix SCR Generator 1.4.0, Maven SCR Plugin 1.10.0, SCR Ant Task 1.4.0, SCR Annotations 1.8.0, and SCR DS Annotations 1.0.2 releases are now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (Februrary 18, 2013)
 * The Framework 4.2.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (February 12, 2013)
 * The Dependency Manager Core, Annotation, Runtime version 3.1.0 and Compat, Shell version 3.0.1 are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (January 28, 2013)
 * The iPOJO Core, Composite and Annotations 1.8.6 are now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (January 10, 2013)
