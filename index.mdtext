@@ -15,7 +15,9 @@ The original Confluence based site is currently still available at
 
 # News 
 
-{{ refs.news.headers.excerpt }}
+<ul id="newsExcerpt">
+</ul>
+
 
 Refer to the news [archive]({{ refs.news.path }}) for all news.
 
@@ -45,3 +47,14 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [Web Console]({{ refs.apache-felix-web-console.path }}) - A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
 
 Several other unreleased subprojects also exist, please refer to the [Subprojects]({{ refs.subprojects.path }}) page for more. To see some projects using Felix subprojects, refer to the [Projects Using Felix]({{ refs.projects-using-felix.path }}) documentation.
+
+
+<script src="/res/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $.get("/news.html", function(news) {
+                var $newsExcerpt = $(news).find('li').slice(0,5);
+                $('#newsExcerpt').append($newsExcerpt);
+            });
+        });
+</script>
