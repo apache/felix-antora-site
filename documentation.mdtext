@@ -208,7 +208,7 @@ And for the Perl modules:
 
     :::sh
     $ sudo cpan install XML::Atom::Feed
-    $ sudo cpan install XML::Atom::Parser
+    $ sudo cpan install XML::RSS::Parser
     $ sudo cpan install XML::Parser::Lite
     $ sudo cpan install XML::RSS::Parser::Lite
     $ sudo cpan install Net::Twitter
