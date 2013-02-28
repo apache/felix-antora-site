@@ -17,6 +17,13 @@ The basic steps for releasing are:
     * `svn add` the artifacts to Subversion repository and `svn rm` the artifacts from the previous release
 * [Announce the release](#create-an-announcement)
 
+<div class="note">
+The Apache Felix PMC appreciates all committers playing release manager for the projects they
+maintain. Due to restrictions imposed on us, only members of the PMC are actually able to
+commit the releases to the distribution repository (See [Publish the release candidate](#promoting-the-release)).
+In this case please ask a member of the PMC to actually publish the release artifacts. Thanks.
+</div>
+
 ## Prerequisites
 
 To prepare or perform a release you *MUST BE* at least an Apache Felix Committer.
@@ -176,6 +183,11 @@ If the vote passes:
 * [Update the Site](#update-the-site)
 
 ### Upload the Artifacts
+
+<div class="note">
+If you are not a member of the Apache Felix PMC you might have to ask a member of
+the PMC to execute this step.
+</div>
 
 We use the distribution mechanism as described in [How do I upload a release (newer way)?](http://www.apache.org/dev/release.html#upload-ci)
 
