@@ -20,7 +20,8 @@ The basic steps for releasing are:
 <div class="note">
 The Apache Felix PMC appreciates all committers playing release manager for the projects they
 maintain. Due to restrictions imposed on us, only members of the PMC are actually able to
-commit the releases to the distribution repository (See [Publish the release candidate](#promoting-the-release)).
+commit the releases to the distribution repository (See <a href="#promoting-the-release">Publish the release candidate</a>
+:).
 In this case please ask a member of the PMC to actually publish the release artifacts. Thanks.
 </div>
 
