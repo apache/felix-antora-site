@@ -3,16 +3,16 @@ Title: Apache Felix Framework Usage Documentation
 
 # Apache Felix Framework Usage Documentation
 
-* [Downloading the Framework]({{ refs.-downloading-framework.path }})
-* [Starting the Framework]({{ refs.-starting-framework.path }})
-* [Framework Shell]({{ refs.-framework-shell.path }})
-** [Installing Bundles]({{ refs.-installing-bundles.path }})
-** [Web Proxy Issues when Installing Bundles]({{ refs.-installing-bundles-proxies.path }})
-* [Bundle Auto-Deploy]({{ refs.-auto-deploy.path }})
-* [Configuring the Framework]({{ refs.-configuring-framework.path }})
-** [System Property Substitution]({{ refs.-property-substitution.path }})
-* [Configuring Bundles]({{ refs.-configuring-bundles.path }})
-* [Feedback]({{ refs.-feedback.path }})
+* [Downloading the Framework](#downloading-the-framework)
+* [Starting the Framework](#starting-the-framework)
+* [Framework Shell](#framework-shell)
+    * [Installing Bundles](#installing-bundles)
+    * [Web Proxy Issues when Installing Bundles](#web-proxy-issues-when-installing-bundles)
+* [Bundle Auto-Deploy](#bundle-auto-deploy)
+* [Configuring the Framework](#configuring-the-framework)
+    * [System Property Substitution](#system-property-substitution)
+* [Configuring Bundles](#configuring-bundles)
+* [Feedback](#feedback)
 
 
 
@@ -39,8 +39,16 @@ The framework launcher starts the framework and installs and starts all bundles 
 Where `<cache-path>` is the path you want to use as the bundle cache. If you specify a relative cache path, then it will be treated as relative to the current working directory.
 
 <div class="info" markdown="1">
-**Useful Information**
-Previous versions of the framework prompted for a profile name when executed. The profile name was used to create a directory inside `.felix/` in the user home directory. This approach allowed users to have different sets of bundles for different purposes, e.g., testing, production, etc. If this behavior is still desired, it is very easy to mimic. Modify `conf/config.properties` to include "`felix.cache.rootdir=$\{user.home}/.felix`". Now, if you start Felix with something like "`java -jar bin/felix.jar foo`", it will use "`$\{user.home}/.felix/foo/`" as the bundle cache directory, where "`$\{user.home\`}" is automatically substituted with the appropriate system property by the launcher.
+<b>Useful Information</b><br/>
+Previous versions of the framework prompted for a profile name when executed. The profile name
+was used to create a directory inside <code>.felix/</code> in the user home directory. This
+approach allowed users to have different sets of bundles for different purposes, e.g., testing,
+production, etc. If this behavior is still desired, it is very easy to mimic. Modify
+<code>conf/config.properties</code> to include "<code>felix.cache.rootdir=${user.home}/.felix</code>".
+Now, if you start Felix with something like "<code>java -jar bin/felix.jar foo</code>", it will use
+"<code>${user.home}/.felix/foo/</code>" as the bundle cache directory, where
+"<code>${user.home}</code>" is automatically substituted with the appropriate system property by
+the launcher.
 </div>
 
 
@@ -50,8 +58,11 @@ Previous versions of the framework prompted for a profile name when executed. Th
 The main way to interact with the framework is via the supplied Apache Felix Gogo shell. After starting the framework, type `help` into the shell to see the list of the available commands and `help <command-name>` to get help for a specific command.
 
 <div class="info" markdown="1">
-**Useful Information**
-In Gogo, command names are made up of two parts: `<scope>:<name>`. This is similar to a fully qualified class name in Java and is used to avoid naming collisions. If the `<name>` portion of the command is unique, then you only need to type it. If not, then you must either type the full `<scope>:<name>` or arrange the scope search path accordingly.
+<b>Useful Information</b><br/>
+In Gogo, command names are made up of two parts: <code>&lt;scope&gt;:&lt;name&gt;</code>. This is similar
+to a fully qualified class name in Java and is used to avoid naming collisions. If the
+<code>&lt;name&gt;</code> portion of the command is unique, then you only need to type it. If not,
+then you must either type the full <code>&lt;scope&gt;:&lt;name&gt;</code> or arrange the scope search path accordingly.
 </div>
 
 To install bundles, use the `felix:install` command, which is described in more detail in the next [sub-section]({{ refs.-installing-bundles.path }}). To list installed bundles, use the `felix:lb` command. To stop the framework type `stop 0` to stop the System Bundle; any installed bundles will automatically be reloaded (and potentially restarted) the next time you launch with the associated cache.
@@ -93,8 +104,13 @@ The `felix:stop` command is used to stop a bundle and the `felix:uninstall` comm
 Bundles can be updated using the `felix:update` command. The update command allows you to specify an URL from which to retrieve the updated bundle, but if one is not specified it will try to update the bundle from the bundle's `Bundle-UpdateLocation` manifest attribute, if present, or the bundle's original location URL.
 
 <div class="info" markdown="1">
-**Useful Information**
-When you use `felix:update` or `felix:uninstall`, the changes appear to take effect immediately, but in reality the changes are only partially enacted. If a bundle is updated or uninstalled and it was exporting packages, these packages are not removed until the framework is refreshed using the `PackageAdmin` service. The Felix shell offers a convenient `refresh` command for this purpose. This is the correct behavior as defined by the OSGi specification.
+<b>Useful Information</b><br/>
+When you use <code>felix:update</code> or <code>felix:uninstall</code>, the changes appear to take
+effect immediately, but in reality the changes are only partially enacted. If a bundle is updated
+or uninstalled and it was exporting packages, these packages are not removed until the framework
+is refreshed using the <code>PackageAdmin</code> service. The Felix shell offers a convenient
+<code>refresh</code> command for this purpose. This is the correct behavior as defined by the OSGi
+specification.
 </div>
 
 For an introduction to writing bundles and services, refer to the Felix bundle tutorial.
