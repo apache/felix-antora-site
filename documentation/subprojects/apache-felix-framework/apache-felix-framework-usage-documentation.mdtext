@@ -11,8 +11,6 @@ Title: Apache Felix Framework Usage Documentation
 * [Configuring Bundles](#configuring-bundles)
 * [Feedback](#feedback)
 
-This page has been translated to serbian: [Dokumentacija za upotrebu okvira Apache Felix-a](http://science.webhostinggeeks.com/apache-felix-framework)
-
 ## Downloading the Framework
 
 Go to the [downloads]({{ refs.downloads.path }}) page and download the latest Felix framework distribution.
