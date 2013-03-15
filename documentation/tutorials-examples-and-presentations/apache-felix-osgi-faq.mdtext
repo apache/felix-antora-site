@@ -1,7 +1,4 @@
-translation_pending: true
-Title: Apache Felix OSGi FAQ
-
-# Apache Felix OSGi Frequently Asked Questions
+Title: OSGi Frequently Asked Questions
 
 [TOC]
 
@@ -24,15 +21,15 @@ Regarding (1), if the classes come from a private package (i.e., it is **not** e
 
 If no other bundles are using the exported packages, then the new classes will become available immediately since the old version of the classes are no longer needed. On the other hand, if any other bundles are using the exported packages, then the new classes will **not** become available immediately since the old version is still required by any dependent bundles. In this case, the new classes will not be made available until `PackageAdmin.refreshPackages()` is called (this can be invoked in the Felix shell using the `refresh` command). 
 
-There is one partial exception to this latter case, it occurs when the exporting bundle does **not** also import its own exported packages (see "[Should a bundle import its own exported packages?]({{ refs.-import-and-export.path }})" below for more information on this topic). In this case, the new classes become immediately accessible to the updated exporting bundle, but not to the dependent bundles; the dependent bundles continue to see the old version of the classes. This situation generally requires `PackageAdmin.refreshPackages()` to be invoked to bring the bundles back to a useful state.
+There is one partial exception to this latter case, it occurs when the exporting bundle does **not** also import its own exported packages (see "[Should a bundle import its own exported packages?](#should-a-bundle-import-its-own-exported-packages)" below for more information on this topic). In this case, the new classes become immediately accessible to the updated exporting bundle, but not to the dependent bundles; the dependent bundles continue to see the old version of the classes. This situation generally requires `PackageAdmin.refreshPackages()` to be invoked to bring the bundles back to a useful state.
 
 This is the normal update process as defined by the OSGi specification. Updating a bundle is a two-step process, where older versions of exported packages are kept around until explicitly refreshed. This is done to reduce disruption when performing several updates.
 
 ## Should a service provider/consumer bundle be packaged with its service API packages?
 
-There is no easy answer to this question and it largely depends on the specific usage scenario. The OSGi specification had originally suggested that it was good practice to embed service API packages in the service provider bundle. In this case in OSGi R4, the service provider should both [export and import]({{ refs.-import-and-export.path }}) the service API packages, which was the default for previous versions of the OSGi specification.
+There is no easy answer to this question and it largely depends on the specific usage scenario. The OSGi specification had originally suggested that it was good practice to embed service API packages in the service provider bundle. In this case in OSGi R4, the service provider should both [export and import](#should-a-bundle-import-its-own-exported-packages) the service API packages, which was the default for previous versions of the OSGi specification.
 
-The OSGi specification never had an explicit stance on whether or not a consumer bundle should embed its dependent service API packages; although, it would not appear to be a best practice. Logically, there is some sense to this approach, since it potentially allows the consumer bundle to gracefully handle broken service dependencies. Of course, this depends on whether there is anything the bundle can do in the face of broken dependencies. If service API packages are embedded in the consumer bundle, then it should [export and import]({{ refs.-import-and-export.path }}) the packages. An alternative approach in this case is to dynamically import the service API (or even use optional imports if the dependency should only be considered once).
+The OSGi specification never had an explicit stance on whether or not a consumer bundle should embed its dependent service API packages; although, it would not appear to be a best practice. Logically, there is some sense to this approach, since it potentially allows the consumer bundle to gracefully handle broken service dependencies. Of course, this depends on whether there is anything the bundle can do in the face of broken dependencies. If service API packages are embedded in the consumer bundle, then it should [export and import](#should-a-bundle-import-its-own-exported-packages) the packages. An alternative approach in this case is to dynamically import the service API (or even use optional imports if the dependency should only be considered once).
 
 The main advantages of embedding service API packages in bundles are that the dependencies can always be resolved and it does not require installing a lot of other bundles to resolve the dependencies. There are disadvantages, however. One disadvantage is resource consumption caused by potential code duplication. Probably a more serious disadvantage is that it makes it harder to dynamically swap out providers.
 
@@ -53,6 +50,7 @@ If your bundle only exports its packages, then it is forcing the framework to wi
 
 The main time you want to export only, is if your bundle is purely a library bundle, then its packages will only be used if they are needed. Another case might be if you have tightly coupled bundles sharing implementation packages. However, if your bundle will be started and especially if the exported packages define service interfaces or are referenced from service interfaces, then you will generally want to export and import them.
 
+
 ## Why is my bundle not able to see annotations at run time?
 
 This is typically a class loading issue. At runtime the JVM will only return annotations that are visible to the current class loader, so if your bundle doesn't import the appropriate package(s) then you won't see them.
@@ -60,3 +58,61 @@ This is typically a class loading issue. At runtime the JVM will only return ann
 This is not a bug, as such, it is simply how OSGi class loading works - your bundle cannot see classes that its hasn't imported (or acquired via `Require-Bundle`). It is also part of the design of annotations, since annotated classes are supposed to continue to load and resolve even if their annotation types aren't available on the class path. This lets you annotate a class with EJB3 annotations, for example, but also use it in a non-EJB container where you won't then see the EJB3 annotations.
 
 Try importing the annotation package inside your bundle to resolve the visibility issue.
+
+
+## How to provide optional services?
+
+Imagine a bundle wants to provide a service only if a consumer is actually
+using the service. To increase the complexity lets assume the API for the
+optional service may not always be available. So assuming there is no
+service consumer, the bundle should not fail to start if the API is not
+available.
+
+Lets illustrate with a concrete example: Consider a bundle executes some
+business logic. Optionally the bundle provides information through the
+[Apache Felix Web Console]({{ refs.apache-felix-web-console.path }}). The
+bundle should resolve and be active regardless of whether the web console is
+present or not.
+
+The OSGi Core specification has two helpful mechanism at hand for these
+situations: `ServiceFactory` and `DynamicImport-Package`. With the `ServiceFactory`
+a place holder object is registered with the Service Registry instead of
+the actual service object. Only when the service is actually requested, will
+the `ServiceFactory` create the service object.
+
+The second mechanism is a bit frowned upon in the OSGi community because it
+has the potential to be overused and thus break the promise of OSGi to be
+explicit with the requirements of a bundle. In the specific context we are
+using the `DynamicImport-Package`, though, I think it is worth using. This
+mechanism allows deferring to wire a particular package to the moment, the
+respective API is actually used.
+
+Here's how to implement the the example from above:
+
+1. Create a `ServiceFactory`
+    :::java
+    private class PluginServiceFactory {
+        private final BusinessObject bo;
+        public Object getService(Bundle bundle, ServiceRegistration registration) {
+            return new BusinessObjectPlugin(bo);
+        }
+        public void ungetService(Bundle bundle, ServiceRegistration registration, Object service) {
+            // no cleanup required, have GC do the rest
+        }
+    }
+2. Register the service
+    :::java
+    Hashtable props = new Hashtable();
+    props.put("", "Business Object");
+    props.put("", "bo");
+    bundleContext.registerService("javax.servlet.Servlet",
+        new PluginServiceFactory(bo),
+        props);
+3. Dynamically import the API
+    :::text
+    DynamicImport-Package: javax.servlet;javax.servlet.http;version=2.3
+
+For an example of using this pattern, you might want to look at the
+[Apache Felix JAAS bundle](http://svn.apache.org/repos/asf/felix/trunk/jaas),
+particularly the [POM File](http://svn.apache.org/repos/asf/felix/trunk/jaas/pom.xml)
+and the [Activator class](http://svn.apache.org/repos/asf/felix/trunk/jaas/src/main/java/org/apache/felix/jaas/internal/Activator.java) with the `ServiceFactory`.
