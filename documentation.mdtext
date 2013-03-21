@@ -157,9 +157,7 @@ generated in [the staging site](http://felix.staging.apache.org).
 <div class="info">
 <p>To generate the site locally, you must have checked out the complete SVN to access the tools:</p>
 
-<div class="codehilite"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">MARKDOWN_SOCKET</span><span class="o">=</span><span class="s2">&quot;$PWD/tools/build/../markdown.socket&quot;</span>
-<span class="nv">$ </span><span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;$PWD/tools/build&quot;</span>
-<span class="nv">$ </span>svn <span class="s2">https://svn.apache.org/repos/asf/felix/site/ felix-site</span>
+<div class="codehilite"><pre><span class="nv">$ </span>svn <span class="s2">https://svn.apache.org/repos/asf/felix/site/ felix-site</span>
 </pre></div>
 </div>
 
