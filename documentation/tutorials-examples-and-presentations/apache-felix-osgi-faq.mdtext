@@ -90,6 +90,7 @@ respective API is actually used.
 Here's how to implement the the example from above:
 
 1. Create a `ServiceFactory`
+
     :::java
     private class PluginServiceFactory {
         private final BusinessObject bo;
@@ -101,6 +102,7 @@ Here's how to implement the the example from above:
         }
     }
 2. Register the service
+
     :::java
     Hashtable props = new Hashtable();
     props.put("", "Business Object");
@@ -109,6 +111,7 @@ Here's how to implement the the example from above:
         new PluginServiceFactory(bo),
         props);
 3. Dynamically import the API
+
     :::text
     DynamicImport-Package: javax.servlet;javax.servlet.http;version=2.3
 
