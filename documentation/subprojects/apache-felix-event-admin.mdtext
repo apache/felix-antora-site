@@ -151,7 +151,7 @@ Each of the aforementioned events actually contains a wider set of properties. C
 
 The Apache Felix Event Admin implementation is trying the deliver the events as fast as possible. Events sent from different threads are sent in parallel. Events from the same thread are sent in the order they are received (this is according to the spec).
 A timeout can be configured which is used for event handlers. If an event handler takes longer than the configured timeout to process an event, it is blacklisted. Once a handler is in a blacklist, it doesn't get sent any events anymore.
-The Felix Event Admin can be configured either through framework properties or through the configuration admin. This is a list of configuration properties:
+The Felix Event Admin can be configured either through framework properties or through the configuration admin using PID `org.apache.felix.eventadmin.impl.EventAdmin`. This is a list of configuration properties:
 |Function|Property Name|Type and Default|Description|
 |--|--|--|
 |Cache Size|org.apache.felix.eventadmin.CacheSize|Integer, 30|The size of various internal caches. The default value is 30. Increase in case of a large number (more then 100) of services. A value less then 10 triggers the default value.|
