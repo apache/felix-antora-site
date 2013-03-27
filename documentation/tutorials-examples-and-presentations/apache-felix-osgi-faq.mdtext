@@ -101,6 +101,7 @@ Here's how to implement the the example from above:
             // no cleanup required, have GC do the rest
         }
     }
+
 2. Register the service
 
     :::java
@@ -110,6 +111,7 @@ Here's how to implement the the example from above:
     bundleContext.registerService("javax.servlet.Servlet",
         new PluginServiceFactory(bo),
         props);
+
 3. Dynamically import the API
 
     :::text
