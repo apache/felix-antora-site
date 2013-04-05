@@ -9,7 +9,7 @@ Title: Apache Felix iPOJO
 				<p class="lead">A flexible and extendible service component model</p>
 			</div>	
 			<div class="span6">
-				<img src="http://placehold.it/350x150">
+				<img src="/ipojo/ipojo-logo-150.png">
 			</div>	
  			</div>
  		</header>	
@@ -18,8 +18,8 @@ Title: Apache Felix iPOJO
 	<div class="row">
  				<div class="span6">
  				<h3>What's iPOJO</h3>	
- 				<strong>iPOJO</strong> is a <em>service component runtime</em> aiming to simplify OSGi application development. It natively supports <strong>ALL</strong> the dynamism of OSGi. Based on the concept of POJO, application logic is developed easily. Non-functional properties are just injected in the component at runtime.</p>
- 				<img src="http://placehold.it/350x150">
+ 				<strong>iPOJO</strong> is a <em>service component runtime</em> aiming to simplify OSGi application development. It natively supports <strong>ALL</strong> the dynamism of OSGi. iPOJO is made to run the modern applications exhibiting modularity and requiring runtime adaption and autonomic behavior.</p>
+ 				<img src="/ipojo/cubes.png" class="offset1">
  				</div>
  				<div class="span6">
  					<h3>Main features</h3>
@@ -30,6 +30,7 @@ Title: Apache Felix iPOJO
 						<li><i class="icon-ok"></i> iPOJO manages the component instance lifecycle and the environment dynamics as never before possible</li>
 						<li><i class="icon-ok"></i> iPOJO provides a powerful composition system to create highly dynamic applications</li>
 						<li><i class="icon-ok"></i> iPOJO supports annotations, XML, and a Java-based API to define components</li>
+						<li><i class="icon-ok"></i> iPOJO applications are natively dynamic, adaptable and autonomic-ready</li>
 					</ul>
 				</div> 					
 			</div>

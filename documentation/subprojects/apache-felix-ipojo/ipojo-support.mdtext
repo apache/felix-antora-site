@@ -1,16 +1,9 @@
 translation_pending: true
 Title: ipojo-support
 
-
-# Support
-
-*Two types of support are provided for Apache Felix iPOJO. The community support is free but relies on the availability of iPOJO developers. Professional supports are provided by companies guarantying a fast and efficient feedback.*
-
-## Community Support
-
 ### Mailing List
 
-iPOJO is hosted as an Apache Felix sub-project, you can ask questions by sending mails to the Felix mailing lists. There is two mailing list:
+iPOJO is hosted as an Apache Felix sub-project, you can ask questions by sending mails to the Felix mailing lists. There is two mailing lists:
 * The users mailing list
 * The developer mailing list
 
@@ -20,13 +13,13 @@ Either, if you want to be involved, subscribe to the Felix dev mailing list by s
 
 ### Bug Tracker
 
-If you want a features, an improvement or report a bug, feel free to open an issue on the Apache Felix bug tracker:
+If you want a features, an improvement or report a bug, open an issue on the Apache Felix bug tracker:
 
 * Go to the [https://issues.apache.org/jira/browse/FELIX](https://issues.apache.org/jira/browse/FELIX) page
 * Create an account or log in.
 * Open the 'Create a new issue in project Felix' form.
 * Then, select the Felix project and the issue type (improvement, bug, wish, new feature...)
-* At the second step, select the *iPOJO* component and fill out the form (please select the affected version only)
+* At the second step, select the **iPOJO** component and fill out the form (please select the affected version only)
 * Finally click on the create button
 
 You can also watch the issue to monitor progress. The iPOJO team tries to give you quick and frequent feedback on issues.

@@ -269,50 +269,187 @@ Finally, the `org.osgi.service.log` is imported because iPOJO delegates log to a
 
 The following table highlights some of the features of each system, it does not attempt to highlight every feature of each.
 
-| Dependency injection &nbsp; | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| Callback injection | Yes | Yes (public method only) | Yes |
-| Constructor injection | No | Yes | Yes |
-| Field injection | No | No | Yes |
-| Setter injection | Yes | Yes | Yes |
-| Proxy injection | No | Yes | Yes |
-| List injection | No | Yes | Yes |
-| Nullable injection | No | No | Yes |
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Dependency Injection</th>
+      <th>Declarative Service</th>
+      <th>Blueprint</th>
+      <th>iPOJO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Callback injection</strong></td>
+      <td>Yes</td>
+      <td>Yes (public method only)</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Constructor injection</strong></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Field injection</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Proxy injection</strong></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Collections (List, Set...) injection</strong></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Mock (<em>nullable, default-implementation</em>) injection</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<br/>
 
-
-| Lifecycle | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| Callbacks (activate/deactivate) | Yes | Yes | Yes |
-| Factory pattern | Yes | Yes | Yes |
-| Lazy initialization | Yes | Yes | Yes |
-| Damping | No | Yes | Yes |
-| Field synchronization | No | No | Yes |
-| Component lifecycle control | Yes | Partial | Yes |
-| Service lifecycle control | No | No | Yes |
-
-
-| Configuration | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| Property configuration | No | Yes | Yes |
-| Field configuration | No | No | Yes |
-| Configuration Admin | Yes | No | Yes |
-
-
-| Services | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| Custom attribute type | No | Yes | Yes |
-| Lazy initialization | Yes | Yes | Yes |
-| Composite services | No | No | Yes |
-
-
-| Component description | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| XML | Yes | Yes | Yes |
-| Java annotations | No | No | Yes |
-| API | No | No | Yes |
-
-
-| Nonfunctional | Declarative Services | Blueprint | iPOJO |
-|--|--|--|--|
-| Multiple providers | Yes | Yes | No |
-  
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Lifecycle</th>
+      <th>Declarative Service</th>
+      <th>Blueprint</th>
+      <th>iPOJO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Lifecycle callbacks (activate / deactivate)</strong></td>
+      <td>Yes</td>
+      <td>Yes (public method only)</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Factory / Prototype</strong></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Lazzy initialization</strong></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Damping</strong></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Handling of the synchronization</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Code can impact the lifecycle</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Code can impact the service publication</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<br/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Configuration</th>
+      <th>Declarative Service</th>
+      <th>Blueprint</th>
+      <th>iPOJO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Property configuration</strong></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Property injectin inside field</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Property injection using <em>setters</em></strong></td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Configuration admin support</strong></td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Code can update the configuration</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<br/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Component configuration</th>
+      <th>Declarative Service</th>
+      <th>Blueprint</th>
+      <th>iPOJO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>XML</strong></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Annotations</strong></td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Defining components using an API</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td><strong>Reconfiguring components using an API</strong></td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>

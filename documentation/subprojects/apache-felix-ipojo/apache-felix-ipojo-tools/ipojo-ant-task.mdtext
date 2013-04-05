@@ -8,31 +8,30 @@ Title: iPOJO Ant Task
 
 *iPOJO Ant Task allows automating the iPOJO manipulation process within an Ant build process. This page explains how to use the iPOJO Ant Task and how to combine them with the BND Tasks.*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## Downloading the iPOJO Ant Task
 
-The iPOJO Ant Task can ben downloaded from [here]({{ refs.download.path }}).
+The iPOJO Ant Task can ben downloaded from [here](http://felix.apache.org/downloads.cgi).
 
 ## How to use the Ant Task
 
 The iPOJO Ant task take an input bundle and a metadata file and create the final (i.e. manipulated) bundle.
 To use the task declare a target in your build.xml as:
-{div:class=pom}
-<target name="main">
-&nbsp;&nbsp;&nbsp;&nbsp;{color:red}<!-- Change the path to point on the iPOJO Ant task jar-->{color}
-&nbsp;&nbsp;&nbsp;&nbsp;<taskdef name="ipojo"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="org.apache.felix.ipojo.task.IPojoTask"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}classpath="org.apache.felix.ipojo.ant-1.6.0.jar"{color}/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<ipojo
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input="foo.jar"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata = "meta.xml"
-&nbsp;&nbsp;&nbsp;&nbsp;/>
-</target>
-{div}
+	:::xml
+	<target name="main">
+        <!-- Change the path to point on the iPOJO Ant task jar-->
+        <taskdef name="ipojo"
+                classname="org.apache.felix.ipojo.task.IPojoTask"
+                classpath="org.apache.felix.ipojo.ant-1.8.6.jar"/>
+
+        <ipojo
+                input="foo.jar"
+                metadata = "meta.xml"
+        />
+	</target>
+
 First, define the new task. Then simply use it. The input argument describe the input bundle (must exists) and the metadata argument describes the metadata file (must exist too). The input bundle must be a well-formed bundle.
 
 ## Ant Task Arguments
@@ -47,83 +46,86 @@ The iPOJO Ant Task as three different arguments:
 ## Combining the iPOJO Ant Task and BND
 
 The iPOJO Ant Task requires an input bundle. BND is a tools simplifying bundle creation. So, it is possible to combine the two tools to create your bundle automatically. The following build.xml shows you an example of combination.
-{div:class=pom}
-<project default="main" basedir=".">
-&nbsp;&nbsp;&nbsp;&nbsp;<target name="bnd">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}<!-- Change to use the latest BND version --{color}{color:red}>{color}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<taskdef resource="aQute/bnd/ant/taskdef.properties"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}classpath="bnd-0.0.178.jar"{color}/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<bnd
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classpath="src"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eclipse="true"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;failok="false"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exceptions="true"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}files="foo.bnd"{color}/>
-&nbsp;&nbsp;&nbsp;&nbsp;</target>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<target name="main" depends="bnd">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <echo message="Call main"/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}<!-- Change the path to point on the iPOJO Ant task jar -->{color}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<taskdef name="ipojo"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="org.apache.felix.ipojo.task.IPojoTask"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}classpath="org.apache.felix.ipojo.ant-1.6.0.jar"{color} />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ipojo
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}input="foo.jar"{color}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata = "meta.xml"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; />
-&nbsp;&nbsp;&nbsp;&nbsp;</target>
-</project>
-{div}
+	:::xml
+	<project default="main" basedir=".">
+        <target name="bnd">
+            <!-- Change to use the latest BND version -->
+            <taskdef resource="aQute/bnd/ant/taskdef.properties"
+                classpath="bnd-0.0.178.jar"/>
+            <bnd
+                classpath="src"
+                eclipse="true"
+                failok="false"
+                exceptions="true"
+                files="foo.bnd"/>
+        </target>
+
+        <target name="main" depends="bnd">
+             <echo message="Call main"/>
+            <!-- Change the path to point on the iPOJO Ant task jar -->
+            <taskdef name="ipojo"
+                classname="org.apache.felix.ipojo.task.IPojoTask"
+                classpath="org.apache.felix.ipojo.ant-1.8.6.jar" />
+
+			<!-- the input attribute must fit the .bnd file name -->                
+            <ipojo
+                input="foo.jar"
+                metadata = "meta.xml"
+             />
+        </target>
+	</project>
+
 The first target creates the bundle with BND. More details on the BND Ant Task are available here. To combine the BND output and the iPOJO input, the iPOJO input need to be the same as the BND file but with the ".jar" extension. For instance, the BND file is foo.bnd, so the input jar must be foo.jar.
 To be sure that the BND bundle is already created, you can add the "*depends*" clause in the target using the iPOJO task to the target creating the bundle.
 
 However, it is possible to create only one target doing the two operations as:
-{div:class=pom}
-<target name="main">
-&nbsp;&nbsp;&nbsp;&nbsp;{color:red}<!-- Change to use the latest BND version -->{color}
-&nbsp;&nbsp;&nbsp;&nbsp;<taskdef
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resource="aQute/bnd/ant/taskdef.properties"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}classpath="bnd-0.0.178.jar"/>{color}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}<!-- Change the path to point on the iPOJO Ant task jar -->{color}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<taskdef name="ipojo"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classname="org.apache.felix.ipojo.task.IPojoTask"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{color:red}classpath="org.apache.felix.ipojo.ant-1.6.0.jar"{color}/>
+	:::xml
+	<target name="main">
+        <!-- Change to use the latest BND version -->
+        <taskdef
+            resource="aQute/bnd/ant/taskdef.properties"
+            classpath="bnd-0.0.178.jar"/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<bnd
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classpath="src"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eclipse="true"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;failok="false"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exceptions="true"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files="{color:red}foo.bnd{color}"/>
+        <!-- Change the path to point on the iPOJO Ant task jar -->
+        <taskdef name="ipojo"
+            classname="org.apache.felix.ipojo.task.IPojoTask"
+            classpath="org.apache.felix.ipojo.ant-1.8.6.jar"/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<ipojo
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input="{color:red}foo.jar{color}"
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;metadata = "meta.xml"/>
-</target>
-{div}
+        <bnd
+                classpath="src"
+                eclipse="true"
+                failok="false"
+                exceptions="true"
+                files="foo.bnd"/>
+
+        <ipojo
+            input="foo.jar"
+            metadata = "meta.xml"/>
+	</target>
+
 
 ## Directory manipulation
 
 The manipulator can take a directory in input. In this case, classes from this folder is manipulated. You can also set the manifest file location too. Here in an example of configuration using this mode:
 
+	:::xml	
     <target name="manipulate">		
-         <ipojo
-    	dir="${output..}" <!-- Manipulated directory -->
-    	metadata="metadata.xml"
-    	manifest="META-INF/MANIFEST.MF"  <!-- Manifest location -->
+    	<!-- Set the manipulated directory and manifest location --> 
+        <ipojo
+    	  dir="${output..}"
+    	  metadata="metadata.xml"
+    	  manifest="META-INF/MANIFEST.MF"
         />
     </target>
 
 
-<div class="info" markdown="1">
-**Manifest location**
-If not set, the manifest is searched in the given `directory/META-INF` folder (*i.e.* `$dir/META-INF/MANIFEST.MF`).
+<div class="alert alert-info" markdown="1">
+<h4>Manifest location</h4>
+If not set, the manifest is searched in the given <code>directory/META-INF</code> folder (<em>i.e.</em> <code>$dir/META-INF/MANIFEST.MF</code>).
 </div>
 
-## Conclusion
-
-Subscribe to the Felix users mailing list by sending a message to [mailto:users-subscribe@felix.apache.org]({{ refs.mailto-users-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [mailto:users@felix.apache.org].
   
   
   

@@ -5,7 +5,7 @@ Title: Dive into the iPOJO Manipulation depths
 
 # Dive into the iPOJO Manipulation depths
 
-iPOJO (primitive) components are managed using byte code manipulation. Don't be afraid, you don't have to be fluent in byte code to understand components ☺. This page explains how the manipulation works and how your class file is transformed. This manipulation takes care to *NOT* change the behavior of the manipulated class.
+iPOJO (primitive) components are managed using byte code manipulation. Don't be afraid, you don't have to be fluent in byte code to understand components. This page explains how the manipulation works and how your class file is transformed. This manipulation takes care to **NOT** change the behavior of the manipulated class.
 
 [TOC]
 
