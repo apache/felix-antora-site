@@ -1,4 +1,3 @@
-translation_pending: true
 Title: Apache Felix Service Component Runtime
 
 [TOC]
@@ -186,16 +185,19 @@ The following properties are supported:
 
 | Property | Default Value | Description |
 |--|--|--|
-| `ds.loglevel` | 1 | Defines a logging level at which messages are logged. This configuration property is converted to an `int` number used as the OSGi Log Service logging level.
-* If the property is a number, the `int` value of the number is used
-* If the property is a string parseable to an `int` the parsed value is used
-* If the property is any of the strings *debug*, *info*, *warn*, or *error*, the respective log level of `4`, `3`, `2`, or `1` is used.
-* Otherwise, unless the `ds.showtrace` or `ds.showerrors` property is set, the default value is assumed |
+| `ds.loglevel` | 1 | Defines a logging level at which messages are logged. This configuration property is converted to an `int` number used as the OSGi Log Service logging level. |
 | `ds.showtrace` | `false` | sets the log level to `debug` if set to `true` and the `ds.loglevel` cannot be converted to a value log level |
 | `ds.showerrors` | `true` | Disables logging completely if set to `false` and the `ds.loglevel` cannot be converted to a value log level and the `ds.showtrace` is not set to `true` |
 | `ds.factory.enabled` | `false` | Enables Component Factory functionality not compliant with the Declarative Services 1.1 specification if set to `true`. Only set this if you really know you need this. See the *Non-Standard Component Factory Behaviour* section below for more details. |
 | `ds.ctworkaround` | `false` | Enables workaround functionality to pass the OSGi CT. Generally this property should not be set to `true` because it enables behaviour which is not compliant with the Declarative Services 1.1 specification. See [FELIX-2526](https://issues.apache.org/jira/browse/FELIX-2526) for details. |
 | `ds.delayed.keepInstances` | `false` | Whether or not to keep instances of delayed components once they are not referred to any more. The Declarative Services specifications suggests that instances of delayed components are disposed off if there is not used any longer. Setting this flag causes the components to not be disposed off and thus prevent them from being constantly recreated if often used. Examples of such components may be EventHandler services. The default is to dispose off unused components. See [FELIX-3039](https://issues.apache.org/jira/browse/FELIX-3039) for details. |
+
+The `ds.loglevel` property is treated as follows:
+
+* If the property is a number, the `int` value of the number is used
+* If the property is a string parseable to an `int` the parsed value is used
+* If the property is any of the strings *debug*, *info*, *warn*, or *error*, the respective log level of `4`, `3`, `2`, or `1` is used
+* Otherwise, unless the `ds.showtrace` or `ds.showerrors` property is set, the default value is assumed
 
 This configuration mechanism is implemented in the [ScrConfiguration](http://svn.apache.org/repos/asf/felix/trunk/scr/src/main/java/org/apache/felix/scr/impl/config/ScrConfiguration.java) and its helper classes.
 
