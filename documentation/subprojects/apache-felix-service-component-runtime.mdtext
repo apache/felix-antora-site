@@ -19,7 +19,7 @@ First of all the component must be implemented in a simple Java class. The Decla
 
 For the sake of example, lets define a very simple class, which implements a `java.util.Comparator` service:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sample/SampleComparator.java</B></DIV><DIV class="codeContent panelContent">
+    :::java
     package sample;
     import java.util.Comparator;
     public class SampleComparator implements Comparator
@@ -38,9 +38,9 @@ This is of course a very simple and not very intelligently implemented comparato
 
 The next step consists of writing the declaration. I usually put these files in the `OSGI-INF` folder of the bundle, but the files may be placed anywhere within the bundle or any of the bundle's fragments as long as its path is listed in the `Service-Component` bundle manifest header.
 
-So here we go with the file:
+So here we go with the `OSGI-INF/sample.xml` file:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>OSGI-INF/sample.xml</B></DIV><DIV class="codeContent panelContent">
+    :::xml
     <?xml version="1.0" encoding="UTF-8"?>
     <component name="sample.component" immediate="true">
       <implementation class="sample.SampleComparator" />
@@ -71,7 +71,7 @@ It may well be that the component needs to be notified, when it is activated and
 
 Here is the initial class extended with activation and deactivation methods:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>sample/SampleComparator.java</B></DIV><DIV class="codeContent panelContent">
+    :::java
     package sample;
     import java.util.Comparator;
     import org.osgi.service.component.ComponentContext;
@@ -105,7 +105,7 @@ The next step would probably be to do some service binding. This is somewhat mor
 
 To use the service, the reference must be declared in the service declaration in an *reference* element. Here is the respective declaration for a log service to lookup:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>LogService Reference</B></DIV><DIV class="codeContent panelContent">
+    :::xml
     <component...>
        ...
         <reference name="http"
@@ -119,7 +119,7 @@ To use the service, the reference must be declared in the service declaration in
 
 To use this service you call the `ComponentContext.getService(String)` method, for example in the `activate` method:
 
-
+    :::java
     protected void activate(ComponentContext context)
     {
         HttpService http = ( HttpService ) context.locateService( "http" );
@@ -134,7 +134,7 @@ When using the event strategy, you will want to store the service in a private f
 
 First here is the reference declaration:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>LogService Reference</B></DIV><DIV class="codeContent panelContent">
+    :::xml
     <component...>
        ...
        <reference name="log"
@@ -151,6 +151,7 @@ First here is the reference declaration:
 And here is some code:
 
 
+    :::java
     private LogService log;
     
     protected void activate(ComponentContext context)
@@ -202,7 +203,7 @@ This configuration mechanism is implemented in the [ScrConfiguration](http://svn
 ## Non-Standard Component Factory Behaviour
 
 <div class="note" markdown="1">
-If you don't know what this section is about, just ignore it and leave the `ds.factory.enabled` configuration property unconfigured.
+If you don't know what this section is about, just ignore it and leave the <code>ds.factory.enabled</code> configuration property unconfigured.
 </div>
 
 Versions of the Apache Felix Declarative Services implementation prior to 1.2.0 supported handling of Component Factory components which is not specification compliant.
@@ -242,7 +243,7 @@ The administrative API commands are also available in the Gogo shell where the s
 
 The API consists of the main interface `org.apache.felix.scr.ScrService` and two helper interfaces `org.apache.felix.scr.Component` describing a registered component and `org.apache.felix.scr.Reference` describing a single reference of a registered component. To access the management API, client applications just ask for the `ScrService` as usual:
 
-
+    :::java
     ....
     ServiceReference scrServiceRef = bundleContext.getServiceReference( ScrService.class.getName() );
     ScrService scrService = (ScrService) bundleContext.getService(scrServiceRef);
