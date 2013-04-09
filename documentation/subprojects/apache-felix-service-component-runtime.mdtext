@@ -1,5 +1,4 @@
-Title: Apache Felix Service Component Runtime
-
+Title: Apache Felix Service Component Runtime (SCR)
 [TOC]
 
 The Apache Felix Service Component Runtime described by the OSGi Declarative Services Specification is implemented by the `org.apache.felix.scr` bundle. As specified, the components must be declared in XML-formatted descriptor files which in turn must be listed in the `Service-Component` header of the declaring bundle.
