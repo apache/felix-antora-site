@@ -1,75 +1,64 @@
 translation_pending: true
 Title: iPOJO-Arch-Command
 
+# iPOJO architecture commands
 
+*Architecture introspection is required when the system doesn't work as expected. In this case, having a quick access to instances states and interconnection is a stringent requirement. The architecture commands allows getting these data from the Felix Shell, from the Equinox shell and Gogo.*
 
-# iPOJO `Arch` command
-*Architecture introspection is required when the system doesn't work as expected. In this case, having a quick access to instances states and interconnection is a stringent requirement. The `arch` command allows getting these data from the Felix Shell, from the Equinox shell and Gogo.*
-
-*Note* : The Gogo commands are not yet released but are available from the iPOJO trunk.
-
-{div:class=toc}
 [TOC]
-{div}
-
-## Download
-The Felix commands is available from the [download]({{ refs.download.path }}) page.
-The Equinox command sources are available [http://svn.apache.org/repos/asf/felix/sandbox/clement/ipojo-utils/arch-equinox/](http://svn.apache.org/viewvc/felix/sandbox/clement/ipojo-utils/arch-equinox/). To compile sources, just launch the `mvn clean install` and deploy the resulting bundle.
 
 ## Installation
-Once you get the bundle, just install and start it in the OSGi Framework shell:
-{code:xml|title=Felix}
-start file:/BUNDLE_URL.jar
 
-    {code:xml|title=Equinox}
-    install file:/BUNDLE_URL.jar
-    Bundle X installed
-    start X
+According to your shell, download the adequate bundles from <a href="http://felix.apache.org/downloads.cgi">the Felix download page</a>
 
-{code:xml|title=Gogo}
-install file:/ARCH*GOGO*URL.jar
-Bundle X installed
-start X
 
+## Gogo
+
+The Gogo commands are the following:
+
+* `ipojo:instances` (or just `instances`) lists the instances and state
+* `ipojo:instance $instance_name` (or just `instance $instance_name`) displays the complete information about the specified $instance_name
+* `ipojo:factories` (or just `factories`) lists the available public factories
+* `ipojo:factory $factory_name` (or just `factory $factory_name`) displays complete information about the factory $factory_name
+* `ipojo:handlers` (or just `handlers` lists available handlers
     
-    h2. Equinox and Felix Shells
-    
-    Then, you can use it to introspect the system by launching the {{arch}} command.
+For example:
 
-arch => displays instances name & state (equivalent to arch \-instances)
-arch -instance $instance*name => displays complete information about the instance $instance*name
-arch -factories => display the list of available factories
-arch -factory $factory*name => display complete information about the factory $factory*name
-arch -handlers => list available handlers
-
-    
-    h2. Gogo Shell Commands
-    The set of commands available from Gogo is a little bit different:
-    * {{ipojo:instances}} (or just {{instances}}) lists the instances and state
-    * {{ipojo:instance $instance_name}} (or just {{instance $instance_name}}) displays the complete information about the specified $instance_name
-    * {{ipojo:factories}} (or just {{factories}}) lists the available public factories
-    * {{ipojo:factory $factory_name}} (or just {{factory $factory_name}}) displays complete information about the factory $factory_name
-    * {{ipojo:handlers}} (or just {{handlers}} lists available handlers
-    
-    
-    h2. Reading instance architecture 
-    When you launch the {{arch}} command (or {{instances}} on Gogo), the list of created instances (enabling architecture introspection) is displayed.
-    {code:title=Felix or Equinox}
-    -> arch
-    Instance ArchCommand -> valid
-    Instance spell.english.EnglishDictionary-0 -> valid
-    Instance spell.checker.SpellCheck-0 -> valid
-    Instance spell.gui.SpellCheckerGui-0 -> valid
-
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Gogo</B></DIV><DIV class="codeContent panelContent">
+    :::sh
     $ instances
     Instance ArchCommand -> valid
     Instance spell.english.EnglishDictionary-0 -> valid
     Instance spell.checker.SpellCheck-0 -> valid
     Instance spell.gui.SpellCheckerGui-0 -> valid
 
-To get more information on an instance, launch `arch -instance the*instance*name` (or `instance the*instance*name` on Gogo)
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Felix or Equinox</B></DIV><DIV class="codeContent panelContent">
+    $ instance spell.checker.SpellCheck-0                                    
+    instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
+            requires optional="false" aggregate="false" state="resolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler"
+            provides service.id="36" state="registered" specifications="[spell.services.SpellChecker]"
+                property value="spell.checker.SpellCheck" name="factory.name"
+                property value="spell.checker.SpellCheck-0" name="instance.name"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"    
+
+
+## Equinox and Felix Shells
+    
+On Equinox and Felix (old) shell, the command is named _arch_:
+
+* arch => displays instances name & state (equivalent to arch \-instances)
+* arch -instance $instance*name => displays complete information about the instance $instance*name
+* arch -factories => display the list of available factories
+* arch -factory $factory*name => display complete information about the factory $factory*name
+* arch -handlers => list available handlers
+
+    :::sh
+    -> arch
+    Instance ArchCommand -> valid
+    Instance spell.english.EnglishDictionary-0 -> valid
+    Instance spell.checker.SpellCheck-0 -> valid
+    Instance spell.gui.SpellCheckerGui-0 -> valid
+
     -> arch -instance spell.checker.SpellCheck-0                                    
     instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
     	handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
@@ -80,23 +69,17 @@ To get more information on an instance, launch `arch -instance the*instance*name
     			property value="spell.checker.SpellCheck-0" name="instance.name"
     	handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Gogo</B></DIV><DIV class="codeContent panelContent">
-    $ipojo:instance spell.checker.SpellCheck-0                                    
-    instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
-    		requires optional="false" aggregate="false" state="resolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler"
-    		provides service.id="36" state="registered" specifications="[spell.services.SpellChecker]"
-    			property value="spell.checker.SpellCheck" name="factory.name"
-    			property value="spell.checker.SpellCheck-0" name="instance.name"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
-
+## Reading instance architecture:
 
 Instance architecture is organized as follows:
-On the first line, are displayed the component type (i.e. factory), the instance state (`valid` or `invalid`), the bundle from which the instance is created, and the instance name.
-Then, the information is organized handler by handler (a piece of container). For each handler plugged on the instance can participate to the instance architecture. For each handler its name (such as ` org.apache.felix.ipojo.handlers.dependency.DependencyHandler` for iPOJO service dependencies, ` org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler` for iPOJO service providing...) and the state (either `valid` or `invalid` are displayed. Remember that an instance is valid only and only if all plugged handlers are valid. 
-The `org.apache.felix.ipojo.handlers.dependency.DependencyHandler` provides data on service dependencies and more precisely on the state of service dependencies. In the previous example, the dependency on ` spell.services.DictionaryService` was resolved. On the following example, the same dependency is no more resolved:
 
+* On the first line, are displayed the component type (i.e. factory), the instance state (`valid` or `invalid`), the bundle from which the instance is created, and the instance name.
+* Then, the information is organized handler by handler (a piece of container). For each handler plugged on the instance can participate to the instance architecture. For each handler its name (such as ` org.apache.felix.ipojo.handlers.dependency.DependencyHandler` for iPOJO service dependencies, ` org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler` for iPOJO service providing...) and the state (either `valid` or `invalid` are displayed. Remember that an instance is valid only and only if all plugged handlers are valid. 
+* The `org.apache.felix.ipojo.handlers.dependency.DependencyHandler` provides data on service dependencies and more precisely on the state of service dependencies. In the previous example, the dependency on ` spell.services.DictionaryService` was resolved. On the following example, the same dependency is no more resolved.
+
+As an example, the following snippet dumps the architecture of an instance:
+
+    :::sh
     instance component.type="spell.checker.SpellCheck" state="invalid" bundle="8" name="spell.checker.SpellCheck-0"
     	handler state="invalid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
     		requires optional="false" aggregate="false" state="unresolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
@@ -109,22 +92,8 @@ The `org.apache.felix.ipojo.handlers.dependency.DependencyHandler` provides data
 Notes that, the instance also becomes invalid and that the provided service is unregistered.
 If the provider comes back, the dependency becomes `resolved` and the instance becomes `valid`
 If an instance begins to use a service, the bound providers are described in the instance architecture:
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Felix or Equinox</B></DIV><DIV class="codeContent panelContent">
-    -> arch -instance spell.checker.SpellCheck-0 
-    instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
-    	object name="spell.checker.SpellCheck@e222eb"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
-    		requires optional="false" aggregate="false" state="resolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
-    			uses service.id="41" instance.name="spell.english.EnglishDictionary-0"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler"
-    		provides service.id="42" state="registered" specifications="[spell.services.SpellChecker]"
-    			property value="spell.checker.SpellCheck" name="factory.name"
-    			property value="spell.checker.SpellCheck-0" name="instance.name"
-    	handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
 
-
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Gogo</B></DIV><DIV class="codeContent panelContent">
-    $instance spell.checker.SpellCheck-0 
+    :::sh
     instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
     	object name="spell.checker.SpellCheck@e222eb"
     	handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
@@ -140,31 +109,38 @@ In the previous case, the dependency on ` spell.services.DictionaryService` use 
 You can also check created POJO objects (implementation class objet). Here, only one object was created (`spell.checker.SpellCheck@e222eb`).
 
 ## List available factories
-To list available factories (i.e. component types), launch the `arch -factories` command (or `factories` on Gogo):
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Felix or Equinox</B></DIV><DIV class="codeContent panelContent">
+You can access factory list using the `factories` gogo command or the `arch -factories` on Felix's shell. For every available (public) factories,the name and the state are displayed. A factory is valid if and only if all required handlers are available.
+
+    :::sh
     -> arch -factories
     Factory spell.checker.SpellCheck (VALID)
     Factory spell.gui.SpellCheckerGui (VALID)
     Factory spell.english.EnglishDictionary (VALID)
+    -> arch -factory spell.english.EnglishDictionary
+    factory implementation-class="spell.english.EnglishDictionary" state="valid" bundle="7" name="spell.english.EnglishDictionary"
+        provides specification="spell.services.DictionaryService"
+        missinghandlers list="[]"
+        requiredhandlers list="[org.apache.felix.ipojo:provides, org.apache.felix.ipojo:architecture]"
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Gogo</B></DIV><DIV class="codeContent panelContent">
+On Gogo:
+
+    :::sh
     $factories
     Factory spell.checker.SpellCheck (VALID)
     Factory spell.gui.SpellCheckerGui (VALID)
     Factory spell.english.EnglishDictionary (VALID)
-
-
-For each available (public) factories,the name and the sate are displayed. A factory is valid if and only if all required handlers are available. To get more information on a factory launch the `arch -factory factory*name` (or `factory factory*name` on Gogo) command:
-
+    $factory spell.english.EnglishDictionary
     factory implementation-class="spell.english.EnglishDictionary" state="valid" bundle="7" name="spell.english.EnglishDictionary"
-    	provides specification="spell.services.DictionaryService"
-    	missinghandlers list="[]"
-    	requiredhandlers list="[org.apache.felix.ipojo:provides, org.apache.felix.ipojo:architecture]"
+        provides specification="spell.services.DictionaryService"
+        missinghandlers list="[]"
+        requiredhandlers list="[org.apache.felix.ipojo:provides, org.apache.felix.ipojo:architecture]"    
 
 On the first line, you get the implementation class of the type, the state of the factory, the bundle declaring the type and the name of the type. You also get the list of required and missing handlers.
+
 ## List available handlers
-You can also list available handlers with the `arch -handlers` (or `handlers` on Gogo) command.
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Felix or Equinox</B></DIV><DIV class="codeContent panelContent">
+Like listing factories, you can get the list of handlers.
+    
+    :::sh
     -> arch -handlers
     Handler org.apache.felix.ipojo:controller (VALID)
     Handler org.apache.felix.ipojo:callback (VALID)
@@ -174,7 +150,9 @@ You can also list available handlers with the `arch -handlers` (or `handlers` on
     Handler org.apache.felix.ipojo:architecture (VALID)
     Handler org.apache.felix.ipojo.handler.whiteboard:wbp (VALID)
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Gogo</B></DIV><DIV class="codeContent panelContent">
+On Gogo:
+
+    :::sh
     $handlers
     Handler org.apache.felix.ipojo:controller (VALID)
     Handler org.apache.felix.ipojo:callback (VALID)

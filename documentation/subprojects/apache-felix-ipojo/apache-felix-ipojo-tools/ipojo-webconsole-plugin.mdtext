@@ -5,13 +5,12 @@ Title: iPOJO Webconsole Plugin
 
 # iPOJO Webconsole Plugin
 
-*If you like the [Apache Felix Web Console]({{ refs.apache-felix-web-console.path }}), you will be interested by the iPOJO plugin. This plugin gives you all the information about iPOJO instances, factories and handlers deployed on the framework.*
+*If you like the Apache Felix Web Console, you will be interested by the iPOJO plugin. This plugin gives you all the information about iPOJO instances, factories and handlers deployed on the framework.*
 
-{div:class=toc}
 [TOC]
-{div}
 
 ## Features
+
 * Lists created instances
 * Gives details about instances (state, factory, required services, provided services, used instances, and raw architecture)
 * Lists available factories
@@ -19,26 +18,10 @@ Title: iPOJO Webconsole Plugin
 * List available handlers
 * Instance and Factories are `navigable`, so you can easily understand the system architecture
 
-In other words, it replace the [`arch`]({{ refs.ipojo-arch-command.path }}) command.
-
 ## Using the plugin
 To use the plugin you need an OSGi platform with:
-* an HTTP Service ([Download]({{ refs.downloads.path }}))
+
+* a HTTP Service
 * The Apache Felix Webconsole
 * iPOJO 
-* The iPOJO Plugin (compiled with iPOJO)
-
-To start the web console, please refer to the [Apache Felix web console documentation]({{ refs.apache-felix-web-console.path }}).
-
-You can also use OBR to deploy the web console and the plugin:
-{code:none}
-obr start "Apache Felix Web Management Console"
-
-    
-    This command deploys an HTTP Service, the web console, iPOJO (core) and the plugin.
-    
-    h2. Screenshots
-    !Picture 5.png|thumbnail! !Picture 6.png|thumbnail! !Picture 7.png|thumbnail!
-    !Picture 8.png|thumbnail! !Picture 9.png|thumbnail! !Picture 10.png|thumbnail!
-    \\
-    \\
+* The iPOJO Web console plugin
