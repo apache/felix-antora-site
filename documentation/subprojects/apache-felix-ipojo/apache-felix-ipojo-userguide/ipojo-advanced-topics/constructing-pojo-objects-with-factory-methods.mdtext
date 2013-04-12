@@ -11,6 +11,7 @@ iPOJO allows you describing a factory method called to create POJO objects inste
 
 To use this feature you need to add the `factory-method` attribute in the Component element as illustrated below:
 
+    :::xml
     <component
     	className="org.apache.felix.ipojo.test.scenarios.component.FooProvider"
             factory-method="createProvider"
@@ -21,12 +22,13 @@ To use this feature you need to add the `factory-method` attribute in the Compon
 
 The specified method must be a *static* method of the implementation class returning an *instance of this implementation class*. The following code shows an example of usage:
 
-        public static FooProvider createProvider() {
-            if (singleton == null) {
-                singleton = new FooProvider();
-            }
-            return singleton;
+    :::java
+    public static FooProvider createProvider() {
+        if (singleton == null) {
+            singleton = new FooProvider();
         }
+        return singleton;
+    }
 
 
 This method must then call any valid constructor (potentially private) of the implementation class. 
@@ -35,14 +37,10 @@ However, be aware that if you create an instance by using a `factory-method`, th
 
 As for "normal" constructor, the method-factory can receive the bundle context in argument, such as in:
 
-        public static FooProvider createProvider (BundleContext bc) {
-            if (singleton == null) {
-                singleton = new FooProvider(bc);
-            }
-            return singleton;
+    :::java
+    public static FooProvider createProvider (BundleContext bc) {
+        if (singleton == null) {
+            singleton = new FooProvider(bc);
         }
-
-  
-  
-  
-  
+        return singleton;
+    }

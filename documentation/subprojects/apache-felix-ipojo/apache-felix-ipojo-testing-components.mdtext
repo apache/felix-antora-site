@@ -2,12 +2,12 @@ translation_pending: true
 Title: apache-felix-ipojo-testing-components
 
 
-
 # How to test iPOJO Components
 Testing components is a required step in the application development process. This page explains strategies to test iPOJO-based components and applications.
 
 ## Introduction
 Basically, we can distinguish 2 types of tests:
+
 * Unitary tests
 * Integration tests
 
@@ -17,9 +17,10 @@ Integration tests focus on the execution of the application inside the execution
 
 ## Executing unitary tests on iPOJO components
 Unitary tests allow checking the internal behavior of an iPOJO component. Those tests ignore the injected dependencies and focus only on the business code of the component.
+
 To test components, you can use Junit. A special constructor setting fields can do the dependency injection. These tests are executed before the bundlelization. 
 
-Let's imagine a maven project (downloadable [here]({{ refs.-dummy-component-zip.path }})).  Unitary tests are placed in the src/test/java folder. You can use mock object as illustrated in the example.  When you launch the `mvn clean install` command, maven compiles your classes and executes the tests.  If the tests are executed successfully, the build process continues and creates the bundle as follows:
+Let's imagine a maven project.  Unitary tests are placed in the src/test/java folder. You can use mock object as illustrated in the example.  When you launch the `mvn clean install` command, maven compiles your classes and executes the tests.  If the tests are executed successfully, the build process continues and creates the bundle as follows:
 
     [INFO] Scanning for projects...
     [INFO] ------------------------------------------------------------------------
@@ -80,10 +81,7 @@ Let's imagine a maven project (downloadable [here]({{ refs.-dummy-component-zip.
 
 
 ## Executing integration tests
-Once every component has its unitary test suite (isn't it?), you can go further and creates integration test. In order to check the behavior of the system, iPOJO provides the junit4osgi framework. This framework allows the executing of Junit test inside OSGi. Refer to the [Junit4OSGi page]({{ refs.apache-felix-ipojo-junit4osgi.path }}) to know how to use it.
-
-Moreover, OPS4J Pax Exam can also be used to test iPOJO components.
-
+We recommend to use Pax Exam 3 to test iPOJO components. More details about pax exam 3 are available [here](https://ops4j1.jira.com/wiki/display/PAXEXAM3/Pax+Exam).
   
   
   

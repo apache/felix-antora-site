@@ -7,13 +7,15 @@ Title: Using iPOJO introspection API
 
 *iPOJO provides mechanisms to introspect and reconfigure instances. Those features are available from the instance description. Currently, only the reconfiguration of primitive instances is supported.*
 
+[TOC]
+
 ## Getting instance descriptions
 
 There is two way to get the instance description:
 * By using the `architecture` service exposed by an instance providing introspection support.
-* By calling the getInstanceDescription() method on a ComponentInstance object (that you create thanks to a Factory)
+* By calling the `getInstanceDescription()` method on a ComponentInstance object (that you create thanks to a Factory)
 
-{code:java|Getting the instance description from the ComponentInstance object}
+    :::java
     /**
      * Returns the instance description.
      * @return the instance description of the current instance
@@ -21,77 +23,81 @@ There is two way to get the instance description:
     InstanceDescription getInstanceDescription();
 
     
-    h2. Introspecting primitive instances
+## Introspecting primitive instances
     
-    Once you get the {{InstanceDescription}} object, cast it in {{PrimitiveInstanceDescription}} (be sure that it is really a primitive instance).
-    Then, you have access to every primitive instance aspects:
-    service dependencies
-    provided services
-    configuration properties
-    get created implementation objects
+Once you get the {{InstanceDescription}} object, cast it in {{PrimitiveInstanceDescription}} (be sure that it is really a primitive instance).
+Then, you have access to every primitive instance aspects:
+
+* service dependencies
+* provided services
+* configuration properties
+* get created implementation objects
+  
+&nbsp;
+
+    :::java
+    /**
+     * Gets the list of object created by the described instance.
+     * @return the created objects.
+     */
+    public String[] getCreatedObjects() {
+        ...
+    }
     
-    {code:java|title=Primitive Instance Description methods}
-        /**
-         * Gets the list of object created by the described instance.
-         * @return the created objects.
-         */
-        public String[] getCreatedObjects() {
-            ...
-        }
-        
-        /**
-         * Gets the instance service dependencies.
-         * @return the set of dependency description or an empty array if
-         * no dependencies.
-         */
-        public DependencyDescription[] getDependencies() {
-            ...
-        }
-        
-        /**
-         * Gets the instance service dependency matching with the given service specification or id.
-         * @param specification the service specification of the looked specification.
-         * @return the dependency description matching with the given service specification or id.
-         * <code>null</code> is not found.
-         * no dependencies.
-         */
-        public DependencyDescription getDependency(String specification) {
-            ...
-        }
-        
-        /**
-         * Gets the instance provided service matching with the given service specification.
-         * @param specification the provided specification of the looked provided service.
-         * @return the provided service description matching with the given service specification.
-         * <code>null</code> is not found.
-         */
-        public ProvidedServiceDescription getProvidedService(String specification) {
-            ...
-        }
-        
-        /**
-         * Gets the instance provided service.
-         * @return the set of provided service description or an empty array if
-         * no provided services.
-         */
-        public ProvidedServiceDescription[] getProvidedServices() {
-            ...
-        }
-        
-        /**
-         * Gets the instance properties.
-         * @return the set of property descriptions or an empty array if
-         * no properties.
-         */
-        public PropertyDescription[] getProperties() {
-            ...
-        }
+    /**
+     * Gets the instance service dependencies.
+     * @return the set of dependency description or an empty array if
+     * no dependencies.
+     */
+    public DependencyDescription[] getDependencies() {
+        ...
+    }
+    
+    /**
+     * Gets the instance service dependency matching with the given service specification or id.
+     * @param specification the service specification of the looked specification.
+     * @return the dependency description matching with the given service specification or id.
+     * <code>null</code> is not found.
+     * no dependencies.
+     */
+    public DependencyDescription getDependency(String specification) {
+        ...
+    }
+    
+    /**
+     * Gets the instance provided service matching with the given service specification.
+     * @param specification the provided specification of the looked provided service.
+     * @return the provided service description matching with the given service specification.
+     * <code>null</code> is not found.
+     */
+    public ProvidedServiceDescription getProvidedService(String specification) {
+        ...
+    }
+    
+    /**
+     * Gets the instance provided service.
+     * @return the set of provided service description or an empty array if
+     * no provided services.
+     */
+    public ProvidedServiceDescription[] getProvidedServices() {
+        ...
+    }
+    
+    /**
+     * Gets the instance properties.
+     * @return the set of property descriptions or an empty array if
+     * no properties.
+     */
+    public PropertyDescription[] getProperties() {
+        ...
+    }
     
 
 ## Manipulating dependencies
 
 You can get service dependencies from the `PrimitiveInstanceDescription`. Once you get the dependency (`DependencyDescription` object that you want to manipulate you can call one of those method on it:
-{code:java}
+
+    :::java
     public boolean isMultiple() { ... }
 
     public boolean isOptional() { ... }
@@ -169,67 +175,70 @@ You can get service dependencies from the `PrimitiveInstanceDescription`. Once y
     public String getSpecification() { ... }
 
     
-    These methods allows getting the dependency state as well as reconfiguring the dependency by setting a new filter... 
+These methods allows getting the dependency state as well as reconfiguring the dependency by setting a new filter... 
+
+There is a slightly difference between the `getServiceReference(s)` methods and the `getUsedServices` method. The first ones returns the list of matching provider. The second one returns the list of currently used providers. 
     
-    There is a slightly difference between the {{getServiceReference(s)}} methods and the {{getUsedServices}} method. The first ones returns the list of matching provider. The second one returns the list of currently used providers. 
-    
-    h2. Manipulating provided services
-    You also can manipulate provided services {{ProvidedServiceDescription}}. 
-    {code:java}
+## Manipulating provided services
+You also can manipulate provided services {{ProvidedServiceDescription}}. 
+
+    :::java
     /**
-         * Gets the list of provided service specifications.
-         * @return the provided contract name.
-         */
-        public String[] getServiceSpecifications() { ... }
+     * Gets the list of provided service specifications.
+     * @return the provided contract name.
+     */
+    public String[] getServiceSpecifications() { ... }
+
+    /**
+     * Gets the list of properties.
+     * A copy of the actual property set is returned.
+     * @return the properties.
+     */
+    public Properties getProperties() { ... }
     
-        /**
-         * Gets the list of properties.
-         * A copy of the actual property set is returned.
-         * @return the properties.
-         */
-        public Properties getProperties() { ... }
-        
-        /**
-         * Adds and Updates service properties.
-         * Existing properties are updated. 
-         * New ones are added.
-         * @param props the new properties
-         */
-        public void addProperties(Dictionary props) { ... }
-        
-        /**
-         * Removes service properties.
-         * @param props the properties to remove
-         */
-        public void removeProperties(Dictionary props) { ...  }
+    /**
+     * Adds and Updates service properties.
+     * Existing properties are updated. 
+     * New ones are added.
+     * @param props the new properties
+     */
+    public void addProperties(Dictionary props) { ... }
     
-        /**
-         * Gets provided service state.
-         * @return the state of the provided service (UNREGISTERED | REGISTRED).
-         */
-        public int getState() { ... }
+    /**
+     * Removes service properties.
+     * @param props the properties to remove
+     */
+    public void removeProperties(Dictionary props) { ...  }
+
+    /**
+     * Gets provided service state.
+     * @return the state of the provided service (UNREGISTERED | REGISTRED).
+     */
+    public int getState() { ... }
+
+    /**
+     * Gets the service reference.
+     * @return the service reference (null if the service is unregistered).
+     */
+    public ServiceReference getServiceReference() { ... }
     
-        /**
-         * Gets the service reference.
-         * @return the service reference (null if the service is unregistered).
-         */
-        public ServiceReference getServiceReference() { ... }
-        
-        /**
-         * Gets the 'main' service object.
-         * @return the 'main' service object or <code>null</code>
-         * if no service object are created.
-         */
-        public Object getService() { ... }
-        
-        public Object[] getServices() { ... }
+    /**
+     * Gets the 'main' service object.
+     * @return the 'main' service object or <code>null</code>
+     * if no service object are created.
+     */
+    public Object getService() { ... }
+    
+    public Object[] getServices() { ... }
 
 
 Thanks to these method, you can get service objects, get the registered services, and manipulate service properties.
-H2. Manipulating configuration properties
+
+## Manipulating configuration properties
 The last think that you can do from the `PrimitiveInstanceDescription` is to get configuration properties (`PropertyDescription`). 
-{code:java}
- /**
+
+    :::java
+    /**
      * Gets the current property name.
      * @return the property name.
      */
@@ -255,9 +264,5 @@ The last think that you can do from the `PrimitiveInstanceDescription` is to get
      * @param value the new value.
      */
     public void setValue(Object value) { ... }
-
-
     
-    With these methods you can get a property object and update its value dynamically. 
-    \\
-    \\
+With these methods you can get a property object and update its value dynamically. 
