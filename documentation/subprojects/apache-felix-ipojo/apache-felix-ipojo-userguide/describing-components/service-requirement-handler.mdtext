@@ -128,7 +128,7 @@ The `modified` callback is not mandatory. The following XML metadata are describ
     </component>
 
 Note, that the different callbacks can be have different signatures. By using this mechanism, you need to be sure to manage the dynamism correctly.
-([See note on type discovery]({{ refs.-discovery.path }}))
+([See note on type discovery](#note-on-service-interface-discovery)
 
 Using the `@Modified` callback is also quite simple:
 
@@ -347,7 +347,7 @@ For this component, equivalent XML metadata could be:
         ...
     </component>
 
-To declare an optional requirement, you need to add the *'optional'* attribute. To avoid `null` pointer exception, iPOJO injects a `Nullable` object in the field when no service provider is available. The *nullable* object implements the service interface, but does nothing. Moreover, it is possible to set a *default-implementation* for the service. A default-implementation is a class implementing the service but used only when no others service providers are available. The default-implementation object will be injected instead of the *Nullable* objet. For further information [refer to the note about nullable object]({{ refs.-nullable.path }}).
+To declare an optional requirement, you need to add the *'optional'* attribute. To avoid `null` pointer exception, iPOJO injects a `Nullable` object in the field when no service provider is available. The *nullable* object implements the service interface, but does nothing. Moreover, it is possible to set a *default-implementation* for the service. A default-implementation is a class implementing the service but used only when no others service providers are available. The default-implementation object will be injected instead of the *Nullable* objet. For further information [refer to the note about nullable object](#note-about-nullable-object-default-implementation).
 
 #### Optional Dependency with callbacks invocation
 
@@ -512,7 +512,7 @@ or in XML:
     :::xml
     <requires from="MyHelloProvider" field="m_hello"/>
 
-iPOJO maps the `from` attribute to a specific filter : '|(instance.name=MyHelloProvider)(service.pid=MyHelloProvider)'. Then the dependency can only be fulfilled by a service matching this filter.
+iPOJO maps the `from` attribute to a specific filter : `|(instance.name=MyHelloProvider)(service.pid=MyHelloProvider)`. Then the dependency can only be fulfilled by a service matching this filter.
 
 Moreover, from attributes can be customized instance by instance. It is possible to specialize / change / add a 'from' attribute of a component in the instance configuration. It is useful when you want to create different instances of the same component, with different 'from' clauses. To do it, you have to identify your dependency with an 'id' attribute. Then, you can adapt the 'from' of the dependency in the instance configuration by using the property "requires.from". In this property you can specify each dependency identified by its id and the 'from' value.
 
