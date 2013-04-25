@@ -150,7 +150,7 @@ Before generating the bundle, we need to edit the {{pom.xml}} file to describe o
     </project>
 
 ## Step 6 & 7: Create the Camel context file and the bundle
-These steps are exactly the same as into the OSGi Camel Tutorial. So refer to the step 6 and 7 of the [article](http://activemq.apache.org/camel/tutorial-osgi-camel-part1.html). That's it. Deploy and enjoy.
+These steps are exactly the same as into the OSGi Camel Tutorial. So refer to the step 6 and 7 of the [article](http://camel.apache.org/tutorial-osgi-camel-part1.html). That's it. Deploy and enjoy.
 
   
   
