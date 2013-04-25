@@ -1,0 +1,34 @@
+Title: Apache Felix Inventory
+
+The Apache Felix Bundle provides an ecosystem for retrieving information about the current state of the system. Typical information includes currently installed bundles, their state, available configurations, framework properties, log files etc.
+
+
+## Introduction
+
+When trying to find a problem or analyzing the system it would be nice to have a single place to go to and get available information. The Apache Felix inventory bundle tries to exactly fill this gap.
+
+Originally, the idea started within the Apache Felix WebConsole and it's configuration printers - these pluggable printers allowed to view all available status information in a web browser or download this as zip file. While this already solves most use cases, tying this general functionality to a web console felt wrong, and that's when the inventory module started.
+
+The current version of the inventory implementation, registers all available InventoryPrinters (see below) as plugins to the web console as this is still the number one use case.
+
+## InventoryPrinter
+
+The InventoryPrinter is a service interface to be implemented by providers that want to hook into the display of the current configuration and state of the OSGi framework and application.
+The interface consists of a single method:
+
+	:::java
+	void print(PrintWriter printWriter, Format format, boolean isZip);
+
+A inventory printer might support different formats (text, html, or json), by default it supports just text - if the printer wants to support the other formats, it can declare the service registration property "felix.inventory.printer.format" with the formats it supports.
+
+If the current output of the printer is included in a zip, the "isZip" parameter is set to true. This allows the printer to provide different output, depending on where the output is used.
+
+A printer should declare the service registration property "felix.inventory.printer.name" and provide a unique name for the printer. The name can be used for replacing a printer from another bundle by providing a printer with the same name, but a higher service ranking.
+
+A printer should declare the service registration property "felix.inventory.printer.title". The title is used in the web console as the link for the printer, or within the zip as the file name for the output.
+
+If the printer wants to opt out from being displayed in the web console, it can declare the service registration property "felix.inventory.printer.webconsole" and provide a boolean with the value "false".
+
+## ZipAttachmentProvider
+
+If an inventory printer wants to provide additional contents to an inventory zip, it can implement this interface and write additional files when the zip is created.
