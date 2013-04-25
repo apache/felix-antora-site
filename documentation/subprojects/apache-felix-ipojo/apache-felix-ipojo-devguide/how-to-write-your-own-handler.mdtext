@@ -203,13 +203,13 @@ The property handler contains the following `onGetz and `onSet` methods:
 
 You need to implements some of the following methods to intercept methods accesses. When these methods are called, the first parameter is the POJO's instance on which the intercepted method is called and the second parameter contains the descriptor of the called method.
 
-* The `void onEntry(Object pojo, Method method, Object[] args)` method: This method is called before the execution of an intercepted method. The third parameter is the list of parameters with which the method have been called. The method is executed just after the execution of the `onEntry()` callback.
-* The `void onExit(Object pojo, Method method, Object returnedObj)` method: This method is called right after the successful execution of an intercepted method. The third parameter is the value returned by the method (or `null` if the method return type is `void`). This value must not be modified.
-* The `void onError(Object pojo, Method method, Throwable throwable)` method: This method is called right after the unexpected return of an intercepted method (i.e. when an uncaught exception occurred). The third parameter is the thrown object that caused the method termination.
-* The `void onFinally(Object pojo, Method method)` method: This method is called after the termination of an intercepted method (expected or not), after the call of the `onExit()` or `onError()` callback.
+* The `void onEntry(Object pojo, Member method, Object[] args)` method: This method is called before the execution of an intercepted method. The third parameter is the list of parameters with which the method have been called. The method is executed just after the execution of the `onEntry()` callback.
+* The `void onExit(Object pojo, Member method, Object returnedObj)` method: This method is called right after the successful execution of an intercepted method. The third parameter is the value returned by the method (or `null` if the method return type is `void`). This value must not be modified.
+* The `void onError(Object pojo, Member method, Throwable throwable)` method: This method is called right after the unexpected return of an intercepted method (i.e. when an uncaught exception occurred). The third parameter is the thrown object that caused the method termination.
+* The `void onFinally(Object pojo, Member method)` method: This method is called after the termination of an intercepted method (expected or not), after the call of the `onExit()` or `onError()` callback.
 
 <div class="alert alert-warning">
-The <code>InstanceManager<code> has to know your handler wants to intercept fields or methods access, otherwise the implemented callbacks won't be called. Thus you need to register each field and method you want to intercept, so the <code>InstanceManager</code> will call the appropriated callbacks when the specified field or method is accessed :
+The <code>InstanceManager</code> has to know your handler wants to intercept fields or methods access, otherwise the implemented callbacks won't be called. Thus you need to register each field and method you want to intercept, so the <code>InstanceManager</code> will call the appropriated callbacks when the specified field or method is accessed :
 
     <pre>
      getInstanceManager().register(anInterestingFieldMetadata, this);
