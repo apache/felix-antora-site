@@ -121,8 +121,8 @@ The `modified` callback is not mandatory. The following XML metadata are describ
     :::xml
     <component classname="...HelloConsumer">
     <requires>
-        <callback type="bind" method="bindHello">
-        <callback type="unbind" method="unbindHello">
+        <callback type="bind" method="bindHello"/>
+        <callback type="unbind" method="unbindHello"/>
     </requires>
     ...
     </component>
@@ -185,8 +185,8 @@ In XML, it results in:
     :::xml
     <component classname="...HelloConsumer">
         <requires  field="m_hello">
-            <callback type="bind" method="bindHello">
-            <callback type="unbind" method="unbindHello">
+            <callback type="bind" method="bindHello"/>
+            <callback type="unbind" method="unbindHello"/>
         </requires>
         ...
     </component>
@@ -222,10 +222,10 @@ When a component requires several providers of the same service, it declares an 
     @Component
     public class HelloConsumer {
          @Requires
-         private Hello m_hellos[]({{ refs..path }}); // Array => Aggregate
+         private Hello m_hellos[]; // Array => Aggregate
          public doSomething() {
                  for(int I = 0; I < m_hellos.length; i++) { 
-                     System.out.println(m_hellos[i]({{ refs.i.path }}).getMessage());
+                     System.out.println(m_hellos[i].getMessage());
                  }
            }
     }
@@ -311,8 +311,8 @@ This dependency can also be described in XML as follow:
 
     :::xml
     <requires  aggregate="true">
-        <callback type="bind" method="bindHello">
-        <callback type="unbind" method="unbindHello">
+        <callback type="bind" method="bindHello"/>
+        <callback type="unbind" method="unbindHello"/>
     </requires>
 
 In this case, iPOJO cannot detect if the dependency is aggregate or not. So, you need to add the '*aggregate*' attribute. The bindHello and unbindHello will be called each time a Hello service appears or disappears.
@@ -374,8 +374,8 @@ For this component, XML metadata could be:
     :::xml
     <component classname="...HelloConsumer">
         <requires optional="true">
-            <callback type="bind" method="bindHello">
-            <callback type="unbind" method="unbindHello">
+            <callback type="bind" method="bindHello"/>
+            <callback type="unbind" method="unbindHello"/>
         </requires>
         ...
     </component>
@@ -392,7 +392,7 @@ A dependency can be both aggregate and optional.
     @Component
     public class HelloConsumer {
          @Requires(optional=true)
-         private Hello m_hellos[]({{ refs..path }});
+         private Hello m_hellos[];
 
          public doSomething() {
                for(Hello h : m_hellos) { 
@@ -436,8 +436,8 @@ For this component, XML metadata could be:
     
     :::xml
     <requires aggregate="true" optional="true">
-         <callback type="bind" method="bindHello">
-         <callback type="unbind" method="unbindHello">
+         <callback type="bind" method="bindHello"/>
+         <callback type="unbind" method="unbindHello"/>
     </requires>
 
 In this case, you need to add the *'aggregate'* attribute and the *'optional'*attribute. The `bindHello` and `unbindHello` will be called each time a Hello service appears or disappears. These bind / unbind methods are not called when binding / unbinding a Nullable object (when both field and method are used).
