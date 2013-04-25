@@ -381,7 +381,7 @@ This handler needs to be packaged inside an iPOJO bundle. The bundle will import
 ###  Handler usage 
 To use this handler, a component use the `Log` annotation, with a level attribute. This level attribute's value can be `"error"`, `"warning"` or `"info"`. Here is an usage example:
 
-    :::xml
+    :::java
     package org.apache.felix.ipojo.log.handler.example;
 
     import org.apache.felix.ipojo.annotations.*;
