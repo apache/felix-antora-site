@@ -25,3 +25,48 @@ To use the plugin you need an OSGi platform with:
 * The Apache Felix Webconsole
 * iPOJO 
 * The iPOJO Web console plugin
+
+You can download [this Felix distribution](ipojo-webconsole-quicktart-distribution.zip) as a deployment example. Unzip the archive and go to the Felix directory to launch Felix:
+
+	:::sh
+	cd ipojo-webconsole-quicktart-1.9.0-SNAPSHOT/felix-framework-4.2.1/
+	java -jar bin/felix.jar
+
+Once launched, you can check the deployed bundles:
+
+	:::sh
+	[INFO] Started jetty 6.1.x at port(s) HTTP:8080
+	____________________________
+	Welcome to Apache Felix Gogo
+
+	g! INFO : org.apache.felix.webconsole.plugins.memoryusage (17): Storing Memory Dumps in /Users/clement/Projects/felix-trunk/ipojo/distributions/ipojo-webconsole-quicktart/target/ipojo-webconsole-quicktart-1.9.0-SNAPSHOT/felix-framework-4.2.1/./felix-cache/bundle17/data/dumps
+	INFO : org.apache.felix.webconsole.plugins.memoryusage (17): Setting Automatic Memory Dump Threshold to 0% for pools [CMS Old Gen, CMS Perm Gen, Code Cache]
+	INFO : org.apache.felix.webconsole.plugins.memoryusage (17): Automatic Memory Dump cannot be set for pools [Par Eden Space, Par Survivor Space]
+	INFO : org.apache.felix.webconsole.plugins.memoryusage (17): Setting Automatic Memory Dump Interval to 21600 seconds
+
+	g! lb
+	START LEVEL 1
+	   ID|State      |Level|Name
+	    0|Active     |    0|System Bundle (4.2.1)
+	    1|Active     |    1|Java Servlet API (2.4.0)
+	    2|Active     |    1|Commons FileUpload (1.2.2)
+	    3|Active     |    1|Commons IO (2.4.0)
+	    4|Active     |    1|Apache Felix Bundle Repository (1.6.6)
+	    5|Active     |    1|Apache Felix Gogo Command (0.12.0)
+	    6|Active     |    1|Apache Felix Gogo Runtime (0.10.0)
+	    7|Active     |    1|Apache Felix Gogo Shell (0.10.0)
+	    8|Active     |    1|Apache Felix Http Api (2.2.0)
+	    9|Active     |    1|Apache Felix Http Base (2.2.0)
+	   10|Active     |    1|Apache Felix Http Jetty (2.2.0)
+	   11|Active     |    1|Apache Felix iPOJO (1.8.6)
+	   12|Active     |    1|Apache Felix iPOJO Annotations (1.8.6)
+	   13|Active     |    1|Apache Felix iPOJO Gogo Command (1.0.1)
+	   14|Active     |    1|iPOJO Metadata (1.6.0)
+	   15|Active     |    1|Apache Felix iPOJO WebConsole Plugins (1.7.0.SNAPSHOT)
+	   16|Active     |    1|Apache Felix Web Management Console (4.0.0)
+	   17|Active     |    1|Apache Felix Web Console Memory Usage Plugin (1.0.2)
+	   18|Active     |    1|Apache Felix Web Console Package Admin Service Plugin (1.0.0)
+	   19|Active     |    1|osgi.cmpn (4.2.0.200908310645)
+	   20|Active     |    1|OW2 Chameleon - JSON Bundle (from org.json) (20090911.0.0.0002)	
+
+You access the web console at: http://localhost:8080/system/console/. The login/password are _admin_/_admin_. The iPOJO tabs gives you all the iPOJO information of the system.	   

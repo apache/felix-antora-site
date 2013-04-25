@@ -3,7 +3,7 @@ Title: Developing Camel mediators with iPOJO
 
 # Developing Camel mediators with iPOJO
 
-*The [Camel OSGi tutorial ](http://http://camel.apache.org/tutorial-osgi-camel-part1.html) provides a very simple and neat overview of Camel. This article mentions the usage of iPOJO to implement the mediator. This document provides this implementation.*
+*The [Camel OSGi tutorial ](http://camel.apache.org/tutorial-osgi-camel-part1.html) provides a very simple and neat overview of Camel. This article mentions the usage of iPOJO to implement the mediator. This document provides this implementation.*
 
 ## Step 1 : Initial project setup
 Instead of using the 'spring-osgi-bundle-archetype' maven archetype, we will use the iPOJO one to create the iPOJO bundle.

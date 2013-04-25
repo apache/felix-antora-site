@@ -43,7 +43,7 @@ In XML, to provide the service, the component type needs to contain the `<provid
 
 <img src="ps-foo.png">
 
-The `<provides/>` or `@Provides` suffice to declare that each instance of this type will provide the FooService (for more info about instances see [FELIX:How-to use iPOJO factories]({{ refs.felix-how-to-use-ipojo-factories.path }})). The provided specifications can be discovered by analyzing the implementation class. By default, all implemented interface are published in the same service registration. iPOJO looks down the entire inheritance tree.
+The `<provides/>` or `@Provides` suffice to declare that each instance of this type will provide the FooService (for more info about instances see '[How to use iPOJO factories](/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/how-to-use-ipojo-factories.html)`). The provided specifications can be discovered by analyzing the implementation class. By default, all implemented interface are published in the same service registration. iPOJO looks down the entire inheritance tree.
 
 ## Service Publication
 

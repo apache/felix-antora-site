@@ -71,7 +71,7 @@ When querying field (or a method argument) type, the API returns following code 
 * For primitive types : int, long, short, byte, char, double, float, boolean
 * For primitives type arrays : int[], long[], short[], byte[], char[], double[], float[], boolean[]
 * For object : qualified class name as java.lang.String
-* For object arrays : the qualified class name of the content type followed by []({{ refs..path }}) as java.lang.String[]
+* For object arrays : the qualified class name of the content type followed by [] as java.lang.String[]
 
 Array types are different from Java internal/reflective array types. To get the internal/reflective array type for field type you can use the `getReflectiveType` method.
   

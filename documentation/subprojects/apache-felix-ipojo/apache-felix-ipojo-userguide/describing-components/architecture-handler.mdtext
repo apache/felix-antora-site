@@ -6,7 +6,7 @@ Title: Architecture Handler
 
 # Introspection and Architecture
 
-*The architecture feature allows obtaining an architectural / component view of your systems. It exposes a snapshot of the present instances & factories, the state of these instances... Moreover; iPOJO defines an 'arch' command displaying this architecture in Felix. You need to install [the arch command]({{ refs.felix-ipojo-arch-command.path }}).*
+*The architecture feature allows obtaining an architectural / component view of your systems. It exposes a snapshot of the present instances & factories, the state of these instances... Moreover; iPOJO defines an 'arch' command displaying this architecture in Felix. You need to install [the arch command](/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.html).*
 
 [TOC]
 
@@ -25,17 +25,34 @@ By default, the architecture feature is enabled.
 
 ## The "arch" command
 
-A Felix command comes with the architecture handler. This command looks for all component exposing the architecture and print the information.
+The Gogo commands are the following:
 
-	:::sh
-    arch => displays instances name & state (equivalent to arch \-instances)
-    arch -instance $instance_name => displays complete information about the instance $instance_name
-    arch -factories => display the list of available factories
-    arch -factory $factory_name => display complete information about the factory $factory_name
-    arch -handlers => list available handlers
+* `ipojo:instances` (or just `instances`) lists the instances and state
+* `ipojo:instance $instance_name` (or just `instance $instance_name`) displays the complete information about the specified $instance_name
+* `ipojo:factories` (or just `factories`) lists the available public factories
+* `ipojo:factory $factory_name` (or just `factory $factory_name`) displays complete information about the factory $factory_name
+* `ipojo:handlers` (or just `handlers` lists available handlers
+    
+For example:
 
+    :::sh
+    $ instances
+    Instance ArchCommand -> valid
+    Instance spell.english.EnglishDictionary-0 -> valid
+    Instance spell.checker.SpellCheck-0 -> valid
+    Instance spell.gui.SpellCheckerGui-0 -> valid
 
-More info on the `arch` command are available [here]({{ refs.ipojo-arch-command.path }}).
+    $ instance spell.checker.SpellCheck-0                                    
+    instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
+            requires optional="false" aggregate="false" state="resolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.providedservice.ProvidedServiceHandler"
+            provides service.id="36" state="registered" specifications="[spell.services.SpellChecker]"
+                property value="spell.checker.SpellCheck" name="factory.name"
+                property value="spell.checker.SpellCheck-0" name="instance.name"
+        handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"    
+
+More info on the `arch` command are available [here](/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.html).
 
 ## Technical information
 
