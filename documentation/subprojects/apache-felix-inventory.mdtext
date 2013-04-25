@@ -1,6 +1,6 @@
 Title: Apache Felix Inventory
 
-The Apache Felix Bundle provides an ecosystem for retrieving information about the current state of the system. Typical information includes currently installed bundles, their state, available configurations, framework properties, log files etc.
+The Apache Felix Inventory bundle provides an ecosystem for retrieving information about the current state of the system. Typical information includes currently installed bundles, their state, available configurations, framework properties, log files etc.
 
 
 ## Introduction
