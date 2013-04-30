@@ -289,8 +289,8 @@ It is possible to configure the handler with a simple annotations available in t
     :::java
     import org.apache.felix.ipojo.annotations.Component;
     import org.apache.felix.ipojo.handlers.event.Subscriber;
-    import org.apache.felix.ipojo.handlers.event.Publishes
-    import org.apache.felix.ipojo.handlers.event.Publisher;
+    import org.apache.felix.ipojo.handlers.event.Publishes;
+    import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
     import org.osgi.service.event.Event;
 
 
