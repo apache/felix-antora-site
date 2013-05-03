@@ -91,16 +91,67 @@ The second injection mechanism uses methods in the implementation class. By this
 
 * A bind method called when a service appears
 * An unbind method called when a service disappears
-* A modified method called when a service is modified (the service properties changed, but the service still matches the requirement)
+* A modified method called when a service is modified (the service properties have changed, but the service still matches the requirement)
 
-Moreover, callbacks can be in the component super class (in this case methods must be public). These methods can have one of these four signatures:
+Moreover, callbacks can be in the component super class (in this case methods must be public). These methods can have one of these signatures:
 
-* Without any argument: the method is just a  notification (method())
-* With the service object : the object is the  implicated service object (method(Service svc))
-* With an OSGi service reference: the service  reference appearing or disappearing (method(ServiceReference ref))
-* With the service object and the OSGi service reference (method(Service svc, ServiceReference ref))
-* With the service object and the service properties inside a Map (method(Service svc, Map properties))
-* With the service object and the service properties inside a Dictionary (method(Service svc, Dictionary properties))
+* Without any argument: the method is just a notification
+
+        :::java
+        public void bindService() {
+          // ...
+        }
+
+* With the service object: the object is the implicated service object. Service dependency type is inferred from the parameter's type.
+
+        :::java
+        public void bindService(HelloService hello) {
+          m_hello = hello;
+        }
+
+* With an OSGi service reference: the service reference appearing or disappearing.
+
+        :::java
+        public void bindService(ServiceReference<HelloService> reference) {
+          // ...
+        }
+        public void bindService(ServiceReference<?> reference) {
+          // ...
+        }
+        public void bindService(ServiceReference reference) {
+          // ...
+        }
+
+* With the service object and the OSGi service reference.
+
+        :::java
+        public void bindService(HelloService hello, ServiceReference<HelloService> reference) {
+          // ...
+        }
+
+* With the service object and the service properties inside a Map (no adherence to OSGi APIs).
+
+        :::java
+        public void bindService(HelloService hello, Map<String, Object> properties) {
+          // ...
+        }
+
+* With the service object and the service properties inside a Dictionary (no adherence to OSGi APIs).
+
+        :::java
+        public void bindService(HelloService hello, Dictionary<String, Object> properties) {
+              // ...
+        }
+
+<div class="alert alert-info info" markdown="1">
+<h4>Important</h4>
+<p>Notice that, when missing (typically no interface can be inferred from the code) dependency information must be supplied to iPOJO in some way
+<ul>
+<li> <code>@Bind</code> with <code>specification</code> and/or <code>filter</code> attribute</li>
+<li> Using XML metadata declaration</li>
+</ul>
+</p>
+</div>
 
 The following component implementation shows an example of implementation using this mechanism:
     
@@ -120,11 +171,11 @@ The `modified` callback is not mandatory. The following XML metadata are describ
     
     :::xml
     <component classname="...HelloConsumer">
-    <requires>
+      <requires>
         <callback type="bind" method="bindHello"/>
         <callback type="unbind" method="unbindHello"/>
-    </requires>
-    ...
+      </requires>
+      ...
     </component>
 
 Note, that the different callbacks can be have different signatures. By using this mechanism, you need to be sure to manage the dynamism correctly.
