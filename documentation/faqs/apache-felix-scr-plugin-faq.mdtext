@@ -26,12 +26,13 @@ During a SCR plugin run, a syntax error might occur if enums are used in the sou
 
 ## NoClassDefFoundError during build 
 
-If the javadoc tags are used (and not the annotations) then the QDox library is used to parse/introspect the java class. For this the classes have to be loaded and static fields have to be initialized. If you have have for example something like
+This error might happen with older versions of the Maven SCR Plugins in combination with javadoc tags or newer versions in combination with the annotations.
+In both cases, the scanned classes have to be loaded and static fields have to be initialized. If you have have for example something like
 
     :::java
     private static final org.slf4f.Logger LOGGER = org.slf4j.LoggerFactory.getLogger("name");
 
-in your code, during the plugin run, a slf4j logger is tried to instantiated. This requires an implementation of the logger. Ususally your module only depends on the slf4j API and therefore a 
+in your code, during the plugin run, a slf4j logger is tried to be instantiated. This requires an implementation of the logger. Ususally your module only depends on the slf4j API and therefore a 
 
     :::plaintext
     java.lang.NoClassDefFoundError: org/slf4j/impl/StaticLoggerBinder
@@ -55,3 +56,4 @@ In these cases you should add a dependency to the missing class to the dependenc
         ...
     </plugin>
 
+or in the special case of slf4j, using slf4j API 1.6 or higher solves the problem as well
