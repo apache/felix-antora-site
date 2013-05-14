@@ -1,6 +1,7 @@
 Title: Apache Felix Inventory Printer
 
 <a id="top"></a>
+
 [TOC]
 
 The Apache Felix Inventory Printer is a simple and extensible framework
@@ -83,7 +84,7 @@ See also the [API JavaDoc](/apidocs/inventory/current/).
 ## ZIP Attachment Provider
 [Top](#top)
 
-If an Inventory Printer wants to provide additional contents to an Inventory ZIP File, it can implement the [ZIPAttachmentProider](/apidocs/inventory/current/org/apache/felix/inventory/ZipAttachmentProvider.html) interface and provide additional files when the zip is created.
+If an Inventory Printer wants to provide additional contents to an Inventory ZIP File, it can implement the [ZipAttachmentProvider](/apidocs/inventory/current/org/apache/felix/inventory/ZipAttachmentProvider.html) interface and provide additional files when the zip is created.
 
 
 ## Configuration Printer Services
@@ -118,7 +119,7 @@ To prevent an Invetory Printer from being registered in the Web Console, the `fe
 
 Gogo Shell integration is not implemented in the first version of the Apache Felix Inventory Printer module.
 
-See [Provide Gogo Shell integration for InventoryPrinter services](https://issues.apache.org/jira/browse/FELIX-4065).
+See the issue [FELIX-4065 Provide Gogo Shell integration for InventoryPrinter services](https://issues.apache.org/jira/browse/FELIX-4065).
 
 
 ## Issues
