@@ -40,7 +40,7 @@ Inventory Printer Services are registered as `org.apache.felix.inventory.Invento
 |-|-|-|
 | `felix.inventory.printer.name` | -- | The unique name of the printer. If there are two or more services with the same name, the service with the highest ranking is used. |
 | `felix.inventory.printer.title` | -- | The title displayed by tools when this printer is used. It should be descriptive but short. |
-| `felix.inventory.printer.format` | -- | The property defining the supported rendering formats. The value of this property is either a string or a string array containing valid names of [`Format`](/apidocs/inventory/current/org/apache/felix/inventory/Format.java). If this property is missing or contains invalid values, the printer is ignored. |
+| `felix.inventory.printer.format` | -- | The property defining the supported rendering formats. The value of this property is either a string or a string array containing valid names of [`Format`](/apidocs/inventory/current/org/apache/felix/inventory/Format.html). If this property is missing or contains invalid values, the printer is ignored. |
 | `felix.inventory.printer.webconsole` | `true` | Optional property controlling whether the printer will be displayed in the web console. By default, a printer is displayed in the web console, unless this property is added with the value 'false'. The property value can either be a boolean or a string. |
 
 The first three properties are required for the Inventory Printer service to be accepted. Otherwise the service is ignored by the framework printing a message to the log.
