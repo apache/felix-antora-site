@@ -37,7 +37,7 @@ In the future [Integration with the Apache Felix Gogo Shell](#gogo-shell) will a
 Inventory Printer Services are registered as `org.apache.felix.inventory.InventoryPrinter` type OSGi services with the following service registration properties:
 
 | Property | Default Value | Description |
-|-|-|
+|-|-|-|
 | `felix.inventory.printer.name` | -- | The unique name of the printer. If there are two or more services with the same name, the service with the highest ranking is used. |
 | `felix.inventory.printer.title` | -- | The title displayed by tools when this printer is used. It should be descriptive but short. |
 | `felix.inventory.printer.modes` | -- | The property defining the supported rendering modes. The value of this property is either a string or a string array containing valid names of [`PrinterMode`](/apidocs/inventory/current/org/apache/felix/inventory/PrinterMode.java). If this property is missing or contains invalid values, the printer is ignored. |
@@ -97,7 +97,7 @@ Configuration Printer services are wrapped in an `InventoryPrinter` adapter and 
 Configuration Printer Services are registered as `org.apache.felix.webconsole.ConfigurationPrinter` type OSGi services with the following service registration properties:
 
 | Property | Default Value | Description |
-|-|-|
+|-|-|-|
 | `felix.webconsole.title` | -- | The title under which to display the Configuration Printer |
 | `felix.webconsole.configprinter.modes` | -- | The Configuration Printer modes supported. This may be one or more of the values `web`, `zip`, or `txt`. Alternatively the value `always` my be used to indicate support for all modes. |
 | `modes` | -- | Deprecated synonym for the `felix.webconsole.configprinter.modes` property. |
