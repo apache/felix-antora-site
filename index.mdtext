@@ -32,6 +32,7 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R4.2 core framework.
 * [Gogo]({{ refs.apache-felix-gogo.path }}) - An advanced shell for interacting with OSGi frameworks.
 * [HTTP Service]({{ refs.apache-felix-http-service.path }}) - An implementation of the OSGi HTTP Service specification.
+* [Inventory Printer]({{ refs.apache-felix-inventory.path }}) - A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
 * [iPOJO]({{ refs.apache-felix-ipojo.path }}) - A sophisticated service-oriented component model to simplify OSGi-based development.
 * [Log]({{ refs.apache-felix-log.path }}) - A simple, memory-based implementation of the OSGi Log service specification.
 * [Maven Bundle Plugin]({{ refs.apache-felix-maven-bundle-plugin-bnd.path }}) - A Maven plugin to simplify building bundles.
