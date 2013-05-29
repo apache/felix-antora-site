@@ -60,11 +60,15 @@ Covers most (if not all) of R 4.2 specs and also contains a lot of side informat
 Despite its dependency on Equinox it might be helpful, because they use Declarative Services intensely for their sample application throughout the book and we use Declarative Services intensely, too.
 * [OSGi in Depth](http://www.manning.com/alves/); Alexandre de Castro Alves; Manning, 2011.
 I cannot say anything on this book except that he seems to have used Apache Felix for the samples....
-* [Enterprise OSGi in Action: With examples using Apache Aries](http://www.manning.com/cummins/); Holly Cummins, Timothy Ward; Manning, 2012
+* [Enterprise OSGi in Action: With examples using Apache Aries](http://www.manning.com/cummins/); Holly Cummins, Timothy Ward; Manning, 2013
 Covers Enterprise OSGi specifications, which are becoming more and more important.
 * [Java Application Architecture: Modularity Patterns with Examples Using OSGi (Agile Software Development Series)](http://www.amazon.com/Java-Application-Architecture-Modularity-Development/dp/0321247132); Kirk Knoernschild; Prentice Hall, 2012
 Primarily covers Java Application Architecture using OSGi for the framework to implement.
-
+* [OSGi in Practice](http://njbartlett.name/osgibook.html); Neil Bartlett; Free PDF EBook.
+Many OSGi core concepts are greatly explained, and its free;
+* [Instant OSGi Starter](http://www.packtpub.com/open-services-gateway-initiative-starter/book); Jamie Goodyear, Johan Edstrom; Packt, 2013
+* [OSGi and Apache Felix 3.0 Beginner's Guide](http://www.packtpub.com/osgi-and-apache-felix-30-beginners-guide/book); Walid Joseph Gédéon; Packt, 2010
+* [Spring Dynamic Modules in Action](http://www.manning.com/cogoluegnes/); Arnaud Cogoluègnes, Thierry Templier, Andy Piper; Manning, 2010
 
 
 ## Site How-To
