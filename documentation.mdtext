@@ -54,7 +54,7 @@ Visit the [OSGi Alliance Specifications](http://www.osgi.org/Specifications/Home
 
 Apart from the specifications a number of books have recently been published. They are listed here in no particular order:
 
-* [OSGi in Action](http://www.amazon.com/OSGi-Action-Creating-Modular-Applications/dp/1933988916); Richard Hall, Karl Pauls, Stuart McCulloch, David Savage; Manning Publications, 2011.
+* [OSGi in Action](http://www.manning.com/hall/); Richard Hall, Karl Pauls, Stuart McCulloch, David Savage; Manning Publications, 2011.
 Covers most (if not all) of R 4.2 specs and also contains a lot of side information. The authors of this book are committers and/or PMC members of the Apache Felix project.
 * [OSGi and Equinox: creating highly modular Java systems](http://www.amazon.com/OSGi-Equinox-Creating-Modular-Systems/dp/0321585712); Jeff McAffer, Paul VanderLei, Simon Archer; Addison-Wesley, 2010.
 Despite its dependency on Equinox it might be helpful, because they use Declarative Services intensely for their sample application throughout the book and we use Declarative Services intensely, too.
