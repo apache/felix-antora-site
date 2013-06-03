@@ -11,6 +11,7 @@ Title: iPOJO Advanced Topics
 * [Constructing POJO objects with factory methods]({{ refs.constructing-pojo-objects-with-factory-methods.path }})
 * [How-to use iPOJO factories]({{ refs.how-to-use-ipojo-factories.path }})
 * [iPOJO Hierarchical Composition Overview]({{ refs.ipojo-hierarchical-composition-overview.path }})
+* [Using @Stereotype]({{ refs.using-stereotypes.path }})
   
   
   
