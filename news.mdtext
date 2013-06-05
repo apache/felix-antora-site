@@ -1,6 +1,7 @@
 translation_pending: true
 Title: News
 
+* The Apache Felix Deployment Admin 0.9.4 and Auto Configuration 0.1.4 are now available in the <a href="/downloads.cgi">downloads</a> section and from the Maven repository.
 * The Apache Felix iPOJO Manipulator (1.10.0), Runtime (1.10.0), Arch command for Gogo (1.1.0) and Web Console Plugin (1.7.0) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (May 25, 2013)
 * The Apache Felix Resolver 1.0.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (April 10, 2013)
 * The Framework 4.2.1 and Framework Security 2.2.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (March 13, 2013)
