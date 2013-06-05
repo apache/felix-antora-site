@@ -41,6 +41,7 @@ HTTP Service Bundle|org.apache.felix.http.bundle|2.2.0|project
 HTTP Service Jetty|org.apache.felix.http.jetty|2.2.0|project
 HTTP Service Proxy|org.apache.felix.http.proxy|2.2.0|project
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.0|project
+Inventory Printer|org.apache.felix.inventory|1.0.0
 iPOJO|org.apache.felix.ipojo|1.10.0|project
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.10.0|source-release
 iPOJO Architecture Command for the Felix Shell|org.apache.felix.ipojo.arch|1.6.0|project
@@ -84,7 +85,7 @@ User Admin|org.apache.felix.useradmin|1.0.3|project
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project
 Utils|org.apache.felix.utils|1.2.0
-Web Console|org.apache.felix.webconsole|4.0.0
+Web Console|org.apache.felix.webconsole|4.2.0|source-release|all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|1.0.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.0.2|project
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
