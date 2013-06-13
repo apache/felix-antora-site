@@ -98,7 +98,7 @@ Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|2.3.7
+Maven Bundle Plugin|maven-bundle-plugin|2.4.0
 Maven iPOJO Plugin|maven-ipojo-plugin|1.8.4
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0
 Maven OBR Plugin|maven-obr-plugin|1.2.0
