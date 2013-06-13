@@ -107,11 +107,13 @@ To use this plugin, very little information is required by BND. As part of the M
 
 * `<Bundle-SymbolicName>` is computed using the shared [Maven2OsgiConverter](http://svn.apache.org/repos/asf/maven/shared/trunk/maven-osgi/src/main/java/org/apache/maven/shared/osgi/DefaultMaven2OsgiConverter.java) component, which uses the following algorithm:
 Get the symbolic name as groupId + "." + artifactId, with the following exceptions:
+
  * if artifact.getFile is not null and the jar contains a OSGi Manifest with Bundle-SymbolicName property then that value is returned
  * if groupId has only one section (no dots) and artifact.getFile is not null then the first package name with classes is returned. eg. commons-logging:commons-logging -> org.apache.commons.logging
  * if artifactId is equal to last section of groupId then groupId is returned. eg. org.apache.maven:maven -> org.apache.maven
  * if artifactId starts with last section of groupId that portion is removed. eg. org.apache.maven:maven-core -> org.apache.maven.core
 The computed symbolic name is also stored in the `$(maven-symbolicname)` property in case you want to add attributes or directives to it.
+
 * `<Export-Package>` is now assumed to be the set of packages in your local Java sources, excluding the default package '.' and any packages containing 'impl' or 'internal'.
 *(before version 2 of the bundleplugin it was based on the symbolic name)*
 * Since 2.2.0 you can also use `{local-packages}` inside `<Export-Package>` and it will be expanded to the set of local packages.
@@ -387,6 +389,7 @@ Where GOAL is one of the following:
 
 * *`bundle`* - build an OSGi bundle jar for the current project
 configuration options:
+
  * *`manifestLocation`* defaults to $\{project.build.outputDirectory}/META-INF
  * *`unpackBundle`* unpack bundle contents to output directory, defaults to false
  * *`excludeDependencies`* comma-separated list of dependency artifactIds to exclude from the classpath passed to Bnd, use "true" to exclude everything.
@@ -396,21 +399,25 @@ Version 2 of the bundleplugin now supports the same style of filter clauses in `
 
 * *`bundleall`* - build OSGi bundle jars for all transitive dependencies
 configuration options:
+
  * *`wrapImportPackage`* defaults to "*"
  * *`supportedProjectTypes`* defaults to "jar","bundle"
 
 * *`wrap`* - as above, but limited to the first level of dependencies
 configuration options:
+
  * *`wrapImportPackage`* defaults to "*"
  * *`supportedProjectTypes`* defaults to "jar","bundle"
 
 * *`manifest`* - create an OSGi manifest for the current project
 configuration options:
+
  * *`manifestLocation`* defaults to $\{project.build.outputDirectory}/META-INF
  * *`supportedProjectTypes`* defaults to "jar","bundle"
 
 * *`install`* - adds the current bundle project to the local OBR
 configuration options:
+
  * *`obrRepository`* path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
  * *`supportedProjectTypes`* defaults to "jar","bundle"
 
@@ -420,6 +427,7 @@ More GOALs are available in the *1.4.0* release:
 
 * *`install-file`* - adds a local bundle file to the local OBR
 configuration options:
+
  * *`obrRepository`* path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
  * *`groupId`* Maven groupId for the bundle, taken from *pomFile* if given
  * *`artifactId`* Maven artifactId for the bundle, taken from *pomFile* if given
@@ -432,6 +440,7 @@ configuration options:
 
 * *`deploy`* - adds the current bundle project to a remote OBR
 configuration options:
+
  * *`remoteOBR`* name of remote OBR, defaults to NONE (which means no remote OBR deployment)
  * *`obrRepository`* used when the remoteOBR name is blank, defaults to `repository.xml`
  * *`prefixUrl`* optional public URL prefix for the remote repository
@@ -443,6 +452,7 @@ configuration options:
 
 * *`deploy-file`* - adds a local bundle file to a remote OBR
 configuration options:
+
  * *`remoteOBR`* name of remote OBR, defaults to an empty string
  * *`obrRepository`* used when the remoteOBR name is blank, defaults to `repository.xml`
  * *`repositoryId`* optional repository id, used to lookup authentication settings
@@ -466,10 +476,12 @@ configuration options:
 
 * *`clean`* - cleans the local OBR, removing missing bundles
 configuration options:
+
  * *`obrRepository`* path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 
 * *`remote-clean`* - cleans a remote OBR, removing missing bundles
 configuration options:
+
  * *`remoteOBR`* name of remote OBR, defaults to NONE (which means no remote cleaning)
  * *`obrRepository`* used when the remoteOBR name is blank, defaults to `repository.xml`
  * *`prefixUrl`* optional public URL prefix for the remote repository
@@ -817,14 +829,8 @@ Configuration:
 * *remoteOBR* name of remote OBR, defaults to an empty string
 * *obrRepository* used when the remoteOBR name is blank, defaults to `repository.xml`
 * *repositoryId* optional repository id, used to lookup authentication settings
-* *url* remote repository transport URL, like
-
-    scpexe://host/path/to/obr
-
-* *bundleUrl* public URL of deployed bundle, like
-
-    http://www.foo.org/bundles/foo.jar
-
+* *url* remote repository transport URL, like `scpexe://host/path/to/obr`
+* *bundleUrl* public URL of deployed bundle, like `http://www.foo.org/bundles/foo.jar`
 * *groupId* Maven groupId for the bundle, taken from *pomFile* if given
 * *artifactId* Maven artifactId for the bundle, taken from *pomFile* if given
 * *version* Maven version for the bundle, taken from *pomFile* if given
@@ -870,6 +876,7 @@ Possible values for the `urlTemplate` are:
 
 * *maven* this will create a maven based url such as `mvn:groupid/artifactid/version`
 * pattern with the following placeholders:
+
  * `%v` bundle version
  * `%s` bundle symbolic name
  * `%f` file name
