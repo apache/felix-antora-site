@@ -70,7 +70,7 @@ The remainder of this section covers the most important aspects of BND's instruc
 
 The `<Export-Package>` instruction is a list of packages for the bundle to export. These packages are copied into the resulting bundle JAR file from the available classes (i.e., project classes, dependencies, and class path); thus, it is possible to include classes into your bundle that are not associated with source files in your project. `<Export-Package>` can be specified with package patterns using the '*' wildcard. Also, it is possible to exclude packages using negation by starting the package pattern with '\!'. Thus, non-negated patterns indicate which of the available packages to include in the bundle, whereas negated patterns indicate which should not be included in the bundle.
 
-The list of package patterns is ordered and earlier patterns are applied before later patterns. For example, if you specify "`org.foo.*,\!org.foo.impl`" the second pattern has no effect since all `org.foo` packages have already been selected by the first pattern. Instead, you should specify "`\!org.foo.impl,org.foo.\*`", which will export all `org.foo` packages except `org.foo.impl`.
+The list of package patterns is ordered and earlier patterns are applied before later patterns. For example, if you specify "`org.foo.*,!org.foo.impl`" the second pattern has no effect since all `org.foo` packages have already been selected by the first pattern. Instead, you should specify "`!org.foo.impl,org.foo.*`", which will export all `org.foo` packages except `org.foo.impl`.
 
 Following standard OSGi R4 syntax, package patterns can include both directives and attributes, which will be copied appropriately into the generated Export-Package manifest header. Besides explicitly listing package version attributes, BND will also determine package versions by examining the source JAR file or from `packageinfo` files in the package directory.
 
@@ -93,11 +93,11 @@ For the `<Include-Resource>` instruction, actual file paths are relative to the 
 
 If a resource clause is specified inside of "\{ ... \}" brackets, then variable substitution will be performed on the resource, where variables in the resources are denoted with "$\{ ... \}" syntax.
 
-By default the bundle plugin converts the project's Maven resource directories into a single `<Include-Resource>` instruction. If you specify your own `<Include-Resource>` instruction, this will replace the generated one. To include the generated list of Maven resources in your own `<Include-Resource>` instruction just add `\{maven-resources\`} to the list and it will be expanded automatically.
+By default the bundle plugin converts the project's Maven resource directories into a single `<Include-Resource>` instruction. If you specify your own `<Include-Resource>` instruction, this will replace the generated one. To include the generated list of Maven resources in your own `<Include-Resource>` instruction just add `{maven-resources}` to the list and it will be expanded automatically.
 
 ### `<Import-Package>`
 
-The `<Import-Package>` instruction is a list of packages that are required by the bundle's contained packages. The default for this header is "*", resulting in importing all referred packages. This header rarely has to be explicitly specified. However, in certain cases when there is an unwanted import, such an import can be removed by using a negation package pattern. The package patterns work in the same way as for `<Export-Package>`, which means they are ordered. For example, if you wanted to import all packages except `org.foo.impl` you would specify "`\!org.foo.impl,\*`"
+The `<Import-Package>` instruction is a list of packages that are required by the bundle's contained packages. The default for this header is "*", resulting in importing all referred packages. This header rarely has to be explicitly specified. However, in certain cases when there is an unwanted import, such an import can be removed by using a negation package pattern. The package patterns work in the same way as for `<Export-Package>`, which means they are ordered. For example, if you wanted to import all packages except `org.foo.impl` you would specify "`!org.foo.impl,*`"
 
 
 
@@ -114,18 +114,18 @@ Get the symbolic name as groupId + "." + artifactId, with the following exceptio
 The computed symbolic name is also stored in the `$(maven-symbolicname)` property in case you want to add attributes or directives to it.
 * `<Export-Package>` is now assumed to be the set of packages in your local Java sources, excluding the default package '.' and any packages containing 'impl' or 'internal'.
 *(before version 2 of the bundleplugin it was based on the symbolic name)*
-* Since 2.2.0 you can also use `\{local-packages\`} inside `<Export-Package>` and it will be expanded to the set of local packages.
+* Since 2.2.0 you can also use `{local-packages}` inside `<Export-Package>` and it will be expanded to the set of local packages.
 * `<Private-Package>` is now assumed to be the set of packages in your local Java sources (note that any packages in both `<Export-Package>` and `<Private-Package>` will be exported).
 *(before version 2 of the bundleplugin it was assumed to be empty by default)*
-* `<Import-Package>` is assumed to be "`\*`", which imports everything referred to by the bundle content, but not contained in the bundle.
+* `<Import-Package>` is assumed to be "`*`", which imports everything referred to by the bundle content, but not contained in the bundle.
 *Any exported packages are also imported by default, to ensure a consistent class space.*
 * `<Include-Resource>` is generated from the project's Maven resources, typically "`src/main/resources/`", which will copy the specified project directory hierarchy into the resulting bundle JAR file, mirroring standard Maven behavior.
-* `<Bundle-Version>` is assumed to be "`$\{pom.version\`}" but is normalized to the OSGi version format of "`MAJOR.MINOR.MICRO.QUALIFIER`", for example "`2.1-SNAPSHOT`" would become "`2.1.0.SNAPSHOT`".
-* `<Bundle-Name>` is assumed to be "`$\{pom.name\`}".
-* `<Bundle-Description>` is assumed to be "`$\{pom.description\`}".
-* `<Bundle-License>` is assumed to be "`$\{pom.licenses\`}".
-* `<Bundle-Vendor>` is assumed to be "`$\{pom.organization.name\`}".
-* `<Bundle-DocURL>` is assumed to be "`$\{pom.organization.url\`}".
+* `<Bundle-Version>` is assumed to be "`${pom.version}`" but is normalized to the OSGi version format of "`MAJOR.MINOR.MICRO.QUALIFIER`", for example "`2.1-SNAPSHOT`" would become "`2.1.0.SNAPSHOT`".
+* `<Bundle-Name>` is assumed to be "`${pom.name}`".
+* `<Bundle-Description>` is assumed to be "`${pom.description}`".
+* `<Bundle-License>` is assumed to be "`${pom.licenses}`".
+* `<Bundle-Vendor>` is assumed to be "`${pom.organization.name}`".
+* `<Bundle-DocURL>` is assumed to be "`${pom.organization.url}`".
 
 Since the plugin creates bundles for OSGi R4, it hard-codes `Bundle-ManifestVersion` to be '2'. Additionally, it generates imports for every export to ensure package substitutability, which is very important when working with collaborating services. It is possible to override any of these values (except `Bundle-ManifestVersion`) just by specifying the desired value in the plugin configuration section of the POM file.
 
@@ -345,7 +345,7 @@ for them in the bundleplugin configuration, for example if you want to use the p
     </plugin>
 
 
-You'll also need to configure the other plugin to pick up and use the generated manifest, which is written to `$\{project.build.outputDirectory}/META-INF/MANIFEST.MF` by default (unless you choose a different `manifestLocation` in the maven-bundle-plugin configuration). Continuing with our WAR example:
+You'll also need to configure the other plugin to pick up and use the generated manifest, which is written to `${project.build.outputDirectory}/META-INF/MANIFEST.MF` by default (unless you choose a different `manifestLocation` in the maven-bundle-plugin configuration). Continuing with our WAR example:
 
 
     <plugin>
@@ -502,7 +502,7 @@ where:
     PATH ::= <Ant-style path expression>
 
 
-The plugin uses the `<Embed-Dependency>` instruction to transform the project dependencies into `<Include-Resource>` and `<Bundle-ClassPath>` clauses, which are then appended to the current set of instructions and passed onto BND. If you want the embedded dependencies to be at the start or middle of `<Include-Resource>` or `<Bundle-ClassPath>` then you can use `\{maven-dependencies\`}, which will automatically expand to the relevant clauses.
+The plugin uses the `<Embed-Dependency>` instruction to transform the project dependencies into `<Include-Resource>` and `<Bundle-ClassPath>` clauses, which are then appended to the current set of instructions and passed onto BND. If you want the embedded dependencies to be at the start or middle of `<Include-Resource>` or `<Bundle-ClassPath>` then you can use `{maven-dependencies}`, which will automatically expand to the relevant clauses.
 
 The MATCH section accepts alternatives, separated by *|*, and can be negated by using *!* at the *beginning* of the MATCH. Use *\** to represent zero or more unknown characters and *?* to represent zero or one character. You can also use standard Java [regexp](http://java.sun.com/javase/6/docs/api/java/util/regex/Pattern.html) constructs. There is no need to escape the *.* character inside MATCH. The first MATCH in a clause will filter against the artifactId.
 
@@ -525,7 +525,7 @@ some examples:
     <Embed-Dependency>*;inline=images/**|icons/**</Embed-Dependency>
 
 
-examples of using `\{maven-dependencies\`}:
+examples of using `{maven-dependencies}`:
 
 
     <Include-Resource>
@@ -792,7 +792,7 @@ Example:
 
 ## bundle:deploy
 
-The *deploy goal* updates the remote OBR with the details of the deployed bundle from the local Maven repository. The remote OBR is found by querying the `<distributionManagement>` section of the project, unless `\-DaltDeploymentRepository` is set. See [http://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html](http://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html) for more details about these particular settings.
+The *deploy goal* updates the remote OBR with the details of the deployed bundle from the local Maven repository. The remote OBR is found by querying the `<distributionManagement>` section of the project, unless `-DaltDeploymentRepository` is set. See [http://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html](http://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html) for more details about these particular settings.
 
 (If the project has an `obr.xml` file somewhere in its resources, then it will be automatically detected and applied.)
 
@@ -806,9 +806,9 @@ This goal is part of the "bundle" packaging lifecycle, but is disabled by defaul
 
 ## bundle:deploy-file
 
-The *deploy-file* goal updates the remote OBR with the details of a deployed bundle from the local filesystem. The remote OBR is found using the `\-DrepositoryId` and `\-Durl` parameters. See [http://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html](http://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html) for more details about these particular settings.
+The *deploy-file* goal updates the remote OBR with the details of a deployed bundle from the local filesystem. The remote OBR is found using the `-DrepositoryId` and `-Durl` parameters. See [http://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html](http://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html) for more details about these particular settings.
 
-You can use the `\-DbundleUrl` parameter to give the public location of the deployed bundle, which may differ from the remote OBR location.
+You can use the `-DbundleUrl` parameter to give the public location of the deployed bundle, which may differ from the remote OBR location.
 
 configuration:
 * *remoteOBR* name of remote OBR, defaults to an empty string
@@ -871,7 +871,7 @@ Possible values for the `urlTemplate` are:
 
 ## Concurrent updates
 
-With a remote OBR, several uploads may occur at the same time. However, the remote OBR is centralized in one file, so concurrent modification must be avoided. To achieve this, the plug-in implements a locking system. Each time the plug-in tries to modify the file it sets a file based lock. If it can't take the lock, it will wait and retry. After 3 attempts the upload process fails. To bypass this lock add `\-DignoreLock` to the command-line (or add `<ignoreLock>true<ignoreLock>` to the configuration section of your Pom).
+With a remote OBR, several uploads may occur at the same time. However, the remote OBR is centralized in one file, so concurrent modification must be avoided. To achieve this, the plug-in implements a locking system. Each time the plug-in tries to modify the file it sets a file based lock. If it can't take the lock, it will wait and retry. After 3 attempts the upload process fails. To bypass this lock add `-DignoreLock` to the command-line (or add `<ignoreLock>true<ignoreLock>` to the configuration section of your Pom).
 
 ## FTP protocol
 
