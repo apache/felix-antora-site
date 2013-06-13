@@ -1,6 +1,7 @@
 translation_pending: true
 Title: News
 
+* The Apache Felix Maven Bundle Plugin 2.4.0 is now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 12, 2013)
 * The Apache Felix SCR Generator 1.7.0, Maven SCR Plugin 1.13.0, SCR Ant Task 1.7.0 ,and SCR Annotations 1.9.4 releases are now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 06, 2013)
 * The Apache Felix Deployment Admin 0.9.4 and Auto Configuration 0.1.4 are now available in the <a href="/downloads.cgi">downloads</a> section and from the Maven repository.
 * The Apache Felix iPOJO Manipulator (1.10.0), Runtime (1.10.0), Arch command for Gogo (1.1.0) and Web Console Plugin (1.7.0) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (May 25, 2013)
