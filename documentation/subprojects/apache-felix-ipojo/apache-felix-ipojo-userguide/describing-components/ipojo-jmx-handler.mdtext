@@ -19,14 +19,7 @@ The handler allows to:
 
 ## Prerequisites
 
-To be functional this handler must register on an MBean Server,thus you obviously need it. Several servers are currently supported : the standard platform MBean server (included in the JDK), MOSGi (provided with Felix), ...
-To use MOSGi, you have to deploy at least the following three bundles of MOSGi:
-
-* org.apache.felix.mosgi.jmx.agent
-* org.apache.felix.mosgi.jmx.registry
-* org.apache.felix.mosgi.jmx.rmiconnector
-
-You can find MOSGi documentation on [http://cwiki.apache.org/FELIX/mosgi-managed-osgi-framework.html](http://cwiki.apache.org/FELIX/mosgi-managed-osgi-framework.html)
+To be functional this handler must register on an MBean Server,thus you obviously need it. Several servers are currently supported : the standard platform MBean server (included in the Java Virtual Machine since version 5), MOSGi (Apache Felix sub-project), ...
 
 ## Download
 

@@ -231,7 +231,7 @@ Each (non private) component types are exposed as an OSGi service. You can use t
 The Factory service
 -------------------
 
-The published service interface is `org.apache.felix.ipojo.Factory` and provides the following methods:
+The published service interface is `[org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/1.10.1/org/apache/felix/ipojo/Factory.html)` and provides the following methods:
 
     :::java
     /**

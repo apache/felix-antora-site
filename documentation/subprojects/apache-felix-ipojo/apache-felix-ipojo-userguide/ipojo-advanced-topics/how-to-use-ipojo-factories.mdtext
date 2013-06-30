@@ -141,7 +141,7 @@ The <code>instance.name</code> and <code>factory.name</code> property should not
 
 ## Creating, disposing and reconfiguring instances with the API
 
-A public factory is accessible through an exposed service ([org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/1.2.0/org/apache/felix/ipojo/Factory.html)). This service is accessible as any other OSGi service, and could be an iPOJO dependency using a LDAP filter or the 'from' attribute such as in:
+A public factory is accessible through an exposed service ([org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/1.10.1/org/apache/felix/ipojo/Factory.html)). This service is accessible as any other OSGi service, and could be an iPOJO dependency using a LDAP filter or the 'from' attribute such as in:
 
     :::xml
     <component classname="...">
