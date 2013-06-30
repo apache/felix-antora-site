@@ -3,10 +3,7 @@ Title: iPOJO in 10 minutes
 
 # iPOJO in 10 minutes
 
-This page presents how to use the iPOJO runtime and its associated service component model. The concepts of the service component model are introduced, followed by a simple example that demonstrates the features of iPOJO. This tutorial uses annotations to describe components.  However, iPOJO also supports
-
-    * XML
-    * A Java [API|apache-felix-ipojo-api]
+This page presents how to use the iPOJO runtime and its associated service component model. The concepts of the service component model are introduced, followed by a simple example that demonstrates the features of iPOJO. This tutorial uses annotations to describe components.  However, you can also use XML or a programmatic API to create iPOJO applications.
 
 ## Introduction
 
@@ -167,7 +164,7 @@ The first step is to implement the service. Go in the spell.english directory an
 
 Notice that this class does not contains neither OSGi nor iPOJO specific code except a few annotations. It is just an implementation of the Dictionary Service interface.
 
-The `@Component` annotation is used to declare an iPOJO component. The `@Provides` annotation indicates that the component provides a service. Provided service interfaces are computed by iPOJO, so it is not necessary to specify them. Finally, the `@Instantiate` annotation instructs iPOJO to create an instance of our component. The relation between components and instances is the same than between classes and objects in the object oriented programming.
+The `@Component` annotation is used to declare an iPOJO component. The `@Provides` annotation indicates that the component provides a service. Provided service interfaces are computed by iPOJO, so it is not necessary to specify them. Finally, the `@Instantiate` annotation instructs iPOJO to create an instance of our component. The relation between components and instances is the same than between classes and objects in the object-oriented programming.
 
 Then, we are able to create the bundle. In the spell.english directory launch the ant command:
 
@@ -406,7 +403,7 @@ Go to the spell.checker.gui directory. Open the `src\spell\gui\SpellCheckerGui.j
         }
     }
 
-Look at the three last methods. The _check_ methods collects the user input and uses a _Check speller_ service to check this input. The speller is injected into the `checker` field thanks to the `@Requires` annotation. This method is called when the button is pressed by the user. The _start_ and _stop_ methods are lifecycle callbacks. As we display the user interface when the instance is created and to dispose it when the instance stops, we need a way to be notified when we need to execute these actions. iPOJO provides an easy way to do this. The component provides two callback methods for its activation and deactivation. Callbacks are used when the component needs to be informed about a component state change. In iPOJO, the component state is either *INVALID* (i.e., not all of the component's constraints are satisfied) or *VALID* (i.e., all of the component's constraints are satisfied). In this example, the start callback method sets the GUI visibility to true; the stop callback method deletes the GUI. The `@Validate` and `@Invalidate` annotations are used to specify these callbacks.
+Look at the three last methods. The _check_ methods collects the user input and uses a _Check speller_ service to check this input. The speller is injected into the `checker` field thanks to the `@Requires` annotation. This method is called when the user presses the button. The _start_ and _stop_ methods are lifecycle callbacks. As we display the user interface when the instance is created and to dispose it when the instance stops, we need a way to be notified when we need to execute these actions. iPOJO provides an easy way to do this. The component provides two callback methods for its activation and deactivation. Callbacks are used when the component needs to be informed about a component state change. In iPOJO, the component state is either *INVALID* (i.e., not all of the component's constraints are satisfied) or *VALID* (i.e., all of the component's constraints are satisfied). In this example, the start callback method sets the GUI visibility to true; the stop callback method deletes the GUI. The `@Validate` and `@Invalidate` annotations are used to specify these callbacks.
     
 Once this file is created, you can compile the project by launching *ant* in the spell.checker.gui directory.
 
@@ -515,3 +512,4 @@ iPOJO provides a lot of others features that you can try in the others available
   
   
   
+
