@@ -1,7 +1,4 @@
-translation_pending: true
-Title: Apache Felix Config Admin
-
-# Configuration Admin Service
+Title: Apache Felix Configuration Admin Service
 
 The OSGi Componendium Configuration Admin Service specifies a service, which allows for easy management of configuration data for configurable components. Basicaly configuration is a list of name-value pairs. Configuration is managed by management applications by asking the Configuration Admin Service for such configuration. After updating the configuration, it is sent back to the Configuration Admin Service. The Configuration Admin Service is like a central hub, which cares for persisting this configuration and also for distributing the configuration to interested parties. One class of such parties are the components to be configured. These are registered as `ManagedService` services. There is also a notion of `ManagedServiceFactory`, which allows for multiple configurations of the same kind to be applied.
 
@@ -24,7 +21,6 @@ The PID is just a string, which must be globally unique. Assuming a simple case 
 
 The class would be:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>PrettyPrinterConfigurator.java</B></DIV><DIV class="codeContent panelContent">
        package org.sample;
        class PrettyPrinterConfigurator implements ManagedService {
            public void update(Dictionary props)
@@ -41,7 +37,6 @@ The class would be:
 
 Now, in your bundle activator's start() method you register the `PrettyPrinterConfigurator` as a `ManagedService`:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>PrettyPrinterActivator.java</B></DIV><DIV class="codeContent panelContent">
     ...
     private ServiceRegistration ppcService;
     public void start(BundleContext context) {
