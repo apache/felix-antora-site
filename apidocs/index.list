@@ -1,4 +1,5 @@
 # The list of available API documentations
 
+configadmin|Apache Felix Configuration Admin Service|/documentation/subprojects/apache-felix-config-admin.html
 inventory|Apache Felix Inventory Printer|/documentation/subprojects/apache-felix-inventory.html
 webconsole|Apache Felix Web Console|/documentation/subprojects/apache-felix-web-console.html
