@@ -1,0 +1,4 @@
+# The list of available API documentations
+
+inventory|Apache Felix Inventory Printer|/documentation/subprojects/apache-felix-inventory.html
+webconsole|Apache Felix Web Console|/documentation/subprojects/apache-felix-web-console.html
