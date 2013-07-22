@@ -65,7 +65,7 @@ Any bundle which provides a LoginModule class needs to provide this information 
 ##### Configuration
 JAAS module depends on OSGi Configuration for managing the LoginModule configuration. The configuration factory PID is `org.apache.felix.jaas.Configuration.factory`.It provides the required metatype descriptor thus enabling configuration via via "Configuration" tab of Felix WebConsole
 
-!jaas-config.png!
+<img src="jaas-config.png" />
 
 Configuration properties
 
@@ -81,11 +81,12 @@ For an example refer to [Sample Confiuration](http://svn.apache.org/repos/asf/fe
 Any bundle which want to provide a LoginModule implementation would need to provide a factory service which implements the [LoginModuleFactory](http://svn.apache.org/repos/asf/felix/trunk/jaas/src/main/java/org/apache/felix/jaas/LoginModuleFactory.java)  interface. The factory needs to be registeredwith following optional properties
 
 * `jaas.controlFlag` - LoginControlFlag to use like required, optional, requisite, sufficient. Default is set to required
-* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it is bound to a 'other' realm
-* `service.ranking` - Ranking for the LoginModule. It would be used to order the various login modules
+* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it is bound to a 'other' realm.
+* `service.ranking` - Ranking for the LoginModule. It would be used to order the various login modules.
+
+Interface
 
     :::java
-
     /**
      * A factory for creating {@link LoginModule} instances.
      */
@@ -116,7 +117,6 @@ Any bundle which want to provide a LoginModule implementation would need to prov
         LoginModule createLoginModule();
     }
 
-
 Refer to [JdbcLoginModuleFactory](http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/lm-jdbc/src/main/java/org/apache/felix/example/jaas/jdbc/JdbcLoginModuleFactory.java) for one example of its usage. It constructs a JdbcLoginModule based on the configuration and passes on the datasource.
 
 
@@ -124,3 +124,4 @@ Refer to [JdbcLoginModuleFactory](http://svn.apache.org/repos/asf/felix/trunk/ex
 
 1. [Java JAAS Reference Guide](http://docs.oracle.com/javase/1.5.0/docs/guide/security/jaas/JAASRefGuide.html)
 2. [JAAS Login Configuration File](http://docs.oracle.com/javase/1.5.0/docs/guide/security/jaas/tutorials/LoginConfigFile.html)
+
