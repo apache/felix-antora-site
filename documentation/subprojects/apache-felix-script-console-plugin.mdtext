@@ -19,7 +19,7 @@ features
 * Execute remote testcase via evaluating test scripts
 
 ### Installation
-Untill the bundle is released you would need to build it and deploy
+Untill the bundle is released you would need to build it and deploy. Otherwise download and install the [staged][1] build 
 
     $svn co https://svn.apache.org/repos/asf/felix/trunk/webconsole-plugins/script-console/
     $cd script-console
@@ -145,4 +145,6 @@ access some private class to see the runtime state.
 
 ### Screenshots
 
-<img src="script-console-1.png">
+<img src="script-console-1.png" align="center">
+
+[1]: https://repository.apache.org/content/repositories/orgapachefelix-001/org/apache/felix/org.apache.felix.webconsole.plugins.scriptconsole/1.0.0/org.apache.felix.webconsole.plugins.scriptconsole-1.0.0.jar
