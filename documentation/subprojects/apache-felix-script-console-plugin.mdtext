@@ -12,14 +12,11 @@ features
 * Hot key support
 * Execute remote testcase via evaluating test scripts
 
-A collection of useful scripts is maintained in [this gist](https://gist.github.com/3748614)
-
-
 ### Installation
 Untill the bundle is released you would need to build it and deploy
 
 ### Usage
-After installing it you would see a new tab "Script Console" in [Felix Web Console](http://localhost:4502/system/console).
+After installing it you would see a new tab "Script Console" in Felix Web Console.
 The plugin screen provides a textarea to author script code. One can select the language via the given dropdown. The generated
 output is shown in pane below.
 
@@ -65,17 +62,12 @@ The plugin can also be invoked by making POST request. It supports following par
 
 If any exception occurs while evaluating the script then it would return the exception message with status set to 500. Scripts can control what output they want to emit.
 
-### Screenshots
-
-<img src="script-console-1.png">
-
-
 ### Sample Scripts
 
 Following are some sample scripts in Groovy. Note the scripts might be depending on implementation details to access the
 relevant data structures
 
-1 Script to find out servlets which are registered problematically with Felix HTTP Service
+1. Script to find out servlets which are registered problematically with Felix HTTP Service
 
         :::groovy
         import org.osgi.service.http.HttpService
@@ -135,3 +127,8 @@ access some private class to see the runtime state.
         bundles.each{
             println it
         }
+
+
+### Screenshots
+
+<img src="script-console-1.png">
