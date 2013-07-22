@@ -15,6 +15,16 @@ features
 ### Installation
 Untill the bundle is released you would need to build it and deploy
 
+    $svn co https://svn.apache.org/repos/asf/felix/trunk/webconsole-plugins/script-console/
+    $cd script-console
+    $mvn clean install
+    $mvn org.apache.sling:maven-sling-plugin:2.1.0:install -Dsling.url=http://localhost:8080/system/console
+
+Install bundles for the Script Language you want to use
+
+* [Groovy](http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/2.1.6/groovy-all-2.1.6.jar)
+* [JRuby](http://repo1.maven.org/maven2/org/jruby/jruby/1.7.4/jruby-1.7.4.jar)
+
 ### Usage
 After installing it you would see a new tab "Script Console" in Felix Web Console.
 The plugin screen provides a textarea to author script code. One can select the language via the given dropdown. The generated
@@ -45,12 +55,10 @@ To access a service satisfying OSGi filter
     :::groovy
     def eventPlugin = osgi.getServices(javax.servlet.Servlet.class,'(felix.webconsole.label=events)')[0]
 
-
 Following hotkeys work
+
 * Ctrl+F9 - Execute the script
 * Ctrl+q - Clear the output
-
-To try out Groovy scripts just install the [Groovy Bundle](http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/1.8.6/groovy-all-1.8.6.jar)
 
 ### HTTP API
 The plugin can also be invoked by making POST request. It supports following parameters
