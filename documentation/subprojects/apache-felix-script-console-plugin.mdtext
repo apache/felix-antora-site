@@ -1,5 +1,11 @@
 Title: Apache Felix Script Console Plugin
 
+<style type="text/css">
+img {
+ width:auto;
+}
+</style>
+
 <div class="note">
 Work in progress as part of FELIX-4122
 </div>
