@@ -14,7 +14,8 @@ Apache Felix JAAS support aims to simplify usage of JAAS in OSGi.
 
 It supports following features
 
-1. It can work both in Standalone and AppServer deployments i.e. in those environment where global JAAS configuration might be used by other applications and our usage of JAAS should not affect them
+1. It can work both in Standalone and AppServer deployments i.e. in those environment where global JAAS configuration
+   might be used by other applications and our usage of JAAS should not affect them
 2. It enables usage of OSGi Configuration support to dynamically configure the login modules.
 3. It allows LoginModule instances to be created via factories registered in OSGi Service Registry
 4. It does not require the client to depend on any OSGi API
@@ -23,7 +24,8 @@ It supports following features
 
 ## The Problem
 
-The basic problem when using JAAS in OSGi is that it creates the LoginModule instance using reflection. This poses problem in OSGi env as the client bundle does not have the visibility of all the required LoginModule classes.
+The basic problem when using JAAS in OSGi is that it creates the LoginModule instance using reflection. This poses
+problem in OSGi env as the client bundle does not have the visibility of all the required LoginModule classes.
 
 A typical use of JAAS login looks like below
 
@@ -33,11 +35,16 @@ A typical use of JAAS login looks like below
     lc.login();
 
 
-In this mode the `LoginContext` would access the global JAAS `Configuration` internally via `Configuration.getConfiguration()`. It would then instantiate the LoginModule instance based on the configuration value. It uses the Thread Context ClassLoader (TCCL) to create the instance. This approach fails to work when used in OSGi
+In this mode the `LoginContext` would access the global JAAS `Configuration` internally via `Configuration.getConfiguration()`.
+It would then instantiate the LoginModule instance based on the configuration value. It uses the Thread Context ClassLoader (TCCL)
+to create the instance. This approach fails to work when used in OSGi
 
-1. The Thread Context ClassLoader is not defined in general in an OSGi context. It can and has to be set by the caller and OSGi cannot generally enforce that.
-2. Instantiating a LoginModule generally requires access to internal implementation classes, by exporting these classes an implementing bundle would break its encapsulation.
-3. Even if an implementation class was exported, importing this class in a consumer bundle would bind it to the specific implementation package provided, which violates the principle of loose coupling.
+1. The Thread Context ClassLoader is not defined in general in an OSGi context. It can and has to be set by the caller
+   and OSGi cannot generally enforce that.
+2. Instantiating a LoginModule generally requires access to internal implementation classes, by exporting these classes
+   an implementing bundle would break its encapsulation.
+3. Even if an implementation class was exported, importing this class in a consumer bundle would bind it to the specific
+   implementation package provided, which violates the principle of loose coupling.
 
 ## Making it work
 
@@ -69,7 +76,9 @@ Any bundle which provides a LoginModule class needs to provide this information 
     <Jaas-ModuleClass>org.apache.felix.example.jaas.config.internal.SampleConfigLoginModule</Jaas-ModuleClass>
 
 ##### Configuration
-JAAS module depends on OSGi Configuration for managing the LoginModule configuration. The configuration factory PID is `org.apache.felix.jaas.Configuration.factory`.It provides the required metatype descriptor thus enabling configuration via via "Configuration" tab of Felix WebConsole
+JAAS module depends on OSGi Configuration for managing the LoginModule configuration. The configuration factory PID is
+`org.apache.felix.jaas.Configuration.factory`.It provides the required metatype descriptor thus enabling configuration
+via "Configuration" tab of Felix WebConsole
 
 <img src="jaas-config.png" />
 
@@ -77,17 +86,20 @@ Configuration properties
 
 * `jaas.classname` - Fully qualified name of the LoginModule class
 * `jaas.controlFlag` - LoginControlFlag to use like required, optional, requisite, sufficient. Default is set to required
-* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it is bound to a 'other' realm
+* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it
+   is bound to a 'other' realm
 * `jaas.ranking` - Ranking for the LoginModule. It would be used to order the various login modules
 
-For an example refer to [Sample Confiuration](http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/launcher/src/main/config/org.apache.felix.jaas.Configuration.factory-simple.cfg). It configures a SampleConfigLoginModule for `sample` realm
+For an example refer to [Sample Confiuration][4]. It configures a SampleConfigLoginModule for `sample` realm
 
 #### B - LoginModuleFactory
 
-Any bundle which want to provide a LoginModule implementation would need to provide a factory service which implements the [LoginModuleFactory](http://svn.apache.org/repos/asf/felix/trunk/jaas/src/main/java/org/apache/felix/jaas/LoginModuleFactory.java)  interface. The factory needs to be registeredwith following optional properties
+Any bundle which want to provide a LoginModule implementation would need to provide a factory service which implements the
+[LoginModuleFactory][5] interface. The factory needs to be registeredwith following optional properties
 
 * `jaas.controlFlag` - LoginControlFlag to use like required, optional, requisite, sufficient. Default is set to required
-* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it is bound to a 'other' realm.
+* `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it
+   is bound to a 'other' realm.
 * `service.ranking` - Ranking for the LoginModule. It would be used to order the various login modules.
 
 Interface
@@ -123,11 +135,111 @@ Interface
         LoginModule createLoginModule();
     }
 
-Refer to [JdbcLoginModuleFactory](http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/lm-jdbc/src/main/java/org/apache/felix/example/jaas/jdbc/JdbcLoginModuleFactory.java) for one example of its usage. It constructs a JdbcLoginModule based on the configuration and passes on the datasource.
+Refer to [JdbcLoginModuleFactory][1] for one example of its usage. It constructs a JdbcLoginModule based on the
+configuration and passes on the datasource.
 
+### JAAS Configuration SPI Settings
+
+There are various ways in which LoginContext can be created depending on the usage mode. The JAAS support exposes
+following properties
+
+<img src="jaas-spi-config.png" align="center" />
+
+* `Default JAAS Realm` - Name of the realm to use in case a LoginModule does not provide an explicit realmName.
+   This is useful for single application mode where all LoginModule in an OSGi container are to be used. Usage of realm
+   help in global settings because same config file is used to capture settings for all applications running on same JVM
+* `JAAS Config Provider name` - Name against which the Configuration SPI provider should register
+* `Configuration Policy` - This would be explained in next section
+
+#### Configuration Policy and Invocation Mode
+
+##### Default
+
+Under this mode the global JAAS configuration would not be touched so client code would need to fetch the Configuration
+and pass it explicitly
+
+    :::java
+    import javax.security.auth.Subject;
+    import javax.security.auth.callback.CallbackHandler;
+    import javax.security.auth.login.Configuration;
+    import javax.security.auth.login.LoginContext;
+    import javax.security.auth.login.LoginException;
+    import javax.security.auth.spi.LoginModule;
+
+    Configuration config = Configuration.getInstance('JavaLoginConfig', //Algorithm name
+                               null, //Extra params to be passed. For this impl its null
+                               'FelixJaasProvider' //Name of the config provider
+                            );
+
+Following points need to be considered this mode
+
+* Client code needs to be aware of the name of the config provider.
+* Client bundle would need to have an import for package 'org.apache.felix.jaas.boot'. Refer to 'Boot classpath' section
+  for more details
+* Global configuration is not modified so other users of JAAS are not affected
+
+Refer to [TCCLDemoServlet][3] for an example
+
+#### Replace Global Configuration
+
+In this mode the JAAS bundle would replace the Global configuration through Configuration.setConfiguration call. In this
+mode the client code would use the normal LoginContext creation
+
+    :::java
+    // let the LoginContext instantiate a new Subject
+    LoginContext lc = new LoginContext("appName");
+    lc.login();
+
+Following points need to be considered this mode
+
+* Client code is not aware of the provider name
+* Client bundle would need to have an import for package 'org.apache.felix.jaas.boot'. Refer to 'Boot classpath' section
+  for more details
+* Global configuration is modified. So it might cause issue while running in co deployed scenarios like Application Server.
+
+Refer to [GlobalConfigDemoServlet][2] for an example
+
+####Proxy Global Configuration
+
+Similar to previous one  but it saves the default configuration and does a fallback check on that also. This should
+minimize any disruption in shared mode
+
+### Boot classpath
+Due to constraints in the JAAS specification, one class has to be available for all bundles. This class is called `ProxyLoginModule`
+and is a LoginModule that acts as a proxy for an OSGi defines LoginModule. If you plan to integrate this feature into
+another OSGi runtime, this class must be made available from the system classloader and the related package be part of the
+boot delegation classpath (or be deployed as a fragment attached to the system bundle).
+
+This is similar to support provided in Karaf.
+
+The other approach involves adding the import for `org.apache.felix.jaas.boot` package to the client bundle i.e. bundle
+which invokes LoginContext and then switch the Thread's Context Classloader (TCCL)
+
+    :::java
+    final Thread current = Thread.currentThread();
+    final ClassLoader orig = current.getContextClassLoader();
+    try {
+      current.setContextClassLoader(getClass().getClassLoader());
+      loginContext = new LoginContext(appName, subject,callbackHandler, config);
+    } finally{
+      current.setContextClassLoader(orig);
+    }
+
+In this mode you need not  modify the boot classpath or fragment
+
+## WebConsole Plugin
+
+The runtime JAAS realm is exposed via a WebConsole Plugin.
+
+<img src="jaas-plugin.png" align="center"/>
 
 ## Resources
 
 1. [Java JAAS Reference Guide](http://docs.oracle.com/javase/1.5.0/docs/guide/security/jaas/JAASRefGuide.html)
 2. [JAAS Login Configuration File](http://docs.oracle.com/javase/1.5.0/docs/guide/security/jaas/tutorials/LoginConfigFile.html)
 
+[1]: http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/lm-jdbc/src/main/java/org/apache/felix/example/jaas/jdbc/JdbcLoginModuleFactory.java
+[2]: http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/app/src/main/java/org/apache/felix/example/jaas/app/internal/GlobalConfigDemoServlet.java
+[3]: http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/app/src/main/java/org/apache/felix/example/jaas/app/internal/TCCLDemoServlet.java
+[4]: http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/launcher/src/main/config/org.apache.felix.jaas.Configuration.factory-simple.cfg
+[5]: http://svn.apache.org/repos/asf/felix/trunk/jaas/src/main/java/org/apache/felix/jaas/LoginModuleFactory.java
