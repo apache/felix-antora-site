@@ -6,10 +6,6 @@ img {
 }
 </style>
 
-<div class="note">
-Work in progress as part of FELIX-4122
-</div>
-
 Script Console is a Felix web console plugin which allows evaluation of scripts within the OSGi container. It provides following
 features
 
@@ -19,13 +15,29 @@ features
 * Execute remote testcase via evaluating test scripts
 
 ### Installation
-Untill the bundle is released you would need to build it and deploy. Otherwise download and install the [staged][1] build 
+To make use of this plugin you need to
+
+#### A - Install the Script Console Plugin bundle
+
+Refer to [downloads](http://felix.apache.org/downloads.cgi) for getting the bundle.
+
+For Maven use following coordinates
+
+    :::xml
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.webconsole.plugins.scriptconsole</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+For latest build follow steps below
 
     $svn co https://svn.apache.org/repos/asf/felix/trunk/webconsole-plugins/script-console/
     $cd script-console
     $mvn clean install
     $mvn org.apache.sling:maven-sling-plugin:2.1.0:install -Dsling.url=http://localhost:8080/system/console
 
+#### B- Install the language specific bundle
 Install bundles for the Script Language you want to use
 
 * [Groovy](http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/2.1.6/groovy-all-2.1.6.jar)
