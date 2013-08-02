@@ -9,7 +9,7 @@ The SCR Ant Task is implemented in the `org.apache.felix.scr.ant` library which 
     
       <taskdef
         resource="scrtask.properties"
-        classpath="org.apache.felix.scr.ant-1.1.4.jar" />
+        classpath="org.apache.felix.scr.ant-1.8.0.jar" />
     
     </project>
 
@@ -127,7 +127,7 @@ The following is very simple example build file based on the [Apache Sling JCR W
     <project default="scr" basedir=".">
     
       <taskdef resource="scrtask.properties"
-          classpath="org.apache.felix.scr.ant-1.0.0-SNAPSHOT.jar" />
+          classpath="org.apache.felix.scr.ant-1.8.0.jar" />
     
       <target name="init">
         <property name="src" value="src/main/java" />
@@ -139,7 +139,8 @@ The following is very simple example build file based on the [Apache Sling JCR W
             <include name="org/apache/sling/org.apache.sling.jcr.api/2.0.6/org.apache.sling.jcr.api-2.0.6.jar" />
             <include name="org/apache/felix/org.apache.felix.webconsole/3.0.0/org.apache.felix.webconsole-3.0.0.jar" />
             <include name="javax/servlet/servlet-api/2.4/servlet-api-2.4.jar" />
-            <include name="org/apache/felix/org.apache.felix.scr.annotations/1.4.0/org.apache.felix.scr.annotations-1.4.0.jar" />
+            <include name="org/apache/felix/org.apache.felix.scr.annotations/1.4.0/org.apache.felix.scr.annotations-1.9.6.jar" />
+            <include name="org/osgi/org.osgi.compendium/4.3.1/org.osgi.compendium-4.3.1.jar"/>
           </fileset>
         </path>
       </target>
