@@ -139,7 +139,7 @@ From [Votes on Package Releases](http://www.apache.org/foundation/voting.html):
 
 > Votes on whether a package is ready to be released follow a format similar to majority approval  -- except that the decision is officially determined solely by whether at least three +1 votes were registered. Releases may not be vetoed. Generally the community will table the vote to release if anyone identifies serious problems, but in most cases the ultimate decision, once three or more positive votes have been garnered, lies with the individual serving as release manager. The specifics of the process may vary from project to project, but the 'minimum of three +1 votes' rule is universal.
 
-The list of binding voters is available at [{{ project-management-committee-pmc.headers.title }}]({{ project-management-committee-pmc.path }})
+The list of binding voters is available at [{{ refs.project-management-committee-pmc.headers.title }}]({{ refs.project-management-committee-pmc.path }})
 
 If the vote is successful, post the result to the dev list - for example:
 

@@ -1,9 +1,9 @@
-translation_pending: true
 Title: Project Management Committee (PMC)
 
 # Apache Felix PMC
 
 Present members:
+
 * Alex Karasulu
 * Berin Loritsch
 * Carsten Ziegeler
@@ -25,6 +25,7 @@ Present members:
 * Timothy Bennett
 
 Past members:
+
 * Niclas Hedhman (stepped down 1/26/2009)
 * Trustin Lee (stepped down 2/9/2008)
 * Upayavira (stepped down 9/11/2007)
