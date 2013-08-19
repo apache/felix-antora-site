@@ -76,6 +76,23 @@ Many OSGi core concepts are greatly explained, and its free;
 The site is managed with the [Apache CMS](https://www.apache.org/dev/cms.html)
 where the source is kept in SVN at <https://svn.apache.org/repos/asf/felix/site/trunk/content>.
 
+### To update the documentation using the CMS system
+
+* Install the bookmarklet from the [cms](https://cms.apache.org/) page. You only have to do this once.
+* Navigate to the page you wish to edit (on the live site, not in the cms).
+* Click the bookmarklet. There will be a short pause while the CMS system is initialised for you.
+* Click on `Edit` (to skip this step hack the bookmarklet to add an 'action=edit' param to the query string)
+* The page editor should then be displayed.
+* Click `Submit` to save your edit to the workarea
+* Click `Commit` to save the updated file to SVN and trigger a staged build. (to skip this step click on the "Quick Commit" checkbox in the `Edit` form).
+* The results should appear shortly on the [staging](http://felix.staging.apache.org/content/documentation.html) site. (You may have to force the page to refresh in order to see the updated content)
+* Once you are happy with the updated page, click on `Publish Site` to deploy.
+
+There is also a [Reference Manual](https://www.apache.org/dev/cmsref.html) of the Apache CMS as well as a
+video tutorial at <http://s.apache.org/cms-tutorial>.
+
+### Features of the Apache Felix Site
+
 This section lists some Apache Felix features to help with the maintenance
 of the site, such as automatic link generation.
 
