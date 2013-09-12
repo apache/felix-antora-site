@@ -30,6 +30,7 @@ To summarize:
 
 * [{{ refs.apache-felix-maven-scr-plugin-use.headers.excerpt }}]({{ refs.apache-felix-maven-scr-plugin-use.path }})
 * [{{ refs.apache-felix-scr-ant-task-use.headers.excerpt }}]({{ refs.apache-felix-scr-ant-task-use.path }})
+* [{{ refs.apache-felix-scr-bndtools-use.headers.excerpt }}]({{ refs.apache-felix-scr-bndtools-use.path }})
 * [{{ refs.scr-annotations.headers.excerpt }}]({{ refs.scr-annotations.path }})
 * [{{ refs.scr-javadoc-tags.headers.excerpt }}]({{ refs.scr-javadoc-tags.path }})
 * [{{ refs.extending-scr-annotations.headers.excerpt }}]({{ refs.extending-scr-annotations.path }})
