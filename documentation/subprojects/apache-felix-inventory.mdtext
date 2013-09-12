@@ -40,7 +40,7 @@ Inventory Printer Services are registered as `org.apache.felix.inventory.Invento
 |-|-|-|
 | `felix.inventory.printer.name` | -- | The unique name of the printer. If there are two or more services with the same name, the service with the highest ranking is used. |
 | `felix.inventory.printer.title` | -- | The title displayed by tools when this printer is used. It should be descriptive but short. |
-| `felix.inventory.printer.format` | -- | The property defining the supported rendering formats. The value of this property is either a string or a string array containing valid names of [`Format`](/apidocs/inventory/current/org/apache/felix/inventory/Format.html). If this property is missing or contains invalid values, the printer is ignored. |
+| `felix.inventory.printer.format` | -- | The property defining the supported rendering formats. The value of this property is either a string or a string array containing valid names of [`Format`](/apidocs/inventory/1.0/org/apache/felix/inventory/Format.html). If this property is missing or contains invalid values, the printer is ignored. |
 | `felix.inventory.printer.webconsole` | `true` | Optional property controlling whether the printer will be displayed in the web console. By default, a printer is displayed in the web console, unless this property is added with the value 'false'. The property value can either be a boolean or a string. |
 
 The first three properties are required for the Inventory Printer service to be accepted. Otherwise the service is ignored by the framework printing a message to the log.
@@ -78,13 +78,13 @@ To prevent bundle resolution failure if the `InventoryPrinter` API is not availa
         }
     }
 
-See also the [API JavaDoc](/apidocs/inventory/current/).
+See also the [API JavaDoc](/apidocs/inventory/1.0/).
 
 
 ## ZIP Attachment Provider
 [Top](#top)
 
-If an Inventory Printer wants to provide additional contents to an Inventory ZIP File, it can implement the [ZipAttachmentProvider](/apidocs/inventory/current/org/apache/felix/inventory/ZipAttachmentProvider.html) interface and provide additional files when the zip is created.
+If an Inventory Printer wants to provide additional contents to an Inventory ZIP File, it can implement the [ZipAttachmentProvider](/apidocs/inventory/1.0/org/apache/felix/inventory/ZipAttachmentProvider.html) interface and provide additional files when the zip is created.
 
 
 ## Configuration Printer Services
