@@ -35,7 +35,9 @@ For now, the plugin is not yet released, but you can build it yourself like this
 
 In order to let BndTools load the SCR annotations bnd plugin, you can configure the default BndTools plugin path:
 
-In BndTools menu, click on "BndTools Open ext/pluginpaths.bnd", then click on "Source"
+First, if you don't have opened the BndTools perspective, then open it: go to Window Menu -> Open Perspective -> BndTools.
+
+Now, in BndTools menu, click on "BndTools Open ext/pluginpaths.bnd", then click on "Source"
 and append the SCR bnd plugin (${plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-X.Y.Z-SNAPSHOT.jar) to the current plugin path. 
 For example:
 
