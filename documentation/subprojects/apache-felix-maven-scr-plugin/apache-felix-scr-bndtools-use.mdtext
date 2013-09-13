@@ -108,7 +108,7 @@ You can possibly add the following parameters in the "-plugin: org.apache.felix.
 **`log`**    
 *Required*: No    
 *Default*: `warn`
-The plugin enabled log level. By default, no log is displayed, except warnings. If you configure a log level (either "error", "warn", "info", or "debug"), then the plugin will display logs in ${java.io.tmpdir}/scrplugin/BSN.log (BSN is the Bundle Symbolic Name of the bundle being analyzed by the plugin).
+The plugin enabled log level. You can select either one of "error", "warn", "info", or "debug". Plugin logs are written in ${java.io.tmpdir}/scrplugin/BSN.log (BSN is the Bundle Symbolic Name of the bundle being analyzed by the plugin).
 
 ----
 **`destdir`**    
