@@ -104,12 +104,12 @@ Then Run the project: you should see in the console the "Starting Greeting Servi
 
 ## Plugin Options
 
-You can possibly add the following parameters in the plugin bnd directive (each one separated by a semicolon).
+You can possibly add some optional parameters in the plugin bnd directive (each one separated by a semicolon).
 For example:
 
     -plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;log=debug;generateAccessors=false
 
-Here are the list of options:
+Here is the list of options:
 
 ----
 **`log`**    
