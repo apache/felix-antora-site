@@ -102,12 +102,17 @@ Then Run the project: you should see in the console the "Starting Greeting Servi
 
 ## Plugin Options
 
-You can possibly add the following parameters in the "-plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin" bnd directive (each parameters must be separated by a semicolon):
+You can possibly add the following parameters in the plugin bnd directive (each one separated by a semicolon).
+For example:
+
+    -plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;log=debug;generateAccessors=false
+
+Here are the list of options:
 
 ----
 **`log`**    
 *Required*: No    
-*Default*: `warn`
+*Default*: `warn`   
 The plugin enabled log level. You can select either one of "error", "warn", "info", or "debug". Plugin logs are written in ${java.io.tmpdir}/scrplugin/BSN.log (BSN is the Bundle Symbolic Name of the bundle being analyzed by the plugin).
 
 ----
@@ -133,4 +138,3 @@ If set to true, a warning will be considered as an error and the build will fail
 *Required*:  No    
 *Default*: --  
 The plugin will generate a descriptor for the Declarative Service version (e.g. 1.0, 1.1, or 1.2). If no value is specified, the plugin will detect the version and only use 1.1 if features from this version are used.
-
