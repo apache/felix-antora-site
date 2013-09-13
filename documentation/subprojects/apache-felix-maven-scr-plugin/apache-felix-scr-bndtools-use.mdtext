@@ -63,24 +63,21 @@ implementation will use the Apache Felix SCR annotations:
 
 * Create the greeting.api.Greeting interface:
 
-    :::java
     package greeting.api;
-    
+
     public interface Greeting {
         void sayHello(String name);
     }
 
 * Create the greeting.impl.GreetingImpl class:
 
-    :::java    
     package greeting.impl;
     
     import greeting.api.Greeting;
-    
     import org.apache.felix.scr.annotations.Activate;
     import org.apache.felix.scr.annotations.Component;
     import org.apache.felix.scr.annotations.Service;
-    
+
     @Component(immediate=true)
     @Service
     public class GreetingImpl implements Greeting {
