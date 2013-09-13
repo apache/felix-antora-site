@@ -40,6 +40,7 @@ In order to let BndTools load the SCR annotations bnd plugin, you can configure 
 For example:
 
     -pluginpath: ${plugin-dir}/biz.aQute.repository/biz.aQute.repository-2.1.0.jar, \
+
                  ${plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-1.0.0-SNAPSHOT.jar
 
 You have installed the SCR annotations bnd plugin in Eclipse BndTools, and you can now start using it (see the following Tutorial).
@@ -53,8 +54,11 @@ implementation will use the Apache Felix SCR annotations:
 * Click on bnd.bnd file of the greeting project, then click on Source, and add the following (and then save the file)
 
     -buildpath: ${plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-1.0.0-SNAPSHOT.jar;version=file
+    
     -plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin
+    
     Private-Package: greeting.impl
+    
     Export-Package: greeting.api
 
 * Create the greeting.api.Greeting interface:
