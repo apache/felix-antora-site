@@ -99,3 +99,7 @@ Create a Run descriptor (call it "run") with Apache Felix 4 With Gogo Shell.
 In Run requirement, add the greeting project, as well as Apache Felix SCR from Bnd HUB.
 
 Then Run the project: you should see in the console the "Starting Greeting Service" message displayed from the start() method.
+
+## Plugin Options
+
+TBD
