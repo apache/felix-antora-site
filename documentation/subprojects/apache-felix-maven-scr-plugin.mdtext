@@ -1,6 +1,6 @@
 Title: Apache Felix Maven SCR Plugin
 
-The Apache Felix Maven SCR Plugin is a great tool to ease the development of OSGi components and services. Components and services are defined through annotations and the plugin creates the necessary descriptors for the OSGi Declarative Services, Config Admin and Metatype services. Starting with version 1.4.0 of the plugin, OSGi Declarative Services versions 1.0 and 1.1 are supported.
+The Apache Felix Maven SCR Plugin is a great tool to ease the development of OSGi components and services. Components and services are defined through annotations and the plugin creates the necessary descriptors for the OSGi Declarative Services, Config Admin and Metatype services. Recent versions of the plugin support OSGi Declarative Services versions 1.0, 1.1, and 1.2.
 
 Make sure to see the [FAQ]({{ refs.apache-felix-scr-plugin-faq.path }}) for known problems.
 
@@ -40,7 +40,7 @@ To summarize:
 
 In general both mechanisms provide the same functionality. There are some subtle difference which are listed in this section:
 
-* JavaDoc tags are not supported in recent versions of the plugin. New features
+* JavaDoc tags are not supported in recent versions of the plugin, support has been removed with version 1.8.0. New features
 will only be implemented as annotations.
 * While the `metatype` flag is turned on by default for the JavaDoc tags, the default for the annotations is to generate no metadata. The reason for this is, that it turned out that services with metadata are less often used.
 * The JavaDoc support adds properties and references from super classes if the source is in the same module to a component even if the super class does not have the `@scr.component` tag. With the annotations the super class is required to have the `Component` annotation.
