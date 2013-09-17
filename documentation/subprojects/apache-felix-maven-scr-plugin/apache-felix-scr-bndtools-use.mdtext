@@ -5,7 +5,7 @@ The org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin is a bnd plugin allowi
 This page describes how to install the plugin in BndTools and also provides a simple tutorial, which won't be very fascinating, but will make it easy
 to demonstrate the use of Apache SCR annotations within BndTools.
 
-If you are not yet familiar with BndTools or if you don't have already installed it, you can take a look at [BndTools homepage](http://bndtools.org/).
+If you are not yet familiar with BndTools or if you have not already installed it, you can take a look at [BndTools homepage](http://bndtools.org/).
 
 This tutorial has been made with Eclipse Kepler and with the latest BndTools development version.
 It is assumed that the eclipse workspace is currently set to ~/workspace/BNDTOOLS
