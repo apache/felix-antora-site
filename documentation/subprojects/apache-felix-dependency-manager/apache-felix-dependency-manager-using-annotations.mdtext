@@ -12,8 +12,8 @@ components can interact with the dynamic OSGi service model.
 
 # Table of Contents
 
-* [Quick Start]({{ refs.apache-felix-dependency-manager-using-annotations-quick-start.path }}) Provides a "Hello World" example, and shows how to compile it.
-* ﻿﻿[Spell Checker Sample]({{ refs.apache-felix-dependency-manager-using-annotations-quick-tour.path }}) Helps you with the basic concepts using a full SpellChecker sample code.
+* [{{ refs.dependencymanager-annotations-quickstart.headers.excerpt }}]({{ refs.dependencymanager-annotations-quickstart.path }})
+* [{{ refs.dependencymanager-annotations-spellchecker.headers.excerpt }}]({{ refs.dependencymanager-annotations-spellchecker.path }})
 * [Writing Components]({{ refs.apache-felix-dependency-manager-using-annotations-components.path }}) Explains how to write DM service components using annotations.
 * [Using Dependencies]({{ refs.apache-felix-dependency-manager-using-annotations-dependencies.path }}) Explains how to annotate dependencies for a given component.
 * [Lifecycle]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle.path }}) Explains the DM component lifecycle and how components interact with the dynamic OSGI service model.
