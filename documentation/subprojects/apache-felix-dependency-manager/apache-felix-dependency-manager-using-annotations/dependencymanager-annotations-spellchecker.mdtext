@@ -1,6 +1,6 @@
 translation_pending: true
 Title: Dependency Manager SpellChecker Sample
-Excerpt: Helps you with the basic concepts using a full SpellChecker sample code.
+Excerpt: Basic concepts using a full SpellChecker sample code.
 
 This section presents a quick overview of the capabilities and usage of the 
 DependencyManager java 5 annotations. In particular, we will recap the DependencyManager 

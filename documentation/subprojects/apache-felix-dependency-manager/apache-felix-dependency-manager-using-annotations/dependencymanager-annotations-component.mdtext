@@ -1,6 +1,6 @@
 translation_pending: true
 Title: Dependency Manager Components Annotations
-Excerpt: Explains how to write Dependency Manager service components using annotations.
+Excerpt: Dependency Manager components annotations.
 
 This page describes the different types of Dependency Manager components:
 

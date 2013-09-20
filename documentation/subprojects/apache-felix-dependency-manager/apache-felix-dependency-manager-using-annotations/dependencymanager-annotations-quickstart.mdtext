@@ -1,6 +1,6 @@
 translation_pending: true
 Title: Dependency Manager Annotations Quick Start
-Excerpt: Provides an "Hello World" example, and shows how to compile it.
+Excerpt: Dependency Manager annotations quick start
 
 This section presents a simple "Hello World" component defined using annotations, and also explains how to build the bundle using either Bnd, Ant, or Maven.
 

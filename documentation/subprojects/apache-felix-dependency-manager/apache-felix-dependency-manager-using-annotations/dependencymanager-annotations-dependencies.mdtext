@@ -1,6 +1,6 @@
 translation_pending: true
 Title: Dependency Manager Dependencies Annotations
-Excerpt: Explains how to annotate component dependencies.
+Excerpt: Dependency Manager dependency annotations
 
 This section describes the various dependencies supported with annotations.
 
