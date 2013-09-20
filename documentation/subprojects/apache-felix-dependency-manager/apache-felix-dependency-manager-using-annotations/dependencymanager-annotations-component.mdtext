@@ -1,6 +1,6 @@
 translation_pending: true
-Title: Apache Felix Dependency Manager - Using Annotations - Components
-Excerpt: Explains how to write Dependency Manager service components using annotations
+Title: Dependency Manager Components Annotations
+Excerpt: Explains how to write Dependency Manager service components using annotations.
 
 This page describes the different types of Dependency Manager components:
 
