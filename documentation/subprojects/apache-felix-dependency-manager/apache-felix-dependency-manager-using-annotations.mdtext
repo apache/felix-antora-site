@@ -13,5 +13,5 @@ Dependency Manager provides a compact and versatile java API,  allowing to decla
 * [Using Dependencies]({{ refs.apache-felix-dependency-manager-using-annotations-dependencies.path }}) Explains how to annotate dependencies for a given component.
 * [Lifecycle]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle.path }}) Explains the DM component lifecycle and how components interact with the dynamic OSGI service model.
 * [Composition]({{ refs.apache-felix-dependency-manager-using-annotations-composition.path }}) Explains how a component may be implemented using multiple object instances.
+* [BndTools Tutorial](https://bitbucket.org/marrs/bndtools-dmdemo) A BndTools based demo of DependencyManager annotations.
 
-# 
