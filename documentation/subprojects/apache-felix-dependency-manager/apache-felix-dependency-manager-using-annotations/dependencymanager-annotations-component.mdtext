@@ -1,28 +1,15 @@
 translation_pending: true
 Title: Apache Felix Dependency Manager - Using Annotations - Components
+Excerpt: Explains how to write Dependency Manager service components using annotations
 
-# Annotations - Writing Components
-
-
-## Component Types
-
-Before diving into all annotations, we must first introduce the  different types of components DependencyManager is supporting. In  Dependency Manager, you may use the following types of components,  depending on what you need:
-
+This page describes the different types of Dependency Manager components:
 
 * *Component*: Components are the main building blocks for OSGi applications. They can publish themselves as a service, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
-
 * *Aspect Service*: A service that provides a non-functional aspect on top of an existing service. In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service used by the client. An Aspect Service first tracks a target service and is created once the target service is detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case, the ranking of the Aspect service is used to chain aspects in  the proper order).
-
 * *Adapter Service*: A Service that adapts another existing service into a new one. Like with aspects, sometimes you want to create adapters for certain services, which add certain behavior that results in the publication of (in this case) a different service. Adapters can dynamically be added and removed and allow you to keep your basic services implementations clean and simple, adding extra features on top of them in a modular way.
-
-Now we have introduced the different types of components, here is the list of annotations, allowing to declare DependencyManager service components:
-
-* *@Component:* for declaring a Component that eventually publishes a singleton OSGi service as long as its dependencies are resolved.
-* *@AspectService*: provides a non-functional aspect on top of an existing service.
-* *@AdapterService*: creates an OSGi service that adapts another existing service into a new interface.
-* *@BundleAdapterService*: creates an OSGi service a service on top of a given bundle.
-* *@ResourceAdapterService*: creates an OSGi service on top of a specific Resource.
-* *@FactoryConfigurationAdapterService*: creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
+* *Bundle Adapter Service*: creates an OSGi service a service on top of a given bundle.
+* *Resource Adapter Service*: creates an OSGi service on top of a specific Resource.
+* *Factory Configuration Adapter Service*: creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
 
 ## @Component
 
@@ -39,16 +26,43 @@ This annotation annotates an implementation class that optionally publishes an O
 
 Usage example:
 
+    :::java
+    /**
+      * This component will be activated once the bundle is started and when all required dependencies
+      * are available.
+      */
+    @Component
+    class X implements Z {
+        @ConfigurationDependency(pid="MyPid")
+        void configure(Dictionary conf) {
+             // Configure or reconfigure our service.
+        }
+    
+        @Start
+        void start() {
+            // Our component is starting and is about to be registered in the OSGi registry as a Z service.
+        }
+    
+        public void doService() {
+            // ...
+        }
+    }
+    
 
-     /**
-       * This component will be activated once the bundle is started and when all required dependencies
-       * are available.
-       */
-     @Component
-     class X implements Z {
-         @ConfigurationDependency(pid="MyPid")
+Example using a factorySet, where the X component is instantiated/updated/disposed by another Y component:
+
+    :::java
+     @Component(factorySet="MyComponentFactory", factoryConfigure="configure")
+     class X implements Z {
          void configure(Dictionary conf) {
-              // Configure or reconfigure our service.
+             // Configure or reconfigure our component. The conf is provided by the factory,
+             // and all public properties (which don't start with a dot) are propagated with the
+             // Service properties eventually specified in the properties annotation attribute.
+         }
+    
+         @ServiceDependency
+         void bindOtherService(OtherService other) {
+             // store this require dependency
          }
     
          @Start
@@ -57,66 +71,37 @@ Usage example:
          }
     
          public void doService() {
-             // ...
+             // ... part of Z interface
          }
      }
     
-
-Example using a factorySet, where the X component is instantiated/updated/disposed by another Y component:
-
-
-
-      @Component(factorySet="MyComponentFactory", factoryConfigure="configure")
-      class X implements Z {
-          void configure(Dictionary conf) {
-              // Configure or reconfigure our component. The conf is provided by the factory,
-              // and all public properties (which don't start with a dot) are propagated with the
-              // Service properties eventually specified in the properties annotation attribute.
-          }
+    /**
+      * This class will instantiate some X component instances
+      */
+    @Component
+    class Y {
+         @ServiceDependency(filter="(dm.factory.name=MyComponentFactory)")
+         Set<Dictionary> _XFactory; // This Set acts as a Factory API for creating X component instances.
     
-          @ServiceDependency
-          void bindOtherService(OtherService other) {
-              // store this require dependency
-          }
+         @Start
+         void start() {
+             // Instantiate a X component instance
+             Dictionary x1 = new Hashtable() {{ put("foo", "bar1"); }};
+             _XFactory.add(x1);
     
-          @Start
-          void start() {
-              // Our component is starting and is about to be registered in the OSGi registry as a Z service.
-          }
+             // Instantiate another X component instance
+             Dictionary x2 = new Hashtable() {{ put("foo", "bar2"); }};
+             _XFactory.add(x2);
     
-          public void doService() {
-              // ... part of Z interface
-          }
-      }
+             // Update the first X component instance
+             x1.put("foo", "bar1_modified");
+             _XFactory.add(x1);
     
-      /**
-        * This class will instantiate some X component instances
-        */
-      @Component
-      class Y {
-          @ServiceDependency(filter="(dm.factory.name=MyComponentFactory)")
-          Set<Dictionary> _XFactory; // This Set acts as a Factory API for creating X component instances.
-    
-          @Start
-          void start() {
-              // Instantiate a X component instance
-              Dictionary x1 = new Hashtable() {{ put("foo", "bar1"); }};
-              _XFactory.add(x1);
-    
-              // Instantiate another X component instance
-              Dictionary x2 = new Hashtable() {{ put("foo", "bar2"); }};
-              _XFactory.add(x2);
-    
-              // Update the first X component instance
-              x1.put("foo", "bar1_modified");
-              _XFactory.add(x1);
-    
-              // Destroy all components (Notice that invoking _XFactory.clear() also destroys every X instances)
-              _XFactory.remove(x1);
-              _XFactory.remove(x2);
-          }
-      }
-
+             // Destroy all components (Notice that invoking _XFactory.clear() also destroys every X instances)
+             _XFactory.remove(x1);
+             _XFactory.remove(x2);
+         }
+    }
 
 ## @AspectService
 

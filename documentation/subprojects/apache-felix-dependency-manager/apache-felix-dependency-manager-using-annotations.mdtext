@@ -14,7 +14,7 @@ components can interact with the dynamic OSGi service model.
 
 * [{{ refs.dependencymanager-annotations-quickstart.headers.excerpt }}]({{ refs.dependencymanager-annotations-quickstart.path }})
 * [{{ refs.dependencymanager-annotations-spellchecker.headers.excerpt }}]({{ refs.dependencymanager-annotations-spellchecker.path }})
-* [Writing Components]({{ refs.apache-felix-dependency-manager-using-annotations-components.path }}) Explains how to write DM service components using annotations.
+* [{{ refs.dependencymanager-annotations-component.headers.excerpt }}]({{ refs.dependencymanager-annotations-component.path }})
 * [Using Dependencies]({{ refs.apache-felix-dependency-manager-using-annotations-dependencies.path }}) Explains how to annotate dependencies for a given component.
 * [Lifecycle]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle.path }}) Explains the DM component lifecycle and how components interact with the dynamic OSGI service model.
 * [Composition]({{ refs.apache-felix-dependency-manager-using-annotations-composition.path }}) Explains how a component may be implemented using multiple object instances.
