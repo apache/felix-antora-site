@@ -1,6 +1,6 @@
 translation_pending: true
-Title:Using Dependency Manager Annotations
-
+Title:Dependency Manager Annotations
+Excerpt: Using Dependency Manager based annotations
 Dependency Manager provides a compact and versatile java API, allowing to declaratively and 
 programmatically register, acquire, and  manage dynamic OSGi services. But since recently, 
 support for  annotations has been introduced in Dependency Manager, and you can also 
