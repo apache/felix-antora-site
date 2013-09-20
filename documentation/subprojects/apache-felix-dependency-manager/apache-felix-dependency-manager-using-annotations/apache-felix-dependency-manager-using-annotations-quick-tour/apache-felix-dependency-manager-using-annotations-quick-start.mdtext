@@ -1,9 +1,7 @@
 translation_pending: true
-Title: Apache Felix Dependency Manager - Using Annotations - Quick Start
+Title: Dependency Manager Annotations Quick Start
 
-# Quick Start
-
-This sections presents a simple "Hello World" component defined using annotations, and also explains how to build the bundle using either Bnd, Ant, or Maven.
+This section presents a simple "Hello World" component defined using annotations, and also explains how to build the bundle using either Bnd, Ant, or Maven.
 
 ## Hello World Component
 
@@ -62,7 +60,7 @@ Since Bnd provides a Ant task, you can use the bnd directives above with the fol
 
 When compiling with Maven, you have to use the Dependency Manager Maven annotation plugin:
 
-
+    :::xml
     <?xml version="1.0"?>
     <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
