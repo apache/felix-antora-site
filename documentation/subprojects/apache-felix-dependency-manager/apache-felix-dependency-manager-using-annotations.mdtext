@@ -17,6 +17,6 @@ components can interact with the dynamic OSGi service model.
 * [{{ refs.dependencymanager-annotations-component.headers.excerpt }}]({{ refs.dependencymanager-annotations-component.path }})
 * [{{ refs.dependencymanager-annotations-dependencies.headers.excerpt }}]({{ refs.dependencymanager-annotations-dependencies.path }})
 * [{{ refs.dependencymanager-annotations-lifecycle.headers.excerpt }}]({{ refs.dependencymanager-annotations-lifecycle.path }})
-* [Composition]({{ refs.apache-felix-dependency-manager-using-annotations-composition.path }}) Explains how a component may be implemented using multiple object instances.
-* [BndTools Tutorial](https://bitbucket.org/marrs/bndtools-dmdemo) A BndTools based demo of DependencyManager annotations.
+* [{{ refs.dependencymanager-annotations-composition.headers.excerpt }}]({{ refs.dependencymanager-composition-lifecycle.path }})
+* [BndTools based demo of Dependency Manager annotations](https://bitbucket.org/marrs/bndtools-dmdemo)
 

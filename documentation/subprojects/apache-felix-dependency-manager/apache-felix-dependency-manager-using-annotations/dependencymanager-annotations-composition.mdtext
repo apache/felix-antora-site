@@ -1,0 +1,70 @@
+translation_pending: true
+Title: Dependency Manager Service Composition
+Excerpt: Dependency Manager service composition.
+
+This section shows how a component may be implemented using multiple object instances.
+
+When implementing more complex services, you often find yourself using more than one instance for a given service. 
+However, several of these instances might want to have dependencies injected. In such cases you need to tell the 
+dependency manager which instances to consider. Within a Component (or an Aspect/Adapter), you can annotate a method 
+with the @Composition annotation. This method is meant to return such composition of service instances, and the objects 
+will be considered as part of the service implementation. So, all  dependencies, as well as lifecycle annotations 
+(@Init, @Start, @Stop, @Destroy) will be applied on every objects returned by the method annotated with the @Composition annotation.
+
+The following example illustrates a composition of two object instances, which are part of the implementation of a *MyService* service:
+
+    :::java
+    /**
+     * Main implementation for the MyService Service
+     */
+    @Component
+    public class MyServiceImpl implements MyService {
+      // This object instance is also used to implement the service.
+      private Helper helper = new Helper();
+    
+      // MyServiceImpl, and Helper objects are part of the composition
+      @Composition
+      Object[] getComposition() {
+        return new Object[] { this, helper };
+      }
+    
+      // This dependency is also applied to the Helper
+      @ServiceDependency
+      Dependency dep;
+    
+      // Same thing for this dependency
+      @ServiceDependency
+      void bind(Dependency2 dep2) {}
+    
+      // Lifecycle callbacks also applied on the Helper ...
+      @Init
+      void init() {}
+    
+      @Start
+      void start() {}
+    
+      @Stop
+      void stop() {}
+    
+      @Destroy()
+      void destroy() {}
+    }
+    
+    public class Helper {
+      // Also injected, since we are part of the composition
+      Dependency dep;
+    
+      // But since we are not interested by the Dependency2, we don't have to declare the bind(Dependency2) method ...
+    
+      // We only specify the start lifecycle callback because we need to return some extra service properties which will be published
+      // along with the provided service ...
+    
+      Map start() {
+         Map extraServiceProperties = new HashMap();
+         extraServiceProperties.add("foo", "bar");
+         return extraServiceProperties;
+      }
+    }
+
+Here, MyServiceImpl is the main component implementation, but is   composed of the Helper object instance. So all Dependencies defined in MyServiceImpl 
+will be also injected to the Helper (if the Helper  declares the fields or methods). The Helper may also declare lifecycle  callbacks (optionally).
