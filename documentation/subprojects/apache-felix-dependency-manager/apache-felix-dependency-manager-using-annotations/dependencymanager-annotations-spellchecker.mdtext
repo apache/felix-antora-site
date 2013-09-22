@@ -259,10 +259,11 @@ dynamically. This is transparent, and   the clients using the existing service a
 interrupted, they are  just rebound with the aspect service.
 
 As an example, we go back to our SpellChecker application, and we are now looking at the 
-DictionaryAspect class. This class uses the *@Aspect{*}Service annotation in order to add 
-some custom words to an English   DictionaryService (with the service property lang=en). 
-The Extra words   to add to the English Dictionary will be configured from ConfigAdmin.  
-That's why the class also uses a *@ConfigurationDependency* annotation:
+DictionaryAspect class. This class uses the *@Aspect* Service annotation in 
+order to add some custom words to an English DictionaryService (with the 
+service property lang=en). 
+The Extra words to add to the English Dictionary will be configured from 
+ConfigAdmin.  That's why the class also uses a *@ConfigurationDependency* annotation:
 
     :::java
     @AspectService(ranking = 10, filter = "(lang=en)")
@@ -270,7 +271,7 @@ That's why the class also uses a *@ConfigurationDependency* annotation:
        /**
         * This is the service this aspect is applying to.
         */
-       private DictionaryService m_originalDictionary;
+       private volatile DictionaryService m_originalDictionary;
     
        /**
         * We store all configured words in a thread-safe data structure, because ConfigAdmin may
