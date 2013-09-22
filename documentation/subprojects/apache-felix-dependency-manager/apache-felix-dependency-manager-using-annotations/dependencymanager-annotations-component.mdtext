@@ -13,16 +13,98 @@ This page describes the different types of Dependency Manager components:
 
 ## @Component
 
-This annotation annotates an implementation class that optionally publishes an OSGi service, and optionally has some dependencies, with a managed lifecycle. The annotation has the following attributes:
+This annotation annotates an implementation class that optionally publishes 
+an OSGi service, and optionally has some dependencies, with a managed 
+lifecycle. 
 
-* *provides*: By default, the component is registered into the OSGi registry under all directly implemented interfaces. If no interfaces are implemented, then the component is not registered, but it still has a managed lifecycle, and may have some dependencies. If you need to  explicitly define the list of interfaces (or classes) under which the  component must be registered in the OSGi registry, then use the *provides* attribute. You can also set this property to an empty array of classes  if you don't want at all your component to be exposed in the OSGi  registry (even if it implements some interfaces).
-* *properties*: enumerates the list of properties that are part of the Service exposed by the component in the OSGi Registry. Each property is defined using the @Property annotation, which represents a  key/value pair. When a value is actually an array of strings, then the *values* attribute of the @Property annotation can be used. This attribute  is not the only way to specify OSGi Service properties (see Setting Service properties in the lifecycle section).
-* *factoryMethod*: may match a static method name from the annotated class which can be used to instantiate the component instance. Normally, DependencyManager instantiates the component using its class name, and with the default constructor of the class, but there are some cases where it is required to take control of  how the component is created. For instance, this method may be used to create the component as a dynamic proxy ...
-* *factorySet*: The component factory ID. By default, a component is automatically instantiated as a singleton when the bundle is started, and when all required dependencies are satisfied. But when a component must be created, configured, or disposed dynamically, and when multiple instances of the same component are needed, a factorySet should  be used. When you use this attribute, a java.util.Set<Dictionary>  object is registered into the OSGi regitry, with a specific *{*}dm.factory.name{*}* property matching the ID you specify in the attribute. This Set<Dictionary> will act as a Factory API, and another component may define a dependency on this Set and add some configuration dictionaries in  it, in order to fire some component instantiation/activation. There is one component instantiated per added dictionary, which is passed to component instances via a configurable callback method (using the *{*}factoryConfigure{*}* attribute). All public properties will be propagated  along with eventual published service. A public property is a property  which does not start with a dot ("."). Properties starting with a dot are considered private to the component, and won't be propagated to published service. This model is actually similar to the Declarative Service "Component Factories" concept, except that you don't have a dependency on a specific API, but rather on a basic jdk class  (java.util.Set<Dictionary>). Notice that, unlike in Declarative Service, the component factory is provided once the component bundle is started, even if required dependencies are not satisfied. This is useful when the component want  to dynamically configure its dependency filters. So, to summarize:
-** Each time a new Dictionary is added into the Set, then a new instance of the annotated component will be instantiated, and this dictionary is passed to the component callback specified with the factoryConfigure attribute.
-** Each time an existing Dictionary is re-added into the Set, then the corresponding component instance is updated, and the updated dictionary is also passed to the callback specified in the factoryConfigure attribute.
-** Each time an existing Dictionary is removed from the Set, then the  corresponding component instance will be stopped and destroyed.
-* *factoryConfigure*: Sets the "configure" method name to be called with the factory configuration. This attribute only makes sense if the factorySet() attribute is used. If specified, then this attribute references a component callback method, which is called for providing the configuration supplied by the factory that instantiated this component. The current Service properties will be also updated with all public properties (which don't start with a dot).
+### Annotation attributes
+
+----
+**`provides`**    
+*Required*: No    
+*Default*: all implemented interfaces, if any.   
+
+By default, the component is registered into the OSGi registry under all 
+directly implemented interfaces. If no interfaces are implemented, then the 
+component is not registered, but it still has a managed lifecycle, and may 
+have some dependencies. If you need to  explicitly define the list of 
+interfaces (or classes) under which the  component must be registered in the 
+OSGi registry, then use the *provides* attribute. You can also set this 
+property to an empty array of classes  if you don't want at all your component 
+to be exposed in the OSGi  registry (even if it implements some interfaces).
+
+----
+**`properties`**    
+*Required*: No    
+*Default*: --  
+
+the *properties" attribute enumerates the list of properties that are part of 
+the Service exposed by the component in the OSGi Registry. 
+Each property is defined using the @Property annotation, which represents a  
+key/value pair. When a value is actually an array of strings, 
+then the *values* attribute of the @Property annotation can be used. 
+This attribute  is not the only way to specify OSGi Service properties 
+(see Setting Service properties in the lifecycle section).
+
+----
+**`factoryMethod`**    
+*Required*: No    
+*Default*: --  
+
+This attribute refers to a static method name from the annotated class which 
+can be used to instantiate the component instance. Normally, DependencyManager 
+instantiates the component using its class name, and with the default 
+constructor of the class, but there are some cases where it is required to 
+take control of  how the component is created. For instance, this method may 
+be used to create the component as a dynamic proxy ...
+
+----
+**`factorySet`**    
+*Required*: No    
+*Default*: --  
+ 
+This attribute is the identifier for a component factory. By default, a 
+component is automatically instantiated as a singleton when the bundle is 
+started, and when all required dependencies are satisfied. But when a 
+component must be created, configured, or disposed dynamically, and when 
+multiple instances of the same component are needed, a factorySet should  be 
+used. When you use this attribute, a java.util.Set<Dictionary>  object is 
+registered into the OSGi regitry, with a specific *dm.factory.name* service 
+property matching the ID you specify in the attribute. 
+
+This Set<Dictionary> will act as a Factory API, and another component may 
+define a dependency on this Set and add some configuration dictionaries in it, 
+in order to fire some component instantiation/activation. There is one 
+component instantiated per added dictionary, which is passed to component 
+instances via a configurable callback method (using the *factoryConfigure* 
+attribute). All public properties will be propagated  along with eventual 
+published service. A public property is a property  which does not start with 
+a dot ("."). Properties starting with a dot are considered private to the 
+component, and won't be propagated to published service. This model is 
+actually similar to the Declarative Service "Component Factories" concept, 
+except that you don't have a dependency on a specific API, but rather on a 
+basic jdk class  (java.util.Set<Dictionary>). 
+
+Notice that, unlike in Declarative Service, the component factory is provided once the component 
+bundle is started, even if required dependencies are not satisfied. This is 
+useful when the component want  to dynamically configure its dependency 
+filters. So, to summarize:
+
+- Each time a new Dictionary is added into the Set, then a new instance of the annotated component will be instantiated, and this dictionary is passed to the component callback specified with the factoryConfigure attribute.
+- Each time an existing Dictionary is re-added into the Set, then the corresponding component instance is updated, and the updated dictionary is also passed to the callback specified in the factoryConfigure attribute.
+- Each time an existing Dictionary is removed from the Set, then the  corresponding component instance will be stopped and destroyed.
+
+----
+**`factoryConfigure`**    
+*Required*: No    
+*Default*: --  
+
+This attributes sets the *configure* method name to be called with the factory 
+configuration. This attribute only makes sense if the factorySet() attribute 
+is used. If specified, then this attribute references a component callback 
+method, which is called for providing the configuration supplied by the 
+factory that instantiated this component. The current Service properties will 
+be also updated with all public properties (which don't start with a dot).
 
 Usage example:
 
@@ -107,17 +189,59 @@ Example using a factorySet, where the X component is instantiated/updated/dispos
 
 Aspects allow you to define an interceptor, or chain of interceptors for a service (to add features like caching or logging, etc ...). The dependency manager intercepts the original service, and allows you to execute some code before invoking the original service ... The aspect will be applied to any service that matches the specified interface and filter and will be registered with the same interface and properties as the original service, plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
 
-Annotation attributes:
+### Annotation attributes
 
-* *ranking*: Sets the ranking of this aspect. Since aspects are chained, the ranking defines the order in which they are chained. Chain ranking is implemented as a service ranking so service lookups automatically retrieve the top of the chain.
-* *service*: Sets the service interface to apply the aspect to. By default, the directly implemented interface is used.
-* *filter*: Sets the filter condition to use with the service interface this aspect is applying to.
-* *properties*: Sets Additional properties to use with the aspect service registration.
-* *field*: Sets the field name where to inject the original service. By default, the original service is injected in any attributes in the aspect implementation that are of the same type as the aspect interface.
-* *factoryMethod*: Sets the static method used to create the AspectService implementation instance. The default constructor of the annotated class is used. The factoryMethod can be used to provide a specific aspect implements, like a DynamicProxy.
+----
+**`ranking`**    
+*Required*: No    
+*Default*: --  
 
-Usage example:
+Sets the ranking of this aspect. Since aspects are chained, the ranking 
+defines the order in which they are chained. Chain ranking is implemented as 
+a service ranking so service lookups automatically retrieve the top of the 
+chain.
 
+----
+**`service`**    
+*Required*: No    
+*Default*: all directly implemented interfaces.  
+
+Sets the service interface to apply the aspect to. By default, the directly 
+implemented interface is used.
+
+----
+**`filter`**    
+*Required*: No    
+*Default*: --
+
+Sets the filter condition to use with the service interface this aspect is 
+applying to.
+
+----
+**`properties`**    
+*Required*: No    
+*Default*: --
+
+Sets Additional properties to use with the aspect service registration.
+
+----
+**`field`**    
+*Required*: No    
+*Default*: --
+
+Sets the field name where to inject the original service. By default, the original service is injected in any attributes in the aspect implementation that are of the same type as the aspect interface.
+
+----
+**`factoryMethod`**    
+*Required*: No    
+*Default*: --
+
+Sets the static method used to create the aspect service implementation 
+instance. The default constructor of the annotated class is used. 
+The factoryMethod can be used to provide a specific aspect implements, 
+like a DynamicProxy.
+
+### Usage example:
 
      @AspectService(ranking=10), properties={@Property(name="param", value="value")})
      class AspectService implements InterceptedService {
@@ -132,17 +256,59 @@ Usage example:
 
 ## @AdapterService
 
-Adapters, like with @AspectService, are used to "extend" existing services, and can publish different services based on the existing one. An example would be implementing a management interface for an existing service, etc .... When you annotate an adapter class with the @AdapterService annotation, it will be applied to any service that matches the implemented interface and filter. The adapter will be registered with the specified interface and existing properties from the original service plus any extra properties you supply here. If you declare the original service as a member it will be injected. 
+Adapters, like with *@AspectService*, are used to "extend" existing services, 
+and can publish different services based on the existing one. An example 
+would be implementing a management interface for an existing service, 
+etc .... When you annotate an adapter class with the *@AdapterService* 
+annotation, it will be applied to any service that matches the implemented 
+interface and filter. The adapter will be registered with the specified 
+interface and existing properties from the original service plus any extra
+properties you supply here. If you declare the original service as a member 
+it will be injected. 
 
-Annotation attributes:
+### Annotation attributes:
 
-* *adapteeService*: Sets the adaptee service interface this adapter is applying to.
-* *provides*: Sets the adapter service interface(s). By default, the directly implemented interface(s) is (are) used. 
-* *properties*: Sets some additional properties to use with the adapter service registration. By default, the adapter will inherit all adaptee service properties.
-* *adapteeFilter*: Sets the filter condition to use with the adapted service interface.
-* *factoryMethod*: Sets the static method used to create the adapter service implementation instance. By default, the default constructor of the annotated class is used.
+----
+**`adapteeService`**    
+*Required*: True    
+*Default*: --
 
-Usage example: Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is found from the registry. The AdapterImpl class adapts the AdapteeService to the AdapterService. The AdapterService will also have a service property (param=value), and will also include eventual service properties found from the AdapteeService:
+Sets the adaptee service interface this adapter is applying to.
+
+----
+**`provides`**    
+*Required*: False    
+*Default*: all directly implemented interfaces.
+
+Sets the adapter service interface(s). By default, the directly implemented 
+interface(s) is (are) used. 
+
+----
+**`properties`**    
+*Required*: False    
+*Default*: All inherited adaptee service properties.
+
+Sets some additional properties to use with the adapter service registration. 
+By default, the adapter will inherit all adaptee service properties.
+
+----
+**`adapteeFilter`**    
+*Required*: False    
+*Default*: --
+
+Sets the filter condition to use with the adapted service interface.
+
+----
+**`factoryMethod`**    
+*Required*: False    
+*Default*: --
+
+Sets the static method used to create the adapter service implementation 
+instance. By default, the default constructor of the annotated class is used.
+
+### Usage example
+
+Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is found from the registry. The AdapterImpl class adapts the AdapteeService to the AdapterService. The AdapterService will also have a service property (param=value), and will also include eventual service properties found from the AdapteeService:
 
 
      @AdapterService(adapteeService = AdapteeService.class, properties={@Property(name="param", value="value")})
@@ -159,23 +325,69 @@ Usage example: Here, the AdapterService is registered into the OSGI registry eac
 
 ## @BundleAdapterService
 
-Bundle adapters are similar to AdapterService, but instead of adapting a service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
+Bundle adapters are similar to AdapterService, but instead of adapting a 
+service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
 
-The bundle adapter will be applied to any bundle that matches the specified bundle state mask and filter conditions, which may match some of the bundle OSGi manifest headers. For each matching bundle an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and with service properties found from the original bundle OSGi manifest headers plus any extra properties you supply here. If you declare the original bundle as a member it will be injected. 
+The bundle adapter will be applied to any bundle that matches the specified 
+bundle state mask and filter conditions, which may match some of the bundle 
+OSGi manifest headers. For each matching bundle an adapter will be created 
+based on the adapter implementation class. The adapter will be registered 
+with the specified interface and with service properties found from the 
+original bundle OSGi manifest headers plus any extra properties you supply 
+here. If you declare the original bundle as a member it will be injected. 
 
-Annotation attributes:
+### Annotation attributes:
 
-* *filter*: The filter used to match some OSGi manifest headers from a given bundle.
-* *provides*: The interface(s) to use when registering adapters. By default, the interface(s) directly implemented by the annotated class is (are) used.
-* *properties*: Additional properties to use with the service registration.
-* *stateMask*: the bundle state mask to apply. The mask is made up of the flags provided by the org.osgi.framework.Bundle states (UNINSTALLED | INSTALLED | RESOLVED | STARTING | STARTED | ACTIVE).
-* *propagate*: Specifies if manifest headers from the bundle should be propagated to the exposed service properties.
-* *factoryMethod*: Sets the static method used to create the BundleAdapterService implementation instance.
+----
+**`filter`**    
+*Required*: False    
+*Default*: --
 
-Usage Examples
+The filter used to match some OSGi manifest headers from a given bundle.
+
+----
+**`provides`**    
+*Required*: False    
+*Default*: all directly implemented interfaces.
+
+The interface(s) to use when registering adapters.
+By default, the interface(s) directly implemented by the annotated class is (are) used.
+
+----
+**`properties`**    
+*Required*: False    
+*Default*: --
+
+Additional properties to use with the service registration.
+
+----
+**`stateMask`**    
+*Required*: False    
+*Default*: INSTALLED | RESOLVED | ACTIVE
+
+The bundle state mask to apply. The mask is made up of the flags provided by 
+the org.osgi.framework.Bundle states 
+(UNINSTALLED | INSTALLED | RESOLVED | STARTING | STARTED | ACTIVE).
+
+----
+**`propagate`**    
+*Required*: False    
+*Default*: true
+
+Specifies if manifest headers from the bundle should be propagated to the 
+exposed service properties.
+
+----
+**`factoryMethod`**    
+*Required*: False    
+*Default*: --
+
+Sets the static method used to create the BundleAdapterService implementation 
+instance.
+
+### Usage Examples
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
-
 
      @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
      public class VideoPlayerImpl implements VideoPlayer {
@@ -192,19 +404,32 @@ In the following example, a "VideoPlayer" Service is registered into the OSGi re
 
 ## @ResourceAdapterService
 
-Resource adapters are things that adapt a resource instead of a service, and provide an adapter service on top of this resource. Resources are an abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
+Resource adapters are things that adapt a resource instead of a service, and 
+provide an adapter service on top of this resource. Resources are an 
+abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
 
-The adapter will be applied to any resource that matches the specified filter condition, which can match some part of the resource URL (with "path", "protocol", "port", or "host" filters). For each matching resource an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and with any extra service properties you supply here. Moreover, the following service properties will be propagated from the resource URL:
+The adapter will be applied to any resource that matches the specified filter 
+condition, which can match some part of the resource URL (with "path", 
+"protocol", "port", or "host" filters). For each matching resource an 
+adapter will be created based on the adapter implementation class. 
+The adapter will be registered with the specified interface and with any 
+extra service properties you supply here. Moreover, the following service 
+properties will be propagated from the resource URL:
 
 * *host*: this property exposes the host part of the resource URL
 * *path*: the resource URL path
 * *protocol*: the resource URL protocol
 * *port*: the resource URL port 
 
-Usage Examples:
+### Annotation attributes
 
-Here, the "VideoPlayer" service provides a video service on top of any movie resources, with service properties "host"/"port"/"protocol"/"path" extracted from the resource URL:
+TBD
 
+### Usage Examples:
+
+Here, the "VideoPlayer" service provides a video service on top of any movie 
+resources, with service properties "host"/"port"/"protocol"/"path" extracted 
+from the resource URL:
 
      @ResourceAdapterService(filter = "(&(path=/videos/*.mkv)(host=localhost))", propagate = true)
      public class VideoPlayerImpl implements VideoPlayer {
@@ -221,48 +446,181 @@ Here, the "VideoPlayer" service provides a video service on top of any movie res
 
 ## @FactoryConfigurationAdapterService
 
-Annotates a class that acts as a Factory Configuration Adapter Service. For each new Config Admin factory configuration matching the specified factoryPid, an instance of this service will be created. The adapter will be registered with the specified interface, and with the specified adapter service properties. Depending on the propagate parameter, every public factory configuration properties (which don't start with ".") will be propagated along with the adapter service properties.
+Annotates a class that acts as a Factory Configuration Adapter Service. 
+For each new Config Admin factory configuration matching the specified 
+factoryPid, an instance of this service will be created. The adapter will be 
+registered with the specified interface, and with the specified adapter 
+service properties. Depending on the propagate parameter, every public 
+factory configuration properties (which don't start with ".") will be 
+propagated along with the adapter service properties.
 
-Like in @ConfigurationDependency, you can optionally specify the meta types of your configurations for Web Console GUI customization (configuration heading/descriptions/default values/etc ...). 
+Like in @ConfigurationDependency, you can optionally specify the meta types of 
+your configurations for Web Console GUI customization (configuration 
+heading/descriptions/default values/etc ...). 
 
-Annotation attributes:
+### Annotation attributes:
 
-* *provides*: The interface(s) to use when registering adapters. By default, directly implemented interfaces will be registered in the OSGi registry. 
-* *properties*: Adapter Service properties. Notice that public factory configuration is also registered in service properties, (only if propagate is true). Public factory configuration properties are those which don't starts with a dot (".").
-* *factoryPid*: Returns the factory pid whose configurations will instantiate the annotated service class. (By default, the pid is the service class name). 
-* *updated*: The Update method to invoke (defaulting to "updated"), when a factory configuration is created or updated 
-* *propagate*: Returns true if the configuration properties must be published along with the service. Any additional service properties specified directly are merged with these. 
-* *heading*: The label used to display the tab name (or section) where the properties are displayed. Example: "Printer Service". 
-* *description*: A human readable description of the PID this annotation is associated with. Example: "Configuration for the PrinterService bundle". 
-* *factoryMethod*: Sets the static method used to create the adapter instance.
-* *metadata*: an array of  "PropertyMetaData[]({{ refs..path }})" annotations, specifying property types used to expose properties in web console
+----
+**`provides`**    
+*Required*: False    
+*Default*: all directly implemented interfaces.
+The interface(s) to use when registering adapters. By default, directly implemented interfaces will be registered in the OSGi registry. 
 
-PropertyMetaData anotation attribute: 
+----
+**`properties`**    
+*Required*: False    
+*Default*: --
 
-* *description*: Returns the property description. The description may be localized and must describe the semantics of this type and any constraints. Example: "Select the log level for the Printer Service".
-* *type*: Return the property primitive type (java.lang.String.class by default). If must be either one of the following types:
-** String.class
-** Long.class
-** Integer.class
-** Character.class
-** Byte.class
-** Double.class
-** Float.class
-** Boolean.class
-* *defaults*: Return a default for this property. The object must be of the appropriate type as defined by the cardinality and getType(). The return type is a list of String objects that can be converted to the appropriate type. The cardinality of the return array must follow the absolute cardinality of this type. E.g. if the cardinality = 0, the array must contain 1 element. If the cardinality is 1, it must contain 0 or 1 elements. If it is -5, it must contain from 0 to max 5 elements. Note that the special case of a 0 cardinality, meaning a single value, does not allow arrays or vectors of 0 elements. 
-* *cardinality*: Return the cardinality of this property (0 by default). The OSGi environment handles multi valued properties in arrays ([]({{ refs..path }})) or in Vector objects. The return value is defined as follows:
-** x = Integer.MIN_VALUE no limit, but use Vector
-** x < 0 -x = max occurrences, store in Vector
-** x > 0 x = max occurrences, store in array []({{ refs..path }})
-** x = Integer.MAX_VALUE no limit, but use array []({{ refs..path }})
-** x = 0 1 occurrence required
-* *required*: Tells if this property is required or not. 
-* *optionLabels*: Return a list of valid option labels for this property. The purpose of this method is to allow menus with localized labels. It is associated with the *optionValues* attribute. The labels returned here are ordered in the same way as the *optionValues* attribute values. 
-* *optionValues*: Return a list of option values that this property can take. This list must be in the same sequence as the *optionLabels* attribute. 
+Adapter Service properties. Notice that public factory configuration is also 
+registered in service properties, (only if propagate is true). 
+Public factory configuration properties are those which don't starts with a 
+dot (".").
 
-Usage Examples
-Here, a "Dictionary" service instance is instantiated for each existing factory configuration instances matching the factory pid "DictionaryServiceFactory".
+----
+**`factoryPid`**    
+*Required*: False    
+*Default*: The class name, including the package.
 
+Returns the factory pid whose configurations will instantiate the 
+annotated service class. 
+(By default, the pid is the service class name). 
+
+----
+**`updated`**    
+*Required*: False    
+*Default*: "updated"
+
+The Update method to invoke (defaulting to "updated"), when a factory 
+configuration is created or updated 
+
+----
+**`propagate`**    
+*Required*: False    
+*Default*: false
+
+Returns true if the configuration properties must be published 
+along with the service. Any additional service properties specified directly 
+are merged with these. 
+
+----
+**`heading`**    
+*Required*: False    
+*Default*: --
+
+The label used to display the tab name (or section) where the properties are 
+displayed. Example: "Printer Service". 
+
+----
+**`description`**    
+*Required*: False    
+*Default*: --
+
+A human readable description of the PID this annotation is associated with. 
+Example: "Configuration for the PrinterService bundle". 
+
+----
+**`factoryMethod`**    
+*Required*: False    
+*Default*: --
+
+Sets the static method used to create the adapter instance.
+
+----
+**`metadata`**    
+*Required*: False    
+*Default*: --
+An array of "PropertyMetaData annotations, specifying property types used to 
+expose properties in web console
+
+### PropertyMetaData anotation attributes: 
+
+----
+**`description`**    
+*Required*: True    
+*Default*: --
+Returns the property description. The description may be localized and must 
+describe the semantics of this type and any constraints. 
+Example: "Select the log level for the Printer Service".
+
+----
+**`type`**    
+*Required*: False    
+*Default*: String
+
+Return the property primitive type (java.lang.String.class by default). 
+If must be either one of the following types:
+
+- String.class
+- Long.class
+- Integer.class
+- Character.class
+- Byte.class
+- Double.class
+- Float.class
+- Boolean.class
+
+----
+**`defaults`**    
+*Required*: False    
+*Default*: --
+
+Return a default for this property. The object must be of the appropriate 
+type as defined by the cardinality and getType(). The return type is a list of 
+String objects that can be converted to the appropriate type. 
+The cardinality of the return array must follow the absolute cardinality of
+this type. E.g. if the cardinality = 0, the array must contain 1 element. If 
+the cardinality is 1, it must contain 0 or 1 elements. If it is -5, it must 
+contain from 0 to max 5 elements. Note that the special case of a 0 
+cardinality, meaning a single value, does not allow arrays or vectors of 0 
+elements. 
+
+----
+**`cardinality`**    
+*Required*: False    
+*Default*: --
+
+Returns the cardinality of this property (0 by default). The OSGi environment
+handles multi valued properties in arrays or in Vector objects. 
+The return value is defined as follows:
+
+- x = Integer.MIN_VALUE:  no limit, but use Vector
+- x < 0: -x = max occurrences, store in Vector
+- x > 0: x = max occurrences, store in array []({{ refs..path }})
+- x = Integer.MAX_VALUE: no limit, but use array []({{ refs..path }})
+- x = 0: 1 occurrence required
+
+----
+**`required`**    
+*Required*: False    
+*Default*: true
+
+Tells if this property is required or not. 
+
+----
+**`optionLabels`**    
+*Required*: False    
+*Default*: --
+
+Return a list of valid option labels for this property. The purpose of this 
+method is to allow menus with localized labels. It is associated with the 
+*optionValues* attribute. The labels returned here are ordered in the same 
+way as the *optionValues* attribute values. 
+
+----
+**`optionValues`**    
+*Required*: False    
+*Default*: --
+
+Return a list of option values that this property can take. This list must be 
+in the same sequence as the *optionLabels* attribute. 
+
+### Usage Examples
+
+Here, a "Dictionary" service instance is instantiated for each existing 
+factory configuration instances matching the "DictionaryServiceFactory" 
+factory pid:
+
+         :::java
          @FactoryConfigurationAdapterService(factoryPid="DictionaryServiceFactory", updated="updated")
          public class DictionaryImpl implements DictionaryService
          {
@@ -298,10 +656,9 @@ Here, a "Dictionary" service instance is instantiated for each existing factory 
              ...
          }
 
-
 Here, this is the same example as above, but using meta types:
 
-
+    :::java
          @FactoryConfigurationAdapterService(
              factoryPid="DictionaryServiceFactory", 
              propagate=true, 
@@ -358,7 +715,3 @@ Here, this is the same example as above, but using meta types:
              
              ...
          }
-
-
-
-
