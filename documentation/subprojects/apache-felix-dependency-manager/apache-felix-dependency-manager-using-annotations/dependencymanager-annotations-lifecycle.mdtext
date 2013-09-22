@@ -38,8 +38,8 @@ Alternatively, you can also configure some  dependencies dynamically
 
 2) Wait for extra dependencies optionally configured from the init() method.
 
-3) If the component is not using the @*LifecycleController* annotation (detailed in the 
-[#Controlling the Lifecycle](#controlling-the-lifecycle.path) section), then:
+3) If the component is not using the @*LifecycleController* annotation (described in the 
+[#Controlling the Lifecycle](#controlling-the-lifecycle) section), then:
 
  - Invoke the component start method (annotated with *@Start*).
  - Publish some OSGi services (if the component provides some services).
