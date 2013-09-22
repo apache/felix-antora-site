@@ -389,17 +389,18 @@ instance.
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
-     @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
-     public class VideoPlayerImpl implements VideoPlayer {
-         Bundle bundle; // Injected by reflection
+    :::java
+    @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
+    public class VideoPlayerImpl implements VideoPlayer {
+        Bundle bundle; // Injected by reflection
              
-         void play() {
-             URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
-             // play the video provided by the bundle ...
-         }
+        void play() {
+            URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
+            // play the video provided by the bundle ...
+        }
            
-         void stop() {}
-     }
+        void stop() {}
+    }
 
 
 ## @ResourceAdapterService
@@ -431,18 +432,16 @@ Here, the "VideoPlayer" service provides a video service on top of any movie
 resources, with service properties "host"/"port"/"protocol"/"path" extracted 
 from the resource URL:
 
-     @ResourceAdapterService(filter = "(&(path=/videos/*.mkv)(host=localhost))", propagate = true)
-     public class VideoPlayerImpl implements VideoPlayer {
-         // Injected by reflection
-         URL resource;
+    :::java
+    @ResourceAdapterService(filter = "(&(path=/videos/*.mkv)(host=localhost))", propagate = true)
+    public class VideoPlayerImpl implements VideoPlayer {
+        // Injected by reflection
+        URL resource;
              
-         void play() {} // play video referenced by this.resource     
-         void stop() {} // stop playing the video
-         void transcode() {} // ...
-     }
-
-
-
+        void play() {} // play video referenced by this.resource     
+        void stop() {} // stop playing the video
+        void transcode() {} // ...
+    }
 
 ## @FactoryConfigurationAdapterService
 
@@ -624,37 +623,37 @@ factory pid:
     @FactoryConfigurationAdapterService(factoryPid="DictionaryServiceFactory", updated="updated")
     public class DictionaryImpl implements DictionaryService
     {
-             /**
-              * The key of our config admin dictionary language.
-              */
-             final static String LANG = "lang";
+        /**
+          * The key of our config admin dictionary language.
+          */
+        final static String LANG = "lang";
              
-             /**
-              * The key of our config admin dictionary values.
-              */
-             final static String WORDS = "words";
+        /**
+          * The key of our config admin dictionary values.
+          */
+        final static String WORDS = "words";
              
-             /**
-              * We store all configured words in a thread-safe data structure, because ConfigAdmin
-              * may invoke our updated method at any time.
-              */
-             private CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
+        /**
+          * We store all configured words in a thread-safe data structure, because ConfigAdmin
+          * may invoke our updated method at any time.
+          */
+        private CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
              
-             /**
-              * Our Dictionary language.
-              */
-             private String m_lang;
+        /**
+          * Our Dictionary language.
+          */
+        private String m_lang;
          
-             protected void updated(Dictionary<String, ?> config) {
-                 m_lang = (String) config.get(LANG);
-                 m_words.clear();
-                 String[] words = (String[]) config.get(WORDS);
-                 for (String word : words) {
-                     m_words.add(word);
-                 }
-             }   
-             /// ...
-         }
+        protected void updated(Dictionary<String, ?> config) {
+            m_lang = (String) config.get(LANG);
+            m_words.clear();
+            String[] words = (String[]) config.get(WORDS);
+            for (String word : words) {
+                m_words.add(word);
+            }
+         }   
+             // ...
+    }
 
 Here, this is the same example as above, but using meta types:
 
@@ -683,35 +682,35 @@ Here, this is the same example as above, but using meta types:
       )  
       public class DictionaryImpl implements DictionaryService
       {
-             /**
-              * The key of our config admin dictionary language.
-              */
-             final static String LANG = "lang";
+         /**
+           * The key of our config admin dictionary language.
+           */
+         final static String LANG = "lang";
              
-             /**
-              * The key of our config admin dictionary values.
-              */
-             final static String WORDS = "words";
+         /**
+           * The key of our config admin dictionary values.
+           */
+         final static String WORDS = "words";
              
-             /**
-              * We store all configured words in a thread-safe data structure, because ConfigAdmin
-              * may invoke our updated method at any time.
-              */
-             private CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
+         /**
+           * We store all configured words in a thread-safe data structure, because ConfigAdmin
+           * may invoke our updated method at any time.
+           */
+         private CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
              
-             /**
-              * Our Dictionary language.
-              */
-             private String m_lang;
+         /**
+           * Our Dictionary language.
+           */
+         private String m_lang;
          
-             protected void updated(Dictionary<String, ?> config) {
-                 m_lang = (String) config.get(LANG);
-                 m_words.clear();
-                 String[] words = (String[]) config.get(WORDS);
-                 for (String word : words) {
-                     m_words.add(word);
-                 }
+         protected void updated(Dictionary<String, ?> config) {
+             m_lang = (String) config.get(LANG);
+             m_words.clear();
+             String[] words = (String[]) config.get(WORDS);
+             for (String word : words) {
+                 m_words.add(word);
              }
+         }
              
-             // ...
+         // ...
     }
