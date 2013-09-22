@@ -16,7 +16,7 @@ Annotation attributes:
 * *timeout*: The max time in millis to wait for when the dependency is temporarily unavailable. Specifying a positive number allow to block the caller thread between service updates. Only useful for required stateless dependencies that can be replaced transparently. A Dynamic Proxy is used to wrap the actual service dependency (which must be an interface). When the dependency goes away, an attempt is made to replace it with another one which satisfies the service dependency criteria. If no service replacement is available, then any method invocation (through the dynamic proxy) will block during a configurable timeout. On timeout, an unchecked IllegalStateException exception is raised (but the service is not deactivated).
 Notice that the changed/removed callbacks are not used when the timeout parameter is > -1.
 -1 means no timeout at all (default). 0 means that invocation on a missing service will fail immediately. A positive number represents the max timeout in millis to wait for the service availability.
-* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}) for more informations about named dependencies.
 * *propagate*: Returns true if the dependency service properties must be published along with the service. Any additional service properties specified directly are merged with these.
 
 Usage Example: Here, the MyComponent component is injected with a dependency over a "MyDependency" service.
@@ -31,7 +31,7 @@ Usage Example: Here, the MyComponent component is injected with a dependency ove
 
 
 Usage example of a Service whose dependency filter is configured from ConfigAdmin, using a "named" dependency
-(please check [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}) for more informations about "named" dependencies):
+(please check [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}) for more informations about "named" dependencies):
 
     :::java
     /**
@@ -149,12 +149,11 @@ Attributes:
 * *stateMask*: Returns the bundle state mask (Bundle.INSTALLED \| Bundle.ACTIVE etc ...).
 * *propagate*: Specifies if the manifest headers from the bundle should be propagated to the service properties.
 * *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns.
-Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}).
 
 Usage Examples
 
 In the following example, the "SCR" Component allows to track all bundles containing a specific "Service-Component" OSGi header, in order to load and manage all Declarative Service components specified in the SCR xml documents referenced by the header:
-
 
     :::java
     @Component
@@ -186,7 +185,7 @@ Attributes:
 * *required*: Returns whether the Service dependency is required or not.
 * *filter*: Returns the Service dependency OSGi filter.
 * *propagate*: Specifies if the resource URL properties must be propagated. If set to true, then the URL properties ("protocol"/"host"/"port"/"path") will be propagated to the service properties of the component which is using this dependency.
-* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Apache Felix Dependency Manager - Using Annotations - Lifecycle#Dynamic Dependency Configuration]({{ refs.apache-felix-dependency-manager-using-annotations-lifecycle-dynamic-dependency-configuration.path }}).
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}).
 
 Usage Examples
 Here, the "VideoPlayer" component plays any provided MKV video resources
@@ -255,4 +254,3 @@ And here is an example of a VideoProvider, which provides some videos using a we
             }
         }
     }
-
