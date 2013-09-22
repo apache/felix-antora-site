@@ -2,24 +2,47 @@ translation_pending: true
 Title: Dependency Manager Component Lifecycle
 Excerpt: Dependency Manager component lifecycle
 
-A component has a lifecycle that controls when it is started or stopped. A bundle must be started before the DM Runtime can process its components. When the bundle is started, the DM Runtime then parses a specific *DependencyManager-Component* manifest header, which points to a list of descriptors describing all annotated components. Such descriptors are actually generated at compilation time, and annotation are not reflectively parsed at runtime. Only the descriptor is used to process the components. For each component, the DM Runtime first ensures that all dependencies are satisfied before activating it. Likewise, the component is deactivated when some of the required dependencies are not available anymore or when the bundle is stopped. Unless the bundle is stopped, components may be deactivated and reactivated, depending on the departure and arrival of required dependencies. The manager which is in charge of maintaining the state of components is implemented in the DM Runtime bundle (org.apache.felix.dm.runtime bundle).
+A component has a lifecycle that controls when it is started or stopped. 
+A bundle must be started before the DM Runtime can process its components. 
+When the bundle is started, the DM Runtime then parses a specific 
+*DependencyManager-Component* manifest header, which points to a list of descriptors 
+describing all annotated components. Such descriptors are actually generated at 
+compilation time, and annotation are not reflectively parsed at runtime. 
+Only the descriptor is used to process the components. 
+
+For each component, the DM Runtime 
+first ensures that all dependencies are satisfied before activating it. Likewise, the 
+component is deactivated when some of the required dependencies are not available anymore 
+or when the bundle is stopped. Unless the bundle is stopped, components may be deactivated 
+and reactivated, depending on the departure and arrival of required dependencies. The 
+manager which is in charge of maintaining the state of components is implemented in the 
+DM Runtime bundle (org.apache.felix.dm.runtime bundle).
 
 ## Lifecycle Callbacks
 
 ### Component Activation
 
 Activating a component consists of the following steps:
-1. Wait for all required dependencies to be available. When all required dependencies are available:
-1. * Instantiate the component.
-1. * Inject all required dependencies (on class fields using reflection, or by invoking callback methods).
-1. * Inject all optional dependencies defined on class fields, *possibly with a NullObject* if the dependency is not available.
-1. * Call the component init method (annotated with *@Init*). In the  Init method, you are yet allowed to add some additional dependencies  (but using the API). Alternatively, you can also configure some  dependencies dynamically (explained later, in [#Dynamic Dependency Configuration]({{ refs.-dynamic-dependency-configuration.path }})).
-1. Wait for extra dependencies optionally configured from the init() method.
-1. If the component is not using the @*LifecycleController* annotation (detailed in the [#Controlling the Lifecycle]({{ refs.-controlling-the-lifecycle.path }}) section), then:
-1. * Invoke the component start method (annotated with *@Start*).
-1. * Publish some OSGi services (if the component provides some services).
-1. * Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
-1. Else do nothing because&nbsp; the component will trigger itself the startup using the lifecycle controller.
+
+ 1. Wait for all required dependencies to be available. When all required dependencies are available:
+
+- Instantiate the component.
+- Inject all required dependencies (on class fields using reflection, or by invoking 
+callback methods).
+- Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the dependency is not available.
+- Call the component init method (annotated with *@Init*). In the  Init method, you are 
+yet allowed to add some additional dependencies  (but using the API). 
+Alternatively, you can also configure some  dependencies dynamically 
+(explained later, in [#Dynamic Dependency Configuration](#dynamic-dependency-configuration).
+ 1. Wait for extra dependencies optionally configured from the init() method.
+ 1. If the component is not using the @*LifecycleController* annotation (detailed in the 
+[#Controlling the Lifecycle](#controlling-the-lifecycle.path) section), then:
+
+- Invoke the component start method (annotated with *@Start*).
+- Publish some OSGi services (if the component provides some services).
+- Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
+
+ 1. Else do nothing because&nbsp; the component will trigger itself the startup using the lifecycle controller.
 
 ### Component Deactivation
 
@@ -57,12 +80,7 @@ The following example shows a basic component, which uses the @Start, @Stop, ann
         }
     }
 
-
-### 
-
-
 ### Dynamic Dependency Configuration
-
 
 #### Rationale
 
