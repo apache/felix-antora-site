@@ -620,10 +620,10 @@ Here, a "Dictionary" service instance is instantiated for each existing
 factory configuration instances matching the "DictionaryServiceFactory" 
 factory pid:
 
-         :::java
-         @FactoryConfigurationAdapterService(factoryPid="DictionaryServiceFactory", updated="updated")
-         public class DictionaryImpl implements DictionaryService
-         {
+    :::java
+    @FactoryConfigurationAdapterService(factoryPid="DictionaryServiceFactory", updated="updated")
+    public class DictionaryImpl implements DictionaryService
+    {
              /**
               * The key of our config admin dictionary language.
               */
@@ -653,36 +653,36 @@ factory pid:
                      m_words.add(word);
                  }
              }   
-             ...
+             /// ...
          }
 
 Here, this is the same example as above, but using meta types:
 
     :::java
-         @FactoryConfigurationAdapterService(
-             factoryPid="DictionaryServiceFactory", 
-             propagate=true, 
-             updated="updated",
-             heading="Dictionary Services",
-             description="Declare here some Dictionary instances, allowing to instantiates some DictionaryService services for a given dictionary language",
-             metadata={
-                 @PropertyMetaData(
+    @FactoryConfigurationAdapterService(
+          factoryPid="DictionaryServiceFactory", 
+          propagate=true, 
+          updated="updated",
+          heading="Dictionary Services",
+          description="Declare here some Dictionary instances, allowing to instantiates some DictionaryService services for a given dictionary language",
+          metadata={
+              @PropertyMetaData(
                      heading="Dictionary Language",
                      description="Declare here the language supported by this dictionary. " +
                          "This property will be propagated with the Dictionary Service properties.",
                      defaults={"en"},
                      id=DictionaryImpl.LANG,
                      cardinality=0),
-                 @PropertyMetaData(
+              @PropertyMetaData(
                      heading="Dictionary words",
                      description="Declare here the list of words supported by this dictionary. This properties starts with a Dot and won't be propagated with Dictionary OSGi service properties.",
                      defaults={"hello", "world"},
                      id=DictionaryImpl.WORDS,
                      cardinality=Integer.MAX_VALUE)
-             }
-         )  
-         public class DictionaryImpl implements DictionaryService
-         {
+          }
+      )  
+      public class DictionaryImpl implements DictionaryService
+      {
              /**
               * The key of our config admin dictionary language.
               */
@@ -713,5 +713,5 @@ Here, this is the same example as above, but using meta types:
                  }
              }
              
-             ...
-         }
+             // ...
+    }
