@@ -4,6 +4,7 @@ Title: Apache Felix Dependency Manager - Getting Started
 ## Getting Started
 
 When developing an OSGi bundle that has dependencies and possibly registers services, there are two classes in particular we need to implement:
+
 1. The bundle activator which controls the life-cycle of the bundle.
 1. The actual component implementation, which can be a POJO.
 
@@ -192,5 +193,3 @@ Here's our code that implements `ManagedService` and has an `updated` method. Th
         }
     }
 
-
-### ...
