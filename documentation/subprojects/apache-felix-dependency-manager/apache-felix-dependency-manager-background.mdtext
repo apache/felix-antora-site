@@ -4,6 +4,7 @@ Title: Apache Felix Dependency Manager - Background
 ## Background
 
 In an OSGi framework, services are deployed using bundles and these bundles feature two types of dependencies: 
+
 1. Package dependencies. A bundle can export a package which others import. These dependencies, although dynamic, are relatively easy to handle and the whole resolution process is handled by the OSGi framework for you.
 1. Service dependencies. Services, implemented by components inside of bundles, can have their own life cycle within that of their containing bundle and therefore can be registered and unregistered at any time. Other components often depend on these services and need to deal with changes in their availability. 
 
@@ -17,9 +18,10 @@ In real implementations, you are probably going to track multiple services. Usin
 
 The Dependency Manager provides you with the right building blocks to declaratively specify dependencies using a straightforward Java API that is easy to maintain and refactor.
 
-### Design Goals
+## Design Goals
 
 The goals that drove the design of the dependency manager are:
+
 * Provide a clean separation between a component implementation and the "glue" that binds it to the OSGi framework. The component implementation should not have to contain any OSGi specific code. In other words, it should be a POJO (Plain Old Java Object).
 * Minimize the amount of code that needs to be written. The specification and management of dependencies should be automated as much as possible, whilst still providing enough flexibility to customize the system.
 * Be extensible. Even though the core bundle provides a lot of different dependencies already, you should be able to add your own types of dependencies easily.
