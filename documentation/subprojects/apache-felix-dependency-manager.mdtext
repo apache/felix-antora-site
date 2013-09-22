@@ -1,8 +1,6 @@
 translation_pending: true
 Title: Apache Felix Dependency Manager
 
-# Apache Felix Dependency Manager
-
 ## Introduction
 
 In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services.
