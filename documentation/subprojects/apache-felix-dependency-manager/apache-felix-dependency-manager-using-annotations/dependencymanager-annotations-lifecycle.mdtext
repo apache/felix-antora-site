@@ -24,31 +24,35 @@ DM Runtime bundle (org.apache.felix.dm.runtime bundle).
 
 Activating a component consists of the following steps:
 
-- Wait for all required dependencies to be available. When all required dependencies are available:
+1) Wait for all required dependencies to be available. When all required dependencies are 
+available:
 
- - Instantiate the component.
- - Inject all required dependencies (on class fields using reflection, or by invoking 
+- Instantiate the component.
+- Inject all required dependencies (on class fields using reflection, or by invoking 
 callback methods).
- - Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the dependency is not available.
- - Call the component init method (annotated with *@Init*). In the  Init method, you are 
+- Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the dependency is not available.
+- Call the component init method (annotated with *@Init*). In the  Init method, you are 
 yet allowed to add some additional dependencies  (but using the API). 
 Alternatively, you can also configure some  dependencies dynamically 
 (explained later, in [#Dynamic Dependency Configuration](#dynamic-dependency-configuration).
-- Wait for extra dependencies optionally configured from the init() method.
-- If the component is not using the @*LifecycleController* annotation (detailed in the 
+
+2) Wait for extra dependencies optionally configured from the init() method.
+
+3) If the component is not using the @*LifecycleController* annotation (detailed in the 
 [#Controlling the Lifecycle](#controlling-the-lifecycle.path) section), then:
 
  - Invoke the component start method (annotated with *@Start*).
  - Publish some OSGi services (if the component provides some services).
  - Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
 
-- Else do nothing because the component will trigger itself the startup using the lifecycle controller.
+4) Else do nothing because the component will trigger itself the startup using the lifecycle controller.
 
 ### Component Deactivation
 
 Deactivating a component consists of the following steps:
 
-- If the bundle is stopped or if some required dependencies are unavailable, or if the component is deactivated by a factorySet, then:
+If the bundle is stopped or if some required dependencies are unavailable, or if the component is deactivated by a factorySet, then:
+
  - Unbind optional dependencies (defined on callback methods). Notice that any optional dependency unavailability does not trigger the component deactivation:&nbsp; the *removed* callbacks are just invoked, if declared in the annotation.
  - Invoke the stop method (annotated wit *@Stop*),  and unregister some OSGi services (if the components provides some services).
  - invoke destroy method (annotated with *@Destroy*).
