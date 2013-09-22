@@ -1,8 +1,6 @@
 translation_pending: true
 Title: Apache Felix Dependency Manager - How To Build
 
-# Building Dependency Manager from trunk
-
 ## Checkout from trunk:
 
 svn checkout [http://svn.apache.org/repos/asf/felix/trunk/dependencymanager](http://svn.apache.org/repos/asf/felix/trunk/dependencymanager) dependencymanager
