@@ -116,7 +116,16 @@ So, after the init method returns, the map will be used to configure  the depend
 
 ### Usage example:
 
-This is an example of a component X whose dependency "foo" filter is  configured from ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with our configuration. Next, we define a  dependency on the *FooService*, but this time, we declare the annotation  like this: *@ServiceDependency(*{*}{*}name="foo"*{*}*)*. As explained  above, The  ConfigurationDependency will be injected *before* the @Init method, and  the named dependency ("foo") will be calculated *after* the @Init method  returns. So, from our Init method, we just return a map which contains  the filter and required flag for the "foo" dependency, and we actually  use the configuration which has already been injected:
+This is an example of a component X whose dependency "foo" filter is  configured from 
+ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with 
+our configuration. Next, we define a  dependency on the *FooService*, but this time, we 
+declare the annotation like this: *@ServiceDependency(name="foo")*. 
+
+As explained  above, The  ConfigurationDependency will be injected *before* the @Init 
+method, and the named dependency ("foo") will be calculated *after* the @Init method 
+returns. So, from our Init method, we just return a map which contains 
+the filter and required flag for the "foo" dependency, and we actually 
+use the configuration which has already been injected:
 
     :::java
     /**
