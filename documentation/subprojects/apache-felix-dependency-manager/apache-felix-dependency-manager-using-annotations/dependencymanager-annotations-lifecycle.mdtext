@@ -103,7 +103,6 @@ For instance, if you define a Dependency like this:
 
 Then you can return this map from your @Init method:
 
-    :::java
     @Init
     Map init() {
         return new HashMap() {{
@@ -118,7 +117,6 @@ So, after the init method returns, the map will be used to configure  the depend
 
 This is an example of a component X whose dependency "foo" filter is  configured from ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with our configuration. Next, we define a  dependency on the *FooService*, but this time, we declare the annotation  like this: *@ServiceDependency(*{*}{*}name="foo"*{*}*)*. As explained  above, The  ConfigurationDependency will be injected *before* the @Init method, and  the named dependency ("foo") will be calculated *after* the @Init method  returns. So, from our Init method, we just return a map which contains  the filter and required flag for the "foo" dependency, and we actually  use the configuration which has already been injected:
 
-    :::java
     /**
      * A component whose FooService dependency filter is configured from ConfigAdmin
      */
@@ -231,7 +229,6 @@ following:
 
 But when the component needs to specify some service properties dynamically (not statically from the annotation), then it may do so by just returning a Map from the @Start callback. For instance:
 
-    :::java
     @Component(properties={@Property(name="foo", value="bar")})
     public class MyServiceImpl implements MyService {
         @ConfigurationDependency(pid="MyPid", propagate=true)
