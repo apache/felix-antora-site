@@ -103,12 +103,13 @@ For instance, if you define a Dependency like this:
 
 Then you can return this map from your @Init method:
 
+    :::java
     @Init
     Map init() {
-        return new HashMap() {{
-            put("foo.filter", "(foo=bar)");
-            put("foo.required", "false");
-        }};
+        Map m = new HashMap();
+        m.put("foo.filter", "(foo=bar)");
+        m.put("foo.required", "false");
+        return m;
     }
 
 So, after the init method returns, the map will be used to configure  the dependency named "foo", which will then be evaluated. And once the  dependency is available, then your @Start callback will be invoked.
@@ -117,6 +118,7 @@ So, after the init method returns, the map will be used to configure  the depend
 
 This is an example of a component X whose dependency "foo" filter is  configured from ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with our configuration. Next, we define a  dependency on the *FooService*, but this time, we declare the annotation  like this: *@ServiceDependency(*{*}{*}name="foo"*{*}*)*. As explained  above, The  ConfigurationDependency will be injected *before* the @Init method, and  the named dependency ("foo") will be calculated *after* the @Init method  returns. So, from our Init method, we just return a map which contains  the filter and required flag for the "foo" dependency, and we actually  use the configuration which has already been injected:
 
+    :::java
     /**
      * A component whose FooService dependency filter is configured from ConfigAdmin
      */
@@ -139,10 +141,10 @@ This is an example of a component X whose dependency "foo" filter is  configured
          */
         @Init
         Map init() {
-            return new HashMap() {{
-                put("foo.filter", m_config.get("filter"));
-                put("foo.required", m_config.get("required"));
-            }};
+            Map m = new HashMap();
+            m.put("foo.filter", m_config.get("filter"));
+            m.put("foo.required", m_config.get("required"));
+            return m;
         }
     
         /**
@@ -229,6 +231,7 @@ following:
 
 But when the component needs to specify some service properties dynamically (not statically from the annotation), then it may do so by just returning a Map from the @Start callback. For instance:
 
+    :::java
     @Component(properties={@Property(name="foo", value="bar")})
     public class MyServiceImpl implements MyService {
         @ConfigurationDependency(pid="MyPid", propagate=true)
@@ -242,7 +245,9 @@ But when the component needs to specify some service properties dynamically (not
             // Return some extra properties to be inserted along with our published properties. This map takes
             // precedence, and may override some properties specified in our @Component annotation, or some properties
             // propagated from our @ConfigurationDependency dependency ...
-            return new HashMap() {{ put("foo3", "bar3"); }};
+            Map m = new HashMap();
+            m.put("foo3", "bar3");
+            return m;
         }
     }
 
