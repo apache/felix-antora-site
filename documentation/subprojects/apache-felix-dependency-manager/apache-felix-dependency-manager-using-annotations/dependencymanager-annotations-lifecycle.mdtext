@@ -18,40 +18,41 @@ and reactivated, depending on the departure and arrival of required dependencies
 manager which is in charge of maintaining the state of components is implemented in the 
 DM Runtime bundle (org.apache.felix.dm.runtime bundle).
 
-## Lifecycle Callbacks
+## Lifecycle callbacks
 
 ### Component Activation
 
 Activating a component consists of the following steps:
 
- 1. Wait for all required dependencies to be available. When all required dependencies are available:
+- Wait for all required dependencies to be available. When all required dependencies are available:
 
-- Instantiate the component.
-- Inject all required dependencies (on class fields using reflection, or by invoking 
+ - Instantiate the component.
+ - Inject all required dependencies (on class fields using reflection, or by invoking 
 callback methods).
-- Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the dependency is not available.
-- Call the component init method (annotated with *@Init*). In the  Init method, you are 
+ - Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the dependency is not available.
+ - Call the component init method (annotated with *@Init*). In the  Init method, you are 
 yet allowed to add some additional dependencies  (but using the API). 
 Alternatively, you can also configure some  dependencies dynamically 
 (explained later, in [#Dynamic Dependency Configuration](#dynamic-dependency-configuration).
- 1. Wait for extra dependencies optionally configured from the init() method.
- 1. If the component is not using the @*LifecycleController* annotation (detailed in the 
+- Wait for extra dependencies optionally configured from the init() method.
+- If the component is not using the @*LifecycleController* annotation (detailed in the 
 [#Controlling the Lifecycle](#controlling-the-lifecycle.path) section), then:
 
-- Invoke the component start method (annotated with *@Start*).
-- Publish some OSGi services (if the component provides some services).
-- Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
+ - Invoke the component start method (annotated with *@Start*).
+ - Publish some OSGi services (if the component provides some services).
+ - Start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern). *Notice that NullObject pattern is not applied to optional callback dependencies*. In other words, if the dependency is not there, your callback won't be invoked at all. If you need the NullObject pattern, then apply optional dependencies on class fields, not on callback methods.
 
- 1. Else do nothing because&nbsp; the component will trigger itself the startup using the lifecycle controller.
+- Else do nothing because the component will trigger itself the startup using the lifecycle controller.
 
 ### Component Deactivation
 
 Deactivating a component consists of the following steps:
-1. If the bundle is stopped or if some required dependencies are unavailable, or if the component is deactivated by a factorySet, then:
-1. * Unbind optional dependencies (defined on callback methods). Notice that any optional dependency unavailability does not trigger the component deactivation:&nbsp; the *removed* callbacks are just invoked, if declared in the annotation.
-1. * Invoke the stop method (annotated wit *@Stop*),  and unregister some OSGi services (if the components provides some services).
-1. * invoke destroy method (annotated with *@Destroy*).
-1. * invoke *removed* callbacks for required dependencies, if any.
+
+- If the bundle is stopped or if some required dependencies are unavailable, or if the component is deactivated by a factorySet, then:
+ - Unbind optional dependencies (defined on callback methods). Notice that any optional dependency unavailability does not trigger the component deactivation:&nbsp; the *removed* callbacks are just invoked, if declared in the annotation.
+ - Invoke the stop method (annotated wit *@Stop*),  and unregister some OSGi services (if the components provides some services).
+ - invoke destroy method (annotated with *@Destroy*).
+ - invoke *removed* callbacks for required dependencies, if any.
 
 ### Example
 
@@ -80,9 +81,9 @@ The following example shows a basic component, which uses the @Start, @Stop, ann
         }
     }
 
-### Dynamic Dependency Configuration
+## Dynamic Dependency Configuration
 
-#### Rationale
+### Rationale
 
 We have seen that a component may declare some dependencies and is  started when all required dependencies are available. But there are some  cases when you may need to define some dependencies filters  dynamically, possibly from data picked up from other  dependencies (like a configuration dependency for instance).
 
@@ -109,7 +110,7 @@ Then you can return this map from your @Init method:
 
 So, after the init method returns, the map will be used to configure  the dependency named "foo", which will then be evaluated. And once the  dependency is available, then your @Start callback will be invoked.
 
-#### Usage example:
+### Usage example:
 
 This is an example of a component X whose dependency "foo" filter is  configured from ConfigAdmin. First, we defined a ConfigurationDependency  in order to get injected with our configuration. Next, we define a  dependency on the *FooService*, but this time, we declare the annotation  like this: *@ServiceDependency(*{*}{*}name="foo"*{*}*)*. As explained  above, The  ConfigurationDependency will be injected *before* the @Init method, and  the named dependency ("foo") will be calculated *after* the @Init method  returns. So, from our Init method, we just return a map which contains  the filter and required flag for the "foo" dependency, and we actually  use the configuration which has already been injected:
 
@@ -158,7 +159,10 @@ This is an example of a component X whose dependency "foo" filter is  configured
 
 ## Controlling the Lifecycle
 
-As explained in the *Component Activation* section, a  component which provides a service is automatically registered into the  OSGi registry, after the @Start method returns. But it is sometimes  required to control when the service is really started/published or  unpublished/stopped.
+As explained in the *Component Activation* section, a component which provides a service 
+is automatically registered into the  OSGi registry, after the @Start method returns. 
+But it is sometimes  required to control when the service is really started/published or  
+unpublished/stopped.
 
 This can be done using the @LifecycleController annotation. This  annotation injects a Runnable object that can be invoked once you want  to trigger your service startup and publication.
 
@@ -214,11 +218,12 @@ Next, here is our service, which uses the @LifecycleController in  order to take
 
 ## Dynamic Service Properties
 
-When a component provides an OSGi Service, the service properties are calculated as the following:
+When a component provides an OSGi Service, the service properties are calculated as the 
+following:
 
-* Any properties specified in the @Component annotation are used to provide the OSGi Service
-* Any properties provided by a FactorySet are also inserted in the published service
-* Any Dependency whose *propagate* attribute is set to true will also insert its properties to the published service
+- Any properties specified in the @Component annotation are used to provide the OSGi Service
+- Any properties provided by a FactorySet are also inserted in the published service
+- Any Dependency whose *propagate* attribute is set to true will also insert its properties to the published service
 
 But when the component needs to specify some service properties dynamically (not statically from the annotation), then it may do so by just returning a Map from the @Start callback. For instance:
 
@@ -246,4 +251,5 @@ Here, the service MyService will be published into the OSGi registry along with 
 - foo2=bar2 (propagated by our ConfigurationDependency dependency)
 - foo3=bar3 (specified dynamically in the map returned from our start method)
 
-Notice that properties returned by the Map take precedence over other properties, and may override some of them.
+Notice that properties returned by the Map take precedence over other properties, and may 
+override some of them.
