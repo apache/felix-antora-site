@@ -1,6 +1,7 @@
 translation_pending: true
 Title: News
 
+* Apache Felix HTTP Service 2.2.1 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (September 27, 2013)
 * Apache Felix Metatype Service 1.0.8 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (September 16, 2013)
 * Apache Felix Preferences Service 1.0.6 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (August 12, 2013)
 * Apache Felix Web Console Event Plugin 1.1.0 has been released and is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (August 02, 2013)
