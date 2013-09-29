@@ -4,21 +4,21 @@ Title: Apache Felix HTTP Service
 
 This is an implementation of the HTTP Service Specification as described in chapter 102 of the OSGi Compendium. The goal is to provide a standard and simplified way to register servlets and resources in a Servlet container, and to associate them with URIs. It also implement a non-standard extension for registering servlet filters as well as a whiteboard implementation. Complete set of features:
 
-  * Standard HTTP Service implementation.
-  * Extended HTTP Service implementation that allows for servlet filter registration.
-  * Run either with Jetty or inside your own application server using the servlet bridge.
-  * A whiteboard implementation for easy registration of servlets and filters.
+  * Standard HTTP Service implementation;
+  * Extended HTTP Service implementation that allows for servlet filter registration;
+  * Run either with Jetty or inside your own application server using the servlet bridge;
+  * A whiteboard implementation for easy registration of servlets and filters;
   * One complete bundle that includes everything to simplify deployment.
 
 ## Installing
 
 The Apache Felix HTTP Service project includes several bundles. 
 
-  * org.apache.felix.http.jetty - HTTP Service implementation that is embedding Jetty server.
-  * org.apache.felix.http.whiteboard - Whiteboard implementation that uses any HTTP Service implementation. 
-  * org.apache.felix.http.bridge - HTTP Service implementation that uses the host applicaiton server (bridged mode). Must be used with proxy.
-  * org.apache.felix.http.bundle - All in one bundle that includes all of the above.
-  * org.apache.felix.http.proxy - Proxy that is needed inside WAR when deployed inside an application server. 
+  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server;
+  * `org.apache.felix.http.whiteboard` - Whiteboard implementation that uses any HTTP Service implementation;
+  * `org.apache.felix.http.bridge` - HTTP Service implementation that uses the host application server (bridged mode). Must be used with proxy;
+  * `org.apache.felix.http.bundle` - All in one bundle that includes all of the above;
+  * `org.apache.felix.http.proxy` - Proxy that is needed inside WAR when deployed inside an application server. 
 
 So, in most cases you could just use **org.apache.felix.http.bundle** and forget about all the other ones.
 
@@ -26,47 +26,65 @@ So, in most cases you could just use **org.apache.felix.http.bundle** and forget
 
 The main components provided by the Apache Felix HTTP Service bundle are:
 
- * `HttpService` - Service used to dynamically register resources and servlets 
- * `HttpContext` - Additional (optional) component to handle authentication, resource and mime type mappings
+ * `HttpService` - Service used to dynamically register resources and servlets;
+ * `HttpContext` - Additional (optional) component to handle authentication, resource and mime type mappings.
  
 Servlets created for the OSGi HTTP service don't need to have any reference to the OSGi specification (they only need to conform to the Servlet specification), like in the example:
 
     :::java
-    public class HelloWorld extends HttpServlet
-    {
+    public class HelloWorld extends HttpServlet {
       @Override
-      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
-      {
+      protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().write("Hello World");		
-      }	
-    }
-
-
-To register a Servlet and map it to a URI, you need to retrieve the `HttpService` and call its `registerServlet` method:
-
-    :::java
-    public class Activator implements BundleActivator
-    {
-      public void start(BundleContext context) throws Exception 
-      {
-        ServiceReference sRef = context.getServiceReference(HttpService.class.getName());
-        if (sRef != null)
-        {
-          HttpService service = (HttpService) context.getService(sRef);
-          service.registerServlet("/hello", new HelloWorld(), null, null);
-        }
       }
     }
 
+To register a Servlet and map it to a URI, you need to retrieve the `HttpService` and call its `registerServlet` method. For this example, a `ServiceTracker` is used to ensure that the registration occurs when a `HttpService` actually is available, and a deregistration occurs when the `HttpService` becomes unavailable. Alternatively, you can use more high-level dependency management libraries, like [Declarative Services][1], [Felix Dependency Manager][2], or Felix HTTP whiteboard service (see below).
 
-In the same way, you can unregister a Servlet (for instance, in the `stop` method of the Bundle Activator) calling the `HttpService.unregister` method.
+    :::java
+    public class Activator implements BundleActivator {
+      private ServiceTracker httpTracker;
+
+      public void start(BundleContext context) throws Exception {
+        httpTracker = new ServiceTracker(context, HttpService.class.getName(), null) {
+          public void removedService(ServiceReference reference, Object service) {
+            // HTTP service is no longer available, unregister our servlet...
+            try {
+               ((HttpService) service).unregister("/hello");
+            } catch (IllegalArgumentException exception) {
+               // Ignore; servlet registration probably failed earlier on...
+            }
+          }
+
+          public Object addingService(ServiceReference reference) {
+            // HTTP service is available, register our servlet...
+            HttpService httpService = (HttpService) this.context.getService(reference);
+            try {
+              httpService.registerServlet("/hello", new HelloWorld(), null, null);
+            } catch (Exception exception) {
+              exception.printStackTrace();
+            }
+            return httpService;
+          }
+        };
+        // start tracking all HTTP services...
+        httpTracker.open();
+      }
+
+      public void stop(BundleContext context) throws Exception {
+        // stop tracking all HTTP services...
+        httpTracker.close();
+      }
+    }
+
+In the same way, you can unregister a Servlet (for instance, in the `removedMethod` method in the former example) by calling the `HttpService.unregister` method.
 
 As you notice in the example above, the `registerServlet` method accepts four parameters:
 
- * the Servlet alias
- * the Servlet instance
- * an additional configuration Map
- * an HttpContext
+ * the servlet alias;
+ * the `Servlet` instance;
+ * an additional configuration `Dictionary`;
+ * a `HttpContext`.
  
 The Servlet alias must begin with a slash and must not end with a slash. When a request is processed, the HTTP Service will try to exact match the requested URI with a registered Servlet. If not existent, it will remove the last '/' in the URI and everything that follows, and try to match the remaining part, and so on.
 
@@ -75,112 +93,146 @@ An additional configuration Map can be optionally specified; if present, all the
 Finally, an HttpContext object can be optionally specified to handle authentication, mime type and resource mapping. The `HttpContext` interface is quite simple:
 
     :::java
-    public interface HttpContext
-    {
-      String getMimeType(java.lang.String name); //Returns the mime type of the specified resource
-      URL getResource(java.lang.String name);   //Returns the URL to retrieve the specified resource
-      boolean handleSecurity(HttpServletRequest request, HttpServletResponse response); //Manages security for the specified request
+    public interface HttpContext {
+      /** Returns the mime type of the specified resource */
+      String getMimeType(java.lang.String name);
+
+      /** Returns the URL to retrieve the specified resource */
+      URL getResource(java.lang.String name);
+
+      /** Manages security for the specified request */
+      boolean handleSecurity(HttpServletRequest request, HttpServletResponse response); 
     }
 
 
-The use of a custom HttpContext is typical when you want to serve static contents with the HTTP Service. Let's see first the simplest example of resource registration (without `HttpContext`)
+The use of a custom `HttpContext` is typical when you want to serve static contents with the HTTP Service. Let's first see an example of resource registration **without** `HttpContext`:
 
     :::java
-    public class Activator implements BundleActivator
-    {
-      public void start(BundleContext context) throws Exception 
-      {
-        ServiceReference sRef = context.getServiceReference(HttpService.class.getName());
-        if (sRef != null)
-        {
-          HttpService service = (HttpService) context.getService(sRef);
-          service.registerResources("/static", "/etc/www", null);
-        }
+    public class Activator implements BundleActivator {
+      private ServiceTracker httpTracker;
+
+      public void start(BundleContext context) throws Exception {
+        httpTracker = new ServiceTracker(context, HttpService.class.getName(), null) {
+          public void removedService(ServiceReference reference, Object service) {
+            // HTTP service is no longer available, unregister our resources...
+            try {
+               ((HttpService) service).unregister("/static");
+            } catch (IllegalArgumentException exception) {
+               // Ignore; servlet registration probably failed earlier on...
+            }
+          }
+
+          public Object addingService(ServiceReference reference) {
+            // HTTP service is available, register our resources...
+            HttpService httpService = (HttpService) this.context.getService(reference);
+            try {
+              httpService.registerResources("/static", "/etc/www", null);
+            } catch (Exception exception) {
+              exception.printStackTrace();
+            }
+            return httpService;
+          }
+        };
+        // start tracking all HTTP services...
+        httpTracker.open();
+      }
+
+      public void stop(BundleContext context) throws Exception {
+        // stop tracking all HTTP services...
+        httpTracker.close();
       }
     }
 
 
-As a result of the `service.registerResources("/static", "/etc/www", null)` code, all the files
+As a result of the `httpService.registerResources("/static", "/etc/www", null)` code, all the files
 available under `/etc/www` will be exposed under `/static` (e.g. `http://localhost:8080/static/001.jpg`
 will render the `/etc/www/001.jpg`). However, the example above can be simplistic in practice; the
 `HttpContext` object is the solution to customize the resource handling.
 
-For instance, you can set the define more complex URI to file mappings overriding the
-`HttpContext.getResource` method, or the correct mime type implementing the method `HttpContext.getMimeType` like in the example:
+For instance, you can set the define more complex URI to file mappings overriding the `HttpContext.getResource` method, or the correct MIME type implementing the method `HttpContext.getMimeType` like in the example:
 
     :::java
     //....
-    
-    public String getMimeType(String file) 
-    {  
-      if (file.endsWith(".jpg")
-      {  
+    public String getMimeType(String file) {
+      if (file.endsWith(".jpg") {
         return "image/jpeg";  
-      } 
-      else if (file.endsWith(".png")) 
-      {  
+      } else if (file.endsWith(".png")) {
         return "image/png";  
-      } 
-      else 
-      {  
+      } else {  
         return "text/html";  
-      }  
-    }  
-    	
-    //....
-
-
-If you implement a customized HttpContext object, don't forget to specify it as third parameter of the `registerResources` method invocation:
-
-    :::java
-    public class Activator implements BundleActivator
-    {
-      public void start(BundleContext context) throws Exception 
-      {
-        ServiceReference sRef = context.getServiceReference(HttpService.class.getName());
-        if (sRef != null)
-        {
-          HttpService service = (HttpService) context.getService(sRef);
-          HttpContext myHttpContext = new MyHttpContext());
-          service.registerResources("/static", "/etc/www", myHttpContext);
-        }
       }
     }
+    //....
+
+
+If you implement a customised `HttpContext` object, don't forget to specify it as third parameter of the `registerResources` method invocation:
+
+    :::java
+    // ....
+          public Object addingService(ServiceReference reference) {
+            // HTTP service is available, register our resources...
+            HttpService httpService = (HttpService) this.context.getService(reference);
+            try {
+              // explicitly use our own context as 3rd parameter...
+              httpService.registerResources("/static", "/etc/www", new MyHttpContext());
+            } catch (Exception exception) {
+              exception.printStackTrace();
+            }
+            return httpService;
+          }
+    // ....
 
 
 ## Using the ExtHttpService
 
-To be able to register filters, it is possible to get hold of `org.apache.felix.http.api.ExtHttpService`. This is exported by both jetty and the bridged implementation. Let's see the simplest example of a filter registration.
+To be able to register filters, it is possible to get hold of `org.apache.felix.http.api.ExtHttpService`. This is exported by both Jetty and the bridged implementation. Let's see an example of a filter registration:
 
     :::java
-    public class Activator implements BundleActivator
-    {
-      public void start(BundleContext context) throws Exception 
-      {
-        ServiceReference sRef = context.getServiceReference(ExtHttpService.class.getName());
-        if (sRef != null)
-        {
-          ExtHttpService service = (ExtHttpService) context.getService(sRef);
-          service.registerFilter(new HelloWorldFilter(), "/hello/.*", null, 0, null);
-        }
+    public class Activator implements BundleActivator {
+      private ServiceTracker httpTracker;
+
+      public void start(BundleContext context) throws Exception {
+        httpTracker = new ServiceTracker(context, ExtHttpService.class.getName(), null) {
+          public void removedService(ServiceReference reference, Object service) {
+            // HTTP service is no longer available, unregister our resources...
+            try {
+               ((ExtHttpService) service).unregister("/static");
+            } catch (IllegalArgumentException exception) {
+               // Ignore; servlet registration probably failed earlier on...
+            }
+          }
+
+          public Object addingService(ServiceReference reference) {
+            // HTTP service is available, register our resources...
+            ExtHttpService httpService = (ExtHttpService) this.context.getService(reference);
+            try {
+              httpService.registerFilter(new HelloWorldFilter(), "/hello/.*", null, 0, null);
+            } catch (Exception exception) {
+              exception.printStackTrace();
+            }
+            return httpService;
+          }
+        };
+        // start tracking all HTTP services...
+        httpTracker.open();
+      }
+
+      public void stop(BundleContext context) throws Exception {
+        // stop tracking all HTTP services...
+        httpTracker.close();
       }
     }
-
-
-  
   
 
 ## Using the Whiteboard
 
-The whiteboard implementation simplifies the task of registering servlets and filters. A servlet (or filter) can be registered by exporting it as a service. The whiteboard implementation detects all `javax.servlet.Servlet`, `javax.servlet.Filter` and `org.osgi.service.http.HttpContext` services with the right service properties. Let us illustrate the usage by registering a servlet:
+The whiteboard implementation simplifies the task of registering servlets and filters. A servlet (or filter) can be registered by exporting it as a service, making it no longer necessary to track and use the `HttpService` directly. The whiteboard implementation detects all `javax.servlet.Servlet`, `javax.servlet.Filter` and `org.osgi.service.http.HttpContext` services with the right service properties. Let us illustrate the usage by registering a servlet:
 
     :::java
-    public class Activator implements BundleActivator
-    {
+    public class Activator implements BundleActivator {
       private ServiceRegistration registration;
     
-      public void start(BundleContext context) throws Exception 
-      {
+      public void start(BundleContext context) throws Exception {
         Hashtable props = new Hashtable();
         props.put("alias", "/hello");
         props.put("init.message", "Hello World!");
@@ -188,8 +240,7 @@ The whiteboard implementation simplifies the task of registering servlets and fi
         this.registration = context.registerService(Servlet.class.getName(), new HelloWorldServlet(), props);
       }
     
-      public void stop(BundleContext context) throws Exception 
-      {
+      public void stop(BundleContext context) throws Exception {
         this.registration.unregister();
       }
     }
@@ -295,7 +346,6 @@ Of the defined `EventListener` interfaces in the Servlet API, the `javax.servlet
 | `getAttribute`, `getAttributeNames`, `setAttribute`, `removeAttribute` | By default maintained for each `ServletContext` managed by the Http Service. If the `org.apache.felix.http.shared*servlet*context_attributes` framework property is set to `true` these methods are actually based on the `ServletContext` provided by the servlet container and thus attributes are shared amongst all `ServlectContext` instances, incl. the `ServletContext` provided by the servlet container |
 
 
-
 ## Examples
 
 A set of simple examples illustrating the various features are available. 
@@ -303,6 +353,7 @@ A set of simple examples illustrating the various features are available.
 * Filter registration sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/>
 * Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>
 * Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>
+
 
 ## Maven Artifacts
 
@@ -344,4 +395,5 @@ A set of simple examples illustrating the various features are available.
     </dependency>
 
 
-
+  [1]: http://felix.apache.org/documentation/subprojects/apache-felix-service-component-runtime.html
+  [2]: http://felix.apache.org/site/apache-felix-dependency-manager.html
