@@ -694,6 +694,7 @@ Finally, you can also instructs iPOJO to throw a runtime exception when there ar
   private LogService m_log;
 
 or   
+
   :::xml
   <requires field="m_log" optional="true" 
       exception=
