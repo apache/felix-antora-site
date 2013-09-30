@@ -2,28 +2,24 @@ translation_pending: true
 Title: Service Requirement Handler
 
 
-
-
-# Service Dependency Management
+# Requiring services
 
 *One of the main iPOJO feature is the service injection. So, a component can consume a service without managing the service discovery, tracking and binding. iPOJO manages all these interactions and injects required service into the component. This page explains how to use services.*
 
 [TOC]
 
-## Service Requirement
+## Service Dependency
 
-### What's a service requirement?
+### What's a service dependency?
 
-A requirement represents a required service. Therefore, it manages the service lookup and the service binding. When an instance requires a service, the handler injects directly a service object inside a field, or invokes a method when a consistent service appears (or disappears). Service requirements can be:
+A required service is described by a service dependency. The dependency defines what kind of service is required, how to select the it, the resilience to its dynamism... iPOJO handles all these aspects for you, just tell, iPOJO tracks, selects, binds and injects the matching services directly in your code. Service dependencies can be:
 
-* Simple / Aggregate : the component can require      one or several service providers
-* Mandatory / Optional : a component can declare an      optional dependency
-* Filtered : a component can filter available      providers
-* Dynamic / Static / Dynamic-Priority : the      component can specify the binding policy
-* Specific : the dependency targets a specific service provider
-* Proxy : by default, iPOJO injects a smart proxy, but it can also be a dynamic proxy or the direct references
+* Scalar or Aggregate : the component can require one or several service providers
+* Mandatory or Optional : a component can declare an optional dependency, and defined what should be done when no services are available
+* Filtered : a component can filter available providers, and even choose a specific provider
+* Resilient to dynamism : iPOJO supports three binding policy depending on your reaction to dynamism
 
-### Dynamism & Instance Lifecycle
+### Dynamism, Resilience & Instance Lifecycle
 
 In OSGi™, services can appear and disappear dynamically. This implies dependencies can target a provider which can appear or disappear dynamically. So, dependencies need to manage this dynamism by tracking every time available services. At any moment, a dependency can be unresolved (i.e. no more provider can fulfill the requirement). In the case of a mandatory requirement, the instance becomes invalid (an invalid instance is no more accessible externally, for example provided services are unpublished). If a service, resolving the unfilled dependency appears, the instance becomes valid. In consequence, dependencies affect directly the instance state, and must manage correctly OSGi dynamism to allow a complete unloading when a service goes away. As soon a mandatory dependency cannot be fulfilled, the instance is invalidated.
 
@@ -595,7 +591,7 @@ Moreover, from attributes can be customized instance by instance. It is possible
 The FOO component type declares a service dependency with the 'id1' id. This dependency has no 'from' attribute by default. The first instance is just an instance of the FOO component type and does not modify the dependency. The second one adds a 'from' attribute to the declared dependency to target the 'myprovider' provider. The last one adds another 'from' clause to the declared dependency.
 
 
-## Binding Policies
+## Managing resilience to dynamism - Binding Policies
 
 Three binding policies are supported inside iPOJO.
 
@@ -641,19 +637,21 @@ or
 
 
 
-## Note about nullable object & default-implementation
+## Optional Scalar Dependencies - No Service actions
 
-The instance implementation can use an optional dependency without any checking. Indeed, when an instance declares an optional dependency using field injection, iPOJO create on the fly a Nullable class implementing the service specification but doing nothing (mock object). Therefore, iPOJO cannot return a service to the instance, for an optional dependency, it returns a nullable object.
+When using optional dependencies a special case needs to be handled for field and contructor injection: what happen when there are no service providers available. By default, iPOJO uses `nullable` objects. It has the advantage to not require any additional code. However, iPOJO supports other options:
 
-A nullable object returns:
+* `null` : injects `null` instead of a nullable object, it requires `null` check before using the inject service
+* `default-implementation` : injects a specific implementation of the service that you provide. It must implement the same service interface.
+* `exception` : throws a runtime exception (that you specify), it requires a `try-catch` block for specific management.
 
-* Null when the method returns an object
-* 0 when the method returns an int, log, byte, short, char, float or a double
-* False when the method return a boolean
+By default, scalar optional dependencies injects a `nullable` object, i.e. a mock implementing the service interface but does not implement any behavior. A nullable object returns:
 
-You can check if the returned object is a nullable object with the test: *"myservice instanceof Nullable"*.
+* `null` when the method returns an object
+* `0` when the method returns an int, log, byte, short, char, float or a double
+* `false` when the method return a boolean
 
-You can disable the Nullable pattern too (activated by default). In this case, iPOJO injects `null` instead of a *Nullable* object. So, you can just test if your field is equals to *null* to check if the service is available. To disable the Nullable pattern, you need to add the 'nullable="false"' attribute in your service dependency description as follows:
+To inject `null` instead of a `nullable` object, just set the `nullable` attribute to `false`. 
 
     :::java
     @Requires(optional=true, nullable=false)
@@ -664,23 +662,53 @@ or
     :::xml
      <requires field="m_log" optional="true" nullable="false"/>
 
+However be aware that in this case, you must check for `null` before using the service:
 
-However, you can also indicate a *default-implementation* for your optional service. In this case, if no providers are found, iPOJO creates an instance of the default-implementation and injects it. The default-implementation attribute describes the class name of your implementation. The given class *MUST* implement the required service interface.
+    :::java
+    if (m_log != null) {
+      m_log.log(LogService.INFO, "an important message");
+    }
 
-For example, the following component uses a default implementation for a Log Service dependency:
+Don't worry about the synchronization, iPOJO keep the injected object consistent on the entire method flow.
+
+Sometimes you need to customize the behavior when a service is not available. You can do this directly in your code, but this can be very cumbersome. `default-implementation` let you inject a fake service when no providers are present. It's like a `nullable` object, but you can implement your own behavior. The given class *MUST* implement the required service interface.
+
+For example, the following component uses a `default-implementation` for a Log Service dependency:
 
     :::java
     @Requires(optional=true, default-implementation=MyLogService.class)
     private LogService m_log;
 
-or
-    
+or   
     :::xml
     <requires field="m_log" optional="true" 
         default-implementation=
            "org.apache.felix.ipojo.example.default.MyLogService"/>
 
-If the log service is not available, iPOJO creates an object of the 'org.apache.felix.ipojo.example.default.MyLogService' class. This object is injected instead of a Nullable object. For instance, the default implementation can print messages on the System.err stream. The nullable object does no display anything.
+If the log service is not available, iPOJO creates an instance of the `org.apache.felix.ipojo.example.default.MyLogService`. This object is injected instead of the `Nullable` object. In the example, the default implementation can print messages on the `System.err`. In comparison, the `nullable` object would have done nothing.
+
+Finally, you can also instructs iPOJO to throw a runtime exception when there are no service providers available. This option is often use in combination with the `timeout` option, that delay the decision. To throw an exception, use the `exception` attribute specifying the exception class to use. It must be a subclass of `RuntimeException`. Obvisouly, you can use `java.lang.RuntimeException` directly.
+
+  :::java
+  @Requires(optional=true, exception=NoServiceException.class)
+  private LogService m_log;
+
+or   
+  :::xml
+  <requires field="m_log" optional="true" 
+      exception=
+         "org.apache.felix.ipojo.example.default.NoServiceException"/>
+
+## Wait for service : the timeout option
+
+For scalar optional dependencies injected inside fields or constructors, you may want to wait for a service to arrive before injecting a _stub_ (`nullable`, `null`, `default-implementation` or `exception`). The `timeout` attribute let you specify the amount of time (in milliseconds) to wait. If there are still no services available when the timeout is reached, then the no service action is applied.
+
+In the following example, the `AuthenticationService` is essential, but also may be subjected to updates. When the service is not there, you don't want to fail immediately, but give it a chance to re-appear _soon_:
+
+  :::java
+  @Requires(optional=true, exception=UpdateInProgessException.class, timeout=1000)
+  private AuthenticationService m_auth;
+
 
 ## Note about Callbacks
 Dependency manages two type of callback: bind and unbind. A callback with a type "bind" is called each type that a service provider arrives and the binding is necessary. According to the cardinality of the dependency it means:
@@ -704,7 +732,7 @@ By default iPOJO injects proxy except for arrays. Moreover, it is possible to di
 
 ## Note on service interface discovery
 
-The `specification` attribute is generally optional except when iPOJO cannot discover the type of the service. iPOJO cannot infer the type when the dependency has no field and callbacks do not receive the service object in parameter. In this case, you must the service specification (i.e. interface).
+The `specification` attribute is generally optional except when iPOJO cannot discover the type of the service. iPOJO cannot deduce the servce specification when the dependency has no field and callbacks do not receive the service object in parameters. In this case, you must the service specification (i.e. interface).
   
   
   
