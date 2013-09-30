@@ -173,16 +173,18 @@ This section lists defined annotations and how to use them.
 *Target:* Field
 *Attributes:*
 
-* Filter: defines the LDAP filter (optional)
-* Optional: defines if the dependency is optional (optional, default = "false")
-* Id: defines the dependency Id (useful to identify bind & unbind methods) (optional, default = field name) (if a dependency with the same id is already created (by a @bind or @unbind annotation), it merges the dependencies).
-* Nullable: enable or disable the Null Object injection when the dependency is optional and no providers are available (optional, default = "true")
-* Defaultimplementation: set the Default-Implmentation (optional, by default iPOJO uses a Null object)
-* Policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
-* Comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
-* From : defines the specific provider to use
-* Specification : the required service specification. This attribute is required for Collection field. (optional, default = annotated field type). 
-* Proxy : enables / disables the proxy injection (enabled by default)
+* filter: defines the LDAP filter (optional)
+* optional: defines if the dependency is optional (optional, default = "false")
+* id: defines the dependency Id (useful to identify bind & unbind methods) (optional, default = field name) (if a dependency with the same id is already created (by a @bind or @unbind annotation), it merges the dependencies).
+* nullable: enable or disable the Null Object injection when the dependency is optional and no providers are available (optional, default = "true")
+* defaultimplementation: set the Default-Implmentation (optional, by default iPOJO uses a Null object)
+* exception : the class of the runtime exception to throw when no service providers are available 
+* policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
+* comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
+* from : defines the specific provider to use
+* specification : the required service specification. This attribute is required for Collection field. (optional, default = annotated field type). 
+* proxy : enables / disables the proxy injection (enabled by default)
+* timeout : the timeout ins millisecond to wait before applying the _no service action_
 
 ### @ServiceProperty
 
