@@ -679,7 +679,8 @@ For example, the following component uses a `default-implementation` for a Log S
     @Requires(optional=true, default-implementation=MyLogService.class)
     private LogService m_log;
 
-or   
+or  
+
     :::xml
     <requires field="m_log" optional="true" 
         default-implementation=
@@ -689,14 +690,14 @@ If the log service is not available, iPOJO creates an instance of the `org.apach
 
 Finally, you can also instructs iPOJO to throw a runtime exception when there are no service providers available. This option is often use in combination with the `timeout` option, that delay the decision. To throw an exception, use the `exception` attribute specifying the exception class to use. It must be a subclass of `RuntimeException`. Obvisouly, you can use `java.lang.RuntimeException` directly.
 
-  :::java
-  @Requires(optional=true, exception=NoServiceException.class)
-  private LogService m_log;
+    :::java
+    @Requires(optional=true, exception=NoServiceException.class)
+    private LogService m_log;
 
 or   
 
-  :::xml
-  <requires field="m_log" optional="true" 
+    :::xml
+    <requires field="m_log" optional="true" 
       exception=
          "org.apache.felix.ipojo.example.default.NoServiceException"/>
 
@@ -706,9 +707,9 @@ For scalar optional dependencies injected inside fields or constructors, you may
 
 In the following example, the `AuthenticationService` is essential, but also may be subjected to updates. When the service is not there, you don't want to fail immediately, but give it a chance to re-appear _soon_:
 
-  :::java
-  @Requires(optional=true, exception=UpdateInProgessException.class, timeout=1000)
-  private AuthenticationService m_auth;
+    :::java
+    @Requires(optional=true, exception=UpdateInProgessException.class, timeout=1000)
+    private AuthenticationService m_auth;
 
 
 ## Note about Callbacks
