@@ -1,0 +1,73 @@
+# Instance Controller or Service Controller ?
+
+When the component implementation needs to impact the instance container, it uses _controllers_ on Boolean fields. iPOJO provides two controllers:
+
+* Instance Lifecycle Controller (`@Controller`)
+* Service Lifecycle Controller (`@ServiceController`)
+
+This page explains the differences between the two kinds of controllers.
+
+## The Instance Lifecycle Controller
+
+The instance lifecycle controller impacts the instance state. Such controller must only be used if the instance code has detected an irremediable situation, where the instance cannot behave correctly.
+
+Such controller is generally used when the component code:
+
+* check the configuration
+* has caught an error
+
+Instance Lifecycle Controller cannot be initialized, and generally are only set to `false`:
+
+	:::java
+	@Component
+	public class MyComponent {
+
+		@Controller
+		private boolean controller;
+
+		@Property(name="my-property")
+		public void setMyProperty(String value) {
+			if (! ACCEPTABLE_VALUES.contains(value) {
+					// Let's image that if the given 
+					// value is not acceptable, we invalidate
+					// the instance
+					controller = false;
+			}
+		}
+	}
+
+When set to `false`:
+
+* the service exposed by the instance are withdrawn from the service registry
+* the `@Invalidate` callback is called
+
+## The service lifecycle controller
+
+The service lifecycle controller impacts only the services exposed by the instance. It is used when the component implementation decides whether or not to publish the services. 
+
+Unlike the instance lifecycle controller, such controller can:
+
+* be set to `false` at startup (to not publish the services by default).
+* fluctuate between `true` and `false` to reflect the decision of the component implementation to publish or not the services.
+
+	:::java
+	@Component
+	@Provides
+	public class MyComponent implements MyService {
+
+		// Service not published by default
+		@ServiceController(value=false)
+		private boolean controller;
+	
+		@Validate
+		public void initialize() {
+			//...
+			// publish the service once the initialization
+			// is completed.
+			controller = true;
+		}
+	}
+
+When the controller is set to `true`, the `@PostRegistration` callback is called. When it is set to `false` the `@PostUnregistration` callback is called. In both cases, the service is already registered or unregistered when the callback is invoked.
+
+Notice that a `@ServiceController` controls all exposed services by default, but can be restricted to specific service interface with the `specification` attribute.
