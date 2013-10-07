@@ -24,7 +24,7 @@ To use the task declare a target in your build.xml as:
         <!-- Change the path to point on the iPOJO Ant task jar-->
         <taskdef name="ipojo"
                 classname="org.apache.felix.ipojo.task.IPojoTask"
-                classpath="org.apache.felix.ipojo.ant-1.10.1.jar"/>
+                classpath="org.apache.felix.ipojo.ant-{{ipojo.release}}.jar"/>
 
         <ipojo
                 input="foo.jar"
@@ -66,7 +66,7 @@ The iPOJO Ant Task requires an input bundle. BND is a tools simplifying bundle c
             <!-- Change the path to point on the iPOJO Ant task jar -->
             <taskdef name="ipojo"
                 classname="org.apache.felix.ipojo.task.IPojoTask"
-                classpath="org.apache.felix.ipojo.ant-1.10.1.jar" />
+                classpath="org.apache.felix.ipojo.ant-{{ipojo.release}}.jar" />
 
 			<!-- the input attribute must fit the .bnd file name -->                
             <ipojo
@@ -91,7 +91,7 @@ However, it is possible to create only one target doing the two operations as:
         <!-- Change the path to point on the iPOJO Ant task jar -->
         <taskdef name="ipojo"
             classname="org.apache.felix.ipojo.task.IPojoTask"
-            classpath="org.apache.felix.ipojo.ant-1.10.1.jar"/>
+            classpath="org.apache.felix.ipojo.ant-{{ipojo.release}}.jar"/>
 
         <bnd
                 classpath="src"

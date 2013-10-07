@@ -45,7 +45,6 @@ Public factories offer different ways to create instances:
 Indeed, iPOJO will publish two services to access the factory through the API:
 
 * `org.apache.felix.ipojo.Factory` : iPOJO Factory Interface
-* `org.osgi.service.cm.ManagedServiceFactory` : Config Admin Interface
 
 The factory name will be used as the `service.pid` property for those services. The `service.pid` is unique and persists between framework restarts. The `service.pid` of the factory equals the factory name. This allows identifying factories exposed in the service registry.
 Factories are either valid or invalid. You can't create instances until a factory becomes valid. A factory is invalid if required handlers are missing. This issue occurs only if the component type uses external handlers.
@@ -141,7 +140,7 @@ The <code>instance.name</code> and <code>factory.name</code> property should not
 
 ## Creating, disposing and reconfiguring instances with the API
 
-A public factory is accessible through an exposed service ([org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/1.10.1/org/apache/felix/ipojo/Factory.html)). This service is accessible as any other OSGi service, and could be an iPOJO dependency using a LDAP filter or the 'from' attribute such as in:
+A public factory is accessible through an exposed service ([org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html)). This service is accessible as any other OSGi service, and could be an iPOJO dependency using a LDAP filter or the 'from' attribute such as in:
 
     :::xml
     <component classname="...">
