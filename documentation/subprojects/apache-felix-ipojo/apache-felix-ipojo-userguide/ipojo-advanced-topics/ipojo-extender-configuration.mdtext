@@ -103,6 +103,37 @@ Synchronous/Asynchronous behavior can be expressed in the Bundle's Manifest (cas
 
 If no header (or invalid value) is provided, the fallback behavior is `DEFAULT` (use system wide preference).
 
+### QueueExecutorService Insights
+
+Apache Felix iPOJO provides a mechanism that stores Job events of the QueueService in use (synchronous, multi-threaded, ...) for replay.
+This is very useful to see where time is spent during the bootstrap and take actions accordingly.
+
+This mechanism is available when the `org.apache.felix.ipojo.extender.BootstrapQueueDebug` system property is set to `true`.
+When activated, a new OSGi service is registered under the `org.apache.felix.ipojo.extender.queue.debug.QueueEventProxy` interface (see below).
+
+`QueueListener` has to be registered in this service, when added, they'll be invoked with all stored events.
+After that, the proxy simply forward the queue events to registered listeners.
+
+    :::java
+    /**
+     * This service record events from a {@link org.apache.felix.ipojo.extender.queue.QueueService}.
+     * When a listener is added, all recorded events are replayed into the listener.
+     */
+    public interface QueueEventProxy {
+        /**
+         * Add a {@link org.apache.felix.ipojo.extender.queue.QueueListener} that will be notified on events
+         * relative to the observed {@link org.apache.felix.ipojo.extender.queue.QueueService}.
+         * @param listener added listener
+         */
+        void addQueueListener(QueueListener listener);
+
+        /**
+         * Remove a {@link QueueListener} from the observed {@link org.apache.felix.ipojo.extender.queue.QueueService}.
+         * @param listener removed listener
+         */
+        void removeQueueListener(QueueListener listener);
+    }
+
 ### Event Dispatcher
 
 Apache Felix iPOJO provides a way to circumvent the so-call event storm happening when starting large OSGi applications (chained services apparitions).
