@@ -37,9 +37,9 @@ Property names are identical for System properties and ConfigAdmin.
   <tbody>
     <tr>
       <td>Number of Threads</td>
-      <td>`org.apache.felix.ipojo.extender.ThreadPoolSize`</td>
+      <td><code>org.apache.felix.ipojo.extender.ThreadPoolSize</code></td>
       <td>Integer</td>
-      <td>`1`</td>
+      <td><code>1</code></td>
       <td>The size of the thread pool. The default value is 1. Increase in case of a large amount of bundle's to manage (bundles with iPOJO's components/instances inside).</td>
     </tr>
   </tbody>
@@ -72,17 +72,17 @@ General synchronous processing can be configured through System properties or iP
   <tbody>
     <tr>
       <td>System Property</td>
-      <td>`ipojo.processing.synchronous`</td>
+      <td><code>ipojo.processing.synchronous</code></td>
       <td>Boolean</td>
-      <td>`false`</td>
-      <td>Whether the Bundles processing should be performed synchronously. The default value is `false`. Set it to `true` when running in GAE for example.</td>
+      <td><code>false</code></td>
+      <td>Whether the Bundles processing should be performed synchronously. The default value is <code>false</code>. Set it to <code>true</code> when running in GAE for example.</td>
     </tr>
     <tr>
       <td>Manifest</td>
-      <td>`IPojo-processing-synchronous`</td>
+      <td><code>IPojo-processing-synchronous</code></td>
       <td>Boolean</td>
-      <td>`false`</td>
-      <td>Whether the Bundles processing should be performed synchronously. The default value is `false`. Set it to `true` when running in GAE for example. Notice that case is ignored (`IPOJO-PROCESSING-SYNCHRONOUS` works as well as `IPojo-Processing-Synchronous`).</td>
+      <td><code>false</code></td>
+      <td>Whether the Bundles processing should be performed synchronously. The default value is <code>false</code>. Set it to <code>true</code> when running in GAE for example. Notice that case is ignored (<code>IPOJO-PROCESSING-SYNCHRONOUS</code> works as well as <code>IPojo-Processing-Synchronous</code>).</td>
     </tr>
   </tbody>
 </table>
@@ -103,7 +103,7 @@ Synchronous/Asynchronous behavior can be expressed in the Bundle's Manifest (cas
 
 If no header (or invalid value) is provided, the fallback behavior is `DEFAULT` (use system wide preference).
 
-### QueueExecutorService Insights
+### QueueService Insights
 
 Apache Felix iPOJO provides a mechanism that stores Job events of the QueueService in use (synchronous, multi-threaded, ...) for replay.
 This is very useful to see where time is spent during the bootstrap and take actions accordingly.
@@ -153,17 +153,17 @@ It is not enabled by default (rely on the framework's own service registry).
   <tbody>
     <tr>
       <td>System Property</td>
-      <td>`ipojo.internal.dispatcher`</td>
+      <td><code>ipojo.internal.dispatcher</code></td>
       <td>Boolean</td>
-      <td>`false`</td>
-      <td>Whether the EventDispatcher should be enabled. The default value is `false`. Set it to `true` when running large-scale applications.</td>
+      <td><code>false</code></td>
+      <td>Whether the EventDispatcher should be enabled. The default value is <code>false</code>. Set it to <code>true</code> when running large-scale applications.</td>
     </tr>
     <tr>
       <td>Manifest</td>
-      <td>`IPOJO-Internal-Dispatcher`</td>
+      <td><code>IPOJO-Internal-Dispatcher</code></td>
       <td>Boolean</td>
-      <td>`false`</td>
-      <td>Whether the EventDispatcher should be enabled. The default value is `false`. Set it to `true` when running large-scale applications. Notice that case is ignored (`IPOJO-INTERNAL-DISPATCHER` works as well as `IPOJO-Internal-Dispatcher`).</td>
+      <td><code>false</code></td>
+      <td>Whether the EventDispatcher should be enabled. The default value is <code>false</code>. Set it to <code>true</code> when running large-scale applications. Notice that case is ignored (<code>IPOJO-INTERNAL-DISPATCHER</code> works as well as <code>IPOJO-Internal-Dispatcher</code>).</td>
     </tr>
   </tbody>
 </table>
