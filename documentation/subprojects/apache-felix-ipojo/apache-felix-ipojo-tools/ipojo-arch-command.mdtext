@@ -51,6 +51,7 @@ On Equinox and Felix (old) shell, the command is named _arch_:
 * arch -factory $factory*name => display complete information about the factory $factory*name
 * arch -handlers => list available handlers
 
+### Examples
 
     :::sh
     -> arch
