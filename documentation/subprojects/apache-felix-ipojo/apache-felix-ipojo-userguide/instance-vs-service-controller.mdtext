@@ -53,6 +53,7 @@ Unlike the instance lifecycle controller, such controller can:
 * be set to `false` at startup (to not publish the services by default).
 * fluctuate between `true` and `false` to reflect the decision of the component implementation to publish or not the services.
 
+The following example publishes the component's provided service only after initialization.
 
 	:::java
 	@Component
