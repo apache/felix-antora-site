@@ -1,0 +1,200 @@
+Title: Service Binding Interceptors
+
+# Service Binding Interceptors
+
+Service Bindings are the connection between a service consumer and a service provider. Following the service-orientation paradigm (_publication-lookup-binding_), bindings are woven based a _local_ analysis only: the consumer tracks and chooses the service to user. However, this _locality_ avoids using more global knowledge to resolve the dependencies.
+
+Service binding interceptors allows you to customize the service bindings from outside the involved components (providers or consumers). It let you adapt the bindings dynamically without touching anything in your component implementation.
+
+[TOC]
+
+## What's an interceptor
+
+Interceptors are services exposed in the OSGi service registry. They can be iPOJO components, but it's not a necessity. 
+
+Each interceptor can manage a set of dependencies. The interceptor selects this set with a LDAP filter, exposed as service properties (named `target`):
+
+	:::java
+	@Component(immediate = true)
+	@Provides
+	public class AddLocationTrackingInterceptor extends 	DefaultServiceTrackingInterceptor {
+
+    @ServiceProperty
+    private String target = "(dependency.id=foo)";
+		
+		//...
+	}
+
+The properties on which the filter can rely are explained below.
+
+There are several types of interceptors:
+
+* [Tracking interceptors](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/dependency/interceptors/ServiceTrackingInterceptor.html) - decide whether a service can be seen by a service dependency, and can *transform* service references
+* [Ranking interceptors](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/dependency/interceptors/ServiceRankingInterceptor.html) - select and sort service references accepted by the tracking interceptors
+* [Binding interceptors](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/dependency/interceptors/ServiceBindingInterceptor.html) - can modify the injected service objects
+
+For all these classes, default implementations are available in (http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/dependency/interceptors/package-summary.html).
+
+## Service dependency theory
+
+Before looking more deeply into these interceptors, let's first explain the service dependency principle. Before being injected inside the component's code, a service (reference) traverses a set of layers. The service dependencies consider all services from the service registry and narrows this set to select the right set of services. The narrowing process has three phases.
+
+The initial set of services considered by the service dependencies is named _base set_. It contains all services from the service registry providing the requested service interface.
+
+Then, for all services from the base set, the tracking interceptors (handling the service dependency) can decide whether or not to accept the service. By this way, they can decide to hide services. They are also able to _transform_ services, to add and/or remove service properties. Several tracking interceptors can handle the same service dependency. They are invoked sequentially. Service accepted by all tracking interceptors are composed the _matching set_. Notice that the OSGi LDAP filters are tracking interceptors.
+
+<img src="narrowing.png"/>
+
+Unlike service tracking interceptors, only one ranking interceptor can be plugged on a service dependency. The ranking interceptor transforms the matching set to the _selected set_ by selecting and sorting services. The iPOJO comparator feature is a ranking interceptor. Notice that ranking interceptor may select an empty set from the matching set. 
+
+Finally, the last layer is the binding interceptor. This layer does not narrow the service set, but may interceptor the _weaving_ of the binding for monitoring or interception purposes.
+
+## Selection of service dependencies
+
+All interceptors must publish a _target_ service property indicating the set of service dependency they handle. This property is an LDAP filter that can rely on the following properties:
+
+* _instance.name_ : to select all dependencies of a specific instance (String)
+* _instance.state_ : to filter on the instance state (int)
+* _factory.name_ : to select all instances from a specific factory (String)
+* _bundle.symbolicName_ : to select the dependencies from all instances declared in a specific bundle (String)
+* _bundle.version_ : to refine the filter based on the bundle symbolic name with a version (String)
+* _dependency.specification_ : to select all dependencies looking for a specific interface (String)
+* _dependency.id_ : to select a dependency based on its identifier (String)
+* _dependency.state_ : to select a dependency based on the dependency state (int)
+* _objectClass_ : to select a dependency looking a a specific interface. This property also contains the inherited interfaces (String array)
+
+Let's see some examples:
+
+* select all dependencies from an instance named `foo`: `(instance.name=foo)`.
+* select all invalid dependencies: `(dependency.state=0)`
+* select all dependencies targeting the specification `LogService`: `(dependency.specification=o.o….LogService)`
+* select the dependency `foo` from the instance `instance`:
+`(&(instance.name=instance)(dependency.id=foo))`
+* select all dependencies targeting `AbstractService` or sub-classes: `(objectClass=o.o…AbstractService)`
+
+## Service Tracking Interceptors
+Service tracking interceptors are responsible for accepting matching services. Their main goal is to filter the _base set_. The following tracking interceptor hides all services with the `hidden` property:
+
+	:::java
+	@Component(immediate = true)
+	@Provides
+	public class HidingTrackingInterceptor extends DefaultServiceTrackingInterceptor {
+
+		@ServiceProperty
+		private String target;
+
+		private String prop = "hidden";
+
+
+		@Override
+		public <S> TransformedServiceReference<S> accept(DependencyModel dependency, BundleContext context,
+											  TransformedServiceReference<S> ref) {
+			if (ref.contains(prop)) {
+				return null;
+			} else {
+				return ref;
+			}
+		}
+
+	}
+
+Such interceptor needs to be instantiated with a configuration specifying the `target` property.
+
+Service Tracking Interceptors can also transform service references to add/remove service properties:
+
+	:::java
+	@Override
+	public <S> TransformedServiceReference<S> accept(DependencyModel dependency,
+	BundleContext context, TransformedServiceReference<S> ref) {
+        return ref
+                .addProperty("location", "kitchen")
+                .removeProperty("hidden");
+    }
+
+Tracking interceptors can decide to _invalidate_ the matching set and ask to be re-evaluated. For example, a reconfigured interceptor must reevaluate all services from the base set:
+
+	:::java
+	@Override
+    public void set(String newValue) {
+        prop = newValue;
+        invalidateMatchingServices();
+    }
+
+The `invalidateMatchingServices` invalidates the matching service set and triggers a complete evaluation of the base set.
+
+Several tracking interceptors can manage the same dependency. All interceptors must accept matching services. The last evaluated tracking interceptor is the iPOJO LDAP filter.
+
+## Service Ranking Interceptors
+Service Ranking Interceptors receive the services from the matching set as input and returns a sorted sub-set. Unlike service tracking interceptors, only one ranking interceptor can manage a dependency.
+
+	:::java
+	@Component(immediate = true)
+	@Provides
+	public class FilterRankingInterceptor extends DefaultServiceRankingInterceptor {
+
+		@ServiceProperty
+		private String target;
+
+		private Comparator<ServiceReference> comparator;
+
+		public FilterRankingInterceptor() {
+			comparator = new GradeComparator();
+		}
+
+		@Override
+		public List<ServiceReference> getServiceReferences(DependencyModel dependency, List<ServiceReference> matching) {
+			List<ServiceReference> references = new ArrayList<ServiceReference>();
+			for (ServiceReference ref : matching) {
+				if (ref.getProperty("grade") != null) {
+					references.add(ref);
+				}
+			}
+
+			Collections.sort(references, comparator);
+			return references;
+		}
+	}
+
+The `FilterRankingInterceptor` filters and ranks the matching services. First, it ignores all services without the `grade` property. Then, it sorts the remaining services using a _comparator_.
+
+Notice that ranking interceptors can return an empty set. Unlike tracking interceptors, they process a set of services (the matching set).
+
+When a ranking interceptors changes its ranking criteria, it can invalid the selected set with the `invalidateSelectedServices` method:
+
+	:::java
+	@Override
+    public void set(String newValue) {
+        inverse = Boolean.parseBoolean(newValue);
+        invalidateSelectedServices();
+    }
+
+The iPOJO comparator is a ranking interceptor. As only one interceptor can manage the dependency, the comparator is replaced when an external interceptor is plugged. It is restored when the external interceptors disappears.
+
+## Binding Service Interceptors
+The last category of interceptors is bindings interceptors. They intercepts the binding weaving, and thus, can _change_ the injected service objects. This kind of interceptors are often used to inject a proxy intercepting some invocations:
+
+	:::java
+	@Component
+	@Provides
+	public class ProxyBindingInterceptor extends DefaultDependencyInterceptor implements ServiceBindingInterceptor {
+
+		@ServiceProperty
+		private String target;
+
+		private HashMap<ServiceReference, Object> deps = new HashMap<ServiceReference, Object>();
+
+		@Override
+		public <S> S getService(DependencyModel dependency, ServiceReference<S> reference, S service) {
+			S proxy =  (S) Proxy.newProxyInstance(this.getClass().getClassLoader(),
+					new Class[]{dependency.getSpecification()}, new Interceptor(service));
+			deps.put(reference, proxy);
+			return proxy;
+		}
+
+		@Override
+		public <S> void ungetService(DependencyModel dependency, ServiceReference<S> reference) {
+			deps.remove(reference);
+		}
+
+Several binding intercepts can be plugged on the same service dependency, creating a chain of interception.
+
