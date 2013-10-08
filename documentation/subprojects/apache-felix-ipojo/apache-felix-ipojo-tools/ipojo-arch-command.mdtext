@@ -41,7 +41,6 @@ For example:
                 property value="spell.checker.SpellCheck-0" name="instance.name"
         handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"    
 
-
 ## Equinox and Felix Shells
     
 On Equinox and Felix (old) shell, the command is named _arch_:
@@ -51,6 +50,7 @@ On Equinox and Felix (old) shell, the command is named _arch_:
 * arch -factories => display the list of available factories
 * arch -factory $factory*name => display complete information about the factory $factory*name
 * arch -handlers => list available handlers
+
 
     :::sh
     -> arch

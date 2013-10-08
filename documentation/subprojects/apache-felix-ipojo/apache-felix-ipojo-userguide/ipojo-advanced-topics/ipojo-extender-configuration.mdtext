@@ -92,7 +92,6 @@ General synchronous processing can be configured through System properties or iP
 The synchronous behavior can be selected per-bundle (given that it does not conflict with existing system wide configuration).
 Synchronous/Asynchronous behavior can be expressed in the Bundle's Manifest (case is not significant, but an uppercase first letter is recommended):
 
-    :::properties
     IPOJO-Queue-Preference SYNC
 
 3 values are supported:

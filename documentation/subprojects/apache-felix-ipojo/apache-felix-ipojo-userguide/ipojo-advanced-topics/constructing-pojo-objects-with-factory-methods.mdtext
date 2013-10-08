@@ -12,10 +12,8 @@ iPOJO allows you describing a factory method called to create POJO objects inste
 To use this feature you need to add the `factory-method` attribute in the Component element as illustrated below:
 
     :::xml
-    <component
-    	className="org.apache.felix.ipojo.test.scenarios.component.FooProvider"
-            factory-method="createProvider"
-    >
+    <component className="org.apache.felix.ipojo.test.scenarios.component.FooProvider"
+               factory-method="createProvider">
     	...
     </component>
 

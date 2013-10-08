@@ -65,12 +65,9 @@ For Ant, just configure the classpath of the iPOJO ant task with the Manipulator
 
     :::xml
     <taskdef name="ipojo"
-            classname="org.apache.felix.ipojo.task.IPojoTask"
-                    classpath="../ipojo/manipulator/org.apache.felix.ipojo.manipulator-1.7.0-SNAPSHOT.jar; lib/org.apache.felix.ipojo.ant-1.7.0-SNAPSHOT.jar;" />
-     />
+             classname="org.apache.felix.ipojo.task.IPojoTask"
+             classpath="../ipojo/manipulator/org.apache.felix.ipojo.manipulator-1.7.0-SNAPSHOT.jar; lib/org.apache.felix.ipojo.ant-1.7.0-SNAPSHOT.jar;" />
 
-    
-    
 ## Callbacks order.
     
 A lot of handlers define callbacks to notify the implementation class. The 'core' callbacks are called in the following order:
@@ -173,7 +170,6 @@ Sometimes it is useful to check if an optional service dependency is fulfilled o
     @Requires(proxy=false)
     private LogService log;
 
-    
 * The injected object will be a direct reference. By default, iPOJO injects a `Nullable` object, on which you can call service method without checking for `null`. To detect Nullable objects, just use `instanceof`
 
     :::java
@@ -187,7 +183,6 @@ Sometimes it is useful to check if an optional service dependency is fulfilled o
            // Service available
         }
     }
-
 
 * If you prefer injecting `null` instead of a `Nullable`, just disable Nullable injection too. However, be care to check for `null` before each invocation.
 
@@ -203,7 +198,6 @@ Sometimes it is useful to check if an optional service dependency is fulfilled o
         }
     }
 
-    
 ## Setting the iPOJO log level
     
 By default, iPOJO logs only warning and error messages. There are two different methods to configure the log level. First, you can set the global log level by setting the _ipojo.log.level_ system property. This replaces the default log level (warning). All iPOJO instances will be impacted.  However, each bundle containing component types can specify a different log level. To set this level, add the _ipojo-log-level_ header in your manifest. The possible values for these two properties are:

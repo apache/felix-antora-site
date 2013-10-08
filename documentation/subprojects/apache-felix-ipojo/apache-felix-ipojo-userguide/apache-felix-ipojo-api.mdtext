@@ -88,7 +88,8 @@ The Service object can be configured. By default, it exposed every implemented i
  * Set the creation strategy
  * Set the exposed service specifications
 
- :::java
+
+    :::java
     new PrimitiveComponentType()
         .setBundleContext(context)
         .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
@@ -99,7 +100,6 @@ The Service object can be configured. By default, it exposed every implemented i
             .setCreationStrategy(Service.INSTANCE_STRATEGY))
         .createInstance();
 
-    
 ## Service Dependencies
 To declare a service dependency, create and add a Dependency object. The dependency object offers all the iPOJO service dependency features. You can set the injected field and/or bind/unbind methods. Here is an example:
 

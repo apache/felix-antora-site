@@ -236,7 +236,7 @@ Once your handler has been declared, you can use it in iPOJO components. To do s
                 Configuration of your handler for 
                 this component type
                  -->
-            </your-shortcut{noformat}:HandlerName>
+            </your-shortcut:HandlerName>
             ...
         </component>
         ...
