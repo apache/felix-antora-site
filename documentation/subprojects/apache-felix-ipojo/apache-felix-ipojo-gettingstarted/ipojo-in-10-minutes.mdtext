@@ -38,7 +38,7 @@ To illustrate iPOJO features, we will implement a very simple application. This 
 
 ### Preparing the tutorial
 
-This tutorial is based on Ant. So, you need to have the Ant program accessible in your path (see [here](http://ant.apache.org/) to download and install Ant). Download the tutorial archive available [here](ipojo-10-min-tutorial.zip) and then unzip it. The archive contains seven directories:
+This tutorial is based on Ant. So, you need to have the Ant program accessible in your path (see [here](http://ant.apache.org/) to download and install Ant). Download the tutorial archive available [here](http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.distribution.10mintutorial/{{ipojo.release}}/org.apache.felix.ipojo.distribution.10mintutorial-{{ipojo.release}}.zip) and then unzip it. The archive contains seven directories:
 
 * spell.services contains service interfaces used by the applications
 * spell.english contains an implementation of the Dictionary service (containing English words)

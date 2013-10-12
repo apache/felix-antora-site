@@ -25,7 +25,7 @@ The component is the central concept in iPOJO. In the core iPOJO model, a compon
 
 The following is a simple example illustrating how to use the core iPOJO concepts. The example is comprised of two components, one providing a *Hello* service and one requiring any number of *Hello* services. The components are packaged into three different bundles using Maven. The *hello.service* bundle contains the service interface. The *hello.impl* bundle contains a component implementing the service. The *hello.client* bundle contains the consumer component.
 
-Download the tutorial archive [here](maven-tutorial.zip). This archive contains a version of Felix (configured with iPOJO), and the projects explained below.
+Download the tutorial archive [here](http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.distribution.maventutorial/{{ipojo.release}}/org.apache.felix.ipojo.distribution.maventutorial-{{ipojo.release}}.zip). This archive contains a version of Felix (configured with iPOJO), and the projects explained below.
 
 ### Preparing Maven & Installing the tutorial
 
