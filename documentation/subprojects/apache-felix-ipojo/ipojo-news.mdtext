@@ -1,9 +1,9 @@
-translation_pending: true
 Title: iPOJO-news
-Excerpt: * *iPOJO Manipulator (1.10.1) and Runtime (1.10.1) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (May 28, 2013)
+Excerpt: * *iPOJO Manipulator (1.11.0) and Runtime (1.11.0) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (October 12, 2013)
 
 # What's hot ? 
 
+* *iPOJO Manipulator (1.11.0) and Runtime (1.11.0) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (October 12, 2013)
 * *iPOJO Manipulator (1.10.1) and Runtime (1.10.1) are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (May 28, 2013)
 * *iPOJO Manipulator (1.10.0), Runtime (1.10.0), Arch command for Gogo (1.1.0) and Web Console Plugin (1.7.0)* are now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (May 25, 2013)
 * *iPOJO Core, Composite and Annotations 1.8.4 are now available* : iPOJO Runtime (Core), the composite support and the annotations are now available from the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and the Maven Central repository. (2012-11-06)

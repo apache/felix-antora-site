@@ -111,7 +111,7 @@ Moreover, callbacks can be in the component super class (in this case methods mu
         public void bindService(ServiceReference<HelloService> reference) {
           // ...
         }
-        public void bindService(ServiceReference<?> reference) {
+        public void bindService(ServiceReference reference) {
           // ...
         }
         public void bindService(ServiceReference reference) {
@@ -302,7 +302,6 @@ It is also possible to inject service objects inside fields of the type:
 * vector
 * collection
 * set
-&nbsp;
 
     :::java
     @Component
@@ -603,7 +602,7 @@ Three binding policies are supported inside iPOJO.
 A static binding is declared as following:
 
     :::java
-    @Requires(policy="static")
+    @Requires(policy=BindingPolicy.STATIC)
     private Hello[] m_hellos;
 
 or
@@ -615,7 +614,7 @@ or
 A dynamic-priority binding is declared as following:
 
     :::java
-    @Requires(policy="dynamic-priority")
+    @Requires(policy=BindingPolicy.DYNAMIC_PRIORITY)
     private Hello[] m_hellos;
 
 or
@@ -627,7 +626,7 @@ or
 By default, the dynamic-priority policy uses the OSGi service ranking policy. However, it is possible to customize the policy by adding the '*comparator*' attribute. This attribute indicates the class name of a class implementing the `java.util.Comparator` interface. iPOJO creates an instance of your comparator and uses it to sort service references (so your customized comparator needs to be able to sort OSGi Service Reference).
 
     :::java
-    @Requires(policy="dynamic-priority", comparator=MyComparator.class)
+    @Requires(policy=BindingPolicy.DYNAMIC_PRIORITY, comparator=MyComparator.class)
     private Hello[] m_hellos;
 
 or

@@ -170,7 +170,7 @@ This section lists defined annotations and how to use them.
 ### @Requires
 
 *Goal:* Defines a service dependency
-*Target:* Field
+*Target:* Field, Constructor Parameter
 *Attributes:*
 
 * filter: defines the LDAP filter (optional)
@@ -179,7 +179,7 @@ This section lists defined annotations and how to use them.
 * nullable: enable or disable the Null Object injection when the dependency is optional and no providers are available (optional, default = "true")
 * defaultimplementation: set the Default-Implmentation (optional, by default iPOJO uses a Null object)
 * exception : the class of the runtime exception to throw when no service providers are available 
-* policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
+* policy: defines the binding policy (optional)
 * comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
 * from : defines the specific provider to use
 * specification : the required service specification. This attribute is required for Collection field. (optional, default = annotated field type). 
@@ -217,18 +217,18 @@ A mandatory property must receive a value either from the component type descrip
 ### @Property
 
 *Goal:* Defines a property
-*Target:* Field or Method
+*Target:* Field, Method, Constructor Parameter
 *Attributes:*
 
-* name: property name (optional, default=field name computed by removing "set" from the method name (for instance setFoo(String ff) will get the Foo name))
+* name: property name (optional, default=field name computed by removing "set" from the method name (for instance setFoo(String ff) will get the Foo name), the argument name for constructor injection)
 * value: property value (optional, default=no value)
 * mandatory : is the property mandatory? (optional, default=false)
 
 
 <div class="alert alert-warning">
-  <strong>Field and Method</strong>
+  <strong>Field, Method, Constructor</strong>
 	<br/>
-  If another property with the same name is defined the method or the field is added to the existing property.
+  If another property with the same name is defined, the method or field or constructor argument is added to the existing property.
 </div>
 
 
@@ -247,7 +247,7 @@ A mandatory property must receive a value either from the component type descrip
 * Aggregate : is the dependency an aggregate dependency (optional, default= "false")
 * Optional: is the dependency an optional dependency (optional, default= "false")
 * Filter: dependency LDAP filter (optional)
-* Policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
+* Policy: defines the binding policy (optional)
 * Comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
 * From : defines the specific provider to use
 
@@ -263,7 +263,7 @@ A mandatory property must receive a value either from the component type descrip
 * Aggregate : is the dependency an aggregate dependency (optional, default= "false")
 * Optional: is the dependency an optional dependency (optional, default= "false")
 * Filter: dependency LDAP filter (optional)
-* Policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
+* Policy: defines the binding policy (optional)
 * Comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
 * From : defines the specific provider to use
 
@@ -278,7 +278,7 @@ A mandatory property must receive a value either from the component type descrip
 * Aggregate : is the dependency an aggregate dependency (optional, default= "false")
 * Optional: is the dependency an optional dependency (optional, default= "false")
 * Filter: dependency LDAP filter (optional)
-* Policy: defines the binding policy (accepted value : dynamic, static, dynamic-priority) (optional, default = "dynamic")
+* Policy: defines the binding policy (optional)
 * Comparator: defines the comparator to use to sort service references (optional, default = OSGi Service Reference Comparator)
 * From : defines the specific provider to use
 

@@ -21,9 +21,12 @@ The following code depicts a simple configurable component. The 'm_foo' field wi
     @Component
     @Provides
     public class MyComponent implements MyService {
-        @Property(name="foo")
-        @ServiceProperty
+        @Property(name=".foo")
         private String m_foo;
+        
+        public MyComponent(@Property String message) {
+        	//...
+        }
     
         @Property(name="array")
         public void updateArray(String[] array) {
@@ -36,12 +39,10 @@ The previous component can also be described using XML:
 
     :::xml
     <component classname="...MyComponent">
-       <provides>
-           <property name="foo" field="m_foo"/>
-       </provides>
        <properties propagation="false"/>
-           <Property name="foo" field="m_foo"/>
-           <Property name="array" method="updateArray"/>
+           <property name=".foo" field="m_foo"/>
+           <property name="array" method="updateArray"/>
+           <property name="message" constructor-index="1"/>
        </properties>
     </component>
 
@@ -53,14 +54,15 @@ The instance contains the configuration:
     <instance component="...MyComponent">
        <property name="foo" value="bar"/>
        <property name="array" value="{1, 2, 3}"/>
+       <property name="message" value="hello"/>
     </instance>
 
 In the previous snippet, you can see three configurable properties. The first is a configurable property attached to the field 'foo' that is a service property too. The second is an array property attached to a method (updatArray). These three properties are configured by the instance configuration.
 
-By setting the attribute *propagation* to *"true"*, you allow the property propagation to the service registration. It means that at each time that the configuration of the instance is updated; all properties contained in the configuration are propagated to the service registrations. For example, in the previous example, not only `foo` will be published but `array` are also published. To enable propagation use:
+By default all properties that do not start with the `.` (such as `.foo`) are _propagated_. Thus, properties are propagated to the service registration. It means that at each time that the configuration of the instance is updated; all properties contained in the configuration are propagated to the service registrations. For example, in the previous example, not only `foo` will be published but `array` are also published. To disable propagation use:
 
     :::java
-    @Component(propagation=true)
+    @Component(propagation=false)
 
 
 If a property has a method, this method is invoked each time that the property value changes (the method is called to push the initial value just after the constructor). The method receives one argument of the type of the property (an integer array in the example).
