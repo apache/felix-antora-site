@@ -61,7 +61,6 @@ Once launched, you can check the deployed bundles:
 	   11|Active     |    1|Apache Felix iPOJO (1.8.6)
 	   12|Active     |    1|Apache Felix iPOJO Annotations (1.8.6)
 	   13|Active     |    1|Apache Felix iPOJO Gogo Command (1.0.1)
-	   14|Active     |    1|iPOJO Metadata (1.6.0)
 	   15|Active     |    1|Apache Felix iPOJO WebConsole Plugins (1.7.0.SNAPSHOT)
 	   16|Active     |    1|Apache Felix Web Management Console (4.0.0)
 	   17|Active     |    1|Apache Felix Web Console Memory Usage Plugin (1.0.2)

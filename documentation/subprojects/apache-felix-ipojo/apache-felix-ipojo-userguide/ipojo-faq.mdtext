@@ -56,7 +56,7 @@ For Maven, Just declare a dependency on the manipulator that you want to use in 
             	<dependency>
             		<groupId>org.apache.felix</groupId>
             		<artifactId>org.apache.felix.ipojo.manipulator</artifactId>
-            		<version>1.8.6</version>
+            		<version>{{ipojo.release}}</version>
             	</dependency>
             </dependencies>
           </plugin>

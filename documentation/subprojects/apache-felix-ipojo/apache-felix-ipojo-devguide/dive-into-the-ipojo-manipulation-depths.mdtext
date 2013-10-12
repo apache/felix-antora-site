@@ -76,11 +76,6 @@ If you want to see how XML or annotation metadata are *tortured*, just open the 
 
 ## Extending manipulator
 
-<div class="alert alert-warning">
-This feature is only available in trunk at the moment (version 1.9.0-SNAPSHOT).
-It will be part of the upcoming Manipulator release (version 1.8.8)
-</div>
-
 Annotations are more and more used to provide a simple and elegant programming model. iPOJO had supported generic annotations (`@Component`, `@Handler`, ...) for a long time.
 But supporting your own annotations and bind them to a particular handler in iPOJO was awkward (naming conventions, id and parent resolution, ...).
 

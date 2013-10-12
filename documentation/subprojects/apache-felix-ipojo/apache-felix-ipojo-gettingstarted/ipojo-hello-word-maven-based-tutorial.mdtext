@@ -366,7 +366,7 @@ You can check installed bundles by using the '*ps'* command:
        ID   State         Level  Name
     [   0] [Active     ] [    0] System Bundle (2.0.5)
     [   1] [Active     ] [    1] Apache Felix Bundle Repository (1.4.3)
-    [   2] [Active     ] [    1] Apache Felix iPOJO (1.6.0)
+    [   2] [Active     ] [    1] Apache Felix iPOJO ({{ipojo.release}})
     [   3] [Active     ] [    1] Apache Felix iPOJO Arch Command (1.6.0)
     [   4] [Active     ] [    1] Apache Felix Shell Service (1.4.2)
     [   5] [Active     ] [    1] Apache Felix Shell TUI (1.4.1)
