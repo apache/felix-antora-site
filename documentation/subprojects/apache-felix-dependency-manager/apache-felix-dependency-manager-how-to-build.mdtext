@@ -5,9 +5,13 @@ Title: Apache Felix Dependency Manager - How To Build
 
 svn checkout [http://svn.apache.org/repos/asf/felix/trunk/dependencymanager](http://svn.apache.org/repos/asf/felix/trunk/dependencymanager) dependencymanager
 
-## Compilation
+## Compiling and running tests
 
-mvn \-Dpackaging=plugins \-Dmaven.test.skip=true install
+mvn clean install
+
+## Compiling without running tests
+
+mvn clean package
 
 ## Installation
 
