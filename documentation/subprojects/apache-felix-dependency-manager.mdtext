@@ -20,3 +20,4 @@ On top of that, a set of OSGi design patterns are defined that can be used as bu
 * [Reference Guide]({{ refs.apache-felix-dependency-manager-reference-guide.path }}) a full reference guide to lookup all implementation details.
 * [Using Annotations]({{ refs.apache-felix-dependency-manager-using-annotations.path }}) for declaring your service components using DependencyManager annotations.
 * [Building Dependency Manager]({{ refs.apache-felix-dependency-manager-how-to-build.path }}) explains how to build Dependency Manager bundles from trunk.
+* [External articles and resources]({{ refs.apache-felix-dependency-manager-resources.path }}) regroups external articles and useful links.
