@@ -53,6 +53,7 @@ HTTP Service Bundle|org.apache.felix.http.bundle|2.2.1|project||-
 HTTP Service Cometd|org.apache.felix.http.cometd|2.2.1|project||-
 HTTP Service Jetty|org.apache.felix.http.jetty|2.2.1|project||-
 HTTP Service Proxy|org.apache.felix.http.proxy|2.2.1|project||-
+HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.0.1|project||-
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.1|project||-
 Inventory Printer|org.apache.felix.inventory|1.0.0
 iPOJO (Core)|org.apache.felix.ipojo|1.11.0|project||-
