@@ -262,7 +262,10 @@ Filter service properties:
 HttpContext service properties:
 
 * `contextId` - Id of context to be referenced by a servlet or filter service.
-
+* `context.shared` - Boolean property. If the `HttpContext` needs to be shared across bundles
+  then it should be set to `true`. Shared `HttpContext` services should  either not implement the
+  `getResource` at all or be registered  as service factories to ensure no access to foreign bundle
+  resources is not allowed through this backdoor.
 
 ## Using the Servlet Bridge
 
