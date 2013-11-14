@@ -69,7 +69,7 @@ Many OSGi core concepts are greatly explained, and its free;
 * [Instant OSGi Starter](http://www.packtpub.com/open-services-gateway-initiative-starter/book); Jamie Goodyear, Johan Edstrom; Packt, 2013
 * [OSGi and Apache Felix 3.0 Beginner's Guide](http://www.packtpub.com/osgi-and-apache-felix-30-beginners-guide/book); Walid Joseph Gédéon; Packt, 2010
 * [Spring Dynamic Modules in Action](http://www.manning.com/cogoluegnes/); Arnaud Cogoluègnes, Thierry Templier, Andy Piper; Manning, 2010
-* [Building Modular Cloud Apps with OSGi](http://shop.oreilly.com/product/0636920028086.do#); Paul Bakker, Bert Ertman; O'Reilly, 2013. Uses Apache Felix, For experienced Java developers in the enterprise, this practical, hands-on book shows you how to use OSGi to design, develop, and deploy modular cloud applications. 
+* [Building Modular Cloud Apps with OSGi](http://shop.oreilly.com/product/0636920028086.do#); Paul Bakker, Bert Ertman; O'Reilly, 2013. Uses Apache Felix. For experienced Java developers in the enterprise, this practical, hands-on book shows you how to use OSGi to design, develop, and deploy modular cloud applications. 
 
 
 ## Site How-To
