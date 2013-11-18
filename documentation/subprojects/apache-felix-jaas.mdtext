@@ -243,34 +243,35 @@ This is due the way JAAS logic instantiates the `LoginModule`. The Felix JAAS Su
 takes care of routing the LoginModule calls properly. However for this class to be visible to JAAS logic one of the
 two approaches can be used
 
-*Manage TCCL Explicitly*
+**Manage TCCL Explicitly**
 
 The client bundle  would need to
+
 1. Have an explicit import for `org.apache.felix.jaas.boot` package and
 2. Manage TCCL explicitly which making JAAS related calls.
 
-    :::java
-    final Thread current = Thread.currentThread();
-    final ClassLoader orig = current.getContextClassLoader();
-    try {
-      current.setContextClassLoader(getClass().getClassLoader());
-      loginContext = new LoginContext(appName, subject,callbackHandler, config);
-    } finally{
-      current.setContextClassLoader(orig);
-    }
+        :::java
+        final Thread current = Thread.currentThread();
+        final ClassLoader orig = current.getContextClassLoader();
+        try {
+          current.setContextClassLoader(getClass().getClassLoader());
+         loginContext = new LoginContext(appName, subject,callbackHandler, config);
+       } finally{
+          current.setContextClassLoader(orig);
+       }
 
 Note that in above flow the TCCL is managed explicitly
 
-*Modify Boot Classpath*
+**Modify Boot Classpath**
 
 Another way would involve modifying the boot classpath.
 
 1. Place the `org.apache.felix.jaas-xxx-boot.jar` in the boot classpath via `-Xbootclasspath:bootclasspath` option
 2. Make the `org.apache.felix.jaas.boot` part of boot delegation list
 
-    :::java
-    LoginContext lc = new LoginContext("sample", subject, handler);
-    lc.login();
+        :::java
+        LoginContext lc = new LoginContext("sample", subject, handler);
+        lc.login();
 
 Note that in above code we do not have to manage TCCL and neither add an import to `org.apache.felix.jaas.boot` package
 
@@ -288,10 +289,10 @@ following properties
    help in global settings because same config file is used to capture settings for all applications running on same JVM
 * `JAAS Config Provider name` - Name against which the Configuration SPI provider should register
 * `Configuration Policy` - This would be explained in next section
-  ** `Default` - Global configuration is not touched. Client code are expected to use the Configuration Spi mode
-  ** `Replace Global Configuration` - In this the global configuration is replaced with OSGi configuration. Client code
+    * `Default` - Global configuration is not touched. Client code are expected to use the Configuration Spi mode
+    * `Replace Global Configuration` - In this the global configuration is replaced with OSGi configuration. Client code
       need not perform any special configuration handling. At most they need to switch the Thread Context Classloader
-  ** `Proxy Global Configuration` - Similar to previous one  but it saves the default configuration and does a fallback
+    * `Proxy Global Configuration` - Similar to previous one  but it saves the default configuration and does a fallback
       check on that also. This should minimize any disruption in shared mode
 
 ## WebConsole Plugin
