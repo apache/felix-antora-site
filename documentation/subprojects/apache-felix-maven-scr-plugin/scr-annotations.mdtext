@@ -1,7 +1,6 @@
 Title: SCR Annotations
 Excerpt: Using Java 5 Annotations to describe the component or service.
 
-
 The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix. All annotations are in the `org.apache.felix.scr.annotations` package. If you want to use the annotations in your project, you have to use a `maven-scr-plugin` version >= 1.2.0 and make sure that you add a dependency to the annotations to your `POM`:
 
     :::xml
@@ -285,17 +284,17 @@ and defining the `@Property` annotation on this constant, the name of the proper
 
 Some properties may only be set to a set of possible values. To support user interfaces which provide a selection list of values or a list of checkboxes the option values and labels may be defined as parameters to the `@Property` annotation.
 
-The value of the `options` attribute is a list of `@Options` annotations:
+The value of the `options` attribute is a list of `@PropertyOption`s annotations:
 
     :::java
     @Property(name = "sample",
         options = {
-            @Option(name = "option1", value = "&option.label.1"),
-            @Option(name = "option2", value = "&option.label.2")
+            @PropertyOption(name = "option1", value = "&option.label.1"),
+            @PropertyOption(name = "option2", value = "&option.label.2")
         }
     )
 
-The `@Option`'s name is used as the value while the parameter value is
+The `@PropertyOption`'s name is used as the value while the parameter value is
 used as the label in the user interface. This label may be prepended with
 a `%` sign to localize the string.
 
