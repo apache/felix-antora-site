@@ -1,5 +1,7 @@
 Title: News
 
+* Apache Felix DeploymentAdmin 0.9.5 and Felix AutoConf Processor 0.1.5 releases are now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (December 10, 2013)
+* Apache Felix HTTP Service 2.2.2 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (December 10, 2013)
 * The Apache Felix iPOJO Runtime and Manipulator 1.11.0 releases are now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (October 12, 2013)
 * The Apache Felix SCR Generator 1.8.2, Maven SCR Plugin 1.15.0, and SCR Ant Task 1.9.0 releases are now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (October 04, 2013)
 * Apache Felix Configuration Admin version 1.8.0 is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (September 28, 2013)

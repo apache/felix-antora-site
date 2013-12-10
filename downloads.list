@@ -30,15 +30,15 @@ framework|4.2.1
 #        bundle's release tag folder in SVN (default: changelog.txt)
 #        Use - to not have a changelog link 
 #
-AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.4|project
+AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.5|project
 Bundle Repository|org.apache.felix.bundlerepository|1.6.6|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.0
-Dependency Manager  |org.apache.felix.dependencymanager|3.1.0|project
+Dependency Manager|org.apache.felix.dependencymanager|3.1.0|project
 Dependency Manager Annotation|org.apache.felix.dependencymanager.annotation|3.1.0|project||doc/changelog.txt
 Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|project
 Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|3.1.0|project||doc/changelog.txt
 Dependency Manager Shell|org.apache.felix.dependencymanager.shell|3.0.1|project
-Deployment Admin|org.apache.felix.deploymentadmin|0.9.4|project
+Deployment Admin|org.apache.felix.deploymentadmin|0.9.5|project
 Event Admin|org.apache.felix.eventadmin|1.3.2
 File Install|org.apache.felix.fileinstall|3.2.6|||doc/changelog.txt
 Framework|org.apache.felix.framework|4.2.1|||doc/changelog.txt
@@ -46,15 +46,15 @@ Framework Security|org.apache.felix.framework.security|2.2.0|||doc/changelog.txt
 Gogo Runtime|org.apache.felix.gogo.runtime|0.10.0|project||doc/changelog.txt
 Gogo Shell|org.apache.felix.gogo.shell|0.10.0|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|0.12.0|project||doc/changelog.txt
-HTTP Service API|org.apache.felix.http.api|2.2.1|project||-
-HTTP Service Base|org.apache.felix.http.base|2.2.1|project||-
-HTTP Service Bridge|org.apache.felix.http.bridge|2.2.1|project||-
-HTTP Service Bundle|org.apache.felix.http.bundle|2.2.1|project||-
-HTTP Service Cometd|org.apache.felix.http.cometd|2.2.1|project||-
-HTTP Service Jetty|org.apache.felix.http.jetty|2.2.1|project||-
-HTTP Service Proxy|org.apache.felix.http.proxy|2.2.1|project||-
-HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.0.1|project||-
-HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.1|project||-
+HTTP Service API|org.apache.felix.http.api|2.2.2|project||-
+HTTP Service Base|org.apache.felix.http.base|2.2.2|project||-
+HTTP Service Bridge|org.apache.felix.http.bridge|2.2.2|project||-
+HTTP Service Bundle|org.apache.felix.http.bundle|2.2.2|project||-
+HTTP Service Cometd|org.apache.felix.http.cometd|2.2.2|project||-
+HTTP Service Jetty|org.apache.felix.http.jetty|2.2.2|project||-
+HTTP Service Proxy|org.apache.felix.http.proxy|2.2.2|project||-
+HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.0.2|project||-
+HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.2|project||-
 Inventory Printer|org.apache.felix.inventory|1.0.0
 iPOJO (Core)|org.apache.felix.ipojo|1.11.0|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.11.0|source-release||-
