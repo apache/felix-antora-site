@@ -86,7 +86,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.0.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|1.8.0
+SCR (Declarative Services)|org.apache.felix.scr|1.8.2
 SCR Annotations|org.apache.felix.scr.annotations|1.9.6|project
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.4|project
 SCR Generator|org.apache.felix.scr.generator|1.8.2|project
