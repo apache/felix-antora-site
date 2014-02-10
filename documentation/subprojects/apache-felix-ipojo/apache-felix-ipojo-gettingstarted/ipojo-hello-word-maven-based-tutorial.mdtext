@@ -215,7 +215,7 @@ The Hello service consumer is inside the *hello.client* project. The file `src/m
          * Hello services.
          * Injected by the container.
          * */
-        private Hello[]({{ refs..path }}) m_hello;
+        private Hello[] m_hello;
 
         /**
          * End flag.
