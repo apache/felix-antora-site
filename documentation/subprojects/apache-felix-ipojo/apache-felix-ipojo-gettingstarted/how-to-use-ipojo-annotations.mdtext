@@ -14,7 +14,7 @@ Title: How to use iPOJO Annotations
 iPOJO Annotations are defines inside the `org.apache.felix.ipojo.annotations project`. You can download the Jar file of this project from the [download]({{ refs.download.path }}) page. Sources are available on the [Felix trunk|http://felix.apache.org/site/sourcecode.html].
 Once added to your class path / build path / dependencies, you can use the annotations as normal annotations. These annotations are automatically processed by the iPOJO manipulator, and do **not** need to be deployed at runtime.
 
-### With Eclipse (or any other IDE_
+### With Eclipse (or any other IDE)
 
 Add the org.apache.felix.ipojo.annotations jar file in your build path. Do not forget to use a Java compiler accepting annotations (1.5 or higher).
 
