@@ -6,10 +6,6 @@ img {
 }
 </style>
 
-<div class="note">
-Work in progress as part of FELIX-3980
-</div>
-
 [TOC]
 
 Apache Felix JAAS support aims to simplify usage of JAAS in OSGi.
