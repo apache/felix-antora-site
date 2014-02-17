@@ -1,4 +1,6 @@
 Title: News
+
+* Apache Felix Jaas 0.0.2 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (Feburary 17, 2014)
 * Apache Felix Inventory 1.0.2 and Apache Felix Web Console 4.2.2 releases are now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (Feburary 06, 2014)
 * The Apache Felix iPOJO Runtime and Manipulator 1.11.1 releases are now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (January 29, 2014)
 * Apache Felix Coordinator 1.0.0, and Apache Felix Metatype 1.0.10 releases are now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (January 19, 2014)
