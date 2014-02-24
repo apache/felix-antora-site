@@ -111,16 +111,35 @@ You can't delete an instance directly from the factory object. However, you can 
 ### Observing the factory state
 As stated above, factory objects have a state. We already saw how to retrieve the current state of the factory. You can also register a [FactoryStateListener](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/architecture/FactoryStateListener.html) to be notified when the state changes. The methods `addFactoryStateListener` and `removeFactoryStateListener` let you respectively register and unregister the listener.
 
-## Declaration publication vs. Programatic creation
+## Declaration publication vs. Programmatic creation
 
 This page has explained how to create an instance from the Factory service. However, when the factory leaves or become invalid your instance is disposed. The instance is **not** recreated when the factory comes back or is revalidated.
 
-To avoid to have to listen and manage these events, you can use an [InstanceDeclaration](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/architecture/InstanceDeclaration.html). An instance declaration is a service you publish to instruct iPOJO to create an instance and manage its life. 
+To avoid to have to listen and manage these events, you can use an [InstanceDeclaration](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/architecture/InstanceDeclaration.html).
+An instance declaration is a service you publish to instruct iPOJO to create an instance
+and manage its lifecycle. `InstanceDeclaration` are created through the `DeclarationBuilderService`
+(since 1.12):
 
 	:::java
-	InstanceDeclaration declaration = new DefaultInstanceDeclaration(bundleContext, "my-factory", configuration);
-	declaration.start();
+    // Obtain the service through the service registry
+    DeclarationBuilderService service = ...
 
-In this snippet, we create an instance declaration _declaring_ an instance of `my-factory` with the given (potentially `null`) configuration. Notice that you must provide an OSGi bundle context. Once created, call the `start` method to register the service and delegate the task to iPOJO.
+    // Get a fresh instance builder
+    InstanceBuilder builder = service.newInstance("my-factory");
 
-Call the `stop` method on the instance declaration to dispose the instance.
+    DeclarationHandle handle = builder.name("a-unique-name") // Make sure name is unique for the expected type
+                                      .configure()
+                                          .property("a-property", "a-value")
+                                          .property("another-property", "another-value")
+                                          .build();
+
+    // Push the InstanceDeclaration service in the registry
+    handle.publish();
+
+In this snippet, we've registered a named `InstanceDeclaration` service for the `my-factory` component type, we've
+created a handle though an `InstanceBuilder` object. The builder helps to configure and produce an
+InstanceDeclaration that is controllable through the handle. By default, the declaration service will be registered with
+the BundleContext of the user (this is configurable with the `context(BundleContext)` method). Once
+created, call the `publish` method to register the declaration service and let iPOJO do its usual work.
+
+Call the `retract` method on the handle to dispose the service.

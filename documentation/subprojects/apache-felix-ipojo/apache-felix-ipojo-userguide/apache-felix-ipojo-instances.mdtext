@@ -17,6 +17,7 @@ iPOJO provides several ways to create instances, this page presents these possib
 * using <instance> in the XML metadata
 * using the iPOJO Factory service
 * using the OSGi Configuration Admin
+* using the `DeclarationBuilderService`
 
 
 @Instantiate
@@ -351,3 +352,44 @@ Disposing instances
 -------------------
 To dispose an instance, just call the `delete` method on the configuration object you used to configure the instance.
 
+Creating instances with declarations
+======================================
+
+Declarations offer a nice way to declares instances in a programmatic way. If not retracted by hand,
+they're bound to the declaring bundle lifecycle (i.e. are unregistered when the bundle is not `ACTIVE`
+anymore).
+
+Declarations can be build using the `DeclarationBuilderService` (see interface below). Instances (of
+components), types (components) and iPOJO extensions can also be build using this service.
+
+    :::java
+    public interface DeclarationBuilderService {
+        InstanceBuilder newInstance(String type);
+        InstanceBuilder newInstance(String type, String name);
+        InstanceBuilder newInstance(String type, String name, String version);
+        DeclarationHandle newExtension(String name, FactoryBuilder builder);
+        DeclarationHandle newType(Element description);
+    }
+
+
+Instances created through declaration can indeed be configured.
+
+	:::java
+    // Obtain the service through the service registry
+    DeclarationBuilderService service = ...
+
+    // Get a fresh instance builder
+    InstanceBuilder builder = service.newInstance("my-factory");
+
+    DeclarationHandle handle = builder.name("a-unique-name") // Make sure name is unique for the expected type
+                                      .configure()
+                                          .property("a-property", "a-value")
+                                          .property("another-property", "another-value")
+                                          .build();
+
+    // Push the InstanceDeclaration service in the registry
+    handle.publish();
+
+The builder ultimately produces handles to declarations. Handles are the live link to the underlying
+declarations: service publication and un-registration are done through the `handle.publish()` and
+`handle.retract()` methods. Declaration status (is it bound or not) is also accessible with `handle.getStatus()`.
