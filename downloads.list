@@ -56,7 +56,7 @@ HTTP Service Jetty|org.apache.felix.http.jetty|2.2.2|project||-
 HTTP Service Proxy|org.apache.felix.http.proxy|2.2.2|project||-
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.0.2|project||-
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.2.2|project||-
-Inventory Printer|org.apache.felix.inventory|1.0.2
+Inventory Printer|org.apache.felix.inventory|1.0.4
 iPOJO (Core)|org.apache.felix.ipojo|1.11.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.11.1|source-release||-
 iPOJO Architecture Command for the Felix Shell|org.apache.felix.ipojo.arch|1.6.0|project||-
