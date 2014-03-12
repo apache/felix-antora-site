@@ -1,7 +1,6 @@
 Title: Apache Felix Maven SCR Plugin Use
 Excerpt: Using the Apache Felix Maven SCR Plugin to generate Declarative Services and Metatype Service descriptors during a Maven Build
 
-
 Support for automatic generation of the compenent and metadata descriptors is embeded in the `org.apache.felix:maven-scr-plugin` plugin. To use this plugin, it has to be declared in the project descriptor as a `<plugin>` element: 
 
     :::xml
@@ -14,7 +13,7 @@ Support for automatic generation of the compenent and metadata descriptors is em
           <plugin>
             <groupId>org.apache.felix</groupId>
             <artifactId>maven-scr-plugin</artifactId>
-            <version>1.14.0</version>
+            <version>1.15.0</version>
             <executions>
               <execution>
                 <id>generate-scr-scrdescriptor</id>
@@ -34,6 +33,46 @@ Support for automatic generation of the compenent and metadata descriptors is em
 
 The `scr` goal is bound to the `generate-resources` phase and will generate a separate descriptor file for each component as well as a separate meta type file for each component which has metatype support enabled in the project. 
 
+However, in order to be able to process annotations, a dependency to an annotation processor needs to be added as well. There are two sets of annotations: the standard annotations as defined in the Declarative Services specification and the annotations defined in the Apache Felix project.
+If you want to use the annotations from the Apache Felix project, add this dependency to your pom:
+
+    :::xml
+    <project>
+      ...
+      <dependencies>
+        ...
+        <dependency>
+             <groupId>org.apache.felix</groupId>
+             <artifactId>org.apache.felix.scr.annotations</artifactId>
+             <version>1.9.6</version>
+             <scope>provided</scope>
+        </dependency>
+        ...
+      </dependencies>
+      ...
+    </project>
+
+
+If you want to process the standard annotations with the `maven-scr-plugin` add this dependency:
+
+    :::xml
+    <project>
+      ...
+      <dependencies>
+        ...
+        <dependency>
+             <groupId>org.apache.felix</groupId>
+             <artifactId>org.apache.felix.scr.ds-annotations</artifactId>
+             <version>1.2.4</version>
+             <scope>provided</scope>
+        </dependency>
+        ...
+      </dependencies>
+      ...
+    </project>
+
+
+These dependencies needs to be specified in order to have an easy way to opt-out the processing of one set or use other tools to process them. It's possible to specify both dependencies and use both annotations within a single project (however it's better to stay with one set).
 The plugin may be configured with the following properties (Check the version column to make sure you use at least this version for the mentioned feature):
  
 ----
