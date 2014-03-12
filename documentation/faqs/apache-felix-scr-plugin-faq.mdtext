@@ -6,7 +6,9 @@ This page provides answers to frequently asked questions using the Maven
 SCR Plugin. See [{{ refs.apache-felix-maven-scr-plugin.headers.title }}]({{ refs.apache-felix-maven-scr-plugin.path }})
 for documentation on that plugin.
 
+## Why are the (standard) annotations not processed?
 
+In order to process any annotations, a processor for them needs to be added as a dependency to your project. There are currently two different processors, one for the annotations defined within the Apache Felix project and another one for the standard annotations from the Declarative Services specification.
 ## Syntax Error when Enums are used?
 
 During a SCR plugin run, a syntax error might occur if enums are used in the source code. This is a know problem of the used QDox version that reads the Java source files. Usually this happens when an enum is used inline and does not end with a ";". So adding this character should solve the problem:
