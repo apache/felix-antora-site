@@ -1,5 +1,6 @@
 Title: News
 
+* The Framework 4.4.0 and Framework Security 2.4.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (March 25, 2014)
 * Apache Felix SCR Tooling: Apache Felix Maven SCR Plugin 1.16.0, Apache Felix SCR Ant Task 1.10.0, Apache Felix SCR Bnd Plugin 1.0.0, Apache Felix SCR Annotations 1.9.8, and Apache Felx SCR Generator 1.9.0 (March 16, 2014)
 * Apache Felix iPOJO Manipulator and Runtime 1.11.2 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (March 15, 2014)
 * Apache Felix Inventory 1.0.4 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (March 3, 2014)
