@@ -39,7 +39,7 @@ Dependency Manager Annotation|org.apache.felix.dependencymanager.annotation|3.1.
 Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|project
 Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|3.1.0|project||doc/changelog.txt
 Dependency Manager Shell|org.apache.felix.dependencymanager.shell|3.0.1|project
-Deployment Admin|org.apache.felix.deploymentadmin|0.9.5|project
+Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.3.2
 File Install|org.apache.felix.fileinstall|3.2.6|||doc/changelog.txt
 Framework|org.apache.felix.framework|4.4.0|||doc/changelog.txt
