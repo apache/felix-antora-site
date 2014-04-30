@@ -1,7 +1,7 @@
 translation_pending: true
 Title: Welcome to Apache Felix
 
-Apache Felix is a community effort to implement the [OSGi R4 Service Platform](http://www2.osgi.org/Specifications/HomePage) and other interesting OSGi-related technologies under the Apache license. The OSGi specifications originally targeted embedded devices and home services gateways, but they are ideally suited for any project interested in the principles of modularity, component-orientation, and/or service-orientation. OSGi technology combines aspects of these aforementioned principles to define a dynamic service deployment framework that is amenable to remote management.
+Apache Felix is a community effort to implement the [OSGi Framework and Service platform](http://www.osgi.org/Specifications/HomePage) and other interesting OSGi-related technologies under the Apache license. The OSGi specifications originally targeted embedded devices and home services gateways, but they are ideally suited for any project interested in the principles of modularity, component-orientation, and/or service-orientation. OSGi technology combines aspects of these aforementioned principles to define a dynamic service deployment framework that is amenable to remote management.
 
 
 <div class="note" markdown="1">
@@ -29,7 +29,7 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [Dependency Manager]({{ refs.apache-felix-dependency-manager.path }}) - An API-based component model to simplify OSGi-based development.
 * [Event Admin]({{ refs.apache-felix-event-admin.path }}) - An implementation of the OSGi Event Admin service specification for event-based communication.
 * [File Install]({{ refs.apache-felix-file-install.path }}) - A simple, directory-based management agent for managing bundle deployment.
-* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R4.2 core framework.
+* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R5 core framework.
 * [Gogo]({{ refs.apache-felix-gogo.path }}) - An advanced shell for interacting with OSGi frameworks.
 * [HTTP Service]({{ refs.apache-felix-http-service.path }}) - An implementation of the OSGi HTTP Service specification.
 * [Inventory Printer]({{ refs.apache-felix-inventory.path }}) - A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
