@@ -22,11 +22,14 @@ The following results are for the OSGi R5 core framework CT test suites.
 These were run with the Framework release version 4.4.0.
 
   - [org.osgi.test.cases.framework][1]
-  - org.osgi.test.cases.framework.launch
-  - org.osgi.test.cases.framework.secure
-  - org.osgi.test.cases.framework.launch.secure
+  - [org.osgi.test.cases.framework.launch][2]
+  - [org.osgi.test.cases.framework.secure][3]
+  - [org.osgi.test.cases.framework.launch.secure][4]
 
 Note that the `org.osgi.test.cases.framework.junit.div.DivTests.testEERequirement()` failure is a known deviation in the Core CT.
 
 
   [1]: TEST-org.osgi.test.cases.framework-5.0.0.xml
+  [2]: TEST-org.osgi.test.cases.framework.launch-5.0.0.xml
+  [3]: TEST-org.osgi.test.cases.framework.secure-5.0.0.xml
+  [4]: TEST-org.osgi.test.cases.framework.launch.secure-5.0.0.xml
