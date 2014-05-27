@@ -1,4 +1,4 @@
-Title: Provisional OSGi API Policy
+Title: Provisional OSGI API Policy
 
 ##Overview
 The OSGi Alliance exposes provisional API that may or may not become part of future OSGI specifications.  This policy explains how and when Felix subprojects may relate to such API. Provisional OSGi API refers to anything in the `org.osgi.*` package namespace that is not part of a final released specification.
