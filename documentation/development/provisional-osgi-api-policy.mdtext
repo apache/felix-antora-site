@@ -7,9 +7,9 @@ The OSGi Alliance exposes provisional API that may or may not become part of fut
 1. Provisional API may be included and used in unreleased source code, however the API must be part of a final released OSGi specification before this Felix source may be released.
 1. Although it is STRONGLY NOT RECOMMENDED, modified versions of provisional api may be released with these modifications:
 
-* Any provisional OSGi API must be recreated in the `org.apache.felix.*` package name space; this effectively makes it provisional Felix API.
-* All Felix provisional API must be marked as deprecated.
-* All Felix provisional API exported from bundles should be exported with a mandatory attribute of `status="provisional"`.
+    1. Any provisional OSGi API must be recreated in the `org.apache.felix.*` package name space; this effectively makes it provisional Felix API.
+    1. All Felix provisional API must be marked as deprecated.
+    1. All Felix provisional API exported from bundles should be exported with a mandatory attribute of `status="provisional"`.
 
 ## Discussion
 
