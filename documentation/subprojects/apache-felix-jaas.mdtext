@@ -85,7 +85,8 @@ Configuration properties
 * `jaas.controlFlag` - LoginControlFlag to use like required, optional, requisite, sufficient. Default is set to required
 * `jaas.realmName` - JAAS Realm name. If specified then LoginModule would be registered against given realm otherwise it
    is bound to a 'other' realm
-* `jaas.ranking` - Ranking for the LoginModule. It would be used to order the various login modules
+* `jaas.ranking` - Ranking for the LoginModule. It would be used to order the various login modules. The entries are sorted
+   in a descending order (i.e. higher value ranked configurations come first)
 
 For an example refer to [Sample Configuration][4]. It configures a SampleConfigLoginModule for `sample` realm
 
