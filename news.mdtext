@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix HTTP Service 2.3.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (June 13, 2014)
 * Apache Felix SCR Tooling: Apache Felix Maven SCR Plugin 1.17.0, Apache Felix SCR Ant Task 1.11.0, Apache Felix SCR Bnd Plugin 1.1.0, and Apache Felix SCR Generator 1.10.0 (May 22, 2014)
 * Apache Felix iPOJO Manipulator and Runtime 1.12.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (May 17, 2014)
 * Apache Felix FileInstall 3.4.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository (April 22, 2014)
