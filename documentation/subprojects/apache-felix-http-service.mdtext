@@ -307,12 +307,12 @@ registration *must* provide several service properties. These properties are use
 The servlet bridge is used if you want to use the HTTP service inside a WAR deployed on a 3rd part applicaiton server. A
 little setup is needed for this to work:
 
-  # deploy `org.apache.felix.http.proxy` jar file inside the web application (`WEB-INF/lib`);
-  # in a startup listener (like `ServletContextListener`) set the BundleContext as a servlet context attribute (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/java/org/apache/felix/http/samples/bridge/StartupListener.java));
-  # define `org.apache.felix.http.proxy.ProxyServlet` inside your `web.xml` and register it to serve on all requests `/*` (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml));
-  # define `org.apache.felix.http.proxy.ProxyListener` as a `<listener>` in your `web.xml` to allow HTTP session related events to be forwarded (see the section of Servlet API Event forwarding below and [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml));
-  # be sure to add `javax.servlet;javax.servlet.http;version=2.6` to OSGi system packages (`org.osgi.framework.system.packages`);
-  # deploy `org.apache.felix.http.bridge` (or `org.apache.felix.http.bundle`) inside the OSGi framework.
+  1. deploy `org.apache.felix.http.proxy` jar file inside the web application (`WEB-INF/lib`);
+  2. in a startup listener (like `ServletContextListener`) set the BundleContext as a servlet context attribute (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/java/org/apache/felix/http/samples/bridge/StartupListener.java));
+  3. define `org.apache.felix.http.proxy.ProxyServlet` inside your `web.xml` and register it to serve on all requests `/*` (see [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml));
+  4. define `org.apache.felix.http.proxy.ProxyListener` as a `<listener>` in your `web.xml` to allow HTTP session related events to be forwarded (see the section of Servlet API Event forwarding below and [example](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/src/main/webapp/WEB-INF/web.xml));
+  5. be sure to add `javax.servlet;javax.servlet.http;version=2.6` to OSGi system packages (`org.osgi.framework.system.packages`);
+  6. deploy `org.apache.felix.http.bridge` (or `org.apache.felix.http.bundle`) inside the OSGi framework.
 
 A detailed example can be found [here](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge).
 
