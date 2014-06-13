@@ -332,7 +332,7 @@ allowing your servlets and filters to work *like they were accessed directly thr
 deploying applications in large datacenters where frontend load-balancers distribute the load among several servers in
 the same datacenter by stripping the SSL encryption.
 
-The SSL filter can be [configured](#configuration-properties) to let it detect whether the request was originating from
+The SSL filter can be [configured](#ssl-filter-configuration-properties) to let it detect whether the request was originating from
 an SSL connection. There are several non-standard request headers in use:
 
 | Header name | Used value | Description |
