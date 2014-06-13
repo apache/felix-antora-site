@@ -335,10 +335,10 @@ the same datacenter by stripping the SSL encryption.
 The SSL filter can be [configured](#configuration-properties) to let it detect whether the request was originating from
 an SSL connection. There are several non-standard request headers in use:
 
-| Header | Value | Description |
-|--|--|
-| `X-forwarded-Proto` | `https` | used by [Amazon ELBs](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#x-forwarded-proto) and [Nginx](http://wiki.nginx.org/SSL-Offloader) and more or less the de-facto standard to indicate a SSL-terminated connection. |
-| `X-forwarded-Protocol` | `https` | alternative to `X-Forwarded-Proto`. |
+| Header name | Used value | Description |
+|--|--|--|
+| `X-Forwarded-Proto` | `https` | used by [Amazon ELBs](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#x-forwarded-proto) and [Nginx](http://wiki.nginx.org/SSL-Offloader) and more or less the de-facto standard to indicate a SSL-terminated connection. |
+| `X-Forwarded-Protocol` | `https` | alternative to `X-Forwarded-Proto`. |
 | `X-Forwarded-SSL` | `on` | non-standard way used by [some applications](http://wiki.apache.org/couchdb/Nginx_As_a_Reverse_Proxy). |
 | `Front-End-Https` | `on` | used by [Microsoft](http://technet.microsoft.com/en-us/library/aa997519%28v=exchg.65%29.aspx) to indicate a SSL-terminated connection. |
 
