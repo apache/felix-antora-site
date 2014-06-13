@@ -484,9 +484,10 @@ the provided `HttpContext` instance:
 
 A set of simple examples illustrating the various features are available. 
 
-  * Filter registration sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/>
-  * Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>
-  * Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>
+  * Filter registration sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/>;
+  * Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>;
+  * CometD sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/cometd/>;
+  * Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>.
 
 
 ## Maven Artifacts
