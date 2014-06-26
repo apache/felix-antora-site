@@ -31,7 +31,7 @@ framework|4.4.0
 #        Use - to not have a changelog link
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.5|project
-Bundle Repository|org.apache.felix.bundlerepository|1.6.6|||doc/changelog.txt
+Bundle Repository|org.apache.felix.bundlerepository|2.0.2|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.0
 Coordinator|org.apache.felix.coordinator|1.0.0
 Dependency Manager|org.apache.felix.dependencymanager|3.1.0|project
