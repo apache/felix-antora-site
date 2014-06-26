@@ -11,7 +11,7 @@ This plugin for Maven 2 is based on the [BND](http://www.aqute.biz/Bnd/Bnd) tool
 
 Since the 1.4.0 release, this plugin also aims to automate OBR (OSGi Bundle Repository) management. It helps manage a local OBR for your local Maven repository, and also supports remote OBRs for bundle distribution. The plug-in automatically computes bundle capabilities and requirements, using a combination of Bindex and Maven metadata.
 
-<div class="tip" markdown="1"><a href="http://svn.apache.org/repos/asf/felix/releases/maven-bundle-plugin-2.4.0/doc/site/index.html" class="external-link" rel="nofollow">Standard Maven Documentation is now available for maven-bundle-plugin 2.4.0</a></div>
+<div class="tip" markdown="1"><a href="http://svn.apache.org/repos/asf/felix/releases/maven-bundle-plugin-2.5.0/doc/site/index.html" class="external-link" rel="nofollow">Standard Maven Documentation is now available for maven-bundle-plugin 2.5.0</a></div>
 
 <div class="tip" markdown="1"><a href="http://www.aqute.biz/Bnd/Format" class="external-link" rel="nofollow">A complete list of instructions and their format is available from the BND website</a></div>
 
@@ -645,7 +645,7 @@ It is possible to configure the Maven Bundle Plugin to put the bundle manifest w
           <plugin>
             <groupId>org.apache.felix</groupId>
             <artifactId>maven-bundle-plugin</artifactId>
-            <version>1.2.1</version>
+            <version>2.5.0</version>
             <extensions>true</extensions>
             <!--
               the following instructions build a simple set of public/private classes into an OSGi bundle
