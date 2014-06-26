@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix Maven Bundle Plugin 2.5.0 is now available from the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 26, 2014)
 * Apache Felix Bundle Repository (OBR) 2.0.2 is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 26, 2014)
 * Gogo Runtime 0.12.1 and Command 0.14.0 are now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 23, 2014)
 * Apache Felix HTTP Service 2.3.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and the Maven repository. (June 13, 2014)
