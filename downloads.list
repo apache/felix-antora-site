@@ -108,7 +108,7 @@ Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.2||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|1.0.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.0|project||-
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
-Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.0|||-
+Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
 Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.0
 Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.0|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
