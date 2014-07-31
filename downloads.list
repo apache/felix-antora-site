@@ -91,8 +91,8 @@ Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.0.0|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|1.8.2
 SCR Annotations|org.apache.felix.scr.annotations|1.9.8|project
-SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.4|project
-SCR Generator|org.apache.felix.scr.generator|1.10.0|project
+SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8|project
+SCR Generator|org.apache.felix.scr.generator|1.12.0|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
 UPnP Base Driver (JDK 1.4+)|org.apache.felix.upnp.basedriver|0.8.0|project||-
@@ -121,15 +121,15 @@ Maven Bundle Plugin|maven-bundle-plugin|2.5.0|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.0|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
-Maven SCR Plugin|maven-scr-plugin|1.17.0
+Maven SCR Plugin|maven-scr-plugin|1.19.0
 
 # (3) Ant Tasks
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
 iPOJO Ant Task and CLI|org.apache.felix.ipojo.ant|1.11.0|
-SCR Ant Task|org.apache.felix.scr.ant|1.11.0
+SCR Ant Task|org.apache.felix.scr.ant|1.13.0
 
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-SCR Bnd Plugin|org.apache.felix.scr.bnd|1.1.0
+SCR Bnd Plugin|org.apache.felix.scr.bnd|1.3.0
