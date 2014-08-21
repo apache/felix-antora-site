@@ -47,7 +47,7 @@ In these cases you should add a dependency to the missing class to the dependenc
     <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-scr-plugin</artifactId>
-        <version>1.9.0</version>
+        <version>...</version>
         <dependencies>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -59,3 +59,9 @@ In these cases you should add a dependency to the missing class to the dependenc
     </plugin>
 
 or in the special case of slf4j, using slf4j API 1.6 or higher solves the problem as well
+
+## No components or services available at runtime
+
+The SCR plugin generates a descriptor for Declarative Services (see OSGi compendium specification). Therefore at runtime, you must have an implementation of DS running in your OSGi framework, like the SCR implementation from the Apache Felix project.
+
+Otherwise your bundle might resolve fine, however no services are registered with the service registry and no components are activated.
