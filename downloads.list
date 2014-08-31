@@ -117,7 +117,7 @@ Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.2
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|2.5.2|||doc/changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|2.5.3|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.0|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
