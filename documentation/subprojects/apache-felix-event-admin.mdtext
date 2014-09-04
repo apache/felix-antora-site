@@ -152,12 +152,50 @@ Each of the aforementioned events actually contains a wider set of properties. C
 The Apache Felix Event Admin implementation is trying the deliver the events as fast as possible. Events sent from different threads are sent in parallel. Events from the same thread are sent in the order they are received (this is according to the spec).
 A timeout can be configured which is used for event handlers. If an event handler takes longer than the configured timeout to process an event, it is blacklisted. Once a handler is in a blacklist, it doesn't get sent any events anymore.
 The Felix Event Admin can be configured either through framework properties or through the configuration admin using PID `org.apache.felix.eventadmin.impl.EventAdmin`. This is a list of configuration properties:
-|Function|Property Name|Type and Default|Description|
-|--|--|--|
-|Thread Pool Size|org.apache.felix.eventadmin.ThreadPoolSize|Integer, 20|The size of the thread pool used for event delivery. The default value is 20. Increase in case of a large amount of events. A value of less then 2 triggers the default value. If the pool is exhausted, event delivery is blocked until a thread becomes available from the pool. Each event is delivered in a thread from the pool unless the ignore timeouts is configured for the receiving event handler.|
-|Async/sync Thread Pool Ratio|org.apache.felix.eventadmin.AsyncToSyncThreadRatio|Double, 0.5|The ratio of asynchronous to synchronous threads in the internal thread pool. Ratio must be positive and may be adjusted to represent the distribution of post to send operations.  Applications with higher number of post operations should have a higher ratio. This option is available starting with release 1.4.2.|
-|Timeout|org.apache.felix.eventadmin.Timeout|Integer, 5000|The black-listing timeout in milliseconds. The default value is 5000. Increase or decrease at own discretion. A value of less then 100 turns timeouts off. Any other value is the time in milliseconds granted to each event handler before it gets blacklisted.|
-|Require Topic|org.apache.felix.eventadmin.RequireTopic|Boolean, true|Are event handlers required to be registered with a topic? This is enabled by default. The specification says that event handlers must register with a list of topics they are interested in. Disabling this setting will enable that handlers without a topic are receiving all events (i.e., they are treated the same as with a topic=*).|
-|Ignore Timeouts|org.apache.felix.eventadmin.IgnoreTimeout|String, empty|Configure event handlers to be called without a timeout. If a timeout is configured by default all event handlers are called using the timeout. For performance optimization it is possible to configure event handlers where the timeout handling is not used - this reduces the thread usage from the thread pools as the timout handling requires an additional thread to call the event handler. However, the application should work without this configuration property. It is a pure optimization! The value is a list of strings. If a string ends with a dot, all handlers in exactly this package are ignored. If the string ends with a star, all handlers in this package and all subpackages are ignored. If the string neither ends with a dot nor with a start, this is assumed to define an exact class name.|
-|Ignore Topics|org.apache.felix.eventadmin.IgnoreTopic|String, empty|For performance optimization it is possible to configure topics which are ignored by the event admin implementation. In this case, a event is not delivered to registered event handlers. The value is a list of strings (separated by comma). " +If a single value ends with a dot, all topics in exactly this package are ignored. If a single value ends with a star, all topics in this package and all sub packages are ignored. If a single value neither ends with a dot nor with a start, this is assumed to define an exact topic. A single star can be used to disable delivery completely. This options is available starting with release 1.4.0.|
-|Log Level|org.apache.felix.eventadmin.LogLevel|Integer, 2 (=WARNING)|This sets the log level used for messages outputted by the event admin implementation. Valid values are 1 (=ERROR), 2 (=WARNING), 3 (=INFO), and 4 (=DEBUG). The default is 2 and an invalid value sets the level to the default value.|
+
+----
+**Thread Pool Size**
+*Property*: org.apache.felix.eventadmin.ThreadPoolSize
+*Default*: 20
+*Type*: Integer
+The size of the thread pool used for event delivery. The default value is 20. Increase in case of a large amount of events. A value of less then 2 triggers the default value. If the pool is exhausted, event delivery is blocked until a thread becomes available from the pool. Each event is delivered in a thread from the pool unless the ignore timeouts is configured for the receiving event handler.
+----
+**Async/sync Thread Pool Ratio**
+*Property*: org.apache.felix.eventadmin.AsyncToSyncThreadRatio
+*Since*: Release 1.4.2
+*Default*: 0.5
+*Type*: Double
+The ratio of asynchronous to synchronous threads in the internal thread pool. Ratio must be positive and may be adjusted to represent the distribution of post to send operations.  Applications with higher number of post operations should have a higher ratio.
+----
+**Timeout**
+*Property*: org.apache.felix.eventadmin.Timeout
+*Default*: 5000
+*Type*: Integer
+The black-listing timeout in milliseconds. The default value is 5000. Increase or decrease at own discretion. A value of less then 100 turns timeouts off. Any other value is the time in milliseconds granted to each event handler before it gets blacklisted.
+----
+**Require Topic**
+*Property*: org.apache.felix.eventadmin.RequireTopic
+*Default*: true
+*Type*: Boolean
+Are event handlers required to be registered with a topic? This is enabled by default. The specification says that event handlers must register with a list of topics they are interested in. Disabling this setting will enable that handlers without a topic are receiving all events (i.e., they are treated the same as with a topic=*).
+----
+**Ignore Timeouts**
+*Property*: org.apache.felix.eventadmin.IgnoreTimeout
+*Default*: empty
+*Type*: String
+Configure event handlers to be called without a timeout. If a timeout is configured by default all event handlers are called using the timeout. For performance optimization it is possible to configure event handlers where the timeout handling is not used - this reduces the thread usage from the thread pools as the timout handling requires an additional thread to call the event handler. However, the application should work without this configuration property. It is a pure optimization! The value is a list of strings. If a string ends with a dot, all handlers in exactly this package are ignored. If the string ends with a star, all handlers in this package and all subpackages are ignored. If the string neither ends with a dot nor with a start, this is assumed to define an exact class name.
+----
+**Ignore Topics**
+*Property*: org.apache.felix.eventadmin.IgnoreTopic
+*Since*: Release 1.4.0
+*Default*: empty
+*Type*: String
+For performance optimization it is possible to configure topics which are ignored by the event admin implementation. In this case, a event is not delivered to registered event handlers. The value is a list of strings (separated by comma). " +If a single value ends with a dot, all topics in exactly this package are ignored. If a single value ends with a star, all topics in this package and all sub packages are ignored. If a single value neither ends with a dot nor with a start, this is assumed to define an exact topic. A single star can be used to disable delivery completely.
+----
+**Log Level**
+*Property*: org.apache.felix.eventadmin.LogLevel
+*Note*: This property can't be set through the OSGi configuration.
+*Default*: 2 (=WARNING)
+*Type*: Integer
+This sets the log level used for messages outputted by the event admin implementation. Valid values are 1 (=ERROR), 2 (=WARNING), 3 (=INFO), and 4 (=DEBUG). The default is 2 and an invalid value sets the level to the default value.
+----
