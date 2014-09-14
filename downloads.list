@@ -40,7 +40,7 @@ Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|projec
 Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|3.2.0|project||doc/changelog.txt
 Dependency Manager Shell|org.apache.felix.dependencymanager.shell|3.2.0|project
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
-Event Admin|org.apache.felix.eventadmin|1.4.0
+Event Admin|org.apache.felix.eventadmin|1.4.2
 File Install|org.apache.felix.fileinstall|3.4.0|||doc/changelog.txt
 Framework|org.apache.felix.framework|4.4.1|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.4.0|||doc/changelog.txt
