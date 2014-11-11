@@ -226,12 +226,10 @@ If you're releasing bundles, you can also add them to the Felix Release OBR. To 
         -DaltDeploymentRepository=apache.website::default::file:///${obr}
     $ svn commit -m"..." ${obr}/repository.xml
  
-After committing the site must be published. If you release to OBR before
-[updating the site](update-the-site) you can defer publishing until after that.
-Otherwise publish the site by visiting the [Site Publication](https://cms.apache.org/felix/publish)
-link.
+After committing the site must be published. If you release to OBR before [updating the site](update-the-site) you can defer publishing until after that.
+Otherwise publish the site by visiting the [Site Publication](https://cms.apache.org/felix/publish) link.
 
-The (http://felix.apache.org/obr/releases.xml) page immediately updated.
+The [releases](http://felix.apache.org/obr/releases.xml) page is updated immediately.
 
 **Note**: the project building the bundle must use the [{{ maven-bundle-plugin.headers.title }}]({{ maven-bundle-plugin.path }}) and use a version equal to or higher than 1.4.2.
 
@@ -294,9 +292,9 @@ Go to [Admin](https://issues.apache.org/jira/secure/project/ViewProject.jspa?pid
     -The Felix team
 
 
-Remember to forward this announcement to `users@felix.apache.org` - try not to cross-post (CC:\) announcements to both user and dev lists.
+Remember to forward this announcement to `users@felix.apache.org` - try *not* to cross-post (CC:\) announcements to both user and dev lists.
 
-*Remind Felix about this release when he writes the next board report ;)*
+*Remind Carsten about this release when he writes the next board report ;)*
 
 ## Appendix A: create and add your key to http://www.apache.org/dist/felix/KEYS
 
