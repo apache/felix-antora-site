@@ -192,12 +192,12 @@ the PMC to execute this step.
 
 We use the distribution mechanism as described in [How do I upload a release (newer way)?](http://www.apache.org/dev/release.html#upload-ci)
 
-1. Checkout (https://dist.apache.org/repos/dist/release/felix)
-1. `svn add` the artifacts to your checkout
+1. Check out the [Felix releases repository](https://dist.apache.org/repos/dist/release/felix);
+1. `svn add` the artifacts to your checkout;
 1. `svn rm` the artifacts from the previous release from your checkout. This
 will remove the artifacts from the main distribution and the mirrors. They
-are still kept in the archive.
-1. `svn commit` your changes
+are still kept in the archive;
+1. `svn commit` your changes.
 
 After committing your changes, the [Apache Felix Dist](http://www.apache.org/dist/felix)
 folder is immediately updated. Updating the mirrors takes another few hours
@@ -205,12 +205,12 @@ folder is immediately updated. Updating the mirrors takes another few hours
 
 ### Release to the Maven Repository
 
-1. Login to (https://repository.apache.org) with your Apache SVN credentials.
-1. Click on *Staging*.
-1. Find your closed staging repository, select it, and click the *Release* button.
-1. Click on *Repositories*
-1. Select the *Releases* repository
-1. Validate that your artifacts are all there
+1. Login to [Apache Nexus Repository](https://repository.apache.org) with your Apache SVN credentials;
+1. Click on *Staging*;
+1. Find your closed staging repository, select it, and click the *Release* button;
+1. Click on *Repositories*;
+1. Select the *Releases* repository;
+1. Validate that your artifacts are all there.
 
 ### Release Bundles to the OBR
 
@@ -252,10 +252,10 @@ The (http://felix.apache.org/obr/releases.xml) page immediately updated.
 
 ### Update the Site
 
-1. Update the news section on the website at [news](https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/news.html)
-1. Update the download page on the website at [downloads](https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/downloads.list) to point to the new release.
-1. Commit your changes (click the commit link)
-1. Publish the site (https://cms.apache.org/felix/publish)
+1. Update the news section on the website at [news](https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/news.html);
+1. Update the download page on the website at [downloads](https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/downloads.list) to point to the new release;
+1. Commit your changes (click the commit link);
+1. [Publish the site](https://cms.apache.org/felix/publish).
 
 For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine). This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
 
