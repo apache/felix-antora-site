@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix HTTP 2.3.2 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository (November 11, 2014)
 * Apache Felix Event Admin 1.4.2 (September 14, 2014)
 * Apache Felix Maven Bundle Plugin 2.5.3 (August 31, 2014)
 * Apache Felix Maven Bundle Plugin 2.5.2 (August 27, 2014)
