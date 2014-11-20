@@ -1,6 +1,6 @@
 Title: Using the OSGi Compliance Tests
 
-The OSGi Alliance now provides Apache committers access to its Compliance Tests (CT). This
+The OSGi Alliance provides Apache committers access to its Compliance Tests (CT). This
 page describes how to get access to the CTs and how to use them with Felix subprojects.
 
 
@@ -14,10 +14,10 @@ access. Since redistributing the OSGi CTs is not allowed, you will need to submi
 
 ## OSGi CT Overview
 
-The CT is delivered as two JAR files, one for the core CT and one for the compendium CT.
+The CT is delivered as three JAR files, one for the core CT, one of the enterprise CT and one for the compendium CT.
 Each JAR file is composed of several other JAR files, which are the actual compliance
 tests. Typically, there is one JAR per specification, except for the OSGi framework. The
-CT uses BND as its testing harness, which in turn uses the OSGi R4.2 framework launching
+CT uses BND as its testing harness, which in turn uses the OSGi framework launching
 and embedding API to configure, launch, and install test bundles. Each test JAR file has
 an associated BND file which supplies the configuration BND needs to run the associated tests.
 
@@ -72,11 +72,12 @@ CT JAR file, which includes test suites for:
 * Conditional Permission Admin (optional)
 
 For each of the associated BND files, the `-runpath` needs to be edited to refer to the Felix
-framework; each one should look something like this after editing:
+framework. The easiest way to do this is by modifying the `shared.inc` file which is included by 
+all BND files. It should look something like this after editing:
 
     :::plaintext
     -runpath = \
-        /path/to/felix/framework/org.apache.felix.framework-2.0.2.jar;version=file, \
+        /path/to/felix/framework/org.apache.felix.framework-4.4.1.jar;version=file, \
         jar/com.springsource.junit-3.8.2.jar;version=file;export="junit.framework;version=3.8"
 
 
@@ -101,7 +102,7 @@ This will run all test suites for all BND files. To run a specific test suite, d
 
 
     :::bash
-    $ java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
+    $ java -jar jar/bnd.jar runtests --title osgi.ct <bnd-file>
 
 
 Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.
@@ -147,7 +148,7 @@ This will run all test suites for all BND files. To run a specific test suite, d
 
 
     :::bash
-    $ java -jar jar/bnd.jar runtests -title osgi.ct <bnd-file>
+    $ java -jar jar/bnd.jar runtests --title osgi.ct <bnd-file>
 
 
 Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.
