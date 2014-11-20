@@ -116,6 +116,30 @@ framework.
 Reports for the tests suites are generated in the `reports/` subdirectory and are named
 after the appropriate test suite.
 
+### Deviations
+#### Core R5
+When running the Core R5 CT the following error appears:
+
+    :::plaintext
+    testEERequirement
+    junit.framework.AssertionFailedError: Required Execution Environment is available: Unresolved constraint in bundle org.osgi.test.cases.framework.div.tb7a [214]: Unable to resolve 214.0: missing requirement [214.0] osgi.ee; (|(osgi.ee=div/tb7a)(osgi.ee=div/tb7b))
+    at org.osgi.test.support.OSGiTestCase.fail(OSGiTestCase.java:70)
+    at org.osgi.test.cases.framework.junit.div.DivTests.testEERequirement(DivTests.java:253)
+
+This is a known deviation in the Core R5 CT and can be ignored.
+
+#### Core R6
+When running the Core R6 CT the following error appears:
+
+    :::plaintext
+    testArrayServiceReferenceDTO
+    junit.framework.AssertionFailedError: ServiceReferenceDTO[] for stopped bundle is null
+    at junit.framework.Assert.fail(Assert.java:47)
+    at junit.framework.Assert.assertTrue(Assert.java:20)
+    at junit.framework.Assert.assertNotNull(Assert.java:217)
+    at org.osgi.test.cases.framework.junit.dto.DTOTestCase.testArrayServiceReferenceDTO(DTOTestCase.java:429)
+
+This is a known deviation in the Core R6 CT and can be ignored.
 
 ## Testing a Felix bundle
 
