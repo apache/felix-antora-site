@@ -61,15 +61,29 @@ bundle subprojects.
 The Felix framework is tested against the core CT. The first thing to do is extract the core
 CT JAR file, which includes test suites for:
 
-* Framework core (mandatory)
-* Framework security (optional)
-* Framework launching (mandatory)
-* Framework launching security (optional)
-* Package Admin (optional)
-* Start Level (optional)
-* URL Handlers (optional)
-* Permission Admin (optional)
-* Conditional Permission Admin (optional)
+###Core functionality
+
+* Framework core (`org.osgi.test.cases.framework.bnd`)
+* Framework launching (`org.osgi.test.cases.framework.launch.bnd`)
+* Tracker Specification (`org.osgi.test.cases.tracker.bnd`)
+* URL Handlers (`org.osgi.test.cases.url.bnd`)
+
+While the Tracker and URL Handler specifications are optional as per the OSGi Specification, they are implemented by the 
+Felix Framework and therefore the tests should be run and pass.
+
+###Security components
+
+OSGi Security components are optional. They are supported by Felix but require
+security support to be enabled. See the [Security][1] section below for more details.
+
+* Framework security (`org.osgi.test.cases.framework.secure.bnd`)
+* Framework launching security (`org.osgi.test.cases.framework.launch.secure.bnd`)
+* Permission Admin (`org.osgi.test.cases.permissionadmin.bnd`)
+* Conditional Permission Admin (`org.osgi.test.cases.condpermadmin.bnd`)
+
+With security correctly enabled in Felix all the above security CT suites should pass.
+
+### Running the tests
 
 For each of the associated BND files, the `-runpath` needs to be edited to refer to the Felix
 framework. The easiest way to do this is by modifying the `shared.inc` file which is included by 
@@ -83,14 +97,7 @@ all BND files. It should look something like this after editing:
 
 Typically, it is not necessary to change anything else in the BND files and it is normal that
 the `-runbundles` setting is empty, since there are no additional bundles associated with
-testing the framework. The exception to this is for the framework test suites for security.
-To test with security enabled, you will need to add the framework security provider in
-`-runbundles` like this:
-
-    :::plaintext
-    -runbundles = \
-        /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
-
+testing the framework. 
 
 After editing the BND files, run the tests using:
 
@@ -115,6 +122,18 @@ framework.
 
 Reports for the tests suites are generated in the `reports/` subdirectory and are named
 after the appropriate test suite.
+
+### <a id="security"></a>Security
+***TODO this section is unfinished.***
+
+The exception to this is for the framework test suites for security.
+To test with security enabled, you will need to add the framework security provider in
+`-runbundles` like this:
+
+    :::plaintext
+    -runbundles = \
+        /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
+
 
 ### Deviations
 #### Core R5
@@ -185,3 +204,6 @@ after the appropriate test suite.
 For any questions or feedback, subscribe to the Felix developers mailing list by sending a
 message to [dev-subscribe@felix.apache.org](mailto:dev-subscribe@felix-apache-org); after
 subscribing, email questions or feedback to [dev@felix.apache.org](mailto:dev@felix.apache.org).
+
+
+  [1]: #security
