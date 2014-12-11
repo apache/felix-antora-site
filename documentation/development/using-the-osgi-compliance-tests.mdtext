@@ -71,6 +71,10 @@ CT JAR file, which includes test suites for:
 While the Tracker and URL Handler specifications are optional as per the OSGi Specification, they are implemented by the 
 Felix Framework and therefore the tests should be run and pass.
 
+The following CT tests from the Compendium/Enterprise CT also pass with the Felix framework:
+
+* XML Parser Specification (`org.osgi.test.cases.xml.bnd`) 
+
 ###Security components
 
 OSGi Security components are optional. They are supported by Felix but require
