@@ -58,18 +58,18 @@ HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.2.0|project||-
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.3.2|project||-
 HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.0.1|project||-
 Inventory Printer|org.apache.felix.inventory|1.0.4
-iPOJO (Core)|org.apache.felix.ipojo|1.12.0|project||-
-iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.0|source-release||-
+iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
+iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
 iPOJO Architecture Command for the Felix Shell|org.apache.felix.ipojo.arch|1.6.0|project||-
-iPOJO Architecture Command for Gogo|org.apache.felix.ipojo.gogo|1.12.0|source-release||-
-iPOJO Composite|org.apache.felix.ipojo.composite|1.12.0|project||-
-iPOJO Annotations|org.apache.felix.ipojo.annotations|1.12.0|project||-
-iPOJO Ant Task and CLI|org.apache.felix.ipojo.ant|1.12.0|project||-
-iPOJO BND Plugin|bnd-ipojo-plugin|1.12.0|project||-
+iPOJO Architecture Command for Gogo|org.apache.felix.ipojo.gogo|1.12.1|source-release||-
+iPOJO Composite|org.apache.felix.ipojo.composite|1.12.1|project||-
+iPOJO Annotations|org.apache.felix.ipojo.annotations|1.12.1|project||-
+iPOJO Ant Task and CLI|org.apache.felix.ipojo.ant|1.12.1|project||-
+iPOJO BND Plugin|bnd-ipojo-plugin|1.12.1|project||-
 iPOJO WebConsole Plugin|org.apache.felix.ipojo.webconsole|1.7.0|project||-
-iPOJO API|org.apache.felix.ipojo.api|1.12.0|project||-
-iPOJO Manipulator|org.apache.felix.ipojo.manipulator|1.12.0|project||-
-iPOJO Manipulator Project (containing all iPOJO manipulator modules)|org.apache.felix.ipojo.manipulator-project|1.12.0|source-release||-
+iPOJO API|org.apache.felix.ipojo.api|1.12.1|project||-
+iPOJO Manipulator|org.apache.felix.ipojo.manipulator|1.12.1|project||-
+iPOJO Manipulator Project (containing all iPOJO manipulator modules)|org.apache.felix.ipojo.manipulator-project|1.12.1|source-release||-
 iPOJO Whiteboard pattern handler|org.apache.felix.ipojo.handler.whiteboard|1.6.0|project||-
 iPOJO Extender pattern handler|org.apache.felix.ipojo.handler.extender|1.4.0|project||-
 iPOJO JMX handler|org.apache.felix.ipojo.handler.jmx|1.4.0|project||-
@@ -118,7 +118,7 @@ Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.2
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
 Maven Bundle Plugin|maven-bundle-plugin|2.5.3|||doc/changelog.txt
-Maven iPOJO Plugin|maven-ipojo-plugin|1.12.0|||-
+Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
 Maven SCR Plugin|maven-scr-plugin|1.20.0
