@@ -105,6 +105,28 @@ By default it is probably safe to assume, that having set the `org.osgi.service.
 If you happen to deploy an OSGi framework instance inside a traditional web application and thus the Http Service implementation is actually a bridge into the existing servlet container (see for example [Equinox in a Servlet Container](http://www.eclipse.org/equinox/server/http*in*container.php) or the Apache Sling Launchpad Web application), the host, port and context path are defined by your servlet container and web application deployment. For example, if the servlet container listens on host `sample.org` at port `8888` and the web application with your OSGi container is available in the `/osgi` context, the Web Console would be accessible at `http://sample.org:8888/osgi/system/console`.
 
 
+## Configuration Manager
+
+The Configuration Manager is available via `http://localhost:8888/system/console/configMgr`. It display all OSGi services which can be configured.
+
+### Configuration factories
+
+The Configuration Manager has special support for configuration factories by allowing to add new items via the "plus" buttons or editing or removing existing ones.
+
+By default for each confguration factory item a unique ID is displayed, which is quite cryptic. Example: `org.apache.felix.jaas.Configuration.factory.18a6be2a-3173-4120-8f56-77fabff7b7ea`.
+
+The developer of the service with configuration factory can define a special "name hint" configuration propery which defines a name template which is used to build the configuration factory item name when displayed in the Configuration Manager. The name of this property is `webconsole.configurationFactory.nameHint`. It allows referencing other service property names as placeholders by enclosing in brackets.
+
+Example:
+```
+webconsole.configurationFactory.nameHint = "{jaas.realmName}, {jaas.classname}"
+jaas.realmName = "myRealm"
+jaas.classname = "myClass"
+```
+
+In this case the Configuration Manager displays the name "myRealm, myClass" as display name for the configuration entry which is much more human-readable than the cryptic name. Please not that the OSGi configuration property `webconsole.configurationFactory.nameHint` must not be set to "private". It is never displayed by the Configuration Manager.
+
+
 ## Security
 [Top]({{ refs.-top.path }})
 
