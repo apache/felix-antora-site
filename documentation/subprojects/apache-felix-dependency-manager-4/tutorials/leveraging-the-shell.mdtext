@@ -9,17 +9,17 @@ Typing help ```help dm``` in the gogo shell gives an overview of the available c
 	dm - List dependency manager components
 	   scope: dependencymanager
 	   flags:
-	      compact, cp   Displays components using a compact form
-	      nodeps, nd   Hides component dependencies
-	      notavail, na   Only displays unavailable components
+	      compact, cp       Displays components using a compact form
+	      nodeps, nd        Hides component dependencies
+	      notavail, na      Only displays unavailable components
 	      stats, stat, st   Displays components statistics
-	      wtf   Detects where are the root failures
+	      wtf               Detects where are the root failures
 	   options:
-	      bundleIds, bid, bi, b   <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
-	      componentIds, cid, ci   <List of component identifiers to display (comma separated)> [optional]
-	      components, c   <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
-	      services, s   <OSGi filter used to filter some service properties> [optional]
-	      top   <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
+	      bundleIds, bid, bi, b <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
+	      componentIds, cid, ci <List of component identifiers to display (comma separated)> [optional]
+	      components, c <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
+	      services, s <OSGi filter used to filter some service properties> [optional]
+	      top <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
 	   parameters:
 	      CommandSession  
 
