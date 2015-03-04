@@ -15,11 +15,18 @@ Typing help ```help dm``` in the gogo shell gives an overview of the available c
 	      stats, stat, st   Displays components statistics
 	      wtf               Detects where are the root failures
 	   options:
-	      bundleIds, bid, bi, b <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
-	      componentIds, cid, ci <List of component identifiers to display (comma separated)> [optional]
-	      components, c <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
-	      services, s <OSGi filter used to filter some service properties> [optional]
-	      top <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
+	      bundleIds, bid, bi, b <List of bundle ids or bundle symbolic
+	          names to display (comma separated)> [optional]
+	      componentIds, cid, ci <List of component identifiers to display
+	          (comma separated)> [optional]
+	      components, c <Regex(s) used to filter on component
+	          implementation class names (comma separated), can be
+	          negated using "!" prefix> [optional]
+	      services, s <OSGi filter used to filter some service 
+	          properties> [optional]
+	      top <Max number of top components to display (0=all)> This
+	          command displays components callbacks (init/start)
+	          times> [optional]
 	   parameters:
 	      CommandSession  
 
@@ -30,7 +37,7 @@ __List all dependency manager components__
 
 ```dm```
 
-Sample output
+Sample output:
 
 	[9] dm.demo
 	 [6] dm.demo.Probe(type=radiation) unregistered
@@ -70,23 +77,23 @@ __Find all components for a given classname__
 
 ```dm c .*ProbeImpl```
 
-dm c or components finds all components for which the classname of the implementation matches the regular expression.
+`dm c` or `components` finds all components for which the classname of the implementation matches the regular expression.
 
 __Find all services matching a service filter__
 
 ```dm s "(type=temperature)"```
 
-dm s allows finding components based on the service properties of their registered services in the service registry using a standard OSGi service filter.
+`dm s` allows finding components based on the service properties of their registered services in the service registry using a standard OSGi service filter.
 
 __Find out why components are not registered__
 
 ```dm wtf```
 
-Sample output
+Sample output:
 
 	2 missing dependencies found.
 	-----------------------------
 	The following service(s) are missing: 
 	 * dm.demo.Sensor is not found in the service registry
 
-wtf gives the root cause for components not being registered and therefore their services not being available. In a typical application components have dependencies on services implemented by components that have dependencies on services etcetera. This transitivity means that an entire chain of components could be unregistered due to a (few) root dependencies not being satisified. wtf is about discovering those dependencies.
+`wtf` gives the root cause for components not being registered and therefore their services not being available. In a typical application components have dependencies on services implemented by components that have dependencies on services etcetera. This transitivity means that an entire chain of components could be unregistered due to a (few) root dependencies not being satisfied. `wtf` is about discovering those dependencies.
