@@ -6,25 +6,22 @@ The shell bundle for the dependency manager extends the gogo shell with one new 
 
 Typing help ```help dm``` in the gogo shell gives an overview of the available command options.
 
-```
-dm - List dependency manager components
-   scope: dependencymanager
-   flags:
-      compact, cp   Displays components using a compact form
-      nodeps, nd   Hides component dependencies
-      notavail, na   Only displays unavailable components
-      stats, stat, st   Displays components statistics
-      wtf   Detects where are the root failures
-   options:
-      bundleIds, bid, bi, b   <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
-      componentIds, cid, ci   <List of component identifiers to display (comma separated)> [optional]
-      components, c   <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
-      services, s   <OSGi filter used to filter some service properties> [optional]
-      top   <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
-   parameters:
-      CommandSession  
-```
-
+	dm - List dependency manager components
+	   scope: dependencymanager
+	   flags:
+	      compact, cp   Displays components using a compact form
+	      nodeps, nd   Hides component dependencies
+	      notavail, na   Only displays unavailable components
+	      stats, stat, st   Displays components statistics
+	      wtf   Detects where are the root failures
+	   options:
+	      bundleIds, bid, bi, b   <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
+	      componentIds, cid, ci   <List of component identifiers to display (comma separated)> [optional]
+	      components, c   <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
+	      services, s   <OSGi filter used to filter some service properties> [optional]
+	      top   <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
+	   parameters:
+	      CommandSession  
 
 # Usage examples
 Below are some examples for typical usage of the dependency manager shell commands. The examples are based on a simple component model with a dashboard which has a required dependency on four probes (temperature, humidity, radiation, pressure). The radiation probe requires a Sensor service but this sensor is not available.
