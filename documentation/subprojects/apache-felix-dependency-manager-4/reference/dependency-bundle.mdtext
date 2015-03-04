@@ -1,0 +1,42 @@
+##### Bundle
+
+A bundle dependency allows you to depend on a bundle in a certain set of states, as indicated by a state mask. You can also use a filter condition that is matched against all manifest entries. Finally you can provide a reference to an existing bundle.
+
+
+
+## @BundleDependency
+
+A bundle dependency allows you to depend on a bundle in a certain set of states (INSTALLED\|RESOLVED\|STARTED\|...), as indicated by a state mask. You can also use a filter condition that is matched against all manifest entries. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
+
+Attributes:
+
+* *changed*: Returns the callback method to be invoked when the service have changed.
+* *removed*: Returns the callback method to invoke when the service is lost.
+* *required*: Returns whether the dependency is required or not.
+* *filter*: Returns the filter dependency
+* *stateMask*: Returns the bundle state mask (Bundle.INSTALLED \| Bundle.ACTIVE etc ...).
+* *propagate*: Specifies if the manifest headers from the bundle should be propagated to the service properties.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns.
+Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}).
+
+Usage Examples
+
+In the following example, the "SCR" Component allows to track all bundles containing a specific "Service-Component" OSGi header, in order to load and manage all Declarative Service components specified in the SCR xml documents referenced by the header:
+
+    :::java
+    @Component
+    public class SCR {
+        @BundleDependency(required = false,
+                          removed = "unloadServiceComponents",
+                          filter = "(Service-Component=*)"
+                          stateMask = Bundle.ACTIVE)
+        void loadServiceComponents(Bundle b) {
+            String descriptorPaths = (String) b.getHeaders().get("Service-Component");
+            // load all service component specified in the XML descriptorPaths files ...
+        }
+
+        void unloadServiceComponents(Bundle b) {
+            // unload all service component we loaded from our "loadServiceComponents" method.
+        }
+    }
+

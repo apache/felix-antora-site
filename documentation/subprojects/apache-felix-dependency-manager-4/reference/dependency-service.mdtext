@@ -1,0 +1,79 @@
+##### Service
+
+A service dependency allows you to depend on a service, either by type or by using an additional filter condition. You can even depend on an existing service directly by providing a reference to it.
+
+## @ServiceDependency
+
+Annotates a method or a field for injecting a Service Dependency on it. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
+
+Annotation attributes:
+
+* *added*: The callback method to be invoked when the service is available. This attribute is only meaningful when the annotation is applied on a class field.
+* *changed*: The callback method to be invoked when the service properties have changed.
+* *removed*: The callback method to invoke when the service is lost.
+* *timeout*: The max time in millis to wait for when the dependency is temporarily unavailable. Specifying a positive number allow to block the caller thread between service updates. Only useful for required stateless dependencies that can be replaced transparently. A Dynamic Proxy is used to wrap the actual service dependency (which must be an interface). When the dependency goes away, an attempt is made to replace it with another one which satisfies the service dependency criteria. If no service replacement is available, then any method invocation (through the dynamic proxy) will block during a configurable timeout. On timeout, an unchecked IllegalStateException exception is raised (but the service is not deactivated).
+Notice that the changed/removed callbacks are not used when the timeout parameter is > -1.
+-1 means no timeout at all (default). 0 means that invocation on a missing service will fail immediately. A positive number represents the max timeout in millis to wait for the service availability.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}) for more informations about named dependencies.
+* *propagate*: Returns true if the dependency service properties must be published along with the service. Any additional service properties specified directly are merged with these.
+
+Usage Example: Here, the MyComponent component is injected with a dependency over a "MyDependency" service.
+
+    :::java
+    @Component
+    class MyComponent {
+         @ServiceDependency(timeout=15000)
+         MyDependency dependency;
+         // ...
+    }
+
+
+Usage example of a Service whose dependency filter is configured from ConfigAdmin, using a "named" dependency
+(please check [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}) for more informations about "named" dependencies):
+
+    :::java
+    /**
+      * A Service whose service dependency "otherService" filter is configured from ConfigAdmin
+      */
+    @Service
+    class X {
+        private Dictionary m_config;
+    
+         /**
+           * Initialize our service from config ... and store the config for later usage (from our init method)
+           */
+         @ConfigurationDependency(pid="MyPid")
+         void configure(Dictionary conf) {
+               m_config = config;
+         }
+
+         /**
+          * All unnamed dependencies are injected: we can now configure other named
+          * dependencies, using the already injected configuration.
+          * The returned Map will be used to configure our "otherService" Dependency.
+          */
+         @Init
+         Map init() {
+             return new HashMap() {{
+                 put("otherService.filter", m_config.get("filter"));
+                 put("otherService.required", m_config.get("required"));
+             }};
+         }
+    
+         /**
+          * This named dependency filter/required flag will be configured by our init method (see above).
+          */
+         @ServiceDependency(name="otherService")
+             void bindOtherService(OtherService other) {
+         }
+
+         /**
+          * All dependencies are injected and our service is now ready to be published.
+          * Notice that you can also use the publisher service attribute if you need
+          * to take control on service exposition.
+          */
+         @Start
+         void start() {
+         }
+     }
+

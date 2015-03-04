@@ -1,0 +1,35 @@
+Title: Apache Felix Dependency Manager - Performance Tuning
+
+### Filter Indices
+
+Filter indices allow you to speed up the service resolution process by skipping the services registry, in favor of a fast index on given service properties.
+
+The Dependency Manager will look for a set of filter indices in the `org.apache.felix.dependencymanager.filterindex` system property. This system property uses the following syntax,
+
+    property-index ::= service-property | service-property ',' property-index
+    index ::= '*aspect*' | '*adapter*' | property-index
+    indices ::= index | indices ';' index
+
+The implementation ships with three kinds of index implementations.
+
+- *Service property indices* are based on a set of service properties, like a multi-column index in a database. 
+- *Aspect indices* work with Dependency Manager Aspect services, and will provide indexing for the specific filters that they use.
+- *Adapter indices* work like Aspect indices, but for Adapter services.
+
+#### Performance
+
+The index isn't free, but reduces the linear (and wasteful) filter-based lookup to an indexed log(n) lookup. You can expect noticeable speedup if you have at least several hundred services.
+
+#### Examples
+
+    -Dorg.apache.felix.dependencymanager.filterindex=objectClass
+Sets an index on `objectClass`, speeding up lookups for any filter that contains an `objectClass` in its filter (all regular services do).
+ 
+    -Dorg.apache.felix.dependencymanager.filterindex=objectClass,id
+This filter helps if you have a lot of similar services, identified by some `id`.
+
+    -Dorg.apache.felix.dependencymanager.filterindex=objectClass,id;objectClass,ipAddress
+This is a set of two filter indices, helping when you have one set of services that has an `id`, and another set that uses an `ipAddress` for identification.
+    
+    -Dorg.apache.felix.dependencymanager.filterindex=*aspect*
+Provides indexing for all Aspect services.

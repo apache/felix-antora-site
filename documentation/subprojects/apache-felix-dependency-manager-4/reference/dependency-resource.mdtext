@@ -1,0 +1,87 @@
+##### Resource
+
+A resource dependency allows you to depend on a resource. A resource is a URL and you can use a filter condition based on protocol, host, port, path and URL.
+
+
+## @ResourceDependency
+
+Annotates a method of field as a Resource Dependency. A resource dependency allows you to depend on a resource. Resources are an abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
+A resource is a URL and you can use a filter condition based on protocol, host, port, and path.
+
+Attributes:
+
+* *added*: Returns the callback method to be invoked when the service is available. This attribute is only meaningful when the annotation is applied on a class field.
+* *changed*: Returns the callback method to be invoked when the service properties have changed.
+* *removed*: Returns the callback method to invoke when the service is lost.
+* *required*: Returns whether the Service dependency is required or not.
+* *filter*: Returns the Service dependency OSGi filter.
+* *propagate*: Specifies if the resource URL properties must be propagated. If set to true, then the URL properties ("protocol"/"host"/"port"/"path") will be propagated to the service properties of the component which is using this dependency.
+* *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}).
+
+Usage Examples
+Here, the "VideoPlayer" component plays any provided MKV video resources
+
+
+    :::java
+    @Component
+    public class VideoPlayer {
+        @ResourceDependency(required=false, filter="(path=/videos/*.mkv)")
+        void playResource(URL video) { ... }
+    }
+
+And here is an example of a VideoProvider, which provides some videos using a web URL. Notice that Resource providers need to depend on the DependencyManager API:
+
+    :::java
+    import java.net.MalformedURLException;
+    import java.net.URL;
+    import java.util.HashMap;
+    import java.util.Map;
+    
+    import org.apache.felix.dm.ResourceHandler;
+    import org.apache.felix.dm.ResourceUtil;
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.Init;
+    import org.apache.felix.dm.annotation.api.ServiceDependency;
+    import org.osgi.framework.BundleContext;
+    import org.osgi.framework.Filter;
+    import org.osgi.framework.InvalidSyntaxException;
+
+    @Component
+    public class VideoProvider
+    {
+        // Injected by reflection
+        private volatile BundleContext context;
+        // List of known resource handlers
+        private Map<ResourceHandler, Filter> m_handlers = new HashMap<ResourceHandler, Filter>();
+        // List of known video resources
+        private URL[] m_videos;
+
+        @Init
+        void init() throws MalformedURLException
+        {
+           m_videos = new URL[] {
+                   new URL("http://localhost:8080/videos/video1.mkv"),
+                   new URL("http://localhost:8080/videos/video2.mkv"),
+            };
+        }
+    
+        // Track resource handlers
+        @ServiceDependency(required = false)
+        public void add(Map<String, String> serviceProperties, ResourceHandler handler) throws InvalidSyntaxException
+        {
+            String filterString = serviceProperties.get("filter");
+            filterString = (filterString != null) ? filterString : "(path=*)";
+            Filter filter = context.createFilter(filterString);
+            synchronized (this)
+            {
+                m_handlers.put(handler, filter);
+            }
+            for (URL video : m_videos)
+            {
+                if (filter.match(ResourceUtil.createProperties(video)))
+                {
+                    handler.added(video);
+                }
+            }
+        }
+    }

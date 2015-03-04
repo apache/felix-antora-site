@@ -1,0 +1,75 @@
+#### Adapters
+
+Adapters, like aspects, are used to "extend" existing services, and can publish different services based on the existing one. An example would be implementing a management interface.
+
+
+
+## @AdapterService
+
+Adapters, like with *@AspectService*, are used to "extend" existing services, 
+and can publish different services based on the existing one. An example 
+would be implementing a management interface for an existing service, 
+etc .... When you annotate an adapter class with the *@AdapterService* 
+annotation, it will be applied to any service that matches the implemented 
+interface and filter. The adapter will be registered with the specified 
+interface and existing properties from the original service plus any extra
+properties you supply here. If you declare the original service as a member 
+it will be injected. 
+
+### Annotation attributes:
+
+----
+**`adapteeService`**    
+*Required*: True    
+*Default*: --
+
+Sets the adaptee service interface this adapter is applying to.
+
+----
+**`provides`**    
+*Required*: False    
+*Default*: all directly implemented interfaces.
+
+Sets the adapter service interface(s). By default, the directly implemented 
+interface(s) is (are) used. 
+
+----
+**`properties`**    
+*Required*: False    
+*Default*: All inherited adaptee service properties.
+
+Sets some additional properties to use with the adapter service registration. 
+By default, the adapter will inherit all adaptee service properties.
+
+----
+**`adapteeFilter`**    
+*Required*: False    
+*Default*: --
+
+Sets the filter condition to use with the adapted service interface.
+
+----
+**`factoryMethod`**    
+*Required*: False    
+*Default*: --
+
+Sets the static method used to create the adapter service implementation 
+instance. By default, the default constructor of the annotated class is used.
+
+### Usage example
+
+Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is found from the registry. The AdapterImpl class adapts the AdapteeService to the AdapterService. The AdapterService will also have a service property (param=value), and will also include eventual service properties found from the AdapteeService:
+
+
+     @AdapterService(adapteeService = AdapteeService.class, properties={@Property(name="param", value="value")})
+     class AdapterImpl implements AdapterService {
+         // The service we are adapting (injected by reflection)
+         protected AdapteeService adaptee;
+       
+         public void doWork() {
+            adaptee.mehod1();
+            adaptee.method2();
+         }
+     }
+
+

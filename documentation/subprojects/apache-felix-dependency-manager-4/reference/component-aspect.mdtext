@@ -1,0 +1,76 @@
+#### Aspects
+
+Aspects, as part of aspect oriented programming, can be used in a dynamic environment such as OSGi to "extend" existing services and add certain "capabilities" to them. Examples of these are adding a specific caching mechanism to a storage service or implementing logging. Aspects in OSGi can be applied to services and can be added and removed at runtime.
+
+
+
+
+## @AspectService
+
+Aspects allow you to define an interceptor, or chain of interceptors for a service (to add features like caching or logging, etc ...). The dependency manager intercepts the original service, and allows you to execute some code before invoking the original service ... The aspect will be applied to any service that matches the specified interface and filter and will be registered with the same interface and properties as the original service, plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
+
+### Annotation attributes
+
+----
+**`ranking`**    
+*Required*: No    
+*Default*: --  
+
+Sets the ranking of this aspect. Since aspects are chained, the ranking 
+defines the order in which they are chained. Chain ranking is implemented as 
+a service ranking so service lookups automatically retrieve the top of the 
+chain.
+
+----
+**`service`**    
+*Required*: No    
+*Default*: all directly implemented interfaces.  
+
+Sets the service interface to apply the aspect to. By default, the directly 
+implemented interface is used.
+
+----
+**`filter`**    
+*Required*: No    
+*Default*: --
+
+Sets the filter condition to use with the service interface this aspect is 
+applying to.
+
+----
+**`properties`**    
+*Required*: No    
+*Default*: --
+
+Sets Additional properties to use with the aspect service registration.
+
+----
+**`field`**    
+*Required*: No    
+*Default*: --
+
+Sets the field name where to inject the original service. By default, the original service is injected in any attributes in the aspect implementation that are of the same type as the aspect interface.
+
+----
+**`factoryMethod`**    
+*Required*: No    
+*Default*: --
+
+Sets the static method used to create the aspect service implementation 
+instance. The default constructor of the annotated class is used. 
+The factoryMethod can be used to provide a specific aspect implements, 
+like a DynamicProxy.
+
+### Usage example:
+
+     @AspectService(ranking=10), properties={@Property(name="param", value="value")})
+     class AspectService implements InterceptedService {
+         // The service we are intercepting (injected by reflection)
+         protected InterceptedService intercepted;
+       
+         public void doWork() {
+            intercepted.doWork();
+         }
+     }
+
+

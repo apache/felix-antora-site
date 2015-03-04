@@ -28,6 +28,7 @@ Below is the full table of contents.
 
 * [History](apache-felix-dependency-manager-4/guides/history.html)
 * [Background](apache-felix-dependency-manager-4/guides/background.html)
+* [What's new in version 4](apache-felix-dependency-manager-4/guides/whatsnew.html)
 * [Bundles and dependencies](apache-felix-dependency-manager-4/guides/bundles-and-dependencies.html)
 * [Migrating from earlier versions](apache-felix-dependency-manager-4/guides/migrating-from-earlier-versions.html)
 * [Migrating from other solutions](apache-felix-dependency-manager-4/guides/migrating-from-other-solutions.html)
@@ -44,6 +45,8 @@ Below is the full table of contents.
  * [Aspect](apache-felix-dependency-manager-4/reference/component-aspect.html)
  * [Adapter](apache-felix-dependency-manager-4/reference/component-adapter.html)
  * [Resource Adapter](apache-felix-dependency-manager-4/reference/component-resource-adapter.html)
+ * [Bundle Adapter](apache-felix-dependency-manager-4/reference/component-bundle-adapter.html)
+ * [Factory Configuration Adapter](apache-felix-dependency-manager-4/reference/component-factory-configuration-adapter.html)
 * [Dependencies](apache-felix-dependency-manager-4/reference/dependencies.html)
  * [Service](apache-felix-dependency-manager-4/reference/dependency-service.html)
  * [Configuration](apache-felix-dependency-manager-4/reference/dependency-configuration.html)

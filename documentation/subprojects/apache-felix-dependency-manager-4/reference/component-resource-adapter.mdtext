@@ -1,0 +1,47 @@
+#### Resource Adapters
+
+Resource adapters work just like adapters, but instead of working with services, they work with resources. Resources, represented as a URL, are an abstraction introduced to provide a generic way of dealing with "blobs" and can be resources inside a bundle, filesystem or some kind of data store.
+
+
+
+
+## @ResourceAdapterService
+
+Resource adapters are things that adapt a resource instead of a service, and 
+provide an adapter service on top of this resource. Resources are an 
+abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
+
+The adapter will be applied to any resource that matches the specified filter 
+condition, which can match some part of the resource URL (with "path", 
+"protocol", "port", or "host" filters). For each matching resource an 
+adapter will be created based on the adapter implementation class. 
+The adapter will be registered with the specified interface and with any 
+extra service properties you supply here. Moreover, the following service 
+properties will be propagated from the resource URL:
+
+* *host*: this property exposes the host part of the resource URL
+* *path*: the resource URL path
+* *protocol*: the resource URL protocol
+* *port*: the resource URL port 
+
+### Annotation attributes
+
+TBD
+
+### Usage Examples:
+
+Here, the "VideoPlayer" service provides a video service on top of any movie 
+resources, with service properties "host"/"port"/"protocol"/"path" extracted 
+from the resource URL:
+
+    :::java
+    @ResourceAdapterService(filter = "(&(path=/videos/*.mkv)(host=localhost))", propagate = true)
+    public class VideoPlayerImpl implements VideoPlayer {
+        // Injected by reflection
+        URL resource;
+             
+        void play() {} // play video referenced by this.resource     
+        void stop() {} // stop playing the video
+        void transcode() {} // ...
+    }
+
