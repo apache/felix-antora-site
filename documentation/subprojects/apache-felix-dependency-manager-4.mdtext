@@ -1,5 +1,7 @@
 Title: Apache Felix Dependency Manager 4
 
+Welcome to the Dependency Manager, a great bundle for managing your components and dependencies!
+
 ## Introduction
 
 In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services. These components, that both publish services and depend on other services, form networks that are often dynamic in nature. That makes managing these dependencies something the developer needs to address.
@@ -33,8 +35,8 @@ Below is the full table of contents.
 * [Migrating from earlier versions](apache-felix-dependency-manager-4/guides/migrating-from-earlier-versions.html)
 * [Migrating from other solutions](apache-felix-dependency-manager-4/guides/migrating-from-other-solutions.html)
 * [Annotations](apache-felix-dependency-manager-4/guides/annotations.html)
-* [Performance Tuning](apache-felix-dependency-manager-4/guides/performance-tuning.html)  thread pools, indices, ...
-* [Development](apache-felix-dependency-manager-4/guides/development.html) setting up, adding dependencies, shell commands?
+* [Performance Tuning](apache-felix-dependency-manager-4/guides/performance-tuning.html)
+* [Development](apache-felix-dependency-manager-4/guides/development.html)
 * [Design Patterns](apache-felix-dependency-manager-4/guides/design-patterns.html)
 * [Resources](apache-felix-dependency-manager-4/guides/resources.html)
 
