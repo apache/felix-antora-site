@@ -2,23 +2,40 @@ Title: Apache Felix Dependency Manager - Components
 
 Components are declared by the dependency manager and can be implemented by POJOs that contain no references to the OSGi framework whatsoever. Components are the main building blocks of your OSGi application. They have a life cycle, can register themselves as services and have zero or more dependencies.
 
+You can either use the Java API or the Java Annotations and this reference section describes both.
+
+# Types of Components
+
+There are different types of Dependency Manager components:
+
+* [*Component*](component-singleton.html): Components are the main building blocks for OSGi applications. They can publish themselves as a service, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
+* [*Aspect Service*](component-singleton.html): A service that provides a non-functional aspect on top of an existing service. In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service used by the client. An Aspect Service first tracks a target service and is created once the target service is detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case, the ranking of the Aspect service is used to chain aspects in  the proper order).
+* [*Adapter Service*](component-singleton.html): A Service that adapts another existing service into a new one. Like with aspects, sometimes you want to create adapters for certain services, which add certain behavior that results in the publication of (in this case) a different service. Adapters can dynamically be added and removed and allow you to keep your basic services implementations clean and simple, adding extra features on top of them in a modular way.
+* [*Bundle Adapter Service*](component-singleton.html): creates an OSGi service a service on top of a given bundle.
+* [*Resource Adapter Service*](component-singleton.html): creates an OSGi service on top of a specific Resource.
+* [*Factory Configuration Adapter Service*](component-singleton.html): creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
+
+# Component
+
 ## Life cycle
 
 The dependency manager, as part of a bundle, shares the generic bundle life cycle explained in the OSGi specification. The life cycle of the dependency manager itself, and the components it manages, can be located inside the *active* state of the hosting bundle.
 
 Each component you define gets its own life cycle, which is explained in the state diagram below.
 
-{gliffy:name=state-diagram|align=center|size=L|version=2}
+TODO {gliffy:name=state-diagram|align=center|size=L|version=2}
 
 A component is associated with an instance. This instance can either be specified directly, or you can specify its class. If you do the latter, the actual instance will be created lazily. 
 
 Changes in the state of the component will trigger the following life cycle methods:
+
 * `init`, 
 * `start`, 
 * `stop` and 
 * `destroy`.
 
 The dependency manager will look for methods with these names and one of the following signatures in this order:
+
 * (Component),
 * ().
 
@@ -38,14 +55,6 @@ Out of the box, there already is support for lazy instantiation, meaning that th
 
 # Annotations
 
-This page describes the different types of Dependency Manager components:
-
-* *Component*: Components are the main building blocks for OSGi applications. They can publish themselves as a service, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
-* *Aspect Service*: A service that provides a non-functional aspect on top of an existing service. In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service used by the client. An Aspect Service first tracks a target service and is created once the target service is detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case, the ranking of the Aspect service is used to chain aspects in  the proper order).
-* *Adapter Service*: A Service that adapts another existing service into a new one. Like with aspects, sometimes you want to create adapters for certain services, which add certain behavior that results in the publication of (in this case) a different service. Adapters can dynamically be added and removed and allow you to keep your basic services implementations clean and simple, adding extra features on top of them in a modular way.
-* *Bundle Adapter Service*: creates an OSGi service a service on top of a given bundle.
-* *Resource Adapter Service*: creates an OSGi service on top of a specific Resource.
-* *Factory Configuration Adapter Service*: creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
 
 ## @Component
 
@@ -146,9 +155,9 @@ Usage example:
 
     :::java
     /**
-      * This component will be activated once the bundle is started and when all required dependencies
-      * are available.
-      */
+     * This component will be activated once the bundle is started and when all required dependencies
+     * are available.
+     */
     @Component
     class X implements Z {
         @ConfigurationDependency(pid="MyPid")
@@ -173,9 +182,11 @@ Example using a factorySet, where the X component is instantiated/updated/dispos
      @Component(factorySet="MyComponentFactory", factoryConfigure="configure")
      class X implements Z {
          void configure(Dictionary conf) {
-             // Configure or reconfigure our component. The conf is provided by the factory,
-             // and all public properties (which don't start with a dot) are propagated with the
-             // Service properties eventually specified in the properties annotation attribute.
+             // Configure or reconfigure our component. The conf is provided by 
+             // the factory, and all public properties (which don't
+             // start with a dot) are propagated with the Service
+             // properties eventually specified in the properties
+             // annotation attribute.
          }
     
          @ServiceDependency
@@ -185,7 +196,8 @@ Example using a factorySet, where the X component is instantiated/updated/dispos
     
          @Start
          void start() {
-             // Our component is starting and is about to be registered in the OSGi registry as a Z service.
+             // Our component is starting and is about to be registered
+             // in the OSGi registry as a Z service.
          }
     
          public void doService() {
@@ -193,13 +205,14 @@ Example using a factorySet, where the X component is instantiated/updated/dispos
          }
      }
     
-    /**
+     /**
       * This class will instantiate some X component instances
       */
-    @Component
-    class Y {
+     @Component
+     class Y {
+         // This Set acts as a Factory API for creating X component instances.
          @ServiceDependency(filter="(dm.factory.name=MyComponentFactory)")
-         Set<Dictionary> _XFactory; // This Set acts as a Factory API for creating X component instances.
+         Set<Dictionary> _XFactory; 
     
          @Start
          void start() {
@@ -215,7 +228,8 @@ Example using a factorySet, where the X component is instantiated/updated/dispos
              x1.put("foo", "bar1_modified");
              _XFactory.add(x1);
     
-             // Destroy all components (Notice that invoking _XFactory.clear() also destroys every X instances)
+             // Destroy all components (Notice that invoking
+             // _XFactory.clear() also destroys every X instances)
              _XFactory.remove(x1);
              _XFactory.remove(x2);
          }
