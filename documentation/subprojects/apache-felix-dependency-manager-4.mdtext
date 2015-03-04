@@ -1,3 +1,52 @@
 Title: Apache Felix Dependency Manager 4
 
-## Placeholder
+## Introduction
+
+In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services. These components, that both publish services and depend on other services, form networks that are often dynamic in nature. That makes managing these dependencies something the developer needs to address.
+
+Whilst the OSGi framework provides the low-level building blocks to do that in the form of service listeners and trackers, these should not be used directly by developers. Instead, a more declarative approach works best, and the Dependency Manager provides this in the form of a declarative API and/or annotations that allow you to dynamically declare and change dependencies.
+
+On top of that, a set of OSGi design patterns are defined and supported that can be used as building blocks for more complex applications.
+
+The documentation for the dependency manager is split into three sections:
+
+1. Step-by-step tutorials which provide a good introduction to the technology and should get you started quickly.
+2. Overviews and guides that provide more in-depth knowledge about specific aspects of the dependency manager.
+3. Reference materials that describe all the individual nuts and bolts.
+
+Below is the full table of contents.
+
+## Table of Contents
+
+### Step-by-step Tutorials
+
+* [Getting started](apache-felix-dependency-manager-4/tutorials/getting-started.html)
+* [Working with annotations](apache-felix-dependency-manager-4/tutorials/working-with-annotation.html)
+* [Leveraging the shell](apache-felix-dependency-manager-4/tutorials/leveraging-the-shell.html)
+
+### Overviews and Guides
+
+* [History](apache-felix-dependency-manager-4/guides/history.html)
+* [Background](apache-felix-dependency-manager-4/guides/background.html)
+* [Bundles and dependencies](apache-felix-dependency-manager-4/guides/bundles-and-dependencies.html)
+* [Migrating from earlier versions](apache-felix-dependency-manager-4/guides/migrating-from-earlier-versions.html)
+* [Migrating from other solutions](apache-felix-dependency-manager-4/guides/migrating-from-other-solutions.html)
+* [Annotations](apache-felix-dependency-manager-4/guides/annotations.html)
+* [Performance Tuning](apache-felix-dependency-manager-4/guides/performance-tuning.html)  thread pools, indices, ...
+* [Development](apache-felix-dependency-manager-4/guides/development.html) setting up, adding dependencies, shell commands?
+* [Design Patterns](apache-felix-dependency-manager-4/guides/design-patterns.html)
+* [Resources](apache-felix-dependency-manager-4/guides/resources.html)
+
+### Reference Guide
+
+* [Components](apache-felix-dependency-manager-4/reference/components.html)
+ * [Singleton](apache-felix-dependency-manager-4/reference/component-singleton.html)
+ * [Aspect](apache-felix-dependency-manager-4/reference/component-aspect.html)
+ * [Adapter](apache-felix-dependency-manager-4/reference/component-adapter.html)
+ * [Resource Adapter](apache-felix-dependency-manager-4/reference/component-resource-adapter.html)
+* [Dependencies](apache-felix-dependency-manager-4/reference/dependencies.html)
+ * [Service](apache-felix-dependency-manager-4/reference/dependency-service.html)
+ * [Configuration](apache-felix-dependency-manager-4/reference/dependency-configuration.html)
+ * [Bundle](apache-felix-dependency-manager-4/reference/dependency-bundle.html)
+ * [Resource](apache-felix-dependency-manager-4/reference/dependency-resource.html)
+* [External Links and Articles](apache-felix-dependency-manager-4/reference/external-links.html)
