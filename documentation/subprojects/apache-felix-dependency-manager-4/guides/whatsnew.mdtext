@@ -66,22 +66,22 @@ For example:
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
           <version>2.5.0</version>
-	  <extensions>true</extensions>
+          <extensions>true</extensions>
           <configuration>
-            <instructions>
-	      <Bundle-Name>Test</Bundle-Name>
-	      <Bundle-SymbolicName>test</Bundle-SymbolicName>
-	      <Import-Package>*</Import-Package>
-	      <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
-	      <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
-            </instructions>
+    	<instructions>
+    	  <Bundle-Name>Test</Bundle-Name>
+    	  <Bundle-SymbolicName>test</Bundle-SymbolicName>
+    	  <Import-Package>*</Import-Package>
+    	  <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
+    	  <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
+    	</instructions>
           </configuration>
           <dependencies>
-            <dependency>
-              <groupId>org.apache.felix</groupId>
-              <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
-              <version>4.0.0</version>
-            </dependency>
+    	<dependency>
+    	  <groupId>org.apache.felix</groupId>
+    	  <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+    	  <version>4.0.0</version>
+    	</dependency>
           </dependencies>
         </plugin>
       </plugins>
