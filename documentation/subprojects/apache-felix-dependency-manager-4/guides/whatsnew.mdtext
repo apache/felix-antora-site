@@ -74,7 +74,6 @@ For example:
 	    <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
           </instructions>
         </configuration>
-
         <dependencies>
           <dependency>
             <groupId>org.apache.felix</groupId>
