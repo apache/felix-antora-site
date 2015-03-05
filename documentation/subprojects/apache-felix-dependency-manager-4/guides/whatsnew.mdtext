@@ -59,7 +59,6 @@ You can also check http://www.aqute.biz/Bnd/MetaType for more information about 
 use a "_plugin" option in the pom, and to declare a dependency inside the "plugin" configuration.
 For example:
 
-    :::xml
     <build>
       <plugins>
         <plugin>
