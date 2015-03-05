@@ -59,31 +59,68 @@ You can also check http://www.aqute.biz/Bnd/MetaType for more information about 
 use a "_plugin" option in the pom, and to declare a dependency inside the "plugin" configuration.
 For example:
 
-    <build>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.5.0</version>
-          <extensions>true</extensions>
-          <configuration>
-    	<instructions>
-    	  <Bundle-Name>Test</Bundle-Name>
-    	  <Bundle-SymbolicName>test</Bundle-SymbolicName>
-    	  <Import-Package>*</Import-Package>
-    	  <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
-    	  <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
-    	</instructions>
-          </configuration>
-          <dependencies>
-    	<dependency>
-    	  <groupId>org.apache.felix</groupId>
-    	  <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
-    	  <version>4.0.0</version>
-    	</dependency>
-          </dependencies>
-        </plugin>
-      </plugins>
-    </build>
+    :::xml
+    <?xml version="1.0"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    	<modelVersion>4.0.0</modelVersion>
+    	<properties>
+    		<osgi.version>4.2.0</osgi.version>
+    	</properties>
+    	<name>Hello World Using Dependency Manager Annotations</name>
+    	<groupId>org.apache.felix</groupId>
+    	<artifactId>org.apache.felix.dependencymanager.samples.annotation.hello</artifactId>
+    	<version>3.0.0-SNAPSHOT</version>
+    	<packaging>bundle</packaging>
+    	<dependencies>
+    		<dependency>
+    			<groupId>${pom.groupId}</groupId>
+    			<artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+    			<version>3.0.0</version>
+    		</dependency>
+    	</dependencies>
+    	<build>
+    		<plugins>
+    			<plugin>
+    				<groupId>org.apache.maven.plugins</groupId>
+    				<artifactId>maven-compiler-plugin</artifactId>
+    				<configuration>
+    					<source>1.5</source>
+    					<target>1.5</target>
+    				</configuration>
+    			</plugin>
+    			<plugin>
+    				<groupId>org.apache.felix</groupId>
+    				<artifactId>maven-bundle-plugin</artifactId>
+    				<version>2.3.4</version>
+    				<extensions>true</extensions>
+    				<configuration>
+    					<instructions>
+    						<Bundle-Name>Hello World Using Dependency Manager Annotations</Bundle-Name>
+    						<Bundle-SymbolicName>org.apache.felix.dependencymanager.samples.annotation.hello</Bundle-SymbolicName>
+    						<Import-Package>*</Import-Package>
+    						<Private-Package>org.apache.felix.dependencymanager.samples.annotation.hello</Private-Package>
+    					</instructions>
+    				</configuration>
+    			</plugin>
+    			<plugin>
+    				<groupId>org.apache.felix</groupId>
+    				<artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+    				<version>3.0.0</version>
+    				<executions>
+    					<execution>
+    						<goals>
+    							<goal>scan</goal>
+    						</goals>
+    						<configuration>
+    							<log>info</log>
+    						</configuration>
+    					</execution>
+    				</executions>
+    			</plugin>
+    		</plugins>
+    	</build>
+    </project>
+
     
 
