@@ -60,28 +60,70 @@ use a "_plugin" option in the pom, and to declare a dependency inside the "plugi
 For example:
 
     :::xml
-    <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.5.0</version>
-	<extensions>true</extensions>
-        <configuration>
-          <instructions>
-	    <Bundle-Name>Test</Bundle-Name>
-	    <Bundle-SymbolicName>test</Bundle-SymbolicName>
-	    <Import-Package>*</Import-Package>
-	    <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
-	    <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
-          </instructions>
-        </configuration>
-        <dependencies>
-          <dependency>
+    <?xml version="1.0"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+      <packaging>bundle</packaging>
+      <groupId>test</groupId>
+      <artifactId>test.dmannotations.withbndplugininvokedfrompom</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <name>Test</name>
+      <dependencies>
+        <dependency>
+          <groupId>org.osgi</groupId>
+          <artifactId>org.osgi.core</artifactId>
+          <version>4.2.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.osgi</groupId>
+          <artifactId>org.osgi.compendium</artifactId>
+          <version>4.2.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.shell</artifactId>
+          <version>1.4.1</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+          <version>4.0.0</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <source>1.7</source>
+              <target>1.7</target>
+            </configuration>
+          </plugin>
+          <plugin>
             <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
-            <version>4.0.0</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>2.5.0</version>
+    	    <extensions>true</extensions>
+            <configuration>
+              <instructions>
+    	    <Bundle-Name>Test</Bundle-Name>
+    	    <Bundle-SymbolicName>test</Bundle-SymbolicName>
+    	    <Import-Package>*</Import-Package>
+    	    <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
+    	    <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
+              </instructions>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+                <version>4.0.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </project>
 
