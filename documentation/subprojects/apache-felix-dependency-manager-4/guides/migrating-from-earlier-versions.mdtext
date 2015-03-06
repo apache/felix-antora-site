@@ -14,6 +14,55 @@ DependencyManager 4.0 has some API changes that need to be taken into account wh
 * The ComponentStateListener interface has changed: it is now providing a single "changed(Component c, ComponentState state)" method.
 * The DependencyManager 4 Shell commands are no longer available for framework specific shell implementations, and support the gogo shell only.
 * The TemporalServiceDependency interface has been removed.
+* The Annotations processor is not generating anymore the Import-Service/Export Service by default (no need to specify the "build-import-export-service=false" option in the
+annotations plugin if you don't need to generate automatically the deprecated headers).
+* The Dependency Manager metatype annotations are now deprecated and it is encouraged to use standard bnd metatypes annotation instead.
+See org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/annot/DictionaryConfiguration.java for an example.
+You can also check http://www.aqute.biz/Bnd/MetaType for more information about the bnd metatypes annotations.
+* Dependency Manager is now fully built using bndtools, and there is no Maven annotation plugin anymore. However, the workaround is simply the 
+use a "_plugin" option in the pom, and to declare a dependency inside the "plugin" configuration.
+Notice that in the R1 version, we are not pushing DM distribution to maven, so you have to do manually push the DM artifacts in your own nexus server. 
+We'll try to release DM artifacts to maven central in the next release (R2).
+For example:
+
+    :::xml
+    <project ...>
+      <dependencies>
+        ...
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+          <version>4.0.0</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          ...    
+          <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>2.5.0</version>
+    	    <extensions>true</extensions>
+            <configuration>
+               <instructions>
+    	       <Bundle-Name>Test</Bundle-Name>
+    	       <Bundle-SymbolicName>test</Bundle-SymbolicName>
+    	       <Import-Package>*</Import-Package>
+    	       <Private-Package>test.dmannotations.withbndplugininvokedfrompom</Private-Package>
+    	       <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
+               </instructions>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+                <version>4.0.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </project>
 
 # Migrating from version 2
 
