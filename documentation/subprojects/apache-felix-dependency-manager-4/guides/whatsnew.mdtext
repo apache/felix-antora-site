@@ -57,7 +57,9 @@ You can also check http://www.aqute.biz/Bnd/MetaType for more information about 
 
 * Dependency Manager is now fully built using bndtools, and there is no Maven annotation plugin anymore. However, the workaround is simply the 
 use a "_plugin" option in the pom, and to declare a dependency inside the "plugin" configuration.
-
+Notice that in the R1 version, we are not pushing DM distribution to maven, so you have to do manually push the DM artifacts in your own nexus server. 
+We'll try to release DM artifacts to maven central in the next release (R2).
+ 
 For example:
 
     :::xml
