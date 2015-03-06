@@ -246,7 +246,7 @@ Next, here is our DictionaryImpl that will use the bnd "Configurable" helper in 
     import org.osgi.service.log.LogService;
     import aQute.bnd.annotation.metatype.Configurable;
 
-    @FactoryConfigurationAdapterService(factoryPidClass = DictionaryConfiguration.class, propagate = true, updated = "updated")factoryPid="DictionaryImplFactoryPid")
+    @FactoryConfigurationAdapterService(factoryPidClass = DictionaryConfiguration.class, propagate = true, updated = "updated")
     public class DictionaryImpl implements DictionaryService {
         private final CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
 
