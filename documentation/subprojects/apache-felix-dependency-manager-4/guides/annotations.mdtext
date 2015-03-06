@@ -174,7 +174,7 @@ you want, from ConfigAdmin ...
         * We store all configured words in a thread-safe data structure, because ConfigAdmin
         * may invoke our updated method at any time.
         */
-       private CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
+       private final CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
     
        /**
         * Our Dictionary language.
@@ -215,35 +215,57 @@ properties are changing.  Every properties are propagated to our service propert
 unless the  properties starting with a dot ("."). Configuration properties starting  with 
 a dot (".") are considered private and are not propagated.
 
-Notice that this annotation also supports optional meta type attributes, which allow to 
-customize the ConfigAdmin GUI, with custom  messages, like heading/property title,
-property type, property  description, etc ...). So, let's revisit our DisctionaryImpl 
-service,  but this time with meta type support:
+Notice that you can mix standard bnd metatype annotations with DM annotations, in order
+describe configurations meta data (default values, property labels, etc ... see  http://www.aqute.biz/Bnd/MetaType).
+So, let's revisit our DisctionaryImpl service,  but this time with meta type support:
+
+First, we define an interface for describing our configuration metadata, with bnd metatype annotations:
 
     :::java
-    @FactoryConfigurationAdapterService(factoryPid="DictionaryImplFactoryPid",
-        propagate=true,
-        updated="updated",
-        heading="Dictionary Services",
-        description="Declare here some Dictionary instances, allowing to instantiates some DictionaryService services for a given dictionary language",
-        metadata={
-           @PropertyMetaData(
-               heading="Dictionary Language",
-               description="Declare here the language supported by this dictionary. " +
-                  "This property will be propagated with the Dictionary Service properties.",
-               defaults={"en"},
-               id="lang",
-               cardinality=0),
-           @PropertyMetaData(
-               heading="Dictionary words",
-               description="Declare here the list of words supported by this dictionary.",
-               defaults={"hello", "world"},
-               id="words",
-               cardinality=Integer.MAX_VALUE)
-        }
-    )
+    import java.util.List;
+
+    import aQute.bnd.annotation.metatype.Meta.AD;
+    import aQute.bnd.annotation.metatype.Meta.OCD;
+
+    @OCD(name="Spell Checker Dictionary (annotation)", factory = true,     
+         description = "Declare here some Dictionary instances, ")
+    public interface DictionaryConfiguration {
+        @AD(description = "Describes the dictionary language", deflt = "en")
+        String lang();
+
+        @AD(description = "Declare here the list of words supported by this dictionary. This properties starts with a Dot and won't be propagated with Dictionary OSGi service properties")
+        List<String> words();
+    }
+
+Next, here is our DictionaryImpl that will use the bnd "Configurable" helper in order to retrieve the actual configuration:
+
+    :::java
+    import org.apache.felix.dm.annotation.api.FactoryConfigurationAdapterService;
+    import org.apache.felix.dm.annotation.api.ServiceDependency;
+    import org.apache.felix.dm.annotation.api.Start;
+    import org.osgi.service.log.LogService;
+    import aQute.bnd.annotation.metatype.Configurable;
+
+    @FactoryConfigurationAdapterService(factoryPidClass = DictionaryConfiguration.class, propagate = true, updated = "updated")factoryPid="DictionaryImplFactoryPid")
     public class DictionaryImpl implements DictionaryService {
-        ... code same as before
+        private final CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
+
+        protected void updated(Dictionary<String, ?> config) {
+            if (config != null) {
+                // We use the bnd "Configurable" helper in order to get an implementation for our DictionaryConfiguration interface.
+	        DictionaryConfiguration cnf = Configurable.createConfigurable(DictionaryConfiguration.class, config);
+
+                m_lang = cnf.lang();
+                m_words.clear();
+                for (String word : cnf.words()) {
+                    m_words.add(word);
+                }
+            }
+        }
+    
+       public boolean checkWord(String word) {
+          return m_words.contains(word);
+       }
     }
 
 
@@ -326,27 +348,7 @@ annotation also supports meta type attributes.
 
 ## How to run the sample code
 
-Install the following bundles:
+Just import the Dependency source distribution in bndtools and check the following samples:
 
-    org.apache.felix.configadmin
-    org.apache.felix.metatype
-    org.apache.felix.http.jetty
-    org.apache.felix.webconsole
-
-    org.apache.felix.dependencymanager
-    org.apache.felix.dependencymanager.shell
-    org.apache.felix.dependencymanager.runtime
-    org.apache.felix.dependencymanager.samples.annotation
-
-Start felix.
-
-Go to web console: in the Configuration panel, edit the "Dictionary  Services" Configuration. By default, an English  dictionary is displayed. Just&nbsp; click on "save", then refresh your web  browser (click on refresh): you will see a new dictionary service  instance. At this point, a DictionaryService service will be enabled  (with the service property "lang=en"),&nbsp; and the SpellCheck component  will be injected with it. Then you should see the "spellcheck" command,  when typing&nbsp; "help" on the gogo shell.
-
-Just type "spellcheck hello", and the command should reply a fantastic message, like "word hello is correct".
-
-You can also click on the "Aspect Dictionary" button, in order to decorate the 
-English dictionary with some custom words. By default, the  "aspect" word is 
-pre configured, but you can click on the "+" button in  order to add more words. 
-Then click on Save. At this point, the English  DictionaryService will be decorated with 
-the aspect service. So, now, if  you type "spellcheck aspect", then the message 
-"word aspect is  correct" should be displayed.
+* org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/annot/README
+* org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/README
