@@ -46,3 +46,7 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 * Added a benchmark tool for dependency manager (not released, only available from the trunk, see dependencymanager/org.apache.felix.dependencymanager.benchmark/README
 
 * The Annotations "Factory Sets" are deprecated and have been replaced by a nice api exported by the runtime bundle. See FELIX-4684
+
+* The source distribution includes many sample codes which can be run directly under Eclipse and BndTools. The samples are available in the 
+org.apache.felix.dependencymanager.samples/ module.
+Please consult org.apache.felix.dependencymanager.samples/README.samples for up to date instructions on how to execute the various examples.
