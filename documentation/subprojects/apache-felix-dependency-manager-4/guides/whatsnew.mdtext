@@ -40,7 +40,7 @@ See FELIX-2706
 Use "add-require-capability=true" option in the plugin declaration property to enable this new feature (see FELIX-4676):
 **  -plugin: org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin; add-require-capability=true
 
-* The Configuration Dependency Configuration dependency now supports a "name" attribute, allowing to dynamically configure configuration pids from the @Init method. see FELIX-4777
+* The Configuration Dependency annotation now supports a "name" attribute, allowing to dynamically configure configuration pids from the @Init method. see FELIX-4777
 
 * Added a benchmark tool for dependency manager (not released, only available from the trunk, see dependencymanager/org.apache.felix.dependencymanager.benchmark/README
 
