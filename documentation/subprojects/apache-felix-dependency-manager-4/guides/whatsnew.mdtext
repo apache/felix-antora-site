@@ -57,13 +57,8 @@ You can also check http://www.aqute.biz/Bnd/MetaType for more information about 
 
 * Dependency Manager is now fully built using bndtools, and there is no Maven annotation plugin anymore. However, the workaround is simply the 
 use a "_plugin" option in the pom, and to declare a dependency inside the "plugin" configuration.
+
 For example:
-
-
-    :::java
-    @Component
-    public class MyComponentImpl {
-    }
 
     :::xml
     <project ...>
