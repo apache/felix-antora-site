@@ -227,8 +227,7 @@ First, we define an interface for describing our configuration metadata, with bn
     import aQute.bnd.annotation.metatype.Meta.AD;
     import aQute.bnd.annotation.metatype.Meta.OCD;
 
-    @OCD(name="Spell Checker Dictionary (annotation)", factory = true,     
-         description = "Declare here some Dictionary instances, ")
+    @OCD(name="Spell Checker Dictionary (annotation)", factory = true, description = "Declare here some Dictionary instances")         
     public interface DictionaryConfiguration {
         @AD(description = "Describes the dictionary language", deflt = "en")
         String lang();
@@ -249,11 +248,13 @@ Next, here is our DictionaryImpl that will use the bnd "Configurable" helper in 
     @FactoryConfigurationAdapterService(factoryPidClass = DictionaryConfiguration.class, propagate = true, updated = "updated")
     public class DictionaryImpl implements DictionaryService {
         private final CopyOnWriteArrayList<String> m_words = new CopyOnWriteArrayList<String>();
-
+        private String m_lang;
+        
         protected void updated(Dictionary<String, ?> config) {
             if (config != null) {
-                // We use the bnd "Configurable" helper in order to get an implementation for our DictionaryConfiguration interface.
-	        DictionaryConfiguration cnf = Configurable.createConfigurable(DictionaryConfiguration.class, config);
+                // use bnd "Configurable" helper to get an implementation for our DictionaryConfiguration.
+	            DictionaryConfiguration cnf = 
+                   Configurable.createConfigurable(DictionaryConfiguration.class, config);
 
                 m_lang = cnf.lang();
                 m_words.clear();
