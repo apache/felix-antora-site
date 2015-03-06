@@ -344,9 +344,6 @@ used to configure the extra English words from  ConfigAdmin. This annotation nor
 requires a pid parameter, which is  a persistent identifier uniquely identifying our 
 component, but by  default, the pid is set to the fully qualified name of our class.
 
-Notice that like the *@FactoryConfigurationAdapterService*, the *@ConfigurationDependency*
-annotation also supports meta type attributes.
-
 ## How to run the sample code
 
 Just import the Dependency source distribution in bndtools and check the following samples:
