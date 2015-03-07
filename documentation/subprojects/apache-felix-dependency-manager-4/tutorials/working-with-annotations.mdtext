@@ -101,9 +101,9 @@ First, install the following necessary bundles in the "Local" repository:
 
 * Click on Repositories
 * Add the following DM bundles in the "Local" Repository:
-   * org.apache.felix.dependencymanager.jar
-   * org.apache.felix.dependencymanager.shell.jar
-   * org.apache.felix.dependencymanager.runtime.jar
+    * org.apache.felix.dependencymanager.jar
+    * org.apache.felix.dependencymanager.shell.jar
+    * org.apache.felix.dependencymanager.runtime.jar
 
 Now, configure the Felix framework, as well as the list of the bundles to be executed:
 
