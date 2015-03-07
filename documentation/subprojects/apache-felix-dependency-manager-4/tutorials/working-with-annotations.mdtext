@@ -21,10 +21,10 @@ This tutorial outlines how to setup and use such annotations to describe your co
 
 ## Compiling with BndTools:
 
-This section is a step-by-step tutorial showing how to create a "greeting" BndTools project under BndTools and how to use Dependency Manager annotations.
+This section is a step-by-step tutorial showing how to create a "greeting" project under BndTools and how to use Dependency Manager annotations.
 BndTools is a nice Eclipse plugin on top of the popular "Bnd" builder tool ([See The BndTools home page](http://bndtools.org/)).
 
-It is assumed that you have installed bndtools with a properly configured cnf project (using Bundle-Hup configuration).
+It is assumed that you have installed bndtools with a properly configured cnf project (using Bundle-Hub configuration).
 
 ### Add DM annotation.jar to the build repository and to the buildpath
 
@@ -54,7 +54,7 @@ Now we have properly configured the DM annotation plugin in bndtools, we can the
 
 ### Creating the HelloWorld component
 
-Since we have configured the buildpath, we are now ready to create our first HelloWorld component using annotation.
+Since we have configured the buildpath, we are now ready to create our first HelloWorld component using annotations.
 Create the following class in the greeting project:
 
     :::java
