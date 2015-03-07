@@ -53,6 +53,7 @@ configurations data, some descriptions, the cardinality of configuration values,
      
  Next, we define our Printer service which instantiates the PrinterConfiguration using the *Configurable" bndlib helper:
 
+     :::java
      package sample;
      import aQute.bnd.annotation.metatype.*;
 
