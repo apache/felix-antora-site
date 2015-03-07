@@ -11,9 +11,11 @@ Annotation attributes:
 * *pid*: Returns the pid for a given service (by default, the pid is the service class name).
 * *pidClass*: Will the the name of the specified class as the the pid for a given service (by default, the pid is the service class name).
 * *propagate*: Returns true if the configuration properties must be published along with the service. Any additional service properties specified directly are merged with these.
-* *heading*: The label used to display the tab name (or section) where the properties are displayed. Example: "Printer Service".
-* *description*: A human readable description of the PID this annotation is associated with. Example: "Configuration for the PrinterService bundle".
-* *metadata*: an array of PropertyMetadaData\[\]({{ refs..path }}) annotation describing property types (see the FactoryConfigurationAdapterService section in the "Writing Components" section.
+* *name*: The name for this configuration dependency. When you give a name a dependency, it won't be evaluated immediately, but after the component's init method has been called, 
+and from the init method, you can then return a map in order to dynamically configure the 
+configuration dependency (the map has to contain a "pid" and/or "propagate" flag, prefixed 
+with the dependency name). Then the dependency will be evaluated after the component init 
+method, and will be injected before the start method. 
 
 Usage Examples
 
@@ -68,3 +70,49 @@ configurations data, some descriptions, the cardinality of configuration values,
              ...
          }
      }
+
+Finally, the last example shows how to dynamically configure a configuration dependency pid from the init method.
+The following component first depends on a "sample.MyComponent" configuration pid. Then the init method gets from that configuration 
+another pid for a second "global" configuration:
+
+    :::java
+    package sample;
+
+    /**
+      * A Service that dynamically defines an extra dynamic configuration dependency from its init method. 
+      */
+    @Component
+    class MyComponent {
+      private Dictionary m_config;
+      
+      // Inject initial Configuration (injected before any other required dependencies)
+      @ConfigurationDependency
+      void componentConfiguration(Dictionary config) {
+           // you must throw an exception if the configuration is not valid
+           m_config = config;
+      }
+      
+      /**
+       * All unnamed dependencies are injected: we can now configure our dynamic configuration whose dependency name is "global".
+       */
+      @Init
+      Map init() {
+          return new HashMap() {{
+              put("global.pid", m_config.get("globalConfig.pid"));
+              put("global.propagate", m_config.get("globalConfig.propagate"));
+          }};
+      } 
+ 
+      // Injected after init, and dynamically configured by the init method.
+      @ConfigurationDependency(name="global")
+      void globalConfiguration(Dictionary globalConfig) {
+           // you must throw an exception if the configuration is not valid
+      }
+ 
+      /**
+       * All dependencies are injected and our service is now ready to be published.
+       */
+      @Start
+      void start() {
+      }
+  }
