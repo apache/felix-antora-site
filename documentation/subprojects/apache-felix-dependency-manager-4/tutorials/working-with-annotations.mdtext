@@ -101,9 +101,9 @@ First, install the following necessary bundles in the "Local" repository:
 
 * Click on Repositories
 * Add the following DM bundles in the "Local" Repository:
-** org.apache.felix.dependencymanager.jar
-** org.apache.felix.dependencymanager.shell.jar
-** org.apache.felix.dependencymanager.runtime.jar
+   * org.apache.felix.dependencymanager.jar
+   * org.apache.felix.dependencymanager.shell.jar
+   * org.apache.felix.dependencymanager.runtime.jar
 
 Now, configure the Felix framework, as well as the list of the bundles to be executed:
 
@@ -112,15 +112,15 @@ Now, configure the Felix framework, as well as the list of the bundles to be exe
 * In the Core Runtime, Select the latest version of Felix currently available
 * Select Execution Env=JavaSE-1.7
 * In the "Run Bundles" section, add the following list:
- * org.apache.felix.configadmin.jar
- * org.apache.felix.metatype.jar
- * org.apache.felix.log.jar
- * org.apache.felix.gogo.command
- * org.apache.felix.gogo.runtime
- * org.apache.felix.gogo.shell
- * org.apache.felix.dependencymanager
- * org.apache.felix.dependencymanager.runtime
- * org.apache.felix.dependencymanager.shell
+   * org.apache.felix.configadmin.jar
+   * org.apache.felix.metatype.jar
+   * org.apache.felix.log.jar
+   * org.apache.felix.gogo.command
+   * org.apache.felix.gogo.runtime
+   * org.apache.felix.gogo.shell
+   * org.apache.felix.dependencymanager
+   * org.apache.felix.dependencymanager.runtime
+   * org.apache.felix.dependencymanager.shell
 * Then save the configuration (Press Ctrl-s).
 
 Now, Click on "Run OSGi". You should now see in the Console the Gogo Shell prompt with the
