@@ -27,4 +27,6 @@ However, it's quite easy to add your own custom type of dependency too, as is de
 
 All dependencies share a common API which you can implement yourself if you need a special type of dependency. Whilst not entirely trivial, this allows you to create your own types of dependencies. This can be useful for various scenarios where you want to have components that depend on things that are not services, bundles or configuration.
 
-An example implementation can be found in one of the many test cases for the dependency manager: ` CustomDependencyTest `. This implements a dependency that can be made available and unavailable by manipulating a ` Toggle ` which can be made available or unavailable. You basically have to implement two interfaces: ` Dependency ` and ` DependencyActivation `. The former contains the bulk of the methods that you will need to implement and depending on the actual features you want your dependency to support, you have to implement some or all of them. The JavaDoc for each method plus the example code should get you started. The latter contains a couple of life cycle methods to start and stop tracking your custom dependency.
+An example implementation can be found in the samples available in the source distribution. 
+In the org.apache.felix.dependencymanager.samples module, you can refer to src/org/apache/felix/dependencymanager/samples/customdep/README file,
+which describes a custom "PathDependency" that tracks files that are added or removed from /tmp/ directory.
