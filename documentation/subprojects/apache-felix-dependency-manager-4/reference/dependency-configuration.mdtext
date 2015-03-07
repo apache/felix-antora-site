@@ -98,16 +98,16 @@ another pid for a second "global" configuration:
          */
         @Init
         Map init() {
-    	return new HashMap() {{
-    	    put("global.pid", m_config.get("globalConfig.pid"));
-    	    put("global.propagate", m_config.get("globalConfig.propagate"));
-    	}};
+            Map properties = new HashMap();
+    	    properties.put("global.pid", m_config.get("globalConfig.pid"));
+    	    properties.put("global.propagate", m_config.get("globalConfig.propagate"));
+    	    return properties;
         } 
      
         // Injected after init, and dynamically configured by the init method.
         @ConfigurationDependency(name="global")
         void globalConfiguration(Dictionary globalConfig) {
-    	// you must throw an exception if the configuration is not valid
+    	    // you must throw an exception if the configuration is not valid
         }
     
         /**
