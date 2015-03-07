@@ -118,7 +118,7 @@ OSGi Service will be provided with a *dm.factory.name* service property matching
 specified factoryName attribute. The ComponentFactory will be provided once the 
 component bundle is started, even if required dependencies are not available, 
 and the ComponentFactory will be unregistered from the OSGi registry once the component 
-bundle is stopped or being updated.. 
+bundle is stopped or disposed using the *ComponentInstance.dispose()* method.
 
 ----
 **`factoryConfigure`**    
