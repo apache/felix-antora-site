@@ -101,9 +101,9 @@ First, install the following necessary bundles in the "Local" repository:
 
 * Click on Repositories
 * Add the following DM bundles in the "Local" Repository:
- * org.apache.felix.dependencymanager.jar
- * org.apache.felix.dependencymanager.shell.jar
- * org.apache.felix.dependencymanager.runtime.jar
+** org.apache.felix.dependencymanager.jar
+** org.apache.felix.dependencymanager.shell.jar
+** org.apache.felix.dependencymanager.runtime.jar
 
 Now, configure the Felix framework, as well as the list of the bundles to be executed:
 
@@ -171,7 +171,7 @@ Since Bnd provides a Ant task, you can use the bnd directives above with the fol
 When compiling with Maven, you have to invoke the Dependency Manager Bnd plugin, using the special "_plugin" directive.
 In the R1 Dependency Manager distribution, the bundles are not published to maven central, and you
 have to manually install the org.apache.felix.dependencymanager.annotation.jar file to your local repository, or to your own corporate nexus server.
-([See this link][http://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html] to manually install the dm annotation jar to your local repository.)
+([See this link](http://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html) to manually install the dm annotation jar to your local repository.)
 
     :::xml
     <project ...>
