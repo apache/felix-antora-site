@@ -66,9 +66,9 @@ Create the following class in the greeting project:
     @Component
     public class HelloWorld {
         @Start
-	 void start() {
-		 System.out.println("Hello World");
-	 }
+        void start() {
+            System.out.println("Hello World");
+        }
     }
 
 ### Finalize the bnd configuration
@@ -79,7 +79,7 @@ and we also add the -plugin bnd directive in order to ask bnd to call the DM ann
 * Click on the bnd.bnd file of the greeting project
 * Click on Contents and add the "greeting" package in the Private Packages
 * Finally, declare the DM annotation plugin by clicking on the "source" tab, and add the following:
- * -plugin org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug
+    * -plugin org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug
 * Save configuration (Press Ctrl-s)
 * Click on "Build" and on "Rebuild"
 
@@ -112,15 +112,15 @@ Now, configure the Felix framework, as well as the list of the bundles to be exe
 * In the Core Runtime, Select the latest version of Felix currently available
 * Select Execution Env=JavaSE-1.7
 * In the "Run Bundles" section, add the following list:
-   * org.apache.felix.configadmin.jar
-   * org.apache.felix.metatype.jar
-   * org.apache.felix.log.jar
-   * org.apache.felix.gogo.command
-   * org.apache.felix.gogo.runtime
-   * org.apache.felix.gogo.shell
-   * org.apache.felix.dependencymanager
-   * org.apache.felix.dependencymanager.runtime
-   * org.apache.felix.dependencymanager.shell
+    * org.apache.felix.configadmin.jar
+    * org.apache.felix.metatype.jar
+    * org.apache.felix.log.jar
+    * org.apache.felix.gogo.command
+    * org.apache.felix.gogo.runtime
+    * org.apache.felix.gogo.shell
+    * org.apache.felix.dependencymanager
+    * org.apache.felix.dependencymanager.runtime
+    * org.apache.felix.dependencymanager.shell
 * Then save the configuration (Press Ctrl-s).
 
 Now, Click on "Run OSGi". You should now see in the Console the Gogo Shell prompt with the
