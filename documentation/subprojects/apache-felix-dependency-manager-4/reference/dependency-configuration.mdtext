@@ -9,6 +9,7 @@ A configuration dependency is always required, and allows you to depend on the a
 Annotation attributes:
 
 * *pid*: Returns the pid for a given service (by default, the pid is the service class name).
+* *pidClass*: Will the the name of the specified class as the the pid for a given service (by default, the pid is the service class name).
 * *propagate*: Returns true if the configuration properties must be published along with the service. Any additional service properties specified directly are merged with these.
 * *heading*: The label used to display the tab name (or section) where the properties are displayed. Example: "Printer Service".
 * *description*: A human readable description of the PID this annotation is associated with. Example: "Configuration for the PrinterService bundle".
@@ -29,33 +30,40 @@ In the following example, the "Printer" component depends on a configuration who
         }
     }
 
-This other example shows how to specify a configuration dependency, as well as meta data used to customize the WebConsole GUI. Using these meta data, you can specify for example the default value for your configurations data, some descriptions, the cardinality of configuration values, etc ...
+This other example shows how to specify a configuration dependency, as well as meta data used to customize the 
+WebConsole GUI. Using these meta data, you can specify for example the default value for your 
+configurations data, some descriptions, the cardinality of configuration values, etc ...
+(we use here standard bnd metatype annotations, [see bnd metatype documentation here](http://www.aqute.biz/Bnd/MetaType).
 
-    :::java
-    package org.apache.felix.sample;
-    
-    @Component
-    public class Printer {
-        @ConfigurationDependency(
-            heading = "Printer Service",
-            description = "Declare here parameters used to configure the Printer service",
-            metadata = {
-                @PropertyMetaData(heading = "Ip Address",
-                                  description = "Enter the ip address for the Printer service",
-                                  defaults = { "127.0.0.1" },
-                                  type = String.class,
-                                  id = "IPADDR",
-                                  cardinality = 0),
-                @PropertyMetaData(heading = "Port Number",
-                                  description = "Enter the port number for the Printer service",
-                                  defaults = { "4444" },
-                                  type = Integer.class,
-                                  id = "PORTNUM",
-                                  cardinality = 0)
-                 }
-        )
-        void updated(Dictionary config) {
-            // load configuration from the provided dictionary.
-        }
-    }
+ First, we define the configuration metadata, using standard bndtools metatatype annotations:
 
+     :::java
+     package sample;
+     import aQute.bnd.annotation.metatype.Meta.AD;
+     import aQute.bnd.annotation.metatype.Meta.OCD;
+
+     @OCD(description = "Declare here the Printer Configuration.")
+     public interface PrinterConfiguration {
+         @AD(description = "Enter the printer ip address")
+         String ipAddress();
+
+         @AD(description = "Enter the printer address port number.")
+         int portNumber();
+     }
+     
+ Next, we define our Printer service which instantiates the PrinterConfiguration using the *Configurable" bndlib helper:
+
+     package sample;
+     import aQute.bnd.annotation.metatype.*;
+
+     @Component
+     public class Printer {
+         @ConfigurationDependency(pidClass = PrinterConfiguration.class) // Will use pid "sample.PrinterConfiguration"
+         void updated(Dictionary props) {
+             // load configuration from the provided dictionary, or throw an exception of any configuration error.
+             PrinterConfig cnf = Configurable.createConfigurable(PrinterConfig.class, props);
+             String ip = cnf.ipAddress();
+             int port = cnf.portNumber();
+             ...
+         }
+     }
