@@ -9,11 +9,11 @@ You can either use the Java API or the Java Annotations and this reference secti
 There are different types of Dependency Manager components:
 
 * [*Component*](component-singleton.html): Components are the main building blocks for OSGi applications. They can publish themselves as a service, and/or they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
-* [*Aspect Service*](component-singleton.html): A service that provides a non-functional aspect on top of an existing service. In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service used by the client. An Aspect Service first tracks a target service and is created once the target service is detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case, the ranking of the Aspect service is used to chain aspects in  the proper order).
-* [*Adapter Service*](component-singleton.html): A Service that adapts another existing service into a new one. Like with aspects, sometimes you want to create adapters for certain services, which add certain behavior that results in the publication of (in this case) a different service. Adapters can dynamically be added and removed and allow you to keep your basic services implementations clean and simple, adding extra features on top of them in a modular way.
-* [*Bundle Adapter Service*](component-singleton.html): creates an OSGi service a service on top of a given bundle.
-* [*Resource Adapter Service*](component-singleton.html): creates an OSGi service on top of a specific Resource.
-* [*Factory Configuration Adapter Service*](component-singleton.html): creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
+* [*Aspect Service*](component-aspect.html): A service that provides a non-functional aspect on top of an existing service. In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service used by the client. An Aspect Service first tracks a target service and is created once the target service is detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case, the ranking of the Aspect service is used to chain aspects in  the proper order).
+* [*Adapter Service*](component-adapter.html): A Service that adapts another existing service into a new one. Like with aspects, sometimes you want to create adapters for certain services, which add certain behavior that results in the publication of (in this case) a different service. Adapters can dynamically be added and removed and allow you to keep your basic services implementations clean and simple, adding extra features on top of them in a modular way.
+* [*Bundle Adapter Service*](component-bundle-adapter.html): creates an OSGi service a service on top of a given bundle.
+* [*Resource Adapter Service*](component-resource-adapter.html): creates an OSGi service on top of a specific Resource.
+* [*Factory Configuration Adapter Service*](component-factory-configuration-adapter.html): creates an OSGi service from ConfigAdmin, using a factoryPid, and a ManagedServiceFactory.
 
 # Life cycle
 
@@ -21,7 +21,7 @@ The dependency manager, as part of a bundle, shares the generic bundle life cycl
 
 Each component you define gets its own life cycle, which is explained in the state diagram below.
 
-![State diagram](./diagrams/statediagram.png)
+<img src="./diagrams/statediagram.png" alt="State diagram"/>
 
 A component is associated with an instance. This instance can either be specified directly, or you can specify its class. If you do the latter, the actual instance will be created lazily. 
 
