@@ -21,7 +21,7 @@ The dependency manager, as part of a bundle, shares the generic bundle life cycl
 
 Each component you define gets its own life cycle, which is explained in the state diagram below.
 
-<img src="./diagrams/statediagram.png" alt="State diagram"/>
+<img src="./diagrams/statediagram.png" alt="State diagram" style="width: 430px"/>
 
 A component is associated with an instance. This instance can either be specified directly, or you can specify its class. If you do the latter, the actual instance will be created lazily. 
 
