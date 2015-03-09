@@ -14,7 +14,7 @@ In a dynamic framework, services can come and go. Components that publish a serv
 
 #### Structure
 
-![Singleton pattern](diagrams/singleton.png)
+<img src="./diagrams/singleton.png" alt="Singleton" style="width: 190px"/>
 
 #### Code Example
 
@@ -49,7 +49,7 @@ In aspect oriented programming, supporting functions are isolated from the main 
 
 #### Structure
 
-![Aspect pattern](diagrams/aspect.png)
+<img src="./diagrams/aspect.png" alt="Aspect" style="width: 190px"/>
 
 #### Code Example
 
@@ -88,7 +88,7 @@ Like with aspects, sometimes you want to create adapters for certain services, w
 
 #### Structure
 
-![Adapter pattern](diagrams/adapter.png)
+<img src="./diagrams/adapter.png" alt="Adapter" style="width: 190px"/>
 
 #### Code Example
 
@@ -129,7 +129,7 @@ Resource adapters are similar to normal adapters, but instead of requiring a ser
 
 #### Structure
 
-![ResourceAdapter pattern](diagrams/resourceadapter.png)
+<img src="./diagrams/resourceadapter.png" alt="Singleton" style="width: 180px"/>
 
 ### Temporal Dependency
 
