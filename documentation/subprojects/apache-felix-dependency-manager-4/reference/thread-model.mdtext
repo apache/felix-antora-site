@@ -40,7 +40,7 @@ Notice that if the ComponentExecutorFactory itself and all its dependent service
 "!" prefix, in order to indicate that those components must not wait for a ComponentExecutorFactory service (since they are part of the ComponentExecutorFactory implementation !). 
 
 
-# Examples for the usage of the "org.apache.felix.dependencymanager.parallel" property:
+### Examples for the usage of the "org.apache.felix.dependencymanager.parallel" property:
 
     org.apache.felix.dependencymanager.parallel=*   
          -> means all components must be cached until a ComponentExecutorFactory comes up.
@@ -55,7 +55,7 @@ Notice that if the ComponentExecutorFactory itself and all its dependent service
          components whose implementations class names are starting with "foo.threadpool" prefix). 
      
 
-# Examples of a ComponentExecutorFactory that provides a shared threadpool:
+### Examples of a ComponentExecutorFactory that provides a shared threadpool:
 
 First, we define the OSGi bundle context system property to enable parallelism for all DM Components excepts the one which declares the ComponentExecutorFactory:
 
