@@ -17,7 +17,11 @@ the "master" and will immediately execute the Serial Queue tasks (synchronously)
 then a job (J2) for this new event is just enqueued in the Serial Queue, but the other thread returns immediately to the caller, and the job J2 will then be executed by the "master" thread 
 (after J1). 
 
-This mechanism allows to serially handle all Component events (service dependencies) in FIFO order without maintaining any locks. 
+This mechanism allows to serially handle all Component events (service dependencies) in FIFO order without maintaining any locks.
+
+The following diagram illustrates the thread model we just described:
+
+<img src="./diagrams/serial-queue.png" width="25%">
 
 # Enabling parallelism with a ComponentExecutorFactory
 
@@ -28,6 +32,10 @@ But when you register in the OSGi service registry a ComponentExecutorFactory, t
 typically a shared threadpool configured by yourself. And all the Component Serial Queues will be executed using the Executor returned by the getExecutorFor(Component) method. However, 
 jobs scheduled in the Serial Queue of a given Component are still executed one at a time, in FIFO order and the Component remains single threaded, and independent Components may then each 
 be managed and activated concurrently with respect to each other.
+
+Here is a diagram which illustrates all this:
+
+<img src="./diagrams/concurrent-serial-queue.png" width="25%">
 
 If you want to ensure that all Components are initialized after the ComponentExecutorFactory is registered in the OSGI registry, you can use the "org.apache.felix.dependencymanager.parallel" 
 OSGi system property which specifies the list of components which must wait for the ComponentExecutorFactory service. This property value can be set to a wildcard ("*"), or a list of 
