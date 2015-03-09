@@ -1,11 +1,16 @@
-#### Resource Adapters
+# Resource Adapters
 
 Resource adapters work just like adapters, but instead of working with services, they work with resources. Resources, represented as a URL, are an abstraction introduced to provide a generic way of dealing with "blobs" and can be resources inside a bundle, filesystem or some kind of data store.
 
+A resource adapter will be applied to any resource that matches the specified filter condition. For each matching resource an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and existing properties from the original resource plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
 
+Usage Example:
 
+	manager.createResourceAdapterService("(&(path=/test)(repository=TestRepository))", true)
+		.setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+		.setImplementation(AdapterServiceImpl.class);
 
-## @ResourceAdapterService
+# @ResourceAdapterService
 
 Resource adapters are things that adapt a resource instead of a service, and 
 provide an adapter service on top of this resource. Resources are an 
@@ -24,11 +29,11 @@ properties will be propagated from the resource URL:
 * *protocol*: the resource URL protocol
 * *port*: the resource URL port 
 
-### Annotation attributes
+## Annotation attributes
 
 TBD
 
-### Usage Examples:
+## Usage Examples:
 
 Here, the "VideoPlayer" service provides a video service on top of any movie 
 resources, with service properties "host"/"port"/"protocol"/"path" extracted 

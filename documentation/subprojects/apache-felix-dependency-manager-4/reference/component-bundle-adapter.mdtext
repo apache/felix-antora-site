@@ -1,6 +1,4 @@
-
-
-## @BundleAdapterService
+# Bundle Adapters
 
 Bundle adapters are similar to AdapterService, but instead of adapting a 
 service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
@@ -13,7 +11,18 @@ with the specified interface and with service properties found from the
 original bundle OSGi manifest headers plus any extra properties you supply 
 here. If you declare the original bundle as a member it will be injected. 
 
-### Annotation attributes:
+An example:
+
+	manager.createBundleAdapterService(Bundle.INSTALLED | Bundle.RESOLVED | Bundle.ACTIVE, 
+		"(Bundle-SymbolicName=org.apache.felix.dependencymanager)", true)
+		.setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+		.setImplementation(AdapterServiceImpl.class);
+
+# @BundleAdapterService
+
+The following attributes are supported.
+
+## Annotation attributes:
 
 ----
 **`filter`**    
@@ -62,7 +71,7 @@ exposed service properties.
 Sets the static method used to create the BundleAdapterService implementation 
 instance.
 
-### Usage Examples
+## Usage Examples
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
