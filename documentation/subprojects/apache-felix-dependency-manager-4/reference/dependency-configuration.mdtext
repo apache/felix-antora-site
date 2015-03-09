@@ -1,6 +1,8 @@
-##### Configuration
+Title: Apache Felix Dependency Manager - Configuration Dependency
 
-A configuration dependency is always required, and allows you to depend on the availability of a valid configuration for your component. Optional configuration dependencies are not supported because in that case you can just as well register as a ` ManagedService ` yourself.
+# Configuration Dependency
+
+A configuration dependency is always required, and allows you to depend on the availability of a valid configuration for your component. Optional configuration dependencies are not supported because in that case you can just as well register as a `ManagedService` yourself.
 
 ## @ConfigurationDependency
 

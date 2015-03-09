@@ -1,3 +1,5 @@
+Title: Apache Felix Dependency Manager - Singleton Component
+
 # Component
 
 Components are the main building blocks for OSGi applications. They can publish themselves as a service, and they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.

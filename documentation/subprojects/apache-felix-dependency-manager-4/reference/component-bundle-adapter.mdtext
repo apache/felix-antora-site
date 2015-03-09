@@ -1,3 +1,5 @@
+Title: Apache Felix Dependency Manager - Bundle Adapter
+
 # Bundle Adapters
 
 Bundle adapters are similar to AdapterService, but instead of adapting a 

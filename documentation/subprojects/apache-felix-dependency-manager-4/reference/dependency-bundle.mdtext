@@ -1,10 +1,10 @@
-##### Bundle
+Title: Apache Felix Dependency Manager - Bundle Dependency
+
+# Bundle Dependency
 
 A bundle dependency allows you to depend on a bundle in a certain set of states, as indicated by a state mask. You can also use a filter condition that is matched against all manifest entries. Finally you can provide a reference to an existing bundle.
 
-
-
-## @BundleDependency
+# @BundleDependency
 
 A bundle dependency allows you to depend on a bundle in a certain set of states (INSTALLED\|RESOLVED\|STARTED\|...), as indicated by a state mask. You can also use a filter condition that is matched against all manifest entries. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
 

@@ -1,3 +1,5 @@
+Title: Apache Felix Dependency Manager - Factory Configuration Adapter Service
+
 # Factory Configuration Adapter Service
 
 A factory configuration adapter service creates an adapter for each matching configuration in Configuration Admin. For each new factory configuration matching the factoryPid, an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and with the specified adapter service properties. Depending on the propagate parameter, every public factory configuration properties (which don't start with ".") will be propagated along with the adapter service properties. It will also inherit all dependencies.

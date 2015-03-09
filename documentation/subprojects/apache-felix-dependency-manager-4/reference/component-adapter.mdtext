@@ -1,3 +1,5 @@
+Title: Apache Felix Dependency Manager - Adapter
+
 # Adapters
 
 Adapters, like [aspects](component-aspect.html), are used to "extend" existing services, and can publish different services based on the existing one. An example would be implementing a management interface.

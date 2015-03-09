@@ -1,9 +1,10 @@
-##### Resource
+Title: Apache Felix Dependency Manager - Resource Dependency
+
+# Resource Dependency
 
 A resource dependency allows you to depend on a resource. A resource is a URL and you can use a filter condition based on protocol, host, port, path and URL.
 
-
-## @ResourceDependency
+# @ResourceDependency
 
 Annotates a method of field as a Resource Dependency. A resource dependency allows you to depend on a resource. Resources are an abstraction that is introduced by the dependency manager, represented as a URL. They can be implemented to serve resources embedded in bundles, somewhere on a file system or in an http content repository server, or database.
 A resource is a URL and you can use a filter condition based on protocol, host, port, and path.

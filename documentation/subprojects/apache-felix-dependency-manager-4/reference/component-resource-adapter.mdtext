@@ -1,3 +1,5 @@
+Title: Apache Felix Dependency Manager - Resource Adapter
+
 # Resource Adapters
 
 Resource adapters work just like adapters, but instead of working with services, they work with resources. Resources, represented as a URL, are an abstraction introduced to provide a generic way of dealing with "blobs" and can be resources inside a bundle, filesystem or some kind of data store.

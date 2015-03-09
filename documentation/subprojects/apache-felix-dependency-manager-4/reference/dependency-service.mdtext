@@ -1,8 +1,10 @@
-##### Service
+Title: Apache Felix Dependency Manager - Service Dependency
+
+# Service Dependency
 
 A service dependency allows you to depend on a service, either by type or by using an additional filter condition. You can even depend on an existing service directly by providing a reference to it.
 
-## @ServiceDependency
+# @ServiceDependency
 
 Annotates a method or a field for injecting a Service Dependency on it. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
 
