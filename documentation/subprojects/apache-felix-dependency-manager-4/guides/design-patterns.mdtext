@@ -14,7 +14,7 @@ In a dynamic framework, services can come and go. Components that publish a serv
 
 #### Structure
 
-{gliffy:name=singleton|space=FELIX|page=Apache Felix Dependency Manager - OSGi Design Patterns|pageid=9374247|align=center|size=L|border=false}
+![Singleton pattern](diagrams/singleton.png)
 
 #### Code Example
 
@@ -49,7 +49,7 @@ In aspect oriented programming, supporting functions are isolated from the main 
 
 #### Structure
 
-{gliffy:name=aspect|space=FELIX|page=Apache Felix Dependency Manager - OSGi Design Patterns|pageid=9374247|align=center|size=L|border=false}
+![Aspect pattern](diagrams/aspect.png)
 
 #### Code Example
 
@@ -88,7 +88,7 @@ Like with aspects, sometimes you want to create adapters for certain services, w
 
 #### Structure
 
-{gliffy:name=adapter|space=FELIX|page=Apache Felix Dependency Manager - OSGi Design Patterns|pageid=9374247|align=center|size=L|border=false}
+![Adapter pattern](diagrams/adapter.png)
 
 #### Code Example
 
@@ -129,7 +129,7 @@ Resource adapters are similar to normal adapters, but instead of requiring a ser
 
 #### Structure
 
-{gliffy:name=resource-adapter|space=FELIX|page=Apache Felix Dependency Manager - OSGi Design Patterns|pageid=9374247|align=center|size=L|border=false}
+![ResourceAdapter pattern](diagrams/resourceadapter.png)
 
 ### Temporal Dependency
 
