@@ -49,4 +49,5 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 
 * The source distribution includes many sample codes which can be run directly under Eclipse and BndTools. The samples are available in the 
 org.apache.felix.dependencymanager.samples/ module.
+Some of the samples require that you configure some pids or factory pids from Web Console, which can be accessed using *http://localhost:8080/system/console/configMgr* URL.
 Please consult org.apache.felix.dependencymanager.samples/README.samples for up to date instructions on how to execute the various examples.
