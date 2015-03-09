@@ -7,9 +7,9 @@
       <x>100</x>
       <y>10</y>
       <w>20</w>
-      <h>80</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>
+    <panel_attributes>bg=black
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -19,9 +19,9 @@
       <x>100</x>
       <y>260</y>
       <w>20</w>
-      <h>80</h>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>
+    <panel_attributes>bg=black
 </panel_attributes>
     <additional_attributes/>
   </element>
