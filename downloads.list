@@ -35,7 +35,6 @@ Bundle Repository|org.apache.felix.bundlerepository|2.0.2|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.0
 Coordinator|org.apache.felix.coordinator|1.0.0
 Dependency Manager 4|org.apache.felix.dependencymanager|r1|src|bin|-
-Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|project
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.4.2
 File Install|org.apache.felix.fileinstall|3.4.0|||doc/changelog.txt
