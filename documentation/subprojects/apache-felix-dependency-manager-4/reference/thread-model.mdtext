@@ -92,7 +92,7 @@ And here is the implementation for our ComponentExecutorFactory:
        package com.acme.management.threadpool;
        import org.apache.felix.dm.ComponentExecutorFactory;
 
-      public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
+       public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
           volatile Executor m_sharedThreadPool;
           
           void updated(Dictionary conf) {
@@ -104,4 +104,9 @@ And here is the implementation for our ComponentExecutorFactory:
               return m_sharedThreadPool; // Use a shared threadpool for all Components
           }
       }
-     
+
+You will find a live example in the source distribution [sample codes](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/):
+
+* [see the bnd.bnd](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/bnd.bnd) which configures the org.apache.felix.dependencymanager.parallel in the *-runproperties* option.
+* [see the executor factory](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/tpool/) sample code and README file to up-to-date informations.
+
