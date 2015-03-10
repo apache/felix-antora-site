@@ -1,6 +1,6 @@
-Title: Apache Felix Dependency Manager - What's new in version 4?
+Title: Dependency Manager - What's new in version 4?
 
-## New thread model
+# New thread model
 
 DependencyManager 4.0 has been significantly reworked to improve support for concurrency. The following principles form the basis of the new concurrency model in DM4.
 
@@ -25,7 +25,7 @@ Here, all components will be handled by Executors provided by the ComponentExecu
 
 You will find a full description of the new thread model in the [Reference](../reference/thread-model.html) section.
 
-## New features
+# New features
 
 In addition, some new features have been implemented in dependency manager:
 
@@ -54,7 +54,7 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 * The Annotations "Factory Sets" are deprecated (FELIX-4684): You can now use a DS-like ComponentFactory API by a nice api which is exported by the runtime bundle.
 See this [example](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/device/annot/DeviceAndParameterFactory.java) from the samples in the source distribution.
 
-## Sample codes
+# Sample code
 
 The source distribution includes many sample codes which can be run directly under Eclipse and BndTools. The samples are available in the 
 org.apache.felix.dependencymanager.samples/ module.

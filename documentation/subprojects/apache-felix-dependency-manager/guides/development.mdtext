@@ -1,12 +1,12 @@
-Title: Apache Felix Dependency Manager - Development
+Title: Dependency Manager - Development
 
 When downloading or checking out the source code, please also consult release/resources/src/README.src for up to date instructions on how to build that particular version.
 
-## Prerequisites
+# Prerequisites
 
 If you are building a released `org.apache.felix.dependencymanager-r<n>-src.zip` artifact, then you also have to extract the `org.apache.felix.dependencymanager-r<n>-deps.zip` in the same directory where you have extracted the source archive. There is no need to do this if you have checked out from the Felix trunk in Subversion.
 
-## Compilation Using gradle:
+# Compilation Using gradle:
 
 - Install Java 7.
 
@@ -26,7 +26,7 @@ If you are building a released `org.apache.felix.dependencymanager-r<n>-src.zip`
 
 	$ ./gradlew check
 
-## Compilation Using Eclipse:
+# Compilation Using Eclipse:
 
 - Install either Eclipse Kepler SR2 or Eclipse Luna.
 - Use the dependency manager folder as the root of your workspace.
