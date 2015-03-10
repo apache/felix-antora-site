@@ -1,4 +1,4 @@
-Title: Resources
+Title: Resource adapters
 
 Resource adapters are a special type of adapters which can adapt a resource into an OSGi service. These resources can be all kinds of resources, e.g. bundle resources, files, database records, anything as long as it can be resolved though a URL.
 
