@@ -56,7 +56,7 @@ fontsize=10</panel_attributes>
       <x>20</x>
       <y>190</y>
       <w>390</w>
-      <h>280</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>bg=gray</panel_attributes>
     <additional_attributes/>
@@ -64,9 +64,9 @@ fontsize=10</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>250</x>
+      <x>260</x>
       <y>310</y>
-      <w>100</w>
+      <w>110</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>tracking
@@ -78,22 +78,9 @@ fontsize=10</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>410</y>
-      <w>100</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>bound
-bg=gray
-fontsize=10</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>40</x>
-      <y>210</y>
-      <w>100</w>
+      <x>60</x>
+      <y>220</y>
+      <w>110</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>inactive
@@ -104,13 +91,13 @@ fontsize=10</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>370</y>
+      <x>60</x>
+      <y>310</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>waiting for
-required instantiated
+    <panel_attributes>instantiated and
+waiting for required
 bg=gray
 fontsize=10</panel_attributes>
     <additional_attributes/>
@@ -118,9 +105,9 @@ fontsize=10</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>230</y>
-      <w>100</w>
+      <x>260</x>
+      <y>220</y>
+      <w>110</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>waiting for
@@ -132,12 +119,12 @@ fontsize=10</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>200</x>
-      <y>320</y>
+      <x>190</x>
+      <y>200</y>
       <w>100</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>active
+    <panel_attributes>Active
 fontsize=10</panel_attributes>
     <additional_attributes/>
   </element>
@@ -157,6 +144,50 @@ fontsize=10</panel_attributes>
     <coordinates>
       <x>350</x>
       <y>140</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>230</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>320</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>260</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>260</y>
       <w>30</w>
       <h>60</h>
     </coordinates>
