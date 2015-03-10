@@ -1,7 +1,5 @@
 Title: Apache Felix Dependency Manager - What's new in version 4?
 
-Title: Apache Felix Dependency Manager - What's new in version 4?
-
 ## new Thread model
 
 DependencyManager 4.0 has been significantly reworked to improve support for concurrency. The following principles form the basis of the new concurrency model in DM4.
