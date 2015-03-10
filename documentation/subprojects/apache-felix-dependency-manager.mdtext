@@ -1,4 +1,4 @@
-Title: Apache Felix Dependency Manager 4
+Title: Dependency Manager 4
 
 Welcome to the Dependency Manager, a great bundle for managing your components and dependencies!
 
@@ -22,39 +22,39 @@ Below is the full table of contents.
 
 ### Step-by-step Tutorials
 
-* [Getting started](apache-felix-dependency-manager-4/tutorials/getting-started.html)
-* [Working with annotations](apache-felix-dependency-manager-4/tutorials/working-with-annotations.html)
-* [Leveraging the shell](apache-felix-dependency-manager-4/tutorials/leveraging-the-shell.html)
+* [Getting started](apache-felix-dependency-manager/tutorials/getting-started.html)
+* [Working with annotations](apache-felix-dependency-manager/tutorials/working-with-annotations.html)
+* [Leveraging the shell](apache-felix-dependency-manager/tutorials/leveraging-the-shell.html)
 
 ### Overviews and Guides
 
-* [History](apache-felix-dependency-manager-4/guides/history.html)
-* [Background](apache-felix-dependency-manager-4/guides/background.html)
-* [What's new in version 4](apache-felix-dependency-manager-4/guides/whatsnew.html)
-* [Bundles and dependencies](apache-felix-dependency-manager-4/guides/bundles-and-dependencies.html)
-* [Migrating from earlier versions](apache-felix-dependency-manager-4/guides/migrating-from-earlier-versions.html)
-* [Migrating from other solutions](apache-felix-dependency-manager-4/guides/migrating-from-other-solutions.html)
-* [Annotations](apache-felix-dependency-manager-4/guides/annotations.html)
-* [Performance Tuning](apache-felix-dependency-manager-4/guides/performance-tuning.html)
-* [Development](apache-felix-dependency-manager-4/guides/development.html)
-* [Design Patterns](apache-felix-dependency-manager-4/guides/design-patterns.html)
-* [Resources](apache-felix-dependency-manager-4/guides/resources.html)
-* [Javadocs](apache-felix-dependency-manager-4/guides/javadocs.html)
+* [History](apache-felix-dependency-manager/guides/history.html)
+* [Background](apache-felix-dependency-manager/guides/background.html)
+* [What's new in version 4](apache-felix-dependency-manager/guides/whatsnew.html)
+* [Bundles and dependencies](apache-felix-dependency-manager/guides/bundles-and-dependencies.html)
+* [Migrating from earlier versions](apache-felix-dependency-manager/guides/migrating-from-earlier-versions.html)
+* [Migrating from other solutions](apache-felix-dependency-manager/guides/migrating-from-other-solutions.html)
+* [Annotations](apache-felix-dependency-manager/guides/annotations.html)
+* [Performance Tuning](apache-felix-dependency-manager/guides/performance-tuning.html)
+* [Development](apache-felix-dependency-manager/guides/development.html)
+* [Design Patterns](apache-felix-dependency-manager/guides/design-patterns.html)
+* [Resources](apache-felix-dependency-manager/guides/resources.html)
+* [Javadocs](apache-felix-dependency-manager/guides/javadocs.html)
 
 ### Reference Guide
 
-* [Components](apache-felix-dependency-manager-4/reference/components.html)
-    * [Singleton](apache-felix-dependency-manager-4/reference/component-singleton.html)
-    * [Aspect](apache-felix-dependency-manager-4/reference/component-aspect.html)
-    * [Adapter](apache-felix-dependency-manager-4/reference/component-adapter.html)
-    * [Resource Adapter](apache-felix-dependency-manager-4/reference/component-resource-adapter.html)
-    * [Bundle Adapter](apache-felix-dependency-manager-4/reference/component-bundle-adapter.html)
-    * [Factory Configuration Adapter](apache-felix-dependency-manager-4/reference/component-factory-configuration-adapter.html)
-* [Dependencies](apache-felix-dependency-manager-4/reference/dependencies.html)
-    * [Service](apache-felix-dependency-manager-4/reference/dependency-service.html)
-    * [Configuration](apache-felix-dependency-manager-4/reference/dependency-configuration.html)
-    * [Bundle](apache-felix-dependency-manager-4/reference/dependency-bundle.html)
-    * [Resource](apache-felix-dependency-manager-4/reference/dependency-resource.html)
-* [Thread Model](apache-felix-dependency-manager-4/reference/thread-model.html)
-* [External Links and Articles](apache-felix-dependency-manager-4/reference/external-links.html)
+* [Components](apache-felix-dependency-manager/reference/components.html)
+    * [Singleton](apache-felix-dependency-manager/reference/component-singleton.html)
+    * [Aspect](apache-felix-dependency-manager/reference/component-aspect.html)
+    * [Adapter](apache-felix-dependency-manager/reference/component-adapter.html)
+    * [Resource Adapter](apache-felix-dependency-manager/reference/component-resource-adapter.html)
+    * [Bundle Adapter](apache-felix-dependency-manager/reference/component-bundle-adapter.html)
+    * [Factory Configuration Adapter](apache-felix-dependency-manager/reference/component-factory-configuration-adapter.html)
+* [Dependencies](apache-felix-dependency-manager/reference/dependencies.html)
+    * [Service](apache-felix-dependency-manager/reference/dependency-service.html)
+    * [Configuration](apache-felix-dependency-manager/reference/dependency-configuration.html)
+    * [Bundle](apache-felix-dependency-manager/reference/dependency-bundle.html)
+    * [Resource](apache-felix-dependency-manager/reference/dependency-resource.html)
+* [Thread Model](apache-felix-dependency-manager/reference/thread-model.html)
+* [External Links and Articles](apache-felix-dependency-manager/reference/external-links.html)
 	
