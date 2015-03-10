@@ -90,10 +90,10 @@ Next, here is the Activator which declares the ComponentExecutorFactory:
 And here is the implementation for our ComponentExecutorFactory:
 
        package com.acme.management.threadpool;
-       import org.apache.felix.dm.*;
+       import org.apache.felix.dm.ComponentExecutorFactory;
 
       public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
-          volatile Executor m_threadPool;
+          volatile Executor m_sharedThreadPool;
           
           void updated(Dictionary conf) {
               m_sharedThreadPool = Executors.newFixedThreadPool(Integer.parseInt("threadpool.size"));
