@@ -39,6 +39,7 @@ A simplified bundle resource repository looks as follows:
 		private Map<ServiceReference, ResourceHandler> handlers = new ConcurrentHashMap<>();
 		private volatile BundleContext context;
 		
+		// added callback
 		void addHandler(ServiceReference ref, ResourceHandler handler) {
 			handlers.put(ref, handler);
 			if (ref.getProperty(ResourceHandler.URL) != null) {
@@ -50,6 +51,7 @@ A simplified bundle resource repository looks as follows:
 			}
 		}
 		
+		// removed callback
 		void removeHandler(ServiceReference ref, ResourceHandler handler) {
 			handlers.remove(ref);
 		}
@@ -61,7 +63,7 @@ A simplified bundle resource repository looks as follows:
 		}
 		
 		@SuppressWarnings("unchecked")
-		void notifyMatchingInitialResources(String filter, ResourceHandler handler) {
+		private void notifyMatchingInitialResources(String filter, ResourceHandler handler) {
 			Enumeration<URL> entries = context.getBundle().findEntries("/", filter, true);
 			while (entries.hasMoreElements()) {
 				URL entry = entries.nextElement();
