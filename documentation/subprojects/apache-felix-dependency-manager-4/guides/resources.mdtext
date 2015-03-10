@@ -5,6 +5,7 @@ Resource adapters are a special type of adapters which can adapt a resource into
 The diagram below illustrates the classes involved in the resource adapter pattern:
 
 <img src="./diagrams/resources.png" alt="Resource adapters" style="width: 780px"/>
+
 The yellow elements have to be implemented in order to use the pattern.
 
 A resource adapter is configured as follows:
