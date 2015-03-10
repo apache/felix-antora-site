@@ -1,4 +1,4 @@
-Title: Apache Felix Dependency Manager - Components
+Title: Dependency Manager - Components
 
 Components are declared by the dependency manager and can be implemented by POJOs that contain no references to the OSGi framework whatsoever. Components are the main building blocks of your OSGi application. They have a life cycle, can register themselves as services and have zero or more dependencies.
 

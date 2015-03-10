@@ -1,8 +1,8 @@
-Title: Apache Felix Dependency Manager - Thread Model
+Title: Dependency Manager - Thread Model
 
 This section gives a brief overview of the default thread model used by Dependency Manager, and also explains how to start and handle components concurrently.
 
-## Default thread model
+# Default thread model
 
 By default, Dependency Manager uses a lock-free/single thread model:
 
@@ -23,7 +23,7 @@ The following diagram illustrates the thread model we just described:
 
 <img src="./diagrams/serial-queue.png" alt="Serial Queue" style="width: 600px"/>
 
-## Enabling parallelism with a *ComponentExecutorFactory*
+# Enabling parallelism with a *ComponentExecutorFactory*
 
 As described above, all the external events that influence the state of a given component are handed by jobs scheduled in the Serial Queue of the Component, and the jobs are getting 
 executed serially by a single "master" thread. So usually, bundles are started from a single thread, meaning that all Components are then activated synchronously.
@@ -48,7 +48,7 @@ Notice that if the ComponentExecutorFactory itself and all its dependent service
 "!" prefix, in order to indicate that those components must not wait for a ComponentExecutorFactory service (since they are part of the ComponentExecutorFactory implementation !). 
 
 
-### Examples usage of the *org.apache.felix.dependencymanager.parallel* property:
+## Examples usage of the *org.apache.felix.dependencymanager.parallel* property:
 
     org.apache.felix.dependencymanager.parallel=*   
          -> means all components must be cached until a ComponentExecutorFactory comes up.
@@ -63,7 +63,7 @@ Notice that if the ComponentExecutorFactory itself and all its dependent service
          components whose implementations class names are starting with "foo.threadpool" prefix). 
      
 
-### Examples of a ComponentExecutorFactory that provides a shared threadpool:
+## Examples of a ComponentExecutorFactory that provides a shared threadpool:
 
 First, we define the OSGi bundle context system property to enable parallelism for all DM Components excepts the one which declares the ComponentExecutorFactory:
 
