@@ -33,6 +33,7 @@ Below is the full table of contents.
 * [What's new in version 4](apache-felix-dependency-manager/guides/whatsnew.html)
 * [Bundles and dependencies](apache-felix-dependency-manager/guides/bundles-and-dependencies.html)
 * [Migrating from earlier versions](apache-felix-dependency-manager/guides/migrating-from-earlier-versions.html)
+* [Migrating from other solutions](apache-felix-dependency-manager/guides/migrating-from-other-solutions.html)
 * [Annotations](apache-felix-dependency-manager/guides/annotations.html)
 * [Performance Tuning](apache-felix-dependency-manager/guides/performance-tuning.html)
 * [Development](apache-felix-dependency-manager/guides/development.html)
