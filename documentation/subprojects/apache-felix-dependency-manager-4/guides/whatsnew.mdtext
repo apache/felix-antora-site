@@ -29,14 +29,16 @@ You will find a full description of the new thread model in the [Reference](../r
 
 In addition, some new features have been implemented in dependency manager:
 
-* Auto Config Iterable fields: AutoConfig dependencies can be applied on Iterable<Service> fields in order to be able to traverse currently injected services safely. The Iterable must be parameterized with the Service type. See org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/Spellcheck.java for an example.
+* Auto Config Iterable fields: AutoConfig dependencies can be applied on Iterable<Service> fields in order to be able to traverse currently injected services safely. The Iterable must be parameterized with the Service type. 
+[see this sample code](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/SpellChecker.java) from the source distribution samples.
 
-* AutoConfig Map field: AutoConfig dependencies can be applied on a field with a Map<Service, Dictionary> type, allowing to traverse currently injected services safely, including service properties. The Map must be traversed using the Map.Entry iterator. See javadoc for DependencyManager.setAutoConfig().
+* AutoConfig Map field: AutoConfig dependencies can be applied on a field with a Map<Service, Dictionary> type, allowing to traverse currently injected services safely, including service properties. The Map must be traversed using the Map.Entry iterator. 
+See the *ServiceDependency.setAutConfig(boolean autoConfig)* [javadoc](http://felix.apache.org/apidocs/dependencymanager/4.0.0/org/apache/felix/dm/ServiceDependency.html) for more more informations.
 
-* Inject Configuration on separate callback instance: Configuration can be injected on a separate callback instance, like a CompositionManager for example. See an example in the samples, in org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/compositefactory/Activator.java. 
-See FELIX-2706
+* Inject Configuration on separate callback instance (FELIX-2707): Configuration can be injected on a separate callback instance, like a CompositionManager for example. 
+See the [composite factory example](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/compositefactory/) example available from the source distribution.
 
-* Added propagate flag for Service Adapters: you can now choose to propagate or not adaptee service properties. See FELIX-4600
+* Added *propagate* flag in service Adapters (FELIX-4600): you can now choose to propagate or not adaptee service properties.
 
 * "Top" command in the shell: a "top" command is now available from the shell and can be used to display all top components sorted by their init/start elapsed time.
 
@@ -45,11 +47,12 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 
     -plugin: org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin; add-require-capability=true
 
-* The Configuration Dependency annotation now supports a "name" attribute, allowing to dynamically configure configuration pids from the @Init method. see FELIX-4777
+* The Configuration Dependency annotation now supports a "name" attribute (FELIX-4777): allow to dynamically configure configuration pids from the @Init method.
 
-* Added a benchmark tool for dependency manager (not released, only available from the trunk, see dependencymanager/org.apache.felix.dependencymanager.benchmark/README
+* Added a benchmark tool for dependency manager (not released, only available from the [trunk](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.benchmark/).
 
-* The Annotations "Factory Sets" are deprecated and have been replaced by a nice api exported by the runtime bundle. See FELIX-4684
+* The Annotations "Factory Sets" are deprecated (FELIX-4684): You can now use a DS-like ComponentFactory API by a nice api which is exported by the runtime bundle.
+See this [example](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/device/annot/DeviceAndParameterFactory.java) from the samples in the source distribution.
 
 ## Sample codes
 
