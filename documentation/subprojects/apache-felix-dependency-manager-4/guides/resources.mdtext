@@ -10,24 +10,21 @@ The yellow elements have to be implemented in order to use the pattern.
 
 A resource adapter is configured as follows:
 
-```
-manager.add(createResourceAdapter("*.MF", true, null, "changed")
+
+	manager.add(createResourceAdapter("*.MF", true, null, "changed")
 				.setImplementation(ManifestAdapter.class));
-```
 
 The filter semantics depend on the resource repository. In this example the resource repository will be serving bundle resources, so we're using a standard file wildcard filter. As the filter specifies in this case the resource of interest is the bundle manifest. For each MANIFEST.MF found a new instance of ManifestAdapter will be created and registered. Each instance gets access to the resource by injecting the URL of the resource into the implementation object.
 
-```
-public class ManifestAdapter {
+	public class ManifestAdapter {
 
-	private volatile URL url;
+		private volatile URL url;
 	
-	void start() {
-		System.out.println("started: " + url);
-	}
+		void start() {
+			System.out.println("started: " + url);
+		}
 
-}
-```
+	}
 
 
 But how does DM know where to go looking for manifest files? We'll it does not automatically. It requires you to implement a resource repository component. For each resource adapter service DM launches a ResourceHandler service tracking the resources the resource adapter is interested in. A resource repository is responsible for tracking resources and notifying adding / changing and removal of the resources from the repository. Notifying these resource 'events' is done by invoking the corresponding method on the ResourceHandler service.
@@ -36,54 +33,53 @@ We'll explain how to implement a resource repository by an example. The example 
 
 A simplified bundle resource repository looks as follows:
 
-```
-public class BundleResourceRepositoryImpl {
 
-	private Map<ServiceReference, ResourceHandler> handlers = new ConcurrentHashMap<>();
-	private volatile BundleContext context;
-	
-	void addHandler(ServiceReference ref, ResourceHandler handler) {
-		handlers.put(ref, handler);
-		if (ref.getProperty(ResourceHandler.URL) != null) {
-			URL url = (URL) ref.getProperty(ResourceHandler.URL);
-			notifyMatchingInitialResource(url, handler);
-		} else {
-			String filter = (String) ref.getProperty(ResourceHandler.FILTER);
-			notifyMatchingInitialResources(filter, handler);
+	public class BundleResourceRepositoryImpl {
+
+		private Map<ServiceReference, ResourceHandler> handlers = new ConcurrentHashMap<>();
+		private volatile BundleContext context;
+		
+		void addHandler(ServiceReference ref, ResourceHandler handler) {
+			handlers.put(ref, handler);
+			if (ref.getProperty(ResourceHandler.URL) != null) {
+				URL url = (URL) ref.getProperty(ResourceHandler.URL);
+				notifyMatchingInitialResource(url, handler);
+			} else {
+				String filter = (String) ref.getProperty(ResourceHandler.FILTER);
+				notifyMatchingInitialResources(filter, handler);
+			}
+		}
+		
+		void removeHandler(ServiceReference ref, ResourceHandler handler) {
+			handlers.remove(ref);
+		}
+		
+		private void notifyMatchingInitialResource(URL url, ResourceHandler handler) {
+			if (bundleContainsResource(url)) {
+				handler.added(url, new Hashtable<String, String>());
+			}
+		}
+		
+		@SuppressWarnings("unchecked")
+		void notifyMatchingInitialResources(String filter, ResourceHandler handler) {
+			Enumeration<URL> entries = context.getBundle().findEntries("/", filter, true);
+			while (entries.hasMoreElements()) {
+				URL entry = entries.nextElement();
+				handler.added(entry, new Hashtable<String, String>());
+			}
+		}
+		
+		private boolean bundleContainsResource(URL url) {
+			return true; // more specific checks required
 		}
 	}
-	
-	void removeHandler(ServiceReference ref, ResourceHandler handler) {
-		handlers.remove(ref);
-	}
-	
-	private void notifyMatchingInitialResource(URL url, ResourceHandler handler) {
-		if (bundleContainsResource(url)) {
-			handler.added(url, new Hashtable<String, String>());
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	void notifyMatchingInitialResources(String filter, ResourceHandler handler) {
-		Enumeration<URL> entries = context.getBundle().findEntries("/", filter, true);
-		while (entries.hasMoreElements()) {
-			URL entry = entries.nextElement();
-			handler.added(entry, new Hashtable<String, String>());
-		}
-	}
-	
-	private boolean bundleContainsResource(URL url) {
-		return true; // more specific checks required
-	}
-}
-``` 
+
 
 The resource repository is registered in the bundle activator as follows:
 
-```
+
 		manager.add(createComponent().setImplementation(BundleResourceRepositoryImpl.class)
 				.add(createServiceDependency().setService(ResourceHandler.class).setCallbacks("addHandler", "removeHandler")));
-```
 
 A resource repository implementation must have a dependency on resource handlers. The ResourceHandler service has two important service properties:
 
