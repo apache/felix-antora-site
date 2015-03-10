@@ -51,7 +51,7 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 
 * The Annotations "Factory Sets" are deprecated and have been replaced by a nice api exported by the runtime bundle. See FELIX-4684
 
-# Sample codes
+## Sample codes
 
 The source distribution includes many sample codes which can be run directly under Eclipse and BndTools. The samples are available in the 
 org.apache.felix.dependencymanager.samples/ module.
