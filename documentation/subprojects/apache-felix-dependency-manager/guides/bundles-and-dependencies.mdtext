@@ -19,4 +19,5 @@ The dependency manager project consists of the following bundles. For each bundl
 	* org.apache.felix.dm;version="[4.0,5)" - provided by the core bundle
 	* org.apache.felix.service.command;version="[0.10,1)";status=provisional
 	* org.osgi.framework;version="[1.5,2)" - provided by the OSGi framework itself
-* `org.apache.felix.dependencymanager.annotation` - 4.0.0 - This is not a bundle, but code you need when compiling your bundles that contain annotations.
+* `org.apache.felix.dependencymanager.annotation` - 4.0.0 - This is not a bundle, but code you need when compiling your bundles that contain annotations. Notice that the annotation jar contains OSGi headers in its manifest, but this bundle is not meant to be included in the OSGi framework runtime
+(the OSGi headers are only present in order to allow you to drag and drop the dependency manager annotation bundle in your buildpath project).
