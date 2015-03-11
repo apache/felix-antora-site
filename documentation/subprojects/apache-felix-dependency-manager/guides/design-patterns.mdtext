@@ -1,7 +1,5 @@
 Title: Dependency Manager - Design Patterns
 
-# OSGi Design Patterns
-
 This section lists a couple of design patterns as they can be applied in an OSGi context.
 
 ## Singleton Service

@@ -1,6 +1,6 @@
 Title: Dependency Manager - Background
 
-# Background
+## Background
 
 In an OSGi framework, services are deployed using bundles and these bundles feature two types of dependencies: 
 
@@ -17,7 +17,7 @@ In real implementations, you are probably going to track multiple services. Usin
 
 The Dependency Manager provides you with the right building blocks to declaratively specify dependencies using a straightforward Java API that is easy to maintain and refactor.
 
-# Design Goals
+## Design Goals
 
 The goals that drove the design of the dependency manager are:
 

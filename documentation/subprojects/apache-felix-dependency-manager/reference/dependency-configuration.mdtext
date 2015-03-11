@@ -1,7 +1,5 @@
 Title: Dependency Manager - Configuration Dependency
 
-# Configuration Dependency
-
 A configuration dependency is always required, and allows you to depend on the availability of a valid configuration for your component. Optional configuration dependencies are not supported because in that case you can just as well register as a `ManagedService` yourself.
 
 ## @ConfigurationDependency
@@ -19,7 +17,7 @@ configuration dependency (the map has to contain a "pid" and/or "propagate" flag
 with the dependency name). Then the dependency will be evaluated after the component init 
 method, and will be injected before the start method. 
 
-Usage Examples
+## Usage Examples
 
 In the following example, the "Printer" component depends on a configuration whose PID name is "org.apache.felix.sample.Printer". This service will initialize its ip/port number from the provided configuration:
 

@@ -1,10 +1,8 @@
 Title: Dependency Manager - Service Dependency
 
-# Service Dependency
-
 A service dependency allows you to depend on a service, either by type or by using an additional filter condition. You can even depend on an existing service directly by providing a reference to it.
 
-# @ServiceDependency
+## @ServiceDependency
 
 Annotates a method or a field for injecting a Service Dependency on it. When applied on a class field, optional unavailable dependencies are injected with a NullObject.
 
@@ -19,7 +17,9 @@ Notice that the changed/removed callbacks are not used when the timeout paramete
 * *name*: The name used when dynamically configuring this dependency from the init method. Specifying this attribute allows to dynamically configure the dependency filter and required flag from the Service's init method. All unnamed dependencies will be injected before the init() method; so from the init() method, you can then pick up whatever information needed from already injected (unnamed) dependencies, and configure dynamically your named dependencies, which will then be calculated once the init() method returns. Please refer to [Here]({{ refs.dependencymanager-annotations-lifecycle.path }}) for more informations about named dependencies.
 * *propagate*: Returns true if the dependency service properties must be published along with the service. Any additional service properties specified directly are merged with these.
 
-Usage Example: Here, the MyComponent component is injected with a dependency over a "MyDependency" service.
+## Usage Example:
+
+Here, the MyComponent component is injected with a dependency over a "MyDependency" service.
 
     :::java
     @Component

@@ -1,16 +1,14 @@
 Title: Dependency Manager - Aspect
 
-# Aspects
-
 Aspects, as part of aspect oriented programming, can be used in a dynamic environment such as OSGi to "extend" existing services and add certain "capabilities" to them. Examples of these are adding a specific caching mechanism to a storage service or implementing logging. Aspects in OSGi can be applied to services and can be added and removed at runtime.
 
 Aspects allow you to define an "interceptor", or chain of interceptors for a service to add features like caching or logging, etc. An aspect will be applied to any service that matches the specified interface and filter. For each matching service an aspect will be created based on the aspect implementation class. The aspect will be registered with the same interface and properties as the original service, plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
 
-# @AspectService
+## @AspectService
 
 The *@AspectService* annotation allows you to create an aspect service. It supports the following attributes mentioned below.
 
-## Annotation attributes
+### Annotation attributes
 
 ----
 **`ranking`**    
@@ -62,7 +60,7 @@ instance. The default constructor of the annotated class is used.
 The factoryMethod can be used to provide a specific aspect implements, 
 like a DynamicProxy.
 
-## Usage example:
+### Usage example:
 
      @AspectService(ranking=10), properties={@Property(name="param", value="value")})
      class AspectService implements InterceptedService {

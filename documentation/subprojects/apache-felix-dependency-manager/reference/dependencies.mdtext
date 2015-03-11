@@ -1,7 +1,5 @@
 Title: Dependency Manager - Dependencies
 
-# Dependencies
-
 The dependency manager supports many different types of dependencies, all of which can be required or optional. A dependency can be added to one or more components and it is possible to add them dynamically (even from within the component itself if necessary, which allows for some really dynamic dependency configuration).
 
 ## Injection

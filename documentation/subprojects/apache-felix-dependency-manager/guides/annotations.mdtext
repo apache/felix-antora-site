@@ -3,7 +3,7 @@ Title: Dependency Manager - Annotations
 This section presents a quick overview of the capabilities and usage of the DependencyManager Java annotations. In particular, we will recap the DependencyManager annotation architecture, and identify some simple usage scenarios using a SpellChecker 
 sample application with annotated components. The application is available from the felix trunk, in the `dependencymanager/samples.annotation` subproject.
 
-# Architecture
+## Architecture
 
 Instead of writing Activators which extends the DependencyActivatorBase class, service 
 components can now be annotated using the annotations provided by the 
@@ -22,7 +22,7 @@ DependencyManager programmatic API in order to manage the annotated components.
 Annotated components can then be inspected with the DependencyManager Gogo shell, as it is
 the case with DM components declared through the programmatic DM API.
 
-# Registering a Service
+## Registering a Service
 
 To register a service, your can annotate your class with a *@Component* annotation, and 
 an instance of your class will be registered under all directly implemented interfaces 
@@ -71,7 +71,7 @@ for invoking  the proper functions.
 
 So, coming back to the sample code, the SpellChecker class registers  itself into the OSGi registry, using the *provides* attribute, which just refer to our SpellChecker class, and the two  mandatory Gogo service properties are also specified using the *@Property* annotation. It is not shown here, but service properties can also be  provided dynamically from a method that can return a Map, and annotated  with the *@Start* lifecycle callback, but we will see this feature in a another section.
 
-# Depending on a Service
+## Depending on a Service
 
 Our SpellChecker component can expose itself as a Gogo shell command, but before being 
 registered into the OSGi registry, we also need to be   injected with two dependencies: 
@@ -152,7 +152,7 @@ DictionaryService services in our dictionary list, which is used when checking w
 existence. This list is a copy on write list because the dependency may be injected at 
 any time, possibly from   another thread. So, using a copy on write list avoid us to use   synchronized methods.
 
-# Creating a Service from ConfigAdmin
+## Creating a Service from ConfigAdmin
 
 The *@Component* annotation is not the only one for creating services. Another one is 
 the *@FactoryConfigurationAdapterService* annotation which allows to instantiate many 
@@ -265,7 +265,7 @@ Next, here is our DictionaryImpl that will use the bnd "Configurable" helper in 
     }
 
 
-# Providing an Aspect
+## Providing an Aspect
 
 As we have seen in the previous section, there are many annotations  that can be used 
 to specify a service. Another one is the *@AspectService* annotation. This annotation 
@@ -339,7 +339,7 @@ used to configure the extra English words from  ConfigAdmin. This annotation nor
 requires a pid parameter, which is  a persistent identifier uniquely identifying our 
 component, but by  default, the pid is set to the fully qualified name of our class.
 
-# How to run the sample code
+## How to run the sample code
 
 Just import the Dependency source distribution in bndtools and check the following samples:
 

@@ -1,7 +1,5 @@
 Title: Dependency Manager - Singleton Component
 
-# Component
-
 Components are the main building blocks for OSGi applications. They can publish themselves as a service, and they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
 
 Usage example:
@@ -19,13 +17,13 @@ Usage example:
 		)
 	);
 
-# @Component
+## @Component
 
 This annotation annotates an implementation class that optionally publishes 
 an OSGi service, and optionally has some dependencies, with a managed 
 lifecycle. 
 
-## Annotation attributes
+### Annotation attributes
 
 ----
 **`provides`**    
@@ -95,7 +93,7 @@ method, which is called for providing the configuration supplied by the
 factory that instantiated this component. The current Service properties will 
 be also updated with all public properties (which don't start with a dot).
 
-Usage example:
+### Usage example:
 
     :::java
     /**

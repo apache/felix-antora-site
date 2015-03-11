@@ -1,7 +1,5 @@
 Title: Dependency Manager - Getting Started
 
-## Getting Started
-
 When developing an OSGi bundle that has dependencies and possibly registers services, there are two classes in particular we need to implement:
 
 1. The bundle activator which controls the life-cycle of the bundle.
@@ -13,7 +11,7 @@ The following paragraphs will show various examples that explain how to do this.
 
 To use the dependency manager, you should put the `org.apache.felix.dependencymanager.jar` in your classpath while compiling and in your OSGi framework when running.
 
-### Registering a service
+## Registering a service
 
 The first example is about registering a service. We extend `DependencyActivatorBase` and in the `init` method we use the reference to the `DependencyManager` to create and add a component. For this component we subsequently set its service interface and implementation. In this case the interface is the `Store` interface, the second parameter, `null`, allows you to provide properties along with the service registration. For the implementation, we only mention the `Class` of the implementation, which means the dependency manager will lazily instantiate it. In this case, there is not much point in doing that because the component has no dependencies, but if it had, the instantiation would only happen when those dependencies were resolved.
 
@@ -55,7 +53,7 @@ And finally the implementation. Again, this is just a POJO, there is no referenc
     }
 
 
-### Depending on a service
+## Depending on a service
 
 Our second example is that of a component that depends on two other services: our `Store` from the previous example and the standard OSGi `LogService`. Looking at the code, there is a small but important difference between the two: `Store` is a required dependency and `LogService` is not. This means that our component really needs a store to work, but if there is no logging available, it can work without. Also note that this component has no `setInterface` method, which simply means it is not itself a service. This is perfectly fine.
 
@@ -95,7 +93,7 @@ One final note, since we defined our `LogService` dependency as optional, it mig
     }
 
 
-### Tracking services with callbacks
+## Tracking services with callbacks
 
 Sometimes, simply injecting services does not give you enough control over a dependency because you might want to track more than one, or you might want to execute some code on changes. For all those cases, callbacks are your friends. Since one of our goals is to not introduce any kind of API in our POJO, callbacks are declared by specifying their method names instead of through some interface. In this case, we have a dependency on `Translator` services, and we define `added` and `removed` as callbacks.
 
@@ -149,7 +147,7 @@ Finally, here's our implementation. It declares the callback methods with one pa
 
 
 
-### Depending on a configuration
+## Depending on a configuration
 
 Not all dependencies are on services. There are several other types of dependencies that are supported, one of them is the configuration dependency. In fact, only *required* configuration dependencies are supported, because optional ones can just be achieved by registering as a `ManagedService` yourself. When defining the dependency, you must define the persistent ID of the service. The component will not become active until the configuration you depend on is available *and* is valid. The latter can be checked by your implementation as we will see below.
 

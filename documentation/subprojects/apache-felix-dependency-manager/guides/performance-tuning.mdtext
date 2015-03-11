@@ -1,6 +1,8 @@
 Title: Dependency Manager - Performance Tuning
 
-# Filter Indices
+To further tune the performance of an application using Dependency Manager and a lot of services, we created the concept of filter indices. They work similarly to the way indices speed up relational database queries and are explained below.
+
+## Filter Indices
 
 Filter indices allow you to speed up the service resolution process by skipping the services registry, in favor of a fast index on given service properties.
 
@@ -16,11 +18,11 @@ The implementation ships with three kinds of index implementations.
 - *Aspect indices* work with Dependency Manager Aspect services, and will provide indexing for the specific filters that they use.
 - *Adapter indices* work like Aspect indices, but for Adapter services.
 
-## Performance
+### Performance
 
 The index isn't free, but reduces the linear (and wasteful) filter-based lookup to an indexed log(n) lookup. You can expect noticeable speedup if you have at least several hundred services.
 
-## Examples
+### Examples
 
     -Dorg.apache.felix.dependencymanager.filterindex=objectClass
 Sets an index on `objectClass`, speeding up lookups for any filter that contains an `objectClass` in its filter (all regular services do).

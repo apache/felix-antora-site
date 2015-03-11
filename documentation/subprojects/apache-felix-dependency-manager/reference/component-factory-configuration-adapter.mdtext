@@ -1,7 +1,5 @@
 Title: Dependency Manager - Factory Configuration Adapter Service
 
-# Factory Configuration Adapter Service
-
 A factory configuration adapter service creates an adapter for each matching configuration in Configuration Admin. For each new factory configuration matching the factoryPid, an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and with the specified adapter service properties. Depending on the propagate parameter, every public factory configuration properties (which don't start with ".") will be propagated along with the adapter service properties. It will also inherit all dependencies.
 
 Usage Example:
@@ -10,7 +8,7 @@ Usage Example:
 		.setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
 		.setImplementation(AdapterServiceImpl.class);         
 
-# @FactoryConfigurationAdapterService
+## @FactoryConfigurationAdapterService
 
 Annotates a class that acts as a Factory Configuration Adapter Service. 
 For each new Config Admin factory configuration matching the specified 
@@ -24,7 +22,7 @@ Like in @ConfigurationDependency, you can optionally specify the meta types of
 your configurations for Web Console GUI customization (configuration 
 heading/descriptions/default values/etc ...). 
 
-## Annotation attributes:
+### Annotation attributes:
 
 ----
 **`provides`**    
@@ -84,7 +82,7 @@ are merged with these.
 
 Sets the static method used to create the adapter instance.
 
-## Usage Examples
+### Usage Examples
 
 Here, a "Dictionary" service instance is instantiated for each existing 
 factory configuration instances matching the "DictionaryServiceFactory" 
