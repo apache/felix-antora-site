@@ -164,7 +164,7 @@ Here is the same example as above, but using Annotations:
         private final ProviderParticipant2 m_participant2 = new ProviderParticipant2();
         private volatile LogService m_log; // injected
 
-        @Composition
+        @CompositioncompositionMngr, "getComposition
         Object[] getComposition() {
             return new Object[] { this, m_participant1, m_participant2 };
         }
@@ -196,3 +196,67 @@ Here is the same example as above, but using Annotations:
 ## Factories
 
 Out of the box, there already is support for lazy instantiation, meaning that the dependency manager can create component instances for you when their required dependencies are resolved. However, sometimes creating a single instance using a default constructor is not enough. In those cases, you can tell the dependency manager to delegate the creation process to a factory.
+
+Interestingly, you can also mix the usage of a Factory object and a Composition of objects returned by the Factory.
+The following is the same example as in the previous section (Composition), but using a Factory approach in order to instantiate a composition of objects: 
+The "ProviderFactory" is first injected with a Configuration that can be possibly be used to create
+and configure all the other objects that are part of the composition; each object will also injected with
+the depenencies defined in the Activator.
+
+    :::java
+    public class ProviderFactory {
+        private ProviderParticipant1 m_participant1;
+        private ProviderParticipant2 m_participant2;
+        private ProviderImpl m_providerImpl;
+        private Dictionary<String, String> m_conf;
+    
+        public void updated(Dictionary<String, String> conf) throws Exception {
+            // validate configuration and throw an exception if the properties are invalid
+            m_conf = conf;
+        }
+    
+        /**
+         * Builds the composition of objects used to implement the "Provider" service.
+         * The Configuration injected by Config Admin will be used to configure the components
+         * @return The "main" object providing the "Provider" service.
+         */
+        Object create() {
+            // Here, we can instantiate our object composition based on our injected configuration ...
+            
+            if ("true".equals(m_conf.get("some.parameter")) {
+                m_participant1 = new ProviderParticipant1(); // depenencies and lifecycle callbacks will also be applied
+                m_participant2 = new ProviderParticipant2(); // depenencies and lifecycle callbacks will also be applied
+            } else {
+                // Compose with some other objects ...
+                m_participant1 = new ProviderParticipant3(); // depenencies and lifecycle callbacks will also be applied
+                m_participant2 = new ProviderParticipant4(); // depenencies and lifecycle callbacks will also be applied
+            }
+ 
+            m_providerImpl = new ProviderImpl(m_participant1, m_participant2);
+            return m_providerImpl; // Main object implementing the Provider service
+        }
+    
+        /**
+         * Returns the list of objects that are part of the composition for the Provider implementation.
+         */
+        Object[] getComposition() {
+            return new Object[] { m_providerImpl, m_participant1, m_participant2 };
+        }
+    }
+
+    :::java
+    public class Activator extends DependencyActivatorBase {
+        public void init(BundleContext ctx, DependencyManager m) throws Exception {
+            ProviderFactory factory = new ProviderFactory();
+            m.add(createComponent()
+                .setFactory(factory, "create")
+                .setComposition(factory, "getComposition")
+                .add(createConfigurationDependency()
+                    .setPid("some.pid")
+                    .setCallback(factory, "updated")) // will invoke "updated" on the factory instance
+                .add(createServiceDependency().setService(LogService.class).setRequired(true)));
+        }
+    }
+
+You can refer to this [sample code](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/compositefactory/), which is part of the source distribution.
+
