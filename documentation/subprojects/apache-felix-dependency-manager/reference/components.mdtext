@@ -39,6 +39,33 @@ The dependency manager will look for methods with these names and one of the fol
 
 If you don't specify anything, the methods with these names will be invoked on the instance. By using `setCallbacks()` you can however change this behavior: You can change the names of the methods to look for. Any methods that are set to ` null ` will not be invoked at all. Another thing you can do is to specify a different instance to invoke these methods on. If you do that, you will usually want to use the first signature, which gives you a reference to the ` Component ` whose life cycle method was invoked.
 
+Here is a descrition of the component states:
+
+* *Inactive state*: The Component is defined, but not enabled (not yet added to a
+DependencyManager object, or the bundle has been stopped). 
+
+* *Waiting for required* state: The Component is enabled (has been added to a
+DependencyManager object) and the required dependencies declared in the Activator are 
+tracked. The component remains in the current state until all required dependencies are
+available.
+
+* *Instantiated and waiting for required* state: All required dependencies declared
+in the Activator are available. The Component has been instantiated, has been injected 
+with all required dependencies, including optional dependencies on class fields (autoconfig).
+and has been invoked in the *init* callback. Now, if some extra required dependencies have
+been dynamically added in the *init* callback, then the component remains in the
+current state until all extra required dependencies become available.
+
+* *Tracking optional*: All Required dependencies are available (including the ones
+that have been dynamically declared from the init component callback). The component has 
+been invoked in the *start* callback and the optional dependencies (with callbacks) are 
+then tracked.
+
+
+## What happens during component instantiation ?
+
+TBD (in progress).
+
 ## Interfaces and properties
 
 Components in the context of the dependency manager can be published as OSGi services under one or more interface names, plus optionally a set of properties. This is no different than a normal OSGi service. It's important to mention that you don't have to register a service. If you don't, you basically created a component that can do work and have dependencies and a managed life cycle.
