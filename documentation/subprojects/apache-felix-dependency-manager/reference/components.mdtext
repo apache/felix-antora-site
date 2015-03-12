@@ -64,10 +64,10 @@ then tracked.
 1. The service is instantiated.
 2. The following special objects are injected through reflection on class fields, if 
 they exist (but you can deactivate this behavior from the API):
-   * BundleContext
-   * ServiceRegistration
-   * DependencyManager
-   * Component
+    * BundleContext
+    * ServiceRegistration
+    * DependencyManager
+    * Component
 3. *autoconfig* dependencies are injected through reflection on class fields, if they exist. If an *autoconfig*
 optional dependency is unavailable, a NullObject is then injected.
 4. Required dependency callbacks defined from the Activator are called.
