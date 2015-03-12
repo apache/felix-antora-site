@@ -61,7 +61,32 @@ then tracked.
 
 ## What happens during component instantiation ?
 
-TBD (in progress).
+1. The service is instantiated.
+2. The following special objects are injected through reflection on class fields, if 
+they exist (but you can deactivate this behavior from the API):
+  * BundleContext
+  * ServiceRegistration
+  * DependencyManager
+  * Component
+3. *autoconfig* dependencies are injected through reflection on class fields, if they exist. If an *autoconfig*
+optional dependency is unavailable, a NullObject is then injected.
+4. Required dependency callbacks defined from the Activator are called.
+5. The component *init* method is called, and from that method you can then dynamically add 
+more dependencies by using the Component parameter passed to the init method, or using 
+a class field of *Component* type (which in this case has been injected during step 2).
+6. When all required dependencies (including dependencies dynamically added from the *init*
+method) are available, they are injected (using callbacks, or autoconfig).
+7. The component *start* callback is invoked.
+8. Optional dependencies (with callbacks) are then tracked.
+9. The component service(s) is then registered in the OSGi service registry
+
+When using Annotations, there are some specific behaviors:
+
+* The *@init* method may return a Map that contains filters in order to 
+dynamically configure dependencies annotated with a *name* attribute, and the dependencies will
+then be injected after the *@init* method (exactly if you would have added the dependencies from the init method using the API).
+* The *@start* method may return a Map in order to dynamically add more service properties (if the component provides some services).
+* The component can be dynamically stopped or restarted using a special *@LifecycleController* annotation.
 
 ## Interfaces and properties
 
