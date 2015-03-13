@@ -200,7 +200,7 @@ Interestingly, you can also mix the usage of a Factory object and a Composition 
 The following is the same example as in the previous section (Composition), but using a Factory approach in order to instantiate a composition of objects: 
 The "ProviderFactory" is first injected with a Configuration that can be possibly be used to create
 and configure all the other objects that are part of the composition; each object will also injected with
-the depenencies defined in the Activator.
+the dependencies defined in the Activator.
 
     :::java
     public class ProviderFactory {
@@ -243,11 +243,17 @@ the depenencies defined in the Activator.
         }
     }
 
+
+And here is the Activator: notice the *setFactory* method that specifies the factory to use to create the implementation.
+Also pay attention to the *setComposition* method, which indicates the method to call in order to get all instances that 
+are part of a composition and need dependencies injected:
+
+    :::java
     public class Activator extends DependencyActivatorBase {
         public void init(BundleContext ctx, DependencyManager m) throws Exception {
             ProviderFactory factory = new ProviderFactory();
             m.add(createComponent()
-                .setFactory(factory, "create")
+                .setFactory(factory, "create") // factory.create() will return the implementation instance
                 .setComposition(factory, "getComposition")
                 .add(createConfigurationDependency()
                     .setPid("some.pid")
