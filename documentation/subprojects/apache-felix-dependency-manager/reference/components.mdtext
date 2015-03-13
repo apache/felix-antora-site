@@ -48,14 +48,13 @@ DependencyManager object) and the required dependencies declared in the Activato
 tracked. The component remains in the current state until all required dependencies are
 available.
 * *Instantiated and waiting for required* state: All required dependencies declared
-in the Activator are available. The Component has been instantiated, has been injected 
-with all required dependencies, including optional dependencies on class fields (autoconfig).
+in the Activator are available. The Component has been instantiated with required dependencies injected,
 and has been invoked in the *init* callback. Now, if some extra required dependencies have
 been dynamically added in the *init* callback, then the component remains in the
 current state until all extra required dependencies become available.
-* *Tracking optional*: All Required dependencies are available (including the ones
-that have been dynamically declared from the init component callback). The component has 
-been invoked in the *start* callback and the optional dependencies (with callbacks) are 
+* *Tracking optional*: All Required dependencies are injected (including the ones
+you dynamically added from the *init* method), the component *start* callback
+is called, the component service is registered in the OSGi registry, and finally the optional dependencies (with callbacks) are 
 then tracked.
 
 
