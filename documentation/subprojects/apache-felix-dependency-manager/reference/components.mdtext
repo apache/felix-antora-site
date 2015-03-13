@@ -163,7 +163,7 @@ Here is the same example as above, but using Annotations:
         private final ProviderParticipant2 m_participant2 = new ProviderParticipant2();
         private volatile LogService m_log; // injected
 
-        @CompositioncompositionMngr, "getComposition
+        @Composition
         Object[] getComposition() {
             return new Object[] { this, m_participant1, m_participant2 };
         }
