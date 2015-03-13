@@ -198,8 +198,8 @@ Out of the box, there already is support for lazy instantiation, meaning that th
 
 Interestingly, you can also mix the usage of a Factory object and a Composition of objects returned by the Factory.
 The following is the same example as in the previous section (Composition), but using a Factory approach in order to instantiate a composition of objects: 
-The "ProviderFactory" is first injected with a Configuration that can be possibly be used to create
-and configure all the other objects that are part of the composition; each object will also injected with
+The "ProviderFactory" is first injected with a Configuration that can possibly be used to create
+and configure all the other objects that are part of the composition; each object will also be injected with
 the dependencies defined in the Activator.
 
     :::java
