@@ -80,7 +80,7 @@ Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
 Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
 Main|org.apache.felix.main|4.6.1|project||doc/changelog.txt
-Metatype|org.apache.felix.metatype|1.0.10
+Metatype|org.apache.felix.metatype|1.0.12
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
