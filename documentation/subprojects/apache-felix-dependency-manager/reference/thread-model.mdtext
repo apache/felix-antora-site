@@ -93,15 +93,16 @@ And here is the implementation for our ComponentExecutorFactory:
        import org.apache.felix.dm.ComponentExecutorFactory;
 
        public class ComponentExecutorFactoryImpl implements ComponentExecutorFactory {
-          volatile Executor m_sharedThreadPool;
+          volatile Executor sharedThreadPool;
           
           void updated(Dictionary conf) {
-              m_sharedThreadPool = Executors.newFixedThreadPool(Integer.parseInt("threadpool.size"));
+              int size = Integer.parseInt((String) conf.get("threadpool.size"));
+              sharedThreadPool = Executors.newFixedThreadPool(size);
           }
 
           @Override
           public Executor getExecutorFor(Component component) {
-              return m_sharedThreadPool; // Use a shared threadpool for all Components
+              return sharedThreadPool; // Use a shared threadpool for all Components
           }
       }
 
