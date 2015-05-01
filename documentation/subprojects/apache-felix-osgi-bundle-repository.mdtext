@@ -38,14 +38,11 @@ OBR defines the following entities:
 
 The following diagram illustrates the relationships among these entities:
 
-
-
-!obr-entities.png!
+![alt text][3]
 
 The client has access to a federated set of repositories via the Repository Admin service; such as depicted in this view:
 
-!obr-high-level.png!
-
+![alt text][4]
 
 
 ## OBR Repository File
@@ -55,7 +52,7 @@ The OBR repository file is an XML-based representation of bundle meta-data. The 
 * Repository XML as defined by the OSGi Repository Specification 1.0. Such an XML file is in the http://www.osgi.org/xmlns/repository/v1.0.0 name space.
 * A Felix OBR-specific metadata format is also supported. This format predates the format from the specification.
 
-A detailed description of the standard XML format is described in chapter 132 in the [OSGi R5 Enterprise specification][3]. The following XML snippet depicts the overall structure of a repository file, using the proprietary Felix OBR format:
+A detailed description of the standard XML format is described in chapter 132 in the [OSGi R5 Enterprise specification][5]. The following XML snippet depicts the overall structure of a repository file, using the proprietary Felix OBR format:
 
 
     <repository presentationname="..." symbolicname="..." ... >
@@ -325,4 +322,6 @@ Subscribe to the Felix users mailing list by sending a message to [users-subscri
 
   [1]: http://www.osgi.org/Download/Release5
   [2]: http://www.osgi.org/javadoc/r5/enterprise/org/osgi/service/repository/package-summary.html
-  [3]: http://www.osgi.org/Download/Release5
+  [3]: obr-entities.png
+  [4]: obr-high-level.png
+  [5]: http://www.osgi.org/Download/Release5
