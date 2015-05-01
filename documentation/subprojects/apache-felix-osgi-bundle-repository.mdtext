@@ -22,6 +22,8 @@ Note: OBR provides access to the Felix' default bundle repository, but you can a
 
 ## Overview
 
+As of release 2.0.x Felix OBR also supports the OSGi Repository 1.0 specification. Chapter 132 in the [OSGi R5 Enterprise specification][1]. A client can look up the [OSGi Repository Service][2] in the service registry to interact with Felix OBR in a specification compliant way.
+
 For the most part, OBR is quite simple. An OBR "repository server" is not necessary, since all functionality may reside on the client side. OBR is able to provide its functionality by reading an XML-based meta-data file that describes the bundles available to it. The meta-data file essentially contains an XML encoding of the bundles' manifest information. From the meta-data, OBR is able to construct dependency information for deploying (i.e., installing and updating) bundles.
 
 OBR defines the following entities:
@@ -36,6 +38,8 @@ OBR defines the following entities:
 
 The following diagram illustrates the relationships among these entities:
 
+
+
 !obr-entities.png!
 
 The client has access to a federated set of repositories via the Repository Admin service; such as depicted in this view:
@@ -46,7 +50,12 @@ The client has access to a federated set of repositories via the Repository Admi
 
 ## OBR Repository File
 
-The OBR repository file is an XML-based representation of bundle meta-data. The goal is provide a generic model for describing dependencies among resources; as such, the term **resource** is used instead of **bundle** in the OBR repository syntax; a detailed description of the OBR meta-data format is available in the [OSGi RFC 112](http://www2.osgi.org/download/rfc-0112_BundleRepository.pdf) document; this document is not completely in sync with the implementation, but the concepts are still correct. The following XML snippet depicts the overall structure of a repository file:
+The OBR repository file is an XML-based representation of bundle meta-data. The goal is provide a generic model for describing dependencies among resources; as such, the term **resource** is used instead of **bundle** in the OBR repository syntax. As of OBR release 2.0.2 two forms of metadata are supported:
+
+* Repository XML as defined by the OSGi Repository Specification 1.0. Such an XML file is in the http://www.osgi.org/xmlns/repository/v1.0.0 name space.
+* A Felix OBR-specific metadata format is also supported. This format predates the format from the specification.
+
+A detailed description of the standard XML format is described in chapter 132 in the [OSGi R5 Enterprise specification][3]. The following XML snippet depicts the overall structure of a repository file, using the proprietary Felix OBR format:
 
 
     <repository presentationname="..." symbolicname="..." ... >
@@ -312,3 +321,8 @@ In contrast to OSGi R4 the previous specifications, most notably R3, allowed bun
 ## Feedback
 
 Subscribe to the Felix users mailing list by sending a message to [users-subscribe@felix.apache.org]({{ refs.mailto-users-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [users@felix.apache.org|mailto:users@felix.apache.org].
+
+
+  [1]: http://www.osgi.org/Download/Release5
+  [2]: http://www.osgi.org/javadoc/r5/enterprise/org/osgi/service/repository/package-summary.html
+  [3]: http://www.osgi.org/Download/Release5
