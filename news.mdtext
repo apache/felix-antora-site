@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix Dependency Manager 4 (top level release R3) is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section. (May 25, 2015)
 * Apache Felix WebConsole Memory Plugin 1.0.6 and SCR Tooling:  Apache Felix Maven SCR Plugin 1.21.0, Apache Felix SCR Ant Task 1.14.0, Apache Felix SCR Bnd Plugin 1.4.0, Apache Felix SCR Annotations 1.9.12, and Apache Felix SCR Generator 1.13.0 released (April 27, 2015)
 * The Framework 5.0.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (April 24, 2015)
 * The Apache Felix Resolver 1.2.0 release is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section and from the Maven repository. (April 24, 2015)
