@@ -18,7 +18,7 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [Dependency Manager]({{ refs.apache-felix-dependency-manager.path }}) - An API-based component model to simplify OSGi-based development.
 * [Event Admin]({{ refs.apache-felix-event-admin.path }}) - An implementation of the OSGi Event Admin service specification for event-based communication.
 * [File Install]({{ refs.apache-felix-file-install.path }}) - A simple, directory-based management agent for managing bundle deployment.
-* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R5 core framework.
+* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R6 core framework.
 * [Gogo]({{ refs.apache-felix-gogo.path }}) - An advanced shell for interacting with OSGi frameworks.
 * [HTTP Service]({{ refs.apache-felix-http-service.path }}) - An implementation of the OSGi HTTP Service specification.
 * [Inventory Printer]({{ refs.apache-felix-inventory.path }}) - A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
