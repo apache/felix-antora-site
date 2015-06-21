@@ -1,5 +1,6 @@
 Title: News
 
+* The Framework 5.0.1 as well as the resolver 1.4.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 21, 2015)
 * Apache Felix Dependency Manager 4 (top level release R5) is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section. (June 09, 2015)
 * Apache Felix Config Admin 1.8.6 is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section. (May 29, 2015)
 * Apache Felix Connect 0.1.0  (May 28, 2015)
