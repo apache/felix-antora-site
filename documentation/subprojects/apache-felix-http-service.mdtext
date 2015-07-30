@@ -384,7 +384,7 @@ properties can be used (some legacy property names still exist but are not docum
 | `org.apache.felix.http.jetty.responseBufferSize` | Size of the buffer for responses, in bytes. Default is 24 KB. |
 | `org.apache.felix.http.jetty.maxFormSize` | The maximum size accepted for a form post, in bytes. Defaults to 200 KB. |
 | `org.apache.felix.http.mbeans` | If `true`, enables the MBean server functionality. The default is `false`. |
-| `org.apache.felix.http.jetty.sendServerHeader` | If `false`, the `Server` HTTP header is no longer included in responses. The default is `false`. |
+| `org.apache.felix.http.jetty.sendServerHeader` | If `false`, the `Server` HTTP header is no longer included in responses. The default is `true`. |
 | `org.eclipse.jetty.servlet.SessionCookie` | Name of the cookie used to transport the Session ID. The default is `JSESSIONID`. |
 | `org.eclipse.jetty.servlet.SessionURL` | Name of the request parameter to transport the Session ID. The default is `jsessionid`. |
 | `org.eclipse.jetty.servlet.SessionDomain` | Domain to set on the session cookie. The default is `null`. |
