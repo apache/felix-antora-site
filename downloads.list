@@ -36,7 +36,7 @@ Configuration Admin|org.apache.felix.configadmin|1.8.6
 Coordinator|org.apache.felix.coordinator|1.0.0
 Dependency Manager 4|org.apache.felix.dependencymanager|r5|src|bin|-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
-Event Admin|org.apache.felix.eventadmin|1.4.2
+Event Admin|org.apache.felix.eventadmin|1.4.4
 File Install|org.apache.felix.fileinstall|3.5.0|||doc/changelog.txt
 Framework|org.apache.felix.framework|5.0.1|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.4.0|||doc/changelog.txt
@@ -80,7 +80,7 @@ Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
 Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
 Main|org.apache.felix.main|5.0.1|project||doc/changelog.txt
-Metatype|org.apache.felix.metatype|1.0.12
+Metatype|org.apache.felix.metatype|1.1.0
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt

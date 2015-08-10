@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix Metatype 1.1.0 and Apache Felix EventAdmin 1.4.4 (August 10, 2015)
 * Apache Felix Http Service including support for the new R6 Http Whiteboard Service: Apache Felix Http API 3.0.0, Apache Felix Http Jetty 3.1.0, Apache Felix Http Base 3.0.0, Apache Felix Http Servlet API 1.1.2, Apache Felix Http Sslfilter 1.0.2, and Apache Felix Http Whiteboard 3.0.0 (August 10, 2015)
 * Apache Felix WebConsole 4.2.10 (July 20, 2015)
 * The Framework 5.0.1 as well as the resolver 1.4.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (June 21, 2015)
