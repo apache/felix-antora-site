@@ -1,5 +1,6 @@
 Title: News
 
+* The Framework 5.2.0 as well as the resolver 1.6.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (August 30, 2015)
 * Apache Felix Threaddump 1.0.0 (August 28, 2015)
 * Apache Felix Http Proxy 3.0.0 and Apache Felix Http Bridge 3.0.0 (August 17, 2015)
 * Apache Felix Metatype 1.1.2 (August 14, 2015)
