@@ -1,4 +1,3 @@
-translation_pending: true
 Title: Apache Felix Framework Security
 
 The Felix Framework Security subproject is an implementation of the security part of the OSGi R4.2 core specification.

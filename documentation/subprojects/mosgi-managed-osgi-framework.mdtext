@@ -1,4 +1,3 @@
-translation_pending: true
 Title: MOSGi Managed OSGi framework
 
 MOSGi enables the remote management of OSGi-compatible service gateways, using JMX. The framework is a reference architecture for end-to-end gateway management. It provides the following features:

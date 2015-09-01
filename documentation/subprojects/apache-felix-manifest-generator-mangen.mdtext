@@ -1,4 +1,3 @@
-translation_pending: true
 Title: Apache Felix Manifest Generator (mangen)
 
 # `mangen` - [OSGi](http://www.osgi.org) Bundle Manifest generator

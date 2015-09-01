@@ -1,4 +1,3 @@
-translation_pending: true
 Title: CAT-Scan-002 Profiles
 
 It does not seem reasonable to expect that all OSGi framework implementors have the time and resources to provide full CAT-Scan capabilities to their framework.  CAT-Scan offers cohesive sets of capabilities, called profiles, that increase in complexity and reporting capabilities.  The minimal set, called the Basic Profile, is required of all implementations that claim to provide CAT-Scan capabilities.

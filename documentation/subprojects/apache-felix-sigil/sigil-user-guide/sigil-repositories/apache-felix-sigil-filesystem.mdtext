@@ -1,4 +1,3 @@
-translation_pending: true
 Title: Apache Felix Sigil Filesystem
 
 The file system repository looks in a specific directory (optionally recursing through sub directories) to find OSGi bundles

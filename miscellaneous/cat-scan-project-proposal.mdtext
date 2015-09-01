@@ -1,4 +1,3 @@
-translation_pending: true
 Title: CAT-Scan Project Proposal
 
 All too often one hears anecdotal information about how many bundles get loaded and when. There have been claims that there is a need to handle tens of thousands of bundles at one time. Apache Geronimo, a JEE server, fully trussed up, does not load that many jars. Attendees at the 2008 OSGi conference didn't even know or were hesitant to divulge their bundle usage.

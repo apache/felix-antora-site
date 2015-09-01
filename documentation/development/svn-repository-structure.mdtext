@@ -1,4 +1,3 @@
-translation_pending: true
 Title: SVN repository structure
 
 The Felix SVN repository `trunk` contains a directory for each sub-project, where sub-projects may be further divided into modules as appropriate for the specific sub-project. Each sub-project has a single directory in the trunk whose name corresponds to the unique base name for the sub-project. Consider the following examples:
