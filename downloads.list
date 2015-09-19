@@ -86,8 +86,8 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.6.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.0.0
-SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.0
+SCR (Declarative Services)|org.apache.felix.scr|2.0.2
+SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.2
 SCR Annotations|org.apache.felix.scr.annotations|1.9.12|project
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8|project
 SCR Generator|org.apache.felix.scr.generator|1.13.0|project
@@ -103,7 +103,7 @@ User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project|
 Utils|org.apache.felix.utils|1.8.0|||doc/changelog.txt
 Web Console  |org.apache.felix.webconsole|4.2.10
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.10||all
-Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.0
+Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.2
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.0|project||-
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
