@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix Web Console 4.2.12, Apache Felix Web Console Event Plugin 1.1.4, Apache Felix Web Console Package Admin Plugin 1.0.2 (September 23, 2015)
 * Apache Felix SCR 2.0.2, Apache Felix DS Webconsole Plugin 2.0.2, Apache Felix SCR Compat 1.0.2 (September 19, 2015)
 * Apache Felix Http SslFilter 1.0.4 (September 17, 2015)
 * The Framework 5.2.0 as well as the resolver 1.6.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (August 30, 2015)
