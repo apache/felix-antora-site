@@ -101,13 +101,13 @@ User Admin  |org.apache.felix.useradmin|1.0.3|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.8.0|||doc/changelog.txt
-Web Console  |org.apache.felix.webconsole|4.2.10
-Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.10||all
+Web Console  |org.apache.felix.webconsole|4.2.12
+Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.12||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.2
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.0|project||-
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4|project||-
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
-Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.0
+Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.2
 Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.0|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
 Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.6
