@@ -31,7 +31,7 @@ framework|5.2.0
 #        Use - to not have a changelog link
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.5|project
-Bundle Repository|org.apache.felix.bundlerepository|2.0.4|||doc/changelog.txt
+Bundle Repository|org.apache.felix.bundlerepository|2.0.6|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.8
 Connect|org.apache.felix.connect|0.1.0
 Coordinator|org.apache.felix.coordinator|1.0.0
@@ -116,7 +116,7 @@ Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|2.5.3|||doc/changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|3.0.0|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
