@@ -2,15 +2,13 @@ Title: Apache Felix HTTP Service
 
 [TOC]
 
-This is an implementation of the HTTP Service Specification as described in chapter 102 of the OSGi Compendium. The goal
-is to provide a standard and simplified way to register servlets and resources in a servlet container, and to associate
-them with URIs. It also implement a non-standard extension for registering servlet filters as well as a whiteboard
-implementation. Complete set of features:
+This is an implementation of the HTTP Whiteboard Service as described in chapter 140 of the OSGi Compendium (R6) in combination with an implementation of the HTTP Service Specification as described in chapter 102 of the OSGi Compendium. The goal
+is to provide a standard and simplified way to register servlets, listeners, filters, and resources in a servlet container, to managed them in servlet contexts, and to associate
+them with URIs. Complete set of features:
 
   * Standard HTTP Service implementation;
-  * Extended HTTP Service implementation that allows for servlet filter registration;
+  * Standard HTTP Whiteboard Service implementation
   * Run either with Jetty or inside your own application server using the servlet bridge;
-  * A whiteboard implementation for easy registration of servlets and filters;
   * One complete bundle that includes everything to simplify deployment;
   * Correctly versioned Servlet API.
 
@@ -18,15 +16,17 @@ implementation. Complete set of features:
 
 The Apache Felix HTTP Service project includes several bundles. 
 
+  
   * `org.apache.felix.http.servlet-api` - Provides the Servlet API (versions 2.6 and 3.0 of the Servlet specification);
-  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server (currently Jetty 8);
-  * `org.apache.felix.http.whiteboard` - Whiteboard implementation that uses any HTTP Service implementation;
+  * `org.apache.felix.http.api` - Provides the OSGi APIs;
+  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server (currently Jetty 9, requiring Java 7);
+  * `org.apache.felix.http.whiteboard` - Deprecated whiteboard implementation that uses any HTTP Service implementation;
   * `org.apache.felix.http.bridge` - HTTP Service implementation that uses the host application server (bridged mode). Must be used with proxy;
   * `org.apache.felix.http.cometd` - Adds Comet/Ajax Push functionality to the HTTP Service implementation;
   * `org.apache.felix.http.bundle` - The all-in-one bundle that includes all of the above;
   * `org.apache.felix.http.proxy` - Proxy that is needed inside WAR when deployed inside an application server. 
 
-Note that as of version **2.3.0**, both the HTTP as the Serlvet APIs are **no longer** packaged with the separate
+Note that as of version **2.3.x** and **3.0.0**, both the HTTP as the Serlvet APIs are **no longer** packaged with the separate
 bundles! The only exception to this is the all-in-one bundle (that is `org.apache.felix.http.bundle`), which still
 **does** include these APIs.  
 If you are migrating from lower versions, and are *not* using the all-in-one bundle, be sure to add both the
