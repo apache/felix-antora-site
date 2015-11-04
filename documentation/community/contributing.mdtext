@@ -1,7 +1,5 @@
 Title: Contributing
 
-# Contributing
-
 Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help support Felix, this page is intended as a starting point for specific contribution ideas. To further understand how the Felix community operates, refer to the [Community Roles and Processes]({{ refs.apache-felix-community-roles-and-processes.path }}) document and/or join the [mailing lists|mailinglists].
 
 The Felix project organizes its "to do" list using the [JIRA](http://issues.apache.org/jira/browse/Felix) issue tracking system. Specific items from Felix' JIRA issue tracking system are highlighted on this page, but are not limited to it. The purpose of the list here is to highlight issues that are either more important or serve as good entry points for new contributors.

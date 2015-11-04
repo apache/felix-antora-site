@@ -1,7 +1,5 @@
 Title: Apache Felix Application Demonstration
 
-# Apache Felix Application Demonstration
-
 *(This document is a work in progress.)*
 
 Apache Felix provides a foundation for creating modular and dynamically extensible applications. This page presents an example application to demonstrate the various approaches to consider when creating a OSGi/Felix-based application. It is recommended that you have a look at the more [basic examples]({{ refs.felix-getting-started.path }}) such as [FELIX:Apache Felix Framework Usage Documentation] before you start with this one.
