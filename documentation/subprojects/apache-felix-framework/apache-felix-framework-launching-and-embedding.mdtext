@@ -1,7 +1,5 @@
 Title: Apache Felix Framework Launching and Embedding
 
-# Apache Felix Framework Launching and Embedding
-
 *\[This document describes framework launching introduced in Felix Framework 2.0.0 and continuing with the latest releases; it is incompatible with older versions of the Felix framework.\]({{ refs.this-document-describes-framework-launching-introduced-in-felix-framework-2-0-0-and-continuing-with-the-latest-releases-it-is-incompatible-with-older-versions-of-the-felix-framework.path }})*
 
 * [Introduction]({{ refs.-introduction.path }})

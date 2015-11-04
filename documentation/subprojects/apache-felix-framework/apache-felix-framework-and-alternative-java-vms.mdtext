@@ -1,7 +1,5 @@
 Title: Apache Felix Framework and Alternative Java VMs
 
-# Apache Felix Framework and Alternative Java VMs
-
 This page is intended to document experiences of running Felix on alternative Java VMs. Currently, the following VMs are included:
 
 * [Mika Java Virtual Machine]({{ refs.-mika.path }})

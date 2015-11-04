@@ -1,7 +1,5 @@
 Title: Apache Felix Shell
 
-# Apache Felix Shell
-
 * [Overview]({{ refs.-overview.path }})
 * [How the Shell Service Works]({{ refs.-service.path }})
 * [How Commands Work]({{ refs.-commands.path }})

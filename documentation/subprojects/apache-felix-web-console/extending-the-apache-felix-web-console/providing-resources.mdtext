@@ -1,7 +1,5 @@
 Title: Providing Resources
 
-# Providing Resources
-
 
 Extending the Apache Felix Web Console with new functionality is as easy as registering a `javax.servlet.Servlet` with at least the `felix.webconsole.label` service registration property set (see above). Providing resources is a bit more complex and requires more work on behalf of the plugin.
 

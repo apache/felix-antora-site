@@ -1,7 +1,5 @@
 Title: Apache Felix Remote Shell
 
-# Apache Felix Remote Shell
-
 The Apache Felix Remote Shell provided by the `org.apache.felix.shell.remote` bundle offers remote access to [Apache Felix Shell]({{ refs.apache-felix-shell.path }}) and [Apache Felix Gogo] using telnet clients. The remote shell provides simple telnet access with no bells and whistles -- it just works.
 
 To use remote shell with the Felix shell, you have to install the `org.apache.felix.shell` bundle in addition to the `org.apache.felix.shell.remote` bundle. To use it with Gogo, you have to install the `org.apache.felix.gogo.runtime` and `org.apache.felix.gogo.shell` bundles in addition to the `org.apache.felix.shell.remote` bundle. Once you have the shell bundles installed with the remote shell bundle, start them all to enable remote shell access.

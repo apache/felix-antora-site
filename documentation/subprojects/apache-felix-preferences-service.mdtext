@@ -1,7 +1,5 @@
 Title: Apache Felix Preferences Service
 
-# Apache Felix Preferences Service
-
 The OSGi service compendium specification defines a general purpose service to store data persistently, so that they can survive the restart of a bundle or of the whole OSGi container. This service is not intended to be a full-featured persistence layer for OSGi bundles, rather a simple tool to store informations that can be used in various stages of the bundle lifecycle.
 
 The service supports the storage of scalar values (boolan, double, float, int, long and strings) and byte arrays, arranged in a hierarchical model. While there is no limitations on the size of data objects stored, the specification clearly states that the Preferences Service is intended to store only small objects.

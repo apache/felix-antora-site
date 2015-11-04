@@ -19,14 +19,14 @@ The Apache Felix HTTP Service project includes several bundles.
   
   * `org.apache.felix.http.servlet-api` - Provides the Servlet API (versions 2.6 and 3.0 of the Servlet specification);
   * `org.apache.felix.http.api` - Provides the OSGi APIs;
-  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server (currently Jetty 9, requiring Java 7);
+  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server (currently Jetty 9, requiring Java 7). This bundle includes the http.api bundle.;
   * `org.apache.felix.http.whiteboard` - Deprecated whiteboard implementation that uses any HTTP Service implementation;
   * `org.apache.felix.http.bridge` - HTTP Service implementation that uses the host application server (bridged mode). Must be used with proxy;
   * `org.apache.felix.http.cometd` - Adds Comet/Ajax Push functionality to the HTTP Service implementation;
   * `org.apache.felix.http.bundle` - The all-in-one bundle that includes all of the above;
   * `org.apache.felix.http.proxy` - Proxy that is needed inside WAR when deployed inside an application server. 
 
-Note that as of version **2.3.x** and **3.0.0**, both the HTTP as the Serlvet APIs are **no longer** packaged with the separate
+Note that as of version **2.3.x** and **3.0.0**, both the HTTP as well as the Serlvet APIs are **no longer** packaged with the separate
 bundles! The only exception to this is the all-in-one bundle (that is `org.apache.felix.http.bundle`), which still
 **does** include these APIs.  
 If you are migrating from lower versions, and are *not* using the all-in-one bundle, be sure to add both the

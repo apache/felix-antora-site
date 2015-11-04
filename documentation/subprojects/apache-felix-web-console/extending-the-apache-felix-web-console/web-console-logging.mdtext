@@ -1,7 +1,5 @@
 Title: Web Console Logging
 
-# Web Console Logging
-
 The Web Console does not provide its own mechanism for logging. Rather the Servlet Container logging mechanism is used by calling the `GenericServlet.log` methods for logging. It is expected by the OSGi Http Service implementation implements these `log` methods writing to the OSGi Log Service.
 
 The drawback of using servlet container logging is that we have no control over the logging levels used and applied to log messages. To at least allow some level of log message filtering the Web Console can be configured with a logging level using the `loglevel` property of the *Apache Felix OSGi Management Console* (`org.apache.felix.webconsole.internal.servlet.OsgiManager`).

@@ -1,7 +1,5 @@
 Title: BND Testing Harness
 
-# BND Testing Harness
-
 The latest versions of [BND](http://www.aqute.biz/Code/Bnd) have testing harness capabilities for JUnit built in. In fact, the OSGi Alliance uses BND for its own build and testing system. BND already provided lots of support for creating bundles, so testing is perhaps a logical progression of those capabilities. This task was simplified by a proposed standard framework launching and embedding API for the OSGi R4.2 specification, which BND uses to configure and launch OSGi frameworks in a platform-independent way. I should note that this BND functionality is in its early stages, so there are some rough edges.
 
 This document describes an example BND project used to test Felix' Framework and Logger subprojects. This document is not intended as a BND tutorial, since it is beyond my capabilities to describe how BND works. The goal is to document my hacked up example sufficiently so that other people can try it out for themselves. The original build files and configuration for this example are based on an example from Peter Kriens. BND also has an Eclipse plugin which makes it easy to run the test cases, but I have not experimented with that; this document works solely with the command line.

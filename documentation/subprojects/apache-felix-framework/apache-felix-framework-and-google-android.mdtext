@@ -1,7 +1,5 @@
 Title: Apache Felix Framework and Google Android
 
-# Apache Felix Framework and Google Android
-                                                                                                                      
 The purpose of this document is to explain how to use [Apache Felix](http://felix.apache.org) on Google's new mobile phone platform - [Android|http://code.google.com/android].
  
 ## Dalvik VM

@@ -1,7 +1,5 @@
 Title: Apache Felix Gogo
 
-# Apache Felix Gogo
-
 Apache Felix Gogo is a subproject of Apache Felix implementing the OSGi RFC 147, which describes a standard shell for OSGi-based environments. See [RFC 147 Overview]({{ refs.rfc-147-overview.path }}) for more information.
 
 ## Using Gogo with the Felix Framework

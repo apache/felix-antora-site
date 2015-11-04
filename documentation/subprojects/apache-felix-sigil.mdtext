@@ -1,7 +1,5 @@
 Title: Apache Felix Sigil
 
-#### Sigil: Felix
-
 Sigil provides OSGi centric development tooling, where the OSGi runtime model is extended to provide build time dependencies.
 
 - [Key Features]({{ refs.sigil-key-features-sigil-key-features.path }})

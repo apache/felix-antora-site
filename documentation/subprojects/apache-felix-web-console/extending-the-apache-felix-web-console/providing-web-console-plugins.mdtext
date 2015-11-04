@@ -1,7 +1,5 @@
 Title: Providing Web Console Plugins
 
-# Providing Web Console Plugins
-
 
 The Web Console can be extended by registering an OSGi service for the interface `javax.servlet.Servlet` with the service property `felix.webconsole.label` set to the label (last segment in the URL) of the page. The respective service is called a Web Console Plugin or a plugin for short.
 

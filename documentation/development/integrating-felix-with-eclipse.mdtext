@@ -1,7 +1,5 @@
 Title: Integrating Felix with Eclipse
 
-# Integrating Felix with Eclipse
-
 This document explains how to launch Felix inside the Eclipse IDE. Then, it is possible to use Eclipse debugging facilities to debug bundles.
 
 

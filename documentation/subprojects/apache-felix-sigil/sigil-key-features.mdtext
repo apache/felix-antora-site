@@ -1,7 +1,5 @@
 Title: Sigil Key Features
 
-### Sigil: Key Features
-
 #### Resolves build dependencies based upon OSGi meta-data
 
 - determines compilation dependencies using the same Import-Package meta-data used by OSGi at runtime

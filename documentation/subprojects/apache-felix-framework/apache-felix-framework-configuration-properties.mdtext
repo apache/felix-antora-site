@@ -1,7 +1,5 @@
 Title: Apache Felix Framework Configuration Properties
 
-# Apache Felix Framework Configuration Properties
-
 * [Overview]({{ refs.-overview.path }})
 * [Framework configuration properties]({{ refs.-framework.path }})
 * [Launcher configuration properties]({{ refs.-launcher.path }})

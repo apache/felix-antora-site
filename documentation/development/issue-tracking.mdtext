@@ -1,7 +1,5 @@
 Title: Issue Tracking
 
-# Issue tracking
-
 This project uses [JIRA](http://www.atlassian.com/software/jira), a J2EE-based, issue tracking and project management application. We use it for bugs, tasks and code contributions.
 
 Before creating a new issue, please make sure nobody has already added the issue you're reporting. When you do add an issue, please try to make it as informative as possible.

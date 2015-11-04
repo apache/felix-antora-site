@@ -1,7 +1,5 @@
 Title: Apache Felix Framework Bundle Cache
 
-# Apache Felix Framework Bundle Cache
-
 * [Introduction]({{ refs.-introduction.path }})
 * [Default Behavior]({{ refs.-default-behavior.path }})
 * [Configuring Default Behavior]({{ refs.-configuring-behavior.path }})

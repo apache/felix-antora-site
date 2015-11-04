@@ -1,7 +1,5 @@
 Title: Coding Standards
 
-# Coding standards
-
 ## Guidelines Summary
 
 This style guide is intended to help the computer professional produce better Java programs. It presents a set of specific guidelines for using the features of Java in a disciplined manner. The goal is to develop high quality, reliable, reusable, portable software. For a number of reasons, no programming language can ensure the achievements of these desirable objectives on its own. Programming must be embedded in a disciplined development process that addresses a number of topics in a well managed way. The use of Java is one of those. It must conform to good programming practices be based on well established software engineering principles. This style guide is intended to bridge the gap between these principles and the actual practice of programming in Java.

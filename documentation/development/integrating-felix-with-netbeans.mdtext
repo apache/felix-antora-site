@@ -1,7 +1,5 @@
 Title: Integrating Felix with NetBeans
 
-# Integrating Felix with NetBeans
-
 This document explains how to launch Felix inside of the NetBeans IDE, which makes it possible to use NetBeans debugging and profiling facilities on bundles. 
 
 ## Preliminaries

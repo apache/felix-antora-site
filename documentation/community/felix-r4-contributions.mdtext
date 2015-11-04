@@ -1,66 +1,17 @@
-Title: Felix R4 contributions
-
-# Felix R4 OSGi Service Platform Contributions
+Title: Felix R4 OSGi Service Platform Contributions
 
 These are the recorded contributions:
   
-  
-  
-  
 | org.osgi.framework | The OSGi Framework Package. | Richard Hall (LSR/UJF) | Project contribution | ICLA, CCLA, and Grant | Yes |
 | org.osgi.service.cm | The OSGi Configuration Admin service Package. | Felix Meschberger | [Result](http://mail-archives.apache.org/mod_mbox/incubator-felix-dev/200704.mbox/%3c46167210.9080109@ungoverned.org%3e) | Grant and ICLA | Yes |
-  
-  
-  
-  
 | org.osgi.service.device | The OSGi Device Access Package. | | | | |
-  
-  
-  
-  
 | org.osgi.service.io | The OSGi IO Connector Specification Version 1.0. | Pending, To Be Announced | | | |
-  
-  
 | org.osgi.service.metatype | The OSGi Metatype Package. | Felix Meschberger | [Result](http://mail-archives.apache.org/mod_mbox/incubator-felix-dev/200704.mbox/%3c46167210.9080109@ungoverned.org%3e) | Grant and ICLA | Yes |
-  
-  
-  
-  
-  
-  
 | org.osgi.service.provisioning | The OSGi Provisioning Service Package. | | | | |
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 | org.osgi.util.measurement | The OSGi Measurement Package. | Reference | | | |
 | org.osgi.util.position | The OSGi Position Package. | Reference | | | |
 | org.osgi.util.tracker | The OSGi Service Tracker Package. | Reference | | | |
 | org.osgi.util.xml | The OSGi XML Parser service Package. | Reference | | | |
-  
-  
-  
-  
-  
-  
 | org.apache.felix.shell.remote | Remote Shell | Dieter Wimberger | [Result](http://markmail.org/message/k2yd6zsrsifloelp) | [IP Clearance|http://incubator.apache.org/ip-clearance/felix-remote-shell.html] | Yes |
 
 Send comments to the [Felix developers mailinglist]({{ refs.mailinglists.path }}).

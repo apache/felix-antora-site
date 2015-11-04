@@ -1,7 +1,5 @@
 Title: Extending the Apache Felix Web Console
 
-# Extending the Apache Felix Web Console
-
 The [Apache Felix Web Console]({{ refs.apache-felix-web-console.path }}) is extensible in various ways described no these pages:
 
 * [Providing Web Console Plugins]({{ refs.providing-web-console-plugins.path }})

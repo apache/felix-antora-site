@@ -1,6 +1,4 @@
 Title: Sigil User Guide
 
-# Sigil User Guide
-
 {% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
 {% endfor %}

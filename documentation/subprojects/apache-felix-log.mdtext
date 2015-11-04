@@ -1,7 +1,5 @@
 Title: Apache Felix Log
 
-# Apache Felix Log
-
 The OSGi Service Compendium specification defines a general purpose Log Service for the OSGi Platform. It is a very simple specification that doesn't provide all the functionality commonly available in enterprise-level logging tools, but its extensible service model can be used to build fairly sophisticated logging solutions.
 
 The Log Service specification defines four main entities:

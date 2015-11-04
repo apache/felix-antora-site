@@ -1,6 +1,4 @@
-Title: FAQs
-
-# Frequently Asked Questions
+Title: Frequently Asked Questions
 
 * [OSGi FAQ]({{ refs.apache-felix-osgi-faq.path }}) - Contains answers to general OSGi-related questions.
 * [Framework FAQ]({{ refs.apache-felix-framework-faq.path }}) - Contains answers to questions that are specifically related to Felix' OSGi framework implementation.

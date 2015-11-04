@@ -1,7 +1,5 @@
 Title: Development
 
-# Development
-
 This page contains links related to Felix project development.
 
 {% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})

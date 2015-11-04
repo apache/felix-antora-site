@@ -1,7 +1,5 @@
 Title: Apache Felix File Install
 
-# Apache Felix File Install
- 	 
 File Install is a directory based OSGi management agent. It uses a directory in the file system to install and start a bundle when it is first placed there. It updates the bundle when you update the bundle file in the directory and, when the file is deleted, it will stop and uninstall the bundle.
  	 
 File Install can do the same for configuration configuration files. This surprisingly simple bundle is very powerful because there are so many programs that work with the file system. For example:
