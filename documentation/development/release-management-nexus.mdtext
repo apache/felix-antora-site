@@ -306,11 +306,20 @@ If you are using a *nix system with a working OpenSSH, GnuPG, and bash you can c
 When gpg asks for e-mail linked the key you *MUST USE* the <committer>@apache.org one.
 When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY".
   
-Second, *Add the key to* (https://dist.apache.org/repos/dist/release/felix/KEYS): type the following command replacing the word e-mail with your Apache's one (<committer>@apache.org). To update you have to checkout the Felix
+Second, *Add the key to* (https://dist.apache.org/repos/dist/release/felix/KEYS).
+
+Only PMC members can commit to files in the dist area, so you should do the key export in the 
+shell commands below, and send the results along to a friendly PMC member for assistance.
+
+Type the following command replacing the word e-mail with your Apache's one (<committer>@apache.org). To update you have to checkout the Felix
 dist release repository (you also need this to publish a release): 
 
     :::bash
     $ (gpg --list-sigs e-mail && gpg --export --armor e-mail) > toadd.key
+
+Provide the file to a PMC member, who will:
+
+    :::bash
     $ svn checkout https://dist.apache.org/repos/dist/release/felix felix-dist
     $ cat toadd.key >> felix-dist/KEYS
     $ scn commit -m"KEYS += <committer>" felix-dist/KEYS
