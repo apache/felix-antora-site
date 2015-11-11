@@ -1,4 +1,4 @@
-Title: Release Management (Nexus)
+Title: Release Management
 
 *This is the new release process for Apache Felix, based on the updated Maven [process](http://maven.apache.org/developers/release/releasing.html)*
 
@@ -96,7 +96,15 @@ the released version.
     * login to [https://repository.apache.org](https://repository.apache.org) using your Apache SVN credentials. Click on *Staging* on the left. Then click on *org.apache.felix* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
 1. Verify the staged artifacts
     * if you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then rollback your release (see *Canceling the Release*) and repeat the process
-    * note the staging repository URL (especially the number at the end of the URL) you will need this in your vote email
+    * note the staging repository URL (especially the number at the end of the URL) you will need this in your vote email.
+
+## Stage the generated documentation
+
+(This only applies to the maven-bundle-plugin so far.)
+
+Run:
+
+    $ mvn site:site site:stage scm-publish:publish-scm
 
 ## Starting the Vote
 
@@ -261,6 +269,16 @@ For the last two tasks, it's better to give the mirrors some time to distribute 
 ## Update JIRA
 
 Go to [Admin](https://issues.apache.org/jira/secure/project/ViewProject.jspa?pid=12310100) section on the FELIX JIRA and mark the Y.Z version as released - create version Y.Z+1, if that hasn't already been done.
+
+## Publish Generated Documentation
+
+This procedure applies to the maven-bundle-plugin; it may expand to others. The bundle plugin's maven-site-plugin doc is published to SVN by the
+maven-scm-publish plugin at the location
+https://svn.apache.org/repos/infra/websites/production/felix/content/components/bundle-plugin-archives/bundle-plugin-LATEST. At release time, you
+rename that from LATEST to the correct version, and then copy it to https://svn.apache.org/repos/infra/websites/production/felix/content/components/bundle-plugin.
+
+See [some doc from the Maven project](http://maven.apache.org/developers/website/deploy-component-reference-documentation.html#Publishing_versioned_component_reference_documentation).
+
 
 ## Create an Announcement
 
