@@ -2,21 +2,21 @@ Title: Felix & OSGi  Presentations
 
 | Date | Event | Download | Presenter(s) | Summary |
 |--|--|--|--|--|
-| 11-14 october 2005 | OSGi World Congress, Paris, France | [download]({{ refs.-apache-directory-osgi-pdf.path }}) | Enrique Rodriguez | Apache Directory's use of OSGi. |
-| 11-14 october 2005 | OSGi World Congress, Paris, France | [download]({{ refs.-dependencymanagement-pdf.path }}) | Marcel Offermans | Introducing the dependency manager, which introduces an API to dynamically define and manipulate service dependencies. |
-| 14 december 2005 | ApacheCon | [download]({{ refs.-osgi-apachecon-20051214-pdf.path }}) | Richard S. Hall | Presentation discussing OSGi R4 support for modularity in Java and how it differs from OSGi R3 support. |
-| 28 june 2006 | ApacheCon EU, Dublin, Ireland | [download]({{ refs.-osgi-apachecon-20060628-pdf.path }}) | Richard S. Hall | Presentation discussing Java modularity, OSGi, and JSRs 277, 291, and 294. |
-| 28 june 2006 | ApacheCon EU, Dublin, Ireland | [download]({{ refs.-best-practices-apachecon-20060628-pdf.path }}) | Marcel Offermans | Presentation discussing OSGi best practices. |
-| 21 march 2007 | Akquinet, Berlin, Germany | [download]({{ refs.-osgi-berlin-20070321-pdf.path }}) | Richard S. Hall | OSGi overview presentation. |
-| 27 june 2007 | OSGi Community Event, Munich, Germany | [download]({{ refs.-obr-osgi-community-20070627-pdf.path }}) | Richard S. Hall | Presentation about OBR. |
-| 14 november 2007 | ApacheCon US | [download]({{ refs.-felix-apachecon-20071114-pdf.path }}) | Richard S. Hall | Presentation discussing how to use Felix to build applications. |
-| 27 february 2008 | NL-JUG University, De Bilt, The Netherlands | [download]({{ refs.-osgi-university-session-pdf.path }}) | Karl Pauls, Marcel Offermans | Slides of a two hour university session on OSGi. |
-| 23-26 march 2008 | EclipseCon / OSGiCon, Santa Clara, United States | [download]({{ refs.-building-secure-osgi-applications-workshop-pdf.path }}) | Karl Pauls, Marcel Offermans | Workshop on how to build secure OSGi applications using OSGi security, with various samples for Apache Felix and Equinox. |
-| 9 april 2008 | ApacheCon EU, Amsterdam, The Netherlands | [download]({{ refs.-felix-apachecon-20080409-pdf.path }}) | Richard S. Hall | Presentation, which is an updated version of the ApacheCon US 2007 presentation describing how to build OSGi-based applications. |
+| 25 January 2011 | N/A | [download]({{ refs.-learning-to-ignore_osgi-pdf.path }}) | Richard S. Hall | Discusses the minimum understanding of OSGi technology you must possess to effectively use it. |
+| 25 march 2009 | ApacheCon EU, Amsterdam, The Netherlands | [download]({{ refs.-apache-felix-on-androids-pdf.path }}) | Marcel Offermans, Christian van Spaandonk | Shows how to create and dynamically deploy applications on Google Android up to the point where things get dynamically deployed based on context (user's location, etc.). |
+| 7 february 2009 | FOSDEM 2009, Brussels, Belgium | [download]({{ refs.-dynamic-deployment-with-apache-felix-pdf.path }}) [video|http://www.youtube.com/watch?v=BthwKfxATNE] | Marcel Offermans | Dynamic Deployment with Apache Felix |
+| 11 june 2008 | OSGi Community Event, Berlin, Germany | [download]({{ refs.-ipojo-berlin-20080611-pdf.path }}) | Richard S. Hall | iPOJO: The Simple Life. |
+| 10 june 2008 | OSGi Community Event, Berlin, Germany | [download]({{ refs.-06_bossenbroek-pdf.path }}) | Hans Bossenbroek, Martijn van Berkum | <GX> WebManager 9, an OSGi business case that uses Apache Felix. |
 | 16 april 2008 | NL-JUG J-Spring 2008, Bussum, The Netherlands | [download]({{ refs.-building-secure-osgi-applications-pdf.path }}) | Marcel Offermans, Karl Pauls | Presentation on how to build secure OSGi applications using OSGi security. |
 | 16 april 2008 | NL-JUG J-Spring 2008, Bussum, The Netherlands | [download]({{ refs.-osgi-on-google-android-using-apache-felix-pdf.path }}) | Marcel Offermans, Karl Pauls | Presentationn on how to build OSGi-based applications on Google Android. |
-| 10 june 2008 | OSGi Community Event, Berlin, Germany | [download]({{ refs.-06_bossenbroek-pdf.path }}) | Hans Bossenbroek, Martijn van Berkum | <GX> WebManager 9, an OSGi business case that uses Apache Felix. |
-| 11 june 2008 | OSGi Community Event, Berlin, Germany | [download]({{ refs.-ipojo-berlin-20080611-pdf.path }}) | Richard S. Hall | iPOJO: The Simple Life. |
-| 7 february 2009 | FOSDEM 2009, Brussels, Belgium | [download]({{ refs.-dynamic-deployment-with-apache-felix-pdf.path }}) [video|http://www.youtube.com/watch?v=BthwKfxATNE] | Marcel Offermans | Dynamic Deployment with Apache Felix |
-| 25 march 2009 | ApacheCon EU, Amsterdam, The Netherlands | [download]({{ refs.-apache-felix-on-androids-pdf.path }}) | Marcel Offermans, Christian van Spaandonk | Shows how to create and dynamically deploy applications on Google Android up to the point where things get dynamically deployed based on context (user's location, etc.). |
-| 25 January 2011 | N/A | [download]({{ refs.-learning-to-ignore_osgi-pdf.path }}) | Richard S. Hall | Discusses the minimum understanding of OSGi technology you must possess to effectively use it. |
+| 9 april 2008 | ApacheCon EU, Amsterdam, The Netherlands | [download]({{ refs.-felix-apachecon-20080409-pdf.path }}) | Richard S. Hall | Presentation, which is an updated version of the ApacheCon US 2007 presentation describing how to build OSGi-based applications. |
+| 27 february 2008 | NL-JUG University, De Bilt, The Netherlands | [download]({{ refs.-osgi-university-session-pdf.path }}) | Karl Pauls, Marcel Offermans | Slides of a two hour university session on OSGi. |
+| 23-26 march 2008 | EclipseCon / OSGiCon, Santa Clara, United States | [download]({{ refs.-building-secure-osgi-applications-workshop-pdf.path }}) | Karl Pauls, Marcel Offermans | Workshop on how to build secure OSGi applications using OSGi security, with various samples for Apache Felix and Equinox. |
+| 14 november 2007 | ApacheCon US | [download]({{ refs.-felix-apachecon-20071114-pdf.path }}) | Richard S. Hall | Presentation discussing how to use Felix to build applications. |
+| 27 june 2007 | OSGi Community Event, Munich, Germany | [download]({{ refs.-obr-osgi-community-20070627-pdf.path }}) | Richard S. Hall | Presentation about OBR. |
+| 21 march 2007 | Akquinet, Berlin, Germany | [download]({{ refs.-osgi-berlin-20070321-pdf.path }}) | Richard S. Hall | OSGi overview presentation. |
+| 28 june 2006 | ApacheCon EU, Dublin, Ireland | [download]({{ refs.-osgi-apachecon-20060628-pdf.path }}) | Richard S. Hall | Presentation discussing Java modularity, OSGi, and JSRs 277, 291, and 294. |
+| 28 june 2006 | ApacheCon EU, Dublin, Ireland | [download]({{ refs.-best-practices-apachecon-20060628-pdf.path }}) | Marcel Offermans | Presentation discussing OSGi best practices. |
+| 14 december 2005 | ApacheCon | [download]({{ refs.-osgi-apachecon-20051214-pdf.path }}) | Richard S. Hall | Presentation discussing OSGi R4 support for modularity in Java and how it differs from OSGi R3 support. |
+| 11-14 october 2005 | OSGi World Congress, Paris, France | [download]({{ refs.-apache-directory-osgi-pdf.path }}) | Enrique Rodriguez | Apache Directory's use of OSGi. |
+| 11-14 october 2005 | OSGi World Congress, Paris, France | [download]({{ refs.-dependencymanagement-pdf.path }}) | Marcel Offermans | Introducing the dependency manager, which introduces an API to dynamically define and manipulate service dependencies. |
