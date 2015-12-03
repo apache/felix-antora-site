@@ -72,8 +72,8 @@ iPOJO Extender pattern handler|org.apache.felix.ipojo.handler.extender|1.4.0|pro
 iPOJO JMX handler|org.apache.felix.ipojo.handler.jmx|1.4.0|project||-
 iPOJO Event Admin handler|org.apache.felix.ipojo.handler.eventadmin|1.8.0|project||-
 iPOJO Temporal Dependency handler|org.apache.felix.ipojo.handler.temporal|1.6.0|project||-
-Jaas Support Bundle|org.apache.felix.jaas|0.0.2|source-release||changelog.txt
-Jaas Support Boot Classpath Jar|org.apache.felix.jaas|0.0.2|source-release|boot|changelog.txt
+Jaas Support Bundle|org.apache.felix.jaas|0.0.4|source-release||changelog.txt
+Jaas Support Boot Classpath Jar|org.apache.felix.jaas|0.0.4|source-release|boot|changelog.txt
 junit4osgi|org.apache.felix.ipojo.junit4osgi|1.0.0|project||doc/changelog.txt
 junit4osgi - shell command|org.apache.felix.ipojo.junit4osgi.felix-command|1.0.0|project||doc/changelog.txt
 junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project||doc/changelog.txt
@@ -108,7 +108,7 @@ Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4|p
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
 Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.2
-Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.0|project
+Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.2|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
 Web Console Subsystems Plugin|org.apache.felix.webconsole.plugins.subsystem|0.1.0
 Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.6
