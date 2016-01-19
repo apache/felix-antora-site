@@ -12,7 +12,7 @@
 
 #
 # (1) Felix Framework Distribution version
-framework|5.4.0
+framework|4.6.0
 
 #
 # (2) Subprojects
@@ -31,29 +31,32 @@ framework|5.4.0
 #        Use - to not have a changelog link
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.5|project
-Bundle Repository|org.apache.felix.bundlerepository|2.0.6|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.8.8
-Connect|org.apache.felix.connect|0.1.0
-Coordinator|org.apache.felix.coordinator|1.0.2
-Dependency Manager 4|org.apache.felix.dependencymanager|r6|src|bin|-
+Bundle Repository|org.apache.felix.bundlerepository|2.0.2|||doc/changelog.txt
+Configuration Admin|org.apache.felix.configadmin|1.8.0
+Coordinator|org.apache.felix.coordinator|1.0.0
+Dependency Manager|org.apache.felix.dependencymanager|3.2.0|project
+Dependency Manager Annotation|org.apache.felix.dependencymanager.annotation|3.2.0|project||doc/changelog.txt
+Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|project
+Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|3.2.0|project||doc/changelog.txt
+Dependency Manager Shell|org.apache.felix.dependencymanager.shell|3.2.0|project
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
-Event Admin|org.apache.felix.eventadmin|1.4.4
-File Install|org.apache.felix.fileinstall|3.5.0|||doc/changelog.txt
-Framework|org.apache.felix.framework|5.4.0|||doc/changelog.txt
+Event Admin|org.apache.felix.eventadmin|1.4.6
+File Install|org.apache.felix.fileinstall|3.5.2|||doc/changelog.txt
+Framework|org.apache.felix.framework|4.6.0|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.4.0|||doc/changelog.txt
-Gogo Runtime|org.apache.felix.gogo.runtime|0.16.2|project||doc/changelog.txt
-Gogo Shell|org.apache.felix.gogo.shell|0.12.0|project||doc/changelog.txt
-Gogo Command|org.apache.felix.gogo.command|0.16.0|project||doc/changelog.txt
-HTTP Service API|org.apache.felix.http.api|3.0.0|project||-
-HTTP Service Base|org.apache.felix.http.base|3.0.6|project||-
-HTTP Service Bridge|org.apache.felix.http.bridge|3.0.6|project||-
-HTTP Service Bundle|org.apache.felix.http.bundle|2.4.0|project||-
+Gogo Runtime|org.apache.felix.gogo.runtime|0.12.1|project||doc/changelog.txt
+Gogo Shell|org.apache.felix.gogo.shell|0.10.0|project||doc/changelog.txt
+Gogo Command|org.apache.felix.gogo.command|0.14.0|project||doc/changelog.txt
+HTTP Service API|org.apache.felix.http.api|2.3.2|project||-
+HTTP Service Base|org.apache.felix.http.base|2.3.2|project||-
+HTTP Service Bridge|org.apache.felix.http.bridge|2.3.2|project||-
+HTTP Service Bundle|org.apache.felix.http.bundle|2.3.2|project||-
 HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2|project||-
-HTTP Service Jetty|org.apache.felix.http.jetty|3.1.6|project||-
-HTTP Service Proxy|org.apache.felix.http.proxy|3.0.0|project||-
-HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.0.4|project||-
-HTTP Service Whiteboard|org.apache.felix.http.whiteboard|3.0.0|project||-
-HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2|project||-
+HTTP Service Jetty|org.apache.felix.http.jetty|2.3.2|project||-
+HTTP Service Proxy|org.apache.felix.http.proxy|2.3.2|project||-
+HTTP Service SSL filter|org.apache.felix.http.sslfilter|0.2.0|project||-
+HTTP Service Whiteboard|org.apache.felix.http.whiteboard|2.3.2|project||-
+HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.0.1|project||-
 Inventory Printer|org.apache.felix.inventory|1.0.4
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
@@ -72,25 +75,24 @@ iPOJO Extender pattern handler|org.apache.felix.ipojo.handler.extender|1.4.0|pro
 iPOJO JMX handler|org.apache.felix.ipojo.handler.jmx|1.4.0|project||-
 iPOJO Event Admin handler|org.apache.felix.ipojo.handler.eventadmin|1.8.0|project||-
 iPOJO Temporal Dependency handler|org.apache.felix.ipojo.handler.temporal|1.6.0|project||-
-Jaas Support Bundle|org.apache.felix.jaas|0.0.4|source-release||changelog.txt
-Jaas Support Boot Classpath Jar|org.apache.felix.jaas|0.0.4|source-release|boot|changelog.txt
+Jaas Support Bundle|org.apache.felix.jaas|0.0.2|source-release||changelog.txt
+Jaas Support Boot Classpath Jar|org.apache.felix.jaas|0.0.2|source-release|boot|changelog.txt
 junit4osgi|org.apache.felix.ipojo.junit4osgi|1.0.0|project||doc/changelog.txt
 junit4osgi - shell command|org.apache.felix.ipojo.junit4osgi.felix-command|1.0.0|project||doc/changelog.txt
 junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project||doc/changelog.txt
 Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/changelog.txt
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
 Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
-Main|org.apache.felix.main|5.4.0|project||doc/changelog.txt
-Metatype|org.apache.felix.metatype|1.1.2
+Main|org.apache.felix.main|4.6.0|project||doc/changelog.txt
+Metatype|org.apache.felix.metatype|1.0.10
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
-Resolver|org.apache.felix.resolver|1.8.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.0.2
-SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.2
-SCR Annotations|org.apache.felix.scr.annotations|1.9.12|project
+Resolver|org.apache.felix.resolver|1.0.0|||doc/changelog.txt
+SCR (Declarative Services)|org.apache.felix.scr|1.8.2
+SCR Annotations|org.apache.felix.scr.annotations|1.9.10|project
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8|project
-SCR Generator|org.apache.felix.scr.generator|1.13.0|project
+SCR Generator|org.apache.felix.scr.generator|1.12.0|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
 UPnP Base Driver (JDK 1.4+)|org.apache.felix.upnp.basedriver|0.8.0|project||-
@@ -100,36 +102,34 @@ UPnP Tester|org.apache.felix.upnp.tester|0.4.0|project||doc/changelog.txt
 User Admin  |org.apache.felix.useradmin|1.0.3|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
-Utils|org.apache.felix.utils|1.8.0|||doc/changelog.txt
-Web Console  |org.apache.felix.webconsole|4.2.12
-Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.14||all
-Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.2
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4|project||-
+Utils|org.apache.felix.utils|1.8.2|||doc/changelog.txt
+Web Console  |org.apache.felix.webconsole|4.2.2
+Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.2||all
+Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|1.0.0
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.0|project||-
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
-Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.2
-Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.2|project
+Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.0
+Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.0|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
-Web Console Subsystems Plugin|org.apache.felix.webconsole.plugins.subsystem|0.1.0
-Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.6
-Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.2
+Web Console UPNP Plugin|org.apache.felix.webconsole.plugins.upnp|1.0.2
 
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|3.0.1|||doc/changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|2.5.3|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
-Maven SCR Plugin|maven-scr-plugin|1.21.0
+Maven SCR Plugin|maven-scr-plugin|1.20.0
 
 # (3) Ant Tasks
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
 iPOJO Ant Task and CLI|org.apache.felix.ipojo.ant|1.11.0|
-SCR Ant Task|org.apache.felix.scr.ant|1.14.0
+SCR Ant Task|org.apache.felix.scr.ant|1.13.0
 
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-SCR Bnd Plugin|org.apache.felix.scr.bnd|1.4.0
+SCR Bnd Plugin|org.apache.felix.scr.bnd|1.3.0
