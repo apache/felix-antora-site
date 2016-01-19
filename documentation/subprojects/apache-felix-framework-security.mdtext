@@ -4,30 +4,29 @@ The Felix Framework Security subproject is an implementation of the security par
 
 # Installing
 
-Support for the OSGi r4.2 security specifications including PermissionAdmin and ConditionalPermissionAdmin is provided by the framework.security extension bundle. The bundle provides both, the packages as well as the services when it is installed. 
+Support for the OSGi R4.2 security specifications including `PermissionAdmin` and `ConditionalPermissionAdmin` is provided by the framework.security extension bundle. The bundle provides both, the packages as well as the services when it is installed.
 
-All that needs to be done is to install the org.apache.felix.framework.security bundle into the framework. 
+All that needs to be done is to install the `org.apache.felix.framework.security` bundle into the framework.
 
 # Using security
 
 Besides installing the security bundle three properties should be specified:
-* org.osgi.framework.security="osgi"
-* java.security.policy=all.policy
-* org.osgi.framework.trust.repositories=<list of keystores)
+
+ - `org.osgi.framework.security="osgi"`
+ - `java.security.policy=all.policy`
+ - `org.osgi.framework.trust.repositories=<list of keystores>`
 
 The first installs a security manager on framework init (which in combination with the installed security bundle enables security). 
 
-The second, points to a security policy file that gives allpermission like so,
+The second points to a security policy file (`all.policy`) that gives all permission like so:
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>all.policy</B></DIV><DIV class="codeContent panelContent">
     grant {
      permission java.security.AllPermission;
     };
 
 
-The third, allows to specify a File.pathseparater separated list of JKS keystores without a password. The certificates found inside the keystores are the trusted root certificates of the framework (setting this property is optional). 
-
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>Example</B></DIV><DIV class="codeContent panelContent">
+The third allows to specify a `File.pathSeparator` separated list of JKS keystores without a password. The certificates found inside the keystores are the trusted root certificates of the framework (setting this property is optional). 
+ 
     $ java -Djava.security.policy=all.policy -Dorg.osgi.framework.security="osgi" -jar bin/felix.jar
     
     Welcome to Felix
@@ -49,4 +48,3 @@ The third, allows to specify a File.pathseparater separated list of JKS keystore
     objectClass = org.osgi.service.condpermadmin.ConditionalPermissionAdmin
     service.id = 4
     
-
