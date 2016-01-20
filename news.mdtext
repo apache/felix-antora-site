@@ -1,5 +1,6 @@
 Title: News
 
+* Apache Felix AutoConf resource processor 0.1.8 and Felix DeploymentAdmin 0.9.10 released (January 20, 2016)
 * Apache Felix Utils 1.8.2, EventAdmin 1.4.6, FileInstall 3.5.2 (January 19, 2016)
 * The Framework 4.6.0 release is now available in the <a href="http://felix.apache.org/site/downloads.cgi">downloads</a> section and from the Maven repository. (January 15, 2015)
 * Apache Felix SCR Annotations 1.9.10 (January 9, 2015)
