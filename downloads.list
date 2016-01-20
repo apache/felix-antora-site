@@ -30,7 +30,7 @@ framework|4.6.0
 #        bundle's release tag folder in SVN (default: changelog.txt)
 #        Use - to not have a changelog link
 #
-AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.5|project
+AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8|project
 Bundle Repository|org.apache.felix.bundlerepository|2.0.2|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.0
 Coordinator|org.apache.felix.coordinator|1.0.0
@@ -39,7 +39,7 @@ Dependency Manager Annotation|org.apache.felix.dependencymanager.annotation|3.2.
 Dependency Manager Compat|org.apache.felix.dependencymanager.compat|3.0.1|project
 Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|3.2.0|project||doc/changelog.txt
 Dependency Manager Shell|org.apache.felix.dependencymanager.shell|3.2.0|project
-Deployment Admin|org.apache.felix.deploymentadmin|0.9.6|project||changelog.txt
+Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|project||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.4.6
 File Install|org.apache.felix.fileinstall|3.5.2|||doc/changelog.txt
 Framework|org.apache.felix.framework|4.6.0|||doc/changelog.txt
