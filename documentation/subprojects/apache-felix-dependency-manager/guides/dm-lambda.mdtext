@@ -273,32 +273,82 @@ The available variety of factory methods allows you to also create some DM objec
 
 ## CompletableFuture dependency.
 
-The new library provides a new feature; you can now make your component depend on the result of a jdk8 `CompletableFuture`.
+The new library provides a new feature which allows your component to depend on the result of a jdk8 `CompletableFuture`.
 CompletableFuture java8 class provides an asynchronous event-driven model and you can now define dependencies on any asynchronous events,
 like if they were service dependencies.
 
-Assume you develop an Http Service and you want to register it in the OSGi service registry only once the service is listening on port 80.
-Now, you want to use for example Vertx.io which allows to build reactive applications on the JVM. This library wraps asynchronous events behind a CompletableFuture.
+Let's explose this new dependency using an advanced example: assume you develop a component that needs to 
+track any "Tracked" services registered in the Registry, using a classic whiteboard pattern. But before, you need to
+download a web page at initialization, before you component is started. The downloaded webpage is required to be able to 
+handle Tracked services. Now, you don't want to block the initialization of your component (because in a reactive word,
+it is forbidden to block on the current thread.
+So, you use an HttpClient which allows to asynchronously download a web page, and when you schedule doGET() on the
+client, the method returns to you a `CompletableFuture<String>`.
 
-So, naturally, you can write from your init() method something like this:
+So, from your component init() method, you can just declare a FutureDependency on the result of the `CompletableFuture<String>`
+
+And once the result will be completed, you will then be called in your start() callback, and at this point, the Tracked services will then
+be injected (using DM, optional service callbacks are always invoked after the start() callback, never before).
+
+So, the Activator looks like this:
 
     :::java
-    public class HttpServiceImpl implements HttpService {
-        // lifecycle dm callback that allow you to add more dependencies
-        void init(Component c) { 
-            CompletableFuture<HttpServer> futureServer = createServer().listenFuture();
-            component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
+    public class Activator extends DependencyActivatorBase {
+        @Override
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+            component(comp -> comp.impl(Pojo.class).provides(PojoService)
+               .withCnf("foo.pid").withSrv(HttpClient.class)
+               .withSrv(Tracked.class, srv -> srv.optional().cb(Pojo::bindTracked));
         }
-    
-        // Inject our HttpServer that is listening
-        void serverReady(HttpServer server) { ... }
-    
-        void start() {
-            // at this point we are fully started
-        }	
     }
 
-and your HttpService will be call in `start` and registered only once the server is listening.
+Now, here is the implementation for our component which downloads the URL from its init method. The init method will declare a "FutureDependency"
+for the result of the `CompletableFuture<String>` returned by the HttpClient. And once the result is injected
+in the setPage callback, then the start() callback will be called, and finally, any registered Tracked service will be
+injected in the "bindTracked" method:
+
+    :::java
+    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    
+    public class Pojo implements PojoService {
+        HttpClient m_httpClient; // injected.
+        String m_url; // the URL to download using the http client.
+	
+        void updated(Dictionary<String, Object conf) throws Exception {
+            m_url = (String) conf.get("download.url");
+        }
+
+        // lifecycle dm callback that allows you to add more dependencies. start will be called once the webpage has been downloaded.
+        void init(Component c) {
+            // Let's schedule a download for our web page.
+            CompletableFuture<String> futurePage = m_httpClient.doGET(m_url);
+    
+            // Add a required dependency to the result of the CF, and inject the result in our setPage method.
+            component(c, comp -> comp.withFuture(futurePage, future -> future.cbi(this::setPage)));
+        }
+    
+        void setPage(String content) {
+           // Called when the CompletableFuture has completed
+        }
+
+        void start() {
+       	    // We have downloaded the page, our component is starting and is about to be registered
+        }
+
+        void bind(Tracked service) {
+            // a Tracked service is injected, we can handle it because we are fully initialized.
+            // (optional service callbacks are always invoked after the start callback).
+        }
+    }
+
+So, using the Future Dependency we can nicely reuse the jdk CompletableFuture as a required dependency. Without using the FutureDependency
+on the CompletableFuture returned by the HttpClient, we would then have to manually register our service using bundleContext.registerService(), and we 
+would then have to check if the webpage has been downloaded each time a Tracked service is injected. And in case the page is not available, we would 
+then have to cache the injected Tracked service and process it later, once the page have been downloaded.
+
+Also, notice that when the page is injected in the setPage() method, you absolutely don't need to deal with
+synchronization at all because in DM, all lifecycle and dependency callbacks are safely scheduled in a "serial queue" associated to the
+component.
 
 ## Comparing two activators using old and new API:
 
