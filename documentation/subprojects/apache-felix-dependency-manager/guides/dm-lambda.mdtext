@@ -27,24 +27,24 @@ You can first instantiate builders using some of the convenient factory methods 
 for dm-lambda activators:
 
     :::java
-    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             Component comp = component().impl(Hello.class).build();
-    	    m_dm.add(comp);
+    	    dm.add(comp);
         }
     }
 
 The `component()` method returns a `ComponentBuilder` and the call to `build` at the end of the call chain returns the actual DM Component object.
 
-Now, most of the time, in an Activator, you usually almost always create and immediately add the component in the `dm` object.
-So, in order to reduce the "`code ceremony`", you can also use a special overloaded factory method that accepts a lambda which takes as argument a
+Now, most of the time, in an Activator, you usually almost always create and immediately add the component to the `dm` object.
+So, in order to reduce the code size, you can also use a special overloaded factory method that accepts a lambda which takes as argument a
 `Consumer<ComponentBuilder>` parameter.
 So, the lambda has just to invoke the chain of necessary methods from the builder, without having to call `build` and add the returned Component to the `dm` object.
 
-The following is the same as above, using a consumer<ComponentBuilder> lambda expression:
+The following is the same as above, using a `consumer<ComponentBuilder>` lambda expression:
 
     :::java
     public class Activator extends DependencyActivatorBase {
@@ -67,13 +67,14 @@ And here is a more concise version where the type of the lambda parameter is not
 ## Adding service dependencies
 
 Service Dependencies, unlike in the original DM API, are required by default, and you can add a dependency using the `withSrv` methods available from the ComponentBuilder interface.
-Such method accepts a Consumer<ServiceDependencyBuilder> lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
+Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
 
     :::java
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp.impl(Hello.class).withSrv(LogService.class, (ServiceDependencyBuilder srv) -> srv.filter("(vendor=apache)")));
+            component(comp -> comp.impl(Hello.class)
+                .withSrv(LogService.class, (ServiceDependencyBuilder srv) -> srv.filter("(vendor=apache)")));
         }
     }
 
@@ -87,13 +88,13 @@ The above example adds a service dependency on a LogService with a service filte
         }
     }
 
-If you depend on multiple required services (with no filters), you can declare the services in one shot like this:
+If you depend on multiple required services (without filters), you can declare the services in one shot like this:
 
     :::java
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-	    // using a varargs of service dependencies ...
+            // using a varargs of service dependencies ...
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, EventAdmin.class)); 
         }
     }
@@ -168,7 +169,7 @@ For example, the following example injects a dependency in a DependencyHandler i
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-	    DependencyHandler depHandler = new DependencyHandler();
+            DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cbi(depHandler, "setLog")));
         }
     }
@@ -179,7 +180,7 @@ or using method reference:
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-	    DependencyHandler depHandler = new DependencyHandler();
+            DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cbi(depHandler::setLog)));
         }
     }
@@ -190,7 +191,7 @@ You can chain multiple callbacks:
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-	    DependencyHandler depHandler = new DependencyHandler();
+            DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cb(Hello::setLog).cbi(depHandler::setLog)));
         }
     }
@@ -245,12 +246,12 @@ what it has parsed, it will possibly add more dependencies, like this:
         void updated(Dictionary conf) throws Exception {
             parseXml(conf.get("some.xml.configuration"));
         }
-
-	void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
-	     if (xmlConfigurationRequiresEventAdmin) {
-	     	component(c, comp -> comp.withSrv(EventAdmin.class));
-	     }
-	}
+    
+        void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
+	    if (xmlConfigurationRequiresEventAdmin) {
+	        component(c, comp -> comp.withSrv(EventAdmin.class));
+	    }
+        }
     }
 
 The available variety of factory methods allows you to also create some DM objects and add them manually, like:
@@ -260,8 +261,8 @@ The available variety of factory methods allows you to also create some DM objec
         void updated(Dictionary conf) throws Exception {
             parseXml(conf.get("some.xml.configuration"));
         }
-
-	void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
+    
+        void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
 	     if (xmlConfigurationRequiresEventAdmin) {
 		DependencyManager dm = c.getDependencyManager();
 	     	ServiceDependency dep = serviceDependency(c, EventAdmin.class).filter("(vendor=felix)").build();
@@ -283,20 +284,18 @@ So, naturally, you can write from your init() method something like this:
 
     :::java
     public class HttpServiceImpl implements HttpService {
-
         // lifecycle dm callback that allow you to add more dependencies
 	void init(Component c) { 
 	   CompletableFuture<HttpServer> futureServer = createServer().listenFuture();
 	   component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
 	}
-
+    
 	// Inject our HttpServer that is listening
 	void serverReady(HttpServer server) { ... }
-
+    
    	void start() {
 	   // at this point we are fully started
-	}
-	
+	}	
     }
 
 and your HttpService will be registered only once the server is listening.
