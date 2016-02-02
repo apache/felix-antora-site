@@ -287,7 +287,7 @@ So, naturally, you can write from your init() method something like this:
         // lifecycle dm callback that allow you to add more dependencies
         void init(Component c) { 
             CompletableFuture<HttpServer> futureServer = createServer().listenFuture();
-	    component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
+            component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
         }
     
         // Inject our HttpServer that is listening
@@ -304,8 +304,8 @@ and your HttpService will be call in `start` and registered only once the server
 
 Assume we have a `ServiceConsumer` which depends on the following services:
 
-- a required `ServiceProvider`: with `(p1=v1)` service filter and using a "setProvider" callback.
-- a Configuration with pid=`org.apache.felix.dm.lambda.samples.hello.ServiceConsumer`.
+- a required `ServiceProvider`: with "`(p1=v1)`" service filter and using a "`setProvider`" callback.
+- a Configuration with pid="`org.apache.felix.dm.lambda.samples.hello.ServiceConsumer`".
 
 Now assume we have `ServiceProvider` provided with p1="v1" and p2=123 service properties; and the provider also depends on:
 
@@ -325,11 +325,11 @@ Then we have the following typical Activator (we define both components in the s
     
             Component consumer = dm.createComponent()
     	        .setImplementation(ServiceConsumer.class)
-    		.add(createServiceDependency().setService(ServiceProvider.class, "(p1=v1)").setRequired(true).setCallbacks("setProvider", null))
-    		.add(createConfigurationDependency().setPid("org.apache.felix.dm.lambda.samples.hello.ServiceConsumer"));
+                .add(createServiceDependency().setService(ServiceProvider.class, "(p1=v1)").setRequired(true).setCallbacks("setProvider", null))
+                .add(createConfigurationDependency().setPid("org.apache.felix.dm.lambda.samples.hello.ServiceConsumer"));
             dm.add(consumer);
     
-    	   // Declare our ServiceProvider service component
+           // Declare our ServiceProvider service component
     
     	   Properties properties = new Properties();
     	   Properties.put("p1", "v1");
@@ -355,8 +355,8 @@ Now, let's rework the above example, using the new dm-lambda API:
             // Declare our Consumer component
     
             component(comp -> comp.impl(ServiceConsumer.class)
-	        .withSrv(ServiceProvider.class, srv -> srv.filter("(p1=v1)").cb(ServiceConsumer::setProvider))
-		.withCnf(ServiceConsumer.class));
+                .withSrv(ServiceProvider.class, srv -> srv.filter("(p1=v1)").cb(ServiceConsumer::setProvider))
+                .withCnf(ServiceConsumer.class));
                 
             // Declare our ServiceProvider service component:
     
