@@ -304,7 +304,7 @@ So, the Activator looks like this:
 
 Now, here is the implementation for our component which downloads the URL from its init method. The init method will declare a "FutureDependency"
 for the result of the `CompletableFuture<String>` returned by the HttpClient. And once the result is injected
-in the setPage callback, then the start() callback will be called, and finally, any registered Tracked service will be
+in the setPage callback, then the start() callback will be called, and finally, any registered Tracked services will be
 injected in the "bindTracked" method:
 
     :::java
@@ -335,7 +335,7 @@ injected in the "bindTracked" method:
        	    // We have downloaded the page, our component is starting and is about to be registered
         }
 
-        void bind(Tracked service) {
+        void bindTracked(Tracked service) {
             // a Tracked service is injected, we can handle it because we are fully initialized.
             // (optional service callbacks are always invoked after the start callback).
         }
@@ -344,7 +344,7 @@ injected in the "bindTracked" method:
 So, using the Future Dependency we can nicely reuse the jdk CompletableFuture as a required dependency. Without using the FutureDependency
 on the CompletableFuture returned by the HttpClient, we would then have to manually register our service using bundleContext.registerService(), and we 
 would then have to check if the webpage has been downloaded each time a Tracked service is injected. And in case the page is not available, we would 
-then have to cache the injected Tracked service and process it later, once the page have been downloaded.
+then have to cache the injected Tracked service and process it later, once the page has been downloaded.
 
 Also, notice that when the page is injected in the setPage() method, you absolutely don't need to deal with
 synchronization at all because in DM, all lifecycle and dependency callbacks are safely scheduled in a "serial queue" associated to the
