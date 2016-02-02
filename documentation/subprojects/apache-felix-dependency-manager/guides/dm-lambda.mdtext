@@ -383,7 +383,7 @@ The sample also uses a Factory approach in order to instantiate the composition 
 "CompositionManager" is first injected with a Configuration that can possibly be used to create
 and configure all the composites.
 
-Dependencies are injected is some of the component implementation instances, using java8 method references. For instance,
+Dependencies are injected to some of the component implementation instances, using java8 method references. For instance,
 the LogService is only injected in the ProviderImpl and the ProviderComposite1 class and not in the ProviderComposite2 class.
 
 ### org.apache.felix.dependencymanager.lambda.samples/src/org/apache/felix/dm/lambda/samples/device/
@@ -407,21 +407,21 @@ internally used by the SpellChecker command, when checking word exactness.
 
 A DictionaryService is defined using a FactoryConfigurationAdapterService , allowing to instantiate
 many "DictionaryService" instances for each configuration that are added to the
-factory pid "Spell Checker Configuration (api)" from web console.
+factory pid "Spell Checker Configuration" from web console.
 The factory pid configuration metatypes are defined using the bnd "metatype" annotations
 (see DictionaryConfiguration.java).
 
 The DictionaryService is decorated with a DictionaryAspect, which you can instantiate by adding a
-configuration to the "Spell Checker Aspect Dictionary (api)" pid from web console. The
+configuration to the "Spell Checker Aspect Dictionary" pid from web console. The
 aspect configuration metatype is also declared using the bnd metatype annotations (see
 DictionaryAspectConfiguration.java). 
 
-Before running this sample, go to webconsole, and add some words in the Spell Checker Configuration (api) factory PID, and
-in the Spell Checker Aspect Dictionary (api) PID.
+Before running this sample, go to webconsole, and add some words in the "`Spell Checker Configuration`" factory PID, and
+in the "`Spell Checker Aspect Dictionary`" PID.
 
 Then go to gogo shell, and type dm help. You will normally see the dictionary:spellcheck command.
 Type dictionary:spellcheck with some words configured either in the spell checker configuration, or in the spell checker aspect configuration,
-and the dictionary will check for proper word exactness in the configuration.
+and the dictionary will check for proper word exactness.
 
 ### org.apache.felix.dependencymanager.lambda.samples/src/org/apache/felix/dm/lambda/samples/factory/
 
