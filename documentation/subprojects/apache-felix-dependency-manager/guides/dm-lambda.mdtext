@@ -200,7 +200,7 @@ You can chain multiple callbacks:
 
 When a component provides a service with some properties, so far it was necessary to create a Dictionary and pass it to the `Component.setInterface()` method.
 
-Now you can now pass properties as varargs of properties (a suite of key-value properties):
+Now you can pass properties directly to the `provides` method as varargs of properties (a suite of key-value properties):
 
     :::java
     public class Activator extends DependencyActivatorBase {
@@ -210,8 +210,8 @@ Now you can now pass properties as varargs of properties (a suite of key-value p
         }
     }
 
-or if you build your program using the `-parameter` option, you can also use the "FluentProperty" lambda that allows to declare
-service properties as a suite of FlientProperty lambdas:
+or if you build your program using the `-parameters` option, you can also use the "`FluentProperty`" lambda that allows to declare
+service properties as a suite of "`key -> value`" lambdas, like this:
 
     :::java
     public class Activator extends DependencyActivatorBase {
@@ -239,18 +239,18 @@ For example, considere a use case where you want to retrieve some informations f
 Here, we define a Configuration dependency with a "pojo.pid" configuration pid. So, now, the Pojo will then for example be able to parse an xml from the configuration, and depending on
 what it has parsed, it will possibly add more dependencies, like this:
 
-    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
-
     :::java
+    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    
     public class Pojo {
         void updated(Dictionary conf) throws Exception {
             parseXml(conf.get("some.xml.configuration"));
         }
     
         void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
-	    if (xmlConfigurationRequiresEventAdmin) {
-	        component(c, comp -> comp.withSrv(EventAdmin.class));
-	    }
+            if (xmlConfigurationRequiresEventAdmin) {
+                component(c, comp -> comp.withSrv(EventAdmin.class));
+            }
         }
     }
 
@@ -263,12 +263,12 @@ The available variety of factory methods allows you to also create some DM objec
         }
     
         void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
-	     if (xmlConfigurationRequiresEventAdmin) {
-		DependencyManager dm = c.getDependencyManager();
-	     	ServiceDependency dep = serviceDependency(c, EventAdmin.class).filter("(vendor=felix)").build();
-		dm.add(dep);
-	     }
-	}
+            if (xmlConfigurationRequiresEventAdmin) {
+                DependencyManager dm = c.getDependencyManager();
+                ServiceDependency dep = serviceDependency(c, EventAdmin.class).filter("(vendor=felix)").build();
+                dm.add(dep);
+            }
+        }
     }
 
 ## CompletableFuture dependency.
@@ -285,20 +285,20 @@ So, naturally, you can write from your init() method something like this:
     :::java
     public class HttpServiceImpl implements HttpService {
         // lifecycle dm callback that allow you to add more dependencies
-	void init(Component c) { 
-	   CompletableFuture<HttpServer> futureServer = createServer().listenFuture();
-	   component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
-	}
+        void init(Component c) { 
+            CompletableFuture<HttpServer> futureServer = createServer().listenFuture();
+	    component(c, comp -> comp.withFuture(futureService, future -> future.cbi(this::serverReady)));
+        }
     
-	// Inject our HttpServer that is listening
-	void serverReady(HttpServer server) { ... }
+        // Inject our HttpServer that is listening
+        void serverReady(HttpServer server) { ... }
     
-   	void start() {
-	   // at this point we are fully started
-	}	
+        void start() {
+            // at this point we are fully started
+        }	
     }
 
-and your HttpService will be registered only once the server is listening.
+and your HttpService will be call in `start` and registered only once the server is listening.
 
 ## Comparing two activators using old and new API:
 
