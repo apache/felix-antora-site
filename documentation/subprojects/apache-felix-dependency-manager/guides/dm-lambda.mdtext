@@ -223,7 +223,7 @@ service properties as a suite of "`key -> value`" lambdas, like this:
 
 ## Managing components outside of Activators.
 
-You can create Components outside of the Activator by using some static factory methods from the `DependencyManagerActivator` class.
+You can manage Components outside of the Activator by using some static factory methods from the `DependencyManagerActivator` class.
 
 For example, considere a use case where you want to retrieve some informations from some already injected services, and you then want to dynamically add more dependencies from your
 `init` component callback. First let's look at the Activator:
@@ -271,13 +271,25 @@ The available variety of factory methods allows you to also create some DM objec
         }
     }
 
+And an example where you create a new DM component from the code:
+
+    :::java
+    public class Pojo {
+        volatile DependencyManager m_dm;
+
+        void createComponent() {
+            component(m_dm, comp -> comp.impl(NewComponent.class).withSrv(LogService.Class, EventAdmin.class));
+        }
+    }
+
+
 ## CompletableFuture dependency.
 
 The new library provides a new feature which allows your component to depend on the result of a jdk8 `CompletableFuture`.
 CompletableFuture java8 class provides an asynchronous event-driven model and you can now define dependencies on any asynchronous events,
 like if they were service dependencies.
 
-Let's explose this new dependency using an advanced example: assume you develop a component that needs to 
+Let's explore this new dependency using an advanced example: assume you develop a component that needs to 
 track any "Tracked" services registered in the Registry, using a classic whiteboard pattern. But before, you need to
 download a web page at initialization, before you component is started. The downloaded webpage is required to be able to 
 handle Tracked services. Now, you don't want to block the initialization of your component (because in a reactive word,
