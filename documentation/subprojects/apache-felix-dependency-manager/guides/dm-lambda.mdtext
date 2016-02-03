@@ -292,7 +292,7 @@ like if they were service dependencies.
 Let's explore this new dependency using an advanced example: assume you develop a component that needs to 
 track any "Tracked" services registered in the Registry, using a classic whiteboard pattern. But before, you need to
 download a web page at initialization, before you component is started. The downloaded webpage is required to be able to 
-handle Tracked services. Now, you don't want to block the initialization of your component (because in a reactive word,
+handle Tracked services. Now, you don't want to block the initialization of your component because in a reactive word,
 it is forbidden to block on the current thread.
 So, you use an HttpClient which allows to asynchronously download a web page, and when you schedule doGET() on the
 client, the method returns to you a `CompletableFuture<String>`.
