@@ -1,5 +1,8 @@
 Title: Dependency Manager Lambda
 
+----------
+
+
 Since the R7 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
 using a bit more fluent, concise and type-safe API that is based on Java8 Lambda expressions and other goodies like method references.
 
@@ -320,7 +323,7 @@ The available variety of factory methods allows you to also create some DM objec
             parseXml(conf.get("some.xml.configuration"));
         }
     
-        void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
+        void init(Component c) { // lifecycle dm callback that allows you to add more dependencies
             if (xmlConfigurationRequiresEventAdmin) {
                 DependencyManager dm = c.getDependencyManager();
                 ServiceDependency dep = serviceDependency(c, EventAdmin.class).filter("(vendor=felix)").build();
