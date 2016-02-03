@@ -28,11 +28,13 @@ for dm-lambda activators:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    import org.apache.felix.dm.Component;
 
-    public class Activator extends DependencyActivatorBase {
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             Component comp = component().impl(Hello.class).build();
+            DependencyManager dm = getDM();
     	    dm.add(comp);
         }
     }
@@ -47,9 +49,12 @@ So, the lambda has just to invoke the chain of necessary methods from the builde
 The following is the same as above, using a `consumer<ComponentBuilder>` lambda expression:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    import org.apache.felix.dm.lambda.ComponentBuilder;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component((ComponentBuilder comp) -> comp.impl(Hello.class));
         }
     }
@@ -57,9 +62,11 @@ The following is the same as above, using a `consumer<ComponentBuilder>` lambda 
 And here is a more concise version where the type of the lambda parameter is not declared:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class));
         }
     }
@@ -70,9 +77,12 @@ Service Dependencies, unlike in the original DM API, are required by default, an
 Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    import org.apache.felix.dm.lambda.ServiceDependencyBuilder;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class)
                 .withSrv(LogService.class, (ServiceDependencyBuilder srv) -> srv.filter("(vendor=apache)")));
         }
@@ -81,9 +91,11 @@ Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, wh
 The above example adds a service dependency on a LogService with a service filter. Here is a more concise version where the type of the `srv` lambda parameter is not declared:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.filter("(vendor=apache)")));
         }
     }
@@ -91,9 +103,11 @@ The above example adds a service dependency on a LogService with a service filte
 If you depend on multiple required services (without filters), you can declare the services in one shot like this:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             // using a varargs of service dependencies ...
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, EventAdmin.class)); 
         }
@@ -105,9 +119,11 @@ By default, service dependencies are auto injected in class fields (you can conf
 But like in the current DM API, you can specify callbacks on the component implementation class using the "`cb`" `ServiceDependencyBuilder` method:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cb("setLog")));
         }
     }
@@ -141,9 +157,11 @@ And the "swap" callbacks accepts the following method signatures:
 Now you can also use a more type-safe callback using a Java 8 method reference:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cb(Hello::setLog)));
         }
     }
@@ -151,9 +169,11 @@ Now you can also use a more type-safe callback using a Java 8 method reference:
 or:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cb(Hello::setLog, Hello::unsetLog)));
         }
     }
@@ -166,9 +186,11 @@ In this case, you can use the "`cbi`" method (which stands for "`callback instan
 For example, the following example injects a dependency in a DependencyHandler instance:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cbi(depHandler, "setLog")));
         }
@@ -177,9 +199,11 @@ For example, the following example injects a dependency in a DependencyHandler i
 or using method reference:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cbi(depHandler::setLog)));
         }
@@ -188,9 +212,11 @@ or using method reference:
 You can chain multiple callbacks:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
             component(comp -> comp.impl(Hello.class).withSrv(LogService.class, srv -> srv.cb(Hello::setLog).cbi(depHandler::setLog)));
         }
@@ -203,9 +229,11 @@ When a component provides a service with some properties, so far it was necessar
 Now you can pass properties directly to the `provides` method as varargs of properties (a suite of key-value properties):
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).provides(HelloService.class, "p1", "v1", "p2", 123));
         }
     }
@@ -214,9 +242,11 @@ or if you build your program using the `-parameters` option, you can also use th
 service properties as a suite of "`key -> value`" lambdas, like this:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Hello.class).provides(HelloService.class, p1 -> "v1", p2 -> 123));
         }
     }
@@ -225,13 +255,15 @@ service properties as a suite of "`key -> value`" lambdas, like this:
 
 You can manage Components outside of the Activator by using some static factory methods from the `DependencyManagerActivator` class.
 
-For example, considere a use case where you want to retrieve some informations from some already injected services, and you then want to dynamically add more dependencies from your
+For example, consider a use case where you want to retrieve some informations from some already injected services, and you then want to dynamically add more dependencies from your
 `init` component callback. First let's look at the Activator:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Pojo.class).withCnf("pojo.pid"));
         }
     }
@@ -241,6 +273,7 @@ what it has parsed, it will possibly add more dependencies, like this:
 
     :::java
     import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    import org.apache.felix.dm.Component;
     
     public class Pojo {
         void updated(Dictionary conf) throws Exception {
@@ -257,6 +290,11 @@ what it has parsed, it will possibly add more dependencies, like this:
 The available variety of factory methods allows you to also create some DM objects and add them manually, like:
 
     :::java
+    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    import org.apache.felix.dm.Component;
+    import org.apache.felix.dm.ServiceDependency;
+    import org.apache.felix.dm.DependencyManager;
+    
     public class Pojo {
         void updated(Dictionary conf) throws Exception {
             parseXml(conf.get("some.xml.configuration"));
@@ -274,6 +312,9 @@ The available variety of factory methods allows you to also create some DM objec
 And an example where you create a new DM component from the code:
 
     :::java
+    import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
+    import org.apache.felix.dm.DependencyManager;
+
     public class Pojo {
         volatile DependencyManager m_dm;
 
@@ -305,9 +346,11 @@ be injected (using DM, optional service callbacks are always invoked after the s
 So, the Activator looks like this:
 
     :::java
-    public class Activator extends DependencyActivatorBase {
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+
+    public class Activator extends DependencyManagerActivator {
         @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+        public void activate() throws Exception {
             component(comp -> comp.impl(Pojo.class).provides(PojoService)
                .withCnf("foo.pid").withSrv(HttpClient.class)
                .withSrv(Tracked.class, srv -> srv.optional().cb(Pojo::bindTracked));
@@ -321,7 +364,8 @@ injected in the "bindTracked" method:
 
     :::java
     import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
-    
+    import org.apache.felix.dm.Component;
+
     public class Pojo implements PojoService {
         HttpClient m_httpClient; // injected.
         String m_url; // the URL to download using the http client.
