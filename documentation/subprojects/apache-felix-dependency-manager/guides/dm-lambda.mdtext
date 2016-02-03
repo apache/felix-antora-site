@@ -5,9 +5,11 @@ using a bit more fluent, concise and type-safe API that is based on Java8 Lambda
 
 ## Principle
 
-The new library is based on the `builder` design pattern applied to java8 lambdas. Basically, you call a chain of methods from a fluent `builder`, and at the end of the chain, you call
-`build()` which returns the actual DM objects that you already know from the original DM API. We'll see later that using lambdas you can then build the objects and add them to
-the DependencyManager class automatically.
+The new library is based on the `builder` design pattern applied to java8 lambdas. Basically, you call a chain of methods from a 
+fluent `builder`, and at the end of the chain, you call "`build()`" which returns the actual DM objects that you already know from 
+the original DM API. 
+We'll see later that using lambdas avoids the call to the last "`build`" method and adds the constructed DM Component into the 
+DependencyManager object automatically.
 
 The new API is provided by the `org.apache.felix.dependencymanager.lambda.jar` bundle. the following builders are currently supported:
 
@@ -28,12 +30,14 @@ for dm-lambda activators:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    import org.apache.felix.dm.lambda.ComponentBuilder;
     import org.apache.felix.dm.Component;
 
     public class Activator extends DependencyManagerActivator {
         @Override
         public void activate() throws Exception {
-            Component comp = component().impl(Hello.class).build();
+            ComponentBuilder builder = component();
+            Component comp = builder.impl(Hello.class).build();
             DependencyManager dm = getDM();
     	    dm.add(comp);
         }
@@ -41,10 +45,26 @@ for dm-lambda activators:
 
 The `component()` method returns a `ComponentBuilder` and the call to `build` at the end of the call chain returns the actual DM Component object.
 
-Now, most of the time, in an Activator, you usually almost always create and immediately add the component to the `dm` object.
-So, in order to reduce the code size, you can also use a special overloaded factory method that accepts a lambda which takes as argument a
-`Consumer<ComponentBuilder>` parameter.
-So, the lambda has just to invoke the chain of necessary methods from the builder, without having to call `build` and add the returned Component to the `dm` object.
+Here is a shorter version:
+
+    :::java
+    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    import org.apache.felix.dm.Component;
+
+    public class Activator extends DependencyManagerActivator {
+        @Override
+        public void activate() throws Exception {
+            Component comp = component().impl(Hello.class).build());
+            getDM().add(comp);
+        }
+    }
+
+
+Now, most of the time, in an Activator you usually create a Component and immediately add it to the `dm` object.
+So, in order to reduce the code size, you can then use a special overloaded factory method that accepts a lambda which takes as 
+argument a `Consumer<ComponentBuilder>` parameter.
+So, the lambda has just to invoke the chain of necessary methods from the builder, without having to call the last "`build`" method. 
+The constructed Component is then automatically added to the `dm` object.
 
 The following is the same as above, using a `consumer<ComponentBuilder>` lambda expression:
 
@@ -113,7 +133,7 @@ If you depend on multiple required services (without filters), you can declare t
         }
     }
 
-## Defining Service Dependency Component's callbacks
+## Service Dependency Component callbacks
 
 By default, service dependencies are auto injected in class fields (you can configure the name of the class field where the dependency should be injected).
 But like in the current DM API, you can specify callbacks on the component implementation class using the "`cb`" `ServiceDependencyBuilder` method:
