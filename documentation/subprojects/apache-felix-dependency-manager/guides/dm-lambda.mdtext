@@ -6,6 +6,8 @@ Title: Dependency Manager Lambda
 Since the R7 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
 using a bit more fluent, concise and type-safe API that is based on Java8 Lambda expressions and other goodies like method references.
 
+(Please notice that using the dm-lambda library requires the usage of a recent Java8 jvm (the library has been tested with java version "1.8.0_71").
+
 ## Principle
 
 The new library is based on the `builder` design pattern applied to java8 lambdas. Basically, you call a chain of methods from a 
@@ -64,7 +66,7 @@ Here is a shorter version:
 
 
 Now, most of the time, in an Activator you usually create a Component and immediately add it to the `dm` object.
-So, in order to reduce the code size, you can then use a special overloaded factory method that accepts a lambda which takes as 
+So, in order to reduce the code size, you can then use a component() method that accepts a lambda which takes as 
 argument a `Consumer<ComponentBuilder>` parameter.
 So, the lambda has just to invoke the chain of necessary methods from the builder, without having to call the last "`build`" method. 
 The constructed Component is then automatically added to the `dm` object.
@@ -157,12 +159,12 @@ But like in the current DM API, you can specify callbacks on the component imple
 
 The `cb` method accepts a varargs of strings (up to 4 method names):
 
-1. when using one argument, the first argument is used as the `add` callback.
-1. when using two argument, the first argument is used as the `add` callback, and the second one as the `remove` callback.
-1. when using three arguments, the first argument is used as the `add` callback, the second one as the "change" callback, and the third one as the `remove` callback.
-1. when using four arguments, the given argument is used as the `add` callback, the second one as the "change" callback, the third one as the `remove` callback, and the last one as the `swap` callback.
+1. when using one argument, it is used as the `add` callback.
+1. when using two arguments, the first arg is used as the `add` callback, and the second one as the `remove` callback.
+1. when using three arguments, the first arg is used as the `add` callback, the second one as the `change` callback, and the third one as the `remove` callback.
+1. when using four arguments, the first arg is used as the `add` callback, the second one as the `change` callback, the third one as the `remove` callback, and the last one as the `swap` callback.
 
-The add/change/remove callbacks accepts the following kind of method signatures ("S" represents the type of the service dependency):
+The add/change/remove callbacks accept the following kind of method signatures ("S" represents the type of the service dependency):
 
     method(S service)
     method(S service, Map<String, Object> serviceProperties)
@@ -432,6 +434,16 @@ then have to cache the injected Tracked service and process it later, once the p
 Also, notice that when the page is injected in the setPage() method, you absolutely don't need to deal with
 synchronization at all because in DM, all lifecycle and dependency callbacks are safely scheduled in a "serial queue" associated to the
 component.
+
+## Another Example with CompletableFuture and RxJava.
+
+We just introduced the new FutureDependency. Allowing to use a CompletableFuture as a dependency is useful because CF is a powerful abstraction
+that allows to wrap any asynchronous events or async libraries with a standard jdk tool (CompletableFuture).
+In this section, we present a way to "wait for" RxJava "Observables" using DM.
+
+RxJava, like the CompletableFuture java8 tool, allows to react on events, but using non blocking push paradigm.
+
+TODO: finish this section.
 
 ## Comparing two activators using old and new API:
 
