@@ -94,6 +94,10 @@ And here is a more concise version where the type of the lambda parameter is not
         }
     }
 
+## Javadoc 
+
+You can find the javadoc for the new Dependency Manager Lambda library [here](../../../../apidocs/).
+
 ## Adding service dependencies
 
 Service Dependencies, unlike in the original DM API, are required by default, and you can add a dependency using the `withSrv` methods available from the ComponentBuilder interface.
