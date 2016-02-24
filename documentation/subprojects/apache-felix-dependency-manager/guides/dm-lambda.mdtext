@@ -434,6 +434,14 @@ Code example with a component that defines a Configuration Dependency using a sp
         }
     }
  
+Same example, using a shortcut for the `withCnf` dependency, which is only defining the configuration type (the pid is assumed to 
+be the fqdn of the config type, and the callback name is assumed to be "updated"):
+
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+            component(comp -> comp.impl(ServiceImpl.class).withCnf(MyConfig.class));  
+        }
+    }
 
 Code example with a component that defines a Configuration Dependency using a specific callback method reference which accepts a Dictionary in argument:
 
