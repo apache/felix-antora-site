@@ -639,7 +639,7 @@ Example that defines a factory configuration adapter using a user defined config
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
             factoryPidAdapter(adapter -> adapter
-                .impl(DictionaryImpl.class).factoryPid("foo.bar").propagate().update(DictionaryConfiguration.class, ServiceImpl::updated)               
+                .impl(DictionaryImpl.class).propagate().update(DictionaryConfiguration.class, ServiceImpl::updated)               
                 .withSvc(LogService.class, log -> log.optional()));
         }
     }
