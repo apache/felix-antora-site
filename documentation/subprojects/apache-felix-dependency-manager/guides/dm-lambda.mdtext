@@ -72,7 +72,7 @@ Now, let's rework the above example, using the new dm-lambda API:
             // Declare our Consumer component
     
             component(comp -> comp.impl(ServiceConsumer.class)
-                .withSvc(ServiceProvider.class, srv -> srv.filter("(p1=v1)").add(ServiceConsumer::setProvider))
+                .withSvc(ServiceProvider.class, svc -> svc.filter("(p1=v1)").add(ServiceConsumer::setProvider))
                 .withCnf(ServiceConsumer.class.getName()));
                 
             // Declare our ServiceProvider service component:
@@ -153,7 +153,7 @@ The following is the same as above, using a `consumer<ComponentBuilder>` lambda 
         }
     }
 
-And to reduce the "code ceremony", here is a more concise version where the type of the lambda parameter is not declared:
+Here is a more concise version with less "code ceremony" where the type of the type of the lambda parameter is not declared:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
@@ -165,10 +165,14 @@ And to reduce the "code ceremony", here is a more concise version where the type
         }
     }
 
-## Adding service dependencies
+## Adding service dependencies injected in class fields.
 
-You can add a dependency using the `withSvc` methods available from the ComponentBuilder interface.
+You can add a dependency using the "`withSvc`" methods available from the ComponentBuilder interface.
 Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
+When you don't specify callbacks, services are injected in class fields with compatible service dependency type, but you can specify a field name.
+Unavailable optional dependencies are injected as "`Null Objects`".
+
+The following example adds a service dependency on a LogService with a service filter.
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
@@ -178,11 +182,11 @@ Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, wh
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             component(comp -> comp.impl(Hello.class)
-                .withSvc(LogService.class, (ServiceDependencyBuilder srv) -> srv.filter("(vendor=apache)")));
+                .withSvc(LogService.class, (ServiceDependencyBuilder svc) -> svc.filter("(vendor=apache)")));
         }
     }
 
-The above example adds a service dependency on a LogService with a service filter. Here is a more concise version where the type of the `srv` lambda parameter is not declared:
+Here is a more concise version where the type of the `svc` lambda parameter is not declared:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
@@ -190,7 +194,7 @@ The above example adds a service dependency on a LogService with a service filte
     public class Activator extends DependencyManagerActivator {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.filter("(vendor=apache)")));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.filter("(vendor=apache)")));
         }
     }
 
@@ -222,10 +226,25 @@ dependency that is not needing a ServiceDependencyBuilder lambda:
         }
     }
 
-## Service Dependency Component callbacks
+Dependency services can be injected in the following kind of fields:
 
-By default, service dependencies are auto injected in class fields (you can configure the name of the class field where the dependency should be injected).
-But like in the current DM API, you can specify callbacks on the component implementation class using the "`add/change/remove/swap`" `ServiceDependencyBuilder` methods:
+- a field having the same type as the dependency. If the field may be accessed by anythread, then the field should be declared 
+volatile, in order to ensure visibility when the field is auto injected concurrently.
+- a field which is assignable to an `Iterable<T>` where T must match the dependency type. In this case, an Iterable will be 
+injected by DependencyManager before the start callback is called. The Iterable field may then be traversed to inspect the 
+currently available dependency services. The Iterable can possibly be set to a final value so you can choose the Iterable implementation of your choice (for example, a CopyOnWrite ArrayList, or a ConcurrentLinkedQueue).
+- a `Map<K,V>` where K must match the dependency type and V must exactly equals Dictionary class. In this case, a 
+ConcurrentHashMap will be injected by DependencyManager before the start callback is called. 
+The Map may then be consulted to lookup current available dependency services, including the dependency service properties 
+(the map key holds the dependency services, and the map value holds the dependency service properties). 
+The Map field may be set to a final value so you can choose a Map of your choice (Typically a ConcurrentHashMap). 
+A ConcurrentHashMap is "weakly consistent", meaning that when traversing the elements, you may or may not see any concurrent 
+updates made on the map. So, take care to traverse the map using an iterator on the map entry set, 
+which allows to atomically lookup pairs of Dependency service/Service properties. 
+
+## Service Dependency callbacks
+
+You can specify callbacks on the component implementation class using the "`add/change/remove/swap`" `ServiceDependencyBuilder` methods:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
@@ -233,7 +252,7 @@ But like in the current DM API, you can specify callbacks on the component imple
     public class Activator extends DependencyManagerActivator {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add("setLog")));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add("setLog")));
         }
     }
 
@@ -245,7 +264,7 @@ Now you can also use a more type-safe callback using a Java 8 method reference:
     public class Activator extends DependencyManagerActivator {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add(Hello::setLog)));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog)));
         }
     }
 
@@ -257,7 +276,7 @@ or:
     public class Activator extends DependencyManagerActivator {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add(Hello::setLog).remove(Hello::unsetLog)));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog).remove(Hello::unsetLog)));
         }
     }
 
@@ -293,7 +312,7 @@ For example, the following example injects a dependency in a DependencyHandler i
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add(depHandler, "setLog")));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(depHandler, "setLog")));
         }
     }
 
@@ -306,7 +325,7 @@ or using method reference:
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add(depHandler::setLog)));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(depHandler::setLog)));
         }
     }
 
@@ -319,7 +338,7 @@ You can chain multiple callbacks:
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             DependencyHandler depHandler = new DependencyHandler();
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, srv -> srv.add(Hello::setLog).add(depHandler::setLog)));
+            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog).add(depHandler::setLog)));
         }
     }
 
@@ -479,7 +498,7 @@ what it has parsed, it will possibly add more dependencies, like this:
             parseXml(conf.get("some.xml.configuration"));
         }
     
-        void init(Component c) { // lifecycle dm callback that allow you to add more dependencies
+        void init(Component c) { // lifecycle dm callback that allows you to add more dependencies
             if (xmlConfigurationRequiresEventAdmin) {
                 component(c, comp -> comp.withSvc(EventAdmin.class));
             }
@@ -524,18 +543,18 @@ And an example where you create a new DM component from the code:
 
 ## Creating Aspect Components
 
-Like with the original DM API, you can create aspects (service interceptors), using the "`aspect`" factory method.
+Like with the original DM API, you can create a chain of aspects (service interceptors) ordered by a ranking attribute, using the "`aspect`" factory method.
 This method accepts in argument a ServiceAspectBuilder.
 
 Code example which provides a "LogService" aspect that performs spell-checking of each log message. The aspect decorates a LogService. 
-The aspect also depends on an Dictionary service that is internally used to perform log spell checking. 
-The LogService and Dictionary services are injected in the aspect implementation using reflection on class 
+The aspect also depends on a DictionaryService that is internally used to perform log spell checking. 
+The LogService and DictionaryService services are injected in the aspect implementation using reflection on class 
 fields:
 
     ::::java
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-            aspect(LogService.class, (ServiceAspectBuilder asp) -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(Dictionary.class));
+            aspect(LogService.class, (ServiceAspectBuilder asp) -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(DictionaryService.class));
         }
     } 
 
@@ -544,11 +563,11 @@ Same more concise example which does not declare the type of the lambda builder 
     ::::java
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-            aspect(LogService.class, asp -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(Dictionary.class));
+            aspect(LogService.class, asp -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(DictionaryService.class));
         }
     } 
 
-Same example, but using callbacks for injecting LogService and Dictionary services in the aspect implementation class:
+Same example, but using callbacks for injecting LogService and DictionaryService in the aspect implementation class:
 
     :::java
     public class Activator extends DependencyManagerActivator {
@@ -556,7 +575,7 @@ Same example, but using callbacks for injecting LogService and Dictionary servic
            aspect(LogService.class, asp -> asp
               .impl(SpellCheckLogAspect.class).rank(10)
               .add(SpellCheckLogAspect::setLogService)
-              .withSvc(Dictionary.class, svc -> svc.add(SpellCheckLogAspect::setDictionary)));
+              .withSvc(DictionaryService.class, svc -> svc.add(SpellCheckLogAspect::setDictionary)));
         }
     } 
 
@@ -584,6 +603,39 @@ Same more concise example which does not declare the type of lambda parameter:
         }
     }
 
+## Creating Factory Configuration Adapter Components
+
+A Factory Configuration Adapter allows to create many instances of the same service, each time a configuration instance is created for a given factory pid.
+To declare a factory pid configuration adapter, use the `factoryPid` method available from the DependencyManagerActivator class and pass to it
+a lambda for the FactoryPidAdapterBuilder argument:
+
+Example that defines a factory configuration adapter service for the "foo.bar" factory pid. For each factory pid instance, an instance of the DictionaryImpl component will be created:
+
+    :::java
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+           factoryPidAdapter(adapter -> adapter
+              .impl(DictionaryImpl.class).factoryPid("foo.bar").propagate().update(ServiceImpl::updated)
+              .withSvc(LogService.class, log -> log.optional()));
+        }
+    }
+
+Example that defines a factory configuration adapter using a user defined configuration type (the pid is by default assumed to match the fqdn of the configuration type):
+
+    :::java 
+    public interface DictionaryConfiguration {
+        public String getLanguage();
+        public List<String> getWords();
+    }
+
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+            factoryPidAdapter(adapter -> adapter
+                .impl(DictionaryImpl.class).factoryPid("foo.bar").propagate().update(DictionaryConfiguration.class, ServiceImpl::updated)               
+                .withSvc(LogService.class, log -> log.optional()));
+        }
+    }
+
 ## Creating a Bundle Adapter component
 
 A Bundle Adapter is used to create a Component when a bundle that matches a given filter is found.
@@ -596,16 +648,11 @@ Example that creates a BundleAdapter service for each started bundle (the bundle
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
            bundleAdapter(adapt -> adapt
-               .impl(BundleAdapterImpl.class)
-               .provides(BundleAdapter.class)
-               .mask(Bundle.INSTALLED | Bundle.RESOLVED | Bundle.ACTIVE)
+               .impl(BundleAdapterImpl.class).provides(BundleAdapter.class).mask(Bundle.INSTALLED|Bundle.RESOLVED|Bundle.ACTIVE)               
                .add(BundleAdapterImpl::bundleStarted)
-               .withSvc(LogService.class, "(vendor=apache)")
-               .withSvc(EventAdmin.class, ConfigurationAdmin.class));
+               .withSvc(LogService.class, "(vendor=apache)"));              
         }
     }
- 
-Notice that the adapter also depends on three services (LogService, EventAdmin, and ConfigurationAdmin services).
 
 ## CompletableFuture dependency.
 
@@ -635,7 +682,7 @@ So, the Activator looks like this:
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             component(comp -> comp.impl(Pojo.class).provides(PojoService)
-               .withCnf("foo.pid").withSvc(HttpClient.class).withSvc(Tracked.class, srv -> srv.optional().add(Pojo::bindTracked));
+               .withCnf("foo.pid").withSvc(HttpClient.class).withSvc(Tracked.class, svc -> svc.optional().add(Pojo::bindTracked));
         }
     }
 
@@ -680,7 +727,7 @@ injected in the "bindTracked" method:
     }
 
 So, using the Future Dependency we can nicely reuse the jdk CompletableFuture as a required dependency. Without using the FutureDependency
-on the CompletableFuture returned by the HttpClient, we would then have to manually register our service using bundleContext.registerService(), and we 
+on the CompletableFuture returned by the HttpClient, we would then have to manually register our service using bundleContext.registerService (once the web page has been downloaded), and we 
 would then have to check if the webpage has been downloaded each time a Tracked service is injected. And in case the page is not available, we would 
 then have to cache the injected Tracked service and process it later, once the page has been downloaded.
 
