@@ -2,27 +2,55 @@ Title: Dependency Manager - Factory Configuration Adapter Service
 
 A factory configuration adapter service creates an adapter for each matching configuration in Configuration Admin. For each new factory configuration matching the factoryPid, an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and with the specified adapter service properties. Depending on the propagate parameter, every public factory configuration properties (which don't start with ".") will be propagated along with the adapter service properties. It will also inherit all dependencies.
 
-Usage Example:
+### Usage Examples
 
-	manager.createFactoryConfigurationAdapterService("MyFactoryPid", "update", true)
-		.setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
-		.setImplementation(AdapterServiceImpl.class);         
+    :::java
+    manager.createFactoryConfigurationAdapterService("MyFactoryPid", "update", true)
+           .setInterface(MyService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+           .setImplementation(MyServiceImpl.class);         
+
+    class MyServiceImpl implements MyService {
+        void update(Dictionary cnf) {
+           String ip = (String) cnf.get("address");
+           int port = Integer.valueOf(cnf.get("port");
+        }
+        ...
+    }
+
+You an also use "`configuration types`" ([see configuration dependency documentation)](dependency-configuration.html)
+This is the same example as above, using a "MyConfig" configuration type:
+
+    :::java
+    manager.createFactoryConfigurationAdapterService("MyFactoryPid", "update", true, MyConfig.class)
+           .setInterface(MyService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+           .setImplementation(MyServiceImpl.class);         
+
+    public interface MyConfig {
+        String getAddress();
+        int getPort();
+    }
+
+    class MyServiceImpl implements MyService {
+        void update(Dictionary cnf) {
+           String ip = cnf.getAddress();
+           int port = cnf.getPort();
+        }
+        ...
+    }
 
 ## @FactoryConfigurationAdapterService
 
 Annotates a class that acts as a Factory Configuration Adapter Service. 
-For each new Config Admin factory configuration matching the specified 
-factoryPid, an instance of this service will be created. The adapter will be 
-registered with the specified interface, and with the specified adapter 
-service properties. Depending on the propagate parameter, every public 
-factory configuration properties (which don't start with ".") will be 
-propagated along with the adapter service properties.
-
-Like in @ConfigurationDependency, you can optionally specify the meta types of 
-your configurations for Web Console GUI customization (configuration 
-heading/descriptions/default values/etc ...). 
+Like with @ConfigurationDependency, you can optionally specify a configuration type and (optioanlly) use bnd metatype annotations
+in order to specify configuration meta data (heading/descriptions/default values, etc ...)
 
 ### Annotation attributes:
+
+----
+**`configType`**    
+*Required*: False    
+*Default*: --
+The interface to use as the configuration type, which will be injected instead of the actual configuration dictionary.
 
 ----
 **`provides`**    
@@ -84,12 +112,11 @@ Sets the static method used to create the adapter instance.
 
 ### Usage Examples
 
-Here, a "Dictionary" service instance is instantiated for each existing 
-factory configuration instances matching the "DictionaryServiceFactory" 
-factory pid:
+Here, a "DictionaryService" service instance is instantiated for each existing 
+factory configuration instance matching the "sample.DictionaryServiceFactory" factory pid:
 
     :::java
-    @FactoryConfigurationAdapterService(factoryPid="DictionaryServiceFactory", updated="updated")
+    @FactoryConfigurationAdapterService(factoryPid="sample.DictionaryServiceFactory")
     public class DictionaryImpl implements DictionaryService
     {
         /**
@@ -124,8 +151,8 @@ factory pid:
              // ...
     }
 
-Here is the same example as above, but using meta types (the DM annotations metatype attributes are deprecated and 
-it's better to use standard bnd metatype annotations, the following example are using bnd metatypes):
+Here is the same example as above, but using a configuration type as well as meta types (the DM annotations metatype attributes are deprecated and 
+it's better to use standard bnd metatype annotations):
 
 First, we declare our factory configuration metadata using standard bndtools metatype annotations (see http://www.aqute.biz/Bnd/MetaType):
 
@@ -144,18 +171,15 @@ First, we declare our factory configuration metadata using standard bndtools met
        List words();
     }
      
-And here is the Dictionary service, and we instantiate our DictionaryConfiguration interface using the bndlib *Configurable* helper class.
+And here is the DictionaryService:
 
     :::java
     import java.util.List;
     import aQute.bnd.annotation.metatype.Configurable;
 
-    @FactoryConfigurationAdapterService(factoryPidClass=DictionaryConfiguration.class)  
+    @FactoryConfigurationAdapterService(configType=DictionaryConfiguration.class)  
     public class DictionaryImpl implements DictionaryService {
-        protected void updated(Dictionary<String, ?> props) {
-            // load configuration from the provided dictionary, or throw an exception of any configuration error.
-            DictionaryConfiguration cnf = Configurable.createConfigurable(DictionaryConfiguration.class, props);
-     
+        protected void updated(DictionaryConfiguration config) {   
             m_lang = config.lang();
             m_words.clear();
             for (String word : conf.words()) {
