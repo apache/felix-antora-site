@@ -153,7 +153,7 @@ The following is the same as above, using a `consumer<ComponentBuilder>` lambda 
         }
     }
 
-Here is a more concise version with less "code ceremony" where the type of the type of the lambda parameter is not declared:
+Here is a more concise version with less "code ceremony" where the type of the lambda parameter is not declared:
 
     :::java
     import org.apache.felix.dm.lambda.DependencyManagerActivator;
