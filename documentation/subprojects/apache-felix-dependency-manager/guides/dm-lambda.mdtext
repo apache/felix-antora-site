@@ -374,13 +374,14 @@ service properties as a suite of "`key -> value`" lambdas, like this:
 ## Depending on a configuration.
 
 Configuration dependency can be defined using the "`withCnf`" ComponentBuilder method.
-
 Two families of callbacks are supported:
 
 - reflection based callbacks: you specify a callback method name
 - method reference callbacks: you specify a java8 method reference
 
 Callbacks may accept a Dictionary, a Component, or a user defined configuration type interface. If you only specify a pid, by default the callback method name is assumed to be "updated".
+
+### configuration types
 
 Configuration types are a new feature that allows you to specify an interface that is implemented by DM and such interface is then injected to your callback instead of the actual Dictionary. Using such configuration interface provides a way for creating type-safe configurations from a actual Dictionary that is normally injected by Dependency Manager. The callback accepts in argument an interface that you have to provide, and DM will inject a proxy that converts method calls from your configuration-type to lookups in the actual map or dictionary. The results of these lookups are then converted to the expected return type of the invoked configuration method.
 As proxies are injected, no implementations of the desired configuration-type are necessary!
@@ -408,9 +409,53 @@ In case a lookup does not yield a value from the underlying map or dictionary, t
 - for arrays, collections and maps, an empty array/collection/map is returned;
 - for other interface types that are treated as configuration type a null-object is returned. 
 
-Sample codes:
+### multiple ways to define a configuration dependency
 
-Code example with a component that defines a Configuration Dependency using a specific callback method reference, and the method accepts in argument a configuration type (the pid is assumed to be the fqdn of the configuration type):
+You can first pass a configuration pid to the `withCnf` method:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf("my.pid"))
+
+The above example assumes that your Hello component has an "`updated(Dictionary properties)`" method and will call it when configuration is available or updated.
+
+You can pass a "`configuration type`" to the `withCnf` method:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf(MyConfiguration.class))
+
+In the above example, the pid is assumed to be the fqdn of the type passed to the `withCnf` method, and the callback is assumed to be "`updated`"
+and to accept as argument an implementation of the specified configuration type.
+
+You can define the updated callback method explicitly using a ConfigurationDependencyBuilder lambda that you can pass to the "`withCnf`"
+method:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf((ConfigurationDependencyBuilder cnf) -> cnf.pid("my.pid").update("modified")));
+
+shorter version which does not declare the type of the lambda passed to the `withCnf` method:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update("modified")));
+
+You can also define the callback using a method reference:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update(Hello::modified)));
+
+And finally, you can define a configuration type, and callback using a method reference. Here, the updated callback has to take 
+in argument the configuration type parameter (the pid is assumed to be the fqdn of the configuration type):
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.update(MyConfiguration.class, Hello::modified)));
+
+    class Hello {
+        void modified(MyConfiguration properties) { ... }
+    }
+
+#### Configuration Dependency Examples based on method references:
+
+Code example with a component that defines a Configuration Dependency using a specific callback method reference, and the method accepts in argument a configuration type 
+(the pid is assumed to be the fqdn of the configuration type):
 
     :::java
     public interface MyConfig {
@@ -419,7 +464,7 @@ Code example with a component that defines a Configuration Dependency using a sp
     }
 
     public class ServiceImpl {
-        void modified(MyConfig cnf) {
+        void updated(MyConfig cnf) {
             if (cnf != null) {
                 String addr = cnf.getAddress();
                 int port = cnf.getPort();
@@ -430,12 +475,12 @@ Code example with a component that defines a Configuration Dependency using a sp
 
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-            component(comp -> comp.impl(ServiceImpl.class).withCnf(conf -> conf.update(MyConfig.class, ServiceImpl::modified)));  
+            component(comp -> comp.impl(ServiceImpl.class).withCnf(conf -> conf.update(MyConfig.class, ServiceImpl::updated)));  
         }
     }
  
-Same example, using a shortcut for the `withCnf` dependency, which is only defining the configuration type (the pid is assumed to 
-be the fqdn of the config type, and the callback name is assumed to be "updated"):
+Same example, using a shortcut for the `withCnf` dependency, which is only defining the configuration type 
+(the pid is assumed to be the fqdn of the config type, and the callback name is assumed to be "updated"):
 
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
@@ -450,24 +495,23 @@ Code example with a component that defines a Configuration Dependency using a sp
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
             component(comp -> comp
                .impl(ServiceImpl.class)
-               .withCnf(conf -> conf.pid("my.pid").update(ServiceImpl::modified)));
+               .withCnf(conf -> conf.pid("my.pid").update(ServiceImpl::setProperties)));
         }
      }
  
+#### Configuration Dependency Examples based on method reflection:
 
-Code example which defines a configuration dependency injected in the "ServiceImpl.updated(Dictionary)" callback:
+Code example which defines a configuration dependency injected in the "ServiceImpl.updated(Dictionary)" callback
+(the pid is directly passed in argument to the `withCnf` method):
 
- 
     :::java
     public class Activator extends DependencyManagerActivator {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-            component(comp -> comp.impl(ServiceImpl.class).withCnf("my.pid"));
+            component(comp -> comp.impl(ServiceImpl.class).withCnf("my.pid")));
         }
     }
  
-
 Code example with a component that defines a Configuration Dependency using a specific callback method name:
-
  
     :::java
     public class Activator extends DependencyManagerActivator {
