@@ -4,6 +4,8 @@ Title: Dependency Manager Lambda
 
 **Welcome to Felix Dependency Manager Lambda.**
 
+(TODO: update this document in order to explain that dependencies are optional by default, and not required).
+
 ## Introduction
 
 Since the R7 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
