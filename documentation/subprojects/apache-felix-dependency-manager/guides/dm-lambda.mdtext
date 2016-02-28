@@ -4,8 +4,6 @@ Title: Dependency Manager Lambda
 
 **Welcome to Felix Dependency Manager Lambda.**
 
-(TODO: update this document in order to explain that dependencies are optional by default, and not required).
-
 ## Introduction
 
 Since the R7 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
@@ -74,17 +72,15 @@ Now, let's rework the above example, using the new dm-lambda API:
             // Declare our Consumer component
     
             component(comp -> comp.impl(ServiceConsumer.class)
-                .withSvc(ServiceProvider.class, svc -> svc.filter("(p1=v1)").add(ServiceConsumer::setProvider))
+                .withSvc(ServiceProvider.class, svc -> svc.required().filter("(p1=v1)").add(ServiceConsumer::setProvider))
                 .withCnf(ServiceConsumer.class.getName()));
                 
             // Declare our ServiceProvider service component:
     
             component(comp -> comp.impl(ServiceProviderImpl.class)
                 .provides(ServiceProvider.class, p1 -> "v1", p2 -> 123)
-                .withSvc(LogService.class, EventAdmin.class));
+                .withSvc(true, LogService.class, EventAdmin.class));
     }
-
-(all dependencies are required by default, if they are not explicitly declared as optional or required).
 
 # Principle
 
@@ -119,7 +115,7 @@ for dm-lambda activators:
         }
     }
 
-The `component()` method returns a `ComponentBuilder` and the call to `build` at the end of the call chain returns the actual DM Component object.
+The `component()` method returns a `ComponentBuilder` and the call to `build` at the end of the method calls chain returns the actual DM Component object.
 
 Here is a shorter version:
 
@@ -167,10 +163,20 @@ Here is a more concise version with less "code ceremony" where the type of the l
         }
     }
 
+## Dependency default mode (required or optional ?)
+
+When you declare a dependency without explicitly invoking `optional()`, `required()`, or `required(boolean)`, then by default,
+the dependency is assumed to be optional. This is in line with the behavior of the Dependency Manager API.
+
+Now, you can change this default behavior by configuring the "`org.apache.felix.dependencymanager.lambda.defaultRequiredDependency`"
+system property. This property can be set with a list of java package prefixes (comma separated).
+When a component implementation class starts with one of the package prefixes specified in the above property, then dependencies will be 
+assumed to be required by default.
+
 ## Adding service dependencies injected in class fields.
 
 You can add a dependency using the "`withSvc`" methods available from the ComponentBuilder interface.
-Such method accepts a `Consumer<ServiceDependencyBuilder>` lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
+Such methods accept a `Consumer<ServiceDependencyBuilder>` lambda expression, which may then configure the dependency using a chain of method calls (filter/callbacks,autoconfig, etc ...):
 When you don't specify callbacks, services are injected in class fields with compatible service dependency type, but you can specify a field name.
 Unavailable optional dependencies are injected as "`Null Objects`".
 
@@ -200,33 +206,35 @@ Here is a more concise version where the type of the `svc` lambda parameter is n
         }
     }
 
-If you depend on multiple services (without filters), you can declare the services in one shot like this
-(the dependencies will be injected in compatible class fields, by reflection):
+When injecting services in class fields (auto config mode), there are shotcuts that avoid using a lambda when defining a service dependency.
+These shortcuts are available from the ComponentBuilder interface.
+
+Examples:
+
+#### Declaring multiple auto config dependencies in one shot (using varargs of interfaces):
 
     :::java
-    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, EventAdmin.class, MetatypeService.class));
 
-    public class Activator extends DependencyManagerActivator {
-        @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            // using a varargs of service dependencies ...
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, EventAdmin.class)); 
-        }
-    }
-
-When you want to inject a service in a class field, but using a filter, you can also define a one-liner 
-dependency that is not needing a ServiceDependencyBuilder lambda:
+#### Declaring multiple auto config dependencies in one shot with a `required` flag:
 
     :::java
-    import org.apache.felix.dm.lambda.DependencyManagerActivator;
+    component(comp -> comp.impl(Hello.class).withSvc(true, ConfigurationAdmin.class, EventAdmin.class, MetatypeService.class));
 
-    public class Activator extends DependencyManagerActivator {
-        @Override
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            // using a varargs of service dependencies ...
-            component(comp -> comp.impl(Hello.class).withSvc(LogService.class, "(vendor=apache)")); 
-        }
-    }
+#### Declaring an autoconfig dependency with a `required` flag:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, true));
+
+#### Declaring an autoconfig dependency with a `filter ` and `required` flag:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, "(vendor=apache)", true));
+
+#### Declaring a autoconfig dependency with a `filter `, an explicit class field, and `required` flag:
+
+    :::java
+    component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, "(vendor=apache)", "configadmin", true));
 
 Dependency services can be injected in the following kind of fields:
 
@@ -413,20 +421,16 @@ In case a lookup does not yield a value from the underlying map or dictionary, t
 
 ### multiple ways to define a configuration dependency
 
-You can first pass a configuration pid to the `withCnf` method:
+You can first pass a configuration pid to the `withCnf` method. In this example, the Hello component has an "`updated(Dictionary properties)`" method called when configuration is available or updated.
 
     :::java
     component(comp -> comp.impl(Hello.class).withCnf("my.pid"))
 
-The above example assumes that your Hello component has an "`updated(Dictionary properties)`" method and will call it when configuration is available or updated.
-
-You can pass a "`configuration type`" to the `withCnf` method:
+You can pass a "`configuration type`" to the `withCnf` method. The pid is assumed to be the fqdn of the type passed to the `withCnf` method, and the callback is assumed to be "`updated`"
+and to accept as argument an implementation of the specified configuration type:
 
     :::java
     component(comp -> comp.impl(Hello.class).withCnf(MyConfiguration.class))
-
-In the above example, the pid is assumed to be the fqdn of the type passed to the `withCnf` method, and the callback is assumed to be "`updated`"
-and to accept as argument an implementation of the specified configuration type.
 
 You can define the updated callback method explicitly using a ConfigurationDependencyBuilder lambda that you can pass to the "`withCnf`"
 method:
@@ -434,7 +438,7 @@ method:
     :::java
     component(comp -> comp.impl(Hello.class).withCnf((ConfigurationDependencyBuilder cnf) -> cnf.pid("my.pid").update("modified")));
 
-shorter version which does not declare the type of the lambda passed to the `withCnf` method:
+Here is shorter version which does not declare the type of the lambda passed to the `withCnf` method:
 
     :::java
     component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update("modified")));
@@ -444,7 +448,7 @@ You can also define the callback using a method reference:
     :::java
     component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update(Hello::modified)));
 
-And finally, you can define a configuration type, and callback using a method reference. Here, the updated callback has to take 
+And finally, you can define a configuration type, and a callback using a method reference. Here, the updated callback has to take 
 in argument the configuration type parameter (the pid is assumed to be the fqdn of the configuration type):
 
     :::java
@@ -595,6 +599,48 @@ And an example where you create a new DM component from the code:
         }
     }
 
+## Component Lifecycle Callbacks
+
+Like with DM API, default lifecycle callbacks are the following:
+
+- "init": the method is called on the component implementation class(es) once all required dependencies declared in the Activator 
+have been injected. This method can then be used to possibly add more dependencies dynamically.
+- "start": the method is called on the component implementation class(es) once all required dependencies (including the ones added 
+from the "init" callback) have been injected. Then the optional dependency callbacks are invoked (after the start callback).
+- "stop": the method is called on the component implementation class(es) when some required dependencies are being lost
+or when the component's bundle is stopping.
+- "destroy": the component is destroyed and may be re-created and re-initialized in case some required dependencies comes up again.
+
+You can change the callback names using the "init"/"start"/"stop"/"destroy" methods from the ComponentBuilder interface. For example:
+
+    :::java
+    component(comp -> comp.impl(Pojo.class)
+        .init("initialize")
+        .start("activate")
+        .stop("deactivate")
+        .destroy("shutdown"));
+
+Same example, but with some specific callback instance on which the callback should be invoked:
+
+    CallbackHandler handler = new CallbackHandler();
+    component(comp -> comp.impl(Pojo.class)
+        .init(handler, "initialize")
+        .start(handler, "activate")
+        .stop(handler, "deactivate")
+        .destroy(handler, "shutdown"));
+
+When using callback instances, you can also use method references using the callback instance object:
+
+    CallbackHandler handler = new CallbackHandler();
+    component(comp -> comp.impl(Pojo.class)
+        .init(handler::initialize)
+        .start(handler::activate)
+        .stop(handler::deactivate)
+        .destroy(handler::shutdown));
+
+Callbacks are empty-args, or may take a DM Component in argument.
+
+Method Reference for Component implementations class are not supported.
 ## Creating Aspect Components
 
 Like with the original DM API, you can create a chain of aspects (service interceptors) ordered by a ranking attribute, using the "`aspect`" factory method.
@@ -635,7 +681,7 @@ Same example, but using callbacks for injecting LogService and DictionaryService
 
 ## Creating Service Adapter Components
 
-DM service adapters allows to create adapter services when a given type of adapted service is found in the OSGI registry.
+DM service adapters allow to create adapter services when a given type of adapted service is found in the OSGI registry.
 Using the "`adapter`" factory method, you can pass to it consumer of an `ServiceAdapterBuilder` that
 can be used to construct a DM adapter component.
 
@@ -664,6 +710,17 @@ To declare a factory pid configuration adapter, use the `factoryPid` method avai
 a lambda for the FactoryPidAdapterBuilder argument:
 
 Example that defines a factory configuration adapter service for the "foo.bar" factory pid. For each factory pid instance, an instance of the DictionaryImpl component will be created:
+
+    :::java
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+           factoryPidAdapter((FactoryPidAdapterBuilder adapter) -> adapter
+              .impl(DictionaryImpl.class).factoryPid("foo.bar").propagate().update(ServiceImpl::updated)
+              .withSvc(LogService.class, log -> log.optional()));
+        }
+    }
+
+Same more concise example that is not declaring the type of the lambda type:
 
     :::java
     public class Activator extends DependencyManagerActivator {
@@ -719,8 +776,10 @@ track any "Tracked" services registered in the Registry, using a classic whitebo
 download a web page at initialization, before you component is started. The downloaded webpage is required to be able to 
 handle Tracked services. Now, you don't want to block the initialization of your component because in a reactive word,
 it is forbidden to block on the current thread.
-So, you use an HttpClient which allows to asynchronously download a web page, and when you schedule doGET() on the
-client, the method returns to you a `CompletableFuture<String>`.
+
+So, you use an `HttpClient` which allows to asynchronously download a web page: this service is assumed to provide a doGET() method
+which does not block the current thread, but instead returns `CompletableFuture<String>`
+which represents the future result of the asynchronously downloaded page.
 
 So, from your component init() method, you can just declare a FutureDependency on the result of the `CompletableFuture<String>`
 
@@ -736,7 +795,9 @@ So, the Activator looks like this:
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             component(comp -> comp.impl(Pojo.class).provides(PojoService)
-               .withCnf("foo.pid").withSvc(HttpClient.class).withSvc(Tracked.class, svc -> svc.optional().add(Pojo::bindTracked));
+               .withCnf(cnf -> cnf.pid("foo.pid"))
+               .withSvc(HttpClient.class, svc -> svc.required())
+               .withSvc(Tracked.class, svc -> svc.optional().add(Pojo::bindTracked));
         }
     }
 
