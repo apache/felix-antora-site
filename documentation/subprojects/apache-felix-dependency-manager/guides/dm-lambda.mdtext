@@ -31,17 +31,17 @@ Now assume we have `ServiceProvider` provided with p1="v1" and p2=123 service pr
 
 Then we have the following typical Activator (we define both components in the same Activator for simplicity):
 
+    :::java
     import org.apache.felix.dm.DependencyActivatorBase;
     ...
 
-    :::java
     public class Activator extends DependencyActivatorBase {
         @Override
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             // Declare our Consumer component
     
-            Component consumer = dm.createComponent()
-    	        .setImplementation(ServiceConsumer.class)
+            Component consumer = createComponent()
+                .setImplementation(ServiceConsumer.class)
                 .add(createServiceDependency().setService(ServiceProvider.class, "(p1=v1)").setRequired(true).setCallbacks("setProvider", null))
                 .add(createConfigurationDependency().setPid(ServiceConsumer.class.getName()));
             dm.add(consumer);
@@ -51,7 +51,7 @@ Then we have the following typical Activator (we define both components in the s
     	   Properties properties = new Properties();
     	   Properties.put("p1", "v1");
     	   properties.put("p2", 123);
-           Component provider = dm.createComponent()
+           Component provider = createComponent()
        	       .setImplementation(ServiceProviderImpl.class)
     	       .setInterface(ServiceProvider.class.getName(), properties)
     	       .add(createServiceDependency().setService(LogService.class).setRequired(true))
