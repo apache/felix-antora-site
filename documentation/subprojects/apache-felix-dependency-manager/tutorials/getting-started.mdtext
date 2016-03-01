@@ -11,6 +11,8 @@ The following paragraphs will show various examples that explain how to do this.
 
 To use the dependency manager, you should put the `org.apache.felix.dependencymanager.jar` in your classpath while compiling and in your OSGi framework when running.
 
+Java 8 is required since the dependency manager R8 release.
+
 ## Registering a service
 
 The first example is about registering a service. We extend `DependencyActivatorBase` and in the `init` method we use the reference to the `DependencyManager` to create and add a component. For this component we subsequently set its service interface and implementation. In this case the interface is the `Store` interface, the second parameter, `null`, allows you to provide properties along with the service registration. For the implementation, we only mention the `Class` of the implementation, which means the dependency manager will lazily instantiate it. In this case, there is not much point in doing that because the component has no dependencies, but if it had, the instantiation would only happen when those dependencies were resolved.
