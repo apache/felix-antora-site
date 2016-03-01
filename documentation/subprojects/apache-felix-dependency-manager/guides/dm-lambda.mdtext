@@ -6,7 +6,7 @@ Title: Dependency Manager Lambda
 
 ## Introduction
 
-Since the R7 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
+Since the R8 version, a new dm-lambda library has been introduced in the DM distribution. This new library allows to programmatically declare OSGi components
 using a new style based on java8 lambda expressions and other goodies like method references.
 
 The new library is based on the `builder` design pattern applied to java8 lambdas. Basically, you call a chain of methods from a 
