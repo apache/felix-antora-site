@@ -56,6 +56,10 @@ Use "add-require-capability=true" option in the plugin declaration property to e
 * The Annotations "Factory Sets" are deprecated (FELIX-4684): You can now use a DS-like ComponentFactory API by a nice api which is exported by the runtime bundle.
 See this [example](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/device/annot/DeviceAndParameterFactory.java) from the samples in the source distribution.
 
+* Since the R8 version, a new "`dm-lambda`" library has been introduced in the distribution. This new library allows to programmatically declare OSGi components using a new style based on java8 lambda expressions and other goodies like method references.
+
+* Since the R8 version, you can now provide "configuration types". Configuration types are a new feature that allows you to specify an interface that is implemented by DM and such interface is then injected to your configuration callback instead of an actual configuration dictionary. 
+
 # Sample code
 
 The source distribution includes many sample codes which can be run directly under Eclipse and BndTools. The samples are available in the 
