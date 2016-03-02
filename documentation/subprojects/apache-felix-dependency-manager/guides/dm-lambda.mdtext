@@ -781,7 +781,7 @@ So, you use an `HttpClient` which allows to asynchronously download a web page: 
 which does not block the current thread, but instead returns `CompletableFuture<String>`
 which represents the future result of the asynchronously downloaded page.
 
-So, from your component init() method, you can just declare a FutureDependency on the result of the `CompletableFuture<String>`.
+From your component init() method, you can then declare a FutureDependency on the result of the `CompletableFuture<String>`.
 A Future Dependency can be defined using the "withFuture" method available from the ComponentBuilder interface,  and this method takes as argument two args: a CompletableFuture, and a 
 `consumer<FutureDependencyBuilder>`. The second arg is a lambda that can be used to configure the callback to invoke when the CF has completed.
 
