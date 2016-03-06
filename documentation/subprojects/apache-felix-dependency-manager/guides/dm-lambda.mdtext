@@ -15,7 +15,7 @@ the original DM API.
 We'll see later that using lambdas avoids to call the last "`build`" method and allows to automatically add the constructed DM Component into the 
 DependencyManager object.
 
-Please notice that using the dm-lambda library requires the usage of a recent Java8 jvm (the library has been tested with java version "1.8.0_71").
+Please notice that using the dm-lambda library requires the usage of a recent Java8 jvm (the library has been tested with java version "1.8.0_74").
 
 ## Comparing two activators using old and new API:
 
