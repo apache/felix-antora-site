@@ -11,7 +11,7 @@ The following paragraphs will show various examples that explain how to do this.
 
 To use the dependency manager, you should put the `org.apache.felix.dependencymanager.jar` in your classpath while compiling and in your OSGi framework when running.
 
-Java 8 is required since the dependency manager R8 release.
+A recent java 8 jdk is required since the dependency manager r8 (the dm r8 release has been built and tested using java version 1.8.74).
 
 ## Registering a service
 
