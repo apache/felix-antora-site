@@ -6,40 +6,77 @@ This is an implementation of the HTTP Whiteboard Service as described in chapter
 is to provide a standard and simplified way to register servlets, listeners, filters, and resources in a servlet container, to managed them in servlet contexts, and to associate
 them with URIs. Complete set of features:
 
-  * Standard HTTP Service implementation;
-  * Standard HTTP Whiteboard Service implementation
-  * Run either with Jetty or inside your own application server using the servlet bridge;
-  * One complete bundle that includes everything to simplify deployment;
+  * Standard OSGi Http Service implementation
+  * Standard OSGi Http Whiteboard implementation
+  * Run either with Jetty or inside your own application server using the servlet bridge
   * Correctly versioned Servlet API.
 
 ## Installing
 
 The Apache Felix HTTP Service project includes several bundles. 
 
-  
-  * `org.apache.felix.http.servlet-api` - Provides the Servlet API (versions 2.6 and 3.0 of the Servlet specification);
-  * `org.apache.felix.http.api` - Provides the OSGi APIs;
-  * `org.apache.felix.http.jetty` - HTTP Service implementation that is embedding Jetty server (currently Jetty 9, requiring Java 7). This bundle includes the http.api bundle.;
-  * `org.apache.felix.http.whiteboard` - Deprecated whiteboard implementation that uses any HTTP Service implementation;
-  * `org.apache.felix.http.bridge` - HTTP Service implementation that uses the host application server (bridged mode). Must be used with proxy;
-  * `org.apache.felix.http.cometd` - Adds Comet/Ajax Push functionality to the HTTP Service implementation;
-  * `org.apache.felix.http.bundle` - The all-in-one bundle that includes all of the above;
+  * `org.apache.felix.http.servlet-api` - Provides the Servlet API (versions 2.6, 3.0, and 3.1 of the Servlet specification)
+  * `org.apache.felix.http.api` - Provides the OSGi APIs for the Http Whiteboard and Http Service.
+  * `org.apache.felix.http.jetty` - Implementation that is embedding Jetty server (currently Jetty 9, requiring Java 8). This bundle includes the http.api bundle.
+  * `org.apache.felix.http.sslfilter` - Servlet filter for handling SSL termination.
+  * `org.apache.felix.http.bridge` - Implementation that uses the host application server (bridged mode). Must be used with the proxy (see below)
+  * `org.apache.felix.http.cometd` - Adds Comet/Ajax Push functionality to the HTTP Service implementation.
   * `org.apache.felix.http.proxy` - Proxy that is needed inside WAR when deployed inside an application server. 
 
-Note that as of version **2.3.x** and **3.0.0**, both the HTTP as well as the Serlvet APIs are **no longer** packaged with the separate
-bundles! The only exception to this is the all-in-one bundle (that is `org.apache.felix.http.bundle`), which still
-**does** include these APIs.  
-If you are migrating from lower versions, and are *not* using the all-in-one bundle, be sure to add both the
-`org.apache.felix.http.api` and `org.apache.felix.http.servlet-api` (or any other compatible Serlvet API bundle) to your
+Note that as of version **3.x**, the Serlvet APIs are **no longer** packaged with the implementation bundles! If you are migrating from lower versions, be sure to add the
+`org.apache.felix.http.servlet-api` (or any other compatible Serlvet API bundle) to your
 classpath and deployment!
 
-So, in most cases you could just use **org.apache.felix.http.bundle** and forget about all the other ones. Note that *by
-default*, this bundle operates in "bridged mode" and needs explicit configuration to enable or operate in other modes.
-See [this section](#using-the-all-in-one-bundle) for more information.
+## Using the OSGi Http Whiteboard
 
+The OSGi whiteboard implementation simplifies the task of registering servlets, filters, resources, listeners, and servlet contexts. For a complete introduction, please refer to the OSGi R6 Compendium or Enterprise specification. 
+
+For a short introduction: Such a whiteboard service can be registered by exporting it as a service, making it no longer necessary to track and use the `HttpService` directly. The
+whiteboard implementation detects all `javax.servlet.Servlet` and `javax.servlet.Filter` services with the right service properties. Let us illustrate the usage by registering a servlet:
+
+    :::java
+    public class Activator implements BundleActivator {
+      private ServiceRegistration registration;
+    
+      public void start(BundleContext context) throws Exception {
+        Hashtable props = new Hashtable();
+        props.put("osgi.http.whiteboard.servlet.pattern", "/hello");
+        props.put("servlet.init.message", "Hello World!");
+    
+        this.registration = context.registerService(Servlet.class.getName(), new HelloWorldServlet(), props);
+      }
+    
+      public void stop(BundleContext context) throws Exception {
+        this.registration.unregister();
+      }
+    }
+
+
+To ensure the HTTP whiteboard service picks up your servlet and filter correctly, your service
+registration *must* provide several service properties.
+
+
+### Servlet service properties
+
+  * `osgi.http.whiteboard.servlet.pattern` - defines the servlet pattern to register the servlet under, should be a path as defined in the Servlet specification.
+  * `osgi.http.whiteboard.context.select` - Filter expression to select the servlet context (optional).
+  * `servlet.init.*` - these properties (sans the `servlet.init.` prefix) are made available throught the `ServletConfig` object of your servlet. This allows you to supply your servlet initialization parameters as you would normally do in the web descriptor (web.xml).
+
+### Filter service properties
+
+  * `osgi.http.whiteboard.filter.regex` - The regular expression pattern to register filter with.
+  * `osgi.http.whiteboard.context.select` - Filter expression to select the servlet context (optional).
+  * `service.ranking` - an integer value that allows you to specify where in the filter chain the filter should be registered. Higher rankings will be placed first in the chain, that is, filter chains are sorted in descending order. If omitted, a ranking of zero (0) is used.
+  * `filter.init.*` - these properties (sans the `filter.init.` prefix) are made available throught the `FilterConfig` object of your filter. This allows you to supply your filter initialization parameters as you would normally do in the web descriptor (web.xml).
+
+### ServletContextHelper service properties
+
+  * `osgi.http.whiteboard.context.name` - the identifier of the registered HTTP context to be referenced by a servlet or filter service
+  * `osgi.http.whiteboard.context.path` - The path of the servlet context.
+  
 ## Using the HttpService
 
-The main components provided by the Apache Felix HTTP Service bundle are:
+In general the Http Service is regarded legacy and the OSGi Http Whiteboard should be used instead. If you still want to use the Http Service, this is a brief introduction. The main components provided by the Apache Felix HTTP Service bundle are:
 
  * `HttpService` - Service used to dynamically register resources and servlets;
  * `HttpContext` - Additional (optional) component to handle authentication, resource and mime type mappings.
@@ -211,95 +248,7 @@ If you implement a customised `HttpContext` object, don't forget to specify it a
     // ....
 
 
-## Using the ExtHttpService
 
-To be able to register filters, it is possible to get hold of `org.apache.felix.http.api.ExtHttpService`. This service
-is exported by both Jetty and the bridged implementation. Let's see an example of how you would register a filter:
-
-    :::java
-    public class Activator implements BundleActivator {
-      private ServiceTracker httpTracker;
-
-      public void start(BundleContext context) throws Exception {
-        httpTracker = new ServiceTracker(context, ExtHttpService.class.getName(), null) {
-          public void removedService(ServiceReference reference, Object service) {
-            // HTTP service is no longer available, unregister our resources...
-            try {
-               ((ExtHttpService) service).unregister("/static");
-            } catch (IllegalArgumentException exception) {
-               // Ignore; servlet registration probably failed earlier on...
-            }
-          }
-
-          public Object addingService(ServiceReference reference) {
-            // HTTP service is available, register our resources...
-            ExtHttpService httpService = (ExtHttpService) this.context.getService(reference);
-            try {
-              httpService.registerFilter(new HelloWorldFilter(), "/hello/.*", null, 0, null);
-            } catch (Exception exception) {
-              exception.printStackTrace();
-            }
-            return httpService;
-          }
-        };
-        // start tracking all HTTP services...
-        httpTracker.open();
-      }
-
-      public void stop(BundleContext context) throws Exception {
-        // stop tracking all HTTP services...
-        httpTracker.close();
-      }
-    }
-  
-
-## Using the Whiteboard
-
-The whiteboard implementation simplifies the task of registering servlets and filters. A servlet (or filter) can be
-registered by exporting it as a service, making it no longer necessary to track and use the `HttpService` directly. The
-whiteboard implementation detects all `javax.servlet.Servlet`, `javax.servlet.Filter` and
-`org.osgi.service.http.HttpContext` services with the right service properties. Let us illustrate the usage by
-registering a servlet:
-
-    :::java
-    public class Activator implements BundleActivator {
-      private ServiceRegistration registration;
-    
-      public void start(BundleContext context) throws Exception {
-        Hashtable props = new Hashtable();
-        props.put("alias", "/hello");
-        props.put("init.message", "Hello World!");
-    
-        this.registration = context.registerService(Servlet.class.getName(), new HelloWorldServlet(), props);
-      }
-    
-      public void stop(BundleContext context) throws Exception {
-        this.registration.unregister();
-      }
-    }
-
-
-To ensure the HTTP whiteboard service picks up your HTTP context, servlet and filter correctly, your service
-registration *must* provide several service properties. These properties are used for the actual registration with the
-`HttpService` (or `ExtHttpService`).
-
-### Servlet service properties
-
-  * `alias` - defines the servlet alias to register the servlet under, should be a path as defined in the Servlet specification. Note that wildcards are **not** supported yet; 
-  * `contextId` - the optional identifier of the HTTP context to associate the servlet with. If omitted, a default HTTP context will be associated;
-  * `init.*` - these properties (sans the `init.` prefix) are made available throught the `ServletConfig` object of your servlet. This allows you to supply your servlet initialization parameters as you would normally do in the web descriptor (web.xml).
-
-### Filter service properties
-
-  * `pattern` - The regular expression pattern to register filter with;
-  * `service.ranking` - an integer value that allows you to specify where in the filter chain the filter should be registered. Higher rankings will be placed first in the chain, that is, filter chains are sorted in descending order. If omitted, a ranking of zero (0) is used;
-  * `contextId` - the optional identifier of the HTTP context to associate the filter with. If omitted, a default HTTP context will be associated;
-  * `init.*` - these properties (sans the `init.` prefix) are made available throught the `FilterConfig` object of your filter. This allows you to supply your filter initialization parameters as you would normally do in the web descriptor (web.xml).
-
-### HttpContext service properties
-
-  * `contextId` - the identifier of the registered HTTP context to be referenced by a servlet or filter service;
-  * `context.shared` - if the HTTP context needs to be shared across bundles then this property should be set to `true`. Shared `HttpContext` services should  either not implement the `getResource` at all or be registered as service factories to ensure access to foreign bundle resources is not allowed through this backdoor.
 
 
 ## Using the Servlet Bridge
@@ -315,14 +264,6 @@ little setup is needed for this to work:
   6. deploy `org.apache.felix.http.bridge` (or `org.apache.felix.http.bundle`) inside the OSGi framework.
 
 A detailed example can be found [here](http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge).
-
-
-## Using the all-in-one bundle
-
-The all-in-one bundle combines the the Jetty server, the whiteboard implementation, the servlet bridge and the CometD
-functionality in a single, easy to use bundle. By default its functionality is equivalent to the Servlet Bridge, meaning
-that the Jetty, Whiteboard and CometD features are *disabled*. To *enable* these features, you need to supply one or
-more configuration properties as described in the [next section](#configuration-properties).
 
 
 ## Using the SSL filter 
@@ -496,52 +437,42 @@ A set of simple examples illustrating the various features are available.
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.servlet-api</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.api</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.base</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.bridge</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.bundle</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.cometd</artifactId>
-      <version>2.3.0</version>
+      <version>3.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.jetty</artifactId>
-      <version>2.3.0</version>
+      <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.http.base</artifactId>
+      <version>3.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.http.bridge</artifactId>
+      <version>3.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.http.cometd</artifactId>
+      <version>2.3.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.proxy</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.whiteboard</artifactId>
-      <version>2.3.0</version>
+      <version>3.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.sslfilter</artifactId>
-      <version>0.1.0</version>
+      <version>1.0.4</version>
     </dependency>
 
 
