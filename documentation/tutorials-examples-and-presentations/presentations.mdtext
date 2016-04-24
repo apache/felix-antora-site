@@ -2,6 +2,7 @@ Title: Felix & OSGi  Presentations
 
 | Date | Event | Download | Presenter(s) | Summary |
 |--|--|--|--|--|
+| October 2015 | OSGi Community Event, Ludwigsburg, Germany | [download](http://www.slideshare.net/cziegeler/service-oriented-web-development-with-osgi) | Carsten Ziegeler | (Web) Development with Declarative Services |
 | 25 January 2011 | N/A | [download]({{ refs.-learning-to-ignore_osgi-pdf.path }}) | Richard S. Hall | Discusses the minimum understanding of OSGi technology you must possess to effectively use it. |
 | 25 march 2009 | ApacheCon EU, Amsterdam, The Netherlands | [download]({{ refs.-apache-felix-on-androids-pdf.path }}) | Marcel Offermans, Christian van Spaandonk | Shows how to create and dynamically deploy applications on Google Android up to the point where things get dynamically deployed based on context (user's location, etc.). |
 | 7 february 2009 | FOSDEM 2009, Brussels, Belgium | [download]({{ refs.-dynamic-deployment-with-apache-felix-pdf.path }}) [video|http://www.youtube.com/watch?v=BthwKfxATNE] | Marcel Offermans | Dynamic Deployment with Apache Felix |
