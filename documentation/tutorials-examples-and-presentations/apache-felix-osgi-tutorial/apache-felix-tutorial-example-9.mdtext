@@ -1,0 +1,115 @@
+Title: Apache Felix Tutorial Example 9
+
+# Example 9 - Spell Checker Service using Declarative Services
+
+
+The purpose of this example is to re-implement the spell checker service in Example 6, but to do so using Declarative Service. Therefore you need to install the Declarative Services implementation into your OSGi framework.
+
+The spell checker service of Example 6 was complex because it needed to aggregate all available dictionary services and monitor their dynamic availability. In addition, the spell checker service's own availability was dependent upon the availability of dictionary services; in other words, the spell checker service had a dynamic, one-to-many dependency on dictionary services. As it turns out, service dependencies are not managed at all by the OSGi framework and end up being the responsibility of the application developer. Declarative Services tries to eliminate complex and error-prone service dependency handling by automating it. To do this, Declarative Services parses XML files in a bundle that describes the components we want to create and their service dependencies. Instead of writing a lot of complex code, we simply use annotations. At build time the tooling creates a declarative XML file which is included in the bundle. There is no need to write an Activator.
+
+The above meta-data tells the generic activator to create one instance of `tutorial.example8.SpellCheckerImpl`, which we will define next. The meta-data also tells the generic activator that the instance has an aggregate service dependency (in this case, one-to-many) on dictionary services and that the services should be tracked dynamically. It also specifies the bind and unbind methods that should be called on the instance when dictionary services appear and disappear. It is important to understand that the generic activator is constantly trying to maintain the instances defined in the meta-data file. At any given point in time, a specific instance may be valid (if all service dependencies are satisfied) or invalid (if any service dependencies are unsatisfied), but at all times the generic activator is trying to get the declared instances into a valid state. The code for our new spell checker service is very similar to the implementation in Example 6, but it is no longer implemented as an inner class of the activator. We define the new spell checker service in a file called `SpellCheckerImpl.java` as follows:
+
+
+    /*
+     * Apache Felix OSGi tutorial.
+    **/
+    
+    package tutorial.example9;
+    
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.StringTokenizer;
+
+    import org.apache.felix.examples.dictionaryservice.DictionaryService;
+    import org.apache.felix.examples.spellcheckservice.SpellCheckService;
+    import org.osgi.service.component.annotations.Component;
+    import org.osgi.service.component.annotations.Reference;
+    import org.osgi.service.component.annotations.ReferenceCardinality;
+    import org.osgi.service.component.annotations.ReferencePolicy;
+
+
+    /**
+     * This class re-implements the spell check service of Example 6. This service
+     * implementation behaves exactly like the one in Example 6, specifically, it
+     * aggregates all available dictionary services, monitors their dynamic
+     * availability, and only offers the spell check service if there are dictionary
+     * services available. The service implementation is greatly simplified, though,
+     * by using the Service Component Runtime. Notice that there is no OSGi references in the
+     * application code; instead, the annotations describe the service
+     * dependencies to the Service Component Runtime, which automatically manages them and it
+     * also automatically registers the spell check services as appropriate.
+     */
+    @Component
+    public class SpellCheckServiceImpl implements SpellCheckService
+    {
+        /**
+         * List of service objects.
+         *
+         * This field is managed by the Service Component Runtime and updated
+         * with the current set of available dictionary services.
+         * At least one dictionary service is required.
+         */
+        @Reference(policy=ReferencePolicy.DYNAMIC, cardinality=ReferenceCardinality.AT_LEAST_ONE)
+        private volatile List<DictionaryService> m_svcObjList;
+
+        /**
+         * Checks a given passage for spelling errors. A passage is any number of
+         * words separated by a space and any of the following punctuation marks:
+         * comma (,), period (.), exclamation mark (!), question mark (?),
+         * semi-colon (;), and colon(:).
+         *
+         * @param passage
+         *            the passage to spell check.
+         * @return An array of misspelled words or null if no words are misspelled.
+         */
+        public String[] check( String passage )
+        {
+            // No misspelled words for an empty string.
+            if ( ( passage == null ) || ( passage.length() == 0 ) )
+            {
+                return null;
+            }
+
+            List<String> errorList = new ArrayList<String>();
+
+            // Tokenize the passage using spaces and punctionation.
+            StringTokenizer st = new StringTokenizer( passage, " ,.!?;:" );
+
+            // Put the current set of services in a local field
+            // the field m_svcObjList might be modified concurrently
+            final List<DictionaryService> localServices = m_svcObjList;
+
+            // Loop through each word in the passage.
+            while ( st.hasMoreTokens() )
+            {
+                String word = st.nextToken();
+                boolean correct = false;
+
+                // Check each available dictionary for the current word.
+                for(final DictionaryService dictionary : localServices) {
+                    if ( dictionary.checkWord( word ) )
+                    {
+                        correct = true;
+                    }
+                }
+
+                // If the word is not correct, then add it
+                // to the incorrect word list.
+                if ( !correct )
+                {
+                    errorList.add( word );
+                }
+            }
+
+            // Return null if no words are incorrect.
+            if ( errorList.size() == 0 )
+            {
+                return null;
+            }
+
+            // Return the array of incorrect words.
+            return errorList.toArray( new String[errorList.size()] );
+        }
+    } 
+
+Notice how much simpler this service implementation is when compared to the same service implemented in Example 6. There are no references to OSGi interfaces in our application code and all tricky and complex code dealing with monitoring of services is handled for us.
