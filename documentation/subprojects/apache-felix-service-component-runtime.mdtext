@@ -1,17 +1,17 @@
 Title: Apache Felix Service Component Runtime (SCR)
 [TOC]
 
-The Apache Felix Service Component Runtime described by the OSGi Declarative Services Specification is implemented by the `org.apache.felix.scr` bundle. As specified, the components must be declared in XML-formatted descriptor files which in turn must be listed in the `Service-Component` header of the declaring bundle.
+The Apache Felix Service Component Runtime described by the OSGi Declarative Services Specification is implemented by the `org.apache.felix.scr` bundle. As specified, the components must be declared in XML-formatted descriptor files which in turn must be listed in the `Service-Component` header of the declaring bundle. But the good news is, you usually don't have to worry about XML as you can simply use annotations which are processed at build time. The build tool will create the XML files and headers for you.
 
 The component declarations are read when the declaring bundle is started and the respective components are verified and activated depending on their declaration.
 
-The Apache Felix Declarative Services implementation with the OSGi Declarative Services Specification Version 1.1  passes the OSGi CT.
+The Apache Felix Declarative Services implementation is the reference implementation for  the OSGi Declarative Services Specification Version 1.3 (R6) and therefore passes the OSGi CT.
 
 ## Example
 
-To help you get a head start, here is an example of using Declarative Services. You will find more examples in the `trunk/examples` folder of the Apache Felix Project.
+To help you get a head start, here is an example of using Declarative Services "by hand". Instead of using annotations, the XML is created by hand. We discourage doing so, but this is just to give you an idea how it really works. You will find more examples in the `trunk/examples` folder of the Apache Felix Project.
 
-## Component
+### Component
 
 First of all the component must be implemented in a simple Java class. The Declarative Services Specification basically places no restrictions on the contents of this class. If you make use of advanced functionality such as providing an `activate()` or `deactivate()` method or using service loopup by *event strategy* (see 112.3.1 Accessing Services) you will of course have to provide the respective methods.
 
@@ -32,7 +32,7 @@ For the sake of example, lets define a very simple class, which implements a `ja
 
 This is of course a very simple and not very intelligently implemented comparator...
 
-## Declaration
+### Declaration
 
 The next step consists of writing the declaration. I usually put these files in the `OSGI-INF` folder of the bundle, but the files may be placed anywhere within the bundle or any of the bundle's fragments as long as its path is listed in the `Service-Component` bundle manifest header.
 
@@ -63,7 +63,7 @@ To finalize this declaration, add the following header to the bundle manifest:
     Service-Component: OSGI-INF/sample.xml
 
 
-## Activation
+### Activation
 
 It may well be that the component needs to be notified, when it is activated and deactivated. For this, the component may implement an `activate` method and a `deactivate` method. Both methods must be `public` or `protected` and take a single argument, the `org.osgi.service.ComponentContext`. It is recommended for this method to the `protected` as it is only used by the Service Component Runtime and should of course not be part of the public API of the component.
 
@@ -95,7 +95,7 @@ Here is the initial class extended with activation and deactivation methods:
 
 Nothing more needs to be done as the Service Component Runtime automatically recognizes and calls these methods.
 
-## Service Binding
+### Service Binding
 
 The next step would probably be to do some service binding. This is somewhat more overhead, as the referred to services must be declared. On the other hand, you do not have to care to listen for these services. As examples of these strategies we will first use the lookup strategy to access an OSGi `HttpService` and then we will use the event strategy to access an OSGi `LogService` (I personally prefer the event strategy, but your mileage may vary).
 
@@ -258,6 +258,6 @@ The `ScrService` allows access to all registered components, to a specific compo
 
 ## Summary
 
-This tutorial just listed some very basic information on Declarative Service. To get more information, for example on hoe the Configuration Admin Service may be used to configure components, refer to the Declarative Services Sepecification in the OSGi Service Platform *Service Compendium* book.
+This tutorial just listed some very basic information on Declarative Service. To get more information, for example on how the Configuration Admin Service may be used to configure components, refer to the Declarative Services Sepecification in the OSGi Service Platform *Service Compendium* book.
 
 Have Fun !
