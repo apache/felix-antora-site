@@ -6,6 +6,10 @@ This page provides answers to frequently asked questions using the Maven
 SCR Plugin. See [{{ refs.apache-felix-maven-scr-plugin.headers.title }}]({{ refs.apache-felix-maven-scr-plugin.path }})
 for documentation on that plugin.
 
+## Should I still use the Apache Felix SCR annotations over the official OSGi annotations?
+
+Starting with the R6 release of the OSGi Declarative Services and Metatype specification, the official annotations support the same features as the Apache Felix SCR annotations in a more elegant manner and even provide additional functionality. Therefore the Apache Felix SCR annotations are now in maintenance mode and therefore you should rather use the official annotations. The Apache Felix maven-bundle-plugin, version 3.0.1 or higher supports those directly and there is no need for an additional plugin anymore.
+
 ## Why are the (standard) annotations not processed?
 
 In order to process any annotations, a processor for them needs to be added as a dependency to your project. There are currently two different processors, one for the annotations defined within the Apache Felix project and another one for the standard annotations from the Declarative Services specification.
