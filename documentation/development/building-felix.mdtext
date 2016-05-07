@@ -1,7 +1,9 @@
 Title: Building Felix
 
-A basic start to checking-out and building Felix including all sub projects:
-1. Download and install the latest Maven 3 release.
-1. Check out or update the Felix trunk (i.e., `svn checkout http://svn.apache.org/repos/asf/felix/trunk felix`).
-1. Go to the top of the project and type: "mvn clean install" to build all sub projects.
-1. To run the newly built framework, cd into *main* and type "java \-jar bin/felix.jar".
+In most cases you might only be interested in one or two sub projects. However, you still might want to check out all sub projects in one go.
+
+To get started:
+
+- Most Apache Felix projects use Apache Maven as the build tool. Therefore, download and install the latest Apache Maven 3 release.
+- Check out or update the Felix trunk (i.e., `svn checkout http://svn.apache.org/repos/asf/felix/trunk felix`).
+- Go to sub project you're interested in and type: "mvn clean install" to build it. If this project is not using Maven, refer to the docs for the sub project on how to build it.
