@@ -1,5 +1,6 @@
 Title: News
 
+* SCR Tooling: Apache Felix Maven SCR Plugin 1.22.0, Apache Felix SCR Ant Task 1.15.0, Apache Felix SCR Annotations 1.10.0, and Apache Felix SCR Generator 1.14.0 released (May 18, 2016)
 * Apache Felix Bundle Repository 2.0.8 and Apache Felix File Install 3.5.4 (April 4, 2016)
 * Apache Felix Http Jetty 3.2.0, Apache Felix Http Bridge 3.0.8, Apache Felix Http Proxy 3.0.2, and Apache Felix Http Base 3.0.8 (April 1, 2016)
 * Apache Felix Dependency Manager r8 is now available in the <a href="http://felix.apache.org/downloads.cgi">downloads</a> section. (March 06, 2016)
