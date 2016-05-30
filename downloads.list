@@ -132,4 +132,4 @@ SCR Ant Task|org.apache.felix.scr.ant|1.15.0
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-SCR Bnd Plugin|org.apache.felix.scr.bnd|1.4.0
+SCR Bnd Plugin|org.apache.felix.scr.bnd|1.5.0
