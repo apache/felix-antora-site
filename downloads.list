@@ -101,8 +101,8 @@ User Admin  |org.apache.felix.useradmin|1.0.3|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.8.2|||doc/changelog.txt
-Web Console  |org.apache.felix.webconsole|4.2.12
-Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.14||all
+Web Console  |org.apache.felix.webconsole|4.2.16
+Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.16||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.2
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4|project||-
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
