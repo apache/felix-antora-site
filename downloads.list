@@ -32,7 +32,7 @@ framework|5.4.0
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8|project
 Bundle Repository|org.apache.felix.bundlerepository|2.0.8|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.8.8
+Configuration Admin|org.apache.felix.configadmin|1.8.10
 Connect|org.apache.felix.connect|0.1.0
 Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r8|src|bin|-
@@ -87,7 +87,7 @@ Preferences|org.apache.felix.prefs|1.0.6|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.8.0|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|2.0.4
-SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.2
+SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.10.0|project
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8|project
 SCR Generator|org.apache.felix.scr.generator|1.14.0|project
@@ -133,3 +133,4 @@ SCR Ant Task|org.apache.felix.scr.ant|1.15.0
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
 SCR Bnd Plugin|org.apache.felix.scr.bnd|1.5.0
+SCR Ext Anno|org.apache.felix.scr.ext.anno|1.0.0
