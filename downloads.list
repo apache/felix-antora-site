@@ -37,7 +37,7 @@ Connect|org.apache.felix.connect|0.1.0
 Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r8|src|bin|-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|project||changelog.txt
-Event Admin|org.apache.felix.eventadmin|1.4.6
+Event Admin|org.apache.felix.eventadmin|1.4.8
 File Install|org.apache.felix.fileinstall|3.5.4|||doc/changelog.txt
 Framework|org.apache.felix.framework|5.4.0|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.4.0|||doc/changelog.txt
