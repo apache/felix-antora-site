@@ -27,6 +27,7 @@ The bundle runs on any framework. For its configuration, it will use the followi
 |`felix.fileinstall.active.level`|0|FileInstall won't scan for files unless the active framework start level is greater than this value|
 |`felix.fileinstall.enableConfigSave`|true|If `false`, File Install will not write back in the file configurations changes. Note that this setting is global and can not be modified per polled directory.|
 |`felix.fileinstall.bundles.updateWithListeners`|false|If `true`, FileInstall will update managed bundles when a new version of an artifact handler is detected.  This detection is performed based on the last modification date of the bundle registering the handler.|
+|`felix.fileinstall.subdir.mode`|jar|Possible values are `jar`, `skip`, `recurse`.  Defines the behavior for sub directories.|
 
  	 
 Once started, the values of these properties are printed to the console.
