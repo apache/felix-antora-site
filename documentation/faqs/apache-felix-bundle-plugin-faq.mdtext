@@ -81,7 +81,7 @@ The latest maven-bundle-plugin (2.0.0) uses a new release of bnd which requires 
 
 ## When I build a bundle, some classes are built in "target/classes" but they're not included in the final jar.
 
-The only classes that will appear in the bundle are the ones you ask it to include using Export-Package, Private-Package, Include-Resource, and Embed-Dependency - so just because a file exists under target/classes does NOT mean it will end up in the bundle. This is because this is the way the underlying [BND](http://aqute.biz/Code/Bnd) tool works (it is primarily pull-based).
+The only classes that will appear in the bundle are the ones you ask it to include using Export-Package, Private-Package, Include-Resource, and Embed-Dependency - so just because a file exists under target/classes does NOT mean it will end up in the bundle. This is because this is the way the underlying [BND](http://bnd.bndtools.org/) tool works (it is primarily pull-based).
 
 Now the bundleplugin will look at your Maven project and add appropriate BND instructions to pull in resource files - and version 2.0.0 will also look at your source directory to set reasonable defaults for Export-Package and Private-Package (unless you set these yourself). So when using bundleplugin 2.0.0 I'd use the default Private-Package and Export-Package to begin with - I would then move towards using an explicit list of packages in Export-Package to add versioning, directives, etc.
 

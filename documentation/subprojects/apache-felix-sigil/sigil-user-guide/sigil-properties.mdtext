@@ -19,7 +19,7 @@ The sub-property type allows values to be set that are groups of properties. The
 
 The -defaults mechanism allows projects to share common bundle headers and default package import versions.
 
-Most values are passed to [Bnd](http://www.aqute.biz/Code/Bnd), so Bnd syntax can usually be used, for example: -resources: @lib, to embed a library.
+Most values are passed to [Bnd](http://bnd.bndtools.org/), so Bnd syntax can usually be used, for example: -resources: @lib, to embed a library.
 
 
 ## Reference

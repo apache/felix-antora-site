@@ -111,7 +111,7 @@ In the following example, the "Printer" component depends on a configuration wit
 This other example shows how to specify a configuration dependency, as well as meta data used to customize the 
 WebConsole GUI. Using these meta data, you can specify for example the default value for your 
 configurations data, some descriptions, the cardinality of configuration values, etc ...
-(we use here standard bnd metatype annotations, [see bnd metatype documentation here](http://www.aqute.biz/Bnd/MetaType).
+(we use here standard bnd metatype annotations, [see bnd metatype documentation here](http://bnd.bndtools.org/chapters/210-metatype.html).
 
 First, we define our PrinterConfiguration interface annotated with standard bndtools metatatype annotations:
 

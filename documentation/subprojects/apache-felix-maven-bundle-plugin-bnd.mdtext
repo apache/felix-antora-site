@@ -1,6 +1,6 @@
 Title: Apache Felix Maven Bundle Plugin (BND)
 
-This plugin for Maven 2/3 is based on the [BND](http://www.aqute.biz/Bnd/Bnd) tool from Peter Kriens. The way BND works is by treating your project as a big collection of classes (e.g., project code, dependencies, and the class path). The way you create a bundle with BND is to tell it the content of the bundle's JAR file as a subset of the available classes. This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.
+This plugin for Maven 2/3 is based on the [BND](http://bnd.bndtools.org/) tool from Peter Kriens. The way BND works is by treating your project as a big collection of classes (e.g., project code, dependencies, and the class path). The way you create a bundle with BND is to tell it the content of the bundle's JAR file as a subset of the available classes. This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.
 
 <div class="info" markdown="1">If you have questions about the maven-bundle-plugin please read the <a href="../faqs/apache-felix-bundle-plugin-faq.html" class="external-link" rel="nofollow">FAQ</a> first. If you still have questions you can ask them on the <a href="http://felix.apache.org/site/mailinglists.html" class="external-link" rel="nofollow">Felix user list</a>.</div>
 
@@ -12,7 +12,7 @@ Since the 1.4.0 release, this plugin also aims to automate OBR (OSGi Bundle Repo
 <a href="http://felix.apache.org/components/bundle-plugin/index.html" class="external-link" rel="nofollow">
 Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin</a></div>
 
-<div class="tip" markdown="1"><a href="http://www.aqute.biz/Bnd/Format" class="external-link" rel="nofollow">A complete list of instructions and their format is available from the BND website</a></div>
+<div class="tip" markdown="1"><a href="http://bnd.bndtools.org/chapters/790-format.html" class="external-link" rel="nofollow">A complete list of instructions and their format is available from the BND website</a></div>
 
 
 # Simple Example
@@ -59,7 +59,7 @@ The BND library underlying the plugin defines instructions to direct its behavio
 1. *Variables* \- Any instruction starting with a lowercase letter is assumed to be a variable in the form of a name-value pair, such as `version=3.0`, that can be used for property substitution, but is not copied to the manifest.
 1. *Directives* \- Any instruction starting with a '-' character is considered to be a directive that informs BND to perform some special processing and is not copied to the manifest.
 
-The remainder of this section covers the most important aspects of BND's instructions; for complete details refer to the [BND documentation](http://www.aqute.biz/Code/Bnd).
+The remainder of this section covers the most important aspects of BND's instructions; for complete details refer to the [BND documentation](http://bnd.bndtools.org/).
 
 
 
@@ -482,7 +482,7 @@ configuration options:
     * *`obrDeploymentRepository`* optional OBR specific deployment repository.
     * *`ignoreLock`* ignore remote locking when updating the OBR
 
-There are also new instructions available from the underlying BND tool, which continues to be improved independently; for the latest see [BND documentation](http://aqute.biz/Code/Bnd).
+There are also new instructions available from the underlying BND tool, which continues to be improved independently; for the latest see [BND documentation](http://bnd.bndtools.org/).
 
 The default goal *`bundle`* will be initialized by setting the <packaging> entry to "bundle".
 

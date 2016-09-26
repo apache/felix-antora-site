@@ -84,7 +84,7 @@ annotated service class.
 
 Returns the factory pid from a class name. The full class name will be used as the 
 configuration PID. You can use this method when you use an interface annoted with 
-standard bndtols metatype annotations. (see http://www.aqute.biz/Bnd/MetaType).
+standard bndtols metatype annotations. (see http://bnd.bndtools.org/chapters/210-metatype.html).
 
 ----
 **`updated`**    
@@ -154,7 +154,7 @@ factory configuration instance matching the "sample.DictionaryServiceFactory" fa
 Here is the same example as above, but using a configuration type as well as meta types (the DM annotations metatype attributes are deprecated and 
 it's better to use standard bnd metatype annotations):
 
-First, we declare our factory configuration metadata using standard bndtools metatype annotations (see http://www.aqute.biz/Bnd/MetaType):
+First, we declare our factory configuration metadata using standard bndtools metatype annotations (see http://bnd.bndtools.org/chapters/210-metatype.html):
 
     :::java
     package sample;

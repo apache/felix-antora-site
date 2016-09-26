@@ -211,7 +211,7 @@ unless the  properties starting with a dot ("."). Configuration properties start
 a dot (".") are considered private and are not propagated.
 
 Notice that you can mix standard bnd metatype annotations with DM annotations, in order
-describe configurations meta data (default values, property labels, etc ... see  http://www.aqute.biz/Bnd/MetaType).
+describe configurations meta data (default values, property labels, etc ... see http://bnd.bndtools.org/chapters/210-metatype.html).
 So, let's revisit our DisctionaryImpl service,  but this time with meta type support:
 
 First, we define an interface for describing our configuration metadata, with bnd metatype annotations:

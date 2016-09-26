@@ -10,7 +10,7 @@ Sigil provides a custom Ivy resolver, which allows Ivy to resolve dependencies s
 
 The plugin works by intercepting the ivy.xml parser and dynamically replacing any dependencies with the results of resolving the OSGi Package-Imports specified in sigil.properties. Sigil can resolve dependencies using a local directory of OSGi bundles, or using an [OBR repository](http://www.osgi.org/Repository/).
 
-The plugin also provides an Ant task to generate (multiple) OSGi bundles from each sigil.properties file using [Bnd](http://www.aqute.biz/Code/Bnd). sigil.properties is similar to .bnd instruction files, but it supports multiple bundles.
+The plugin also provides an Ant task to generate (multiple) OSGi bundles from each sigil.properties file using [Bnd](http://bnd.bndtools.org/). sigil.properties is similar to .bnd instruction files, but it supports multiple bundles.
 
 This Quick Start is based on the Ivy [project dependencies](http://ant.apache.org/ivy/history/latest-milestone/tutorial/dependence.html) tutorial, modified to use Sigil. The modified example is in `example/dependence` in the Sigil download.
 

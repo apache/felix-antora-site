@@ -2,7 +2,7 @@ Title: Creating Bundles Using BND
 
 ##### Purpose
 
-Provide the list of steps required to create a library bundle by wrapping the library jar using bnd (http://www.aqute.biz/Code/Bnd).
+Provide the list of steps required to create a library bundle by wrapping the library jar using bnd (http://bnd.bndtools.org/).
 
 ##### Steps
 
@@ -78,7 +78,7 @@ Provide the list of steps required to create a library bundle by wrapping the li
 ##### Resources
 
 Bnd - Bundle Tool
-http://www.aqute.biz/Code/Bnd
+http://bnd.bndtools.org/
 
 Bundle Plugin for Maven
 http://felix.apache.org/site/maven-bundle-plugin-bnd.html

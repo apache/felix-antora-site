@@ -111,7 +111,7 @@ Once created, you can build the project by launching Ant from the project direct
     BUILD SUCCESSFUL
     Total time: 0 seconds
 
-The created bundle is inside the output directory (spell.services.jar). The build process uses [BND](http://www.aqute.biz/Code/Bnd). The bundle manifest is described in the spell.services.bnd file.
+The created bundle is inside the output directory (spell.services.jar). The build process uses [BND](http://bnd.bndtools.org/). The bundle manifest is described in the spell.services.bnd file.
 
 Once this project is done, we are able to implement a Dictionary service.
     
