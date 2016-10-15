@@ -83,7 +83,7 @@ Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
 Main|org.apache.felix.main|5.6.0|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.1.2
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
-Preferences|org.apache.felix.prefs|1.0.6|project||-
+Preferences|org.apache.felix.prefs|1.1.0|project||-
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.10.0|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|2.0.6
