@@ -32,7 +32,7 @@ framework|5.6.1
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8|project
 Bundle Repository|org.apache.felix.bundlerepository|2.0.8|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.8.10
+Configuration Admin|org.apache.felix.configadmin|1.8.12
 Connect|org.apache.felix.connect|0.1.0
 Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r8|src|bin|-
