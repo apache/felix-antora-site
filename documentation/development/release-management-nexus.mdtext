@@ -222,7 +222,8 @@ folder is immediately updated. Updating the mirrors takes another few hours
 
 ### Release Bundles to the OBR
 
-If you're releasing bundles, you can also add them to the Felix Release OBR. To do this, execute the following command:
+If you're releasing bundles, you can also add them to the Felix Release OBR. To do this, execute the following command
+in a checkout of the release tag (target/checkout if is still around, otherwise a new one):
 
     :::bash
     $ export site=# your checkout of (https://svn.apache.org/repos/asf/felix/site/trunk/content)
