@@ -20,7 +20,7 @@ As an example, to provisionally export the `org.apache.felix.service.metatype` p
 
     :::xml
     <Export-Package>
-      org.apache.felix.service.metatype; version="0.1"; mandatory="status"; status="provisional"
+      org.apache.felix.service.metatype; version="0.1"; mandatory:="status"; status="provisional"
     </Export-Package>
 
 When working with new OSGi specifications, constructing a Felix provisional API will likely result in parallel package structures between the provisional OSGi and Felix APIs. When working with existing specifications, it may be necessary to create extensions to existing OSGi interfaces in the Felix package namespace.
