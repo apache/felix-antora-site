@@ -330,11 +330,12 @@ If the parameters `apply` and `delete` are sent, the configuration is removed. T
 
 Example using `curl`:
 
-curl -u admin:admin  -X POST -d "apply=true" -d "delete=true" http://localhost:8080/system/console/configMgr/com.acme.MyPid
+    curl -u admin:admin  -X POST -d "apply=true" -d "delete=true" http://localhost:8080/system/console/configMgr/com.acme.MyPid
 
 #### Unbind
 
 If the parameter `unbind` is sent, the configuration is unbind.
+
 
 
 
