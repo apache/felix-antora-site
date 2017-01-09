@@ -298,12 +298,13 @@ TBD
 
 ## Configuration Admin Plugin
 
-TBD
+The Configuration Admin Plugin can be accessed directly by sending POST requests to it.
 
 ### POST Requests
 
-Configuration handling is done based on the PID of the configuration. Each POST can either contain the PID as a suffix like `../PID`or with the parameter `pid`. The parameter `pidFilter` might contain an additional filter expression.
+Configuration handling is done based on the PID of the configuration. Each POST can either contain the PID as a suffix like `../PID` or with the parameter `pid`. The parameter `pidFilter` might contain an additional filter expression.
 For the action to execute, the following options are tested, one after the other. As soon as one is executed, the request is processed.
+
 #### Create
 
 If the parameter `create`is sent, a new configuration with the PID is created. The value of the parameter is not evaluated.
@@ -314,12 +315,26 @@ If the parameter `apply` is sent, the configuration is changed. The value of the
 The parameter `factoryPid` might contain the factory pid.
 The parameter `propertyList` contains a comma-separated list of all configuration property names that will be changed by this POST. For each name, the value of the corresponding request parameter is used to set the value. If such a parameter is missing, the property is not changed.
 
+For example to use `curl` to apply a configuration the following command line can be used:
+
+    curl -u admin:admin -X POST -d "apply=true" -d "propertylist=foo,bar" -d "foo=51" -d "bar=hello" http://localhost:8080/system/console/configMgr/com.acme.MyPid
+
+To create a factory configuration, the special PID `[Temporary PID replaced by real PID upon save]` must be used, URL encoded. So to create a new factory configuration 
+for a factoryPid `com.acme.MyFactoryPid` the following can be used:
+
+    curl -u admin:admin -X POST -d "apply=true" -d "propertylist=name" -d "name=mycfg" -d "factoryPid=com.acme.MyFactoryPid" http://localhost:8080/system/console/configMgr/%5BTemporary%20PID%20replaced%20by%20real%20PID%20upon%20save%5D
+
 #### Delete
 
 If the parameters `apply` and `delete` are sent, the configuration is removed. The values of the parameters is not evaluated.
 
+Example using `curl`:
+
+curl -u admin:admin  -X POST -d "apply=true" -d "delete=true" http://localhost:8080/system/console/configMgr/com.acme.MyPid
+
 #### Unbind
 
 If the parameter `unbind` is sent, the configuration is unbind.
+
 
 
