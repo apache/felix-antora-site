@@ -30,13 +30,13 @@ framework|5.6.1
 #        bundle's release tag folder in SVN (default: changelog.txt)
 #        Use - to not have a changelog link
 #
-AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8|project
+AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.8|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.8.12
 Connect|org.apache.felix.connect|0.1.0
 Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r8|src|bin|-
-Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|project||changelog.txt
+Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.4.8
 File Install|org.apache.felix.fileinstall|3.5.4|||doc/changelog.txt
 Framework|org.apache.felix.framework|5.6.1|||doc/changelog.txt
@@ -47,7 +47,7 @@ Gogo Command|org.apache.felix.gogo.command|0.16.0|project||doc/changelog.txt
 HTTP Service API|org.apache.felix.http.api|3.0.0
 HTTP Service Base|org.apache.felix.http.base|3.0.18
 HTTP Service Bridge|org.apache.felix.http.bridge|3.0.18
-HTTP Service Bundle|org.apache.felix.http.bundle|2.4.0
+HTTP Service Bundle|org.apache.felix.http.bundle|3.0.0
 HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2
 HTTP Service Jetty|org.apache.felix.http.jetty|3.4.2
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.2
@@ -83,13 +83,13 @@ Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
 Main|org.apache.felix.main|5.6.1|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.1.2
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
-Preferences|org.apache.felix.prefs|1.1.0|project||-
+Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.10.1|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|2.0.6
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
-SCR Annotations|org.apache.felix.scr.annotations|1.12.0|project
-SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8|project
+SCR Annotations|org.apache.felix.scr.annotations|1.12.0
+SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8
 SCR Generator|org.apache.felix.scr.generator|1.16.0|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
@@ -104,9 +104,9 @@ Utils|org.apache.felix.utils|1.8.2|||doc/changelog.txt
 Web Console  |org.apache.felix.webconsole|4.2.16
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.2.16||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.2
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4|project||-
-Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.4
-Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2|||-
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4
+Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.6
+Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2
 Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.2
 Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.2|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
