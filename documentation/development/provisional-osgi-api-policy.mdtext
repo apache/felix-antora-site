@@ -5,6 +5,7 @@ The OSGi Alliance exposes provisional API that may or may not become part of fut
 ## Policy
 1. No Felix release may contain or refer to provisional OSGi API.
 1. Provisional API may be included and used in unreleased source code, however the API must be part of a final released OSGi specification before this Felix source may be released.
+1. It is recommended that provisional OSGi API be committed separately from other changes and, if possible, with a reference to its source.
 1. Although it is STRONGLY NOT RECOMMENDED, modified versions of provisional api may be released with these modifications:
 
     1. Any provisional OSGi API must be recreated in the `org.apache.felix.*` package name space; this effectively makes it provisional Felix API.
