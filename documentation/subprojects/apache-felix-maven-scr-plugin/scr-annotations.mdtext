@@ -1,13 +1,13 @@
 Title: SCR Annotations
 Excerpt: Using Java 5 Annotations to describe the component or service.
 
-The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix. All annotations are in the `org.apache.felix.scr.annotations` package. If you want to use the annotations in your project, you have to use a `maven-scr-plugin` version >= 1.2.0 and make sure that you add a dependency to the annotations to your `POM`:
+The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix. All annotations are in the `org.apache.felix.scr.annotations` package. If you want to use the annotations in your project, you have to use a `maven-scr-plugin` version >= 1.24.0 and make sure that you add a dependency to the annotations to your `POM`:
 
     :::xml
     <dependency>
         <groupId>org.apache.felix</groupId>
         <artifactId>org.apache.felix.scr.annotations</artifactId>
-        <version>1.9.6</version>
+        <version>1.12.0</version>
     </dependency>
 
 
@@ -19,6 +19,7 @@ The following annotations are supported:
 * [@Property](#property)
 * [@Reference](#reference)
 
+The annotations itself do *not* support the new features from R6 or above. It is suggested to use the official OSGi annotations for Declarative Services instead.
 
 ## @Component
 
@@ -30,85 +31,85 @@ Supported attributes:
 
 ----
 **`ds`**    
-*Defaut*: `true`    
+*Default*: `true`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: --    
 Whether Declarative Services descriptor is generated or not. If this parameter is not set or set to `true` the Declarative Services descriptor is generated in the service descriptor file for this component. Otherwise no Declarative Services descriptor is generated for this component.
 ----
 **`specVersion`**    
-*Defaut*: `1.0`    
+*Default*: `1.0`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: --    
 Defines what Declarative Services specification the component is written against. Though the Maven SCR Plugin is very good at detecting whether components are written against the original or a newer specification, there are some cases, where the plugin may fail. For these cases, the `specVersion` attribute may be set to the correct version. Currently supported values for this attribute are `1.0` and `1.1`. Since version 1.4.1 of the Maven SCR Plugin and version 1.0.1 of the SCR Annotations.
 ----
 **`metatype`**    
-*Defaut*: `false`    
+*Default*: `false`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: --    
 Whether Metatype Service data is generated or not. If this parameter is set to `true` Metatype Service data is generated in the `metatype.xml` file for this component. Otherwise no Metatype Service data is generated for this component.
 ----
 **`componentAbstract`**    
-*Defaut*: see [description](#abstract-service-descriptions)    
+*Default*: see [description](#abstract-service-descriptions)    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: --    
 This marks an abstract service description which is not added to the descriptor but intended for reuse through inheritance. This attribute defaults to `true` for abstract classes and `false` for concrete classes.
 ----
 **`inherit`**    
-*Defaut*: `true`    
+*Default*: `true`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: --    
 Whether any service, property and reference declarations from base classes should be inherited by this class.
 ----
 **`createPid`**    
-*Defaut*: `true`    
+*Default*: `true`    
 *SCR Descriptor*: `service.pid`    
 *Metatype Descriptor*: --    
 Generate the `service.pid` property if non is declared.
 ----
 **`name`**    
-*Defaut*: Fully qualified name of the Java class    
+*Default*: Fully qualified name of the Java class    
 *SCR Descriptor*: `component.name`    
 *Metatype Descriptor*: `OCD.id`    
 Defines the Component name also used as the PID for the Configuration Admin Service
 ----
 **`enabled`**    
-*Defaut*: `true`    
+*Default*: `true`    
 *SCR Descriptor*: `component.enabled`    
 *Metatype Descriptor*: --    
 Whether the component is enabled when the bundle starts
 ----
 **`factory`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `component.factory`    
 *Metatype Descriptor*: --    
 Whether the component is a factory component
 ----
 **`immediate`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `component.immediate`    
 *Metatype Descriptor*: --    
 Whether the component is immediately activated
 ----
 **`policy`**    
-*Defaut*: `OPTIONAL`    
+*Default*: `OPTIONAL`    
 *SCR Descriptor*: `component.policy`    
 *Metatype Descriptor*: --    
 The configuration policy for this component: `OPTIONAL`, `IGNORE`, or `REQUIRE`. This attribute is supported since version 1.4.0 of the plugin and requires a Declarative Service implementation 1.1 or higher.
 ----
 **`label`**    
-*Defaut*: `%<name>.name`    
+*Default*: `%<name>.name`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `OCD.name`    
 This is generally used as a title for the object described by the meta type. This name may be localized by prepending a `%` sign to the name.
 ----
 **`description`**    
-*Defaut*: `%<name>.name`    
+*Default*: `%<name>.name`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `OCD.description`    
 This is generally used as a description for the object described by the meta type. This name may be localized by prepending a `%` sign to the name.
 ----
 **`configurationFactory`**    
-*Defaut*: `false`    
+*Default*: `false`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `Designate.factoryPid`    
 Is this a configuration factory? (since 1.4.0)
@@ -142,12 +143,12 @@ Supported attributes:
 
 ----
 **`value`**    
-*Defaut*: All implemented interfaces    
+*Default*: All implemented interfaces    
 *SCR Descriptor*: `provide.interface`    
 The name of the service interface provided by the component. This can either be the fully qualified  name or just the interface class name if the interface is either in the same package or is imported. If this property is not set `provide` elements will be generated for all interfaces generated by the class
 ----
 **`serviceFactory`**    
-*Defaut*: `false`    
+*Default*: `false`    
 *SCR Descriptor*: `service.servicefactory`    
 Whether the component is registered as a `ServiceFactory` or not
 
@@ -167,91 +168,91 @@ Supported attributes:
 
 ----
 **`name`**    
-*Defaut*: The name of constant    
+*Default*: The name of constant    
 *SCR Descriptor*: `property.name`    
 *Metatype Descriptor*: `AD.id`    
 The name of the property. If this tag is defined on a field with an initialization expression, the value of that expression is used as the name if the field is of type `String`.
 ----
 **`value`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The string value of the property. This can either be a single value or an array.
 ----
 **`longValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The long value of the property. This can either be a single value or an array.
 ----
 **`doubleValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The double value of the property. This can either be a single value or an array.
 ----
 **`floatValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The float value of the property. This can either be a single value or an array.
 ----
 **`intValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The int value of the property. This can either be a single value or an array.
 ----
 **`byteValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The byte value of the property. This can either be a single value or an array.
 ----
 **`charValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The char value of the property. This can either be a single value or an array.
 ----
 **`boolValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The boolean value of the property. This can either be a single value or an array.
 ----
 **`shortValue`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `property.value`    
 *Metatype Descriptor*: `AD.default`    
 The short value of the property. This can either be a single value or an array.
 ----
 **`label`**    
-*Defaut*: `%<name>.name`    
+*Default*: `%<name>.name`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `AD.name`    
 The label to display in a form to configure this property. This name may be localized by prepending a `%` sign to the name.
 ----
 **`description`**    
-*Defaut*: `%<name>.description`    
+*Default*: `%<name>.description`    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `AD.description`    
 A descriptive text to provide the client in a form to configure this property. This name may be localized by prepending a `%` sign to the name.
 ----
 **`propertyPrivate`**    
-*Defaut*: Depending on the name    
+*Default*: Depending on the name    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: See description
 Boolean flag defining whether a metatype descriptor entry should be generated for this property or not. By default a metatype descriptor entry, i.e. an `AD` element, is generated except for the properties `service.pid`, `service.description`, `service.id`, `service.ranking`, `service.vendor`, `service.bundlelocation` and `service.factoryPid`. If a property should not be available for display in a configuration user interface, this parameter should be set to `true`.
 ----
 **`cardinality`**    
-*Defaut*: Depends on property value(s)    
+*Default*: Depends on property value(s)    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: `AD.cardinality`    
 Defines the cardinality of the property and its collection type. If the cardinality is negative, the property is expected to be stored in a `java.util.Vector` (primitive types such as `boolean` are boxed in the Wrapper class), if the cardinality is positive, the property is stored in an array (primitve types are unboxed, that is `Boolean` type values are stored in `boolean\[\]({{ refs..path }})`). The actual value defines the maximum number of elements in the vector or array, where `Integer.MIN*INT` describes an unbounded Vector and `Integer.MAX*INT` describes an unbounded array. If the cardinality is zero, the property is a scalar value. If the defined value of the property is set in the `value` attribute, the cardinality defaults to `0` (zero for scalar value). If the property is defined in one or more properties starting with `values`, the cardinality defaults to `Integer.MAX_INT`, that is an unbounded array.
 ----
 **`options`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: --    
 *Metatype Descriptor*: [See below](#the-options-attribute)    
 See below for a description of the `options` attribute.
@@ -326,41 +327,41 @@ Supported parameters:
 
 ----
 **`name`**    
-*Defaut*: Name of the field    
+*Default*: Name of the field    
 *SCR Descriptor*: `reference.name`    
 The local name of the reference. If the `Reference` annotation is declared in the class comment, this parameter is required. If the annotation is declared on a field, the default value for the `name` parameter is the name of the field
 ----
 **`interfaceReference`**    
-*Defaut*: Type of the field    
+*Default*: Type of the field    
 *SCR Descriptor*: `reference.interface`    
 The name of the service interface. This name is used by the Service Component Runtime to access the service on behalf of the component. If the `Reference` annotation is declared on a class level, this parameter is required. If the annoation is declared on a field, the default value for the `interfaceReference` parameter is the type of the field
 ----
 **`cardinality`**    
-*Defaut*: `1..1`    
+*Default*: `1..1`    
 *SCR Descriptor*: `reference.cardinality`    
 The cardinality of the service reference. This must be one of value from the enumeration `ReferenceCardinality`
 ----
 **`policy`**    
-*Defaut*: `static`    
+*Default*: `static`    
 *SCR Descriptor*: `reference.policy`    
 The dynamicity policy of the reference. If `dynamic` the service will be made available to the component as it comes and goes. If `static` the component will be deactivated and re-activated if the service comes and/or goes away. This must be one of `static` and `dynamic`
 ----
 **`target`**    
-*Defaut*: --    
+*Default*: --    
 *SCR Descriptor*: `reference.target`    
 A service target filter to select specific services to be made available. In order to be able to overwrite the value of this value by a configuration property, this parameter must be declared. If the parameter is not declared, the respective declaration attribute will not be generated
 ----
 **`bind`**    
-*Defaut*: See description    
+*Default*: See description    
 *SCR Descriptor*: `reference.bind`    
 The name of the method to be called when the service is to be bound to the component. The default value is the name created by appending the reference `name` to the string `bind`. The method must be declared `public` or `protected` and take single argument which is declared with the service interface type
 ----
 **`unbind`**    
-*Defaut*: See description    
+*Default*: See description    
 *SCR Descriptor*: `reference.unbind`    
 The name of the method to be called when the service is to be unbound from the component. The default value is the name created by appending the reference `name` to the string `unbind`. The method must be declared `public` or `protected` and take single argument which is declared with the service interface type
 ----
 **`strategy`**    
-*Defaut*: `event`    
+*Default*: `event`    
 *SCR Descriptor*: `reference.strategy`    
 The strategy used for this reference, one of `event` or `lookup`. If the reference is defined on a field with a strategy of `event` and there is no bind or unbind method, the plugin will create the necessary methods.
