@@ -104,10 +104,10 @@ Utils|org.apache.felix.utils|1.9.0|||doc/changelog.txt
 Web Console  |org.apache.felix.webconsole|4.3.0
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.3.0||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.6
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.4
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.6
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.6
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.2
-Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.2
+Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.4
 Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.2|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
 Web Console Subsystems Plugin|org.apache.felix.webconsole.plugins.subsystem|0.1.0
