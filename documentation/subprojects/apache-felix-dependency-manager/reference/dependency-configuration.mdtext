@@ -6,8 +6,8 @@ The dependency injects by default the configuration in an "updated" callback whi
 
 - `updated(Dictionary)`
 - `updated(Component, Dictionary)`
-- `updated(&lt;ConfigurationType&gt;)`
-- `updated(Component, &lt;ConfigurationType&gt;)`
+- `updated(<ConfigurationType>)`
+- `updated(Component, <ConfigurationType>)`
 
 If you only specify a pid, by default the callback method name is assumed to be "updated".
 
