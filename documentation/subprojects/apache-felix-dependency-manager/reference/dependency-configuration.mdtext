@@ -78,7 +78,7 @@ Here is the same example, but a custom configuration type interface is used (by 
     }
 
     public class ServiceImpl {
-        void updated(MyConfig cnf) {
+        void modified(MyConfig cnf) {
             if (cnf != null) {
                 String addr = cnf.getAddress();
                 int port = cnf.getPort();
@@ -92,7 +92,7 @@ Here is the same example, but a custom configuration type interface is used (by 
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             dm.add(createComponent()
               .setImplementation(ServiceImpl.class)            
-              .add(createConfigurationDependency().setCallback("updated", MyConfig.class);
+              .add(createConfigurationDependency().setCallback("modified", MyConfig.class);
         }
     }
 
