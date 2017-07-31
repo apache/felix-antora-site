@@ -12,7 +12,7 @@
 
 #
 # (1) Felix Framework Distribution version
-framework|5.6.4
+framework|5.6.6
 
 #
 # (2) Subprojects
@@ -39,7 +39,7 @@ Dependency Manager 4|org.apache.felix.dependencymanager|r11|src|bin|-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.4.8
 File Install|org.apache.felix.fileinstall|3.6.0|||doc/changelog.txt
-Framework|org.apache.felix.framework|5.6.4|||doc/changelog.txt
+Framework|org.apache.felix.framework|5.6.6|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.6.0|||doc/changelog.txt
 Gogo Runtime|org.apache.felix.gogo.runtime|1.0.6|project||doc/changelog.txt
 Gogo JLine|org.apache.felix.gogo.jline|1.0.6|project||doc/changelog.txt
@@ -81,7 +81,7 @@ junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project
 Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/changelog.txt
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
 Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
-Main|org.apache.felix.main|5.6.4|project||doc/changelog.txt
+Main|org.apache.felix.main|5.6.6|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.1.2
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
