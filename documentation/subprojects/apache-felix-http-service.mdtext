@@ -291,6 +291,7 @@ non-standard request headers are used for this:
 | `X-Forwarded-SSL-Certificate` | The de-facto(?) standard used to forward the client certificate by a proxy. |
 | `X-Forwarded-SSL-Client-Cert` | Alternative header used by some proxies. |
 
+**Note**: instead of deploying the SSL filter bundle, you can also set the `org.apache.felix.proxy.load.balancer.connection.enable` property to `true` in order to achieve the same effect.
 
 ## Configuration Properties
 
@@ -331,6 +332,7 @@ properties can be used (some legacy property names still exist but are not docum
 | `org.eclipse.jetty.servlet.SessionDomain` | Domain to set on the session cookie. The default is `null`. |
 | `org.eclipse.jetty.servlet.SessionPath` | The path to set on the session cookie. The default is the configured session context path ("/"). |
 | `org.eclipse.jetty.servlet.MaxAge` | The maximum age value to set on the cookie. The default is "-1". |
+| `org.apache.felix.proxy.load.balancer.connection.enable` | Set this to `true` when running Felix HTTP behind a (offloading) proxy or load balancer which rewrites the requests. The default is `false`. |
 
 ### All-in-one-bundle configuration properties
 
