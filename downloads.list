@@ -90,7 +90,7 @@ Resolver|org.apache.felix.resolver|1.14.0|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|2.0.12
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
-SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.8
+SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
 SCR Generator|org.apache.felix.scr.generator|1.16.0|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
