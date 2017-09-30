@@ -91,7 +91,7 @@ SCR (Declarative Services)|org.apache.felix.scr|2.0.12
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
-SCR Generator|org.apache.felix.scr.generator|1.16.0|project
+SCR Generator|org.apache.felix.scr.generator|1.17.0|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
 UPnP Base Driver (JDK 1.4+)|org.apache.felix.upnp.basedriver|0.8.0|project||-
@@ -104,8 +104,8 @@ User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project|
 Utils|org.apache.felix.utils|1.10.2|||doc/changelog.txt
 Web Console  |org.apache.felix.webconsole|4.3.4
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.3.0||all
-Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.6
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.6
+Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.8
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.6
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.4
 Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.4
@@ -122,7 +122,7 @@ Maven Bundle Plugin|maven-bundle-plugin|3.3.0|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
-Maven SCR Plugin|maven-scr-plugin|1.24.0
+Maven SCR Plugin|maven-scr-plugin|1.25.0
 
 # (3) Ant Tasks
 # This list is sorted by the title before writing the table
@@ -133,5 +133,5 @@ SCR Ant Task|org.apache.felix.scr.ant|1.17.0
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-SCR bnd Plugin|org.apache.felix.scr.bnd|1.7.2
+SCR bnd Plugin|org.apache.felix.scr.bnd|1.8.0
 SCR Ext Anno|org.apache.felix.scr.ext.anno|1.0.0
