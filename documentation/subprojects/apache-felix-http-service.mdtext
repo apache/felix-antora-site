@@ -333,6 +333,7 @@ properties can be used (some legacy property names still exist but are not docum
 | `org.eclipse.jetty.servlet.SessionPath` | The path to set on the session cookie. The default is the configured session context path ("/"). |
 | `org.eclipse.jetty.servlet.MaxAge` | The maximum age value to set on the cookie. The default is "-1". |
 | `org.apache.felix.proxy.load.balancer.connection.enable` | Set this to `true` when running Felix HTTP behind a (offloading) proxy or load balancer which rewrites the requests. The default is `false`. |
+| `org.apache.felix.http.runtime.init.` | Properties starting with this prefix are added as service registration properties to the HttpServiceRuntime service. The prefix is removed for the property name. |
 
 ### All-in-one-bundle configuration properties
 
@@ -343,6 +344,13 @@ Additionally, the all-in-one bundle uses the following environment properties (n
 | `org.apache.felix.http.jettyEnabled` | If `true`, the embedded Jetty server is used as HTTP container. The default is `false`. |
 | `org.apache.felix.http.whiteboardEnabled` | If `true`, the whiteboard-style registration of servlets and filters is enabled. The default is `false`. |
 | `org.apache.felix.http.cometdEnabled` | If `true` the CometD/Ajax Push feature is enabled. The default is `false`. |
+
+### Multiple Servers
+
+It is possible to configure several Http Services, each running on a different port. The first service can be configured as outlined above using the service PID for `"org.apache.felix.http"`. Additional servers can be configured through OSGi factory configurations using `"org.apache.felix.http"` as the factory PID. The properties for the configuration are outlined as above.
+
+The default server using the PID `"org.apache.felix.http"` can be disabled by specifying a negative port and then all servers can be used through factory configurations.
+
 
 ### CometD configuration properties
 
@@ -435,6 +443,8 @@ A set of simple examples illustrating the various features are available.
 
 ## Maven Artifacts
 
+This is a list of the most recent artifacts at the time of writing this document. There might already be never versions available:
+
     :::xml
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -449,17 +459,17 @@ A set of simple examples illustrating the various features are available.
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.jetty</artifactId>
-      <version>3.2.0</version>
+      <version>3.4.6</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.base</artifactId>
-      <version>3.0.8</version>
+      <version>3.0.18</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.bridge</artifactId>
-      <version>3.0.8</version>
+      <version>3.0.18</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -474,7 +484,7 @@ A set of simple examples illustrating the various features are available.
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.sslfilter</artifactId>
-      <version>1.0.4</version>
+      <version>1.2.2</version>
     </dependency>
 
 
