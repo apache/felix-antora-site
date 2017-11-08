@@ -13,7 +13,7 @@ Support for automatic generation of the compenent and metadata descriptors is em
           <plugin>
             <groupId>org.apache.felix</groupId>
             <artifactId>maven-scr-plugin</artifactId>
-            <version>1.20.0</version>
+            <version>1.25.0</version>
             <executions>
               <execution>
                 <id>generate-scr-scrdescriptor</id>
@@ -44,7 +44,7 @@ If you want to use the annotations from the Apache Felix project, add this depen
         <dependency>
              <groupId>org.apache.felix</groupId>
              <artifactId>org.apache.felix.scr.annotations</artifactId>
-             <version>1.9.6</version>
+             <version>1.12.0</version>
              <scope>provided</scope>
         </dependency>
         ...
@@ -63,7 +63,7 @@ If you want to process the standard annotations with the `maven-scr-plugin` add 
         <dependency>
              <groupId>org.apache.felix</groupId>
              <artifactId>org.apache.felix.scr.ds-annotations</artifactId>
-             <version>1.2.4</version>
+             <version>1.2.10</version>
              <scope>provided</scope>
         </dependency>
         ...
@@ -113,7 +113,7 @@ The plugin distinguishes between errors and warnings. In strict mode warnings ar
 A map of predefined properties. These properties are set to each component (if the component does not define the property already). This is a map where the property name is made up by the included element name and the value is the value of the element. 
 ----
 **`outputDirectory`**        
-*Default*: `${project.build.directory}/scr-plugin-generated`    
+*Default*: `${project.build.outputDirectory}`    
 *Since*: 1.0.0    
 The directory where all files are generated in.
 ----
