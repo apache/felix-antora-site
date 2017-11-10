@@ -320,6 +320,8 @@ properties can be used (some legacy property names still exist but are not docum
 | `org.apache.felix.https.truststore.password` | The password for the truststore. |
 | `org.apache.felix.https.jetty.ciphersuites.excluded` | Configures comma-separated list of SSL cipher suites to *exclude*. Default is `null`, meaning that no cipher suite is excluded. |
 | `org.apache.felix.https.jetty.ciphersuites.included` | Configures comma-separated list of SSL cipher suites to *include*. Default is `null`, meaning that the default cipher suites are used. |
+| `org.apache.felix.https.jetty.protocols.excluded` | Configures comma-separated list of SSL protocols (e.g. SSLv3, TLSv1.0, TLSv1.1, TLSv1.2) to *exclude*. Default is `null`, meaning that no protocol is excluded. |
+| `org.apache.felix.https.jetty.protocols.included` | Configures comma-separated list of SSL protocols to *include*. Default is `null`, meaning that the default protocols are used. |
 | `org.apache.felix.https.clientcertificate` | Flag to determine if the HTTPS protocol requires, wants or does not use client certificates. Legal values are `needs`, `wants` and `none`. The default is `none`. |
 | `org.apache.felix.http.jetty.headerBufferSize` | Size of the buffer for request and response headers, in bytes. Default is 16 KB. |
 | `org.apache.felix.http.jetty.requestBufferSize` | Size of the buffer for requests not fitting the header buffer, in bytes. Default is 8 KB. |
