@@ -38,7 +38,7 @@ Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r11|src|bin|-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.4.10
-File Install|org.apache.felix.fileinstall|3.6.2|||doc/changelog.txt
+File Install|org.apache.felix.fileinstall|3.6.4|||doc/changelog.txt
 Framework|org.apache.felix.framework|5.6.10|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.6.0|||doc/changelog.txt
 Gogo Runtime|org.apache.felix.gogo.runtime|1.0.8|project||doc/changelog.txt
@@ -50,12 +50,12 @@ HTTP Service Base|org.apache.felix.http.base|3.0.18
 HTTP Service Bridge|org.apache.felix.http.bridge|3.0.18
 HTTP Service Bundle|org.apache.felix.http.bundle|3.0.0
 HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2
-HTTP Service Jetty|org.apache.felix.http.jetty|3.4.6
+HTTP Service Jetty|org.apache.felix.http.jetty|3.4.8
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.2
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.4
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|3.0.0
 HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2
-Inventory Printer|org.apache.felix.inventory|1.0.4
+Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
 iPOJO Architecture Command for the Felix Shell|org.apache.felix.ipojo.arch|1.6.0|project||-
@@ -73,8 +73,8 @@ iPOJO Extender pattern handler|org.apache.felix.ipojo.handler.extender|1.4.0|pro
 iPOJO JMX handler|org.apache.felix.ipojo.handler.jmx|1.4.0|project||-
 iPOJO Event Admin handler|org.apache.felix.ipojo.handler.eventadmin|1.8.0|project||-
 iPOJO Temporal Dependency handler|org.apache.felix.ipojo.handler.temporal|1.6.0|project||-
-Jaas Support Bundle|org.apache.felix.jaas|1.0.0|source-release||changelog.txt
-Jaas Support Boot Classpath Jar|org.apache.felix.jaas|1.0.0|source-release|boot|changelog.txt
+Jaas Support Bundle|org.apache.felix.jaas|1.0.2|source-release||changelog.txt
+Jaas Support Boot Classpath Jar|org.apache.felix.jaas|1.0.2|source-release|boot|changelog.txt
 junit4osgi|org.apache.felix.ipojo.junit4osgi|1.0.0|project||doc/changelog.txt
 junit4osgi - shell command|org.apache.felix.ipojo.junit4osgi.felix-command|1.0.0|project||doc/changelog.txt
 junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project||doc/changelog.txt
@@ -101,9 +101,9 @@ UPnP Tester|org.apache.felix.upnp.tester|0.4.0|project||doc/changelog.txt
 User Admin  |org.apache.felix.useradmin|1.0.3|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
-Utils|org.apache.felix.utils|1.10.2|||doc/changelog.txt
-Web Console  |org.apache.felix.webconsole|4.3.4
-Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.3.0||all
+Utils|org.apache.felix.utils|1.10.4|||doc/changelog.txt
+Web Console|org.apache.felix.webconsole|4.3.4
+Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.3.4||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.0.8
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.6
