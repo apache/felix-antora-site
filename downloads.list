@@ -87,7 +87,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.14.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.0.12
+SCR (Declarative Services)|org.apache.felix.scr|2.0.14
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
@@ -118,7 +118,7 @@ Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|3.3.0|||doc/changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|3.4.0|||doc/changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
