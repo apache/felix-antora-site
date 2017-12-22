@@ -98,15 +98,6 @@ the released version.
     * if you click on your repository, a tree view will appear below. You can then browse the contents to ensure the artifacts are as you expect them. Pay particular attention to the existence of \*.asc (signature) files. If you don't like the content of the repository, right click your repository and choose *Drop*. You can then rollback your release (see *Canceling the Release*) and repeat the process
     * note the staging repository URL (especially the number at the end of the URL) you will need this in your vote email.
 
-## Publish the Maven Plugin documentation
-
-(This only applies to the maven-bundle-plugin so far.)
-
-1. Checkout the release tag of the plugin (or reset your svn workspace to the release tage)
-1. Run `mvn clean package site`
-1. Create a new folder for the new version at `https://svn.apache.org/repos/asf/felix/site/trunk/content/components/bundle-plugin-archives/bundle-plugin-<version>` and publish the generated site from `target/site` there
-1. Remove the previous documentation from `components/bundle-plugin` and SVN-copy the new version there as well
-
 
 ## Starting the Vote
 
@@ -273,14 +264,15 @@ For the last two tasks, it's better to give the mirrors some time to distribute 
 
 Go to [Admin](https://issues.apache.org/jira/secure/project/ViewProject.jspa?pid=12310100) section on the FELIX JIRA and mark the Y.Z version as released - create version Y.Z+1, if that hasn't already been done.
 
+
 ## Publish Generated Documentation
 
-This procedure applies to the maven-bundle-plugin; it may expand to others. The bundle plugin's maven-site-plugin doc is published to SVN by the
-maven-scm-publish plugin at the location
-https://svn.apache.org/repos/infra/websites/production/felix/content/components/bundle-plugin-archives/bundle-plugin-LATEST. At release time, you
-rename that from LATEST to the correct version, and then copy it to https://svn.apache.org/repos/infra/websites/production/felix/content/components/bundle-plugin.
+This procedure applies currently only to the `maven-bundle-plugin`:
 
-See [some doc from the Maven project](http://maven.apache.org/developers/website/deploy-component-reference-documentation.html#Publishing_versioned_component_reference_documentation).
+1. Checkout the release tag of the plugin (or reset your svn workspace to the release tag)
+1. Run `mvn clean package site`
+1. Create a new folder for the new version at `https://svn.apache.org/repos/asf/felix/site/trunk/content/components/bundle-plugin-archives/bundle-plugin-<version>` and publish the generated site from `target/site` there
+1. Remove the previous documentation from `components/bundle-plugin` and SVN-copy the new version there as well
 
 
 ## Create an Announcement
