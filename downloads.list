@@ -32,7 +32,8 @@ framework|5.6.10
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.8.16
+Configuration Admin|org.apache.felix.configadmin|1.9.0
+Configurator|org.apache.felix.configurator|1.0.0
 Connect|org.apache.felix.connect|0.1.0
 Converter|org.apache.felix.converter|1.0.0
 Coordinator|org.apache.felix.coordinator|1.0.2
@@ -46,15 +47,14 @@ Gogo Runtime|org.apache.felix.gogo.runtime|1.0.8|project||doc/changelog.txt
 Gogo JLine|org.apache.felix.gogo.jline|1.0.8|project||doc/changelog.txt
 Gogo Shell|org.apache.felix.gogo.shell|1.0.0|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|1.0.2|project||doc/changelog.txt
-HTTP Service API|org.apache.felix.http.api|3.0.0
-HTTP Service Base|org.apache.felix.http.base|3.0.18
-HTTP Service Bridge|org.apache.felix.http.bridge|3.0.18
+HTTP Service Base|org.apache.felix.http.base|4.0.0
+HTTP Service Bridge|org.apache.felix.http.bridge|4.0.0
 HTTP Service Bundle|org.apache.felix.http.bundle|3.0.0
 HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2
-HTTP Service Jetty|org.apache.felix.http.jetty|3.4.8
+HTTP Service Jetty|org.apache.felix.http.jetty|4.0.0
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.2
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.4
-HTTP Service Whiteboard|org.apache.felix.http.whiteboard|3.0.0
+HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
 HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2
 Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
@@ -88,7 +88,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|1.16.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.0.14
+SCR (Declarative Services)|org.apache.felix.scr|2.1.0
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
