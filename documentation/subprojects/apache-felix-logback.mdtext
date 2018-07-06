@@ -16,8 +16,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-# Apache Felix Logback
-
 **Apache Felix Logback** is a small integration of the [Logback](https://logback.qos.ch/) backend with OSGi.
 
 With **OSGi R7** the **Log Service Specification 1.4**  (Log 1.4) brings a slew of new features designed to improve the developer experience with logging, the details of which can be read about [here](https://osgi.org/specification/osgi.cmpn/7.0.0/service.log.html).
