@@ -23,6 +23,7 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [Inventory Printer]({{ refs.apache-felix-inventory.path }}) - A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
 * [iPOJO]({{ refs.apache-felix-ipojo.path }}) - A sophisticated service-oriented component model to simplify OSGi-based development.
 * [Log]({{ refs.apache-felix-log.path }}) - A simple, memory-based implementation of the OSGi Log service specification.
+* [Felix Logback]({{ refs.apache-felix-logback.path }}) - Apache Felix Logback is a small integration of the [Logback](https://logback.qos.ch/) backend with OSGi.
 * [Maven Bundle Plugin]({{ refs.apache-felix-maven-bundle-plugin-bnd.path }}) - A Maven plugin to simplify building bundles.
 * [Maven SCR Plugin]({{ refs.apache-felix-maven-scr-plugin.path }}) - A Maven plugin to simplify using Declarative Services.
 * [Metatype]({{ refs.apache-felix-metatype-service.path }}) - An implementation of the OSGi Metatype service to describe types needed by bundles.
