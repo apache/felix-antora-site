@@ -12,7 +12,7 @@
 
 #
 # (1) Felix Framework Distribution version
-framework|5.6.10
+framework|6.0.0
 
 #
 # (2) Subprojects
@@ -34,18 +34,18 @@ AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
 Configuration Admin|org.apache.felix.configadmin|1.9.2
 Configurator|org.apache.felix.configurator|1.0.0
-Connect|org.apache.felix.connect|0.1.0
+Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.0
 Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r11|src|bin|-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.5.0
 File Install|org.apache.felix.fileinstall|3.6.4|||doc/changelog.txt
-Framework|org.apache.felix.framework|5.6.10|||doc/changelog.txt
+Framework|org.apache.felix.framework|6.0.0|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.6.0|||doc/changelog.txt
-Gogo Runtime|org.apache.felix.gogo.runtime|1.0.8|project||doc/changelog.txt
-Gogo JLine|org.apache.felix.gogo.jline|1.0.8|project||doc/changelog.txt
-Gogo Shell|org.apache.felix.gogo.shell|1.0.0|project||doc/changelog.txt
+Gogo Runtime|org.apache.felix.gogo.runtime|1.1.0|project||doc/changelog.txt
+Gogo JLine|org.apache.felix.gogo.jline|1.1.0|project||doc/changelog.txt
+Gogo Shell|org.apache.felix.gogo.shell|1.1.0|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|1.0.2|project||doc/changelog.txt
 HTTP Service Base|org.apache.felix.http.base|4.0.0
 HTTP Service Bridge|org.apache.felix.http.bridge|4.0.0
@@ -82,12 +82,13 @@ junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project
 Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/changelog.txt
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
 Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
-Main|org.apache.felix.main|5.6.10|project||doc/changelog.txt
+Logback|org.apache.felix.logback|1.0.0
+Main|org.apache.felix.main|6.0.0|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.2.0
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
-Resolver|org.apache.felix.resolver|1.16.0|||doc/changelog.txt
+Resolver|org.apache.felix.resolver|2.0.0|||doc/changelog.txt
 SCR (Declarative Services)|org.apache.felix.scr|2.1.0
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
@@ -119,7 +120,7 @@ Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|3.5.0|||changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|3.5.1|||changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-

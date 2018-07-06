@@ -1,5 +1,10 @@
 Title: News
 
+* Apache Felix Framework 6.0.0 and Resolver 2.0.0 released (July 6th, 2018)
+* Apache Felix Logback Bundle 1.0.0 released (June 25th, 2018)
+* Apache Felix Maven Bundle Plugin 3.5.1 (June 19th, 2018)
+* Apache Felix Gogo 1.1.0 (Runtime, Jline, Shell) released (June 14th, 2018)
+* Apache Felix Connect 0.2.0 released (May 28th, 2018)
 * Apache Felix Config Admin 1.9.2 released (May 26th, 2018)
 * Apache Felix Event Admin 1.5.0 and Apache Felix Metatype 1.2.0 released (May 6th, 2018)
 * Apache Felix Utils 1.11.0 released (May 5th, 2018)
