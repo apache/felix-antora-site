@@ -437,10 +437,9 @@ the provided `HttpContext` instance:
 
 A set of simple examples illustrating the various features are available. 
 
-  * Filter registration sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/filter/>;
-  * Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>;
-  * CometD sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/cometd/>;
-  * Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>.
+  * Whiteboard sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/>
+  * Servlet bridge sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/bridge/>
+  * CometD sample: <http://svn.apache.org/repos/asf/felix/trunk/http/samples/cometd/>
 
 
 ## Maven Artifacts
@@ -455,23 +454,13 @@ This is a list of the most recent artifacts at the time of writing this document
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.api</artifactId>
-      <version>3.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.jetty</artifactId>
-      <version>3.4.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.apache.felix.http.base</artifactId>
-      <version>3.0.18</version>
+      <version>4.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.bridge</artifactId>
-      <version>3.0.18</version>
+      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -486,7 +475,7 @@ This is a list of the most recent artifacts at the time of writing this document
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.sslfilter</artifactId>
-      <version>1.2.2</version>
+      <version>1.2.4</version>
     </dependency>
 
 
