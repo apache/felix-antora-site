@@ -6,20 +6,32 @@ Aspects allow you to define an "interceptor", or chain of interceptors for a ser
 
 ## Usage example using annotation
 
-The *@AspectService* annotation allows you to create an aspect service. It supports the following attributes mentioned below.
+The *@AspectService* annotation allows you to create an aspect service. In this example, a "DatabaseCache" aspect service is used to add caching functionality to an existing Database service:
 
 ### Sample code
 
-     @AspectService(ranking=10)
-     @Property(name="param", value="value")
-     class AspectService implements InterceptedService {
-         // The service we are intercepting (injected by reflection)
-         protected volatile InterceptedService intercepted;
-       
-         public void doWork() {
-            intercepted.doWork();
-         }
-     }
+    :::java
+    interface Database {
+        String get(String key);
+    }
+ 
+    @AspectService(ranking=10)
+    class DatabaseCache implements Database {
+        volatile Database originalDatabase; // injected
+
+        @ServiceDependency(required=false)
+        volatile LogService log;
+     
+        String get(String key) {
+            String value = cache.get(key);
+            if (value == null) {
+                value = this.originalDatabase.get(key);
+                store(key, value);
+            }
+            return value;
+        }
+        ... 
+    }
 
 ### Annotation attributes
 
@@ -93,25 +105,6 @@ The AspectComponent can be created using the DependencyManagerActivatorBase or D
          }
     }
  
-    interface Database {
-        String get(String key);
-    }
- 
-    class DatabaseCache implements Database {
-        volatile Database originalDatabase; // injected
-        volatile LogService log; Osgi LogService, optional dependency
-     
-        String get(String key) {
-            String value = cache.get(key);
-            if (value == null) {
-                value = this.originalDatabase.get(key);
-                store(key, value);
-            }
-            return value;
-        }
-        ... 
-    }
-
 ## Usage example using Lambda API
 
 When using the Dependency Manager Lambda API, the ogr.apache.felix.dm.lambda.DependencyManagerActivator.aspect() method can be used to define an aspect service.
