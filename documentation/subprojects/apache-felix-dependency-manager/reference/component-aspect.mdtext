@@ -6,14 +6,25 @@ Aspects allow you to define an "interceptor", or chain of interceptors for a ser
 
 ## Usage example using annotation
 
-The *@AspectService* annotation allows you to create an aspect service. In this example, a "DatabaseCache" aspect service is used to add caching functionality to an existing Database service:
+The *@AspectService* annotation allows you to create an aspect service. In this example, a "DatabaseCache" aspect service is used to add caching functionality to an existing Database service.
 
 ### Sample code
+
+First, here is the original Database service:
 
     :::java
     interface Database {
         String get(String key);
     }
+
+    @Component
+    class DatabaseImpl implements Database {
+        String get(String key) {
+            // fetch the key value from the actual database
+        }
+    }
+
+Next, here is the DatabaseCache aspect service, which sits between any Database service consumer and the actual DatabaseImpl service:
  
     @AspectService(ranking=10)
     class DatabaseCache implements Database {
@@ -32,6 +43,33 @@ The *@AspectService* annotation allows you to create an aspect service. In this 
         }
         ... 
     }
+
+The aspect service, when started will be bound to the original Database service and will be reinjected to any Database service consumer. For example, the following Database service client will be reinjected with the aspect service in the volatile field:
+
+    :::java
+    @Component 
+    class DatabaseClient {
+        @ServiceDependency
+        volatile Database dbase;
+      
+        ....
+    }
+
+The Database client can also define a "swap" callback in order to be notified when the aspect service is injected:
+
+    :::java
+    @Component 
+    class DatabaseClient {
+        @ServiceDependency(swap="swapDatabase")
+        volatile Database dbase;
+
+        void swapDatabase(Database oldDatabase, Database newDatabase) {
+            this.dbase = newDatabase;
+        }
+      
+        ....
+    }
+
 
 ### Annotation attributes
 
