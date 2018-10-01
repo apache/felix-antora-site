@@ -37,12 +37,12 @@ Below is the full table of contents.
 * [Performance Tuning](apache-felix-dependency-manager/guides/performance-tuning.html)
 * [Development](apache-felix-dependency-manager/guides/development.html)
 * [Design Patterns](apache-felix-dependency-manager/guides/design-patterns.html)
-* [Dependency Manager Lambda](apache-felix-dependency-manager/guides/dm-lambda.html)
 * [Resource Adapters](apache-felix-dependency-manager/guides/resources.html)
 * [Javadocs](apache-felix-dependency-manager/guides/javadocs.html)
 
 ### Reference Guide
 
+* [Dependency Manager Lambda](apache-felix-dependency-manager/guides/dm-lambda.html)
 * [Components](apache-felix-dependency-manager/reference/components.html)
     * [Singleton](apache-felix-dependency-manager/reference/component-singleton.html)
     * [Aspect](apache-felix-dependency-manager/reference/component-aspect.html)
