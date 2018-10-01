@@ -11,74 +11,40 @@ with the specified interface and with service properties found from the
 original bundle OSGi manifest headers plus any extra properties you supply 
 here. If you declare the original bundle as a member it will be injected. 
 
-An example:
-
-	manager.createBundleAdapterService(Bundle.INSTALLED | Bundle.RESOLVED | Bundle.ACTIVE, 
-		"(Bundle-SymbolicName=org.apache.felix.dependencymanager)", true)
-		.setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
-		.setImplementation(AdapterServiceImpl.class);
-
-## @BundleAdapterService
-
-The following attributes are supported.
-
-### Annotation attributes:
-
-----
-**`filter`**    
-*Required*: False    
-*Default*: --
-
-The filter used to match some OSGi manifest headers from a given bundle.
-
-----
-**`provides`**    
-*Required*: False    
-*Default*: all directly implemented interfaces.
-
-The interface(s) to use when registering adapters.
-By default, the interface(s) directly implemented by the annotated class is (are) used.
-
-----
-**`properties`**    
-*Required*: False    
-*Default*: --
-
-Additional properties to use with the service registration.
-
-----
-**`stateMask`**    
-*Required*: False    
-*Default*: INSTALLED | RESOLVED | ACTIVE
-
-The bundle state mask to apply. The mask is made up of the flags provided by 
-the org.osgi.framework.Bundle states 
-(UNINSTALLED | INSTALLED | RESOLVED | STARTING | STARTED | ACTIVE).
-
-----
-**`propagate`**    
-*Required*: False    
-*Default*: true
-
-Specifies if manifest headers from the bundle should be propagated to the 
-exposed service properties.
-
-----
-**`factoryMethod`**    
-*Required*: False    
-*Default*: --
-
-Sets the static method used to create the BundleAdapterService implementation 
-instance.
-
-### Usage Examples
+## Example using API:
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
     :::java
-    @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+            Component c = dm.createBundleComponent()
+                .setBundleFilter(Bundle.ACTIVE, "(Video-Path=*)")
+                .setInterface(VideoPlayer.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+                .setImplementation(VideoPlayerImpl.class);
+            dm.add(c);
+        }
+    }
+
+## Example using DM Lambda:
+
+    :::java
+    public class Activator extends DependencyManagerActivator {
+        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+           bundleAdapter(adapt -> adapt
+               .impl(VideoPlayerImpl.class)
+               .provides(VideoPlayer.class, foo -> "bar")
+               .mask(Bundle.ACTIVE)
+               .filter("(Video-Path=*)"));
+        }
+    }
+
+## Example using annotations:
+
+    :::java
+    @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE)
     public class VideoPlayerImpl implements VideoPlayer {
-        Bundle bundle; // Injected by reflection
+        volatile Bundle bundle; // Injected by reflection
              
         void play() {
             URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
