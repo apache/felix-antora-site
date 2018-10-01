@@ -137,7 +137,7 @@ Command implementations don't need to reference any OSGi interfaces. They can us
         }
     }
 
-## Normal commands can provide control primitives.
+### Normal commands can provide control primitives.
 
     :::java
     public void each(CommandSession session, Collection<Object> list, Function closure) throws Exception {
@@ -145,6 +145,7 @@ Command implementations don't need to reference any OSGi interfaces. They can us
             closure.execute(session, null);
         }
     }
+
 
     :::shell
     g! each [Jan Feb Mar] { echo $it | grep . }
