@@ -4,20 +4,61 @@ Adapters, like [aspects](component-aspect.html), are used to "extend" existing s
 
 An adapter will be applied to any service that matches the specified interface and filter. For each matching service an adapter will be created based on the adapter implementation class. The adapter will be registered with the specified interface and existing properties from the original service plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
 
-An example:
+## Usage example using API
 
-	manager.createAdapterService(AdapteeService.class, "(foo=bar)")
-		.setInterface(AdapterService.class, new Hashtable() {{ put("extra", "property"); }})
-		.setImplementation(AdapterImpl.class);
+Here is a sample showing a HelloServlet adapter component which creates a servlet each time a HelloService is registered in the osgi service registry with the "foo=bar" service property.
+ 
+    :::java
+    public class Activator extends DependencyActivatorBase {
+        &Override
+         public void init(BundleContext context, DependencyManager dm) throws Exception {
+             Component adapterComponent = createAdapterComponent()
+                 .setAdaptee(HelloService.class, "(foo=bar)")
+                 .setInterface(HttpServlet.class.getName(), null)
+                 .setImplementation(HelloServlet.class);
+             dm.add(adapterComponent);
+         }
+    }
+ 
+    public interface HelloService {
+        String sayHello();
+    }
+ 
+    public class HelloServlet extends HttpServlet {
+        volatile HelloService adatpee; // injected
+     
+        void doGet(HttpServletRequest req, HttpServletResponse resp) {
+            ...
+            resp.getWriter().println(adaptee.sayHello());
+        }
+    }
 
-## @AdapterService
+## Example using Lambda API
 
-Adapters, like with *@AspectService*, are used to "extend" existing services, and can publish different services based on the existing one. When you annotate an adapter class with the *@AdapterService* 
-annotation, it will be applied to any service that matches the implemented 
-interface and filter. The adapter will be registered with the specified 
-interface and existing properties from the original service plus any extra
-properties you supply here. If you declare the original service as a member 
-it will be injected. 
+Same example using the Dependency Manager Lambda API:
+
+    :::java
+    public class Activator extends DependencyManagerActivator {
+       public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
+           adapter(HelloService.class, adapt -> adapt.impl(HelloServlet.class).filter("(foo=bar)").provides(HttpServlet.class));                    
+       }
+    }
+
+## Example using annotations
+
+Same example using Dependency Manager Annotations:
+
+    :::java
+    @AdapterService(adapteeService = HelloService.class, adapteeFilter = "(foo=bar)")
+    public class HelloServlet extends HttpServlet {
+        volatile HelloService adatpee; // injected
+     
+        void doGet(HttpServletRequest req, HttpServletResponse resp) {
+            ...
+            resp.getWriter().println(adaptee.sayHello());
+        }
+    }
+
 
 ### Annotation attributes:
 
@@ -59,20 +100,6 @@ Sets the filter condition to use with the adapted service interface.
 Sets the static method used to create the adapter service implementation 
 instance. By default, the default constructor of the annotated class is used.
 
-### Usage example
 
-Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is found from the registry. The AdapterImpl class adapts the AdapteeService to the AdapterService. The AdapterService will also have a service property (param=value), and will also include eventual service properties found from the AdapteeService:
-
-
-     @AdapterService(adapteeService = AdapteeService.class, properties={@Property(name="param", value="value")})
-     class AdapterImpl implements AdapterService {
-         // The service we are adapting (injected by reflection)
-         protected AdapteeService adaptee;
-       
-         public void doWork() {
-            adaptee.mehod1();
-            adaptee.method2();
-         }
-     }
 
 
