@@ -41,7 +41,7 @@ The `CommandSession` interface provides methods for executing commands and getti
         ...
     }
 
-### Easy to use interactively - no unnecessary syntax.
+### Easy to use interactively - no unnecessary syntax
 
 - basic commands
     
@@ -62,7 +62,7 @@ The `CommandSession` interface provides methods for executing commands and getti
         g! (bundle 1) location
         file:/Users/derek/Downloads/felix-framework-3.0.0/bundle/org.apache.felix.bundlerepository-1.6.2.jar
 
-### Lists, maps, pipes and closures.
+### Lists, maps, pipes and closures
 
 - lists - `[]`
     
@@ -96,7 +96,7 @@ The `CommandSession` interface provides methods for executing commands and getti
         g! echo2 hello world
         xxx hello world yyy
 
-### Leverages existing Java capabilities, via reflection.
+### Leverages existing Java capabilities, via reflection
 
 - exception handling - console shows summary, but full context available
     
@@ -126,7 +126,7 @@ The `CommandSession` interface provides methods for executing commands and getti
         os.version          10.6.2
         [snip]
 
-### Easy to implement and test commands without needing OSGi.
+### Easy to implement and test commands without needing OSGi
 
 Command implementations don't need to reference any OSGi interfaces. They can use `System.in`, `System.out` and `System.err`, just as you would in a trivial Java application. The `ThreadIO` service transparently manages the singleton `System.out` etc, so that each thread sees the appropriate stream:
 
@@ -137,7 +137,7 @@ Command implementations don't need to reference any OSGi interfaces. They can us
         }
     }
 
-### Normal commands can provide control primitives.
+### Normal commands can provide control primitives
 
     :::java
     public void each(CommandSession session, Collection<Object> list, Function closure) throws Exception {
@@ -146,6 +146,7 @@ Command implementations don't need to reference any OSGi interfaces. They can us
         }
     }
 
+then
 
     :::shell
     g! each [Jan Feb Mar] { echo $it | grep . }
