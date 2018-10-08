@@ -32,7 +32,7 @@ framework|6.0.1
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.9.6
+Configuration Admin|org.apache.felix.configadmin|1.9.8
 Configurator|org.apache.felix.configurator|1.0.6
 Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.0
@@ -81,7 +81,7 @@ junit4osgi - shell command|org.apache.felix.ipojo.junit4osgi.felix-command|1.0.0
 junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project||doc/changelog.txt
 Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/changelog.txt
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
-Log|org.apache.felix.log|1.0.1|project||doc/changelog.txt
+Log|org.apache.felix.log|1.2.0|project||doc/changelog.txt
 Logback|org.apache.felix.logback|1.0.0
 Main|org.apache.felix.main|6.0.1|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.2.2
@@ -89,7 +89,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|2.0.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.1.8
+SCR (Declarative Services)|org.apache.felix.scr|2.1.10
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
