@@ -1351,10 +1351,8 @@ The `scope` attribute has three enum values: SINGLETON, BUNDLE, PROTOTYPE
 
 - SINGLETON: it's as before: your registered service is a singleton, meaning that the service must be 
 instantiated and registered once, and all using services will share the same service instance of your component.
-
 - BUNDLE: the service will be registered as a ServiceFactory, meaning an instance of the component must be 
 created for each bundle using the service.
-
 - PROTOTYPE: the service will be registered as a PrototypeServiceFactory, meaning the service is registered as 
 a prototype scope service and an instance of the component must be created for each distinct service requester.
 
