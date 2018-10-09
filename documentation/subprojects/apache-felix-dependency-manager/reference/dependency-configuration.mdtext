@@ -1,6 +1,11 @@
 Title: Dependency Manager - Configuration Dependency
 
-A configuration dependency is always required, and allows you to depend on the availability of a valid configuration for your component. Optional configuration dependencies are not supported because in that case you can just as well register as a `ManagedService` yourself.
+A configuration dependency is always required, and allows you to depend on the availability of a valid 
+configuration for your component. Configuration dependency is required by default.
+
+To define a configuration dependency, you need to use the [ConfigurationDependency](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/ConfigurationDependency.html) interface.
+This interface can be created using DependencyActivatorBase.createConfigurationDependency() or DependencyManager.createConfigurationDependency() methods.
+
 
 The dependency injects by default the configuration in an "updated" callback which can accept the following parameters:
 
