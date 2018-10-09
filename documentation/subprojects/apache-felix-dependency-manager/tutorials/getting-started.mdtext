@@ -23,7 +23,7 @@ Notice that the dependency manager API uses method chaining to create a more or 
     public class Activator extends DependencyActivatorBase {
         public void init(BundleContext context, DependencyManager manager) throws Exception {
             manager.add(createComponent()
-                .setInterface(Store.class.getName(), null)
+                .setInterface(Store.class, null)
                 .setImplementation(MemoryStore.class)
             );
         }
@@ -147,11 +147,13 @@ Finally, here's our implementation. It declares the callback methods with one pa
         }
     }
 
-
-
 ## Depending on a configuration
 
-Not all dependencies are on services. There are several other types of dependencies that are supported, one of them is the configuration dependency. In fact, only *required* configuration dependencies are supported, because optional ones can just be achieved by registering as a `ManagedService` yourself. When defining the dependency, you must define the persistent ID of the service. The component will not become active until the configuration you depend on is available *and* is valid. The latter can be checked by your implementation as we will see below.
+Not all dependencies are on services. There are several other types of dependencies 
+that are supported, one of them is the configuration dependency. 
+When defining the dependency, you must define the persistent ID of the service. 
+The component will not become active until the configuration you depend on is available 
+*and* is valid. The latter can be checked by your implementation as we will see below.
 
 
     public class Activator extends DependencyActivatorBase {
@@ -166,7 +168,12 @@ Not all dependencies are on services. There are several other types of dependenc
     }
 
 
-Here's our code that implements `ManagedService` and has an `updated` method. This method checks if the provided configuration is valid and throw a `ConfigurationException` if it is not. As long as this method does not accept the configuration, the corresponding component will not be activated.
+Here's our code that implements `ManagedService` and has an `updated` method. 
+This method checks if the provided configuration is valid and throw a 
+`ConfigurationException` if it is not. As long as this method does not accept the 
+configuration, the corresponding component will not be activated.
+Notice that your component does not necessarily implement the ManagedService interface, and the updated callback
+can also throw any exceptions:
 
 
     public class Task implements ManagedService {
