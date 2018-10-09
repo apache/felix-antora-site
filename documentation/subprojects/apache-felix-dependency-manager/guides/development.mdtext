@@ -4,7 +4,11 @@ When downloading or checking out the source code, please also consult release/re
 
 ## Prerequisites
 
-If you are building a released `org.apache.felix.dependencymanager-r<n>-src.zip` artifact, then you also have to extract the `org.apache.felix.dependencymanager-r<n>-deps.zip` in the same directory where you have extracted the source archive. There is no need to do this if you have checked out from the Felix trunk in Subversion.
+If you are using a corporate http proxy, you should set the following environment variables:
+
+    $ export GRADLE_OPTS="-Dhttp.proxyHost=<your proxy ip> -Dhttp.proxyPort=<your proxy port> -Dhttps.proxyHost=<your proxy ip> -Dhttps.proxyPort=<your proxy port>"
+    $ export http_proxy=<your proxy ip>:<your proxy port>
+    $ export https_proxy=<your proxy ip>:<your proxy port>
 
 ## Compilation Using gradle:
 
@@ -33,7 +37,7 @@ If you are building a released `org.apache.felix.dependencymanager-r<n>-src.zip`
 - Configure two JREs for Java 8:
 	* Go to Windows -> Preferences -> Java -> Installed JREs
 	* Add your jdk8 JRE
-- Install BndTools 3.0.0, and (optionally) a subversion plugin for Eclipse.
+- Install BndTools 3.4.0 or later version and (optionally) a subversion plugin for Eclipse.
 - Open BndTools perspective
 - Import Dependency Manager into Eclipse, and compile everything
 - if it's the first time you import the project into eclipse, it may happen that some modules that requires the Dependency Manager Annotations bnd plugin don't compile: It's a know issue. To work around, restart eclipse and rebuild every modules. 
