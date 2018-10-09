@@ -1,7 +1,8 @@
 Title: Dependency Manager - Bundle Adapter
 
 Bundle adapters are similar to AdapterService, but instead of adapting a 
-service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
+service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...), 
+and provide a service on top of it.
 
 The bundle adapter will be applied to any bundle that matches the specified 
 bundle state mask and filter conditions, which may match some of the bundle 
@@ -11,7 +12,13 @@ with the specified interface and with service properties found from the
 original bundle OSGi manifest headers plus any extra properties you supply 
 here. If you declare the original bundle as a member it will be injected. 
 
-## Example using API:
+To define a bundle adapter component, you need to create a [BundleComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/BundleComponent.html) component
+using the DependencyActivatorBase.createBundleComponent() or the DependencyManager.createBundleComponent() method.
+
+This interface extends the Component interface in order to add extra setters methods needed to define a bundle adapter service component.
+
+
+## Example usage
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
@@ -25,33 +32,4 @@ In the following example, a "VideoPlayer" Service is registered into the OSGi re
             dm.add(c);
         }
     }
-
-## Example using DM Lambda:
-
-    :::java
-    public class Activator extends DependencyManagerActivator {
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-           bundleAdapter(adapt -> adapt
-               .impl(VideoPlayerImpl.class)
-               .provides(VideoPlayer.class, foo -> "bar")
-               .mask(Bundle.ACTIVE)
-               .filter("(Video-Path=*)"));
-        }
-    }
-
-## Example using annotations:
-
-    :::java
-    @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE)
-    public class VideoPlayerImpl implements VideoPlayer {
-        volatile Bundle bundle; // Injected by reflection
-             
-        void play() {
-            URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
-            // play the video provided by the bundle ...
-        }
-           
-        void stop() {}
-    }
-
 
