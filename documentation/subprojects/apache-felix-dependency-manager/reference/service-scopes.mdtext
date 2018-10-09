@@ -142,27 +142,32 @@ And when one client will request a component instance, then a clone will be crea
 Example of a scoped component which defines an init method:
 
     :::java
-    import org.apache.felix.dm.annotation.api.Component;
-    import org.apache.felix.dm.annotation.api.ServiceScope;
+    public class Activator extends DependencyActivatorBase {
+        @Override
+        public void init(BundleContext context, DependencyManager dm) throws Exception {
+            dm.add(createComponent()
+                .setScope(ServiceScope.PROTOTYPE)
+                .setInterface(MyService.class.getName(), null)
+                .setImplementation(MyServiceImpl.class));
+        }
+    }
     
-    @Component(scope=ServiceScope.PROTOTYPE)
     public static class MyServiceImpl implements MyService {
-       
-       @Init
-       void init(Component comp) {
+        void init(Component comp) {
             // add dependencies dynamically
-       }
+        }
     
-        @Start
     	void start() {
     	   // only called on clones, not on the prototype instance
     	}
     	
-    	@Stop
     	void stop() {
     	   // called on each clone, not on the prototype instance singleton
     	}
     }
+
+So, if you don't need an init callback then use the `Component.setCallbacks(null, "start", "stop", null)` 
+method in order to avoid the creation of the prototype instance.
 
 # Limitation when using DM ServiceDependency from API and ServiceObjects
 
