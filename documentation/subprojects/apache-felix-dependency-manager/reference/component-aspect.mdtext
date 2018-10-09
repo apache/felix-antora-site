@@ -8,7 +8,7 @@ removed at runtime.
 
 To define an aspect component, you need to create an [AspectComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/AspectComponent.html) component
 using the DependencyActivatorBase.createAspectComponent() or the DependencyManager.createAspectComponent() method.
-This interface extends the Component interface in order to add extra setters methods needed to define an asoect service component.
+This interface extends the Component interface in order to add extra setters methods needed to define an aspect service component.
 
 
 Usage example: 
