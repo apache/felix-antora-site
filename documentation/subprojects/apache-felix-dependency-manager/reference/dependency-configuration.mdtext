@@ -47,7 +47,7 @@ In case a lookup does not yield a value from the underlying map or dictionary, t
 - for arrays, collections and maps, an *empty* array/collection/map is returned;
 - for other interface types that are treated as configuration type a Null-object is returned. 
 
-Usage example where a component depends on a configuration:
+Here is a component depends on a configuration:
 
     :::java
     public class ServiceImpl {
@@ -69,7 +69,8 @@ Usage example where a component depends on a configuration:
         }
     }
 
-Here is the same example, but a custom configuration type interface is used (by default, the FQDN of the configuration type is assumed to be the configuration pid):
+Here is the same example, but a custom configuration type interface is used 
+(by default, the FQDN of the configuration type is assumed to be the configuration pid):
 
     :::java
     public interface MyConfig {
@@ -95,69 +96,4 @@ Here is the same example, but a custom configuration type interface is used (by 
               .add(createConfigurationDependency().setCallback("modified", MyConfig.class);
         }
     }
-
-
-## @ConfigurationDependency
-
-Configuration dependencies can be defined usnig the @ConfigurationDependency.
-Annotation attributes:
-
-* *pid*: Returns the pid for a given service (by default, the pid is the service class name).
-* *propagate*: Returns true if the configuration properties must be published along with the service. Any additional service properties specified directly are merged with these.
-
-In the following example, the "Printer" component depends on a configuration with "org.apache.felix.sample.Printer" PID.
-
-    :::java
-    package org.apache.felix.sample;
-    
-    @Component
-    public class Printer {
-        @ConfigurationDependency
-        void updated(Dictionary config) {
-            // load printer ip/port from the provided dictionary.
-        }
-    }
-
-This other example shows how to specify a configuration dependency, as well as meta data used to customize the 
-WebConsole GUI. Using these meta data, you can specify for example the default value for your 
-configurations data, some descriptions, the cardinality of configuration values, etc ...
-(we use here standard bnd metatype annotations, [see bnd metatype documentation here](http://bnd.bndtools.org/chapters/210-metatype.html).
-
-First, we define our PrinterConfiguration interface annotated with standard bndtools metatatype annotations:
-
-     :::java
-     package sample;
-     import aQute.bnd.annotation.metatype.Meta.AD;
-     import aQute.bnd.annotation.metatype.Meta.OCD;
-
-     @OCD(description = "Declare here the Printer Configuration.")
-     public interface PrinterConfiguration {
-         @AD(description = "Enter the printer ip address")
-         String ipAddress();
-
-         @AD(description = "Enter the printer address port number.")
-         int portNumber();
-     }
-     
- Next, we define our Printer service with an `updated` method which is injected with the
-PrinterConfiguration type that is implemented by DM (all interface methods will lookup in the 
-actual configuration dictionary).
-
-     :::java
-     package sample;
-     import aQute.bnd.annotation.metatype.*;
-
-     @Component
-     public class Printer {
-         @ConfigurationDependency // Will use pid "sample.PrinterConfiguration"
-         void updated(PrinterConfiguration cnf) {
-             if (cnf != null) {
-                 // load configuration from the provided dictionary, or throw an exception of any configuration error.
-                 String ip = cnf.ipAddress();
-                 int port = cnf.portNumber();
-                 ...
-             }
-         }
-     }
-
 
