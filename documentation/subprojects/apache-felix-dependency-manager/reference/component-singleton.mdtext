@@ -2,9 +2,12 @@ Title: Dependency Manager - Singleton Component
 
 Components are the main building blocks for OSGi applications. They can publish themselves as a service, and they can have dependencies. These dependencies will influence their life cycle as component will only be activated when all required dependencies are available.
 
-## Example using API
+## Example usage
 
-To define a singleton component, you can use the DependencyManager.createComponent() method, like in the following example which defines a "TranslationService" osgi service having one required dependency on the "LocalizationService" and one optional dependency on a "LogService".
+To define a singleton component, you can use the DependencyActivatorBase.createComponent() or 
+the DependencyManager.createComponent() method, 
+like in the following example which defines a "TranslationService" osgi service having one required 
+dependency on the "LocalizationService" and one optional dependency on a "LogService".
 Dependencies are optional by default, unless you invoke the ServiceDependency.setRequired(boolean) method:
 
     :::java
@@ -15,7 +18,7 @@ Dependencies are optional by default, unless you invoke the ServiceDependency.se
         ...
     }
  
-    public class Activator extends DependencyManagerActivator {
+    public class Activator extends DependencyActivatorBase {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             Component c = createComponent()
                .setInterface(TranslationService.class.getName(), null)
@@ -40,7 +43,7 @@ You can also inject dependencies using callbacks:
         ...
     }
 
-    public class Activator extends DependencyManagerActivator {
+    public class Activator extends DependencyActivatorBase {
         public void init(BundleContext ctx, DependencyManager dm) throws Exception {
             Component c = createComponent()
                .setInterface(TranslationService.class.getName(), null)
@@ -57,36 +60,4 @@ You can also inject dependencies using callbacks:
     }
 
 Notice that when you define an optional dependency without using callbacks, then a "NullObject" method is injected in the class field (by reflection) when the actual optional service is not available. In this case any invocation on the optional service won't do anything.
-
-## Example using lambda API
-
-This is the same example using the Dependency Manager Lambda API:
-
-    :::java
-    public class Activator extends DependencyManagerActivator {
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception {
-            component(comp -> comp
-                .impl(GoogleBasedTranslationService.class)
-                .provides(TranslationService.class)
-                .withSvc(LocalizationService.class, true)
-                .withSvc(LogService.class, false));
-        }
-    }
-
-## Example using annotations:
-
-This is the same example as before, using Annotations: (notice that unlike with the api, the dependencies are required by default):
-
-    :::java
-    @Component
-    public class GoogleBasedTranslationService implements TranslationService {
-        @ServiceDependency(required=true)
-        volatile LocalizationService localizationService;
-
-        @ServiceDependency(required=false)
-        volatile LogService log;
-
-        ...
-    }
-
 
