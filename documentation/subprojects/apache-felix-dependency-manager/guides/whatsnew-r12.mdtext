@@ -27,7 +27,6 @@ Mainly,
 - Lightweight support for OSGI service scopes
 - The dependency manager is now built using bndtools 3.5.0 as well as with bndlib 3.5.0
 - dependencymanager-deps is not used anymore (all required build time binary dependencies are now downloaded from maven central, and the gradle wrapper jar is also downloaded from the gradlew script). Moreover semantic versioning is now using a baseline that is downloaded from maven central.
-- released artifacts are also signed with SHA1
 
 ## API enhancements
 
@@ -38,8 +37,8 @@ Some enhancements have been done in the dm API:
 - configuration dependency using metatypes can now declare property types
 - Allow to specify if propagated configuration dependencies must override service service properties (it was not possible to override service properties with propagated service properties so far)
 - Added the following signatures in Component interface:
-- setInterface(Class serviceName, Dictionary properties)
-- setInterface(Class[] serviceNames, Dictionary properties)
+ * setInterface(Class serviceName, Dictionary properties)
+ * setInterface(Class[] serviceNames, Dictionary properties)
 
 ### Aspect/Adapters API enhancements
 
