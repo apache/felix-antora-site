@@ -100,7 +100,7 @@ This has to be a fixed set of instances however.
 
 We now describe how to declare a service composition using the Api, and the Annotations:
 
-### Composition / API
+Example:
 
 When using the DependencyManager API, you can use the *Component.setComposition* method to declare a special callback in your component that 
 returns the list of object that are part of the component, and all dependencies and lifecycle callbacks will be invoked
@@ -149,45 +149,6 @@ And here is the Activator, which uses the *setComposition* method:
                 .setImplementation(ProviderImpl.class)
                 .setComposition("getComposition")
                 .add(createServiceDependency().setService(LogService.class).setRequired(true)));
-        }
-    }
-
-### Composition / Annotations
-
-Here is the same example as above, but using Annotations:
-
-    :::java
-    @Component
-    public class ProviderImpl implements Provider {
-        private final ProviderParticipant1 m_participant1 = new ProviderParticipant1();
-        private final ProviderParticipant2 m_participant2 = new ProviderParticipant2();
-        private volatile LogService m_log; // injected
-
-        @Composition
-        Object[] getComposition() {
-            return new Object[] { this, m_participant1, m_participant2 };
-        }
-
-        @Start
-        void start() {
-            m_log.log(LogService.LOG_INFO, "ProviderImpl.start(): participants=" + m_participant1 + "," + m_participant2
-                + ", conf=" + m_conf);
-        }      
-    }
-
-    public class ProviderParticipant1 {
-        private volatile LogService m_log; // also injected, since we are part of the composition
-
-        void start() {
-            m_log.log(LogService.LOG_INFO, "ProviderParticipant1.start()");
-        }
-    }
-
-    public class ProviderParticipant2 {
-        private volatile LogService m_log; // also injected, since we are part of the composition
-
-        void start() {
-            m_log.log(LogService.LOG_INFO, "ProviderParticipant2.start()");
         }
     }
 
