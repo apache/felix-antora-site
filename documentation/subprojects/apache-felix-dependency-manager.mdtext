@@ -53,6 +53,7 @@ Below is the full table of contents.
     * [Configuration](apache-felix-dependency-manager/reference/dependency-configuration.html)
     * [Bundle](apache-felix-dependency-manager/reference/dependency-bundle.html)
     * [Resource](apache-felix-dependency-manager/reference/dependency-resource.html)
+* [Service Scopes](apache-felix-dependency-manager/reference/service-scopes.html)
 * [Dependency Manager Annotations](apache-felix-dependency-manager/reference/dm-annotations.html)
 * [Dependency Manager Lambda](apache-felix-dependency-manager/guides/dm-lambda.html)
 * [Thread Model](apache-felix-dependency-manager/reference/thread-model.html)
