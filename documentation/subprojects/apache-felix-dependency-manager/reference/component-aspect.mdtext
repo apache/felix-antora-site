@@ -1,137 +1,27 @@
 Title: Dependency Manager - Aspect
 
-Aspects, as part of aspect oriented programming, can be used in a dynamic environment such as OSGi to "extend" existing services and add certain "capabilities" to them. Examples of these are adding a specific caching mechanism to a storage service or implementing logging. Aspects in OSGi can be applied to services and can be added and removed at runtime.
+Aspects, as part of aspect oriented programming, can be used in a dynamic environment 
+such as OSGi to "extend" existing services and add certain "capabilities" to them. 
+Examples of these are adding a specific caching mechanism to a storage service or 
+implementing logging. Aspects in OSGi can be applied to services and can be added and 
+removed at runtime.
 
-Aspects allow you to define an "interceptor", or chain of interceptors for a service to add features like caching or logging, etc. An aspect will be applied to any service that matches the specified interface and filter. For each matching service an aspect will be created based on the aspect implementation class. The aspect will be registered with the same interface and properties as the original service, plus any extra properties you supply here. It will also inherit all dependencies, and if you declare the original service as a member it will be injected.
+To define an aspect component, you need to create an [AspectComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/AspectComponent.html) component
+using the DependencyActivatorBase.createAspectComponent() or the DependencyManager.createAspectComponent() method.
+This interface extends the Component interface in order to add extra setters methods needed to define an asoect service component.
 
-## Usage example using annotation
 
-The *@AspectService* annotation allows you to create an aspect service. In this example, a "DatabaseCache" aspect service is used to add caching functionality to an existing Database service.
+Usage example: 
 
-### Sample code
-
-First, here is the original Database service:
+In this example, a "DatabaseCache" aspect service is used to add caching functionality 
+to an existing Database service. Here is the DatabaseCache aspect service will sit 
+between any Database service consumer and the original Database service:
 
     :::java
     interface Database {
         String get(String key);
     }
 
-    @Component
-    class DatabaseImpl implements Database {
-        String get(String key) {
-            // fetch the key value from the actual database
-        }
-    }
-
-Next, here is the DatabaseCache aspect service, which sits between any Database service consumer and the actual DatabaseImpl service:
- 
-    @AspectService(ranking=10)
-    class DatabaseCache implements Database {
-        volatile Database originalDatabase; // injected
-
-        @ServiceDependency(required=false)
-        volatile LogService log;
-     
-        String get(String key) {
-            String value = cache.get(key);
-            if (value == null) {
-                value = this.originalDatabase.get(key);
-                store(key, value);
-            }
-            return value;
-        }
-        ... 
-    }
-
-The aspect service, when started will be bound to the original Database service and will be reinjected to any Database service consumer. For example, the following Database service client will be reinjected with the aspect service in the volatile field:
-
-    :::java
-    @Component 
-    class DatabaseClient {
-        @ServiceDependency
-        volatile Database dbase;
-      
-        ....
-    }
-
-The Database client can also define a "swap" callback in order to be notified when the aspect service is injected:
-
-    :::java
-    @Component 
-    class DatabaseClient {
-        @ServiceDependency(swap="swapDatabase")
-        volatile Database dbase;
-
-        void swapDatabase(Database oldDatabase, Database newDatabase) {
-            this.dbase = newDatabase;
-        }
-      
-        ....
-    }
-
-
-### Annotation attributes
-
-----
-**`ranking`**    
-*Required*: No    
-*Default*: --  
-
-Sets the ranking of this aspect. Since aspects are chained, the ranking 
-defines the order in which they are chained. Chain ranking is implemented as 
-a service ranking so service lookups automatically retrieve the top of the 
-chain.
-
-----
-**`service`**    
-*Required*: No    
-*Default*: all directly implemented interfaces.  
-
-Sets the service interface to apply the aspect to. By default, the directly 
-implemented interface is used.
-
-----
-**`filter`**    
-*Required*: No    
-*Default*: --
-
-Sets the filter condition to use with the service interface this aspect is 
-applying to.
-
-----
-**`properties`**    
-*Required*: No    
-*Default*: --
-
-Sets Additional properties to use with the aspect service registration.
-
-----
-**`field`**    
-*Required*: No    
-*Default*: --
-
-Sets the field name where to inject the original service. By default, the original service is injected in any attributes in the aspect implementation that are of the same type as the aspect interface.
-
-----
-**`factoryMethod`**    
-*Required*: No    
-*Default*: --
-
-Sets the static method used to create the aspect service implementation 
-instance. The default constructor of the annotated class is used. 
-The factoryMethod can be used to provide a specific aspect implements, 
-like a DynamicProxy.
-
-
-## Usage example using API
-
-You can use the org.apache.felix.dependencymanager.AspectComponent interface which defines all the aspect parameters.
-The AspectComponent can be created using the DependencyManagerActivatorBase or DependencyManager createAspectComponent().
-
-### Sample code
-
-    :::java
     public class Activator extends DependencyActivatorBase {
          &Override
          public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -143,20 +33,3 @@ The AspectComponent can be created using the DependencyManagerActivatorBase or D
          }
     }
  
-## Usage example using Lambda API
-
-When using the Dependency Manager Lambda API, the ogr.apache.felix.dm.lambda.DependencyManagerActivator.aspect() method can be used to define an aspect service.
-
-
-### Sample code
-
-    :::java
-    
-    import org.apache.felix.dm.DependencyManager;
-    import org.apache.felix.dm.lambda.DependencyManagerActivator;
-
-    public class Activator extends DependencyManagerActivator {
-        public void init(BundleContext ctx, DependencyManager dm) throws Exception { 
-            aspect(Database.class, asp -> asp.impl(DatabaseCache.class).rank(10).withSvc(LogService.class, false));
-        }
-     } 
