@@ -1,0 +1,1631 @@
+Title:
+Notice:    Licensed to the Apache Software Foundation (ASF) under one
+           or more contributor license agreements.  See the NOTICE file
+           distributed with this work for additional information
+           regarding copyright ownership.  The ASF licenses this file
+           to you under the Apache License, Version 2.0 (the
+           "License"); you may not use this file except in compliance
+           with the License.  You may obtain a copy of the License at
+           .
+             http://www.apache.org/licenses/LICENSE-2.0
+           .
+           Unless required by applicable law or agreed to in writing,
+           software distributed under the License is distributed on an
+           "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+           KIND, either express or implied.  See the License for the
+           specific language governing permissions and limitations
+           under the License.
+
+Title: Dependency Manager - Annotations
+
+[TOC]
+
+This section presents an overview and a reference guide of the capabilities and usage of the 
+DependencyManager annotations.
+
+# Overview
+
+Instead of writing Activators which extends the DependencyActivatorBase class, service 
+components can also be annotated using the annotations provided by the 
+*org.apache.felix.dependencymanager.annotation* bundle. Annotations are not reflectively 
+parsed at runtime; but we use a BND plugin which scans annotations at compilation phase 
+and generates a compact json metadata file in the bundle's META-INF/dependencymanager 
+subdirectory. This has the following benefits: JVM startup speed is not affected, and class files 
+are not parsed when the framework is starting. Moreover, since the annotations are not retained 
+by the VM at runtime, it is not necessary to load the annotation API bundle at runtime.
+
+At runtime, the metadata generated during the compilation phase are processed by a 
+specific DependencyManager Runtime bundle, which is in charge of managing the service 
+component lifecycle and dependencies. This Runtime bundle actually uses the 
+DependencyManager programmatic API in order to manage the annotated components. 
+Annotated components can then be inspected with the DependencyManager Gogo shell, as it is
+the case with DM components declared through the programmatic DM API.
+
+To register a service, your can annotate your class with a *@Component* annotation, and 
+an instance of your class will be registered under all directly implemented interfaces 
+into the OSGi registry. You can however take control on the interfaces to be exposed, and 
+in this case, you can use the *provides* attribute, which takes a list of classes to
+expose from the registry:
+
+    :::java
+    @Component
+    class WebServiceImpl implements WebService {
+        ...
+    }
+
+To illustrate this, we are now introducing a SpellChecker application which provides a 
+Felix "spellcheck" Gogo shell command. Our "spellcheck" command is implemented by the 
+SpellChecker component which accepts a string as  parameter. This string is then checked for proper existence. 
+To do the  checking, the SpellChecker class has a required/multiple (1..N) dependency over 
+every available DictionaryService services. Such DictionaryService represents a real 
+dictionary for a given language (it  has a *lang* service property).
+
+Now we have introduced the background, let's define our SpellChecker component:
+    
+    :::java
+    @Component(provides=SpellChecker.class)
+    @Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation")
+    @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})
+    public class SpellChecker {
+        // --- Gogo Shell command
+    
+        public void spellcheck(String word) {
+           // Check the proper existence of the word parameter, using injected DictionaryService instances
+           // ...
+        }
+    }
+
+
+In the code above, you see that the SpellCheck is annotated with the *@Component* 
+annotation. Gogo runtime does not required shell commands to implement a  specific 
+interface. Commands just have to register some Pojos in the  OSGi registry, but the only 
+thing required is to provide the Pojos with two service properties ( COMMAND_SCOPE, and 
+COMMAND_FUNCTION) which will  be used by the Gogo runtime when instropecting the Pojo 
+for invoking  the proper functions.
+
+So, coming back to the sample code, the SpellChecker class registers  itself into the OSGi registry, using the *provides* attribute, which just refer to our SpellChecker class, and the two  mandatory Gogo service properties are also specified using the *@Property* annotation. It is not shown here, but service properties can also be  provided dynamically from a method that can return a Map, and annotated  with the *@Start* lifecycle callback, but we will see this feature in a another section.
+
+Our SpellChecker component can expose itself as a Gogo shell command, but before being 
+registered into the OSGi registry, we also need to be   injected with two dependencies: 
+one required dependency (at minimum) on a DictionaryService, and another optional one on 
+a LogService.  First, let's look at the DictionaryService, which is a simple interface:
+
+    :::java
+    public interface DictionaryService {
+        /**
+         * Check for the existence of a word.
+         * @param word the word to be checked.
+         * @return true if the word is in the dictionary, false otherwise.
+         */
+        public boolean checkWord(String word);
+    }
+
+And here is our previous SpellChecker component, augmented with two new ServiceDependency 
+annotations:
+
+    :::java
+    @Component(provides=SpellChecker.class)
+    @Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation")
+    @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})
+    public class SpellChecker {
+        @ServiceDependency(required = false)
+        private LogService m_log;
+    
+        private final CopyOnWriteArrayList<DictionaryService> m_dictionaries = new CopyOnWriteArrayList<DictionaryService>();
+    
+        @ServiceDependency(removed = "removeDictionary")
+        protected void addDictionary(DictionaryService dictionary) {
+           m_dictionaries.add(dictionary);
+        }
+    
+        protected void removeDictionary(DictionaryService dictionary) {
+           m_dictionaries.remove(dictionary);
+        }
+    
+        // --- Gogo Shell command
+    
+        public void spellcheck(String word) {
+           m_log.log(LogService.LOG_INFO, "Checking spelling of word \"" + word
+              + "\" using the following dictionaries: " + m_dictionaries);
+    
+           for (DictionaryService dictionary : m_dictionaries) {
+              if (dictionary.checkWord(word)) {
+                 System.out.println("word " + word + " is correct");
+                 return;
+              }
+           }
+           System.err.println("word " + word + " is incorrect");
+        }
+    }
+
+There are many things to describe in the code above:
+
+First, we define an optional dependency on the LogService, by defining a 
+*@ServiceDependency(required=false)* annotation on our m_logService field: This
+means that our component will be provided into the OSGi registry even if there 
+is no available LogService, and in this case, a NullObject will be injected in 
+our class field; 
+This will avoid to check for nullability, when using the m_logService field. 
+All optional dependencies applied on class fields are injected with a 
+NullObject (when not available). 
+The NullObject can be invoked and will do nothing. For a lot of cases that is 
+good enough to handle optional dependencies. But when you really want to check 
+if an optional service is there or not, then you have to apply the optional 
+dependency on a callback method, which will be called when the optional 
+service is available.
+
+Next comes the dependency on the DictionaryService. Here, we use a *ServiceDependency* 
+annotation, but this time we apply it on a method (*add/removeDictionary*). There is no 
+need to specify the "*required=true*"  flag because it is the default value. Notice that 
+this behavior is different from the API, where service dependencies are optional by default
+. We use a callback method, because we just need to register all available 
+DictionaryService services in our dictionary list, which is used when checking word 
+existence. This list is a copy on write list because the dependency may be injected at 
+any time, possibly from   another thread. So, using a copy on write list avoid us to use 
+synchronized methods.
+
+Notice that the @ServiceDependency could also have been applied on the m_dictionaries field, 
+and in this case, no need to define callback methods (addDictionary/removeDictionary).
+So, in this case the dictionaries will be automatically added in the collection field.
+
+# Component types
+
+The following types of components are supported when using annotations:
+
+- Component: Allows to define osgi services
+- Aspect Service: A service that provides a non-functional aspect on top of an existing service
+- Service Adapter: A Service that adapts another existing service into a new one
+- Bundle Adapter: Allows to provide an osgi service on top of an existing bundle
+
+## Component
+
+Components are the main building blocks for OSGi applications and can be annotated with @Component. They can publish themselves as a 
+service, and/or they can have dependencies. These dependencies will influence their life cycle as component 
+will only be activated when all required dependencies are available. To define a component, you can use the @Component annotation 
+(see [@Component javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Component.html)).
+
+Applying this annotation on top of a java class let it be a service component. All directly implemented 
+interfaces will be registered in the osgi registry, but you can control the provided interfaces using the `provides` attribute.
+Sometimes, your class implements some interfaces, but yet you don't want them to be registered, in this case, declaring `provides={}` ensures that
+no services will be registered. However, the component can still define service dependencies and it will be invoked in the @tart callback when all required 
+dependencies are satisfied.
+
+The default public constructor is used to initialize the component, but you can also specify a static method that will be used to instantiate the component (using the
+`factoryMethod` attribute). This allows for example to create the component instance using a dynamic proxy.
+
+Here is a sample showing a Hello component:
+
+    :::java
+    /**
+      * This component will be activated once the bundle is started.
+      */
+    @Component
+    class Hello implements HelloService {   
+        @Start
+        void start() {
+            // Our component is starting and is about to be registered in the OSGi registry as a HelloService service.
+        }   
+    }
+
+By default, components are created automatically, when the Components' bundle is started and when the Component 
+dependencies are satisfied. But certain software patterns require the creation of Services on demand. 
+For example, a Service could represent an application that can be launched multiple times and each Service 
+instance can then quit independently. Such a pattern requires a factory that creates the instances, and 
+`Managed Service Factories` can be used to implement this use case. it is based on OSGi Configuration Admin service.
+Using the configuration admin service, you can create multiple dictionaries , and for each one a new service will be created
+The mapping between the dictionaries and the services are done using a so called `PID`. 
+So, if you need your component to be instantiated multiple times, you first need to define the PID using the `factoryPid` attribute.
+
+Example:
+
+    :::java
+    /**
+      * All component instances will be created/updated/removed by the "HelloFactory" component
+      */
+    @Component(factoryPid="my.factory.pid")
+    class Hello implements HelloService {                 
+        void updated(Dictionary conf) {
+            // Configure or reconfigure our component. The conf is provided by the factory,
+        }
+       
+        @Start
+        void start() {
+            // Our component is starting and is about to be registered in the OSGi registry as a Hello service.
+        }       
+    } 
+
+    /**
+      * This class will instantiate some Hello component instances
+      */
+    @Component 
+    class HelloFactory {
+       @ServiceDependency
+       void bind(ConfigurationAdmin cm) {
+            // instantiate a first instance of Hello component
+            Configuration c1 = cm.createFactoryConfiguration("my.factory.pid", "?");
+            Hashtable props = new Hashtable();
+            newprops.put("key", "value1");
+            c1.update(props);
+           
+            // instantiate another instance of Hello component
+            Configuration c2 = cm.createFactoryConfiguration("my.factory.pid", "?");
+            props = new Hashtable();
+            newprops.put("key", "value2");
+            c2.update(props);
+          
+            // destroy the two instances of X component
+            c1.delete();
+            c2.delete();
+       }
+    }
+
+In the above example, the PID is "my.factory.pid", and the HelloFactory component uses the `ConfigurationAdmin`
+service in order to create some factory configurations using the "my.factory.pid". This pattern allows to 
+programatically create/update/remove multiple instances of the same Component.
+
+By default, the HelloComponent can define an `updated(Dictionary)` callback: it will be called when the component
+is created, but you can override the method which receives the configuraiton using the `updated` attribute.
+
+When you want to propagate the configuration to the provided service properties, you can also define the `propagate` attribute.
+Notice that when you propagate the configuration to the provided service properties, then the the configuration takes precedence
+over the service properties, meaning that if a given property is declared in the service properties, then it
+will be overriden if the configation also contains the property.
+
+## Aspect component
+
+An aspect service in DM provides a non-functional aspect on top of an existing service.
+In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service 
+used by the client. An Aspect Service first tracks a target service and is created once the target service is 
+detected. Then the Aspect Service is provided, but with a higher  ranking, and the client is transparently 
+updated with the aspect. Aspects can be chained and may apply to the same target service (and in this case,
+the ranking of the Aspect service is used to chain aspects in  the proper order).
+
+You can define an aspect service using the @AspectService annotation (see 
+[@AspectService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/AspectService.html)).
+
+Usage example:
+
+Here, the `Aspect` class is registered into the OSGI registry each time an 
+InterceptedService is found from the registry. 
+
+    :::java
+    @AspectService(ranking=10))
+    class Aspect implements InterceptedService {
+        // The service we are intercepting (injected by reflection)
+        volatile InterceptedService intercepted;
+   
+        public void doWork() {
+           intercepted.doWork();
+        }
+    }
+
+The Aspect class intercepts the original InterceptedService, and decorates its "doWork()" method. 
+This aspect uses a rank with value "10", meaning that it will intercept some other eventual aspects with 
+lower ranks. It will also inherit of the original InterceptedService service properties.
+
+## Adapter component
+
+An adapter service component (@AdapterService) adapts another existing service into a new one. Like with aspects, 
+sometimes you want to create adapters for certain services, which add certain behavior that results in 
+the publication of (in this case) a different service. Adapters can dynamically be added and removed 
+and allow you to keep your basic services implementations clean and simple, adding extra features on top of 
+them in a modular way.
+
+You can define an aspect service using the @AdapterService annotation (see 
+[@AdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/AdapterService.html)).
+
+Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is 
+found from the registry. 
+
+    :::java 
+    interface AdapteeService {
+        void method1();
+        void method2();
+    }
+ 
+    @Component
+    @Property(name="p1", value="v1")
+    class Adaptee implements AdapteeService {
+        ...
+    } 
+ 
+    interface AdapterService {
+        void doWork();
+    }
+ 
+    @AdapterService(adapteeService = AdapteeService.class)
+    @Property(name="p2", value="v2")
+    class AdapterImpl implements AdapterService {
+        // The service we are adapting (injected by reflection)
+        volatile AdapteeService adaptee;
+   
+        public void doWork() {
+           adaptee.method1();
+           adaptee.method2();
+        }
+    }
+
+The AdapterImpl class adapts the AdapteeService to the AdapterService. 
+The AdapterService will also have the following service property: p1=v1, p2=v2 :
+
+## Bundle adapter service 
+
+Bundle adapters are similar to Adapter Components, but instead of adapting a service, they adapt a bundle 
+with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
+
+You can define a bundle adapter service using the @BundleAdapterService annotation (see 
+[@BundleAdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleAdapterService.html)).
+
+The bundle adapter will be applied to any bundle that matches the specified bundle state mask and 
+filter conditions, which may match some of the bundle OSGi manifest headers. For each matching bundle an 
+adapter will be created based on the adapter implementation class. The adapter will be registered with the
+specified interface and with service properties found from the original bundle OSGi manifest headers plus any 
+extra properties you supply here. If you declare the original bundle as a member it will be injected.
+
+In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
+
+    :::java
+    @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
+    public class VideoPlayerImpl implements VideoPlayer {
+        volatile Bundle bundle; // Injected by reflection
+     
+        void play() {
+            URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
+            // play the video provided by the bundle ...
+        }     
+    }
+
+# Component lifecycle
+
+A component has a lifecycle that controls when it is started or stopped. 
+A bundle must be started before the DM Runtime can process its components. 
+When the bundle is started, the DM Runtime then parses a specific 
+*DependencyManager-Component* manifest header, which points to a list of descriptors 
+describing all annotated components. Such descriptors are actually generated at 
+compilation time, and annotation are not reflectively parsed at runtime. 
+Only the descriptor is used to process the components. 
+
+For each component, the DM Runtime  first ensures that all dependencies are satisfied before 
+activating it. Likewise, the component is deactivated when some of the required dependencies 
+are not available anymore or when the bundle is stopped. Unless the bundle is stopped, components may be deactivated 
+and reactivated, depending on the departure and arrival of required dependencies. The 
+manager which is in charge of maintaining the state of components is implemented in the 
+DM Runtime bundle (org.apache.felix.dm.runtime bundle).
+
+
+
+So, during activation, the component goes through a number of states, where each transition 
+includes the invocation of the following lifecycle method callbacks on the service implementation:
+
+- [@Init](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html):
+this callback is invoked after all required dependencies have been injected. In this method, you can 
+yet add more dynamic dependencies using the DM API, or you can possibly configure other dependencies filter and required flags
+(see ## Dynamic Dependency Configuration).
+
+- [@Start](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html):
+this callback is invoked after all required dependencies added in the @Init method have been injected.
+
+- [@Registered](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html):
+this callback is invoked after the service component is registered (if the component provides a service).
+The callback can takes as argument a ServiceRegistration parameter.
+
+- [@Stop](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Stop.html):
+this method is called when a required dependency is lost or when the bundle is stopped
+
+- [@Destoy](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Destroy.html) annotations:
+the component is about to be destroyed
+
+## Component activation
+
+Activating a component consists of the following steps:
+
+1) Wait for all required dependencies to be available. When all required dependencies are 
+available:
+
+- Instantiate the component
+- Inject all required dependencies (on class fields using reflection, or by invoking callback methods)
+- Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the 
+dependency is not available.
+- Call the component init method (annotated with *@Init*, see (see 
+[@Init javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html)).). 
+In the init method, you are yet allowed to add some additional dependencies using the Dependency 
+Manager API or DM Lambda). Alternatively, you can also configure some  dependencies dynamically 
+(explained later, in [Dynamic Dependency Configuration](##dynamic-dependency-configuration).
+
+2) Wait for extra required dependencies optionally configured from the init() method. When all extra required
+dependencies are available:
+
+- Invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html):
+- Publish some OSGi services, if any. the start method may return a Map<String, Object> that will 
+be appended to the provided service properties, if any.
+- Invoke the method annotatated with [@Registered annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html).
+The method, if declared, takes as argument a `ServiceRegistration` which corresponds to the registered service.
+
+3) Once the start callback has been started, and the service has been registered:
+
+- start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern).
+*Notice that NullObject pattern is not applied to optional callback dependencies*. 
+In other words, if the dependency is not there, your callback won't be invoked at all. 
+If you need the NullObject pattern, then apply optional dependencies on class fields, not on 
+callback methods.
+
+
+## Component deactivation
+
+Deactivating a component consists of the following steps:
+
+If the bundle is stopped or if some required dependencies are unavailable, or if the component 
+has declared a factoryPid and the factory configuration has been delete, then:
+
+- Unbind optional dependencies (defined on callback methods). 
+Notice that any optional dependency unavailability does not trigger the component deactivation; 
+the *removed* callbacks are just invoked, if declared in the annotation.
+- Invoke the stop method (annotated wit *@Stop*),  and unregister some OSGi services 
+(if the components provides some services).
+- invoke destroy method (annotated with *@Destroy*).
+- invoke *removed* callbacks for required dependencies, if any.
+
+## Example
+
+The following example shows a basic component, which uses the @Start annotation:
+
+    :::java
+    /**
+     * A Component Using lifecyce callbacks
+     */
+    @Component
+    class X implements Y {
+        @ServiceDependency
+        void bindOtherService(OtherService other) {
+           // Will be injected before we are started (because it's a required dependency).
+        }
+        
+        @Start
+        void start() {
+            // All required dependencies are injected: initialize our component.
+        }
+    }
+
+The following example shows a component, which returns some service properties from its start method, 
+and the component also defines the @Registered annotation in order to get the actual ServiceRegistration
+for the provided service:
+
+    :::java
+    /**
+     * A Component Using lifecyce callbacks
+     */
+    @Component
+    @Property(name="p1", value="v1") // service properties
+    class X implements Y {
+        @ServiceDependency
+        void bindOtherService(OtherService other) {
+           // Will be injected before we are started (because it's a required dependency).
+        }        
+    
+        @Start
+        Map<String, Object> start() {
+            // All required dependencies are injected: initialize our component.
+            // Once we return, our Y service will be published in the OSGi registry, using the following
+            // service properties appended to the ones specified on top of the class with the @Property
+            // annotation (notice that returning a map is optional and our start() method could be 
+            // declared as void).
+            Map<String, Object> additionalServiceProperties = new HashMap<>();
+            additionalServiceProperties.put("p2", "v2");
+            return additionalServiceProperties;
+        }
+
+        @Registered
+        void registered(ServiceRegistration registration) {
+            // once our service is registered, we can obtainer here the corresponding ServiceRegistration ...
+        }    
+    }
+
+## Lifecycle control
+
+As explained in the *Component Activation* section, a component which provides a service 
+is automatically registered into the OSGi registry, after the @Start method returns. 
+But it is sometimes  required to control when the service is really started/published or  
+unpublished/stopped.
+
+This can be done using the [@LifecycleController](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/LifecycleController.html) annotation. 
+This  annotation injects a Runnable object that can be invoked when you want to trigger your service 
+startup and publication. The @LifecycleController is like a required dependency and is injected before 
+the @Init method is called.
+
+For instance, imagine that your component publishes an OSGi service, but before, it needs to 
+register into a DHT (Distributed Hash Table), whose API is asynchronous: that is: 
+the DHT API will callback you once you are inserted into a node in the DHT. 
+In this case, what you would  like to do is to publish your OSGi service, but only after you are  
+inserted into the DHT (when the DHT callbacks you) ... 
+Such a case  is supported using the @LifecyceController annotation, which gives you  
+full control of when your component is *started/published* and *unpublished/stopped*.
+
+Let's illustrate this use case with a concrete example: First here is the DHT asynchronous API:
+
+    :::java
+    /**
+     * This is an element which can be inserted into the distributed hash table.
+     */
+    public interface DHTElement {
+       void inserted(); // callback used to notify that the element is inserted into the DHT
+    }
+    
+    /**
+     * This is the DHTService, which registers a DHTElement asynchronously.
+     */
+    public interface DHTService {
+       void insert(); // will callback element.inserted() later, once registered into the DHT.
+    }
+
+Next, here is our service, which uses the @LifecycleController in  order to take control of when the service is published into the OSGi  registry:
+
+    :::java
+    @Component(provides={MyService.class})
+    public class MyServiceImpl implements MyService, DHTElement {
+        @ServiceDependency
+        DHTService m_dht;
+    
+        @LifecycleController
+        Runnable m_registered; // will fire component startup, once invoked.
+    
+        @Init
+        void init() {
+            m_dht.insert(this); // asynchronous, will callback  once registered into the DHT
+        }
+    
+        public void inserted() {
+            // We are inserted into the DHT: we can now trigger our component startup.
+            // We just invoke the runnable injected by our @LifecycleController annotation, which will trigger our
+            // service publication (we'll be called in our @Start method before)
+            m_registered.run();
+        }
+    
+        @Start
+        void start() {
+            // method called only once we invoke our trigger Runnable (see inserted method).
+            // Our Service will be published once this method returns.
+        }
+    }
+
+Same example as above, using java8 method reference:
+
+    :::java
+    @Component
+    public class MyServiceImpl implements MyService {
+        @ServiceDependency
+        DHTService m_dht;
+    
+        @LifecycleController
+        Runnable m_registered; // will fire component startup, once invoked.
+    
+        @Init
+        void init() {
+            m_dht.insert(m_registered::run); // asynchronous, will callback m_registered.run() once registered into the DHT
+        }
+        
+        @Start
+        void start() {
+            // method called after the m_dht service has called the m_registered.run() method.
+        }
+    }
+
+
+# Dependencies
+
+## Service dependencies
+
+Service Dependencies can be defined using the [@ServiceDependency](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/ServiceDependency.html) annotation.
+
+Dependencies can either be required or optional. Required dependencies need to be resolved before 
+the service can even become active. Optional dependencies can appear and disappear while the service 
+is active. **Please notice that, unlike with the DM API, service dependencies are required by default.**
+
+### Field injection
+
+The dependency manager will automatically fill in any references
+to required @ServiceDependency that are applied on attributes. The same
+goes for optional dependencies if they are available. If not, those will
+be implemented by a null object [NULLOBJ]. In short, this allows
+you to simply use these interfaces as if they were always available.
+A good example of this is the LogService. If it’s available, we want
+to use it for logging. If not, we want to simply ignore log messages.
+Normally, you’d need to check a reference to this service for null
+before you can use it. By using a null object, this is not necessary
+anymore.
+
+When the @ServiceDependency annotation is defined on a class field, the following field 
+types are supported:
+
+- a field having the same type as the dependency. If the field may be accessed by any thread, 
+then the field should be declared volatile, in order to ensure visibility when the field is auto 
+injected concurrently.
+
+- a field which is assignable to an `Iterable<T>` where T must match the dependency type. 
+In this case, an Iterable will be injected by DependencyManager before the start callback is called. 
+The Iterable field may then be traversed to inspect the currently available dependency services. 
+The Iterable can possibly be set to a final value so you can choose the Iterable implementation 
+of your choice (for example, a CopyOnWrite ArrayList, or a ConcurrentLinkedQueue).
+
+- a Map<K,V> where K must match the dependency type and V must exactly equals Dictionary class. In this case, a ConcurrentHashMap will be injected by DependencyManager before the start callback is called. The Map may then be consulted to lookup current available dependency services, including the dependency service properties (the map key holds the dependency services, and the map value holds the dependency service properties). The Map field may be set to a final value so you can choose a Map of your choice (Typically a ConcurrentHashMap). A ConcurrentHashMap is "weakly consistent", meaning that when traversing the elements, you may or may not see any concurrent updates made on the map. So, take care to traverse the map using an iterator on the map entry set, which allows to atomically lookup pairs of Dependency service/Service properties.
+
+This is an example where you inject a `Dependency` service on a class field:
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency
+        volatile Dependency m_dependency;
+    }
+
+
+Another example, were we inject multiple dependencies to an Iterable field
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency
+        final Iterable<Dependency> dependencies = new CopyOnWriteArrayList<>();
+    }
+ 
+And next, we inject multiple dependencies to a Map field, allowing to inspect service 
+dependency properties (the keys hold the services, and the values hold the associated service 
+properties):
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency
+        final Map<MyDependency, Dictionary<String, Object>> dependencies = new ConcurrentHashMap<>;
+    }
+
+Optional dependencies applied on class fields will inject a NullObject when the dependency is unavailable. This allows you to avoid to check if the optional
+dependency is not null using a "if" statement, and invoking the NullObject will result in a No Op method call. When the optional dependency type is not an interface, then NullObject won't work because
+internally, the NullObject is implemented using a dynamic proxy. In this case you can use the 
+ServiceDependency.defaultImpl attribute which allows to specify a default implementation when the optional dependency is unavailable.
+
+Example:
+
+    :::java
+    @Component
+    public class MyComponent {
+        @ServiceDependency(required=false, defaultImpl=MyDefaultImpl.class)
+        volatile Dependency m_dependency;
+    }
+
+in the above example, the MyDefaultImpl class will be injected on the m_dependency class field in case the dependency is unavailable.
+    
+### Callback injection
+
+Optionally, a service can define callbacks for each dependency. These
+callbacks are invoked whenever a new dependency is discovered or
+an existing one is disappearing. They allow you to track these dependencies. 
+This can be very useful if you, for example, want to implement the white board pattern.
+
+The callbacks allows to get notified when a service is added, and support the following signatures:
+
+    (Component comp, ServiceReference ref, Service service)
+    (Component comp, ServiceReference ref, Object service)
+    (Component comp, ServiceReference ref)
+    (Component comp, Service service)
+    (Component comp, Object service)
+    (Component comp)
+    (Component comp, Map properties, Service service)
+    (ServiceReference ref, Service service)
+    (ServiceReference ref, Object service)
+    (ServiceReference ref)
+    (Service service)
+    (Service service, Map properties)
+    (Map properties, Service, service)
+    (Service service, Dictionary properties)
+    (Dictionary properties, Service service)
+    (Object service)
+    (ServiceReference<T> service)
+    (ServiceObjects<T> service)
+ 
+Example:
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency
+        void bind(MyDependency dependency) {}
+    }
+ 
+Same example as before, but the callback signatures includes service properties:
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency
+        void bind(MyDependency dependency, Map<String, Object> serviceProperties) {}
+    }
+
+Same example as before, but this time we track service change:
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency(change="updated")
+        void bind(MyDependency dependency, Map<String, Object> serviceProperties) {}
+
+        void updated(MyDependency dependency, Map<String, Object> serviceProperties) {}
+    }
+
+Example where you track added/changed/removed service:
+
+    :::java
+    @Component
+    class MyComponent {
+        @ServiceDependency(change="updated", remove="unbind")
+        void bind(MyDependency dependency, Map<String, Object> serviceProperties) {}
+
+        void updated(MyDependency dependency, Map<String, Object> serviceProperties) {}
+
+        void unbind(MyDependency dependency, Map<String, Object> serviceProperties) {}
+    }
+
+### Whiteboard pattern
+
+Required service dependency are always invoked before the start (@Start) callback is 
+invoked.
+However, Optional dependency **callbacks** are always invoked **after** the start (@Start) callbacks. 
+This allows to easily implement the whiteboard patter, because you can first make sure your component
+is fully initialized before it can start to track other services (whiteboard pattern).
+
+For example, assume you write a `TaskExecutor` component which tracks `Task` services. So, each time
+a Task is found from the registry, then you want to schedule the Task in an Executor, and you also
+want to maitain statistics on executed tasks. So, your `TaskExecutor` depends on two required services:
+an `Executor` service (used to schedule the tasks), as well as a `TaskMetrics` service which is used to
+maintain Task execution statistics. So what you need is to make sure your are injected with the TaskMetrics
+and the Executor service before you can actually start to handle Tasks.
+To do so, simply define two required dependencies on the `Executor` and the `TasksMetrics`, and
+define an optional dependency on the Task services. This will ensure that the Tasks callbacks are 
+invoked after your component is started:
+
+    :::java
+    interface Task extends Runnable {
+    }
+
+    @Component
+    TaskExecutor {
+        @ServiceDependency
+        volatile Executor m_executor;
+
+        @ServiceDependency
+        volatile TaskMetrics m_taskMetrics;
+
+        @Start
+        void start() {
+             // at this point, all required dependencies have been injected and we can now start to track
+             // the Task services
+        }
+
+        @ServiceDependency(required=false)
+        void bind(Task task) {
+             m_executor.execute(task);
+             m_taskMetrics.taskScheduled();
+        }
+     }
+
+### Tracking any services matching a given filter
+
+Sometimes, you may want to be injected with any service objects matching a given filter, 
+without any additional filter on the class service interface. 
+In this case, you need to use the `service=ServiceDependency.ANY` attribute
+
+
+For example:
+
+    :::java
+    import org.apache.felix.dm.annotation.ServiceDependency;
+    import org.apache.felix.dm.annotation.api.ServiceDependency.Any;
+
+    @Component
+    public class MyService {
+        @ServiceDependency(service=Any.class, filter="(property=true)")
+        void bind(Object allServices) {
+        }
+    }
+
+### Service dependency properties propagation
+
+It is possible to propagate the dependency service properties, using the ServiceDependency.propagate attribute.
+When the service dependency properties are propagate, they will be appended to the component service properties, 
+but won't override them (the component service properties takes precedence over the propagated service dependencies).
+
+Example:
+
+    :::java
+    @Component
+    @Properties(name="p1", value="v1")
+    public class MyServiceImpl implements MyService {
+        @ServiceDependency(propagate=true)
+        void bind(OtherService other) {
+        }
+    }
+
+The service above will be registered with the p1=v1 service properties, as well as with any service properties which come from the Service Dependency.
+
+### defining a swap aspect callback
+
+When you define a service dependency, it is possible to define a swap callback in case an original service dependency is replaced by an aspect, and you 
+then want to be called back at the time the service dependency is replaced.
+
+Example:
+
+    :::java
+    @Component
+    public class MyServiceImpl {
+        @ServiceDependency(swap="swap")
+        void bind(OtherService other) {
+        }
+
+        void swap(OtherService old, OtherService replace) {
+        }
+    }
+
+So, if an aspect service is registered for the OtherService service, then your swap method will be called so you can take the service replacement into account.
+
+The swap callback supports the following signatures:
+
+    :::java
+    (Service old, Service replace)
+    (Object old, Object replace)
+    (ServiceReference old, Service old, ServiceReference replace, Service replace)
+    (ServiceReference old, Object old, ServiceReference replace, Object replace)
+    (Component comp, Service old, Service replace)
+    (Component comp, Object old, Object replace)
+    (Component comp, ServiceReference old, Service old, ServiceReference replace, Service replace)
+    (Component comp, ServiceReference old, Object old, ServiceReference replace, Object replace)
+    (ServiceReference old, ServiceReference replace)
+    (Component comp, ServiceReference old, ServiceReference replace)
+    (ServiceObjects old, ServiceObjects replace)
+    (Component comp, ServiceObjects old, ServiceObjects replace)
+
+### Blocking a service invocation while it is updating.
+
+When an injected service dependency is an interface, it is possible to block the service invocation 
+while it is being updated.
+Only useful for required stateless dependencies that can be replaced transparently. 
+A Dynamic Proxy is used to wrap the actual service dependency (which must be an interface). 
+When the dependency goes away, an attempt is made to replace it with another one which satisfies 
+the service dependency criteria. If no service replacement is available, then any method invocation 
+(through the dynamic proxy) will block during a configurable timeout. On timeout, an unchecked 
+IllegalStateException exception is raised (but the service is not deactivated).
+
+To use this feature, you need to specify a `timeout` attribute like this:
+
+    :::java
+    @Component
+    class MyServer implements Runnable {
+      @ServiceDependency(timeout=15000)
+      MyDependency dependency;.
+   
+      @Start
+      void start() {
+        (new Thread(this)).start();
+      }
+   
+      public void run() {
+        try {
+          dependency.doWork();
+        } catch (IllegalStateException e) {
+          t.printStackTrace();
+        }
+      }   
+   }
+
+Notice that the changed/removed callbacks are not used when the timeout parameter is greater 
+than -1. -1 means no timeout at all (default). 0 means that invocation on a missing service will 
+fail immediately. A positive number represents the max timeout in millis to wait for the service 
+availability.
+
+## Configuration dependencies
+
+A configuration dependency is required by default, and allows you to depend on 
+the availability of a valid configuration for your component. Use the 
+[@ConfigurationDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/ConfigurationDependency.html) to define a configuration dependency.
+
+This dependency requires the OSGi Configuration Admin Service. 
+Configuration Dependency callback is always invoked before any service dependency 
+callbacks, and before init/start callbacks. 
+The annotation can be applied on a callback method which accepts the following 
+parameters:
+
+    callback(Dictionary)
+    callback(Component, Dictionary)
+    callback(Component, Configuration ... configTypes) // type safe configuration interface(s)
+    callback(Configuration ... configTypes) // type safe configuration interface(s)
+    callback(Dictionary, Configuration ... configTypes) // type safe configuration interfaces(s)
+    callback(Component, Dictionary, Configuration ... configTypes) // type safe configuration interfaces(s)
+
+Configuration can be simply injected in the form of dictionaries, or in the form of type-safe configuration
+interfaces.
+
+the annotation attributes are the following:
+
+* pid: Returns the pid for a given service (by default, the pid is the service class name).
+* propagate: Returns true if the configuration properties must be published along with the service. The configuration properties takes precedence over the component service properties.
+* pidClass: Returns the pid from a class name.
+* required: Sets the required flag which determines if this configuration dependency is required or not.
+* name: used to dynamically configure the pid from an @Init method.
+
+### Type safe configuration
+
+Configuration types allows you to specify a Java interface that is implemented by 
+DM and such interface is then injected to your callback instead of the actual Dictionary.
+Using such configuration interface provides a way for creating type-safe configurations 
+from a actual Dictionary that is normally injected by Dependency Manager. 
+The callback accepts in argument an interface that you have to provide, and
+DM will inject a proxy that converts method calls from your configuration-type 
+to lookups in the actual map or dictionary. The results of these lookups are then 
+converted to the expected return type of the invoked configuration method. 
+As proxies are injected, no implementations of the desired configuration-type are 
+necessary!
+
+The lookups performed are based on the name of the method called on the configuration 
+type. The method names are "mangled" to the following form: 
+
+    [lower case letter] [any valid character]*. 
+
+Method names starting with get or is (JavaBean convention) are stripped from these 
+prefixes. For example: given a dictionary with the key "foo" can be accessed from a 
+configuration-type using the following method names: 
+
+    foo(), getFoo() and isFoo().
+
+The return values supported are:
+
+* primitive types (or their object wrappers);
+* strings;
+* enums;
+* arrays of primitives/strings;
+* Collection types;
+* Map types;
+* Classes and interfaces.
+
+When an interface is returned, it is treated equally to a configuration type, that is, 
+a proxy is returned.
+
+Arrays can be represented either as comma-separated values, optionally enclosed in 
+square brackets. For example: [ a, b, c ] and a, b,c are both considered an array of 
+length 3 with the values "a", "b" and "c". 
+Alternatively, you can append the array index to the key in the dictionary to obtain 
+the same: a dictionary with "arr.0" => "a", "arr.1" => "b", "arr.2" => "c" would result 
+in the same array as the earlier examples.
+
+Maps can be represented as single string values similarly as arrays, each value 
+consisting of both the key and value separated by a dot. Optionally, the value can be 
+enclosed in curly brackets. Similar to array, you can use the same dot notation using 
+the keys. For example, a dictionary with:
+
+    "map" => "{key1.value1, key2.value2}"
+
+and a dictionary with:
+
+    "map.key1" => "value1", "map2.key2" => "value2"
+
+result in the same map being returned. 
+Instead of a map, you could also define an interface with the methods getKey1() 
+and getKey2() and use that interface as return type instead of a Map.
+
+In case a lookup does not yield a value from the underlying map or dictionary, 
+the following rules are applied:
+
+* primitive types yield their default value, as defined by the Java Specification;
+* string, Classes and enum values yield null;
+* for arrays, collections and maps, an empty array/collection/map is returned;
+* for other interface types that are treated as configuration type a Null-object is returned.
+
+### Examples
+
+In the following example, the "Printer" component depends on a configuration with 
+"org.apache.felix.sample.Printer" PID:
+
+    :::java
+    package org.apache.felix.sample;
+    
+    @Component
+    public class Printer {
+        @ConfigurationDependency
+        void updated(Dictionary config) {
+            // load printer ip/port from the provided dictionary.
+        }
+    }
+
+Here is the same example using a type safe configuration:
+
+    :::java
+    package sample;
+   
+    public interface PrinterConfiguration {
+        String ipAddress();
+        int portNumber();
+    }
+   
+    @Component
+    public class Printer {
+        @ConfigurationDependency // Will use pid "sample.PrinterConfiguration"
+        void updated(PrinterConfiguration cnf) {
+            if (cnf != null) {
+                // load configuration from the provided dictionary, or throw an exception of any configuration error.
+                String ip = cnf.ipAddress();
+                int port = cnf.portNumber();
+                ...
+            }
+        }
+    }
+
+## Bundle dependency
+
+A bundle dependency allows you to depend on a bundle in a certain set of states 
+(INSTALLED\|RESOLVED\|STARTED\|...), as indicated by a state mask. 
+You can also use a filter condition that is matched against all manifest entries. 
+When applied on a class field, optional unavailable dependencies are injected with a 
+NullObject.
+
+Use the [@ConfigurationDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleDependency.html) to define a bundle dependency.
+
+Attributes:
+
+* changed: Returns the callback method to be invoked when the service have changed.
+* removed: Returns the callback method to invoke when the service is lost.
+* required: Returns whether the dependency is required or not.
+* filter: Returns the filter dependency
+* stateMask: Returns the bundle state mask (Bundle.INSTALLED \| Bundle.ACTIVE etc ...).
+* propagate: Specifies if the manifest headers from the bundle should be propagated to the service properties.
+* name: The name used when dynamically configuring this dependency from the init method. 
+Specifying this attribute allows to dynamically configure the dependency filter and 
+required flag from the Service's init method. 
+All unnamed dependencies will be injected before the init() method; 
+so from the init() method, you can then pick up whatever information needed from 
+already injected (unnamed) dependencies, and configure dynamically your named 
+dependencies, which will then be calculated once the init() method returns.
+
+
+In the following example, the "SCR" Component allows to track all bundles containing a 
+specific "Service-Component" OSGi header, in order to load and manage all 
+Declarative Service components specified in the SCR xml documents referenced by the 
+header:
+
+    :::java
+    @Component
+    public class SCR {
+        @BundleDependency(required = false,
+                          removed = "unloadServiceComponents",
+                          filter = "(Service-Component=*)"
+                          stateMask = Bundle.ACTIVE)
+        void loadServiceComponents(Bundle b) {
+            String descriptorPaths = (String) b.getHeaders().get("Service-Component");
+            // load all service component specified in the XML descriptorPaths files ...
+        }
+    
+        void unloadServiceComponents(Bundle b) {
+            // unload all service component we loaded from our "loadServiceComponents" method.
+        }
+    }
+
+## Dynamic dependency configuration
+
+We have seen that a component may declare some dependencies and is started when all required 
+dependencies are available. But there are some cases when you may need to define some dependencies 
+filters (and required flag) dynamically, possibly from data picked up from other dependencies.
+
+So, all this is possible using *named* dependencies: When you assign a name to a dependency; 
+for instance *@ServiceDependency(name="foo")*, then this has an impact on how the dependency 
+is handled. 
+Indeed, all named dependencies are calculated *after* the @Init method returns.
+So from your @Init method, you can then configure your named dependencies, using data provided
+by  already injected dependencies.
+
+To do so, your @Init method is allowed to return a Map containing the filters and required flags 
+for each named dependencies. 
+For a given named dependency, the corresponding filter and required flag must be  stored in 
+the Map, using the "*filter*" and "*required*" keys, prefixed with the name of the dependency.
+
+For instance, if you define a Dependency like this:
+
+    :::java
+    @ServiceDependency(name="foo")
+    FooService fooService;
+
+Then you can return this map from your @Init method:
+
+    :::java
+    @Init
+    Map init() {
+        Map m = new HashMap();
+        m.put("foo.filter", "(foo=bar)");
+        m.put("foo.required", "false");
+        return m;
+    }
+
+So, after the init method returns, the map will be used to configure  the dependency named "foo", which will then be evaluated. 
+And once the  dependency is available, then your @Start callback will be invoked.
+
+Usage example of a dynamic dependency:
+
+In this sample, the "PersistenceImpl" component dynamically configures the "storage" 
+dependency from the "init" method. The dependency "required" flag and filter string are derived 
+from an xml configuration that is already injected before the init method.
+
+    :::java
+    @Component
+    public class PersistenceImpl implements Persistence {
+        // Injected before init.
+        @ConfigurationDependency
+        void updated(Dictionary conf) {
+           if (conf != null) {
+              _xmlConfiguration = parseXmlConfiguration(conf.get("xmlConfiguration"));
+           }
+        }
+        
+        // Parsed xml configuration, where we'll get our storage service filter and required dependency flag.
+        XmlConfiguration _xmlConfiguration;
+     
+        // Dynamically configure the dependency declared with a "storage" name.
+        @Init
+        Map<String, String> init() {
+           Map<String, String> props = new HashMap<>();
+           props.put("storage.required", Boolean.toString(_xmlConfiguration.isStorageRequired()))
+           props.put("storage.filter", "(type=" + _xmlConfiguration.getStorageType() + ")");
+           return props;       
+        }
+     
+        // Injected after init (dependency filter is defined dynamically from our init method).
+        @ServiceDependency(name="storage")
+        Storage storage;
+    
+        // All dependencies injected, including dynamic dependencies defined from init method.
+        @Start
+        void start() {
+           log.log(LogService.LOG_WARNING, "start");
+        }
+    
+        @Override
+        void store(String key, String value) {
+           storage.store(key, value);
+        }
+    }
+
+
+Notice that you can also add dynamic dependencies using the Dependency Manager API, or using DM-Lambda.
+In this case, no need to define service dependencies with annotations. Here is the same example as above,
+but this time, the dependency on the Storage service is defined from the init method using the DM API:
+
+    :::java
+    @Component
+    public class PersistenceImpl implements Persistence {
+        // Injected before init.
+        @ConfigurationDependency
+        void updated(Dictionary conf) {
+           if (conf != null) {
+              _xmlConfiguration = parseXmlConfiguration(conf.get("xmlConfiguration"));
+           }
+        }
+        
+        // Parsed xml configuration, where we'll get our storage service filter and required dependency flag.
+        XmlConfiguration _xmlConfiguration;
+     
+        // Dynamically configure the dependency declared with a "storage" name.
+        @Init
+        void init(org.apache.felix.dm.Comppnent myComponent) {
+           boolean required = _xmlConfiguration.isStorageRequired();
+           String filter =  _xmlConfiguration.getStorageType();
+           DependencyManager dm = myComponent.getDependencyManager();
+           myComponent.add(dm.createServiceDependency().setService(Storage.class, filter).setRequired(required));
+        }
+     
+        // Injected after init, later, when the dependency added from the init() method is satisfied
+        volatile Storage storage;
+    
+        // All dependencies injected, including dynamic dependencies defined from init method.
+        @Start
+        void start() {
+           log.log(LogService.LOG_WARNING, "start");
+        }
+    
+        @Override
+        void store(String key, String value) {
+           storage.store(key, value);
+        }
+    }
+
+Same example as above, but this time the dependency is added from the init method using the 
+Dependency Manager Lambda API:
+
+    :::java
+    @Component
+    public class PersistenceImpl implements Persistence {
+        // Injected before init.
+        @ConfigurationDependency
+        void updated(Dictionary conf) {
+           if (conf != null) {
+              _xmlConfiguration = parseXmlConfiguration(conf.get("xmlConfiguration"));
+           }
+        }
+        
+        // Parsed xml configuration, where we'll get our storage service filter and required dependency flag.
+        XmlConfiguration _xmlConfiguration;
+     
+        // Dynamically configure the dependency declared with a "storage" name.
+        @Init
+        void init(org.apache.felix.dm.Comppnent myComponent) {
+           boolean required = _xmlConfiguration.isStorageRequired();
+           String filter =  _xmlConfiguration.getStorageType();
+           component(myComponent, comp -> comp.withSvc(Storage.class, filter, required));
+        }
+     
+        // Injected after init, later, when the dependency added from the init() method is satisfied
+        volatile Storage storage;
+    
+        // All dependencies injected, including dynamic dependencies defined from init method.
+        @Start
+        void start() {
+           log.log(LogService.LOG_WARNING, "start");
+        }
+    
+        @Override
+        void store(String key, String value) {
+           storage.store(key, value);
+        }
+    }
+
+# Component Composition
+
+When implementing more complex services, you often find yourself using more than one instance for a given service. 
+However, several of these instances might want to have dependencies injected. In such cases you need to tell the 
+dependency manager which instances to consider. Within a Component (or an Aspect/Adapter), you can annotate a method 
+with the @Composition annotation. This method is meant to return such composition of service instances, and the objects 
+will be considered as part of the service implementation. So, all  dependencies, as well as lifecycle annotations 
+(@Init, @Start, @Stop, @Destroy) will be applied on every objects returned by the method annotated with the @Composition annotation.
+
+The following example illustrates a composition of two object instances, which are part of the implementation of a *MyService* service:
+
+    :::java
+    /**
+     * Main implementation for the MyService Service
+     */
+    @Component
+    public class MyServiceImpl implements MyService {
+      // This object instance is also used to implement the service.
+      private Helper helper = new Helper();
+    
+      // MyServiceImpl, and Helper objects are part of the composition
+      @Composition
+      Object[] getComposition() {
+        return new Object[] { this, helper };
+      }
+    
+      // This dependency is also applied to the Helper
+      @ServiceDependency
+      Dependency dep;
+    
+      // Same thing for this dependency
+      @ServiceDependency
+      void bind(Dependency2 dep2) {}
+    
+      // Lifecycle callbacks also applied on the Helper ...
+      @Init
+      void init() {}
+    
+      @Start
+      void start() {}
+    
+      @Stop
+      void stop() {}
+    
+      @Destroy()
+      void destroy() {}
+    }
+    
+    public class Helper {
+      // Also injected, since we are part of the composition
+      Dependency dep;
+    
+      // But since we are not interested by the Dependency2, we don't have to declare the bind(Dependency2) method ...
+    
+      // We only specify the start lifecycle callback because we need to return some extra service properties which will be published
+      // along with the provided service ...
+    
+      Map start() {
+         Map extraServiceProperties = new HashMap();
+         extraServiceProperties.add("foo", "bar");
+         return extraServiceProperties;
+      }
+    }
+
+Here, MyServiceImpl is the main component implementation, but is   composed of the Helper object instance. So all Dependencies defined in MyServiceImpl 
+will be also injected to the Helper (if the Helper  declares the fields or methods). The Helper may also declare lifecycle  callbacks (optionally).
+
+
+# Service scopes
+
+By default service providers are registered once in the osgi registry, and all service consumers share the same service provider instance.
+Now, you can control the scope of the provided services: From the provider side, a "scope" parameter 
+is available for all types of DM components and allows to define the scope of the registered service.
+
+The `scope` attribute has three enum values: SINGLETON, BUNDLE, PROTOTYPE
+
+- SINGLETON: it's as before: your registered service is a singleton, meaning that the service must be 
+instantiated and registered once, and all using services will share the same service instance of your component.
+
+- BUNDLE: the service will be registered as a ServiceFactory, meaning an instance of the component must be 
+created for each bundle using the service.
+
+- PROTOTYPE: the service will be registered as a PrototypeServiceFactory, meaning the service is registered as 
+a prototype scope service and an instance of the component must be created for each distinct service requester.
+
+Scoped Services are supported by all kind of DM service components:
+
+- Component
+- Aspect Service
+- Adapter Service
+- Bundle Adapter service
+
+When a consumer requests a service (using ServiceDependency), then DM will automatically 
+dereference the service like this:
+
+- if the service has a SERVICE_SCOPE service property matching SCOPE_PROTOTYPE, the DM will 
+internally derefence the service using the ServiceObject API: so, the consumer will get its own copy 
+of the requested service instance.
+- else, DM will internally dereference the service, as before.
+When defining scoped component implementation, you can optionally define two special class fields 
+in order to get injected with the client Bundle requesting the service, and the ServiceRegisgtration 
+Object. Just use @Inject annotations in order to get injected with the client 
+Bundle or the ServiceRegistration. You can also define a constructor which takes as argument the 
+client bundle as well as the service registration.
+
+Example:
+
+Here is a MyService component with PROTOTYPE scope, each requester will get its own copy of 
+MyService instance, and the MyServiceImpl.start() method will be called for each instance:
+
+
+    :::java
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.ServiceScope;
+    
+    @Component(scope=ServiceScope.PROTOTYPE)
+    public class MyServiceImpl implements MyService {
+        @Start
+        void start() {
+            // called on each MyService instance
+        }
+    }
+
+The above service will then automatically be instantiated for each service requester:
+
+    :::java
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.ServiceScope;
+    
+    @Component
+    public class Client1 {
+        @ServiceDependency
+        void bind(MyService service) {
+           // Client1 will be injected with its own MyService instance
+        }
+    }
+    
+    @Component
+    public class Client2 {
+        @ServiceDependency
+        void bind(MyService service) {
+               // Client2 will be injected with its own MyService instance
+        }
+    }
+
+The two Client1/Client2 above will be injected with two distinct component instances for the 
+MyService service (each MyServiceImpl instance will be invoked in its start callback).
+Now, if you want to control the creation of the MyService, you can then define a bind method which 
+takes as argument a ServiceObjects parameter like this:
+
+    :::java
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.ServiceScope;
+    
+    @Component
+    public static class Client {
+        @ServiceDependency
+        void bind(ServiceObject<MyService> serviceObjects) {
+            MyService service;
+            try {
+                service = serviceObjects.getService();
+            } finally {
+                serviceObjects.ungetService(service);
+            }
+        }
+    }
+
+Internally, DM will use the 
+PrototypeServiceFactory.getService(Bundle clientBundle, ServiceRegistration reg) method in order to 
+instantiate the MyServiceImpl component. So, the MyServiceImpl component can optionally use the 
+@Inject annotation in order to get injected with the clientBundle and/or the service regisration, 
+like this:
+
+    :::java
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.ServiceScope;
+    
+    @Component(scope=ServiceScope.PROTOTYPE)
+    public static class MyServiceImpl implements MyService {
+       
+        @Inject
+        Bundle m_clientBundle;
+        
+        @Inject
+        ServiceRegisration m_registration;
+    
+        @Start
+    	void start() {
+    	   // called on each MyService instance.
+    	}
+    }
+
+The Bundle and ServiceRegistration can also be injected in the component Constructor:
+
+    :::java
+    import org.apache.felix.dm.annotation.api.Component;
+    import org.apache.felix.dm.annotation.api.ServiceScope;
+    
+    @Component(scope=ServiceScope.PROTOTYPE)
+    public static class MyServiceImpl implements MyService {
+       
+       public MyServiceImpl(Bundle clientBundle, ServiceRegistration registration) { 
+          ... 
+       }
+        
+       @Start
+       void start() {
+    	   // called on each MyService instance.
+    	}
+    }
+
+# Service property types
+
+So far, you could define component service properties using DM @Property annotation, 
+and component configuration could be declared as user defined interfaces. 
+You can now declare user-defined annotations which can be used to specify both service 
+properties and component configuration. 
+It means that instead of declaring service properties using @Property annotation, 
+you can now use your own annotations (which must be annotated with the new 
+@PropertyType annotation, or possibly using the standard @ComponentPropertyType 
+annotation).
+
+Usage example:
+
+Let’s assume your write an OSGi r7 jaxrs servlet context which needs the two 
+following service properties:
+
+- `osgi.http.whiteboard.context.name`
+- `osgi.http.whiteboard.context.path`
+
+Then you can first define your own annotation (but you could also reuse the default 
+annotations provided by the new upcomming jaxrs whiteboard r7 api, from the 
+org.osgi.service.jaxrs.whiteboard.propertytypes package):
+
+    :::java
+    import org.apache.felix.dependencymanager.annotation.PropertyType;
+
+    @PropertyType
+    @interface ServletContext {
+        String osgi_http_whiteboard_context_name() default AppServletContext.NAME;
+        String osgi_http_whiteboard_context_path();
+    }
+
+In the above, the underscore is mapped to ".", and you can apply the above annotation on 
+top of your component like this:
+
+    :::java
+    @Component
+    @ServletContext(osgi_http_whiteboard_context_path="/game")
+    public class AppServletContext extends ServletContextHelper {
+    }
+
+You can also use configuration admin service in order to override the default s
+ervice properties:
+
+    :::java
+    @Component
+    @ServletContext(osgi_http_whiteboard_context_path="/game")
+    public class AppServletContext extends ServletContextHelper {
+        @ConfigurationDependency(propagate=true, pid="my.pid")
+        void updated(ServletContext cnf) {
+           // if some properties are not present in the configuration, then the ones used in the
+           // annotation will be used.
+           // The configuration admin properties, if defined, will override the default configurations
+           // defined in the annotations
+        }
+    }
+
+You can also define multiple property type annotations, and possibly single valued 
+annotation, like it is the case with standard r7 DS. In this case, you can use the 
+standard R7 PREFIX_ constants in order to specify the property prefix, and the property 
+name will be derived from the single valued annotation (using camel case convention):
+
+    :::java
+    @PropertyType
+    @interface ContextName { // will map to "osgi.http.whiteboard.context.name" property name
+        String PREFIX_="osgi.http.whiteboard.";
+        String value();
+    }
+ 
+    @PropertyType
+    @interface ContextPath { // will map to "osgi.http.whiteboard.context.path" property name
+        String PREFIX_="osgi.http.whiteboard.";
+        String value();
+    }
+ 
+    @Component
+    @ContextName(AppServletContext.NAME)
+    @ContextPath("/game")
+    public class AppServletContext extends ServletContextHelper {
+    }
+
+Same example as above, but also using configuration admin service in order to override 
+default service properties: Here, as in OSGi r7 declarative service, you can define a 
+callback method which accepts as arguments all (or some of) the defined property types:
+
+    :::java
+    @Component
+    @ContextName(AppServletContext.NAME)
+    @ContextPath("/game")
+    public class AppServletContext extends ServletContextHelper {
+        @ConfigurationDependency(propagate=true, pid="my.pid")
+        void updated(ContextName ctxName, ContextPath ctxPath) {
+           // if some properties are not present in the configuration, then the ones used in the annotation will be used.
+           // The configuration admin properties, if defined, will override the default configurations defined in the annotations
+        }
+    }
+
+The following is the same example as above, but this time the configuration callback can also define a Dictionary in the first argument (in case you want to also get the raw configuration dictionary:
+
+    :::java
+    @Component
+    @ContextName(AppServletContext.NAME)
+    @ContextPath("/game")
+    public class AppServletContext extends ServletContextHelper {
+        @ConfigurationDependency(propagate=true, pid="my.pid")
+        void updated(Dictionary<String, Object> rawConfig, ContextName ctxName) {
+           // if some properties are not present in the configuration, then the ones used in the annotation will be used.
+           // The configuration admin properties, if defined, will override the default configurations defined in the annotations
+        }
+    }
+
+Empty Marker annotations can also be used: when you define an empty annotation, it will be mapped to a java.lang.Boolean property type with Boolean.TRUE value. For example, the following component will be registered with "osgi.jaxrs.resource" service property with Boolean.TRUE value:
+
+    :::java
+    @PropertyType
+    @interface JaxrsResource { // will map to "osgi.jaxrs.resource" property name
+        String PREFIX_="osgi.";
+    }
+ 
+    @Component(provides = MyResource.class)
+    @JaxrsResource     
+    public class MyResource {
+       @Path(“foo”)
+       @GET
+       public void getFoo() {
+           ...
+       }
+   }
+
+User defined property types can also be applied on factory components, for example, 
+in the following, the service properties are declared using the user-defined annotations 
+(they will be overriden from the factory configuratin, if present in the config):
+
+    :::java
+    @Component(factoryPid="my.factory.pid")
+    @ContextName(AppServletContext.NAME)
+    ContextPath("/game")
+    class Hello implements HelloService {                 
+        void updated(ContextName ctxName, ContextPath ctxPath) {
+           // Configure or reconfigure our component. the default service 
+           // properties will be overriden by the factory configuration (if the
+           // service properties are defined in the config)
+        }
+    } 
+
+
+
