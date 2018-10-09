@@ -16,7 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Title: Dependency Manager - Service Scopes
+Dependency Manager - Service Scopes
 
 By default service providers are registered once in the osgi registry, and all service consumers share the same service provider instance.
 Now, you can control the scope of the provided services: From the provider side, a "scope" parameter 
