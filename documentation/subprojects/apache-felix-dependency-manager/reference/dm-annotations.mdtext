@@ -1064,7 +1064,7 @@ You can also use a filter condition that is matched against all manifest entries
 When applied on a class field, optional unavailable dependencies are injected with a 
 NullObject.
 
-Use the [@ConfigurationDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleDependency.html) to define a bundle dependency.
+Use the [@BundleDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleDependency.html) to define a bundle dependency.
 
 Attributes:
 
