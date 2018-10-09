@@ -348,7 +348,7 @@ found from the registry.
 The AdapterImpl class adapts the AdapteeService to the AdapterService. 
 The AdapterService will also have the following service property: p1=v1, p2=v2 :
 
-## Bundle adapter service 
+## Bundle adapter component
 
 Bundle adapters are similar to Adapter Components, but instead of adapting a service, they adapt a bundle 
 with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
@@ -400,7 +400,7 @@ includes the invocation of the following lifecycle method callbacks on the servi
 - [@Init](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html):
 this callback is invoked after all required dependencies have been injected. In this method, you can 
 yet add more dynamic dependencies using the DM API, or you can possibly configure other dependencies filter and required flags
-(see ## Dynamic Dependency Configuration).
+(see [Dynamic dependency configuration](## Dynamic dependency configuration)).
 
 - [@Start](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html):
 this callback is invoked after all required dependencies added in the @Init method have been injected.
@@ -554,7 +554,7 @@ Let's illustrate this use case with a concrete example: First here is the DHT as
      * This is the DHTService, which registers a DHTElement asynchronously.
      */
     public interface DHTService {
-       void insert(); // will callback element.inserted() later, once registered into the DHT.
+       void insert(DHTElement element); // will callback element.inserted() later, once registered into the DHT.
     }
 
 Next, here is our service, which uses the @LifecycleController in  order to take control of when the service is published into the OSGi  registry:
@@ -566,7 +566,7 @@ Next, here is our service, which uses the @LifecycleController in  order to take
         DHTService m_dht;
     
         @LifecycleController
-        Runnable m_registered; // will fire component startup, once invoked.
+        Runnable m_start; // will fire component startup, once invoked.
     
         @Init
         void init() {
@@ -577,7 +577,7 @@ Next, here is our service, which uses the @LifecycleController in  order to take
             // We are inserted into the DHT: we can now trigger our component startup.
             // We just invoke the runnable injected by our @LifecycleController annotation, which will trigger our
             // service publication (we'll be called in our @Start method before)
-            m_registered.run();
+            m_start.run();
         }
     
         @Start
@@ -596,11 +596,11 @@ Same example as above, using java8 method reference:
         DHTService m_dht;
     
         @LifecycleController
-        Runnable m_registered; // will fire component startup, once invoked.
+        Runnable m_start; // will fire component startup, once invoked.
     
         @Init
         void init() {
-            m_dht.insert(m_registered::run); // asynchronous, will callback m_registered.run() once registered into the DHT
+            m_dht.insert(m_start::run); // asynchronous, will callback m_registered.run() once registered into the DHT
         }
         
         @Start
@@ -830,7 +830,7 @@ For example:
 ### Service dependency properties propagation
 
 It is possible to propagate the dependency service properties, using the ServiceDependency.propagate attribute.
-When the service dependency properties are propagate, they will be appended to the component service properties, 
+When the service dependency properties are propagated, they will be appended to the component service properties, 
 but won't override them (the component service properties takes precedence over the propagated service dependencies).
 
 Example:
@@ -1141,7 +1141,7 @@ Then you can return this map from your @Init method:
     }
 
 So, after the init method returns, the map will be used to configure  the dependency named "foo", which will then be evaluated. 
-And once the  dependency is available, then your @Start callback will be invoked.
+And once the  dependency is available, then it will be injected and your @Start callback will be invoked.
 
 Usage example of a dynamic dependency:
 
@@ -1235,6 +1235,8 @@ Same example as above, but this time the dependency is added from the init metho
 Dependency Manager Lambda API:
 
     :::java
+    import static org.apache.felix.dm.lambda.DependencyManagerActivator.component;
+
     @Component
     public class PersistenceImpl implements Persistence {
         // Injected before init.
