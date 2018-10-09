@@ -3,7 +3,8 @@ Title: Dependency Manager - Resource Dependency
 A resource dependency allows you to depend on a resource. A resource is a URL and you can use a filter 
 condition based on protocol, host, port, path and URL.
 
-To depend on a resource URL, you can use the createResourceDependency method from the [Component interface](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/Component.html).
+To define a resource dependency, you need to use the [ResourceDependecy](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/ResourceDependency.html) interface.
+This interface can be created using DependencyActivatorBase.createResourceDependency() or DependencyManager.createResourceDependency() methods;
 
 Here is an example where a bundle activation declares a VideoPlayer component which depends on a resource URL.
 The component uses an optional dependency callback, which is invoked each time an URL is registered.
