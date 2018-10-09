@@ -187,7 +187,7 @@ will only be activated when all required dependencies are available. To define a
 Applying this annotation on top of a java class let it be a service component. All directly implemented 
 interfaces will be registered in the osgi registry, but you can control the provided interfaces using the `provides` attribute.
 Sometimes, your class implements some interfaces, but yet you don't want them to be registered, in this case, declaring `provides={}` ensures that
-no services will be registered. However, the component can still define service dependencies and it will be invoked in the @tart callback when all required 
+no services will be registered. However, the component can still define service dependencies and it will be invoked in the @Start callback when all required 
 dependencies are satisfied.
 
 The default public constructor is used to initialize the component, but you can also specify a static method that will be used to instantiate the component (using the
