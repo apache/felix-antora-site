@@ -16,8 +16,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-Title: Dependency Manager - What's new in release r12?
-
 This section describes some enhancements and API modification which have been performed in the dependency manager r12 release.
 Mainly,
 
