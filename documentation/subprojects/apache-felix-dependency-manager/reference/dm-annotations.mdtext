@@ -244,13 +244,13 @@ Example:
             // instantiate a first instance of Hello component
             Configuration c1 = cm.createFactoryConfiguration("my.factory.pid", "?");
             Hashtable props = new Hashtable();
-            newprops.put("key", "value1");
+            props.put("key", "value1");
             c1.update(props);
            
             // instantiate another instance of Hello component
             Configuration c2 = cm.createFactoryConfiguration("my.factory.pid", "?");
             props = new Hashtable();
-            newprops.put("key", "value2");
+            props.put("key", "value2");
             c2.update(props);
           
             // destroy the two instances of X component
@@ -422,32 +422,31 @@ Activating a component consists of the following steps:
 1) Wait for all required dependencies to be available. When all required dependencies are 
 available:
 
-- Instantiate the component
-- Inject all required dependencies (on class fields using reflection, or by invoking callback methods)
-- Inject all optional dependencies defined on class fields, possibly with a *NullObject* if the 
+- instantiate the component
+- inject all required dependencies (on class fields using reflection, or by invoking callback methods)
+- inject all optional dependencies defined on class fields, possibly with a *NullObject* if the 
 dependency is not available.
-- Call the component init method (annotated with *@Init*, see (see 
+- call the component init method (annotated with *@Init*, see (see 
 [@Init javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html)).). 
 In the init method, you are yet allowed to add some additional dependencies using the Dependency 
 Manager API or DM Lambda). Alternatively, you can also configure some  dependencies dynamically 
 (explained later, in [Dynamic Dependency Configuration](##dynamic-dependency-configuration).
 
-2) Wait for extra required dependencies optionally configured from the init() method. When all extra required
-dependencies are available:
+2) Wait for extra required dependencies optionally configured from the init() method. When all extra 
+required dependencies are available:
 
-- Invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html):
-- Publish some OSGi services, if any. the start method may return a Map<String, Object> that will 
-be appended to the provided service properties, if any.
-- Invoke the method annotatated with [@Registered annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html).
-The method, if declared, takes as argument a `ServiceRegistration` which corresponds to the registered service.
-
-3) Once the start callback has been started, and the service has been registered:
-
-- start tracking optional dependencies applied on method callbacks (useful for the whiteboard pattern).
-*Notice that NullObject pattern is not applied to optional callback dependencies*. 
+- invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html).
+The start method may return a Map<String, Object> that will 
+be appended to the provided service properties (the the component provides a service).
+- start tracking optional dependencies applied on method callbacks (invoke optional dependency callbacks).
+Notice that NullObject pattern is not applied to optional callback dependencies.
 In other words, if the dependency is not there, your callback won't be invoked at all. 
 If you need the NullObject pattern, then apply optional dependencies on class fields, not on 
-callback methods.
+callback methods. 
+- register the OSGi service, if the component provides one. 
+- invoke the method annotatated with [@Registered annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html).
+The method, if declared, takes as argument a `ServiceRegistration` which corresponds to the registered service.
+
 
 
 ## Component deactivation
@@ -1441,7 +1440,7 @@ takes as argument a ServiceObjects parameter like this:
 Internally, DM will use the 
 PrototypeServiceFactory.getService(Bundle clientBundle, ServiceRegistration reg) method in order to 
 instantiate the MyServiceImpl component. So, the MyServiceImpl component can optionally use the 
-@Inject annotation in order to get injected with the clientBundle and/or the service regisration, 
+@Inject annotation in order to get injected with the clientBundle and/or the service registration, 
 like this:
 
     :::java
