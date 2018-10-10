@@ -433,6 +433,7 @@ Manager API or DM Lambda). Alternatively, you can also configure some  dependenc
 2) Wait for extra required dependencies optionally configured from the init() method. When all extra 
 required dependencies are available:
 
+- inject required dependencies
 - invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html).
 The start method may return a Map<String, Object> that will 
 be appended to the provided service properties (the the component provides a service).
