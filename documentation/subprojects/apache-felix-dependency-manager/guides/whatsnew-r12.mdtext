@@ -213,8 +213,12 @@ The following has been removed in the annotation api:
 - Removed PropertyMetaData annotation, which was related to osgi metatype. Simply use standard metatype annotation.
 - propagated configuration dependencies are now taking precedence over component service properties, meaning that a component is defined with some service properties, then the service properties which are also found from the propagated configuration will be overriden (by the configuration properties)
 
-When using Java 9 / 10 / 11, then you can't use fluent service properties with dm-lambda, because in these new jdk version, the -parameters option does not generate anymore the lambda parameters metadata.
-So, the following example won't work **using jdk 9/10/11** (but still works using Java 8):
+## Usage of Java 9/10/11
+
+When using Java 9 / 10 / 11, then you can't use fluent service properties anymore with dm-lambda, 
+because in these new jdk versions, the "-parameters" option does not generate lambda parameters 
+metadata anymore. So, the following example won't work **using jdk 9/10/11** 
+(but still works using Java 8):
 
     :::java
     component(comp -> comp.impl(Foo.class).provides(FooService.class, property -> "service property value"));
