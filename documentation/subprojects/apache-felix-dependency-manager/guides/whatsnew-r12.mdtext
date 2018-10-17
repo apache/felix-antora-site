@@ -16,7 +16,7 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-This section describes some enhancements and API modification which have been performed in the dependency manager r12 release.
+This section describes some enhancements and API modification which have been performed in the dependency manager r13 release.
 Mainly,
 
 - Support for Java 9/10/11
