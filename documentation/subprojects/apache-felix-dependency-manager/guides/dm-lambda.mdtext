@@ -381,6 +381,9 @@ service properties as a suite of "`key -> value`" lambdas, like this:
         }
     }
 
+**CAUTION**: defining service properties using lambda parameters only works with Java8 , not 
+Java9/10/11, and this feature may be removed in next version.
+
 ## Depending on a configuration.
 
 Configuration dependency can be defined using the "`withCnf`" ComponentBuilder method.
