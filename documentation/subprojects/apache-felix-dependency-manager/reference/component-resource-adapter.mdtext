@@ -10,10 +10,10 @@ The adapter will be registered with the specified interface and existing propert
 resource plus any extra properties you supply here. It will also inherit all dependencies, 
 and if you declare the original service as a member it will be injected.
 
-To define a resource adapter, you first need to create a [ResourceComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/ResourceComponent.html)
+To define a resource adapter, you first need to create a [ResourceComponent](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/ResourceComponent.html)
 component using the DependencyActivatorBase.createResourceComponent() or the DependencyManager.createResourceComponent() method.
 
-The ResourceComponent extends the [Component](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/Component.html) and provides some additional
+The ResourceComponent extends the [Component](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/Component.html) and provides some additional
 setter methods related to resource adapters.
 
 
