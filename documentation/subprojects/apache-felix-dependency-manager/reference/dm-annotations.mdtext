@@ -1480,10 +1480,8 @@ The Bundle and ServiceRegistration can also be injected in the component Constru
     	}
     }
 
-## scoped services an @Start lifecycle callback
-
-When defining a scoped service with annotations, it is not possible to return service properties dynamically 
-from the start method (annotated with @Start).
+**Notice that when defining a scoped service with annotations, it is not possible to return service 
+properties dynamically from the start method (annotated with @Start).**
 
 # Service property types
 
