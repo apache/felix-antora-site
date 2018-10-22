@@ -1306,22 +1306,15 @@ The following example illustrates a composition of two object instances, which a
       void bind(Dependency2 dep2) {}
     
       // Lifecycle callbacks also applied on the Helper ...
-      @Init
-      void init() {}
     
       @Start
       void start() {}
     
-      @Stop
-      void stop() {}
-    
-      @Destroy()
-      void destroy() {}
     }
     
     public class Helper {
       // Also injected, since we are part of the composition
-      Dependency dep;
+      volatile Dependency dep;
     
       // But since we are not interested by the Dependency2, we don't have to declare the bind(Dependency2) method ...
     
@@ -1335,9 +1328,10 @@ The following example illustrates a composition of two object instances, which a
       }
     }
 
-Here, MyServiceImpl is the main component implementation, but is   composed of the Helper object instance. So all Dependencies defined in MyServiceImpl 
-will be also injected to the Helper (if the Helper  declares the fields or methods). The Helper may also declare lifecycle  callbacks (optionally).
-
+Here, MyServiceImpl is the main component implementation, but is composed of the Helper object 
+instance. So all Dependencies defined in MyServiceImpl 
+will be also injected to the Helper (if the Helper  declares the fields or methods). 
+The Helper may also define annotated lifecycle callbacks (optionally).
 
 # Service scopes
 
