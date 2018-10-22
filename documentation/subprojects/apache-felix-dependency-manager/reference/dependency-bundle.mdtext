@@ -4,7 +4,7 @@ A bundle dependency allows you to depend on a bundle in a certain set of states,
 You can also use a filter condition that is matched against all manifest entries. Finally you can provide a 
 reference to an existing bundle.
 
-To define a bundle dependency, you need to use the [BundleDependecy](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/BundleDependency.html) interface.
+To define a bundle dependency, you need to use the [BundleDependecy](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/BundleDependency.html) interface.
 This interface can be created using DependencyActivatorBase.createBundleDependency() or DependencyManager.createBundleDependency() methods;
 
 Here is an example of a component which tracks all ACTIVE bundles having a Service-Component header in the manifest:
