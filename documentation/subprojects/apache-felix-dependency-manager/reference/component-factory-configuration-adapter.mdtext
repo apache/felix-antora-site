@@ -7,7 +7,7 @@ interface and with the specified adapter service properties. Depending on the pr
 public factory configuration properties (which don't start with ".") will be propagated along with the 
 adapter service properties. It will also inherit all dependencies.
 
-To define an adapter component, you need to create an [FactoryComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/FactoryComponent.html) component
+To define an adapter component, you need to create an [FactoryComponent](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/FactoryComponent.html) component
 using the DependencyActivatorBase.createFactoryComponent() or the DependencyManager.createFactoryComponent() method.
 The FactoryComponent interface extends the Component interface in order to add extra setters methods needed to define a factory configuration adapter service component.
 
