@@ -39,8 +39,8 @@ available URL:
             Component c = manager.createResourceComponent()
                 .setResourceFilter("(&(path=/videos/*.mkv)(host=localhost))")
                 .setPropate(true)
-                .setInterface(AdapterService.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
-                .setImplementation(AdapterServiceImpl.class);
+                .setInterface(VideoPlayer.class.getName(), new Hashtable() {{ put("foo", "bar"); }})
+                .setImplementation(VideoPlayerImpl.class);
             dm.add(c);
         }
     }
