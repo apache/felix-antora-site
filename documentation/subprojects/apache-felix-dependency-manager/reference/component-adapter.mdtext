@@ -9,7 +9,7 @@ The adapter will be registered with the specified interface and existing propert
 service plus any extra properties you supply here. It will also inherit all dependencies, and if you declare 
 the original service as a member it will be injected.
 
-To define an adapter component, you need to create an [AdapterComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/AdapterComponent.html) component
+To define an adapter component, you need to create an [AdapterComponent](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/AdapterComponent.html) component
 using the DependencyActivatorBase.createAdapterComponent() or the DependencyManager.createAdapterComponent() method.
 This interface extends the Component interface in order to add extra setters methods needed to define an adapter service component.
 
