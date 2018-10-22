@@ -32,7 +32,7 @@ Mainly,
 Some enhancements have been done in the dm API:
 
 - the api to define aspects and adapters have been reworked (but dm API remains backward compatible)
-- support for [service scopes](http://felix.staging.apache.org/documentation/subprojects/apache-felix-dependency-manager/reference/service-scopes.html)
+- support for [service scopes](http://felix.apache.org/documentation/subprojects/apache-felix-dependency-manager/reference/service-scopes.html)
 - you can now declare multiple property type interfaces when using Configuration Dependency or Factory Components (this was needed to implement the enhancements for the annotations)
 - configuration dependency using metatypes can now declare property types
 - Allow to specify if propagated configuration dependencies must override service service properties (it was not possible to override service properties with propagated service properties so far)
