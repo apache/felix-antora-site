@@ -180,7 +180,7 @@ The following types of components are supported when using annotations:
 Components are the main building blocks for OSGi applications and can be annotated with @Component. They can publish themselves as a 
 service, and/or they can have dependencies. These dependencies will influence their life cycle as component 
 will only be activated when all required dependencies are available. To define a component, you can use the @Component annotation 
-(see [@Component javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Component.html)).
+(see [@Component javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Component.html)).
 
 Applying this annotation on top of a java class let it be a service component. All directly implemented 
 interfaces will be registered in the osgi registry, but you can control the provided interfaces using the `provides` attribute.
@@ -279,7 +279,7 @@ updated with the aspect. Aspects can be chained and may apply to the same target
 the ranking of the Aspect service is used to chain aspects in  the proper order).
 
 You can define an aspect service using the @AspectService annotation (see 
-[@AspectService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/AspectService.html)).
+[@AspectService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/AspectService.html)).
 
 Usage example:
 
@@ -310,7 +310,7 @@ and allow you to keep your basic services implementations clean and simple, addi
 them in a modular way.
 
 You can define an aspect service using the @AdapterService annotation (see 
-[@AdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/AdapterService.html)).
+[@AdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/AdapterService.html)).
 
 Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is 
 found from the registry. 
@@ -352,7 +352,7 @@ Bundle adapters are similar to Adapter Components, but instead of adapting a ser
 with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
 
 You can define a bundle adapter service using the @BundleAdapterService annotation (see 
-[@BundleAdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleAdapterService.html)).
+[@BundleAdapterService javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/BundleAdapterService.html)).
 
 The bundle adapter will be applied to any bundle that matches the specified bundle state mask and 
 filter conditions, which may match some of the bundle OSGi manifest headers. For each matching bundle an 
@@ -395,22 +395,22 @@ DM Runtime bundle (org.apache.felix.dm.runtime bundle).
 So, during activation, the component goes through a number of states, where each transition 
 includes the invocation of the following lifecycle method callbacks on the service implementation:
 
-- [@Init](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html):
+- [@Init](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Init.html):
 this callback is invoked after all required dependencies have been injected. In this method, you can 
 yet add more dynamic dependencies using the DM API, or you can possibly configure other dependencies filter and required flags
 (see [Dynamic dependency configuration](## Dynamic dependency configuration)).
 
-- [@Start](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html):
+- [@Start](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Start.html):
 this callback is invoked after all required dependencies added in the @Init method have been injected.
 
-- [@Registered](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html):
+- [@Registered](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Registered.html):
 this callback is invoked after the service component is registered (if the component provides a service).
 The callback can takes as argument a ServiceRegistration parameter.
 
-- [@Stop](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Stop.html):
+- [@Stop](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Stop.html):
 this method is called when a required dependency is lost or when the bundle is stopped
 
-- [@Destoy](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Destroy.html) annotations:
+- [@Destoy](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Destroy.html) annotations:
 the component is about to be destroyed
 
 ## Component activation
@@ -425,7 +425,7 @@ available:
 - inject all optional dependencies defined on class fields, possibly with a *NullObject* if the 
 dependency is not available.
 - call the component init method (annotated with *@Init*, see (see 
-[@Init javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Init.html)).). 
+[@Init javadoc](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Init.html)).). 
 In the init method, you are yet allowed to add some additional dependencies using the Dependency 
 Manager API or DM Lambda). Alternatively, you can also configure some  dependencies dynamically 
 (explained later, in [Dynamic Dependency Configuration](##dynamic-dependency-configuration).
@@ -434,7 +434,7 @@ Manager API or DM Lambda). Alternatively, you can also configure some  dependenc
 required dependencies are available:
 
 - inject extra required dependencies (if some were defined in init() method).
-- invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Start.html).
+- invoke the start method annotated with [@Start annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Start.html).
 The start method may return a Map<String, Object> that will 
 be appended to the provided service properties (the the component provides a service).
 - start tracking optional dependencies applied on method callbacks (invoke optional dependency callbacks).
@@ -443,7 +443,7 @@ In other words, if the dependency is not there, your callback won't be invoked a
 If you need the NullObject pattern, then apply optional dependencies on class fields, not on 
 callback methods. 
 - register the OSGi service, if the component provides one. 
-- invoke the method annotatated with [@Registered annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/Registered.html).
+- invoke the method annotatated with [@Registered annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Registered.html).
 The method, if declared, takes as argument a `ServiceRegistration` which corresponds to the registered service.
 
 
@@ -525,7 +525,7 @@ is automatically registered into the OSGi registry, after the @Start method retu
 But it is sometimes  required to control when the service is really started/published or  
 unpublished/stopped.
 
-This can be done using the [@LifecycleController](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/LifecycleController.html) annotation. 
+This can be done using the [@LifecycleController](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/LifecycleController.html) annotation. 
 This  annotation injects a Runnable object that can be invoked when you want to trigger your service 
 startup and publication. The @LifecycleController is like a required dependency and is injected before 
 the @Init method is called.
@@ -612,7 +612,7 @@ Same example as above, using java8 method reference:
 
 ## Service dependencies
 
-Service Dependencies can be defined using the [@ServiceDependency](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/ServiceDependency.html) annotation.
+Service Dependencies can be defined using the [@ServiceDependency](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/ServiceDependency.html) annotation.
 
 Dependencies can either be required or optional. Required dependencies need to be resolved before 
 the service can even become active. Optional dependencies can appear and disappear while the service 
@@ -922,7 +922,7 @@ availability.
 
 A configuration dependency is required by default, and allows you to depend on 
 the availability of a valid configuration for your component. Use the 
-[@ConfigurationDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/ConfigurationDependency.html) to define a configuration dependency.
+[@ConfigurationDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/ConfigurationDependency.html) to define a configuration dependency.
 
 This dependency requires the OSGi Configuration Admin Service. 
 Configuration Dependency callback is always invoked before any service dependency 
@@ -1062,7 +1062,7 @@ You can also use a filter condition that is matched against all manifest entries
 When applied on a class field, optional unavailable dependencies are injected with a 
 NullObject.
 
-Use the [@BundleDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r12/org/apache/felix/dm/annotation/api/BundleDependency.html) to define a bundle dependency.
+Use the [@BundleDependency annotation](http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/BundleDependency.html) to define a bundle dependency.
 
 Attributes:
 
