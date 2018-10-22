@@ -12,7 +12,7 @@ with the specified interface and with service properties found from the
 original bundle OSGi manifest headers plus any extra properties you supply 
 here. If you declare the original bundle as a member it will be injected. 
 
-To define a bundle adapter component, you need to create a [BundleComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/BundleComponent.html) component
+To define a bundle adapter component, you need to create a [BundleComponent](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/BundleComponent.html) component
 using the DependencyActivatorBase.createBundleComponent() or the DependencyManager.createBundleComponent() method.
 
 This interface extends the Component interface in order to add extra setters methods needed to define a bundle adapter service component.
