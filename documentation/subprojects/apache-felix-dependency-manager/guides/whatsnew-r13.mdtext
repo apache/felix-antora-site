@@ -202,6 +202,8 @@ Essentially, the following enhancements and modifications have been done regardi
 - propagated configuration dependencies are now taking precedence over component service properties, meaning that a component is defined with some service properties, then the service properties which are also found from the propagated configuration will be overriden (by the configuration properties)
 - Since some incompatible changes have been made, the major version of the annotation bundle has been bumped to 5.0.0.
 
+Please check new [dependency manager annotations doc](http://felix.apache.org/documentation/subprojects/apache-felix-dependency-manager/reference/dm-annotations.html)
+ 
 ### Not backward compatible annotation changes
 
 The following has been removed in the annotation api:
