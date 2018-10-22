@@ -6,7 +6,7 @@ Examples of these are adding a specific caching mechanism to a storage service o
 implementing logging. Aspects in OSGi can be applied to services and can be added and 
 removed at runtime.
 
-To define an aspect component, you need to create an [AspectComponent](http://felix.staging.apache.org/apidocs/dependencymanager/r12/org/apache/felix/dm/AspectComponent.html) component
+To define an aspect component, you need to create an [AspectComponent](http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/AspectComponent.html) component
 using the DependencyActivatorBase.createAspectComponent() or the DependencyManager.createAspectComponent() method.
 This interface extends the Component interface in order to add extra setters methods needed to define an aspect service component.
 
