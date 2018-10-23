@@ -1611,7 +1611,7 @@ in the following, the service properties are declared using the user-defined ann
 (they will be overriden from the factory configuratin, if present in the config):
 
     :::java
-    @Component(factoryPid="my.factory.pid")
+    @Component(factoryPid="my.factory.pid", propagate=true)
     @ContextName(AppServletContext.NAME)
     ContextPath("/game")
     class Hello implements HelloService {                 
