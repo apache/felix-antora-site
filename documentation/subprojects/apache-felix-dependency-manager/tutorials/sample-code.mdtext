@@ -1,0 +1,65 @@
+Title: Dependency Manager - Getting Started
+
+# Dependency Manager sample code
+
+You can download this [archive](dm.hello.tgz) which contains the following directories:
+
+- felix-framework-6.0.1/ -> this is a felix framework with pre-installed dependency manager r13 artifacts, as well as with 
+configadmin and metatype bundles (these dependencies are required by dm)
+- hello.api/ -> provides a sample component using the dependency manager API. 
+- hello.lambda/ -> provides a sample component using the dependency manager Lambda API. 
+- hello.annotations -> provides a sample component using the dependency manager annotations.
+
+All samples can be built using either gradle or maven. 
+To build with gradle, simply type "./gradlew jar", and to build with maven, type "mvn clean install".
+If you are using an http proxy, you must set the following environment:
+
+- for gradle: export GRADLE_OPTS="-Dhttp.proxyHost=<ip> -Dhttp.proxyPort=<port> -Dhttps.proxyHost=<ip> -Dhttps.proxyPort=<port>
+- for maven, you must setup your http proxy in your ~/.m2/settings.xml
+
+Once built, the three jars for all hello projects can be put in the felix-framework-6.0.1/bundles/ directory.
+Now start felix like this:
+
+    cd felix-framework-6.0.1
+    java -jar bin/felix.jar
+
+You should then see the following logs displayed to stdout:
+
+    HelloComponent started using Dependency Manager API
+    HelloComponent started using Dependency Manager Lambda
+    HelloComponent started using Dependency Manager Annotations
+
+You can also play with the dm shell commands. First, type "help dm":
+
+    g! help dm
+    
+    dm - List dependency manager components
+       scope: dependencymanager
+       flags:
+          compact, cp   Displays components using a compact form
+          nodeps, nd   Hides component dependencies
+          notavail, na   Only displays unavailable components
+          stats, stat, st   Displays components statistics
+          wtf   Detects where are the root failures
+       options:
+          bundleIds, bid, bi, b   <List of bundle ids or bundle symbolic names to display (comma separated)> [optional]
+          componentIds, cid, ci   <List of component identifiers to display (comma separated)> [optional]
+          components, c   <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
+          services, s   <OSGi filter used to filter some service properties> [optional]
+          top   <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
+
+Now type "dm" in order to see all dependency manager components:
+
+     g! dm
+    [1] hello.annotations
+     [3] hello.HelloComponent registered
+    [2] hello.api
+     [0] hello.HelloComponent registered
+    [3] hello.lambda
+     [1] hello.HelloComponent registered
+    [10] org.apache.felix.dependencymanager.runtime
+     [2] org.apache.felix.dm.runtime.DependencyManagerRuntime registered
+        active (DependencyManager-Component=*) bundle optional available
+        org.osgi.service.packageadmin.PackageAdmin service required available
+        org.osgi.service.log.LogService service optional unavailable
+
