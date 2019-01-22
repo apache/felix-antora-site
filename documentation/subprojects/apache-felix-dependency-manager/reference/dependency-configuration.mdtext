@@ -37,11 +37,12 @@ Arrays can be represented either as comma-separated values, optionally enclosed 
 
 Maps can be represented as single string values similarly as arrays, each value consisting of both the key and value separated by a dot. Optionally, the value can be enclosed in curly brackets. Similar to array, you can use the same dot notation using the keys. For example, a dictionary with:
 
-    "map" => "{key1.value1, key2.value2}"
+    map={key1.value1,key2.value2}
 
 and a dictionary with:
 
-    "map.key1" => "value1", "map2.key2" => "value2"
+    map.key1=value1 
+    map.key2=value2
 
 result in the *same* map being returned. Instead of a map, you could also define an interface with the methods `getKey1()` and `getKey2()` and use that interface as return type instead of a Map.
 
