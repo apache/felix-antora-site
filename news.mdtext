@@ -1,7 +1,8 @@
 Title: News
 
 * Apache Felix Http Jetty 4.0.8, Apache Felix Http Bridge 4.0.6 and Apache Felix Http Base 4.0.6 released (March 1st, 2019)
-* Apache Felix SCR 2.1.16 relesaed (February 26th, 2019)
+* Apache Felix SCR 2.1.16 released (February 26th, 2019)
+* Apache Felix Felix Health Check Annotations 2.0.0, Health Check API 2.0.0, Health Check Core 2.0.0, Health Check General Checks 2.0.0, Health Check Webconsole Plugin 2.0.0 released (February 25th, 2019)
 * Apache Felix Configuration Admin 1.9.12 release (February 24th, 2019)
 * Apache Felix Framework 6.0.2 released (January 31th, 2019)
 * Apache Felix Bnd SCR Plugin 1.9.2 (January 26th, 2019)
