@@ -1,0 +1,9 @@
+Title: Apache Felix Health Checks 
+
+Based on simple HealthCheck OSGi services, the Felix Health Check Tools ("hc" in short form) are used to check the health of live Felix systems, based on inputs like OSGi framework status, JMX MBean attribute values, or any context information retrieved via any API.
+
+Health checks are easily extensible either by configuring the supplied default HealthCheck services, or by implementing your own HealthCheck services to cater for project specific requirements.
+
+However for simple setups, the out of the box health checks are often sufficient. Executing Health Checks is a good starting point to run existing checks and to get familiar with how health checks work.
+
+See [README.md](https://github.com/apache/felix/blob/trunk/healthcheck/README.md) file in source repository for detailed documentation.
