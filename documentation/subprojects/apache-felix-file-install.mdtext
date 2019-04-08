@@ -17,6 +17,7 @@ The bundle runs on any framework. For its configuration, it will use the followi
 |`felix.fileinstall.poll`|2000 ms|Number of milliseconds between 2 polls of the directory|
 |`felix.fileinstall.dir`|./load|The name of the directory to watch. Several directories can be specified by using a comma separated list.|
 |`felix.fileinstall.log.level`|1|Threshold of logging information|
+|`felix.fileinstall.log.default`|stdout|Possible values are `stdout`, `jul`. Defines where to log when the OSGi LogService is not available.|
 |`felix.fileinstall.bundles.new.start`|true|Automatically start newly discovered bundles|
 |`felix.fileinstall.filter`| |A regular expression to be used to filter file names|
 |`felix.fileinstall.tmpdir`| |The name of the temporary directory to use with exploded or transformed bundles (defaults to the temporary dir for the JVM)|
@@ -26,7 +27,11 @@ The bundle runs on any framework. For its configuration, it will use the followi
 |`felix.fileinstall.start.level`|0|If set to a value different from `0`, File Install will set the start level for deployed bundles to that value. If set to `0`, the default framework bundle start level will be used.|
 |`felix.fileinstall.active.level`|0|FileInstall won't scan for files unless the active framework start level is greater than this value|
 |`felix.fileinstall.enableConfigSave`|true|If `false`, File Install will not write back in the file configurations changes. Note that this setting is global and can not be modified per polled directory.|
+|`felix.fileinstall.configEncoding`|ISO-8859-1|The encoding used to read and write configuration files.|
 |`felix.fileinstall.bundles.updateWithListeners`|false|If `true`, FileInstall will update managed bundles when a new version of an artifact handler is detected.  This detection is performed based on the last modification date of the bundle registering the handler.|
+|`felix.fileinstall.optionalImportRefreshScope`|all|Possible values are `none`, `managed`, `all`. Defines which bundles can be elected for refresh.|
+|`felix.fileinstall.fragmentRefreshScope`|all|Possible values are `none`, `managed`, `all`. Defines which bundles can be elected for refresh.|
+|`felix.fileinstall.disableNio2`|false|If `true`, File Install will not use NIO2 to scan directory and files.|
 |`felix.fileinstall.subdir.mode`|jar|Possible values are `jar`, `skip`, `recurse`.  Defines the behavior for sub directories.|
 
  	 
@@ -81,7 +86,6 @@ Example:
 
 Starting with version 3.1.0 it is possible to specify several directories to watch with the system property `felix.fileinstall.dir`; this property can either point to a single directory or a comma separated list of directories. In addition, Apache Felix File Install provides a ManagedServiceFactory to create multiple instances of File Install. Asuming you have a File Install bundle watching a `bundles` folder, creating a new instance is as simple as creating a new configuration file `org.apache.felix.fileinstall-<pid>.cfg` in that folder (substitute <pid> with a unique Id for the new service instance):
 
-<DIV class="code panel" style="border-style: solid;border-width: 1px;"><DIV class="codeHeader panelHeader" style="border-bottom-width: 1px;border-bottom-style: solid;"><B>org.apache.felix.fileinstall-configDir.cfg</B></DIV><DIV class="codeContent panelContent">
     felix.fileinstall.poll=2000
     felix.fileinstall.dir=/configDir
     felix.fileinstall.debug=-1
