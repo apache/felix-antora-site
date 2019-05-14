@@ -1,4 +1,5 @@
 Title: Dependency Manager Annotations
+
 [TOC]
 
 This section presents an overview and a reference guide of the capabilities and usage of the 
@@ -980,11 +981,12 @@ consisting of both the key and value separated by a dot. Optionally, the value c
 enclosed in curly brackets. Similar to array, you can use the same dot notation using 
 the keys. For example, a dictionary with:
 
-    "map" => "{key1.value1, key2.value2}"
+    map={key1.value1, key2.value2}
 
 and a dictionary with:
 
-    "map.key1" => "value1", "map2.key2" => "value2"
+    map.key1=value1
+    map.key2=value2
 
 result in the same map being returned. 
 Instead of a map, you could also define an interface with the methods getKey1() 
