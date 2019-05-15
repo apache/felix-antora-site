@@ -57,7 +57,7 @@ HTTP Service Bridge|org.apache.felix.http.bridge|4.0.6
 HTTP Service Bundle|org.apache.felix.http.bundle|3.0.0
 HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2
 HTTP Service Jetty|org.apache.felix.http.jetty|4.0.8
-HTTP Service Proxy|org.apache.felix.http.proxy|3.0.4
+HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
 HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2
