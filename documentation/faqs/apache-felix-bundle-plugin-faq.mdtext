@@ -158,9 +158,22 @@ If you want to run unit test in the same maven projects that need these SCR meta
 The flag `supportIncrementalBuild` is only necessary when you are using Eclipse and m2e, it supports generating the appropriate metadata during incremental builds. When you also want to support the old-style Felix SCR annotations from Java package `org.apache.felix.scr.annotations` you can add this BND plugin:
 
 
-    <configuration>
-      <instructions>
-        <!-- Support parsing of maven-scr-plugin annotations through the felix.scr.bnd plugin -->
-        <_plugin>org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;destdir=${project.build.outputDirectory};</_plugin>
-      </instructions>
-    </configuration>
+    <plugin>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>maven-bundle-plugin</artifactId>
+      <extensions>true</extensions>
+      <configuration>
+        <instructions>
+          <!-- Support parsing of maven-scr-plugin annotations through the felix.scr.bnd plugin -->
+          <_plugin>org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;destdir=${project.build.outputDirectory}</_plugin>
+        </instructions>
+      </configuration>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.scr.bnd</artifactId>
+          <version>1.9.4</version>
+        </dependency>
+      </dependencies>
+    </plugin>
+
