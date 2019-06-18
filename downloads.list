@@ -32,8 +32,8 @@ framework|6.0.3
 #
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
-Configuration Admin|org.apache.felix.configadmin|1.9.12
-Configurator|org.apache.felix.configurator|1.0.8
+Configuration Admin|org.apache.felix.configadmin|1.9.16
+Configurator|org.apache.felix.configurator|1.0.10
 Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.8
 Coordinator|org.apache.felix.coordinator|1.0.2
@@ -53,10 +53,8 @@ Health Check Core|org.apache.felix.healthcheck.core|2.0.6|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.4|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.0|project||-
 HTTP Service Base|org.apache.felix.http.base|4.0.6
-HTTP Service Bridge|org.apache.felix.http.bridge|4.0.6
-HTTP Service Bundle|org.apache.felix.http.bundle|3.0.0
-HTTP Service Cometd|org.apache.felix.http.cometd|2.3.2
-HTTP Service Jetty|org.apache.felix.http.jetty|4.0.8
+HTTP Service Bridge|org.apache.felix.http.bridge|4.0.8
+HTTP Service Jetty|org.apache.felix.http.jetty|4.0.10
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
