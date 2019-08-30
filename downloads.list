@@ -84,7 +84,7 @@ junit4osgi - shell command|org.apache.felix.ipojo.junit4osgi.felix-command|1.0.0
 junit4osgi - swing gui|org.apache.felix.ipojo.junit4osgi.swing-gui|1.0.0|project||doc/changelog.txt
 Lightweight HTTP Service Core|org.apache.felix.httplite.core|0.1.4|project||doc/changelog.txt
 Lightweight HTTP Service Complete|org.apache.felix.httplite.complete|0.1.4|project||doc/changelog.txt
-Log|org.apache.felix.log|1.2.0|project||doc/changelog.txt
+Log|org.apache.felix.log|1.2.2|project||doc/changelog.txt
 Logback|org.apache.felix.logback|1.0.0
 Main|org.apache.felix.main|6.0.3|project||doc/changelog.txt
 Metatype|org.apache.felix.metatype|1.2.2
