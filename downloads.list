@@ -54,7 +54,7 @@ Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.4|pro
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.0|project||-
 HTTP Service Base|org.apache.felix.http.base|4.0.8
 HTTP Service Bridge|org.apache.felix.http.bridge|4.0.10
-HTTP Service Jetty|org.apache.felix.http.jetty|4.0.12
+HTTP Service Jetty|org.apache.felix.http.jetty|4.0.14
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
