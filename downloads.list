@@ -96,7 +96,7 @@ SCR (Declarative Services)|org.apache.felix.scr|2.1.14
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
-SCR Generator|org.apache.felix.scr.generator|1.18.2|project
+SCR Generator|org.apache.felix.scr.generator|1.18.4|project
 Shell|org.apache.felix.shell|1.4.3|project||doc/changelog.txt
 Shell Text UI|org.apache.felix.shell.tui|1.4.1|project||doc/changelog.txt
 UPnP Base Driver (JDK 1.4+)|org.apache.felix.upnp.basedriver|0.8.0|project||-
@@ -127,7 +127,7 @@ Maven Bundle Plugin|maven-bundle-plugin|4.2.1|||changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
-Maven SCR Plugin|maven-scr-plugin|1.26.2
+Maven SCR Plugin|maven-scr-plugin|1.26.4
 OSGi Check Maven Plugin|osgicheck-maven-plugin|0.1.0
 
 # (3) Ant Tasks
@@ -139,5 +139,5 @@ SCR Ant Task|org.apache.felix.scr.ant|1.18.0
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-SCR bnd Plugin|org.apache.felix.scr.bnd|1.9.4
+SCR bnd Plugin|org.apache.felix.scr.bnd|1.9.6
 SCR Ext Anno|org.apache.felix.scr.ext.anno|1.0.0
