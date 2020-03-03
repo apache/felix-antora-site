@@ -30,7 +30,6 @@ To prepare or perform a release you *MUST BE* at least an Apache Felix Committer
 
 * each and every release must be [SIGNED](https://www.apache.org/dev/release-signing.html); your public key should be added to [https://www.apache.org/dist/felix/KEYS] (see *Appendix A*)
 * your public key should also be cross-signed by other Apache committers (not required, but suggested)
-* when preparing the release on Mac OS X, make sure you read *Appendix B* before continuing
 * make sure you have all Apache servers defined in your [settings.xml](https://maven.apache.org/developers/committer-settings.html)
 * use Maven 3.5.0 (or higher) 
 
@@ -90,7 +89,7 @@ the released version.
     * preparing the release will create the new tag in git, automatically checking in on your behalf
 1. Stage the release for a vote
     <div class="codehilite"><code>$ mvn release:perform</code></div>
-    * the release will automatically be inserted into a temporary staging repository for you, see the Nexus [staging documentation](http://www.sonatype.com/books/nexus-book/reference/staging.html) for full details
+    * the release will automatically be inserted into a temporary staging repository for you, see the Nexus [staging documentation](https://www.sonatype.com/books/nexus-book/reference/staging.html) for full details
     * you can continue to use `mvn release:prepare` and `mvn release:perform` on other sub-projects as necessary on the same machine and they will be combined in the same staging repository - this is useful when making a release of the Felix framework and its associated bundles.
 1. Close the staging repository
     * login to [https://repository.apache.org](https://repository.apache.org) using your Apache SVN credentials. Click on *Staging* on the left. Then click on *org.apache.felix* in the list of repositories. In the panel below you should see an open repository that is linked to your username and IP. Right click on this repository and select *Close*. This will close the repository from future deployments and make it available for others to view. If you are staging multiple releases together, skip this step until you have staged everything
@@ -110,10 +109,10 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     Hi,
     
     We solved N issues in this release:
-    http://issues.apache.org/jira/...
+    https://issues.apache.org/jira/...
     
     There are still some outstanding issues:
-    http://issues.apache.org/jira/...
+    https://issues.apache.org/jira/...
     
     Staging repository:
     https://repository.apache.org/content/repositories/orgapachefelix-[YOUR REPOSITORY ID]/
@@ -191,7 +190,7 @@ If you are not a member of the Apache Felix PMC you might have to ask a member o
 the PMC to execute this step.
 </div>
 
-We use the distribution mechanism as described in [How do I upload a release (newer way)?](http://www.apache.org/dev/release.html#upload-ci)
+We use the distribution mechanism as described in [How do I upload a release (newer way)?](https://www.apache.org/dev/release.html#upload-ci)
 
 1. Check out the [Felix releases repository](https://dist.apache.org/repos/dist/release/felix);
 1. `svn add` the artifacts to your checkout;
@@ -200,7 +199,7 @@ will remove the artifacts from the main distribution and the mirrors. They
 are still kept in the archive;
 1. `svn commit` your changes.
 
-After committing your changes, the [Apache Felix Dist](http://www.apache.org/dist/felix)
+After committing your changes, the [Apache Felix Dist](https://www.apache.org/dist/felix)
 folder is immediately updated. Updating the mirrors takes another few hours
 (up to a day).
 
@@ -223,7 +222,7 @@ in a checkout of the release tag (target/checkout if is still around, otherwise 
     $ export obr=${site}/obr
     $ mvn clean install \
         org.apache.felix:maven-bundle-plugin:deploy \
-        -DprefixUrl=http://repo1.maven.org/maven2 \
+        -DprefixUrl=https://repo1.maven.org/maven2 \
         -DremoteOBR=releases.xml \
         -DaltDeploymentRepository=apache.website::default::file:///${obr}
     $ svn commit -m"..." ${obr}/repository.xml
@@ -231,7 +230,7 @@ in a checkout of the release tag (target/checkout if is still around, otherwise 
 After committing the site must be published. If you release to OBR before [updating the site](update-the-site) you can defer publishing until after that.
 Otherwise publish the site by visiting the [Site Publication](https://cms.apache.org/felix/publish) link.
 
-The [releases](http://felix.apache.org/obr/releases.xml) page is updated immediately.
+The [releases](https://felix.apache.org/obr/releases.xml) page is updated immediately.
 
 **Note**: the project building the bundle must use the [{{ maven-bundle-plugin.headers.title }}]({{ maven-bundle-plugin.path }}) and use a version equal to or higher than 1.4.2.
 
@@ -269,7 +268,7 @@ Go to [Admin](https://issues.apache.org/jira/secure/project/ViewProject.jspa?pid
 
 This procedure applies currently only to the `maven-bundle-plugin`:
 
-1. Checkout the release tag of the plugin (or reset your svn workspace to the release tag)
+1. Checkout the release tag of the plugin 
 1. Run `mvn clean package site`
 1. Create a new folder for the new version at `https://svn.apache.org/repos/asf/felix/site/trunk/content/components/bundle-plugin-archives/bundle-plugin-<version>` and publish the generated site from `target/site` there
 1. Remove the previous documentation from `components/bundle-plugin` and SVN-copy the new version there as well
@@ -286,9 +285,9 @@ This procedure applies currently only to the `maven-bundle-plugin`:
     
     <<insert short description of the sub-project>>
     
-      http://felix.apache.org/site/apache-felix-XXX.html
+      https://felix.apache.org/site/apache-felix-XXX.html
     
-    This release is available from http://felix.apache.org/site/downloads.cgi and Maven:
+    This release is available from https://felix.apache.org/site/downloads.cgi and Maven:
     
       <dependency>
         <groupId>org.apache.felix</groupId>
@@ -309,7 +308,7 @@ Remember to forward this announcement to `users@felix.apache.org` - try *not* to
 
 *Remind Carsten about this release when he writes the next board report ;)*
 
-## Appendix A: create and add your key to http://www.apache.org/dist/felix/KEYS
+## Appendix A: create and add your key to https://www.apache.org/dist/felix/KEYS
 
 If you are using a *nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following command:
 
@@ -337,23 +336,6 @@ Provide the file to a PMC member, who will:
     $ cat toadd.key >> felix-dist/KEYS
     $ scn commit -m"KEYS += <committer>" felix-dist/KEYS
 
-You are now *DONE* and the changes are visible on http://www.apache.org/dist/felix/KEYS.
+You are now *DONE* and the changes are visible on https://www.apache.org/dist/felix/KEYS.
 
 
-## Appendix B: preparing releases on Mac OS X
-
-When running the `mvn release:prepare` command on Mac OS X, you might see the following error:
-
-    :::text
-    [INFO] Working directory: /homedir/dev/felix/dependencymanager
-    [INFO] ------------------------------------------------------------------------
-    [ERROR] BUILD FAILURE
-    [INFO] ------------------------------------------------------------------------
-    [INFO] Unable to commit files
-    Provider message:
-    The svn command failed.
-    Command output:
-    svn: Commit failed (details follow):
-    svn: MKACTIVITY of '/repos/asf/!svn/act/4f11ad5d-9161-0410-b4dd-cb727141ea8c': authorization failed (https://svn.apache.org){code}
-    
-This is due to a bug in Subversion on the Mac, as described by Brett Porter in his [blog|http://blogs.exist.com/bporter/2008/02/25/working-around-non-interactive-problems-in-leopards-subversion/]. He proposes putting an "svn" script at the head of your path to fix the issue.
