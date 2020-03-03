@@ -1,0 +1,48 @@
+Title: Apache Felix Project Info
+
+There are different roles with which Felix community members may be associated, these roles are: users, contributors, committers, and Project Management Committee (PMC) members. These roles are assigned and assumed based on merit. Everyone in the Felix community can participate to whatever level they desire, but participating and the resulting merit gained is directly linked to the role an individual may obtain. To further understand how the Felix community operates, refer to the [Community Roles and Processes](https://www.apache.org/foundation/how-it-works.html) document and/or join the [mailing lists](#mailinglists).
+
+## Committers and Project Management Committee (PMC)
+
+See Apache Phone Book: [Apache Felix Committers and PMC members](https://people.apache.org/phonebook.html?pmc=felix)
+
+### Past members:
+
+* Niclas Hedhman (stepped down 1/26/2009)
+* Trustin Lee (stepped down 2/9/2008)
+* Upayavira (stepped down 9/11/2007)
+
+## Source Code
+
+This project uses [git](https://git-scm.com/) to manage its source code. Instructions on git can be found at [git docs](https://git-scm.com/docs).
+
+### Web Access
+
+The following is a link to the online source repository.
+
+[https://github.com/apache/felix-dev](https://github.com/apache/felix-dev)
+
+### Committer and anonymous access
+
+The Felix source code can be checked out (anonymously) with the following command:
+
+    :::sh
+    $ git clone https://github.com/apache/felix-dev
+
+## Mailing lists
+
+The following mailing lists have been established for Apache Felix. For each list, there is a subscribe, unsubscribe, and archive link.
+
+|Name|Subscribe|Unsubscribe|Archive|
+|--|--|--|--|
+|*Felix Users* - For people using Felix subprojects and/or developing bundles. |[Subscribe](mailto:users-subscribe@felix.apache.org)|[Unsubscribe](mailto:users-unsubscribe@felix.apache.org)|[www.mail-archive.com](https://www.mail-archive.com/users%40felix.apache.org/)|
+|*Felix Dev* - For people interested in the internal development of Felix subprojects. |[Subscribe](mailto:dev-subscribe@felix.apache.org)|[Unsubscribe](mailto:dev-unsubscribe@felix.apache.org)|[www.mail-archive.com](https://www.mail-archive.com/dev%40felix.apache.org/)|
+|*Felix Commits* - For people intested in Felix subproject code changes. |[Subscribe](mailto:commits-subscribe@felix.apache.org)|[Unsubscribe](mailto:commits-unsubscribe@felix.apache.org)|[www.mail-archive.com](https://www.mail-archive.com/commits%40felix.apache.org/)|
+
+## Issue Tracking
+
+This project uses [JIRA](https://www.atlassian.com/software/jira), a J2EE-based, issue tracking and project management application. We use it for bugs, tasks and code contributions.
+
+Before creating a new issue, please make sure nobody has already added the issue you're reporting. When you do add an issue, please try to make it as informative as possible.
+
+The issue tracker can be found at [https://issues.apache.org/jira/browse/FELIX](https://issues.apache.org/jira/browse/FELIX)

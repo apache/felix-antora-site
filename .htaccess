@@ -1,5 +1,9 @@
 ErrorDocument 403 /errors/403.html
 ErrorDocument 404 /errors/404.html
-Redirect Permanent /documentation/development/committers.html /documentation/community/apache-felix-community-roles-and-processes.html
-Redirect Permanent /documentation/development/project-management-committee-pmc.html /documentation/community/apache-felix-community-roles-and-processes.html
+Redirect Permanent /mailinglists.html /documentation/community/project-info.html
+Redirect Permanent /documentation/development/issue-tracking.html /documentation/community/project-info.html
+Redirect Permanent /documentation/development/source-code.html /documentation/community/project-info.html
+Redirect Permanent /documentation/community/apache-felix-community-roles-and-processes.html /documentation/community/project-info.html
+Redirect Permanent /documentation/development/committers.html /documentation/community/project-info.html
+Redirect Permanent /documentation/development/project-management-committee-pmc.html /documentation/community/project-info.html
 Redirect Permanent /documentation/community/contributing-source-code.html /documentation/community/contributing.html
