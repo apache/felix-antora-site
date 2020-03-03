@@ -2,6 +2,6 @@ Title: Apache Felix Subproject Documentation
 
 {% for label, page in children %}* [{{ page.headers.title }}]({{ page.path }})
 {% endfor %}
-* [Config Admin](https://github.com/apache/felix-dev/tree/master/configadmin) - An implementation of the [OSGi Configuration Admin service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) for managing bundle configuration properties.
-* [HTTP Service](https://github.com/apache/felix-dev/tree/master/http) - An implementation of the [OSGi HTTP Whiteboard](https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html) and [Http Service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.html).
-* [Service Component Runtime](https://github.com/apache/felix-dev/tree/master/scr) - An implementation of the [OSGi Declarative Services specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html) providing a service-oriented component model to simplify OSGi-based development. 
+* [Apache Felix Config Admin](https://github.com/apache/felix-dev/tree/master/configadmin) - An implementation of the [OSGi Configuration Admin service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) for managing bundle configuration properties.
+* [Apache Felix HTTP Service](https://github.com/apache/felix-dev/tree/master/http) - An implementation of the [OSGi HTTP Whiteboard](https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html) and [Http Service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.html).
+* [Apache Felix Service Component Runtime](https://github.com/apache/felix-dev/tree/master/scr) - An implementation of the [OSGi Declarative Services specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html) providing a service-oriented component model to simplify OSGi-based development. 
