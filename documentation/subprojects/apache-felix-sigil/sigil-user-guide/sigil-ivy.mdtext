@@ -1,7 +1,0 @@
-Title: Sigil Ivy
-
-## Sigil Ivy Extension
-
-[Quick start]({{ refs.apache-felix-sigil-ivy-quickstart-sigil-ivy-integration-quickstart.path }})
-
-[ivysettings.xml]({{ refs.apache-felix-sigil-ivy-settings-sigil-ivysettings-xml.path }})
