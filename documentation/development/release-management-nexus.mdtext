@@ -1,6 +1,6 @@
 Title: Release Management
 
-*This is the new release process for Apache Felix, based on the updated Maven [process](http://maven.apache.org/developers/release/releasing.html)*
+*This is the release process for Apache Felix, based on Apache Maven [process](https://maven.apache.org/developers/release/releasing.html)
 
 ## Basics
 
@@ -14,7 +14,7 @@ The basic steps for releasing are:
 * [Call for vote](#starting-the-vote)
 * [Publish the release candidate](#promoting-the-release):
     * Publish the staged artifacts from Nexus Staging
-    * `svn add` the artifacts to Subversion repository and `svn rm` the artifacts from the previous release
+    * `svn add` the artifacts to the `dist` Subversion repository and `svn rm` the artifacts from the previous release
 * [Announce the release](#create-an-announcement)
 
 <div class="note">
@@ -28,13 +28,13 @@ In this case please ask a member of the PMC to actually publish the release arti
 
 To prepare or perform a release you *MUST BE* at least an Apache Felix Committer.
 
-* each and every release must be [SIGNED](http://www.apache.org/dev/release-signing.html); your public key should be added to [http://www.apache.org/dist/felix/KEYS] (see *Appendix A*)
+* each and every release must be [SIGNED](https://www.apache.org/dev/release-signing.html); your public key should be added to [https://www.apache.org/dist/felix/KEYS] (see *Appendix A*)
 * your public key should also be cross-signed by other Apache committers (not required, but suggested)
 * when preparing the release on Mac OS X, make sure you read *Appendix B* before continuing
-* make sure you have all Apache servers defined in your [settings.xml](http://maven.apache.org/developers/committer-settings.html)
-* use Maven 2.0.x (or 2.2.x), as Maven 2.1.x is known to produce wrong gpg pom signatures ([MGPG-14](http://jira.codehaus.org/browse/MGPG-14))
+* make sure you have all Apache servers defined in your [settings.xml](https://maven.apache.org/developers/committer-settings.html)
+* use Maven 3.5.0 (or higher) 
 
-*Note*: Listing the Apache servers in the `settings.xml` file also requires adding the password to that file. Starting with Maven 2.1 this password may be encrypted and needs not be give in plaintext. Please refer to [Password Encryption](http://maven.apache.org/guides/mini/guide-encryption.html) for more information.
+*Note*: Listing the Apache servers in the `settings.xml` file also requires adding the password to that file. Starting with Maven 2.1 this password may be encrypted and needs not be give in plaintext. Please refer to [Password Encryption](https://maven.apache.org/guides/mini/guide-encryption.html) for more information.
 
 In the past we staged release candidates on our local machines using a semi-manual process. Now that we inherit from the Apache parent POM version 5, a repository manager will automatically handle staging for you. This means you now only need to specify your GPG passphrase in the release profile of your `$\{user.home\}/.m2/settings.xml`:
 
@@ -59,7 +59,7 @@ Everything else has been configured in the latest Felix parent POM:
     <parent>
       <groupId>org.apache.felix</groupId>
       <artifactId>felix-parent</artifactId>
-      <version>1.2.0</version>
+      <version>6</version>
       <relativePath>../pom/pom.xml</relativePath>
     </parent>
 
@@ -82,12 +82,12 @@ the released version.
     [INFO] Retrieving previous build number from apache.snapshots.https  
     ...</code></div>
     * if you experience an error during deployment like a HTTP 401 check your settings for the required server entries as outlined in the *Prerequisites*
-    * be sure that the generated artifacts respect the Apache release [rules](http://www.apache.org/dev/release.html): NOTICE and LICENSE files should be present in the META-INF directory within the jar. For -sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4
+    * be sure that the generated artifacts respect the Apache release [rules](https://www.apache.org/dev/release.html): NOTICE and LICENSE files should be present in the META-INF directory within the jar. For -sources artifacts, be sure that your POM does not use the maven-source-plugin:2.0.3 which is broken. The recommended version at this time is 2.0.4
     * you should verify the deployment under the [snapshot](https://repository.apache.org/content/groups/snapshots/org/apache/felix) repository on Apache
 1. Prepare the release
     <div class="codehilite"><code>$ mvn release:clean    
     $ mvn release:prepare</code></div>
-    * preparing the release will create the new tag in SVN, automatically checking in on your behalf
+    * preparing the release will create the new tag in git, automatically checking in on your behalf
 1. Stage the release for a vote
     <div class="codehilite"><code>$ mvn release:perform</code></div>
     * the release will automatically be inserted into a temporary staging repository for you, see the Nexus [staging documentation](http://www.sonatype.com/books/nexus-book/reference/staging.html) for full details
@@ -119,7 +119,7 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     https://repository.apache.org/content/repositories/orgapachefelix-[YOUR REPOSITORY ID]/
     
     You can use this UNIX script to download the release and verify the signatures:
-    http://svn.apache.org/repos/asf/felix/trunk/check_staged_release.sh
+    https://github.com/apache/felix-dev/blob/master/check_staged_release.sh
     
     Usage:
     sh check_staged_release.sh [YOUR REPOSITORY ID] /tmp/felix-staging
@@ -131,13 +131,13 @@ Propose a vote on the dev list with the closed issues, the issues left, and the 
     
     This vote will be open for 72 hours.
 
-To get the JIRA release notes link, browse to the FELIX [JIRA](http://issues.apache.org/jira/browse/FELIX) page, select [Release Notes|http://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310100] and choose the relevant sub-project release and format (HTML)
+To get the JIRA release notes link, browse to the FELIX [JIRA](https://issues.apache.org/jira/browse/FELIX) page, select [Release Notes|https://issues.apache.org/jira/secure/ConfigureReleaseNote.jspa?projectId=12310100] and choose the relevant sub-project release and format (HTML)
 
-To get the list of issues left in JIRA, select the [Open Issues](http://issues.apache.org/jira/browse/FELIX?report=com.atlassian.jira.plugin.system.project:openissues-panel) tab on the main FELIX page, and select the relevant sub-project.
+To get the list of issues left in JIRA, select the [Open Issues](https://issues.apache.org/jira/browse/FELIX?report=com.atlassian.jira.plugin.system.project:openissues-panel) tab on the main FELIX page, and select the relevant sub-project.
 
 ## Wait for the Results
 
-From [Votes on Package Releases](http://www.apache.org/foundation/voting.html):
+From [Votes on Package Releases](https://www.apache.org/foundation/voting.html):
 
 > Votes on whether a package is ready to be released follow a format similar to majority approval  -- except that the decision is officially determined solely by whether at least three +1 votes were registered. Releases may not be vetoed. Generally the community will table the vote to release if anyone identifies serious problems, but in most cases the ultimate decision, once three or more positive votes have been garnered, lies with the individual serving as release manager. The specifics of the process may vary from project to project, but the 'minimum of three +1 votes' rule is universal.
 
