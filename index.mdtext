@@ -13,7 +13,7 @@ Refer to the news [archive]({{ refs.news.path }}) for all news.
 
 The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology; the following list summarizes each released subproject:
 
-* [Config Admin]({{ refs.apache-felix-config-admin.path }}) - An implementation of the OSGi Configuration Admin service specification for managing bundle configuration properties.
+* [Config Admin](https://github.com/apache/felix-dev/tree/master/configadmin) - An implementation of the [OSGi Configuration Admin service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) for managing bundle configuration properties.
 * [Dependency Manager]({{ refs.apache-felix-dependency-manager.path }}) - An API-based component model to simplify OSGi-based development.
 * [Event Admin]({{ refs.apache-felix-event-admin.path }}) - An implementation of the OSGi Event Admin service specification for event-based communication.
 * [File Install]({{ refs.apache-felix-file-install.path }}) - A simple, directory-based management agent for managing bundle deployment.
@@ -31,7 +31,7 @@ The Felix project is organized into subprojects, where each subproject targets a
 * [OSGi Bundle Repository]({{ refs.apache-felix-osgi-bundle-repository.path }}) - A bundle repository service to simplify discovering and deploying bundles and their dependencies.
 * [Preferences]({{ refs.apache-felix-preferences-service.path }}) - An implementation of the OSGi Preferences service specification for storing settings and preferences.
 * [Remote Shell]({{ refs.apache-felix-remote-shell.path }}) - A remote, text-based interface to the Apache Felix Shell.
-* [Service Component Runtime]({{ refs.apache-felix-service-component-runtime.path }}) - An implementation of the OSGi Declarative Services specification providing a service-oriented component model to simplify OSGi-based development.
+* [Service Component Runtime](https://github.com/apache/felix-dev/tree/master/scr) - An implementation of the [OSGi Declarative Services specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html) providing a service-oriented component model to simplify OSGi-based development.
 * [Shell]({{ refs.apache-felix-shell.path }}) - A very simple shell service implemented as a bundle for interacting with an OSGi framework instance.
 * [Shell TUI]({{ refs.apache-felix-shell-tui.path }}) - A simple, text-based interface to the Apache Felix Shell.
 * [UPnP]({{ refs.apache-felix-upnp.path }}) - An implementation of the OSGi UPnP Device service specification for UPnP device integration.
