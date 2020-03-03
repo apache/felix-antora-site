@@ -1,6 +1,6 @@
 ErrorDocument 403 /errors/403.html
 ErrorDocument 404 /errors/404.html
-Redirect Permanent /mailinglists.html /documentation/community/project-info.html
+Redirect Permanent /mailinglists.html /documentation/community/project-info.html#mailing-lists
 Redirect Permanent /documentation/development/issue-tracking.html /documentation/community/project-info.html
 Redirect Permanent /documentation/development/source-code.html /documentation/community/project-info.html
 Redirect Permanent /documentation/community/apache-felix-community-roles-and-processes.html /documentation/community/project-info.html

@@ -1,6 +1,6 @@
 Title: Contributing
 
-Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help support Felix, this page is intended as a starting point for specific contribution ideas. To further understand how the Felix community operates, refer to the [Community Roles and Processes](https://www.apache.org/foundation/how-it-works.html) document and/or join the [mailing lists]({{ refs.community.project-info.path }}).
+Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished. If you want to help support Felix, this page is intended as a starting point for specific contribution ideas. To further understand how the Felix community operates, refer to the [Community Roles and Processes](https://www.apache.org/foundation/how-it-works.html) document and/or join the [mailing lists]({{ refs.project-info.path }}).
 
 The Felix project organizes its "to do" list using the [JIRA](https://issues.apache.org/jira/browse/Felix) issue tracking system. Specific items from Felix' JIRA issue tracking system are highlighted on this page, but are not limited to it. The purpose of the list here is to highlight issues that are either more important or serve as good entry points for new contributors.
 
@@ -12,7 +12,7 @@ It is important to point out that you do not need to be a programmer to contribu
 
 ## Programmers
 
-Before contributing, make sure to be subscribed to the [developer mailing list](({{ refs.community.project-info.path }})). If you don't have your own issue to scratch, you can browse open issues in [JIRA](https://issues.apache.org/jira/browse/Felix) and submit a patch.
+Before contributing, make sure to be subscribed to the [developer mailing list]({{ refs.project-info.path }}). If you don't have your own issue to scratch, you can browse open issues in [JIRA](https://issues.apache.org/jira/browse/Felix) and submit a patch.
 
 Source code contributions fall into two categories: pull requests or grants. This document describes both and how to handle each.
 
