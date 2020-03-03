@@ -2,16 +2,9 @@ Title: Apache Felix Application Demonstration
 
 *(This document is a work in progress.)*
 
-Apache Felix provides a foundation for creating modular and dynamically extensible applications. This page presents an example application to demonstrate the various approaches to consider when creating a OSGi/Felix-based application. It is recommended that you have a look at the more [basic examples]({{ refs.felix-getting-started.path }}) such as [FELIX:Apache Felix Framework Usage Documentation] before you start with this one.
+Apache Felix provides a foundation for creating modular and dynamically extensible applications. This page presents an example application to demonstrate the various approaches to consider when creating a OSGi/Felix-based application. 
 
-In order to follow this example you need three things:
-
-1. A [Subversion](http://subversion.apache.org/) client to check out the source code,
-1. The IDE of your choice to view the source code, and
-1. [Maven](http://maven.apache.org) to build the source code.
-
-The source code of the examples is available in the Felix SVN repository at [http://svn.apache.org/repos/asf/felix/trunk/examples](http://svn.apache.org/repos/asf/felix/trunk/examples). If you feel more familiar with git, you can use the git mirror at: [git://git.apache.org/felix.git] or browse the source code at github: [https://github.com/apache/felix]
-
+The source code of the examples is available in the Felix repository at [https://github.com/apache/felix-dev/tree/master/examples](https://github.com/apache/felix-dev/tree/master/examples).
 ## Potential Approaches
 
 When creating an OSGi-based application there are two main orthogonal issues to consider:
@@ -33,24 +26,21 @@ The example application is a very simple paint program that effectively function
 
 ## Getting the source code
 
-Currently, the example application is only available in our source control repositories. We have created two applications, one for the service-based and one for the extender-based approach. Both examples can be run as a bundled application on top of any OSGi implementation or by hosting an embedded framework. Assuming you are using svn to get the source code, you can find the source at the following locations:
+Currently, the example application is only available in our source control repositories. We have created two applications, one for the service-based and one for the extender-based approach. Both examples can be run as a bundled application on top of any OSGi implementation or by hosting an embedded framework. 
+Check out each project using an appropriate command, such as:
 
+git clone https://github.com/apache/felix-dev.git felix-dev
 
-    http://svn.apache.org/repos/asf/felix/trunk/examples/servicebased.host
-    http://svn.apache.org/repos/asf/felix/trunk/examples/servicebased.circle
-    http://svn.apache.org/repos/asf/felix/trunk/examples/servicebased.square
-    http://svn.apache.org/repos/asf/felix/trunk/examples/servicebased.triangle
-    
-    http://svn.apache.org/repos/asf/felix/trunk/examples/extenderbased.host
-    http://svn.apache.org/repos/asf/felix/trunk/examples/extenderbased.circle
-    http://svn.apache.org/repos/asf/felix/trunk/examples/extenderbased.square
-    http://svn.apache.org/repos/asf/felix/trunk/examples/extenderbased.triangle
+You can find the source at the following locations:
 
-
-Check out each project using an appropriate SVN command, such as:
-
-
-    svn co http://svn.apache.org/repos/asf/felix/trunk/examples/servicebased.host
+ - felix-dev/examples/servicebased.host
+ - felix-dev/examples/servicebased.circle
+ - felix-dev/examples/servicebased.square
+ - felix-dev/examples/servicebased.triangle
+ - felix-dev/examples/extenderbased.host
+ - felix-dev/examples/extenderbased.circle
+ - felix-dev/examples/extenderbased.square
+ - felix-dev/examples/extenderbased.triangle
 
 
 ## Building and running the examples
@@ -83,7 +73,7 @@ The service-based application uses the OSGi service concept and the service regi
 
 ### Defining shapes as services
 
-Bundles that want to contribute a shape service have to implement the `SimpleShape` interface. Take a look at the circle bundle for example. The circle bundle only contains one class, the `Activator`. A `[BundleActivator](http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleActivator.html)` is responsible for starting up a bundle. Therefore it gets passed in a `[BundleContext|http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleContext.html]`, that can be used to perform registration of services within the framework. The `Activator` also contains an inner class that implements the `SimpleShape` interface and therefore represents the `SimpleShape` implementation of a circle. The `start(BundleContext context` method is used to register the circle implementation as a service:
+Bundles that want to contribute a shape service have to implement the `SimpleShape` interface. Take a look at the circle bundle for example. The circle bundle only contains one class, the `Activator`. A [BundleActivator](http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleActivator.html) is responsible for starting up a bundle. Therefore it gets passed in a [BundleContext](http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleContext.html), that can be used to perform registration of services within the framework. The `Activator` also contains an inner class that implements the `SimpleShape` interface and therefore represents the `SimpleShape` implementation of a circle. The `start(BundleContext context` method is used to register the circle implementation as a service:
 
 
     Dictionary<String, Object> dict = new Hashtable<String, Object>();
@@ -92,11 +82,11 @@ Bundles that want to contribute a shape service have to implement the `SimpleSha
     m_context.registerService(SimpleShape.class.getName(), new Circle(), dict);
 
 
-First a `[Dictionary](http://docs.oracle.com/javase/6/docs/api/java/util/Dictionary.html)` is created to hold the service's properties. The two service properties are added to the dictionary. The icon of the circle service is located under src/main/resources/org/apache/example/servicebased/circle/circle.png. It gets loaded as an `[ImageIcon|http://docs.oracle.com/javase/6/docs/api/javax/swing/ImageIcon.html]` and added as icon property. The service then gets registered in the service registry by passing the name of the service interface, a service object and the service's properties.
+First a [Dictionary](http://docs.oracle.com/javase/6/docs/api/java/util/Dictionary.html) is created to hold the service's properties. The two service properties are added to the dictionary. The icon of the circle service is located under src/main/resources/org/apache/example/servicebased/circle/circle.png. It gets loaded as an [ImageIcon](http://docs.oracle.com/javase/6/docs/api/javax/swing/ImageIcon.html)` and added as icon property. The service then gets registered in the service registry by passing the name of the service interface, a service object and the service's properties.
 
 ### Detecting shape services
 
-The host's `Activator` creates a `DrawingFrame` for displaying the different shapes. It then delegates adding and removing of `SimpleShape` services to a `[ServiceTracker](http://www.osgi.org/javadoc/r4v43/org/osgi/util/tracker/ServiceTracker.html)` implementation. The `ShapeTracker` gets notified, when a new `SimpleShape` service is added to, modified or removed from the service registry.
+The host's `Activator` creates a `DrawingFrame` for displaying the different shapes. It then delegates adding and removing of `SimpleShape` services to a [ServiceTracker](http://www.osgi.org/javadoc/r4v43/org/osgi/util/tracker/ServiceTracker.html) implementation. The `ShapeTracker` gets notified, when a new `SimpleShape` service is added to, modified or removed from the service registry.
 
 ## Extender-Based Application
 
@@ -104,7 +94,7 @@ In contrast to the service-based example, the extender-based example uses bundle
 
 ### Defining shapes as extensions
 
-Bundles that want to contribute a `SimpleShape` extension have to implement the `SimpleShape` interface. Have a look at the extender-based circle implementation, for example. It only contains one class, `Circle`, that implements `SimpleShape`. Note, that in contrast to the service-based example there is no need to define a `[BundleActivator](http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleActivator.html)`. This is because, there is no need to register a service within the framework. Information about the provided shape implementation is located in the bundle headers instead. Have a look at the circle's `MANIFEST.MF` file:
+Bundles that want to contribute a `SimpleShape` extension have to implement the `SimpleShape` interface. Have a look at the extender-based circle implementation, for example. It only contains one class, `Circle`, that implements `SimpleShape`. Note, that in contrast to the service-based example there is no need to define a [BundleActivator](http://www.osgi.org/javadoc/r4v43/org/osgi/framework/BundleActivator.html). This is because, there is no need to register a service within the framework. Information about the provided shape implementation is located in the bundle headers instead. Have a look at the circle's `MANIFEST.MF` file:
 
 
     Manifest-Version: 1.0
@@ -134,11 +124,11 @@ Note: The manifest file is generated by the Maven build, so you will only find i
 
 ### Detecting shape bundles
 
-Like the `[ServiceTracker](http://www.osgi.org/javadoc/r4v43/org/osgi/util/tracker/ServiceTracker.html)` for tracking services, there is a `[BundleTracker|http://www.osgi.org/javadoc/r4v42/org/osgi/util/tracker/BundleTracker.html]` for tracking bundles. A `BundleTracker` get's notified, when the state of tracked bundles change. Have a look at `org.apache.felix.example.extenderbased.host.ShapeBundleTracker`. The constructor defines that only active bundles should be tracked. The `addingBundle(Bundle bundle, BundleEvent event)` method gets called by the framework, when a bundle enters the activated state. The tracker then checks if the bundle's headers contain the extension name property and, if so, adds the icon to the application.
+Like the [ServiceTracker](http://www.osgi.org/javadoc/r4v43/org/osgi/util/tracker/ServiceTracker.html) for tracking services, there is a [BundleTracker](http://www.osgi.org/javadoc/r4v42/org/osgi/util/tracker/BundleTracker.html) for tracking bundles. A `BundleTracker` get's notified, when the state of tracked bundles change. Have a look at `org.apache.felix.example.extenderbased.host.ShapeBundleTracker`. The constructor defines that only active bundles should be tracked. The `addingBundle(Bundle bundle, BundleEvent event)` method gets called by the framework, when a bundle enters the activated state. The tracker then checks if the bundle's headers contain the extension name property and, if so, adds the icon to the application.
 
 ## Embedding the Framework
 
-The OSGi R4.2 specification defines APIs to allow an application to host it's own embedded framework instance. Therefore an implementation of the `[FrameworkFactory](http://www.osgi.org/javadoc/r4v42/org/osgi/framework/launch/FrameworkFactory.html)` interface has to be used. OSGi implementers specify their `FrameworkFactory` implementation in the `META-INF/services/org.osgi.framework.launch.FrameworkFactory` file. Prior to Java 6, one had to parse the class name in that file by oneself. Luckily Java 6 has the `[ServiceLoader<S>|http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html]` class, that lets you easily instantiate a `FrameworkFactoy`. Have a look at the contents of the `org.apache.felix.example.extenderbased.host.launch` package in the extender-based host bundle (the implementation is the same for the service-based example).
+The OSGi R4.2 specification defines APIs to allow an application to host it's own embedded framework instance. Therefore an implementation of the [FrameworkFactory](http://www.osgi.org/javadoc/r4v42/org/osgi/framework/launch/FrameworkFactory.html) interface has to be used. OSGi implementers specify their `FrameworkFactory` implementation in the `META-INF/services/org.osgi.framework.launch.FrameworkFactory` file. Prior to Java 6, one had to parse the class name in that file by oneself. Luckily Java 6 has the [ServiceLoader](http://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html) class, that lets you easily instantiate a `FrameworkFactoy`. Have a look at the contents of the `org.apache.felix.example.extenderbased.host.launch` package in the extender-based host bundle (the implementation is the same for the service-based example).
 
 The `Application` class is responsible for creating the framework and installing and starting the bundles. It uses a `ConfigUtil` for creating the framework configuration that is needed to create a framework using the `FrameworkFactory`. The `ConfigUtil` also creates a temporary cache directory for the framework. If the creation of the framework is successful, `installAndStartBundles(String... bundleLocations)` will be called to start the actual application. Therefore the `Activator` of the host bundle is instantiated. Note, that the host bundle can not register itself within the framework it just created. Only the extension bundles will be registered within the framework.
 
@@ -146,4 +136,4 @@ As you can see no Felix-specific code is involved in any of the examples. That's
 
 ## Feedback
 
-Subscribe to the Felix users mailing list by sending a message to [users-subscribe@felix.apache.org]({{ refs.mailto-users-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [users@felix.apache.org|mailto:users@felix.apache.org].
+Subscribe to the Felix users mailing list by sending a message to [users-subscribe@felix.apache.org]({{ refs.mailto-users-subscribe-felix-apache-org.path }}); after subscribing, email questions or feedback to [users@felix.apache.org](mailto:users@felix.apache.org).
