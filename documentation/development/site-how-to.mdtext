@@ -16,8 +16,6 @@ Notice:    Licensed to the Apache Software Foundation (ASF) under one
            specific language governing permissions and limitations
            under the License.
 
-# Site How-To
-
 The site is managed with the [Apache CMS](https://www.apache.org/dev/cms.html)
 where the source is kept in SVN at <https://svn.apache.org/repos/asf/felix/site/trunk/content>.
 
