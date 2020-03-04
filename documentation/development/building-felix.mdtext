@@ -1,9 +1,0 @@
-Title: Building Apache Felix
-
-In most cases you might only be interested in one or two sub projects. However, you still might want to check out all sub projects in one go.
-
-To get started:
-
-- Most Apache Felix projects use Apache Maven as the build tool. Therefore, download and install the latest Apache Maven 3 release.
-- Check out or update the `felix-dev` git repository (i.e., `git clone https://github.com/apache/felix-dev.git`).
-- Go to the sub project you're interested in and type: "mvn clean install" to build it. If this project is not using Maven, refer to the docs for the sub project on how to build it.
