@@ -1,4 +1,4 @@
-Title: Site How-To
+Title: Site How To
 
 The site is managed with the [Apache CMS](https://www.apache.org/dev/cms.html)
 where the source is kept in SVN at <https://svn.apache.org/repos/asf/felix/site/trunk/content>.
