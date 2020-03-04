@@ -9,7 +9,7 @@ In an effort to make it easier to find desired documentation, we have divided ou
 * [Subprojects]({{ refs.subprojects.path }}) - This area captures user documentation for the various Felix subprojects.
 * [Tutorials, examples, and presentations]({{ refs.tutorials-examples-and-presentations.path }}) - This area captures general user documentation that does not necessarily fit into any single subproject.
 
-In addition a [site map]({{ refs.sitemap.path }}) is available as a table of
+In addition a [site map](https://felix.apache.org/sitemap.html) is available as a table of
 contents of the site.
 
 If you are unable to find the documentation you need, please ask on the [mailing lists]({{ refs.mailinglists.path }}). Also, feedback on improving the documentation and/or organization of this site is welcome.
