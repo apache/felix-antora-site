@@ -11,32 +11,9 @@ Refer to the news [archive]({{ refs.news.path }}) for all news.
 
 # Apache Felix Subprojects
 
-The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology; the following list summarizes each released subproject:
+The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology.
 
-* [Config Admin](https://github.com/apache/felix-dev/tree/master/configadmin) - An implementation of the [OSGi Configuration Admin service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) for managing bundle configuration properties.
-* [Dependency Manager]({{ refs.apache-felix-dependency-manager.path }}) - An API-based component model to simplify OSGi-based development.
-* [Event Admin]({{ refs.apache-felix-event-admin.path }}) - An implementation of the OSGi Event Admin service specification for event-based communication.
-* [File Install]({{ refs.apache-felix-file-install.path }}) - A simple, directory-based management agent for managing bundle deployment.
-* [Framework]({{ refs.apache-felix-framework.path }}) - An implementation of the OSGi R6 core framework.
-* [Gogo]({{ refs.apache-felix-gogo.path }}) - An advanced shell for interacting with OSGi frameworks.
-* [Health Checks]({{ refs.apache-felix-healthchecks.path }}) - An extensible framework to monitor the status of the OSGi container at runtime.
-* [HTTP Service](https://github.com/apache/felix-dev/tree/master/http) - An implementation of the OSGi HTTP Whiteboard and Http Service specification.
-* [Inventory Printer]({{ refs.apache-felix-inventory.path }}) - A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
-* [iPOJO]({{ refs.apache-felix-ipojo.path }}) - A sophisticated service-oriented component model to simplify OSGi-based development.
-* [Log]({{ refs.apache-felix-log.path }}) - A simple, memory-based implementation of the OSGi Log service specification.
-* [Felix Logback]({{ refs.apache-felix-logback.path }}) - Apache Felix Logback is a small integration of the [Logback](https://logback.qos.ch/) backend with OSGi.
-* [Maven Bundle Plugin]({{ refs.apache-felix-maven-bundle-plugin-bnd.path }}) - A Maven plugin to simplify building bundles.
-* [Metatype]({{ refs.apache-felix-metatype-service.path }}) - An implementation of the OSGi Metatype service to describe types needed by bundles.
-* [OSGi Bundle Repository]({{ refs.apache-felix-osgi-bundle-repository.path }}) - A bundle repository service to simplify discovering and deploying bundles and their dependencies.
-* [Preferences]({{ refs.apache-felix-preferences-service.path }}) - An implementation of the OSGi Preferences service specification for storing settings and preferences.
-* [Remote Shell]({{ refs.apache-felix-remote-shell.path }}) - A remote, text-based interface to the Apache Felix Shell.
-* [Service Component Runtime](https://github.com/apache/felix-dev/tree/master/scr) - An implementation of the [OSGi Declarative Services specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html) providing a service-oriented component model to simplify OSGi-based development.
-* [Shell]({{ refs.apache-felix-shell.path }}) - A very simple shell service implemented as a bundle for interacting with an OSGi framework instance.
-* [Shell TUI]({{ refs.apache-felix-shell-tui.path }}) - A simple, text-based interface to the Apache Felix Shell.
-* [UPnP]({{ refs.apache-felix-upnp.path }}) - An implementation of the OSGi UPnP Device service specification for UPnP device integration.
-* [Web Console]({{ refs.apache-felix-web-console.path }}) - A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
-
-This is just an excerpt, please refer to the [Subprojects]({{ refs.subprojects.path }}) page for a complete list of subprojects. To see some projects using Felix subprojects, refer to the [Projects Using Felix]({{ refs.projects-using-felix.path }}) documentation.
+Please refer to the [Subprojects]({{ refs.subprojects.path }}) page for a complete list of subprojects. To see some projects using Felix subprojects, refer to the [Projects Using Felix]({{ refs.projects-using-felix.path }}) documentation.
 
 
 <script src="/res/jquery.js" type="text/javascript"></script>
