@@ -16,4 +16,4 @@ For simple setups, the out of the box health checks are usually sufficient.
 
 To execute health checks, the easiest is to go the the web console plugin at `/system/console/healthcheck`.
 
-For **detailed documentation**, see [README.md](https://github.com/apache/felix/blob/trunk/healthcheck/README.md) file in source repository.
+For **detailed documentation**, see [README.md](https://github.com/apache/felix-dev/blob/master/healthcheck/README.md) file in source repository.
