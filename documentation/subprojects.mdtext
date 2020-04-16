@@ -16,7 +16,7 @@ To get started:
 
 |Name|Description|Source|
 |--|--|--|
-|[Atomos](https://github.com/apache/felix-atomos)||[source](https://github.com/apache/felix-atomos)|
+|[Atomos](https://github.com/apache/felix-atomos)|An OSGi module connector that enables loading bundles in a variety of environments , such as, jlink image, native-image, Android and flat class path. |[source](https://github.com/apache/felix-atomos)|
 |[Config Admin](https://github.com/apache/felix-dev/tree/master/configadmin)|An implementation of the [OSGi Configuration Admin service specification](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) for managing bundle configuration properties.|[source](https://github.com/apache/felix-dev/tree/master/configadmin)|
 |[Dependency Manager](subprojects/apache-felix-dependency-manager.html)|An API-based component model to simplify OSGi-based development.|[source](https://github.com/apache/felix-dev/tree/master/dependencymanager)|
 |[Event Admin](subprojects/apache-felix-event-admin.html)|An implementation of the OSGi Event Admin service specification for event-based communication.|[source](https://github.com/apache/felix-dev/tree/master/eventadmin)|
