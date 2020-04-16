@@ -53,9 +53,9 @@ Health Check API|org.apache.felix.healthcheck.api|2.0.2|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.0.6|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.0|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.0|project||-
-HTTP Service Base|org.apache.felix.http.base|4.0.8
-HTTP Service Bridge|org.apache.felix.http.bridge|4.0.10
-HTTP Service Jetty|org.apache.felix.http.jetty|4.0.16
+HTTP Service Base|org.apache.felix.http.base|4.0.10
+HTTP Service Bridge|org.apache.felix.http.bridge|4.0.12
+HTTP Service Jetty|org.apache.felix.http.jetty|4.0.18
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
@@ -94,7 +94,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|2.0.0|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.1.16
+SCR (Declarative Services)|org.apache.felix.scr|2.1.18
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
