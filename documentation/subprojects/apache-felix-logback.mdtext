@@ -35,17 +35,42 @@ These provide the `slf4j` logging API over the Logback backend.
 
 ## Basic Configuration
 
-Configuring logback is most easily handled by setting the system property `logback.configurationFile` to point to a file on the file system.
+Configuring logback is easily handled by setting the system property `logback.configurationFile` to point to a file on the file system.
 
 This is an example using a *bndrun* file:
 
     :::properties
-    -runproperties: logback.configurationFile=file:${.}/logback.xml
+    -runproperties: logback.configurationFile=${fileuri;${.}/logback.xml}
 
-
-where in bnd `${.}` gives the path to the directory of the bndrun file.
+where the bnd macro `${.}` gives the path to the directory of the bndrun file and macro `${fileuri;<path>}` converts the path to a system compatible path.
 
 Logback offers many features from it's configuration file, so make sure to look through the [documentation](https://logback.qos.ch/documentation.html).
+
+**Note** When using the bnd export function to produce an executable jars `-runproperties` are copied verbatim and as defined above the 
+property will be the literal value provided at build time. This is likely not desirable. You can instead
+use a path without a URI protocol to ensure logback searches for the file on the classpath of the executable jar.
+
+A default configuration file can be embedded in the executable jar with the `-includeresource` directive in the bndrun file:
+
+    ::properties
+    -includeresource: META-INF/logback.xml=${.}/logback.xml
+
+This places the default logback config inside the executable jar at `META-INF/logback.xml`. Now the following directive can be used:
+
+    :::properties
+    -runproperties: logback.configurationFile=META-INF/logging/logback.xml
+
+The defaults will be used when executing the jar.
+
+    :::bash
+    java -jar executable.jar
+
+Of course this property can be overloaded by the system property when executing the jar:
+
+    :::bash
+    java -jar executable.jar -Dlogback.configurationFile=file:/some/path/logback.xml
+
+Remember to use the `file:` protocol in this case to alert logback to the fact this path is not on the classpath.
 
 ## Deployment Options
 
