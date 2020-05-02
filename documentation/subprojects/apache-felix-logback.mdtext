@@ -58,7 +58,7 @@ A default configuration file can be embedded in the executable jar with the `-in
 This places the default logback config inside the executable jar at `META-INF/logback.xml`. Now the following directive can be used:
 
     :::properties
-    -runproperties: logback.configurationFile=META-INF/logging/logback.xml
+    -runproperties: logback.configurationFile=META-INF/logback.xml
 
 The defaults will be used when executing the jar.
 
