@@ -126,7 +126,7 @@ Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.
 # (3) Maven Plugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
-Maven Bundle Plugin|maven-bundle-plugin|4.2.1|||changelog.txt
+Maven Bundle Plugin|maven-bundle-plugin|5.1.1|||changelog.txt
 Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
