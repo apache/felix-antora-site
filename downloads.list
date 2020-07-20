@@ -33,7 +33,7 @@ framework|6.0.3
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
 CM Json|org.apache.felix.cm.json|1.0.2
-Configuration Admin|org.apache.felix.configadmin|1.9.16
+Configuration Admin|org.apache.felix.configadmin|1.9.18
 Configurator|org.apache.felix.configurator|1.0.10
 Configuration Admin Interceptor Plugin|org.apache.felix.configadmin.plugin.interpolation|1.1.0
 Connect|org.apache.felix.connect|0.2.0
@@ -56,7 +56,7 @@ Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.6|pro
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.2|project||-
 HTTP Service Base|org.apache.felix.http.base|4.0.10
 HTTP Service Bridge|org.apache.felix.http.bridge|4.0.12
-HTTP Service Jetty|org.apache.felix.http.jetty|4.0.18
+HTTP Service Jetty|org.apache.felix.http.jetty|4.0.20
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
@@ -110,7 +110,7 @@ User Admin  |org.apache.felix.useradmin|1.0.4|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.11.0|||doc/changelog.txt
-Web Console|org.apache.felix.webconsole|4.5.2
+Web Console|org.apache.felix.webconsole|4.5.4
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.5.2||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.1.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
