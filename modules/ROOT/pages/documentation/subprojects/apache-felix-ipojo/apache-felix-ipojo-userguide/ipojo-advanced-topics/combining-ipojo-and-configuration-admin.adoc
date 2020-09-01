@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Combining iPOJO and Configuration Admin
-
 = Combining iPOJO and Configuration Admin
 
 _This page presents how creating, reconfiguring and destroying iPOJO component instance with the OSGi Configuration Admin._

@@ -1,10 +1,4 @@
-:doctype: book
-
-Title: iPOJO Factory Service
-
 = Using the Factory service interface
-
-[TOC]
 
 When you declare a component either with `@Component` or `<component>`, you are instructing iPOJO to create a _factory_.
 
@@ -41,7 +35,7 @@ public class MyImplementation {
 		public MyImplementation(@Property String message) {
 				//...
 		}
-		
+
 		//...
 }
 ....
@@ -95,7 +89,7 @@ It receives a configuration object (potentially `null`):
 
  :::java
  public void createMyInstance() throws Exception {
- 		ComponentInstance instance = factory.createComponentInstance(null);	
+ 		ComponentInstance instance = factory.createComponentInstance(null);
  		//...
  }
 
@@ -109,7 +103,7 @@ For example, you can gives a value to the `message` property (From the component
  public void createMyInstance() throws Exception {
  	Dictionary<String, Object> configuration = new Hashtable<String, Object>();
  	configuration.put("message", "hello");
- 	ComponentInstance instance = factory.createComponentInstance(configuration);	
+ 	ComponentInstance instance = factory.createComponentInstance(configuration);
  		//... }
 
 To give a name to your instance, set the `instance.name` property.

@@ -1,8 +1,6 @@
-:doctype: book
+=  Virtual Bundles
 
-Title: Virtual Bundles
-
-= Overview
+== Overview
 
 The OSGi framework supports deploying and managing bundles, which are reusable units of code and resources.
 Although the OSGi specification does not explicitly require bundles to be packaged as JAR files, it does require that bundles look like JAR files (i.e., they have a manifest and named byte entries).
@@ -18,7 +16,7 @@ A virtual bundle can quite succinctly be described as a bundle whose content is 
 More specifically, the idea is to weaken the "`JAR abstraction`" where the framework expects to have access to byte entries in an archive and instead allow another entity to manage entry access and more importantly bundle class loading.
 The ultimate goal is to reduce the need to modify the framework to support niche requirements by enabling their support in upper layers.
 
-= Use cases
+== Use cases
 
 Some potential use cases for virtual bundles:
 
@@ -31,7 +29,7 @@ Some potential use cases for virtual bundles:
 
 This is not a complete list of use cases, but provides some potential examples.
 
-= Terminology
+== Terminology
 
 The following terms are used in this document:
 
@@ -45,12 +43,12 @@ mostly likely managers will be an installed bundle following some form of extend
 * management object -- the object injected by the manager into the framework to manage the virtual bundle's content (this is an implementation of `VirtualModule` as will be described shortly).
 * manager-owned class loader -- this term is used to indicate that the associated class loader comes from a third party.
 
-= Technical approach
+== Technical approach
 
 To support a virtual bundle concept, we need to introduce a few new interfaces to manage access to the virtual bundle's content and to provide it access to its own wiring state.
 This section discusses these interfaces as well as other technical issues.
 
-== Proposed API
+=== Proposed API
 
 This proposal defines the following new interfaces and/or augmentations to existing interfaces to support adding a virtual bundle concept to the framework.
 
@@ -59,7 +57,7 @@ If we want to change it to the `org.osgi.framework` namespace, we need some way 
 
 NOTE 2: All names in this document (e.g., interfaces, methods, etc.) are subject to change and were merely chosen for the purposes of making progress on the prototype.
 
-== `VirtualModule`
+=== `VirtualModule`
 
 The `VirtualModule` interface abstracts access to the virtual bundle's content and is the management object handling content access.
 The name might seem confusing, but results from how framework implementations must handle bundles.
@@ -102,7 +100,7 @@ This is similar for normal bundles.
 
 NOTE 2: We could potentially use a `dispose()` method that is called when the framework is really done with the virtual module (i.e., when it is refreshed).
 
-== `Wire`
+=== `Wire`
 
 The `Wire` interface provides a delegation mechanism to the manager of virtual module class loaders:
 
@@ -123,7 +121,7 @@ The result of each method and its meaning are:
 Injection of wires into a virtual module does not compel the manager-owned class loader to obey proper OSGi delegation patterns.
 It is recommended to do so to ensure consistency, but the third-party provider has the flexibility to deviate as it sees fit, but it must live with the consequences.
 
-== `FelixBundleContext`
+=== `FelixBundleContext`
 
 The framework needs to provide explicit support for installing virtual bundles and currently this happens via two new methods on the `BundleContext` interface.
 For the prototype, these methods are added to a specialization of `BundleContext`:
@@ -143,7 +141,7 @@ NOTE 1: Technically, it would be possible to avoid passing in the `VirtualModule
 
 NOTE 2: Perhaps `reinstallBundle()` should be on the `Bundle` interface.
 
-== `VirtualModuleContext`
+=== `VirtualModuleContext`
 
 When a manager installs or reinstalls a virtual bundle, it receives a `VirtualModuleContext`:
 
@@ -157,14 +155,14 @@ The `VirtualModuleContext` is valid even when the virtual bundle is not `ACTIVE`
 
 NOTE: This could be implemented as a super interface of `BundleContext`.
 
-== Virtual bundle lifecycle
+=== Virtual bundle lifecycle
 
 In an effort to minimize the impact to the framework, the lifecycle handling for virtual bundles has been kept purposely simplistic.
 There was a conscious decision to avoid making the framework responsible for reifying the relationship between a virtual bundle and its manager;
 instead, this is solely the manager's responsibility.
 This does have some have some potential ramifications on issues like ordering, which will be discussed shortly along with other lifecycle-related issues.
 
-== Persistence of virtual bundles
+=== Persistence of virtual bundles
 
 When a virtual bundle is installed, it is installed persistently;
 however, this has a different meaning than for normal bundles.
@@ -174,7 +172,7 @@ The managed object (i.e., the `VirtualModule` instance) associated with a virtua
 This means on subsequent framework restarts, the framework is able to reconstitute a virtual bundle and maintains its private data area, but the reconstituted virtual bundle is merely an empty shell.
 It is the managers responsibility to reinstall the virtual bundle's associated `VirtualModule`.
 
-== Manager/virtual bundle ordering
+=== Manager/virtual bundle ordering
 
 In many cases it will be important for the manager to start before anyone attempts to use a virtual bundle.
 If so, the manager should be placed in a lower start level than its virtual bundles.
@@ -184,7 +182,7 @@ This may not be necessary in all cases and could potentially be alleviated to so
 NOTE: This is also related to the "`active dependencies`" topic of RFC-154;
 if the framework managed some active dependencies then this could be resolved that way, but that opens another whole can of worms.
 
-== Refreshing a virtual bundle
+=== Refreshing a virtual bundle
 
 When a normal bundle is refreshed, the framework throws away the class loader associated with the bundle and will ultimately create a new one when needed.
 For virtual bundles, the first part is the similar, but the second is not since the framework has no way to create the needed `VirtualModule` instance.
@@ -196,14 +194,14 @@ NOTE: Technically, I think it may be possible to achieve this somewhat atomicall
 Refreshing a virtual bundle does not necessarily have a direct impact on the manager.
 In other words, the virtual bundle does not necessarily have an implicit dependency on its manager.
 
-== Refreshing a manager
+=== Refreshing a manager
 
 The framework must maintain dependencies from a manager to its installed virtual bundles so when a manager is refreshed, then all of its virtual bundles will be refreshed too.
 If the class implementing the `VirtualModule` instance comes from a bundle other than the manager, then the framework should associate an implicit dependency between this other bundle and the virtual module too so it is refreshed when this other bundle is refreshed, in addition to the manager.
 
 NOTE: It is not necessarily clear that we need to directly support this last case.
 
-== Effective time of a virtual module
+=== Effective time of a virtual module
 
 The effective time of a virtual module instance is related to the lifecycle of the virtual bundle itself and the virtual bundle's manager.
 It seems obvious that a virtual module instance should be valid (i.e., used by the framework) while the virtual bundle state is `RESOLVED`, `STARTING`, `ACTIVE`, `STOPPING`, and `UNINSTALLED` (until refreshed);
@@ -213,11 +211,11 @@ In other words, the manager does not need to be active after the fact for the vi
 
 NOTE: The alternative is to treat this as some sort of "`active dependency`" where if the manager is stopped, its associated virtual bundles are refreshed immediately.
 
-= Open issues
+== Open issues
 
 This section documents open and/or unaddressed issues.
 
-== Installation interception
+=== Installation interception
 
 Some form of bundle installation interception is necessary to integrate cleanly with existing management agents that use `BundleContext.installBundle()` to deploy bundles.
 One possibility is to introduce a new service interface used by the framework, such as:
@@ -230,7 +228,7 @@ One possibility is to introduce a new service interface used by the framework, s
 Managers could register such a service which would be used by the framework during bundle installation to call out to the managers to given them an opportunity to process the bundle installation instead of using the default handling.
 This is somewhat analogous to resource processors in the Deployment Admin specification.
 
-== Updating a virtual bundle
+=== Updating a virtual bundle
 
 No issues are foreseen in the normal update scenario (i.e., updating a bundle to a completely new version of a bundle whether it is virtual or not).
 It should be possible to update a virtual bundle to a new virtual module (and headers), as well as updating a normal bundle to a virtual bundle or vice versa.
@@ -240,7 +238,7 @@ A more complicated case is related to ordering, which is how to deal with bundle
 In this case, a normal update is not completely sufficient since the manager really wants to update the bundle to a virtual bundle, but keep its existing content.
 Technically, this is possible with the current API by using the entry-related `Bundle` methods to reconstruct the installed bundle, then performing an update on it to convert it to a virtual bundle.
 
-== Resource handling
+=== Resource handling
 
 Typically, a framework implementation has to know something about the content of a bundle to create resource URLs.
 For example, both Felix and Equinox create resource URLs something like this:
@@ -255,12 +253,12 @@ The downside of this approach is that, for now, a manager has to be active to pr
 
 A potential solution to this is to inject the virtual module with a resource URL factory which allows the manager to inject its own "`opaque`" index integer into the framework's normal resource URL.
 
-== Dynamic imports
+=== Dynamic imports
 
 It is possible to add support for dynamic imports through the injection of a special type of wire in the `VirtualModule.resolve()` method.
 Like the boot wire, this dynamic wire would be special and would be searched by the manager-owned class loader after its own content and would potentially result in a dynamic import.
 
-== Fragments
+=== Fragments
 
 It may technically be possible to support fragments.
 Currently, a virtual module is injected with wires that provide access to classes and resources.
@@ -269,16 +267,16 @@ The only trick is that the injected bundles could not be a normal bundle since a
 the injected fragment bundle would need to be a wrapper around a specific revision.
 Other approach it to create a new wire-like interface for fragment access which could be injected into the virtual module.
 
-== Security
+=== Security
 
 One possible approach to deal with security is to inject the virtual module with a protection domain for it to use when defining classes.
 For virtual modules using predefined classes, then it won't be possible to assign additional permissions to those classes.
 
-== Lazy activation
+=== Lazy activation
 
 Too support lazy activation across normal bundles and virtual bundles, API would need to be defined for them to participate in this process.
 Mostly likely, the virtual module would need to be injected with some object for keep track of which classes are being created and which bundles need to be activated.
 
-= Considered alternatives
+== Considered alternatives
 
 TBD

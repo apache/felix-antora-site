@@ -1,6 +1,4 @@
-:doctype: book
-
-Title: Web Console NG
+=  Web Console NG
 
 [cols=2*]
 |===
@@ -8,7 +6,7 @@ Title: Web Console NG
 | https://issues.apache.org/jira/browse/FELIX-3773?focusedCommentId=13503120&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13503120] lets collect _data_ in a next generation Web Console...
 |===
 
-= Ideas
+== Ideas
 
 * New extension API built from ground up
 * Compatibility layer to support old plugins

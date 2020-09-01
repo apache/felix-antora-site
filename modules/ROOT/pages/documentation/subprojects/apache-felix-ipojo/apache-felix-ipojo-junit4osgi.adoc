@@ -1,8 +1,3 @@
-:doctype: book
-:pp: {plus}{plus}
-
-Title: apache-felix-ipojo-junit4osgi
-
 = The JUnit4OSGi framework: a simple test framework for OSGi
 
 _JUnit4OSGi is a test framework executing JUnit tests on an OSGi runtime.

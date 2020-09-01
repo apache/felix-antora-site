@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Event Admin Handlers
-
 = Event Admin Handlers
 
 _The goal of the Event Admin Handlers is to allow event communications between iPOJO component instances.

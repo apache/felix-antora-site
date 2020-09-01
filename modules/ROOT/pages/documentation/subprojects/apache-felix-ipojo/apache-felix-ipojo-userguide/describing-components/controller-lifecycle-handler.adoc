@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Controller Lifecycle Handler
-
 = Lifecycle Controller Handler
 
 _The lifecycle controller allows a component implementation to participate to the instance lifecycle.

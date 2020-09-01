@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-keypoints
-
 = iPOJO Key Points
 
 _iPOJO is a service-oriented component model.

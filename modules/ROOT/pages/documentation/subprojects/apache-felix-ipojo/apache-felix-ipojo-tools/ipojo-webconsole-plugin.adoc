@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO Webconsole Plugin
-
 = iPOJO Webconsole Plugin
 
 _If you like the Apache Felix Web Console, you will be interested by the iPOJO plugin.

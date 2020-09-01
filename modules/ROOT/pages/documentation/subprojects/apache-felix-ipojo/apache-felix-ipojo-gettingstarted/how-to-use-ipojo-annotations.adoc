@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: How to use iPOJO Annotations
-
 = How to use iPOJO annotations
 
 _You can use annotations to define your component types.

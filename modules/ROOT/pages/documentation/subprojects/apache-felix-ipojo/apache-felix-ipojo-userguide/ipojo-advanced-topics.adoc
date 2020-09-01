@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO Advanced Topics
-
 = Advanced Topics
 
 _This page presents some advanced features._

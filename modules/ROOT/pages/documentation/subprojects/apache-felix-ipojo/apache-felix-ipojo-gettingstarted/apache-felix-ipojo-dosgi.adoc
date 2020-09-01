@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-dosgi
-
 = Using Distributed Services with iPOJO
 
 _Distributed Service defines how to deal with remote services in OSGi.

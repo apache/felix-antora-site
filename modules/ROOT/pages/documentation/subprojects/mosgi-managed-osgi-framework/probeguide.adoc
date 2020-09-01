@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: ProbeGuide
-
-= Developping probes for MOSGi framework
+= Developing probes for MOSGi framework
 
 \{quote}
 
@@ -19,7 +15,7 @@ They can either get information 	from the gateway (gateway status) or set inform
 There are various way to implements this architecture (CIM/Wbem, Snmp, JMX).
 We have choose to use the JMX proposal because it is standardized in the java virtual machine since jdk1.5.
 
-= JMX management infrastructure synthesis
+== JMX management infrastructure synthesis
 
 Sun JMX proposal defines the following elements :
 
@@ -48,13 +44,13 @@ The registration mechanism associates a implementation (conform to the managemen
 The corresponding call is something like :aMbeanServer.register(aMBeanImplementation, anObjectName);.
 There are many kinds of MBeans (standard, dynamic, model and simple) but their description is out of the scope of this document.
 
-= MOSGi probe developpement
+== MOSGi probe developpement
 
 Our management infrastructure proposes a framework for deploying standard mbean within OSGi gateways.
 It also embeds a reference to a graphical part (manager view) directly in the Mbean itself.
 Thus the management console is automatically populated with client part of the management system.
 
-== Gateway probes
+=== Gateway probes
 
 These probes are developed in conformance to the following elements.
 
@@ -116,7 +112,7 @@ public class Probe implements BundleActivator,ProbeMBean{
 Once the probe is made as a bundle it can be deployed on the remote gateway.
 Then a manager (management console) can ask communicate with the gateway agent to manage the probe.
 
-== MOSGi JmxConsole architecture
+=== MOSGi JmxConsole architecture
 
 When a probe is deployed on a remote gateway it is manageable by standard management consoles like JConsole, MC4J...
 We have developed our own management console that is able to manage probe in a more dedicated approach.
@@ -142,7 +138,7 @@ For instance if the user selects the green point he gets the following tabs.
 
 4 probes have been deployed on the remote gateway and 4 graphical tabs have been installed.
 
-== Graphical tab integration
+=== Graphical tab integration
 
 When developing a probe one shall provide a corresponding MOSGi tab.
 It should follow these guidelines.
@@ -179,6 +175,6 @@ The plugin interface has the following structure:
 Implementation tabs are provided as open-source code.
 You can find various implementation of this interface in felix repository in the _mosgi.managedelements.xxx.tab_ elements.
 
-== Function call sequence
+=== Function call sequence
 
 The next figure presents a function call sequence when using MOSGi framework.

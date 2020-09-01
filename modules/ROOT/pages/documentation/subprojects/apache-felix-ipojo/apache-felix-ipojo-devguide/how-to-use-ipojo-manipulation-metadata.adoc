@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: How to use iPOJO Manipulation Metadata
-
 = How to use iPOJO Manipulation Metadata
 
 _During the manipulation process, iPOJO gathers information about the manipulated classes.

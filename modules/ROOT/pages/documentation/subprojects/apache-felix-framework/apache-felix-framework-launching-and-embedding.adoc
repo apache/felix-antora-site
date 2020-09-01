@@ -1,6 +1,4 @@
-:doctype: book
-
-Title: Apache Felix Framework Launching and Embedding
+=  Apache Felix Framework Launching and Embedding
 
 _[This document describes framework launching introduced in Felix Framework 2.0.0 and continuing with the latest releases;
 it is incompatible with older versions of the Felix framework.]({{ refs.this-document-describes-framework-launching-introduced-in-felix-framework-2-0-0-and-continuing-with-the-latest-releases-it-is-incompatible-with-older-versions-of-the-felix-framework.path }})_
@@ -12,7 +10,7 @@ it is incompatible with older versions of the Felix framework.]({{ refs.this-doc
 * link:{{ refs.-caveat.path }}[Caveat]
 * link:{{ refs.-feedback.path }}[Feedback]
 
-= Introduction
+== Introduction
 
 The Apache Felix Framework is intended to be easily launchable and embeddable.
 For example, the Felix framework implementation avoids the use of system properties for configuration, since these are globals and can cause interference if multiple framework instances are created in the same VM.
@@ -22,7 +20,7 @@ however, this is still just a goal.
 In other words, this is a work in progress and if any issues arise, it would be greatly appreciated if they are brought to the attention of the Felix community.
 The next section provides an overview of the standard OSGi launching and embedding API for frameworks, while the remainder of the document is divided into two sections, one focusing on how to launch Felix and one focusing on how to embed Felix into a host application.
 
-= OSGi Launching and Embedding API Overview
+== OSGi Launching and Embedding API Overview
 
 The Felix framework is implemented by the `org.apache.felix.framework.Felix` class or just `Felix` for short.
 As part of the R4.2 OSGi specification, the launching and embedding API of the OSGi framework has been standardized.
@@ -75,7 +73,7 @@ To actually construct a framework instance, the R4.2 specification defines the `
 The framework factory can be used to create configured framework instances.
 It is obtained following the standard `META-INF/services` approach.
 
-== Creating and Configuring the Framework Instance
+=== Creating and Configuring the Framework Instance
 
 You use the framework factory to construct and configure a framework instance (or by directly instantiating the Felix class).
 The configuration map may contain any of the framework configuration properties listed in the link:{{ refs.apache-felix-framework-configuration-properties.path }}[Apache Felix Framework Configuration Properties] document, not the launcher configuration properties.
@@ -84,7 +82,7 @@ You are not able to change the framework's configuration after construction.
 If you need a different configuration, you must create a new framework instance.+++<div class="warning">+++*WARNING* Felix configuration properties have change considerably starting from `1.4.0`;
 if you are upgrading from an earlier version, the link:{{ refs.apache-felix-framework-configuration-properties-migrating.path }}[configuration property document] describes the configuration property changes.+++</div>+++
 
-== Starting the Framework Instance
+=== Starting the Framework Instance
 
 The `start()` method is used to start the framework instance.
 If the `init()` method was not invoked prior to calling `start()`, then it is invoked by `start()`.
@@ -108,14 +106,14 @@ After the `init()` method completes, the follow actions have been performed:
 A call to `start()` is necessary to start the framework instance, if the `init()` method is invoked manually.
 Invoking `init()` or `start()` on an already started framework as no effect.
 
-== Stopping the Framework Instance
+=== Stopping the Framework Instance
 
 To stop the framework instance, invoke the `stop()` method, which will asynchronously stop the framework.
 To know when the framework has finished its shutdown sequence, use the `waitForStop()` method to wait until it is complete.
 A stopped framework will be in the `Bundle.RESOLVED` state.
 It is possible to restart the framework, using the normal combination of `init()`/`start()` methods as previously described.
 
-= Launching a Framework
+== Launching a Framework
 
 Launching a framework is fairly simple and involves only four steps:
 
@@ -130,7 +128,7 @@ see the link:{{ refs.apache-felix-framework-usage-documentation-configuring-feli
 
 The remainder of this section describes how the standard Felix launcher works as well as how to create a custom launcher.
 
-== Standard Felix Framework Launcher
+=== Standard Felix Framework Launcher
 
 The standard Felix framework launcher is very simple and is not intended to solve every possible requirement;
 it is intended to work for most standard situations.
@@ -279,7 +277,7 @@ this is necessary because the framework never calls `System.exit()` and some lib
 The framework is not active until the `start()` method is called.
 If no shell bundles are installed and started or if there is difficulty locating the shell bundles specified in the auto-start property, then it will appear as if the framework is hung, but it is actually running without any way to interact with it since the shell bundles provide the only means of interaction.
 
-== Custom Framework Launcher
+=== Custom Framework Launcher
 
 This section creates a bare-bones launcher to demonstrate the minimum requirements for creating an interactive launcher for the Felix framework.
 This example uses the standard Gogo shell bundles for interactivity, but any other bundles could be used instead.
@@ -411,14 +409,14 @@ The following command executes the simple launcher when run from the root direct
 
 After executing this command, a "[.code]``felix-cache/``" directory is created that contains the cached bundles, which were installed from the `bundle/` directory.
 
-= Embedding the Felix Framework
+== Embedding the Felix Framework
 
 Embedding the Felix framework into a host application is a simple way to provide a sophisticated extensibility mechanism (i.e., a plugin system) to the host application.
 Embedding the Felix framework is very similar to launching it as described above, the main difference is that the host application typically wants to interact with the framework instance and/or installed bundles/services from the outside.
 This is fairly easy to achieve, but there are some subtle issues to understand.
 This section presents the mechanisms for embedding Felix into a host application and the issues in doing so.
 
-== Host/Felix Interaction
+=== Host/Felix Interaction
 
 In the section on link:{{ refs.-launching.path }}[launching] the framework above, the `Felix` class accepts a configuration property called `felix.systembundle.activators`, which is a list of bundle activator instances.
 These bundle activator instances provide a convenient way for host applications to interact with the Felix framework.+++<div class="warning">+++*WARNING* The `felix.systembundle.activators` configuration property is specific to the Felix framework implementation.
@@ -509,7 +507,7 @@ public class HostApplication
 Notice how the `HostApplication.getInstalledBundles()` method uses its activator instance to get access to the system bundle's context in order to interact with the embedded Felix framework instance.
 This approach provides the foundation for all interaction between the host application and the embedded framework instance.
 
-== Providing Host Application Services
+=== Providing Host Application Services
 
 Providing services from the host application to bundles inside the embedded Felix framework instance follows the basic approach laid out in link:{{ refs.-host-interaction.path }}[above].
 The main complication for providing a host application service to bundles is the fact that both the host application and the bundles must be using the same class definitions for the service interface classes.
@@ -645,7 +643,7 @@ public class HostApplication
 
 Rather than having the host application bundle activator register the service, it is also possible for the the host application to simply get the bundle context from the bundle activator and register the service directly, but the presented approach is perhaps a little cleaner since it allows the host application to register/unregister the service when the system bundle starts/stops.
 
-== Using Services Provided by Bundles
+=== Using Services Provided by Bundles
 
 Using services provided by bundles follows the same general approach of using a host application bundle activator.
 The main complication for the host application using a service from a bundle is the fact that both the host application and the bundle must be using the same class definitions for the service interface classes.
@@ -787,22 +785,22 @@ public class HostApplication
 
 The above example is overly simplistic with respect to concurrency issues and error conditions, but it demonstrates the overall approach for using bundle-provided services from the host application.
 
-=== Using Bundle Services via Reflection
+==== Using Bundle Services via Reflection
 
 It possible for the host application to use services provided by bundles without having access to the service interface classes and thus not needing to put the service interface classes on the class path.
 To do this, the host application uses the same general approach to acquire the system bundle context object, which it can use to look up service objects.
 Using either an LDAP filter or the service interface class name, the host application can retrieve the service object and then use standard Java reflection to invoke methods on the service object.
 
-=== Other Approaches
+==== Other Approaches
 
 The http://code.google.com/p/transloader/[Transloader] project is another attempt at dealing with issues of classes loaded from different class loaders and may be of interest.
 
-= Caveat
+== Caveat
 
 The code in this document has not been thoroughly tested nor even compiled and may be out of date with respect to the current Felix source code.
 If you find errors please report them so the that they can be corrected.
 
-== Feedback
+=== Feedback
 
 [cols=2*]
 |===

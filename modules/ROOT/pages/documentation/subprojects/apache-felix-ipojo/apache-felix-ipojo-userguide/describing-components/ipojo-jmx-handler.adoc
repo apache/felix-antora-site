@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO JMX Handler
-
 = iPOJO JMX Handler
 
 _This handler provides JMX management of component instance.

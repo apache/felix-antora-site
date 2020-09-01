@@ -1,10 +1,8 @@
-:doctype: book
+=  Apache Felix Manifest Generator (mangen)
 
-Title: Apache Felix Manifest Generator (mangen)
+== `mangen` - http://www.osgi.org[OSGi] Bundle Manifest generator
 
-= `mangen` - http://www.osgi.org[OSGi] Bundle Manifest generator
-
-= Introduction
+== Introduction
 
 [cols=4*]
 |===
@@ -30,7 +28,7 @@ removing un-needed packages, automatic resolving to packages in other JARs etc.
 
 If you're not a Java developer, or you're not sure what OSGi is yet, then this tool is probably not for you!
 
-== Licensing
+=== Licensing
 
 The `mangen` utility was originally created as a copyrighted &copy;
 work of Ascert LLC, and released as _OSI Certified Open Source Software_ for use under the under the terms of the http://www.opensource.org/licenses/cpl1.0.php[Common Public License]
@@ -45,9 +43,9 @@ Availability is now under an [Apache 2.0 style license
 Included third-party libraries and contributions are copyrighted &copy;
 works of their respective owners and are provided under the terms of their specified licenses.
 
-= Using `mangen`
+== Using `mangen`
 
-== Basic operation
+=== Basic operation
 
 Using mangen is very simple.
 Unpack the distribution file to an installation directory, change to this directory and type the following command:
@@ -80,7 +78,7 @@ This set is infinitely extensible, however, and `mangen` places no restriction o
 The exact rules and reports to be run are entirely controlled by user configurable properties as described below.
 If no properties are supplied `mangen` will simply run, process the specified JAR files and exit.
 
-== Configuring `mangen` with Properties
+=== Configuring `mangen` with Properties
 
 Properties to control `mangen` behaviour can either be supplied on the command line using the normal `-D` syntax or, for most cases in a `mangen.properties` file.
 If the same property name is specified in both then the `-D` command line property value will take precedence of the property file value.
@@ -95,7 +93,7 @@ _Example:_
      ...
      mangen.rulesets=mangen-rule-R${mangen.osgi.level}-
 
-=== mangen.properties
+==== mangen.properties
 
 The `mangen.properties` Property is used to instruct mangen where to find it's properties file.
 By default, `mangen` will look for a file named `mangen.properties` in the same directory in which `mangen.jar` was installed (i.e.
@@ -106,7 +104,7 @@ _Example:_
 
      java -jar lib/mangen.jar -Dmangen.properties=my_mangen.properties my_app.jar
 
-=== mangen.osgi.level
+==== mangen.osgi.level
 
 There are two places in which the `mangen.osgi.level` Property is used:
 
@@ -115,7 +113,7 @@ There are two places in which the `mangen.osgi.level` Property is used:
 
 At present, this Property should be set to a value of '3' or '4' (the default if not specified will be '3');
 
-=== mangen.rulesets
+==== mangen.rulesets
 
 Rules are the engine room of `mangen`, providing the basic means for refining the `mangen` detected import and export package sets e.g.
 removing un-needed or unused exports, supplying package version information, including undetectable package cases such as dynamic classloading.
@@ -154,7 +152,7 @@ Rules themselves are simply specified as a rule type followed by a space separat
 
 See the link:{{ refs.-mangenrules.path }}[Rules] section for full details of the currently support rule types.
 
-=== mangen-report-
+==== mangen-report-
 
 Reports in `mangen` work in a similar fashion to rules but without the ruleset concept.
 The set of sequentially numbered `mangen-report-` properties will be scanned to determine which reports should be run e.g.
@@ -164,7 +162,7 @@ The set of sequentially numbered `mangen-report-` properties will be scanned to 
 
 See the link:{{ refs.-mangenreports.path }}[Reports] section for full details of the currently support report types.
 
-=== mangen.failonerror
+==== mangen.failonerror
 
 If set `on` will cause `mangen` to exit with a `System.exit()` error status of 3 if any errors occured.
 Typical usage is to allow an external build tool, such as Ant, detect that there were errors.
@@ -172,7 +170,7 @@ Additionally, any error messages will also be sent to `stderr` as well as `stdou
 
 Default is `on`.
 
-=== mangen.failonwarning
+==== mangen.failonwarning
 
 If set `on` will cause `mangen` to exit with a `System.exit()` error status of 5 if any warnings occured.
 Typical usage is to allow an external build tool, such as Ant, detect that there were warnings.
@@ -180,7 +178,7 @@ Additionally, any warning messages will also be sent to `stderr` as well as `std
 
 Default is `off`.
 
-== Rules
+=== Rules
 
 The Rule concept in `mangen` was adopted to avoid hard-coding the types of post-processing steps that a user would be able to perform on the `mangen` generated set of package imports and exports.
 The rule syntax is as follows:
@@ -213,7 +211,7 @@ Local rules are placed within the Manifest for the appropriate bundle in a speci
 
 Details are included below showing whether a *+++<rule-type>+++* can be used in a global or a local context+++</rule-type>+++
 
-=== AttributeStamp
+==== AttributeStamp
 
 [cols=2*]
 |===
@@ -247,7 +245,7 @@ _Example:_
 If the rule finds a package name pattern match and the package already has additional attributes an error will be thrown if the stamped attributes do not match the existing attributes.
 This could be the case as a result of either a previous AttributeStamp or Merge rule.
 
-=== DontImportOwnExports
+==== DontImportOwnExports
 
 [cols=2*]
 |===
@@ -267,7 +265,7 @@ This could be the case as a result of either a previous AttributeStamp or Merge 
 In many application cases it's not necessary for a bundle JAR to import it' own exports.
 This rule may be used locally or globally to remove from a bundle's import list any package which it also exports.
 
-=== Ignore
+==== Ignore
 
 [cols=2*]
 |===
@@ -297,7 +295,7 @@ _Example:_
      mangen.R4.syspackages=java\\..*
      mangen-rule-R4-0=Ignore imports(${mangen.R4.syspackages})
 
-=== Merge
+==== Merge
 
 [cols=2*]
 |===
@@ -340,7 +338,7 @@ The imports and exports options allow constraints on the packages to be merged b
 
 One other aspect to note with the Merge option is that it also provides an alternative way to "stamp" OSGi attributes on a `mangen` detected pakcage name, since if the package being merged was already in the set of `mangen` detected packages it's entry will be augmented with any additional attributes supplied from the package entry being merged.
 
-=== ProcessBundles
+==== ProcessBundles
 
 [cols=2*]
 |===
@@ -372,7 +370,7 @@ _Example:_
     ...
 ....
 
-=== ResolveImportsToExports
+==== ResolveImportsToExports
 
 [cols=2*]
 |===
@@ -407,7 +405,7 @@ At present, the known cases where this rule may fail to create a consistent and 
 * cases of dynamic classloading
 * certain third party JARs, such as Xerces, which use the awkaward-to-handle OSGi case of `Thread.getContextClassLoader()` to determine the classloader for dynamic classloading.
 
-=== UpdateBundles
+==== UpdateBundles
 
 [cols=2*]
 |===
@@ -431,18 +429,18 @@ This rule can only be used globaly.
 If the `overwrite` option is specified, the bundle JAR will overwritten with a new bundle JAR containing the new Manifest.
 Without this option, the update will create new JARs of the same name as each existing JAR but with a suffix of `.new.jar`.
 
-== Reports
+=== Reports
 
 Reports are really like a simplified case of rules.
 At present only a couple of simple reports are included.
 
 All reports at present send their output to `System.out`, which can of course be redirected to a text file if a persistent copy is desired.
 
-=== RuleReport
+==== RuleReport
 
 This report will show any Rule generated output.
 
-=== BundleReport
+==== BundleReport
 
 [cols=2*]
 |===
@@ -457,7 +455,7 @@ The following options are supported:
 If this option is omitted a simple list of generated imports and exports will be shown
 * `show-local-rules` - will show report output from any local rules run for each bundle JAR
 
-=== ObrReport
+==== ObrReport
 
 [cols=2*]
 |===
@@ -504,7 +502,7 @@ The `mangen` attributes will be searched first, followed by the Main attributes+
 * `@@pkg:name@@` - name of the import or export package currently being processed
 * `@@pkg:ver@@` - version of the import or export package currently being processed
 
-== Contents of the distribution file
+=== Contents of the distribution file
 
 The current `mangen` distribution includes the following:
 
@@ -524,7 +522,7 @@ Thanks also go to the following contributors:
 * link:{{ refs.mailto-heavy-ungoverned-org.path }}[Richard S.
 Hall] - both for his assistance in the development and testing of `mangen` and for his contribution of the ASM based class scanning implementation.
 
-= Extending `mangen`
+== Extending `mangen`
 
 First things first.
 You need to be a reasonably proficient Java developer to undertake extending `mangen`.
@@ -541,7 +539,7 @@ The idea is that as `mangen` matures most extension cases will be possible via t
 
 For detailed information, Javadoc API documentation for `mangen` can be found @@api-index-loc@@.
 
-== Creating new Rule types
+=== Creating new Rule types
 
 A rule type is in fact just a Java class which implements the `com.ascert.openosgi.Rule` interface.
 If no package name is specified, these will be assumed to be in the `com.ascert.openosgi.mangen.rules` package.
@@ -549,7 +547,7 @@ Although somewhat less readable, a fully-qualified class name can be supplied fo
 
 At present, the simplest way to learn about creating new rules is to look at the source code for existing rules to understand how they're put together and what can be done in them.
 
-== Creating new Report types
+=== Creating new Report types
 
 Reports are similar to rules.
 A Report type is a Java class which implements the `com.ascert.openosgi.Report` interface.
@@ -557,7 +555,7 @@ Unqualified report types will be assumed to be in `com.ascert.openosgi.mangen.re
 
 As with rules, the source code for the existing reports is the best place to learn about creating new reports.
 
-== Alternative class scanners
+=== Alternative class scanners
 
 To parse the class files of an application `mangen` needs a class file bytecode scanning library.
 So that alternative scanning tools may be used `mangen` does not make direct usage of any library implementation.
@@ -570,11 +568,11 @@ The `mangen.scanner.class` property can be used to control which scanner impleme
 | http://jakarta.apache.org/bcel/] toolkit.
 |===
 
-= Ongoing Development
+== Ongoing Development
 
-== Change Log
+=== Change Log
 
-=== Version 1.0.1
+==== Version 1.0.1
 
 * Initial version submitted to Felix project.
 * Package names changed and license headers changed to Apache license
@@ -583,13 +581,13 @@ The `mangen.scanner.class` property can be used to control which scanner impleme
 * Compiles and builds using normal maven build, but as yet doesn't create a standalone distribution which includes dependent jars and config `.properties` files.
 * No analysis work has been performed to determine enhancements and additional rules desirable to integrate with Felix build and take advantage of `mangen` class scanning.
 
-=== 0.1.x Versions
+==== 0.1.x Versions
 
 The 0.1.x versions of `mangen` are the original versions developed to work with Oscar.
 The versions and documentation can still be downloaded from the http://oscar-osgi.sourceforge.net/mangen/[OBR Sourceforge site].
 The change history has been maintained here for completeness.
 
-==== Version 0.1.2
+===== Version 0.1.2
 
 * Inclusion of link:{{ refs.-obrreport.path }}[ObrReport] for generation of OBR descriptors _[ oscar-osgi-Feature Requests-1221468 ]_
 * Removed "default" processing of JARs.
@@ -597,12 +595,12 @@ Now an explicit link:{{ refs.-processbundles.path }}[ProcessBundles] must be inc
 This allows reports, such as the new ObrReport to skip `mangen` import/export processing and just work from existing manifests.
 * default `mangen.properties` now explicitly lists each non java.* package rather than using wildcards, proved safer and more reliable when creating OSGi R4 manifests
 
-==== Version 0.1.1
+===== Version 0.1.1
 
 * Support for errors and warnings to cause non-zero exit status to be returned
 * Fix for occasional failures to update bundle JARs _link:{{ refs.-oscar-osgi-bugs-1218334.path }}[oscar-osgi-Bugs-1218334]_
 
-==== Version 0.1.0
+===== Version 0.1.0
 
 * First version
 * Support for current OSGi Release 3 (R3) manifest headers, and basic support for proposed upcoming R4 headers
@@ -612,7 +610,7 @@ This allows reports, such as the new ObrReport to skip `mangen` import/export pr
 * Updating of process bundle JARs via an UpdateBundles rule
 * Pluggable interface to allow alternative class byte code scanners to be used
 
-== Possible Enhancements
+=== Possible Enhancements
 
 As with any piece of software, there are always more things you'd like to do than time available in which to work on them.
 This library is no exception.
@@ -624,7 +622,7 @@ Most `mangen` enhancement ideas have now been created as issues in the https://i
 
 Those which are more speculative have been left below.
 
-=== Online usage within an OSGi environment
+==== Online usage within an OSGi environment
 
 [cols=3*]
 |===
@@ -636,7 +634,7 @@ This perhaps implies some form of platform extension to allow a set of JARs to b
 | http://oscar-osgi.sourceforge.net/].
 |===
 
-= Acknowledgements
+== Acknowledgements
 
 Ascert is pleased to acknowledge the following projects, organisations and individuals whose tools have been used in the creation of this software:
 

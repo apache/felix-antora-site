@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: How-to use iPOJO factories
-
 = iPOJO Factories Principles
 
 _iPOJO defines a factory for each declared component type.

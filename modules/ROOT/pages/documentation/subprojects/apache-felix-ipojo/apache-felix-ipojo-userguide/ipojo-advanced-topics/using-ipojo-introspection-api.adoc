@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Using iPOJO introspection API
-
 = Introspecting instances
 
 _iPOJO provides mechanisms to introspect and reconfigure instances.

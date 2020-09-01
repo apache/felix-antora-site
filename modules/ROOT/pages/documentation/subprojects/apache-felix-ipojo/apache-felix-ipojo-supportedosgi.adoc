@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-supportedOSGi
-
 = Supported OSGi Implementations
 
 _Despite iPOJO is an Apache Felix subproject, it relies only on *OSGi R4_ features.

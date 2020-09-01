@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: UPnP Examples
-
 = The Felix UPnP Examples
 
 The UPnP examples released by the UPnP project are simple UPnP devices developed as a proof of concept.

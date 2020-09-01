@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: UPnP Known Issues
-
 = Known issues
 
 Currently the bundle does not support the following requirements:

@@ -1,12 +1,6 @@
-:doctype: book
-
-Title: Configuring iPOJO Extender
-
 = Configuring iPOJO Extender
 
 _This page presents how the iPOJO's extender can be configured._
-
-[TOC]
 
 == Extender
 

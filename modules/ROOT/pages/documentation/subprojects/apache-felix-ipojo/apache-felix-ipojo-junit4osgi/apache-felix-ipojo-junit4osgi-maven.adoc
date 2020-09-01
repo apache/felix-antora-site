@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-junit4osgi-maven
-
 = The Maven-junit4OSGi-plugin
 
 _junit4OSGi tests can also be executed automatically during the `integration-test` phase of a maven build process.

@@ -1,6 +1,4 @@
-:doctype: book
-
-Title: Dependency Manager Lambda
+=  Dependency Manager Lambda
 
 '''
 
@@ -86,9 +84,7 @@ public class Activator extends DependencyManagerActivator {
             .provides(ServiceProvider.class, p1 -> "v1", p2 -> 123)
             .withSvc(true, LogService.class, EventAdmin.class));
 }
-....
-
-= Principle
+....== Principle
 
 The new API is provided by the `org.apache.felix.dependencymanager.lambda.jar` bundle.
 The following builders are currently supported:

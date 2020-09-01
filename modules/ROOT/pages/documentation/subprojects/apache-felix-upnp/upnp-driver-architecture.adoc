@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: UPnP Driver architecture
-
-= Overview of the Base Driver Architecture&nbsp;
+= Overview of the Base Driver Architecture
 
 The Figure 4 shows a simplified component view of the base driver.
 The driver is composed of two components, the _exporter_ and _importer_;

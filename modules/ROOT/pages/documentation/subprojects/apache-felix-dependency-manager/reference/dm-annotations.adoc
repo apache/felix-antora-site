@@ -1,12 +1,10 @@
-:doctype: book
-
-Title: Dependency Manager Annotations
+=  Dependency Manager Annotations
 
 [TOC]
 
 This section presents an overview and a reference guide of the capabilities and usage of the  DependencyManager annotations.
 
-= Overview
+== Overview
 
 Instead of writing Activators which extends the DependencyActivatorBase class, service  components can also be annotated using the annotations provided by the  _org.apache.felix.dependencymanager.annotation_ bundle.
 Annotations are not reflectively  parsed at runtime;
@@ -128,7 +126,7 @@ So, using a copy on write list avoid us to use  synchronized methods.
 Notice that the @ServiceDependency could also have been applied on the m_dictionaries field,  and in this case, no need to define callback methods (addDictionary/removeDictionary).
 So, in this case the dictionaries will be automatically added in the collection field.
 
-= Component types
+== Component types
 
 The following types of components are supported when using annotations:
 
@@ -137,7 +135,7 @@ The following types of components are supported when using annotations:
 * Service Adapter: A Service that adapts another existing service into a new one
 * Bundle Adapter: Allows to provide an osgi service on top of an existing bundle
 
-== Component
+=== Component
 
 Components are the main building blocks for OSGi applications and can be annotated with @Component.
 They can publish themselves as a  service, and/or they can have dependencies.
@@ -227,7 +225,7 @@ By default, the HelloComponent can define an `updated(Dictionary)` callback: it 
 When you want to propagate the configuration to the provided service properties, you can also define the `propagate` attribute.
 Notice that when you propagate the configuration to the provided service properties, then the the configuration takes precedence over the service properties, meaning that if a given property is declared in the service properties, then it will be overriden if the configation also contains the property.
 
-== Aspect component
+=== Aspect component
 
 An aspect service in DM provides a non-functional aspect on top of an existing service.
 In aspect oriented programming, an aspect, or interceptor can sit between a client and another target service  used by the client.
@@ -256,7 +254,7 @@ The Aspect class intercepts the original InterceptedService, and decorates its "
 This aspect uses a rank with value "10", meaning that it will intercept some other eventual aspects with  lower ranks.
 It will also inherit of the original InterceptedService service properties.
 
-== Adapter component
+=== Adapter component
 
 An adapter service component (@AdapterService) adapts another existing service into a new one.
 Like with aspects,  sometimes you want to create adapters for certain services, which add certain behavior that results in  the publication of (in this case) a different service.
@@ -297,7 +295,7 @@ Here, the AdapterService is registered into the OSGI registry each time an Adapt
 The AdapterImpl class adapts the AdapteeService to the AdapterService.
 The AdapterService will also have the following service property: p1=v1, p2=v2 :
 
-== Bundle adapter component
+=== Bundle adapter component
 
 Bundle adapters are similar to Adapter Components, but instead of adapting a service, they adapt a bundle  with a certain set of states (STARTED|INSTALLED|...), and provide a service on top of it.
 
@@ -316,12 +314,12 @@ In the following example, a "VideoPlayer" Service is registered into the OSGi re
      volatile Bundle bundle; // Injected by reflection
 
      void play() {
-         URL mpegFile = bundle.getEntry(bundle.getHeaders().get("Video-Path"));
+         URL mpegFile == bundle.getEntry(bundle.getHeaders().get("Video-Path"));
          // play the video provided by the bundle ...
      }
  }
 
-= Component lifecycle
+== Component lifecycle
 
 A component has a lifecycle that controls when it is started or stopped.
 A bundle must be started before the DM Runtime can process its components.
@@ -344,7 +342,7 @@ The callback can takes as argument a ServiceRegistration parameter.
 * http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Stop.html[@Stop]: this method is called when a required dependency is lost or when the bundle is stopped
 * http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Destroy.html[@Destoy] annotations: the component is about to be destroyed
 
-== Component activation
+=== Component activation
 
 Activating a component consists of the following steps:
 
@@ -372,7 +370,7 @@ If you need the NullObject pattern, then apply optional dependencies on class fi
 * invoke the method annotatated with http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Registered.html[@Registered annotation].
 The method, if declared, takes as argument a `ServiceRegistration` which corresponds to the registered service.
 
-== Component deactivation
+=== Component deactivation
 
 Deactivating a component consists of the following steps:
 
@@ -385,7 +383,7 @@ the _removed_ callbacks are just invoked, if declared in the annotation.
 * invoke destroy method (annotated with _@Destroy_).
 * invoke _removed_ callbacks for required dependencies, if any.
 
-== Example
+=== Example
 
 The following example shows a basic component, which uses the @Start annotation:
 
@@ -440,7 +438,7 @@ class X implements Y {
 }
 ....
 
-== Lifecycle control
+=== Lifecycle control
 
 As explained in the _Component Activation_ section, a component which provides a service  is automatically registered into the OSGi registry, after the @Start method returns.
 But it is sometimes  required to control when the service is really started/published or + unpublished/stopped.
@@ -528,9 +526,9 @@ public class MyServiceImpl implements MyService {
 }
 ....
 
-= Dependencies
+== Dependencies
 
-== Service dependencies
+=== Service dependencies
 
 Service Dependencies can be defined using the http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/ServiceDependency.html[@ServiceDependency] annotation.
 
@@ -539,7 +537,7 @@ Required dependencies need to be resolved before  the service can even become ac
 Optional dependencies can appear and disappear while the service  is active.
 *Please notice that, unlike with the DM API, service dependencies are required by default.*
 
-=== Field injection
+==== Field injection
 
 The dependency manager will automatically fill in any references to required @ServiceDependency that are applied on attributes.
 The same goes for optional dependencies if they are available.
@@ -609,7 +607,7 @@ Example:
 
 in the above example, the MyDefaultImpl class will be injected on the m_dependency class field in case the dependency is unavailable.
 
-=== Callback injection
+==== Callback injection
 
 Optionally, a service can define callbacks for each dependency.
 These callbacks are invoked whenever a new dependency is discovered or an existing one is disappearing.
@@ -683,7 +681,7 @@ class MyComponent {
 }
 ....
 
-=== Whiteboard pattern
+==== Whiteboard pattern
 
 Required service dependency are always invoked before the start (@Start) callback is  invoked.
 However, Optional dependency *callbacks* are always invoked *after* the start (@Start) callbacks.
@@ -723,7 +721,7 @@ TaskExecutor {
  }
 ....
 
-=== Tracking any services matching a given filter
+==== Tracking any services matching a given filter
 
 Sometimes, you may want to be injected with any service objects matching a given filter,  without any additional filter on the class service interface.
 In this case, you need to use the `service=ServiceDependency.ANY` attribute
@@ -743,7 +741,7 @@ public class MyService {
 }
 ....
 
-=== Service dependency properties propagation
+==== Service dependency properties propagation
 
 It is possible to propagate the dependency service properties, using the ServiceDependency.propagate attribute.
 When the service dependency properties are propagated, they will be appended to the component service properties,  but won't override them (the component service properties takes precedence over the propagated service dependencies).
@@ -761,7 +759,7 @@ Example:
 
 The service above will be registered with the p1=v1 service properties, as well as with any service properties which come from the Service Dependency.
 
-=== defining a swap aspect callback
+==== defining a swap aspect callback
 
 When you define a service dependency, it is possible to define a swap callback in case an original service dependency is replaced by an aspect, and you  then want to be called back at the time the service dependency is replaced.
 
@@ -798,7 +796,7 @@ The swap callback supports the following signatures:
  (ServiceObjects old, ServiceObjects replace)
  (Component comp, ServiceObjects old, ServiceObjects replace)
 
-=== Blocking a service invocation while it is updating.
+==== Blocking a service invocation while it is updating.
 
 When an injected service dependency is an interface, it is possible to block the service invocation  while it is being updated.
 Only useful for required stateless dependencies that can be replaced transparently.
@@ -833,7 +831,7 @@ Notice that the changed/removed callbacks are not used when the timeout paramete
 0 means that invocation on a missing service will  fail immediately.
 A positive number represents the max timeout in millis to wait for the service  availability.
 
-== Configuration dependencies
+=== Configuration dependencies
 
 A configuration dependency is required by default, and allows you to depend on  the availability of a valid configuration for your component.
 Use the  http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/ConfigurationDependency.html[@ConfigurationDependency annotation] to define a configuration dependency.
@@ -860,7 +858,7 @@ The configuration properties takes precedence over the component service propert
 * required: Sets the required flag which determines if this configuration dependency is required or not.
 * name: used to dynamically configure the pid from an @Init method.
 
-=== Type safe configuration
+==== Type safe configuration
 
 Configuration types allows you to specify a Java interface that is implemented by  DM and such interface is then injected to your callback instead of the actual Dictionary.
 Using such configuration interface provides a way for creating type-safe configurations  from a actual Dictionary that is normally injected by Dependency Manager.
@@ -916,7 +914,7 @@ In case a lookup does not yield a value from the underlying map or dictionary,  
 * for arrays, collections and maps, an empty array/collection/map is returned;
 * for other interface types that are treated as configuration type a Null-object is returned.
 
-=== Examples
+==== Examples
 
 In the following example, the "Printer" component depends on a configuration with  "org.apache.felix.sample.Printer" PID:
 
@@ -956,7 +954,7 @@ Here is the same example using a type safe configuration:
      }
  }
 
-== Bundle dependency
+=== Bundle dependency
 
 A bundle dependency allows you to depend on a bundle in a certain set of states  (INSTALLED|RESOLVED|STARTED|...), as indicated by a state mask.
 You can also use a filter condition that is matched against all manifest entries.
@@ -998,7 +996,7 @@ public class SCR {
 }
 ....
 
-== Dynamic dependency configuration
+=== Dynamic dependency configuration
 
 We have seen that a component may declare some dependencies and is started when all required  dependencies are available.
 But there are some cases when you may need to define some dependencies  filters (and required flag) dynamically, possibly from data picked up from other dependencies.
@@ -1164,7 +1162,7 @@ public class PersistenceImpl implements Persistence {
 }
 ....
 
-= Component Composition
+== Component Composition
 
 When implementing more complex services, you often find yourself using more than one instance for a given service.
 However, several of these instances might want to have dependencies injected.
@@ -1227,7 +1225,7 @@ Here, MyServiceImpl is the main component implementation, but is composed of the
 So all Dependencies defined in MyServiceImpl  will be also injected to the Helper (if the Helper  declares the fields or methods).
 The Helper may also define annotated lifecycle callbacks (optionally).
 
-= Service scopes
+== Service scopes
 
 By default service providers are registered once in the osgi registry, and all service consumers share the same service provider instance.
 Now, you can control the scope of the provided services: From the provider side, a "scope" parameter  is available for all types of DM components and allows to define the scope of the registered service.
@@ -1364,7 +1362,7 @@ public static class MyServiceImpl implements MyService {
 
 *Notice that when defining a scoped service with annotations, it is not possible to return service  properties dynamically from the start method (annotated with @Start).*
 
-= Service property types
+== Service property types
 
 So far, you could define component service properties using DM @Property annotation,  and component configuration could be declared as user defined interfaces.
 You can now declare user-defined annotations which can be used to specify both service  properties and component configuration.

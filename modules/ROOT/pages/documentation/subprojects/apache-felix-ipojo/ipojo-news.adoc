@@ -1,9 +1,7 @@
-:doctype: book
-
-Title: iPOJO-news Excerpt: _iPOJO Manipulator (1.12.1) and Runtime (1.12.1)_ are now available in the http://felix.apache.org/downloads.cgi[downloads] section and from the Maven repository.
+=  iPOJO-news Excerpt: _iPOJO Manipulator (1.12.1) and Runtime (1.12.1)_ are now available in the http://felix.apache.org/downloads.cgi[downloads] section and from the Maven repository.
 (December 24, 2014)
 
-= What's hot ?
+== What's hot ?
 
 * _iPOJO Manipulator (1.12.1) and Runtime (1.12.1)_ are now available in the http://felix.apache.org/downloads.cgi[downloads] section and from the Maven repository.
 (December 24, 2014)

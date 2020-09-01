@@ -1,6 +1,4 @@
-:doctype: book
-
-Title: Dependency Manager - What's new in version 4?
+=  Dependency Manager - What's new in version 4?
 
 Even though the focus for this version is to completely redo the internals, we also added a few new features to the code.
 The most important one is the new thread model, described directly below.

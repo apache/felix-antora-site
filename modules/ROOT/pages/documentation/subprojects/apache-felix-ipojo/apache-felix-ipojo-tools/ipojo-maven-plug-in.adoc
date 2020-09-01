@@ -1,10 +1,4 @@
-:doctype: book
-
-Title: iPOJO Maven Plug-in
-
 = How to use the iPOJO Maven Plug-in
-
-[TOC]
 
 == Basic configuration
 

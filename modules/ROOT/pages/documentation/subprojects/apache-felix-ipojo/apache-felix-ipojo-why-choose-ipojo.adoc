@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-why-choose-ipojo
-
 = Why choose iPOJO?
 
 _The OSGi Service Platform provides an excellent foundation for building dynamically extensible Java-based applications.

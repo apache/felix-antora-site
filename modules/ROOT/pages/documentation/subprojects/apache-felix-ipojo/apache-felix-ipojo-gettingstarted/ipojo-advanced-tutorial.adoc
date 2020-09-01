@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: iPOJO Advanced Tutorial
-
-= The iPOJO Snack Bar
+=  iPOJO Advanced Tutorial: The iPOJO Snack Bar
 
 _This tutorial illustrates some advanced features of iPOJO_
 

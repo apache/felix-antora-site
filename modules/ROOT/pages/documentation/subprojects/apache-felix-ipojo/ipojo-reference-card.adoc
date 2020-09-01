@@ -1,8 +1,6 @@
-:doctype: book
+=  iPOJO-Reference-Card
 
-Title: iPOJO-Reference-Card
-
-= Declaring component types
+== Declaring component types
 
 XML:
 
@@ -36,7 +34,7 @@ Java:
 
 * link:{{ refs.how-to-use-ipojo-factories.path }}[How-to use iPOJO factories]
 
-= Creating component instances
+== Creating component instances
 
 XML:
 
@@ -75,7 +73,7 @@ Java:
 Properties can also by complex type.
 * How-to use iPOJO factories
 
-= Providing services
+== Providing services
 
 XML:
 
@@ -113,7 +111,7 @@ Java:
 
 * link:{{ refs.providing-osgi-services.path }}[Providing OSGi services]
 
-= Publishing service properties
+== Publishing service properties
 
 XML:
 
@@ -181,7 +179,7 @@ public class ProvidesProperties implements FooService, BarService {
 
 * link:{{ refs.providing-osgi-services.path }}[Providing OSGi services]
 
-= Using services with field injection
+== Using services with field injection
 
 XML:
 
@@ -270,7 +268,7 @@ This attribute is required when the service type cannot be inferred from the cod
 
 * link:{{ refs.service-requirement-handler.path }}[Service Requirement Handler]
 
-= Using services with method injection
+== Using services with method injection
 
 XML:
 
@@ -358,7 +356,7 @@ The ``modified` callback is called when the service properties of a bound servic
 
 * link:{{ refs.service-requirement-handler.path }}[Service Requirement Handler]
 
-= Configuring service dependencies in the instance configuration
+== Configuring service dependencies in the instance configuration
 
 h2.
 Configuring the `from` attribute
@@ -392,9 +390,9 @@ Configuring the `from` attribute
 </instance>
 ....
 
-= Reacting to lifecycle state changes
+== Reacting to lifecycle state changes
 
-== Immediate components
+=== Immediate components
 
 * A POJO object (implementation object) is created as soons as the instance becomes valid
 * Instances that don't provide services becomes automatically immediate   :::xml+++<component classname="my.service.implementation" name="my-service-impl" immediate="true">++++++<provides>++++++</provides>++++++</component>+++
@@ -410,7 +408,7 @@ Configuring the `from` attribute
 
 * link:{{ refs.lifecycle-callback-handler.path }}[Lifecycle Callback Handler]
 
-== Lifecycle callbacks
+=== Lifecycle callbacks
 
 * fake point   :::xml+++<component classname="my.implementation" name="my-impl">++++++<callback transition="validate" method="start">++++++</callback>+++ +++<callback transition="invalidate" method="stop">++++++</callback>++++++</component>+++
 
@@ -433,7 +431,7 @@ public class Implementation {
 
 * link:{{ refs.lifecycle-callback-handler.path }}[Lifecycle Callback Handler]
 
-= Declaring properties
+== Declaring properties
 
 * fake point   :::xml+++<component classname="my.Implementation" name="my-impl">++++++<properties propagation="true" managedservice="MyPID">++++++<property name="boo" method="setBoo">++++++</property>+++ +++<property field="m_bar" mandatory="true">++++++</property>+++ +++<property field="m_foo" value="4">++++++</property>++++++</properties>++++++</component>++++++<instance component="my-impl">++++++<property name="boo" value="...">++++++</property>+++ +++<property name="m_bar" value="...">++++++</property>++++++</instance>++++++<instance component="my-impl">++++++<property name="boo" value="...">++++++</property>+++ +++<property name="m_bar" value="...">++++++</property>+++ +++<property name="managed.service.pid" value="AnotherPID">++++++</property>++++++</instance>+++
 
@@ -460,7 +458,7 @@ public class Implementation {
 
 * link:{{ refs.configuration-handler.path }}[Configuration Handler]
 
-= PostRegistration and PostUnregistration callbacks
+== PostRegistration and PostUnregistration callbacks
 
 * This feature is part of the provided service handler, and so requires that the component provides a service.
 * The callback receives a `ServiceReference` as parameter.
@@ -481,7 +479,7 @@ public void unregistered(ServiceReference ref) {
 
 * http://felix.apache.org/site/providing-osgi-services.html#ProvidingOSGiservices-Beingnotifiedoftheserviceregistrationandunregistration[Provided Service Handler]
 
-= Controlling service publication
+== Controlling service publication
 
 * This feature is part of the provided service handler, and so requires that the component provides a service.
 * It allows a component to force the un-publication of a service.
@@ -493,7 +491,7 @@ public void unregistered(ServiceReference ref) {
 
 * http://felix.apache.org/site/providing-osgi-services.html[Provided Service Handler]
 
-= Using 'arch'
+== Using 'arch'
 
 * Deploy the 'arch' command bundle (available for Felix and Equinox)
 * Launch the 'arch' command in the OSGi Framework Shell {code:java|title=Felix Shell} arch \=> displays instances name & state (equivalent to arch -instances) arch -instance $instance__name \=> displays complete information about the instance $instance__name arch -factories \=> display the list of available factories arch -factory $factory__name \=> display complete information about the factory $factory__name arch -handlers \=> list available handlers
@@ -503,7 +501,7 @@ public void unregistered(ServiceReference ref) {
 * link:{{ refs.ipojo-arch-command.path }}[iPOJO Arch Command]
 * link:{{ refs.architecture-handler.path }}[Architecture Handler]
 
-= Temporal Dependencies
+== Temporal Dependencies
 
 * Temporal dependencies are injected in fields.
 When accessing to the service, the thread waits for the service availability.
@@ -538,9 +536,9 @@ Service injected as proxies can be given to collaborators | | filter | no |  no 
 
 * link:{{ refs.temporal-service-dependency.path }}[Temporal Service Dependency]
 
-= Sending and receiving events
+== Sending and receiving events
 
-== Receiving events
+=== Receiving events
 
 * The event admin handler allows receiving events from the Event Admin.
 * The event admin handler is implemented as an _external handlers_.
@@ -674,7 +672,7 @@ public void doSomething() {
 	</instance>
 ....
 
-= Extender Pattern
+== Extender Pattern
 
 * Allows implementing an `Extender pattern` without handling obscure details
 * The extender pattern handler is implemented as an _external handlers_.
@@ -705,7 +703,7 @@ The method receives the Bundle object | \{center} \{div}
 
 * link:{{ refs.extender-pattern-handler.path }}[Extender Pattern Handler]
 
-= Whiteboard Pattern
+== Whiteboard Pattern
 
 * Allows implementing a `Whiteboard pattern` without handling obscure details
 * The whiteboard pattern handler is implemented as an _external handlers_.

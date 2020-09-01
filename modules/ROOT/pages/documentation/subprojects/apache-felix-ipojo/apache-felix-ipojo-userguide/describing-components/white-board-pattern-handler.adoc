@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: White Board Pattern Handler
-
 = The white board pattern handler
 
 The objective of this handler is to simplify the development of white-board architecture.

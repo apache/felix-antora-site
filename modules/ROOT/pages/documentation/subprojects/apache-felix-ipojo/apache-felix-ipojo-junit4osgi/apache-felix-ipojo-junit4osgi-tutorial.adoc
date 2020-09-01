@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-junit4osgi-tutorial
-
 = junit4osgi quick start
 
 _This page describes how using the junit4osgi framework.

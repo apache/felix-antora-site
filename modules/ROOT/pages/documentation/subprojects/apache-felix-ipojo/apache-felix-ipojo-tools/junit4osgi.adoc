@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Junit4OSGi
-
 = JUnit4OSGi : Executing Unitary and Integration Test on OSGi
 
 This page is _deprecated_

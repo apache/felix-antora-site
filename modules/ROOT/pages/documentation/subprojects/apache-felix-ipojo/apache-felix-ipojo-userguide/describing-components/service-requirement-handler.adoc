@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Service Requirement Handler
-
 = Requiring services
 
 _One of the main iPOJO feature is the service injection.

@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO in 10 minutes
-
 = iPOJO in 10 minutes
 
 This page presents how to use the iPOJO runtime and its associated service component model.

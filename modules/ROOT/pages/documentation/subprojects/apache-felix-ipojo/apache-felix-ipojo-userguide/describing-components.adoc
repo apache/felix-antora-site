@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Describing components
-
 = Describing your iPOJO components
 
 _This section describes the different features supported by iPOJO.

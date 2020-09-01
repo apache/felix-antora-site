@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO Karaf Features
-
 = iPOJO Karaf Features
 
 If you are using http://karaf.apache.org[Apache Karaf], there is a set of _features_ easing the deployment of iPOJO bundles and related tools on Karaf.

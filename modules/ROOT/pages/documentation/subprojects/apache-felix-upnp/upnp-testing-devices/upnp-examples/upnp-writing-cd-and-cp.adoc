@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: UPnP Writing CD and CP
-
 = Writing UPnP Devices and Control Points
 
 [cols=2*]

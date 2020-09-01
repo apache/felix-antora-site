@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Lifecycle Callback Handler
-
 = Lifecycle callbacks
 
 _It is often necessary to create a POJO object as soon the instance becomes valid (i.e.

@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: UPnP Testing Devices
-
-= Testing UPnP devices&nbsp;
+= Testing UPnP devices
 
 The _org.apache.felix.upnp.tester_ bundle installs a component that shows the UPnP devices registered with the OSGi framework.
 It provides a GUI shown in the Figure 6 that can be used for controlling the discovered devices: by invoking actions and by subscribing for the state variable changes occurring on them.

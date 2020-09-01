@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO-Arch-Command
-
 = iPOJO architecture commands
 
 _Architecture introspection is required when the system doesn't work as expected.

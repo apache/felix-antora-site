@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: How-to use @Stereotype
-
 = Stereotypes
 
 _Stereotypes are user-defined marker annotations allowing to group other annotations together.
@@ -39,7 +35,7 @@ With iPOJO's programming model, writing `@Component` and `@Instantiate` (if usin
 Another example is to simplify annotation declaration when an annotation pattern appears (the same annotations group on many places of the code).
 Typically, introducing a stereotype defines a 'kind' that can be reused (code factorisation).
 
-= Defining a Stereotype
+== Defining a Stereotype
 
 Stereotyped annotations, unlike custom handler annotations, do not need to be in a package containing either `ipojo` or `handler`.
 They just need to be annotated with `@Stereotype` (since iPOJO annotations 1.10.1) and have a class level rentention policy (the default when `@Retention` is missing).
@@ -74,7 +70,7 @@ The stereotype developer needs to declare a compile time dependency on the ipojo
 
 The artifact containing the stereotyped annotation *does not need* to be a bundle and it does not need to be manipulated.
 
-= Using the new stereotype
+== Using the new stereotype
 
 Using a stereotyped annotation does not differ from using any annotation: it has decorate some type, method, field, ...
 

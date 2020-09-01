@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Providing OSGi services
-
 = Providing OSGi services
 
 _This pages explains how to publish OSGi services with iPOJO.

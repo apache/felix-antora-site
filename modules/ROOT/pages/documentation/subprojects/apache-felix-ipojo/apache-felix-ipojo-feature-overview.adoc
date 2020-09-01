@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Apache Felix iPOJO Feature Overview
-
 = Apache Felix iPOJO Feature Overview
 
 _This page is an attempt to put all of the features and benefits of iPOJO into a single high-level list so that it is easy to see why you will want to use iPOJO for your applications.

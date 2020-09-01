@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-testing-components
-
 = How to test iPOJO Components
 
 Testing components is a required step in the application development process.

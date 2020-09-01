@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-junit4osgi-methods
-
 = OSGi and friends methods
 
 _Developing OSGi tests can be definitely boring.
@@ -72,7 +68,7 @@ So, for example, if you write iPOJO tests, you can use the iPOJO helper providin
 IPOJOHelper helper; // Helper object
 
 public void setUp() {
-    helper = new IPOJOHelper(this);	// Create the object.	
+    helper = new IPOJOHelper(this);	// Create the object.
 String type2 = "PS-FooProviderType";
 
 fooProvider1 = helper.createComponentInstance(type2, p3);

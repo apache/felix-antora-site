@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Configuration Handler
-
 = Configuration Handler
 
 _This page presents how to configure component instances.

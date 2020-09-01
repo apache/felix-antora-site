@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Dive into the iPOJO Manipulation depths
-
 = Dive into the iPOJO Manipulation depths
 
 iPOJO (primitive) components are managed using byte code manipulation.

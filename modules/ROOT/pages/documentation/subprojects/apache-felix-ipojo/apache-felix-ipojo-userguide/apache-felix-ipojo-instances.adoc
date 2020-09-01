@@ -1,12 +1,6 @@
-:doctype: book
-
-Title: Creating instances
-
 = Creating instances
 
-[TOC]
-
-= Component types and instances
+== Component types and instances
 
 iPOJO is a component model enforcing strictly the distinction between component types and instances.
 The relationship between types and instances is the same as the one between classes and objects in OOP.
@@ -24,7 +18,7 @@ iPOJO provides several ways to create instances, this page presents these possib
 * using the OSGi Configuration Admin
 * using the `DeclarationBuilderService`
 
-= @Instantiate
+== @Instantiate
 
 The @Instantiate annotation is the simplest way to declare an instance.
 In a class annotated with @Component, you just add the @Instantiate annotation.
@@ -62,7 +56,7 @@ The @Instantiate annotation is easy to use but, has a couple of limitations:
 * you can't provide a configuration to the instance
 * you can declare only one instance
 
-== Declaring a singleton instance
+=== Declaring a singleton instance
 
 The @Instance annotation is particularly useful to declare singleton instances, i.e.
 a component type with only one instance.
@@ -83,7 +77,7 @@ public class MySingleton {
 The `publicFactory=false` attribute makes the component type _private_, so invisible from other bundles.
 No one else would be able to create another instance of the component type.
 
-= @Configuration
+== @Configuration
 
 This second annotation is used on classes to create one or several instances using a fluent API.
 
@@ -133,7 +127,7 @@ However, you can also set the instance name:
 
 Using this configuration DSL allows creating a set of instances that you can configure easily.
 
-== Configuration including lists and maps
+=== Configuration including lists and maps
 
 The `setto` method accepts any object.
 To ease creating collections, the API proposed two methods to handle lists and maps:
@@ -150,7 +144,7 @@ To ease creating collections, the API proposed two methods to handle lists and m
  				.setto(map()
  					.with(entry("key", 1), entry("key2", 2)));
 
-== Methods returning Instance objects
+=== Methods returning Instance objects
 
 The class annotated with @Configuration does not only handle fields, but also handles methods returning Instance object.
 These methods can have either no arguments or the BundleContext as unique argument.
@@ -170,7 +164,7 @@ As for fields, the method name is used as instance name except if the instance a
 
 NOTE: the injected BundleContext is the BundleContext of the bundle containing the annotated class.
 
-= Declaring instances in XML
+== Declaring instances in XML
 
 You can declare instances using the iPOJO XML descriptor.
 If you use XML to describe you component type, you probably want to use this way to create your instances.
@@ -189,7 +183,7 @@ The _property_ elements have a mandatory `name` attribute to set the property na
 You can declare as many as you want instances in the XML descriptor.
 They can targets component types declared within the same bundles or not.
 
-== Setting the instance name
+=== Setting the instance name
 
 To set the instance name you can use the _name_ attribute of the _instance_ element or the _instance.name_ property:
 
@@ -199,7 +193,7 @@ To set the instance name you can use the _name_ attribute of the _instance_ elem
  	<property name="instance.name" value="my-instance-2"/>
  </instance>
 
-== Describing complex properties in XML
+=== Describing complex properties in XML
 
 The _property_ element can be used to configure complex types such as arrays, lists and maps.
 
@@ -240,7 +234,7 @@ The _property_ element can be used to configure complex types such as arrays, li
    	<property name="empty-list" type="list"/>
    	<property name="empty-map" type="map"/>
 
-= Creating instances using the Factory service
+== Creating instances using the Factory service
 
 In previous technics to create instances were declarative.
 You declare an instance.
@@ -250,7 +244,7 @@ The technic presented here is a programatic way.
 Each (non private) component types are exposed as an OSGi service.
 You can use this OSGi service to create, reconfigure and dispose instances from your code.
 
-== The Factory service
+=== The Factory service
 
 The published service interface is `+[org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html)+` and provides the following methods:
 
@@ -284,7 +278,7 @@ So target a specific component type, use the following filter:
 
 If you grab all factories, you can check their names using the `getName()` method.
 
-== Creating instances
+=== Creating instances
 
 Once you have the right Factory service, you can create instances using `createComponentInstance` method.
 This method returns a reference on the created instance.
@@ -321,7 +315,7 @@ The next snippet shows an example of instance creation:
     fail("Cannot create the instance : " + e.getMessage());
  }
 
-== Disposing created instance
+=== Disposing created instance
 
 You can only disposed instances that you created.
 To dispose an instance, just call the `dispose` method on the ComponentInstance object (returned by the createComponentInstance method).
@@ -329,7 +323,7 @@ To dispose an instance, just call the `dispose` method on the ComponentInstance 
  :::java
  instance.dispose();
 
-== Reconfiguring instance
+=== Reconfiguring instance
 
 To reconfigure an instance, call the 'reconfigure' method on the ComponentInstance object.
 This method receives the new set of properties.
@@ -340,7 +334,7 @@ Be aware that the 'instance.name' property cannot be changed.
  props2.put("foo", "abc");
  instance.reconfigure(props2);
 
-== Following the factory state
+=== Following the factory state
 
 Factories can becomes invalid if one of the handler they require is not available.
 Basically, handlers are pieces of iPOJO containers.
@@ -350,14 +344,14 @@ This method returns `1` if the factory is valid, `0` if not.
 
 You can also register a `org.apache.felix.ipojo.FactoryStateListener` object on the factory to be notified of the changes.
 
-= Creating instances using the OSGi Configuration Admin
+== Creating instances using the OSGi Configuration Admin
 
 The configuration admin service is a standard service specified by the OSGi Alliance to handle configurations.
 It allows an operator to configured the deployed bundles, and so iPOJO instances.
 
 iPOJO supports the configuration admin and you can create, reconfigure and dispose instanced using this service.
 
-== Creating instances
+=== Creating instances
 
 Creating an instance is done by creating a _factory_ configuration:
 
@@ -382,18 +376,18 @@ Using "?" is a wildcard, for more details, check the configuration admin specifi
 You populate this configuration with a dictionary.
 The configuration is actually created using the `update` method.
 
-== Reconfiguring instances
+=== Reconfiguring instances
 
 If the instance was created using the Configuration Admin and you own the Configuration object used for the creation, the reconfiguration is done by calling the `update` method with the new properties.
 
 If the instance was already created, you can configure it using a _regular_ configuration.
 The pid given to this configuration is the instance name.
 
-== Disposing instances
+=== Disposing instances
 
 To dispose an instance, just call the `delete` method on the configuration object you used to configure the instance.
 
-= Creating instances with declarations
+== Creating instances with declarations
 
 Declarations offer a nice way to declares instances in a programmatic way.
 If not retracted by hand, they're bound to the declaring bundle lifecycle (i.e.

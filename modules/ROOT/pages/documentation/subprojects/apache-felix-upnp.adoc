@@ -1,10 +1,6 @@
-:doctype: book
+=  Apache Felix UPnP
 
-Title: Apache Felix UPnP
-
-= Felix UPnP Documentation
-
-== Introduction&nbsp;
+== Introduction
 
 The Felix UPnP project provides an implementation of the OSGi UPnP specification (version 1.1) as described in the http://www.osgi.org/Specifications/HomePage[OSGi Service Compendium (Release 4)] . The specification is implemented by the _org.apache.felix.upnp.basedriver_ bundle and it comes with other bundles, which have been developed to ease the writing and testing of UPnP code.
 
@@ -16,7 +12,7 @@ Developers writing UPnP code do not need to interact directly with the driver th
 The driver works in background by exporting the registered services as UPnP devices, and by registering as services the UPnP devices discovered on UPnP networks.
 However, the Felix UPnP project has defined few additional interfaces, so a base knowledge of the way the UPnP Base Driver works is useful and will help developers to write their code.
 
-&nbsp;Table of Content:
+Table of Content:
 
 . link:{{ refs.-upnp-getting-started.path }}[Getting Started]
 . link:{{ refs.-upnp-driver-architecture.path }}[Overview of the Base Driver Architecture]

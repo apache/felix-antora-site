@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-online-manipulator
-
 = Apache Felix iPOJO Online Manipulator
 
 _iPOJO generally requires an additional packaging step to prepare the bundle to be managed by iPOJO.

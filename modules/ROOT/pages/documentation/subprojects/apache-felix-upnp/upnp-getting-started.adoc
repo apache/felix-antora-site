@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: UPnP Getting Started
-
 = Getting Started
 
 Assuming that, as described in link:{{ refs.building-felix.path }}[Building Felix] web page, you have already checked out the Felix project in the $FELIX__HOME directory, the Felix UPnP project is located at $FELIX__HOME/trunk/upnp directory.

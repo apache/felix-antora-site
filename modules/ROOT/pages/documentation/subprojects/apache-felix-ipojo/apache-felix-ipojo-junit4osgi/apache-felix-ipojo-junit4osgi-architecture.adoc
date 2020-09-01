@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-junit4osgi-architecture
-
 = junit4osgi framework architecture
 
 _This page describes the architecture of the junit4osgi framework.

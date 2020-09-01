@@ -1,17 +1,11 @@
-:doctype: book
+=  Apache Felix Framework Security
 
-Title: Apache Felix Framework Security
-
-The Felix Framework Security subproject is an implementation of the security part of the OSGi R4.2 core specification.
-
-= Installing
+The Felix Framework Security subproject is an implementation of the security part of the OSGi R4.2 core specification.== Installing
 
 Support for the OSGi R4.2 security specifications including `PermissionAdmin` and `ConditionalPermissionAdmin` is provided by the framework.security extension bundle.
 The bundle provides both, the packages as well as the services when it is installed.
 
-All that needs to be done is to install the `org.apache.felix.framework.security` bundle into the framework.
-
-= Using security
+All that needs to be done is to install the `org.apache.felix.framework.security` bundle into the framework.== Using security
 
 Besides installing the security bundle three properties should be specified:
 

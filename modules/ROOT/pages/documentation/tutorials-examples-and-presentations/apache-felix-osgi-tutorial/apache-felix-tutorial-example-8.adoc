@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Apache Felix Tutorial Example 8
-
 = Example 8 - Spell Checker Service using Service Binder
 
 _[Note: The Service Binder was the original project to attempt to automate service dependency management for the OSGi platform and was the inspiration for Declarative Services introduced in OSGi R4.

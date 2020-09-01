@@ -1,6 +1,4 @@
-:doctype: book
-
-Title: MOSGi Managed OSGi framework
+=  MOSGi Managed OSGi framework
 
 MOSGi enables the remote management of OSGi-compatible service gateways, using JMX.
 The framework is a reference architecture for end-to-end gateway management.
@@ -12,17 +10,17 @@ It provides the following features:
 * provides a management console,
 * the graphical part of a probe (management console part) can 	be dynamically plugged in the management console and is dynamically 	downloaded.
 
-= Very fast QuickStart Guide
+== Very fast QuickStart Guide
 
 Go into $FELIX_HOME/trunk/mosgi.doc and read Readme.txt.
 
-= General architecture
+== General architecture
 
 The overall architecture is presented in the following picture :
 
 !MOSGiArchitecture.png!
 
-= How it works
+== How it works
 
 Managed OSGi gateways can install JMX probes from various repositories.
 A JMX probe is a standard OSGi bundle that registers an link:{{ refs.-mbean.path }}[#MBean] component in the managed gateway's JMX agent.
@@ -52,7 +50,7 @@ A JMX Console is an OSGi framework also (for simplicity) which should host two b
 * jmxconsole common tabs: tabs that are common to all gateways.
 For the moment it only concerns a tab that shows remote notification 	(it works whith remote logger)
 
-= OSGi/JMX MBean registration
+== OSGi/JMX MBean registration
 
 MOSGi installs JMX-MX4J agent at the gateways level.
 Any one can register an MBean to the JMX agent.
@@ -63,7 +61,7 @@ The direct code and the white board pattern.
 
 Example:
 
- org.osgi.framework.ServiceReference sr = context.getServiceReference(javax.management.MBeanServer.class.getName());
+ org.osgi.framework.ServiceReference sr == context.getServiceReference(javax.management.MBeanServer.class.getName());
  javax.management.MBeanServer mbs=(javax.management.MBeanServer)context.getService(sr);
  mbs.registerMBean(new MBeanImpl(), new ObjectName("Foo:FooName");
 
@@ -79,7 +77,7 @@ Example:
  prop.add( org.apache.felix.mosgi.jmx.agent.Constants.OBJECTNAME, "Foo:FooName");
  context.registerService(test.FooMBean.class.getName(), new test.Foo(), prop);
 
-= Management Console
+== Management Console
 
 The management console is a ad-hoc jmx compatible console.
 Its aim is not to be a concurrent to general purpose consoles like MX4J or JConsole but provides an ad-hoc user interface depending on the managed gateway.
@@ -103,7 +101,7 @@ A link:{{ refs.probeguide.path }}[ProbeGuide] that  describes plugin integration
 Plugin are dynamically removed and reinstalled each time you change your selected gateway.
 
 [discrete]
-=== MBean Definition
+==== MBean Definition
 
 An MBean is a Management Component for the JMX framework.
 It is made of an MBean interface and an implementation of it.

@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Service Binding Interceptors
-
 = Service Binding Interceptors
 
 Service Bindings are the connection between a service consumer and a service provider.
@@ -29,7 +25,7 @@ public class AddLocationTrackingInterceptor extends 	DefaultServiceTrackingInter
 
 @ServiceProperty
 private String target = "(dependency.id=foo)";
-	
+
 	//...
 }
 ....

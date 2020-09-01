@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-api
-
 = iPOJO API
 
 _The iPOJO API provides a third way to describe iPOJO components and instances.

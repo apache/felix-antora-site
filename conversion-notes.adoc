@@ -1,0 +1,201 @@
+= Notes on conversion from cms to Antora/asciidoc
+:project: felix
+
+== Previous history preservation
+
+While all history remains in svn repositories, this is going to be increasingly inaccessible as people forget how to use svn.
+Therefore, previous history for the source and rendered html versions of the website is transferred to git using svn2git.
+The authors.txt file needs to be enhanced with an entry for buildbot.
+
+[source,console,subs=+attributes]
+----
+curl https://gitbox.apache.org/authors.txt
+----
+
+Add `buildbot = buildbot <buildbot@apache.org>`.
+This is probably not needed for CMS-only sites but was needed for TomEE.
+
+[source,console,subs=+attributes]
+----
+mkdir {project}/site
+cd {project}/site
+svn2git https://svn.apache.org/repos/asf/aries/site/trunk/content/modules/ --authors ../authors.txt --rootistrunk --no-minimize-url -m
+#git gc #sometimes there's a gc error at the end of previous command
+git tag -m "last cms revision" last-cms
+----
+
+[source,console,subs=+attributes]
+----
+mkdir {project}/site-pub
+cd {project}/site-pub
+svn2git https://svn-master.apache.org/repos/infra/websites/production/{project}/content --authors ../authors.txt --rootistrunk --no-minimize-url -m
+#git gc #sometimes there's a gc error at the end of previous command
+git tag -m "content from last cms revision" last-cms
+----
+
+== Move to Antora structure
+
+In {project}/site:
+
+CMS assets are at the root.
+Start by moving them into Antora structure under `module/ROOT/pages`.
+After getting an "exact copy" version working, consider reorganizing with Antora components, versions, and modules.
+
+.Commands used for Aries
+[source,console,subs=+attributes]
+----
+mkdir -p modules/ROOT/pages
+ls
+git mv *.mdtext modules/ROOT/pages/
+git mv community modules/ROOT/pages/
+git mv development modules/ROOT/pages/
+git mv documentation modules/ROOT/pages/
+git mv downloads modules/ROOT/pages/
+git mv images modules/ROOT/
+git mv resources modules/ROOT/pages/
+git mv schemas modules/ROOT/pages/
+----
+
+
+.Commands used for Felix
+[source,console,subs=+attributes]
+----
+mkdir -p modules/ROOT/pages
+ls
+git mv *.mdtext modules/ROOT/pages/
+git mv components/ modules/ROOT/pages/
+git mv documentation modules/ROOT/pages/
+git mv errors/ modules/ROOT/pages/
+ls icons/
+git mv ipojo/ modules/ROOT/pages/
+git mv miscellaneous/ modules/ROOT/pages/
+git mv obr/ modules/ROOT/pages/
+ls res
+ls site
+ls apidocs/
+mkdir -p modules/ROOT/attachments
+git mv apidocs/  modules/ROOT/attachments/
+
+git commit -m "move to basic antora structure"
+----
+
+Note moving existing javadoc to attachments.
+The commands here will obviously depend on the structure of the existing site.
+This also leaves icons and other website resources unmoved; whether they go into the UI or images directory can be determined later.
+
+== Markdown to Asciidoc
+
+Asciidoc-kramdown is the best converter.
+It seems easiest to build a script to do the conversion, then run it.
+
+
+In {project}/site:
+
+[source,console,subs=+attributes]
+----
+echo '#!/bin/sh' >convert.sh
+find . -name "*.mdtext" -type f -exec sh -c     'echo echo $0\\nkramdoc --format=GFM --wrap=ventilate $0' {} \; >> convert.sh
+chmod u+x convert.sh
+./convert.sh
+----
+
+There might be errors; the name of the file they occur in will be printed before the error.
+Figure out what they are and fix them.
+Note the stacktrace is backwards from Java.
+
+Some errors with causes:
+
+`.../writer.rb:101:in `+': no implicit conversion of nil into String (TypeError)`:: `<< \| >>`
+
+`.../converter.rb:99:in `convert': undefined method `convert_raw' for #<Kramdown::AsciiDoc::Converter:0x00007fc0be123320> (NoMethodError)`
+::Raw style html such as `<style type="text/css">img { width:auto;}</style>`
+
+`.../writer.rb:101:in `append': no implicit conversion of String into Array (TypeError)`::
+* A section `# Section` cannot be immediately followed by `:::xml`.
+Insert a `* fake point`.
+* A blank line in an `:::XML` block
+* Sometimes, embedded html such as `<div...>`
+
+When the convert scripts works without errors, commit the result:
+
+[source,console,subs=+attributes]
+----
+git add modules
+git commit -m "basic kramdoc conversion to asciidoc"
+----
+
+== Antora component descriptor
+
+Add an antora.yml file at the root containing
+
+[source,yml,subs=+attributes]
+----
+name: documentation
+title: Documentation
+version: master
+start_page: index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+----
+
+Add an empty nav.adoc file at modules/ROOT/.
+
+== Playbook and UI
+
+Install `@djencks/antora-schematics`.
+
+`npm i -g @djencks/antora-schematics`
+
+=== Construct UI project
+
+In root directory,
+
+[source,console,subs=+attributes]
+----
+antora-schematics uiExtension --path {project}-antora-ui --extensionName {project}-antora --namespace '@{project}' --gitPath {project}-antora-ui --no-commit
+cd {project}-antora-ui
+// remove build from .gitignore
+npm i
+gulp
+git add build
+git commit -m "initial {project} UI project"
+----
+
+=== Playbook
+
+In root directory,
+
+[source,console,subs=+attributes]
+----
+antora-schematics playbook --path {project}-antora --gitPath {project}-antora --siteURL https://{project}.apache.org --no-commit  --siteTitle Apache {project} --sources ./../{project}-site --packageManager none --uiBundle node_modules/@{project}/{project}-antora-ui/build/{project}-antora-ui-bundle.zip
+cd {project}-antora
+// add '  "@{project}/{project}-antora-ui": "./../{project}-antora-ui"` to package.json devDependencies
+git commit -m "initial {project} playbook project" .
+npm run clean-build
+//or npm run clean-install
+----
+
+== Fix the errors
+
+Most likely there will be lots of errors from the markdown conversion.
+One obvious thing to check for is that the pages start with a title `= This is the Title`.
+Many Apache markdown pages have migrated automatically from previous systems such as Confluence with the markdown in a basically broken state.
+Since Asciidoc has some notion of grammar, you'll need to fix the problems.
+
+`:doctype: book
+
+Title: ` :: replace with `= `
+
+Error `level 0 sections can only be used when doctype is book` :: More deeply nest sections so body sections are at least `== `.
+This may be facilitated in jetbrains products with an on-page regex search/replace from `
+(=+ )` to `
+
+=$1`.
+
+
+== Auto index pages
+
+== Construct nav file
+
+== Fix xrefs
+

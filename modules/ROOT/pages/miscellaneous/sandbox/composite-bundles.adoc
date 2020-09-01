@@ -1,8 +1,6 @@
-:doctype: book
+=  Composite Bundles
 
-Title: Composite Bundles
-
-= 1. Overview
+== 1. Overview
 
 The OSGi framework supports deploying bundles into a flat and basically globally bundle space.
 The idea behind this approach can be summarized as, "the deployed set of bundles is your application configuration." This approach has performed well over the years;
@@ -18,7 +16,7 @@ The two main goals of this proposal are:
 
 The remainder of this proposal describes the technical approach for achieving these two goals.
 
-= 2. Use cases
+== 2. Use cases
 
 Some potential use cases for composite bundles:
 
@@ -29,7 +27,7 @@ Some potential use cases for composite bundles:
 
 This list is not intended to be exhaustive.
 
-= 3. Terminology
+== 3. Terminology
 
 The following terms are used in this document:
 
@@ -39,7 +37,7 @@ The following terms are used in this document:
 * Required bundle - a bundle required by a composite bundle from the parent framework.
 * Provided bundle - a constituent bundle from a composite bundle made available in the parent framework.
 
-= 4. Technical approach
+== 4. Technical approach
 
 The overall technical approach is to use the virtual bundle concept (proposed separately) to manage composite bundles as a layer above the framework.
 This proposal forgoes an API-based approach to support a simple, declarative approach.
@@ -52,12 +50,12 @@ NOTE 1: The purpose is not to actually treat the two models as separate entities
 
 NOTE 2: Although this document is API-less, the goal is not to completely rule out any API, but to keep things simple until some real-world experience is gained at which point API could potentially be introduced.
 
-== 4.1 Simple composite model
+=== 4.1 Simple composite model
 
 The simple composite model supports installing groups of bundles as a single composite bundle with the ability to import packages/services from the parent framework into the composite bundle and to export packages/services from the composite bundle to the parent framework.
 The lifecycle of the constituent bundles are managed by the lifecycle of the composite bundle in the parent framework.
 
-=== 4.1.1 Simple composite description
+==== 4.1.1 Simple composite description
 
 A composite bundle is declared using a set of manifest-like headers, which is familiar to bundle developers and fits well with the virtual bundle proposal, where virtual bundles are installed with a given set of headers.
 The following headers are reused for declaring a composite bundle:
@@ -103,12 +101,12 @@ If the latter, then this relates to the rich wiring section in the open issues.
 
 NOTE 2: Any "uses" constraints for the composite bundle's exported packages must be specified in the metadata, which will be used by parent framework to ensure consistency like normal.
 
-=== 4.1.2 Simple composite lifecycle management
+==== 4.1.2 Simple composite lifecycle management
 
 Since composite bundles are implemented as virtual bundles, access to their content and portions of their lifecycle are controlled by an external manager.
 This section describes various lifecycle management issues for simple composite bundles.
 
-==== 4.1.2.1 Composite manager
+===== 4.1.2.1 Composite manager
 
 The composite manager results from the use of virtual bundles and is largely responsible for realizing the capabilities embodied in the composite description.
 This means it is the composite manager's responsibility to:
@@ -121,14 +119,14 @@ This means it is the composite manager's responsibility to:
 The precise approach the composite manager uses to accomplish these responsibilities is not specified, but one potential approach is for the composite manager to create a separate framework instance for each composite bundle.
 Another approach would be to create a static wiring of the constituent bundles and just mimic framework behavior for them.
 
-==== 4.1.2.2 Installing composites
+===== 4.1.2.2 Installing composites
 
 If an "install hook" is introduced in the virtual bundle proposal, then the composite manager can use it to seamlessly install composite bundles via the `BundleContext.installBundle()` method like a normal bundle.
 If install hooks are not proposed, then it could provide a simple service for installing composites.
 A composite is installed with a complete composite description, which forms the manifest of the installed virtual bundle.
 As such, composite installation is effectively atomic from the perspective of the parent framework.
 
-==== 4.1.2.3 Resolving composites
+===== 4.1.2.3 Resolving composites
 
 The composite bundle's wires for its imported packages are injected into the composite's virtual module by the framework, like for all virtual bundles.
 The composite manager uses these wires for delegation purposes out to the parent framework for the constituent bundles.
@@ -138,7 +136,7 @@ NOTE: Resolving a composite bundle could actually be combined with some sort of 
 It is not clear if this needs to be specified, since such verification does not happen for normal bundles.
 In other words, it is a reasonable approach to just trust the metadata.
 
-==== 4.1.2.4 Starting and stopping composites
+===== 4.1.2.4 Starting and stopping composites
 
 Starting a composite bundle starts all internal constituent bundles.
 Likewise, stopping a composite bundle stops all constituent bundles.
@@ -153,7 +151,7 @@ To keep things simple, constituent bundles are either active or not based on the
 If more fine-grained control is required it would be possible.
 Starting and stopping individual constituent bundles would offer no real issue, although allowing them to be refreshed or uninstalled might cause the composite manager to force the outer composite bundle to refresh if the export signature is impacted.
 
-==== 4.1.2.5 Updating a composite
+===== 4.1.2.5 Updating a composite
 
 When a composite bundle is updated, the composite manager must continue to support the associated virtual module;
 i.e., it must still be possible to load classes from it.
@@ -161,7 +159,7 @@ At the point in time when the bundle is refreshed and returned to the installed 
 If the composite was updated to a normal bundle (or a different kind of virtual bundle), then the composite manager will no longer manage it.
 On the other hand, if was updated to another composite bundle, then the composite manager will reinstall a new virtual module for it.
 
-==== 4.1.2.6 Uninstalling a composite
+===== 4.1.2.6 Uninstalling a composite
 
 When a bundle is uninstalled, that does not mean that it is no longer in use by the framework, since it must still be possible to load classes from it.
 Unfortunately, the framework provides no additional callbacks or state changes to notify when it is really done with an uninstalled bundle.
@@ -169,24 +167,24 @@ As a result, if a composite bundle is uninstalled, the composite manager must im
 
 NOTE: This could be improved with a `VirtualModule.dispose()` method, which would be invoked by the framework to indicate when it was done with the virtual module.
 
-==== 4.1.2.7 Refreshing a composite
+===== 4.1.2.7 Refreshing a composite
 
 When refreshing a composite bundle, all constituent bundles are refreshed and the composite bundle returns to the installed state.
 Following normal framework behavior, any bundles depending on the composite bundle will also be refreshed.
 Likewise, if the composite bundle depends on another bundle being refreshed in the parent framework, then it too will be refreshed.
 
-==== 4.1.2.8 Relationship to composite manager lifecycle
+===== 4.1.2.8 Relationship to composite manager lifecycle
 
 Since the composite manager manages all aspects of the composite's content, its active lifetime scopes its managed composites.
 In other words, if the composite manager is stopped, then it explicitly causes all of its managed composites to refresh and return to the installed state.
 
-== 4.2 Transparent composite model
+=== 4.2 Transparent composite model
 
 The simple composite model fits fairly well within the constraints of the OSGi framework since it aligns well with the concepts embodied in the original OSGi specification (i.e., packages and services).
 However, some use cases may require support beyond these original concepts.
 For such cases, this proposal defines a transparent composite model that extends the simple composite model to include additional support for provided and required bundles at the expense of added complexity.
 
-=== 4.2.1 Transparent composite description
+==== 4.2.1 Transparent composite description
 
 Transparent composite bundles can require bundles using the following header:
 
@@ -201,7 +199,7 @@ The provided bundles will be manifested in the parent framework as virtual bundl
 This means that in addition to the composite bundle in the parent framework, there will ultimately be additional virtual bundles installed by the composite manager for each provided bundle;
 since this is related to the transparent composite bundle lifecycle, more details will be present in the next section.
 
-=== 4.2.2 Transparent composite lifecycle management
+==== 4.2.2 Transparent composite lifecycle management
 
 To provide access to constituent bundles into the parent framework, the composite manager must proxy provided constituent bundles as separate virtual bundles in the parent framework.
 This complicates lifecycle management since it creates separate points of control for the composite bundle and it also complicates maintaining class space consistency for clients of the provided bundle.
@@ -209,14 +207,14 @@ This section discusses these issues in more detail.
 
 NOTE: Depending on how composite bundles are implemented, these issues may also apply to required bundles inside the composite bundle.
 
-==== 4.2.2.1 Two-phase resolve
+===== 4.2.2.1 Two-phase resolve
 
 When a composite providing access to a constituent bundle is first installed, the provided bundle cannot be made available immediately.
 Once the composite bundle is resolved (i.e., the composite's associated virtual module is injected with its wires), then the composite manager can install a virtual bundle proxying the provided bundle.
 At this point, the proxy provided bundle is available for use by other bundles in the parent framework, although it will still be in the installed state in the parent until someone actually causes it to resolve.
 However, resolving the proxy provided bundle technically has no real effect since it is actually resolved internal to the composite.
 
-==== 4.2.2.2 Maintaining class space consistency
+===== 4.2.2.2 Maintaining class space consistency
 
 If the packages exported by a provided bundle do not have uses constraints or if the uses constraints are confined to other packages exported by the provided bundle itself, then the proxying described in the last section is sufficient to provide access in the parent framework.
 On the other hand, if the provided bundle's exported packages have uses constraints on packages imported by the provided bundle, then this poses a potential issue for clients of the proxy provided bundle in the parent framework.
@@ -281,7 +279,7 @@ For this case, the generated proxy provided bundle must simply explicitly import
 
 NOTE: This approach requires richer wiring information as discussed in the open issues.
 
-==== 4.2.2.3 Lifecycle of proxied bundles
+===== 4.2.2.3 Lifecycle of proxied bundles
 
 As discussed, the support for providing bundles results in the composite manager installing proxy bundles for the provided bundle and its uses constraints in the parent framework in addition to the original composite bundle.
 This raises questions about the lifecycle of proxied bundles.
@@ -293,18 +291,18 @@ If the composite is refreshed, then the provided bundles should be uninstalled a
 Performing individual lifecycle operations on the proxied bundles should function like normal in the parent framework, but should have no impact on the internal constituent bundles of the composite.
 For example, you can start, stop, and even uninstall provided bundles, but this just impacts the state of the bundles in the parent framework, which may render them unresolvable.
 
-= 5. Open issues
+== 5. Open issues
 
-== 5.1 Rich wiring information
+=== 5.1 Rich wiring information
 
 Currently, the wiring information provided by the virtual bundle proposal has been kept purposely simplistic.
 To fully implement aspects of composites, like requiring/providing bundles, it is necessary to get richer information from the wires, such as the type of capability.
 Further, the wiring information needs to be at the module-level (i.e., bundle revision level), not at the bundle level.
 The refactoring of the Package Admin API addresses some of these issues, but not all of them.
 
-= 6. Considered alternatives
+== 6. Considered alternatives
 
-== Scoping approach
+=== Scoping approach
 
 Another potential approach for providing similar capabilities is to try to use virtual bundles to implement a scoping approach.
 Scoping can be modeled reasonably well as manifest rewriting (i.e., mandatory attributes and renaming).

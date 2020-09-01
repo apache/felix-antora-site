@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Download
-
 = Download iPOJO
 
 _The actual iPOJO version is the *1.8.x_.

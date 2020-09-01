@@ -1,18 +1,16 @@
-:doctype: book
-
-Title: Apache Felix Framework Bundle Cache
+=  Apache Felix Framework Bundle Cache
 
 * link:{{ refs.-introduction.path }}[Introduction]
 * link:{{ refs.-default-behavior.path }}[Default Behavior]
 * link:{{ refs.-configuring-behavior.path }}[Configuring Default Behavior]
 
-= Introduction
+== Introduction
 
 The OSGi specification states that the framework must cache bundles and their run-time state, but it does not explicitly define how this should be done.
 As a result, each OSGi framework implementation is likely to cache bundles differently.
 This document describes in detail how the Felix framework handles bundle caching by default and also describes the mechanisms to modify this default behavior.
 
-= Default Behavior
+== Default Behavior
 
 Since the OSGi R4.2 specification, the standard framework launching and embedding API requires that frameworks should use "reasonable defaults" for all configuration properties so it is possible to start a framework without any configuration.
 One such default value is the location of the framework bundle cache.
@@ -84,7 +82,7 @@ If the bundle is refresh again, its revision directory will become `revision2.0`
 Note: Bundles may be refreshed when they are updated or when they depend on other bundles that have been updated;
 either way it is necessary to increment the refresh count and rename the revision directory during a refresh operation.
 
-= Configuring Default Behavior
+== Configuring Default Behavior
 
 It is possible to modify the default behavior of Felix' bundle cache by setting certain configuration properties;
 see the link:{{ refs.apache-felix-framework-usage-documentation-configuring-framework.path }}[usage document] for information on how to set configuration properties for Felix.

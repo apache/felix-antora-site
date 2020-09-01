@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: apache-felix-ipojo-successstories
-
 = iPOJO Success Stories
 
 _On this page, you will find comments from industrial users of iPOJO.

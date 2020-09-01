@@ -1,17 +1,15 @@
-:doctype: book
+=  Related Works
 
-Title: Related Works
-
-= Presentations
+== Presentations
 
 * http://www.aqute.biz/resources/2005/2005-10-OSGIWC*Service*Blinder.ppt[Service Blinder] : Peter Kriens Presentation about "Removing Cruft" (OSGi World Congress 2005)
 
-= Articles
+== Articles
 
 * Extending OSGi for Java Module Orientation
 * http://www-adele.imag.fr/Les.Publications/intConferences/ICSE2004Cer.pdf[Autonomous Adaptation to Dynamic Availability Using a Service-Oriented Component Model]
 
-= Web Sites
+== Web Sites
 
 * http://www.springframework.org/osgi[Spring-DM]
 * http://gravity.sourceforge.net/servicebinder/[Service Binder]

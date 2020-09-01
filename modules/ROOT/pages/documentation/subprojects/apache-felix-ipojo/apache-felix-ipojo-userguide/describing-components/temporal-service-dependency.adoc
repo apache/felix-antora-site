@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Temporal Service Dependency
-
 = The temporal dependency handler
 
 _Regular service dependencies participate to the instance lifecycle.

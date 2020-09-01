@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Using XML Schemas
-
 = Using XML Schemas
 
 _iPOJO provides XML schemas to check iPOJO descriptors (i.e.

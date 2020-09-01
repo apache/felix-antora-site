@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: Extender Pattern Handler
-
-= The extender pattern handler
+= The Extender Pattern handler
 
 _The objective of this handler is to simplify the development of extender-based architecture.
 This architecture-style is based on two different entities:_
@@ -43,7 +39,7 @@ First of all, you need to configure the component type to use the handler such a
 <ipojo xmlns:extender="org.apache.felix.ipojo.extender">
 	<component
 		classname="org.apache.felix.ipojo.extender.MyExtender">
-		
+
                 <!-- Extender Pattern handler configuration -->
 		<extender:extender
                   extension="My-Extension"
@@ -75,7 +71,7 @@ public class MyExtender {
 	public void starting() {
 	  // ...
 	}
-	
+
 	@Invalidate
 	public void stopping {
 	  // ...

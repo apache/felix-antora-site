@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Constructing POJO objects with factory methods
-
 = Using a factory method to create POJO object
 
 _By default, iPOJO calls the POJO constructor to create objects.

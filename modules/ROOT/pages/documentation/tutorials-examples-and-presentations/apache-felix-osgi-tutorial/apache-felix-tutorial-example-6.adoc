@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Apache Felix Tutorial Example 6
-
 = Example 6 - Spell Checker Service Bundle
 
 _(This example should be rewritten to use the Service Tracker.)_

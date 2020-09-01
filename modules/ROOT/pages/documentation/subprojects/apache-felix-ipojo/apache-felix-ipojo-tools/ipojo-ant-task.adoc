@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO Ant Task
-
 = iPOJO Ant Task
 
 _iPOJO Ant Task allows automating the iPOJO manipulation process within an Ant build process.

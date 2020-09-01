@@ -1,13 +1,4 @@
-:doctype: book
-
-Title: Notice:    Licensed to the Apache Software Foundation (ASF) under one            or more contributor license agreements.
-See the NOTICE file            distributed with this work for additional information            regarding copyright ownership.
-The ASF licenses this file            to you under the Apache License, Version 2.0 (the            "License");
-you may not use this file except in compliance            with the License.
-You may obtain a copy of the License at            .              http://www.apache.org/licenses/LICENSE-2.0            .            Unless required by applicable law or agreed to in writing,            software distributed under the License is distributed on an            "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY            KIND, either express or implied.
-See the License for the            specific language governing permissions and limitations            under the License.
-
-Dependency Manager - Service Scopes
+= Dependency Manager - Service Scopes
 
 By default service providers are registered once in the osgi registry, and all service consumers share the same service provider instance.
 Now, you can control the scope of the provided services: From the provider side, a "scope" parameter  is available for all types of DM components and allows to define the scope of the registered service.
@@ -34,7 +25,7 @@ When defining scoped component implementation, you can optionally define two spe
 Just use @Inject annotations in order to get injected with the client  Bundle or the ServiceRegistration.
 You can also define a constructor which takes as argument the  client bundle as well as the service registration.
 
-= Examples
+== Examples
 
 So, here is a MyService component with PROTOTYPE scope, and each requester will get its own copy  of MyService instance (the MyServiceImpl.start() method will be called for each MyServiceImpl  instance):
 
@@ -93,7 +84,7 @@ public class Client {
 }
 ....
 
-= Example using ServiceObjects API
+== Example using ServiceObjects API
 
 If now you want to control the creation of the MyService using raw OSGI ServiceObjects API,  you can also do it like this:
 
@@ -108,7 +99,7 @@ If now you want to control the creation of the MyService using raw OSGI ServiceO
      }
  }
 
-= Scoped services and init/destroy callbacks
+== Scoped services and init/destroy callbacks
 
 When you need to specify dynamic required dependencies from your component.init() method,  the following mechanism will be used:
 
@@ -139,7 +130,7 @@ public static class MyServiceImpl implements MyService {
 	void start() {
 	   // only called on clone, not on the prototype instance singleton
 	}
-	
+
 	void stop() {
 	   // called on each clone, not on the prototype instance singleton
 	}
@@ -149,7 +140,7 @@ public static class MyServiceImpl implements MyService {
 So, if you don't specify an init callback then the prototype instance singleton won't be instantiated.
 Also,
 
-= Limitation when using DM ServiceDependency from API and ServiceObjects
+== Limitation when using DM ServiceDependency from API and ServiceObjects
 
 When using DependencyManager ServiceDependency from the DM API (not using annotations),  you have to know that the ServiceDependency always internally dereferences the  service dependency, even if you specify a ServiceObjecs  parameter in your bind method.
 If now you really want to disable the auto-deref ServiceDependency  (because you want to directly use the ServiceObjects API), you must then use the  "setDereference(false") method on your ServiceDependency: in this way, you tell DM to never  dereference internally the scoped service.

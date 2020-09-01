@@ -1,8 +1,4 @@
-:doctype: book
-
-Title: iPOJO Hello Word (Maven-Based) tutorial
-
-= iPOJO Hello World
+=  iPOJO Hello Word (Maven-Based) tutorial
 
 _This page presents how to use the iPOJO runtime and its associated service component model.
 The concepts of the service component model are introduced, followed by a simple example that demonstrates the features of iPOJO._

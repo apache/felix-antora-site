@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: iPOJO Composition Tutorial
-
 = iPOJO Composition Tutorial
 
 _This page describes how works the composition mechanisms provided by iPOJO and how to use it.
@@ -141,10 +137,10 @@ The descriptor of this application is:
 <composite name="composition1">
 	<!--  Instantiates an instance of the English dictionary -->
 	<instance component="spell.english.EnglishDictionary"/>
-	
+
 	<!--  Instantiates an instance of the Checker -->
 	<instance component="spell.checker.SpellCheck"/>
-	
+
 	<!--  Instantiates an instance of the GUI -->
 	<instance component="spell.gui.SpellCheckerGui"/>
 </composite>
@@ -282,13 +278,13 @@ To achieve this, use the following composite:
 <composite name="composition2">
 	<!--  Instantiates an instance of the English dictionary -->
 	<instance component="spell.english.EnglishDictionary"/>
-	
+
 	<!--  Instantiates an instance of the Checker -->
 	<instance component="spell.checker.SpellCheck"/>
-	
+
 	<!--  Instantiates an instance of the GUI -->
 	<instance component="spell.gui.SpellCheckerGui"/>
-	
+
 	<!-- Imports the log service -->
 	<subservice action="import"
              specification="org.osgi.service.log.LogService"/>
@@ -366,10 +362,10 @@ To do this, we will target any implementation of the dictionary service regardle
 	<!--  Instantiates an instance of the English dictionary -->
 	<subservice action="instantiate"
              specification="spell.services.DictionaryService"/>
-	
+
 	<!--  Instantiates an instance of the Checker -->
 	<instance component="spell.checker.SpellCheck"/>
-	
+
 	<!--  Instantiates an instance of the GUI -->
 	<instance component="spell.gui.SpellCheckerGui"/>
 </composite>
@@ -461,10 +457,10 @@ So, the composition exports the spell checker service.
 	<!--  Instantiates an instance of the English dictionary -->
 	<subservice action="instantiate"
           specification="spell.services.DictionaryService"/>
-	
+
 	<!--  Instantiates an instance of the Checker -->
 	<instance component="spell.checker.SpellCheck"/>
-	
+
 	<!-- Export the SpellChecker service -->
 	<provides action="export"
             specification="spell.services.SpellChecker"/>
@@ -564,10 +560,10 @@ In this case, we define a composite containing the GUI and the previous composit
 	<!--  Instantiates an instance of the English dictionary -->
 	<subservice action="instantiate"
             specification="spell.services.DictionaryService"/>
-	
+
 	<!--  Instantiates an instance of the Checker -->
 	<instance component="spell.checker.SpellCheck"/>
-	
+
 	<!-- Exports the SpellChecker service -->
 	<provides action="export"
             specification="spell.services.SpellChecker"/>

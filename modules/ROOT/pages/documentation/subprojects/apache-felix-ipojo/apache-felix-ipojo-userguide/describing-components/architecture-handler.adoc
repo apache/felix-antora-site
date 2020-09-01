@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: Architecture Handler
-
 = Introspection and Architecture
 
 _The architecture feature allows obtaining an architectural / component view of your systems.

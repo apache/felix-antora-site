@@ -1,10 +1,4 @@
-:doctype: book
-
-Title: iPOJO FAQ
-
 = Apache Felix iPOJO FAQ
-
-[TOC]
 
 == Injecting the bundle context in a POJO
 

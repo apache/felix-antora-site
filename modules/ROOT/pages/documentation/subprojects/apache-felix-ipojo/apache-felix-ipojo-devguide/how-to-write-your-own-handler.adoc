@@ -1,7 +1,3 @@
-:doctype: book
-
-Title: How to write your own handler
-
 = How to write your iPOJO Handler
 
 _This document explains how developers can use iPOJO extensibility mechanism to extend the (primitive) component instance container.
