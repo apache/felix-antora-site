@@ -1,0 +1,5 @@
+= Temporary auto-index page
+//uncomment to generate temporary nav file contents on console.
+//:antora-indexer-log-lists:
+
+indexList::[]
