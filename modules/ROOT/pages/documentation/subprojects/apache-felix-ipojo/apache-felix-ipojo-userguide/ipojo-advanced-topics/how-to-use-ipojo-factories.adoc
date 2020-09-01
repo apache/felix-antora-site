@@ -5,7 +5,7 @@ These factories are used to create component instances.
 This document presents how to declare instances and configure them.
 The API to create, dispose and reconfigure instances is also explained._
 
-[TOC]
+
 
 == Preliminary Concepts
 

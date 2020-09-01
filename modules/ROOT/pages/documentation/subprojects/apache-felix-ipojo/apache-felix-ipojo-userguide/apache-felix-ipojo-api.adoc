@@ -5,7 +5,7 @@ With the API, you can dynamically create new components types and create instanc
 Your component types are described with a Java API.
 To use the API, deploy and start the iPOJO-API bundle and the iPOJO core bundle._
 
-[TOC]
+
 
 == A simple example
 

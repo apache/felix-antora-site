@@ -4,7 +4,7 @@ _During the manipulation process, iPOJO gathers information about the manipulate
 These metadata are stored inside the bundle manifest and are used to avoid reflection on the manipulated class.
 By using these metadata, your handler can check that the implementation class contains required fields, methods, check implemented interfaces._
 
-[TOC]
+
 
 == Contained information
 

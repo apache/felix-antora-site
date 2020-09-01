@@ -1,4 +1,4 @@
-Title: Dependency Manager - Annotations
+= Dependency Manager - Annotations
 
 The Dependency Manager provides a compact and versatile Java API that allows you to declaratively and programmatically register, acquire, and manage dynamic OSGi components.
 This has many advantages, but also means you need to implement your own `BundleActivator`.

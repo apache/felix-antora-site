@@ -1,4 +1,4 @@
-Title: Apache Felix Tutorial Example 4
+= Apache Felix Tutorial Example 4
 
 == Example 4 - Robust Dictionary Client Bundle
 

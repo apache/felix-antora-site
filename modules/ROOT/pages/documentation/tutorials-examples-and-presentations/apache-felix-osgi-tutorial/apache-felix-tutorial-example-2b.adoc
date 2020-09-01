@@ -1,4 +1,4 @@
-Title: Apache Felix Tutorial Example 2b
+= Apache Felix Tutorial Example 2b
 
 == Example 2b - Alternate Dictionary Service Bundle
 

@@ -1,4 +1,4 @@
-Title: Apache Felix Dependency Manager - Migrating from earlier versions
+= Apache Felix Dependency Manager - Migrating from earlier versions
 
 Below is a guide to help you migrate from version 3.
 Whilst older versions obviously still exist, we don't think people are still actively using them.

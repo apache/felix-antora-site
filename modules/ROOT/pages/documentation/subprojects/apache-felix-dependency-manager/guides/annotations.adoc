@@ -1,4 +1,4 @@
-Title: Dependency Manager - Annotations
+= Dependency Manager - Annotations
 
 This section presents a quick overview of the capabilities and usage of the DependencyManager Java annotations.
 In particular, we will recap the DependencyManager annotation architecture, and identify some simple usage scenarios using a SpellChecker  sample application with annotated components.

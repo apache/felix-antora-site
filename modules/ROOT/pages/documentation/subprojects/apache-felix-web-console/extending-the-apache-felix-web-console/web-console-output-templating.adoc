@@ -1,4 +1,4 @@
-Title: Web Console Output Templating
+= Web Console Output Templating
 
 Templating and Internationalization support of the Web Console is based on Java Resource Bundles loaded from the plugin bundles and is transparent to the plugin itself.
 

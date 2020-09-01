@@ -2,7 +2,7 @@
 
 _This tutorial illustrates some advanced features of iPOJO_
 
-[TOC]
+
 
 == Context
 

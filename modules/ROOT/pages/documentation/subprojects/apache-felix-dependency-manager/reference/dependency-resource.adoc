@@ -1,4 +1,4 @@
-Title: Dependency Manager - Resource Dependency
+= Dependency Manager - Resource Dependency
 
 A resource dependency allows you to depend on a resource.
 A resource is a URL and you can use a filter  condition based on protocol, host, port, path and URL.
@@ -17,7 +17,7 @@ public class Activator extends DependencyActivatorBase {
         Component videoPlayer = createComponent()
         		.setImplementation(VideoPlayer.class)
         		.add(createResourceDependency().setFilter("(&(path=/path/to/*.txt)(host=localhost))").setCallbacks("play", null));
-        dm.add(videoPlayer);        		
+        dm.add(videoPlayer);
     }
 }
 
@@ -41,7 +41,7 @@ public class Activator extends DependencyActivatorBase {
         		new URL("file://localhost/path/to/file1.txt"),
         		new URL("file://localhost/path/to/file2.txt")
         };
-        		
+
         Component resourceProvider = createComponent()
         		.setImplementation(new ResourceProvider(ctx, resourceURLs))
         		.add(dm.createServiceDependency().setService(ResourceHandler.class).setCallbacks("add", "remove"));
@@ -58,7 +58,7 @@ class ResourceProvider {
 		m_context = ctx;
 		m_resources = resources;
 	}
-	
+
 	public void add(ServiceReference<?> ref, ResourceHandler handler) {
         String filterString = (String) ref.getProperty("filter");
         Filter filter = null;

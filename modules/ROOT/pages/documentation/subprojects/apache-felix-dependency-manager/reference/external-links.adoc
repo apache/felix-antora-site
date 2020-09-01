@@ -1,4 +1,4 @@
-Title: Dependency Manager - External Links
+= Dependency Manager - External Links
 
 This page regroups Dependency Manager external articles and related links:
 

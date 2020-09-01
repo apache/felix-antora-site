@@ -1,4 +1,4 @@
-Title: Provisional OSGi API Policy
+= Provisional OSGi API Policy
 
 The OSGi Alliance exposes provisional API that may or may not become part of future OSGi specifications.
 This policy explains how and when Felix subprojects may relate to such API.

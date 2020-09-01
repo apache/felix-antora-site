@@ -3,8 +3,6 @@
 _junit4OSGi tests can also be executed automatically during the `integration-test` phase of a maven build process.
 This page describes the maven-junit4osgi-plugin allowing a seamless maven integration._
 
-{div:class=toc} [TOC] \{div}
-
 == What does the maven-junit4osgi-plugin provide?
 
 ....

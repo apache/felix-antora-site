@@ -1,4 +1,4 @@
-Title: Dependency Manager - Adapter
+= Dependency Manager - Adapter
 
 Adapters, like link:component-aspect.html[aspects], are used to "extend" existing services, and can publish  different services based on the existing one.
 An example would be implementing a management interface.

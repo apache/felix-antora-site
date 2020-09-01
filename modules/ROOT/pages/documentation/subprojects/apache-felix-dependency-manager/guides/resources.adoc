@@ -1,4 +1,4 @@
-Title: Dependency Manager - Resource adapters
+= Dependency Manager - Resource adapters
 
 Resource adapters are a special type of adapters which can adapt a resource into an OSGi service.
 These resources can be all kinds of resources, e.g.
@@ -50,7 +50,7 @@ public class BundleResourceRepositoryImpl {
 
 	private Map<ServiceReference, ResourceHandler> handlers = new ConcurrentHashMap<>();
 	private volatile BundleContext context;
-	
+
 	// added callback
 	void addHandler(ServiceReference ref, ResourceHandler handler) {
 		handlers.put(ref, handler);
@@ -62,18 +62,18 @@ public class BundleResourceRepositoryImpl {
 			notifyMatchingInitialResources(filter, handler);
 		}
 	}
-	
+
 	// removed callback
 	void removeHandler(ServiceReference ref, ResourceHandler handler) {
 		handlers.remove(ref);
 	}
-	
+
 	private void notifyMatchingInitialResource(URL url, ResourceHandler handler) {
 		if (bundleContainsResource(url)) {
 			handler.added(url, new Hashtable<String, String>());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void notifyMatchingInitialResources(String filter, ResourceHandler handler) {
 		Enumeration<URL> entries = context.getBundle().findEntries("/", filter, true);
@@ -82,7 +82,7 @@ public class BundleResourceRepositoryImpl {
 			handler.added(entry, new Hashtable<String, String>());
 		}
 	}
-	
+
 	private boolean bundleContainsResource(URL url) {
 		return true; // more specific checks required
 	}

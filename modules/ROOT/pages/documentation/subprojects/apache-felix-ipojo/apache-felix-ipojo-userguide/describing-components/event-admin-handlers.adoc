@@ -5,9 +5,7 @@ The implementation of these handlers relies on an event admin services.
 It enables the iPOJO component to listen to a list of topics and to receive all related events.
 It also allows components to send events in an easy way._
 
-[TOC]+++<div class="alert alert-warning">+++*change in the 1.2.0*
-
-The 1.2.0 version use the namespace : `org.apache.felix.ipojo.handlers.event` instead of `org.apache.felix.ipojo.handlers.event.EventAdminHandler`.+++</div>++++++<div class="alert alert-warning">+++*change in the 1.7.0*
+ALERT:: The 1.2.0 version use the namespace : `org.apache.felix.ipojo.handlers.event` instead of `org.apache.felix.ipojo.handlers.event.EventAdminHandler`.+++</div>++++++<div class="alert alert-warning">+++*change in the 1.7.0*
 
 The `@Publisher` annotation is now deprecated and replaced by `@Publishes`.+++</div>+++
 

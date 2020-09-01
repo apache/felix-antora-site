@@ -1,6 +1,6 @@
-Title:  Apache Felix Bundle Plugin Frequently Asked Questions
+=  Apache Felix Bundle Plugin Frequently Asked Questions
 
-[TOC]
+
 
 == When I embed a dependency why do I see duplicated content?
 

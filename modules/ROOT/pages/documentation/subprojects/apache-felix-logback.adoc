@@ -1,4 +1,4 @@
-Title: Apache Felix Logback
+= Apache Felix Logback
 
 *Apache Felix Logback* is a small integration of the https://logback.qos.ch/[Logback] backend with OSGi.
 

@@ -1,4 +1,4 @@
-Title: Apache Felix Shell TUI
+= Apache Felix Shell TUI
 
 The Apache Felix Shell TUI (Textual User Interface) sub-project provides a simple, text-based user interface for the link:{{ refs.apache-felix-shell.path }}[Apache Felix Shell].
 This bundle is not of much use by itself and should always be used in conjunction with the shell service bundle.

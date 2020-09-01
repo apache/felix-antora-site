@@ -1,4 +1,4 @@
-Title: Extending SCR Annotations Excerpt: How add new Annotations extending the base Annotations
+= Extending SCR Annotations Excerpt: How add new Annotations extending the base Annotations
 
 NOTE: This page documents functionality available with the SCR Generator 1.0.0 release providing the declaration file generation mechanism for the Maven SCR Plugin 1.6.0 (and newer) and the SCR Ant Task 1.0.0 (and newer).
 

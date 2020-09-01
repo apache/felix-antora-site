@@ -1,4 +1,4 @@
-Title: Dependency Manager - Thread Model
+= Dependency Manager - Thread Model
 
 This section gives a brief overview of the default thread model used by Dependency Manager, and also explains how to start and handle components concurrently.
 

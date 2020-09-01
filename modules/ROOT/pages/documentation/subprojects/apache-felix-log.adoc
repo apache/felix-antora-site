@@ -1,4 +1,4 @@
-Title: Apache Felix Log
+= Apache Felix Log
 
 The https://osgi.org/specification/osgi.cmpn/7.0.0/[OSGi Service Compendium specification] defines a general purpose https://osgi.org/specification/osgi.cmpn/7.0.0/service.log.html[Log Service] for the OSGi Platform.
 It is a very simple specification that doesn't provide all the functionality commonly available in enterprise-level logging tools, but its extensible service model can be used to build fairly sophisticated logging solutions.
@@ -30,7 +30,7 @@ public class Activator implements BundleActivator
     private volatile LoggerFactory loggerFactory;
 
     public void start(BundleContext context) throws Exception
-    {	
+    {
         ServiceReference ref = context.getServiceReference(LoggerFactory.class.getName());
         if (ref != null)
         {
@@ -112,7 +112,7 @@ To access a `LogService` instance it is necessary to look it up in the OSGi serv
 public class Activator implements BundleActivator
 {
     public void start(BundleContext context) throws Exception
-    {	
+    {
         ServiceReference ref = context.getServiceReference(LogService.class.getName());
         if (ref != null)
         {
@@ -167,7 +167,7 @@ The following code snippets demonstrates how to retrieve it from the service reg
  ServiceReference ref = context.getServiceReference(LogReaderService.class.getName());
  if (ref != null)
  {
-     LogReaderService reader = (LogReaderService) context.getService(ref);	
+     LogReaderService reader = (LogReaderService) context.getService(ref);
      Enumeration<LogEntry> latestLogs = reader.getLog();
  }
 

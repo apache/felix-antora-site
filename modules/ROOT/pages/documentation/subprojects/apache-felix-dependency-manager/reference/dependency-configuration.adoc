@@ -1,4 +1,4 @@
-Title: Dependency Manager - Configuration Dependency
+= Dependency Manager - Configuration Dependency
 
 A configuration dependency is always required, and allows you to depend on the availability of a valid  configuration for your component.
 Configuration dependency is required by default.

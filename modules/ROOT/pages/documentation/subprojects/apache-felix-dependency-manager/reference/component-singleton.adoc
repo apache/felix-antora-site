@@ -1,4 +1,4 @@
-Title: Dependency Manager - Singleton Component
+= Dependency Manager - Singleton Component
 
 Components are the main building blocks for OSGi applications.
 They can publish themselves as a service, and they can have dependencies.

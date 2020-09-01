@@ -6,7 +6,7 @@ This architecture-style is based on two different entities:_
 * _The extender (also called host)_
 * _The extensions_
 
-[TOC]
+
 
 == The Extender pattern
 

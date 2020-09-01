@@ -1,6 +1,6 @@
-Title: OSGi Frequently Asked Questions
+= OSGi Frequently Asked Questions
 
-[TOC]
+
 
 == If I use bundles from Felix, will my application be tied to the Felix framework?
 

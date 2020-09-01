@@ -1,4 +1,4 @@
-Title: Apache Felix User Admin - MongoDB Store
+= Apache Felix User Admin - MongoDB Store
 
 The Apache Felix User Admin MongoDB store provides a MongoDB-based store for use with the Felix UserAdmin service.
 It uses MongoDB to persist the role information.

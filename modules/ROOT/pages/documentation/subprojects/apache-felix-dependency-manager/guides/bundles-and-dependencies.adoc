@@ -1,4 +1,4 @@
-Title: Dependency Manager - Bundles and Dependencies
+= Dependency Manager - Bundles and Dependencies
 
 The dependency manager project consists of the following bundles.
 For each bundle, we also list its dependencies in the form of package imports, plus a suggestion on a bundle that resolves them.

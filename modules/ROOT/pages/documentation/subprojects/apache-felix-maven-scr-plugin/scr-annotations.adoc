@@ -1,4 +1,4 @@
-Title: SCR Annotations Excerpt: Using Java 5 Annotations to describe the component or service.
+= SCR Annotations Excerpt: Using Java 5 Annotations to describe the component or service.
 
 The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix.
 All annotations are in the `org.apache.felix.scr.annotations` package.

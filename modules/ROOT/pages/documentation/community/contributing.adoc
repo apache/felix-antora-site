@@ -1,4 +1,4 @@
-Title: Contributing
+= Contributing
 
 Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished.
 If you want to help support Felix, this page is intended as a starting point for specific contribution ideas.

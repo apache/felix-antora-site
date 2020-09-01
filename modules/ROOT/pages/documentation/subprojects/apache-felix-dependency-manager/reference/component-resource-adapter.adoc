@@ -1,4 +1,4 @@
-Title: Dependency Manager - Resource Adapter
+= Dependency Manager - Resource Adapter
 
 Resource adapters work just like adapters, but instead of working with services, they work with resources.
 Resources, represented as a URL, are an abstraction introduced to provide a generic way of dealing with  "blobs" and can be resources inside a bundle, filesystem or some kind of data store.
@@ -54,7 +54,7 @@ public class Activator extends DependencyActivatorBase {
         		new URL("file://localhost/path/to/file1.txt"),
         		new URL("file://localhost/path/to/file2.txt")
         };
-        		
+
         Component resourceProvider = createComponent()
         		.setImplementation(new ResourceProvider(ctx, resourceURLs))
         		.add(dm.createServiceDependency().setService(ResourceHandler.class).setCallbacks("add", "remove"));
@@ -71,7 +71,7 @@ class ResourceProvider {
 		m_context = ctx;
 		m_resources = resources;
 	}
-	
+
 	public void add(ServiceReference<?> ref, ResourceHandler handler) {
         String filterString = (String) ref.getProperty("filter");
         Filter filter = null;

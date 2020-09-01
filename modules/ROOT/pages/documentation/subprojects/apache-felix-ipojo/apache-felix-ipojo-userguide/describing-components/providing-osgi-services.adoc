@@ -10,7 +10,7 @@ It presents:_
 * _configuration property propagation_
 * _the management of the exposition from the implementation class_
 
-[TOC]
+
 
 == A simple example
 

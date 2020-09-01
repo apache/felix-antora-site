@@ -1,4 +1,4 @@
-Title: Apache Felix Event Admin
+= Apache Felix Event Admin
 
 The Event Admin Service Specification, part of the OSGi Compendium specification, defines a general inter-bundle communication mechanism.
 The communication conforms to the popular publish/subscribe paradigm and can be performed in a synchronous or asysnchronous manner.
@@ -40,7 +40,7 @@ An event publisher is a simple Java class that creates events and sends them usi
 The `EventAdmin.sendEvent()` method sends the `Event` object synchronously.
 To send it asynchronously, use the `EventAdmin.postEvent()` method, such as:
 
-             //..		
+             //..
              Event reportGeneratedEvent = new Event("com/acme/reportgenerator/GENERATED", properties);
              eventAdmin.postEvent(reportGeneratedEvent);
 

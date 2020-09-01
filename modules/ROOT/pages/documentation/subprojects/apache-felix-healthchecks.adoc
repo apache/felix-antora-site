@@ -1,4 +1,4 @@
-Title: Apache Felix Health Checks
+= Apache Felix Health Checks
 
 Based on a simple HealthCheck SPI interface, Felix Health Checks are used to check the health/availability of Felix systems at runtime based on inputs like
 

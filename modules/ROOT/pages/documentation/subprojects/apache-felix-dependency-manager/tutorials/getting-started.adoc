@@ -1,4 +1,4 @@
-Title: Dependency Manager - Getting Started
+= Dependency Manager - Getting Started
 
 When developing an OSGi bundle that has dependencies and possibly registers services, there are two classes in particular we need to implement:
 

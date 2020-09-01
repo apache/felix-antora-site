@@ -1,6 +1,6 @@
-Title: Apache Felix OSGi Bundle Repository (OBR)
+= Apache Felix OSGi Bundle Repository (OBR)
 
-[TOC]
+
 
 == Motivation
 

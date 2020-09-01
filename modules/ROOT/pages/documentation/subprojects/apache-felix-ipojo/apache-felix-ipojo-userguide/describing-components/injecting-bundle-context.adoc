@@ -3,7 +3,7 @@
 _Despite iPOJO hides most of the OSGi mechanisms, you often need to access the `Bundle Context`.
 This page explains how you can access to the bundle context from your component code._
 
-[TOC]
+
 
 == Bundle Context
 

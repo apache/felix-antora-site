@@ -1,4 +1,4 @@
-Title: Apache Felix Script Console Plugin
+= Apache Felix Script Console Plugin
 
 Script Console is a Felix web console plugin which allows evaluation of scripts within the OSGi container.
 It provides following features
@@ -10,11 +10,11 @@ You would need to ensure that relevant language bundle is deployed
 * Hot key support
 * Execute remote testcase via evaluating test scripts
 
-=== Installation
+== Installation
 
 To make use of this plugin you need to
 
-==== A - Install the Script Console Plugin bundle
+=== A - Install the Script Console Plugin bundle
 
 Refer to http://felix.apache.org/downloads.cgi[downloads] for getting the bundle.
 
@@ -34,14 +34,14 @@ For latest build follow steps below
  $mvn clean install
  $mvn org.apache.sling:maven-sling-plugin:2.1.0:install -Dsling.url=http://localhost:8080/system/console
 
-==== B- Install the language specific bundle
+=== B- Install the language specific bundle
 
 Install bundles for the Script Language you want to use
 
 * http://repo1.maven.org/maven2/org/codehaus/groovy/groovy-all/2.1.6/groovy-all-2.1.6.jar[Groovy]
 * http://repo1.maven.org/maven2/org/jruby/jruby/1.7.4/jruby-1.7.4.jar[JRuby]
 
-=== Usage
+== Usage
 
 After installing it you would see a new tab "Script Console" in Felix Web Console.
 The plugin screen provides a textarea to author script code.
@@ -80,7 +80,7 @@ Following hotkeys work
 * Ctrl+F9 - Execute the script
 * Ctrl+q - Clear the output
 
-=== HTTP API
+== HTTP API
 
 The plugin can also be invoked by making POST request.
 It supports following parameters
@@ -94,7 +94,7 @@ Can be norm form data or a multi part content
 If any exception occurs while evaluating the script then it would return the exception message with status set to 500.
 Scripts can control what output they want to emit.
 
-=== Sample Scripts
+== Sample Scripts
 
 Following are some sample scripts in Groovy.
 Note the scripts might be depending on implementation details to access the relevant data structures
@@ -166,6 +166,6 @@ At times you need to access some private class to see the runtime state.
  }
 ....
 
-=== Screenshots
+== Screenshots
 
 image::script-console-1.png[]

@@ -9,7 +9,7 @@ For example, it allows invoking a `start` method when the instance becomes valid
 It allows the creation of `immediate` component.
 This page presents how to use this handler._
 
-[TOC]
+
 
 == Instance Lifecycle
 

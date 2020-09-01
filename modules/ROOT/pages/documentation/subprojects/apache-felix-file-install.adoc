@@ -1,4 +1,4 @@
-Title: Apache Felix File Install
+= Apache Felix File Install
 
 File Install is a directory based OSGi management agent.
 It uses a directory in the file system to install and start a bundle when it is first placed there.

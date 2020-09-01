@@ -1,4 +1,4 @@
-Title: CAT-Scan Project Proposal
+= CAT-Scan Project Proposal
 
 All too often one hears anecdotal information about how many bundles get loaded and when.
 There have been claims that there is a need to handle tens of thousands of bundles at one time.
@@ -13,6 +13,6 @@ Run-logs can be sent to OSGi vendors to assist them in support and help make fra
 Characteristics of applications collected from this tool can be used by researchers to provide concrete data as to the traits of real world applications.
 This data can be made anonymous to protect installations' trade secrets while still providing great value.
 
-=== Table of Contents
+== Table of Contents
 
 {% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}

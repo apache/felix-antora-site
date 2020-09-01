@@ -1,4 +1,4 @@
-Title: OSGi Bundle-Service Diagrams
+= OSGi Bundle-Service Diagrams
 
 [cols=2*]
 |===

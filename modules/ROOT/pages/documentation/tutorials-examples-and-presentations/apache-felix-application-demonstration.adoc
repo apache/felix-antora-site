@@ -1,4 +1,4 @@
-Title: Apache Felix Application Demonstration
+= Apache Felix Application Demonstration
 
 _(This document is a work in progress.)_
 

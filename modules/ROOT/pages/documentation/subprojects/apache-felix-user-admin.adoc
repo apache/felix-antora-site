@@ -1,4 +1,4 @@
-Title: Apache Felix User Admin
+= Apache Felix User Admin
 
 {include:Apache Felix User Admin - Introduction}
 

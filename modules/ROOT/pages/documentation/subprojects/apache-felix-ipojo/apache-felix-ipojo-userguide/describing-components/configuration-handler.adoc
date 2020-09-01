@@ -7,7 +7,7 @@ A configuration is basically a set of couple (name, value).
 The name can be a field name or a property name associated to a field or/and a method.
 iPOJO also supports complex properties composed by maps, dictionaries, lists and arrays._
 
-[TOC]
+
 
 == Configurable Properties
 

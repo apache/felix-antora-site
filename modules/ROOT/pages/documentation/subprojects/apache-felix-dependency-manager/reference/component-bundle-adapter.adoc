@@ -1,4 +1,4 @@
-Title: Dependency Manager - Bundle Adapter
+= Dependency Manager - Bundle Adapter
 
 Bundle adapters are similar to AdapterService, but instead of adapting a  service, they adapt a bundle with a certain set of states (STARTED|INSTALLED|...),  and provide a service on top of it.
 

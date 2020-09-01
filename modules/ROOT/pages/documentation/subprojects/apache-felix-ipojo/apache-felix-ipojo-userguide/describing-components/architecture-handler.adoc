@@ -6,7 +6,7 @@ Moreover;
 iPOJO defines an 'arch' command displaying this architecture in Felix.
 You need to install link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.html[the arch command]._
 
-[TOC]
+
 
 == Reflection on component instances
 

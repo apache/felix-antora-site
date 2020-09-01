@@ -1,4 +1,4 @@
-=  Apache Felix Framework Security
+= Apache Felix Framework Security
 
 The Felix Framework Security subproject is an implementation of the security part of the OSGi R4.2 core specification.== Installing
 
@@ -25,7 +25,7 @@ The third allows to specify a `File.pathSeparator` separated list of JKS keystor
 The certificates found inside the keystores are the trusted root certificates of the framework (setting this property is optional).
 
 [source,console]
-----
+------
 $ java -Djava.security.policy=all.policy -Dorg.osgi.framework.security="osgi" -jar bin/felix.jar
 
 Welcome to Felix
@@ -46,4 +46,4 @@ service.id = 3
 ----
 objectClass = org.osgi.service.condpermadmin.ConditionalPermissionAdmin
 service.id = 4
-----
+------

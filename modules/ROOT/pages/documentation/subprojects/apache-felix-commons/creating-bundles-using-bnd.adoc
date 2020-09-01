@@ -1,10 +1,10 @@
-Title: Creating Bundles Using BND
+= Creating Bundles Using BND
 
-===== Purpose
+== Purpose
 
 Provide the list of steps required to create a library bundle by wrapping the library jar using bnd (http://bnd.bndtools.org/).
 
-===== Steps
+== Steps
 
 . Use bnd to analyze the library jar (e.g., java -jar bnd-0.0.jar print path/to/FOO.jar)
 . At the bottom of the bnd output, look for "Unresolved references to ..." which identify package dependencies.
@@ -29,7 +29,7 @@ The remaining packages should be private.
 . Use bnd to verify the bundle's contents (e.g., java -jar bnd-0.0.jar print target/FOO-osgi-VERSION.jar)
 . Run "mvn install" to install the bundle in the local repository
 
-===== Example POM
+== Example POM
 
 ....
 <project
@@ -80,7 +80,7 @@ The remaining packages should be private.
 </project>
 ....
 
-===== Resources
+== Resources
 
 Bnd - Bundle Tool http://bnd.bndtools.org/
 

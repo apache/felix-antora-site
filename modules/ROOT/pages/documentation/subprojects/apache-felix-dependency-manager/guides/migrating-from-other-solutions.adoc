@@ -1,1 +1,1 @@
-Title: Dependency Manager - Migrating from other solutions.
+= Dependency Manager - Migrating from other solutions.

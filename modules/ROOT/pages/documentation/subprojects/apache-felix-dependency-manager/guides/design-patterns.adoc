@@ -1,4 +1,4 @@
-Title: Dependency Manager - Design Patterns
+= Dependency Manager - Design Patterns
 
 This section lists a couple of design patterns as they can be applied in an OSGi context.
 

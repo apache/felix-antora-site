@@ -1,4 +1,4 @@
-Title: Apache Felix Tutorial Example 3
+= Apache Felix Tutorial Example 3
 
 Example 3 - Dictionary Client Bundle
 

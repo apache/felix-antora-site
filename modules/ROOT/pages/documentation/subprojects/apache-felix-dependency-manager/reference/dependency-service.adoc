@@ -1,4 +1,4 @@
-Title: Dependency Manager - Service Dependency
+= Dependency Manager - Service Dependency
 
 A service dependency allows you to depend on a service, either by type or by using an additional filter  condition.
 You can even depend on an existing service directly by providing a reference to it.

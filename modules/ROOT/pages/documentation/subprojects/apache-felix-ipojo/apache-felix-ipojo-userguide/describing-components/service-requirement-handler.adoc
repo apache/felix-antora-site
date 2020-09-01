@@ -5,7 +5,7 @@ So, a component can consume a service without managing the service discovery, tr
 iPOJO manages all these interactions and injects required service into the component.
 This page explains how to use services._
 
-[TOC]
+
 
 == Service Dependency
 

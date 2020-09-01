@@ -3,7 +3,7 @@
 _iPOJO Ant Task allows automating the iPOJO manipulation process within an Ant build process.
 This page explains how to use the iPOJO Ant Task and how to combine them with the BND Tasks._
 
-[TOC]
+
 
 == Downloading the iPOJO Ant Task
 

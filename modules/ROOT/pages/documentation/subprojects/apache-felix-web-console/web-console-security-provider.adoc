@@ -1,6 +1,6 @@
-Title: Web Console Security Provider
+= Web Console Security Provider
 
-[TOC]
+
 
 As of Apache Felix Web Console 3.1.0 security of the Web Console can be extended by providing a `WebConsoleSecurityProvicer` service.
 An extension to this service has been introduced with the `WebConsoleSecurityProvider2` service in Apache Felix Web Console 3.1.4.

@@ -15,7 +15,7 @@ In this demo, you will show how to use iPOJO:
 
 This demo can be used with any DOSGi distribution, in this document the single-bundle distribution (1.1) is used with iPOJO 1.6.0 and Felix (2.0.5)
 
-[TOC]
+
 
 == Demo design
 

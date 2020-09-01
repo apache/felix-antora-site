@@ -1,4 +1,4 @@
-Title: Using the OSGi Compliance Tests
+= Using the OSGi Compliance Tests
 
 The OSGi Alliance provides Apache committers access to its Compliance Tests (CT).
 This page describes how to get access to the CTs and how to use them with Felix subprojects.

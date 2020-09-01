@@ -1,6 +1,6 @@
-Title: Apache Felix SCR Plugin Frequently Asked Questions
+= Apache Felix SCR Plugin Frequently Asked Questions
 
-[TOC]
+
 
 This page provides answers to frequently asked questions using the Maven SCR Plugin.
 See link:{{ refs.apache-felix-maven-scr-plugin.path }}[{{ refs.apache-felix-maven-scr-plugin.headers.title }}] for documentation on that plugin.

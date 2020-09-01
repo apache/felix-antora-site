@@ -4,7 +4,7 @@ _iPOJO generally requires an additional packaging step to prepare the bundle to 
 Despite this step doesn't change the class semantic, it can be a little annoying.
 The online manipulator avoids this offline step!_
 
-[TOC]
+
 
 == Features
 

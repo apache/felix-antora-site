@@ -1,4 +1,4 @@
-Title: Apache Felix Framework Configuration Properties
+= Apache Felix Framework Configuration Properties
 
 * link:{{ refs.-overview.path }}[Overview]
 * link:{{ refs.-framework.path }}[Framework configuration properties]

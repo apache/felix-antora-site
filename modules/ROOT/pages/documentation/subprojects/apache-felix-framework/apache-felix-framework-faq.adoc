@@ -1,6 +1,6 @@
-Title: Apache Felix Framework Frequently Asked Questions
+= Apache Felix Framework Frequently Asked Questions
 
-[TOC]
+
 
 == Is the Felix framework compliant with the OSGi specification?
 

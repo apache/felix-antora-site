@@ -1,4 +1,4 @@
-Title: Apache Felix Preferences Service
+= Apache Felix Preferences Service
 
 The OSGi service compendium specification defines a general purpose service to store data persistently, so that they can survive the restart of a bundle or of the whole OSGi container.
 This service is not intended to be a full-featured persistence layer for OSGi bundles, rather a simple tool to store informations that can be used in various stages of the bundle lifecycle.
@@ -22,12 +22,12 @@ If the OSGi platform provides a Preferences Service, getting a reference to it i
 public class Activator implements BundleActivator
 {
 	public void start(BundleContext context) throws Exception
-	{	
+	{
 		ServiceReference ref = context.getServiceReference(PreferencesService.class.getName());
 		if (ref != null)
 		{
 			PreferencesService service = (PreferencesService) context.getService(ref);
-	
+
 			//...
 		}
 	}

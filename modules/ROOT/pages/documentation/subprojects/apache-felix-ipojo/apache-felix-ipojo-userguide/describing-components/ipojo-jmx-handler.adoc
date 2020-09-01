@@ -4,7 +4,7 @@ _This handler provides JMX management of component instance.
 It could be useful to manage instance remotely.
 As the handler exposes MBeans, you must have a MBean server running on your platform (as the platform MBean server or the MOSGi MBean Server)._
 
-[TOC]
+
 
 == Features
 

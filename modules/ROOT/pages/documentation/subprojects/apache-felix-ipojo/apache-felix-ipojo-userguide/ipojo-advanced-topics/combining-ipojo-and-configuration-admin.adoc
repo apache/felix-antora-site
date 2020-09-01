@@ -2,7 +2,7 @@
 
 _This page presents how creating, reconfiguring and destroying iPOJO component instance with the OSGi Configuration Admin._
 
-[TOC]
+
 
 == Configuration Admin
 

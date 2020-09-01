@@ -1,4 +1,4 @@
-Title: Apache Felix Board Report Template
+= Apache Felix Board Report Template
 
 *[NOT SUBMITTED]({{ refs.not-submitted.path }})*
 

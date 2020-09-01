@@ -1,4 +1,4 @@
-Title: Apache Felix Gogo
+= Apache Felix Gogo
 
 Apache Felix Gogo is a subproject of Apache Felix implementing a command line shell for OSGi.
 It is used in many OSGi runtimes and servers (Felix distro, Eclipse IDE, Apache Karaf, ...).

@@ -1,6 +1,6 @@
-Title: Apache Felix Web Console
+= Apache Felix Web Console
 
-[TOC]
+
 
 The Apache Felix Web Console is a simple tool to inspect and manage OSGi framework instances using your favourite Web Browser.
 

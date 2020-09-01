@@ -1,4 +1,4 @@
-Title: Dependency Manager - Bundle Dependency
+= Dependency Manager - Bundle Dependency
 
 A bundle dependency allows you to depend on a bundle in a certain set of states, as indicated by a state mask.
 You can also use a filter condition that is matched against all manifest entries.
@@ -24,7 +24,7 @@ public class ScrRuntime {
 	void bind(Bundle bundle) {
 		// load SCR descriptors from the starting bundle
 	}
-	
+
 	void unbind(Bundle bundle) {
 		// unload SCR descriptors from the starting bundle
 	}

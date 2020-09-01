@@ -4,7 +4,7 @@ _iPOJO provides mechanisms to introspect and reconfigure instances.
 Those features are available from the instance description.
 Currently, only the reconfiguration of primitive instances is supported._
 
-[TOC]
+
 
 == Getting instance descriptions
 

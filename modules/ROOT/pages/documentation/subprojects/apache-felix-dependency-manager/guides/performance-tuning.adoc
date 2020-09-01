@@ -1,4 +1,4 @@
-Title: Dependency Manager - Performance Tuning
+= Dependency Manager - Performance Tuning
 
 To further tune the performance of an application using Dependency Manager and a lot of services, we created the concept of filter indices.
 They work similarly to the way indices speed up relational database queries and are explained below.

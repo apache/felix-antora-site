@@ -1,4 +1,4 @@
-Title: Dependency Manager - Aspect
+= Dependency Manager - Aspect
 
 Aspects, as part of aspect oriented programming, can be used in a dynamic environment  such as OSGi to "extend" existing services and add certain "capabilities" to them.
 Examples of these are adding a specific caching mechanism to a storage service or  implementing logging.

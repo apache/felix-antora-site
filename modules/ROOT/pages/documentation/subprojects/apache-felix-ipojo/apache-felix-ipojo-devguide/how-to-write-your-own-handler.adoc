@@ -3,7 +3,7 @@
 _This document explains how developers can use iPOJO extensibility mechanism to extend the (primitive) component instance container.
 Such extensibility mechanism does not require to modify the iPOJO core._
 
-[TOC]
+
 
 First, iPOJO concepts are briefly explained.
 The second section explains the steps to create a handler.

@@ -1,4 +1,4 @@
-Title: Dependency Manager - Leveraging the shell
+= Dependency Manager - Leveraging the shell
 
 The shell bundle for the dependency manager extends the gogo shell with one new command called "dm".
 This command can be used to get insight in the actual components and services in a running OSGi framework.

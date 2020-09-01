@@ -3,7 +3,7 @@
 _If you like the Apache Felix Web Console, you will be interested by the iPOJO plugin.
 This plugin gives you all the information about iPOJO instances, factories and handlers deployed on the framework._
 
-[TOC]
+
 
 == Features
 

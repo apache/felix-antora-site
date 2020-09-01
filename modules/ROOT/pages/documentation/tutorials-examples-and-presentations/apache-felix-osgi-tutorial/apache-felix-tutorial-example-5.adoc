@@ -1,4 +1,4 @@
-Title: Apache Felix Tutorial Example 5
+= Apache Felix Tutorial Example 5
 
 == Example 5 - Service Tracker Dictionary Client Bundle
 

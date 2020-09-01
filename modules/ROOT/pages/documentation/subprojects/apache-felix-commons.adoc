@@ -1,6 +1,6 @@
-Title: Apache Felix Commons
+= Apache Felix Commons
 
-=== Purpose
+== Purpose
 
 Apache Felix Commons is a community effort to create OSGi bundle ("bundlized") versions of popular third-party open-source libraries.
 Today, OSGi developers must create bundles out of third-party libraries within their own development communities.
@@ -11,14 +11,14 @@ The Felix Maven Bundle Plugin will then convert the dependency automatically and
 
 This web page will be used to document who is doing what and to provide pointers to more information.
 
-=== How Can I Help?
+== How Can I Help?
 
 If you have libraries you have turned into bundles, then you can offer to contribute them.
 Additionally, you may request that a certain bundle be created.
 If you wish to submit a POM file for a specific library, you can attach it to a http://issues.apache.org/jira/browse/Felix[Felix JIRA issue] under the "Felix Commons" component.
 For Apache purposes, contributing a bundle POM is the same as contributing code.
 
-=== Getting Started
+== Getting Started
 
 In most cases, creating bundlized versions of a library is as simple as creating a POM file for the library using Felix' new link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[Maven Bundle Plugin].
 The OSGi headers are non-intrusive.
@@ -32,7 +32,7 @@ In short you:
 
 We recommend you read the longer link:{{ refs.creating-bundles-using-bnd.path }}[steps for converting a library to a bundle].
 
-=== Contributions
+== Contributions
 
 |===
 | Library | Version | Description | Contributor | Grant OK | Committed
@@ -136,7 +136,7 @@ We recommend you read the longer link:{{ refs.creating-bundles-using-bnd.path }}
 | Yes
 |===
 
-=== Supporting Libraries
+== Supporting Libraries
 
 These are projects that have expressed support for the Felix Commons initiative and that are working directly within their respective projects to support OSGi.
 
@@ -145,7 +145,7 @@ These are projects that have expressed support for the Felix Commons initiative 
 | Christopher Snow | http://mail-archives.apache.org/mod_mbox/incubator-felix-dev/200704.mbox/%3c8A31258D-1FB4-4F42-A145-94136D750EF0@coralms.com%3e[Mailing list archives] | | Jetty | Servlet engine.
 | Jan Bartel | Jetty 6.1.5 and onwards uses the 'maven-bundle-plugin'.|
 
-=== Similar Efforts
+== Similar Efforts
 
 Eclipse Orbit - http://www.eclipse.org/orbit/ \{quote} ...
 will provide a repository of bundled versions of third party libraries that are approved for use in one or more Eclipse projects.

@@ -1,4 +1,4 @@
-Title: Apache Felix SCR Ant Task Use Excerpt: Using the Apache Felix SCR Ant Task to generate Declarative Services and Metatype Service descriptors during an Ant driven Build.
+= Apache Felix SCR Ant Task Use Excerpt: Using the Apache Felix SCR Ant Task to generate Declarative Services and Metatype Service descriptors during an Ant driven Build.
 
 The SCR Ant Task is implemented in the `org.apache.felix.scr.ant` library which must be registered as an Ant Task in the build file as follows:
 

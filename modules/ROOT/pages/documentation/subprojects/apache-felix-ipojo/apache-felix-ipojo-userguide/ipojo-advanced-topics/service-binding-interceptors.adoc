@@ -7,7 +7,7 @@ However, this _locality_ avoids using more global knowledge to resolve the depen
 Service binding interceptors allows you to customize the service bindings from outside the involved components (providers or consumers).
 It let you adapt the bindings dynamically without touching anything in your component implementation.
 
-[TOC]
+
 
 == What's an interceptor
 

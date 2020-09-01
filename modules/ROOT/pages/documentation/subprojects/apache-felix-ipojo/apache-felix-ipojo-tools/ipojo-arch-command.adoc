@@ -4,7 +4,7 @@ _Architecture introspection is required when the system doesn't work as expected
 In this case, having a quick access to instances states and interconnection is a stringent requirement.
 The architecture commands allows getting these data from the Felix Shell, from the Equinox shell and Gogo._
 
-[TOC]
+
 
 == Installation
 

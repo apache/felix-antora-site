@@ -3,7 +3,7 @@
 _This page explains how to build and run iPOJO bundles without exiting Eclipse and breaking the compile-run cycle.
 Bundles are executed inside Equinox._
 
-[TOC]
+
 
 == 1) Import the iPOJO Bundle project
 

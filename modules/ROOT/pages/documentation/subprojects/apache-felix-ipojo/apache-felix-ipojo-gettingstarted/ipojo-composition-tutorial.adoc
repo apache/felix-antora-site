@@ -3,7 +3,7 @@
 _This page describes how works the composition mechanisms provided by iPOJO and how to use it.
 this feature allows you to design applications that will natively support the dynamism and the evolution._
 
-[TOC]
+
 
 == Why providing a composition layer?
 

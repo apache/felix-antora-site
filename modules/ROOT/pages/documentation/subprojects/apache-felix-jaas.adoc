@@ -1,6 +1,6 @@
-Title: Apache Felix JAAS Support
+= Apache Felix JAAS Support
 
-[TOC]
+
 
 Apache Felix JAAS support aims to simplify usage of JAAS in OSGi.
 

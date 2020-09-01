@@ -1,4 +1,4 @@
-Title: Release Management
+= Release Management
 
 *This is the release process for Apache Felix, based on Apache Maven https://maven.apache.org/developers/release/releasing.html[process]
 

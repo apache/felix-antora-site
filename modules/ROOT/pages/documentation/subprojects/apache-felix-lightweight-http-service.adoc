@@ -1,6 +1,6 @@
-Title: Apache Felix Lightweight HTTP Service
+= Apache Felix Lightweight HTTP Service
 
-[TOC]
+
 
 This is a _minimal_ implementation of the HTTP Service Specification as described in chapter 102 of the OSGi Compendium.
 The goal is to provide a basic HTTP Service for resource-constrained devices and other use cases where the standard HTTP Service may be overkill.

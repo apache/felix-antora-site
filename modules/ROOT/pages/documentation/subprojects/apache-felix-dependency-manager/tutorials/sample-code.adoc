@@ -1,4 +1,4 @@
-Title: Dependency Manager sample projects
+= Dependency Manager sample projects
 
 You can download this link:dm.hello.tgz[archive] which contains the following directories:
 

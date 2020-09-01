@@ -1,4 +1,4 @@
-Title: Getting Started
+= Getting Started
 
 For first-time users, here are a few links that might get you started more quickly:
 

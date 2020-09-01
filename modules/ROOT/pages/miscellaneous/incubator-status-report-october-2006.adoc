@@ -1,4 +1,4 @@
-Title: Incubator Status Report (October 2006)
+= Incubator Status Report (October 2006)
 
 Community
 

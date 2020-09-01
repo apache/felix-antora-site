@@ -1,4 +1,4 @@
-Title: Apache Felix User Admin - Introduction
+= Apache Felix User Admin - Introduction
 
 The Apache Felix User Admin provides an implementation of the OSGi UserAdmin compendium service.
 It allows you to manage roles (users and groups), define RBAC-like authorization schemes and test whether certain roles are authorized to initiate certain actions.

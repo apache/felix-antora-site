@@ -8,7 +8,7 @@ Moreover, if not available, the temporal dependency waits (and so blocks the cur
 Of course, the maximum waiting time can be specified.
 If a timeout occurs, the handler throws a Runtime Exception._
 
-[TOC]
+
 
 == Using the handler
 

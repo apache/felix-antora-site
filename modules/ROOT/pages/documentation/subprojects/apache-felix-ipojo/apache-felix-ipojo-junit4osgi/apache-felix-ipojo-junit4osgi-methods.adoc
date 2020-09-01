@@ -4,8 +4,6 @@ _Developing OSGi tests can be definitely boring.
 First, testing is generally not a very exciting experience, but imagine if you have to handle all the OSGi issues in your tests...
 Don't worry junit4osgi provides methods allowing to interact easily with OSGi!_
 
-{div:class=toc} [TOC] \{div}
-
 == OSGi methods
 
 junit4osgi test case extends the `OSGiTestCase` class.

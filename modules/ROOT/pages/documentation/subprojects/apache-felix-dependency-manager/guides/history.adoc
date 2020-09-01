@@ -1,4 +1,4 @@
-Title: Dependency Manager - History
+= Dependency Manager - History
 
 Dependency Manager has quite a long history, that starts over ten years ago.
 

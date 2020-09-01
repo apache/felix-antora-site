@@ -1,4 +1,4 @@
-Title: Board Report (2010-12)
+= Board Report (2010-12)
 
 *[SUBMITTED]({{ refs.submitted.path }})*
 

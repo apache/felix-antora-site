@@ -1,4 +1,4 @@
-Title: Apache Felix Metatype Service
+= Apache Felix Metatype Service
 
 The OSGi Metatype specification provides a unified way to describe metadata about services and a Java interface to retrieve and manipulate such information.
 This information can optionally be localized, thus allowing the developer to provide human-readable metadata descriptions in multiple languages.

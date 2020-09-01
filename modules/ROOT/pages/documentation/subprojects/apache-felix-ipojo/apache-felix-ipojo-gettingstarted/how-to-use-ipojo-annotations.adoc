@@ -3,7 +3,7 @@
 _You can use annotations to define your component types.
 This page presents supported annotations._
 
-[TOC]
+
 
 == Getting iPOJO Annotations:
 

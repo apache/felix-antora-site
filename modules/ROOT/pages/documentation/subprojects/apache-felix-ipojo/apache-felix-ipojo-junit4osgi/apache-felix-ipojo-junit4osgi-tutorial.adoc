@@ -3,8 +3,6 @@
 _This page describes how using the junit4osgi framework.
 With the archive tutorial, a pre-configured version of Felix (with the test framework already installed) is also provided._
 
-{div:class=toc} [TOC] \{div}
-
 == Getting JUnit4OSGi
 
 [cols=2*]

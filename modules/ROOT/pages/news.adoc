@@ -1,4 +1,4 @@
-Title: News
+= News
 
 * Apache Felix Configurator 1.0.12 (July 23rd, 2020)
 * Apache Felix Webconsole 4.5.4, Configadmin 1.9.18, and Http Jetty 4.0.20 (July 20th, 2020)

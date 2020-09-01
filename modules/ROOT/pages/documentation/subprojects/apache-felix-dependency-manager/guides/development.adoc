@@ -1,4 +1,4 @@
-Title: Dependency Manager - Development
+= Dependency Manager - Development
 
 When downloading or checking out the source code, please also consult release/resources/src/README.src for up to date instructions on how to build that particular version.
 

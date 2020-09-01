@@ -1,4 +1,4 @@
-Title: Apache Felix Shell
+= Apache Felix Shell
 
 * link:{{ refs.-overview.path }}[Overview]
 * link:{{ refs.-service.path }}[How the Shell Service Works]

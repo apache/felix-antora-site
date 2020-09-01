@@ -3,8 +3,6 @@
 _This page describes the architecture of the junit4osgi framework.
 This does not include the maven-junit4osgi-plugin._
 
-{div:class=toc} [TOC] \{div}
-
 == Global architecture
 
 [cols=2*]

@@ -1,4 +1,4 @@
-Title: Apache Felix User Admin - Getting Started
+= Apache Felix User Admin - Getting Started
 
 == Authentication
 

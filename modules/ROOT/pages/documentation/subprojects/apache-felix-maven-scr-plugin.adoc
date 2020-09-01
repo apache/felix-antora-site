@@ -1,4 +1,4 @@
-Title: Apache Felix Maven SCR Plugin
+= Apache Felix Maven SCR Plugin
 
 NOTE: While the Apache Felix Maven SCR Plugin is a great tool (see below), for developing OSGi components using Declarative Services you should use the official annotations from the OSGi R6 specification.
 The development of the Apache Felix SCR Plugin is in maintenance mode.

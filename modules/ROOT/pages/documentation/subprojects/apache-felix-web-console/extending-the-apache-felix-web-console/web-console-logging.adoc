@@ -1,4 +1,4 @@
-Title: Web Console Logging
+= Web Console Logging
 
 The Web Console does not provide its own mechanism for logging.
 Rather the Servlet Container logging mechanism is used by calling the `GenericServlet.log` methods for logging.

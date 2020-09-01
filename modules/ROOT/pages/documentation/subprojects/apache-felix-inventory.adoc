@@ -1,8 +1,4 @@
-Title: Apache Felix Inventory Printer
-
-+++<a id="top">++++++</a>+++
-
-[TOC]
+= Apache Felix Inventory Printer
 
 The Apache Felix Inventory Printer is a simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
 Typical information includes currently installed bundles, their state, available configurations, framework properties, log files etc.

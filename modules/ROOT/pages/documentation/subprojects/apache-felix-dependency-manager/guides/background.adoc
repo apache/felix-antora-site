@@ -1,4 +1,4 @@
-Title: Dependency Manager - Background
+= Dependency Manager - Background
 
 == Background
 

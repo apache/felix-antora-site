@@ -1,4 +1,4 @@
-Title: Apache Felix Framework
+= Apache Felix Framework
 
 The Felix Framework subproject is an implementation of the OSGi R6 core framework specification.
 

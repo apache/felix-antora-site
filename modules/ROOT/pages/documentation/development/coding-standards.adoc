@@ -1,6 +1,5 @@
+= Coding Standards
 :pp: {plus}{plus}
-
-Title: Coding Standards
 
 == Guidelines Summary
 

@@ -1,4 +1,4 @@
-Title: Site How To
+= Site How To
 
 The site is managed with the https://www.apache.org/dev/cms.html[Apache CMS] where the source is kept in SVN at https://svn.apache.org/repos/asf/felix/site/trunk/content.
 
@@ -27,7 +27,7 @@ This section lists some Apache Felix features to help with the maintenance of th
 Start the file with a `Title:` line to define the page title and the first H1 tag:
 
 ....
-Title: Page Title
+= Page Title
 
 Here comes the content separated with a blank like from the
 header ...
@@ -37,7 +37,7 @@ The last modification information from SVN (revision, committer, and date/time) 
 
 Excerpts can be added to a page using the `Excerpt:` header:
 
- Title: Page Title
+ = Page Title
  Excerpt: Summary of the page for inclusion in other pages;
     continuation of the excerpt must be indented
 

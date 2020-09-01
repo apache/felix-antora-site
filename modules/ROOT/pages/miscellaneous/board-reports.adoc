@@ -1,4 +1,4 @@
-Title: Board Reports
+= Board Reports
 
 The Apache Felix project must submit quarterly reports to the Apache board.
 This page serves as a collection point for all submitted board reports.

@@ -1,4 +1,4 @@
-Title: Apache Felix Framework Usage Documentation
+= Apache Felix Framework Usage Documentation
 
 * <<downloading-the-framework,Downloading the Framework>>
 * <<starting-the-framework,Starting the Framework>>

@@ -3,7 +3,7 @@
 _Stereotypes are user-defined marker annotations allowing to group other annotations together.
 iPOJO recognize these annotations and act as if all the grouped annotations were directly decorating the stereotyped annotation support._
 
-[TOC]
+
 
 == Example
 
