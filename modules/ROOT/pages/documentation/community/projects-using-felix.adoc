@@ -1,0 +1,20 @@
+Title: Projects Using Felix
+
+This page highlights projects that use Apache Felix (listed alphabetically):
+
+* https://karaf.apache.org[Apache Karaf] - A small, OSGi-based runtime that provides a lightweight container into which various components and applications can be deployed (formerly an Apache Felix subproject).
+* https://servicemix.apache.org/[Apache ServiceMix] - an Enterprise Service Bus (using Felix via Karaf).
+* https://sling.apache.org/[Apache Sling] - a framework for RESTful web-applications based on an extensible content tree
+* {blank}
++
+[cols=2*]
+|===
+| https://tuscany.apache.org/[Apache Tuscany] - an open source implementation of [SCA
+| http://www.oasis-opencsa.org/].
+|===
+
+* http://www.ascert.com/[Ascert VersaTest] - enterprise system testing platform
+* http://www.requea.com/dysoweb/rq/en/archi/dysoweb[DySoWeb] - A platform for dynamic component deployment.
+* http://glassfish.dev.java.net[GlassFish] - JavaEE application server.
+* http://jonas.ow2.org/[OW2 JOnAS] - JavaEE application server.
+* https://sip-communicator.dev.java.net/[SIP Communicator] - a multi-protocol instant messenger and SIP software phone.

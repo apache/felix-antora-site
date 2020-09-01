@@ -15,23 +15,23 @@ After building the Felix project, you can start the script file "upnp.sh.bat" in
 *Figure 2* Bundles installed by the script "upnp.sh.bat"
 
 To stop the devices launched by the script you can close their windows, while to start them again type "start 10 11 12 13" from the Felix shell. See the sections "[Testing UPnP devices]({{ refs.upnp-testing-devices.path }})" and "[The UPnP Examples|UPnP Examples]" for details on how to use the these bundles.
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; d) UPnP BinaryLight |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d) UPnP BinaryLight |
 *Figure 3* The GUIs started by the script "upnp.sh.bat"
 
 The Felix build process by default uses the JDK1.4 as target class library for all the UPnP bundles. The UPnP Base Driver can be built also with the JDK1.3 as target; to this end you have to define the "platform" property in the command line: type "mvn Dplatform=jdk13 install" from the /upnp/basedriver directory. For details on configuring your Eclipse IDE see \[3\]({{ refs.3.path }}).
@@ -41,12 +41,12 @@ The Felix build process by default uses the JDK1.4 as target class library for a
 If you experience problems discovering the UPnP devices of your network:
 * Check the configuration of your firewalls. UPnP discovery is based on multicast messages over UDP that usually are not filtered by firewalls, on the contrary the XML description of devices is retrieved using HTTP protocol; usually bound to non standard ports which might be blocked. Check whether firewall is active on your host or on the host of the device you want discover.
 * Install a loopback interface if needed. The base driver by default is configured for not using the localhost as loopback interface. If you want to run and test UPnP devices on a machine disconnected by any network, you should install and activate a loopback interface. Pay attention to disable the loopback interface when you are connected to a network again, otherwise both interfaces will be used to expose the UPnP services registered with the framework.
-  
-  
-  
-  
 
-##### [Introduction ]({{ refs.apache-felix-upnp.path }}) << \| >> [Overview of the Base Driver Architecture|UPnP Driver architecture]
+
+
+
+
+##### [Introduction ]({{ refs.apache-felix-upnp.path }})  [Overview of the Base Driver Architecture|UPnP Driver architecture]
 
 ----
 \[1\]({{ refs.1.path }}) The actual version of the bundles may be different

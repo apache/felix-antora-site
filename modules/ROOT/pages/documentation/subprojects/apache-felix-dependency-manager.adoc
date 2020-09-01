@@ -1,0 +1,64 @@
+Title: Apache Felix Dependency Manager
+
+Welcome to the Dependency Manager, a great bundle for managing your components and dependencies!
+
+== Introduction
+
+In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services.
+These components, that both publish services and depend on other services, form networks that are often dynamic in nature.
+That makes managing these dependencies something the developer needs to address.
+
+Whilst the OSGi framework provides the low-level building blocks to do that in the form of service listeners and trackers, these should not be used directly by developers.
+Instead, a more declarative approach works best, and the Dependency Manager provides this in the form of a declarative API and/or annotations that allow you to dynamically declare and change dependencies.
+
+On top of that, a set of OSGi design patterns are defined and supported that can be used as building blocks for more complex applications.
+
+The documentation for the dependency manager is split into three sections:
+
+. Step-by-step tutorials which provide a good introduction to the technology and should get you started quickly.
+. Overviews and guides that provide more in-depth knowledge about specific aspects of the dependency manager.
+. Reference materials that describe all the individual nuts and bolts.
+
+Below is the full table of contents.
+
+== Table of Contents
+
+=== Step-by-step Tutorials
+
+* link:apache-felix-dependency-manager/tutorials/getting-started.html[Getting started]
+* link:apache-felix-dependency-manager/tutorials/leveraging-the-shell.html[Leveraging the shell]
+* link:apache-felix-dependency-manager/tutorials/sample-code.html[Hello World example projects]
+
+=== Overviews and Guides
+
+* link:apache-felix-dependency-manager/guides/history.html[History]
+* link:apache-felix-dependency-manager/guides/background.html[Background]
+* link:apache-felix-dependency-manager/guides/whatsnew.html[What's new in DM 4]
+* link:apache-felix-dependency-manager/guides/whatsnew-r15.html[What's new in release r15]
+* link:apache-felix-dependency-manager/guides/bundles-and-dependencies.html[Bundles and dependencies]
+* link:apache-felix-dependency-manager/guides/migrating-from-earlier-versions.html[Migrating from earlier versions]
+* link:apache-felix-dependency-manager/guides/performance-tuning.html[Performance Tuning]
+* link:apache-felix-dependency-manager/guides/development.html[Development]
+* link:apache-felix-dependency-manager/guides/design-patterns.html[Design Patterns]
+* link:apache-felix-dependency-manager/guides/resources.html[Resource Adapters]
+* link:apache-felix-dependency-manager/guides/javadocs.html[Javadocs]
+
+=== Reference Guide
+
+* link:apache-felix-dependency-manager/reference/components.html[Components]
+ ** link:apache-felix-dependency-manager/reference/component-singleton.html[Singleton]
+ ** link:apache-felix-dependency-manager/reference/component-aspect.html[Aspect]
+ ** link:apache-felix-dependency-manager/reference/component-adapter.html[Adapter]
+ ** link:apache-felix-dependency-manager/reference/component-resource-adapter.html[Resource Adapter]
+ ** link:apache-felix-dependency-manager/reference/component-bundle-adapter.html[Bundle Adapter]
+ ** link:apache-felix-dependency-manager/reference/component-factory-configuration-adapter.html[Factory Configuration Adapter]
+* link:apache-felix-dependency-manager/reference/dependencies.html[Dependencies]
+ ** link:apache-felix-dependency-manager/reference/dependency-service.html[Service]
+ ** link:apache-felix-dependency-manager/reference/dependency-configuration.html[Configuration]
+ ** link:apache-felix-dependency-manager/reference/dependency-bundle.html[Bundle]
+ ** link:apache-felix-dependency-manager/reference/dependency-resource.html[Resource]
+* link:apache-felix-dependency-manager/reference/service-scopes.html[Service Scopes]
+* link:apache-felix-dependency-manager/reference/dm-annotations.html[Dependency Manager Annotations]
+* link:apache-felix-dependency-manager/guides/dm-lambda.html[Dependency Manager Lambda]
+* link:apache-felix-dependency-manager/reference/thread-model.html[Thread Model]
+* link:apache-felix-dependency-manager/reference/external-links.html[External Links and Articles]

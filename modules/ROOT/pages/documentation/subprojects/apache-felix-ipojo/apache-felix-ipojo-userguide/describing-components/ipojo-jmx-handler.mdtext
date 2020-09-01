@@ -43,10 +43,8 @@ tag.
         <jmx:method name="doSomethingGood"/>
     </jmx:config>
 
-<div class="alert alert-info info" markdown="1">
-<h4>Serialization</h4>
+#### ALERT Serialization
 <p>Be careful that the argument and return type of methods must be serializable. In case of several methods have the same name, each of them will be exposed.</p>
-</div>
 
 
 ## JMX Handler options
@@ -86,13 +84,13 @@ Here you can find all configuration options of the JMX handler. There are two ki
       <td>usesMOSGi</td>
       <td>No</td>
       <td>Determines if the component must be register on the MOSGi MBean server or not.</td>
-    </tr>    
+    </tr>
 
     <tr>
       <td>preRegister, postRegister, preDeregister, postDeregister</td>
       <td>No</td>
       <td>These attributes allow to specify methods to carry out operations before and after being registered or unregistered from the MBean server.</td>
-    </tr>        
+    </tr>
   </tbody>
 </table>
 
@@ -122,7 +120,7 @@ Here you can find all configuration options of the JMX handler. There are two ki
     <tr>
       <td>name</td>
       <td>No</td>
-      <td>Specify the access permission of the exposed field. The accepted values are : 
+      <td>Specify the access permission of the exposed field. The accepted values are :
             <ul>
                 <li>"r" : read-only access, the default value.</li>
                 <li>"w" : read and write access.</li>
@@ -134,7 +132,7 @@ Here you can find all configuration options of the JMX handler. There are two ki
       <td>notification</td>
       <td>No</td>
       <td>Enable or disable attribute change notification sending for this property. If set to `true`, a notification is sent each time the value of the field changes.</td>
-    </tr>    
+    </tr>
   </tbody>
 </table>
 
@@ -187,7 +185,7 @@ tag in the metadata :
         <component className="...MyComponent"
           architecture="true"
           immediate="true">
-    
+
           <provides/>
           <jmx:config>
     	<!-- Exposed properties -->
@@ -218,14 +216,14 @@ We could now add methods in the initial class :
     public void doSomethingGood() {
     		...
     }
-    
+
     /**
     Do something bad
     */
     public void doSomethingBad() {
     		...
     }
-    
+
     /**
     Do nothing
     */
@@ -278,13 +276,13 @@ It is possible to configure the handler with simple annotations available with i
 
         @Property(name="prop", notification=true, rights="w") // Field published in the MBean
         String m_foo;
-        
+
         @Method(description="set the foo prop") // Method published in the MBean
         public void setFoo(String mes) {
             System.out.println("Set foo to " + mes);
             m_foo = mes;
         }
-        
+
         @Method(description="get the foo prop") // Method published in the MBean
         public String getFoo() {
             return m_foo;
@@ -297,13 +295,13 @@ The <code>@org.apache.felix.ipojo.handlers.jmx.Config</code> (<code>@Config</cod
 * objectname: set the MBean objectname. The objectname must follow JMX specification. (default: `package-name:factory-name:instance-name`)
 * domain: set the MBean domain. (default: `package-name`)
 * name: set the MBean name. (default: `instance-name`).
-    
+
 The `@org.apache.felix.ipojo.handlers.jmx.Property` (`@Property`) annotation is a field annotation indicating that the field is exposed in the MBean. The supported attributes are:
 
 * name: set the property name
 * rights: set the access permission. Possible values are `r` (read only) and `w` (read and write). By default, properties are in read-only mode.
     * notification: enables notification on this property. By default notifications are disabled.
-    
+
 The `@org.apache.felix.ipojo.handlers.jmx.Method` annotation is a method annotation indicating that the method is exposed in the MBean. Only one attribute can be customized:
 
 * description: set the method description.

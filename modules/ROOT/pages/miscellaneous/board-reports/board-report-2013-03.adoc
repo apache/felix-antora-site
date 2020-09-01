@@ -1,0 +1,26 @@
+Title: Board Report (2013-03)
+
+*[NOT SUBMITTED]({{ refs.not-submitted.path }})*
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+_Community_
+
+* ...
+
+_Software_
+
+* ...
+
+_Project Branding_
+
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open
+* TM missing from all Logos
+* Project Metadata: done
+
+_Licensing and other issues_
+
+* None

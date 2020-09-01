@@ -1,0 +1,210 @@
+Title: Apache Felix Maven OBR Plugin+++<div class="warning">+++The _maven-obr-plugin_ is _deprecated_ and its features have been _merged_ into the _1.4.0_ release of the _link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[maven-bundle-plugin]_+++</div>+++
+
+This Maven plug-in aims to automate OBR (OSGi Bundle Repository) management.
+It helps manage a local OBR for your local Maven repository, and also supports remote OBRs for bundle distribution.
+The plug-in automatically computes bundle capabilities and requirements, using a combination of Bindex and Maven metadata.
+
+== Features
+
+The maven-obr-plugin supports:
+
+* Management of both local and remote OBRs
+* Registering Maven and non-Maven artifacts with OBRs
+* Automatically discovering bundle capabilities and requirements
+* Customizing bundle descriptions
+
+== How to use the maven-obr-plugin?
+
+The plug-in offers five Maven goals:
+
+* _install_ adds the current bundle project to the local OBR
+* _install-file_ adds a local bundle file to the local OBR
+* _deploy_ adds the current bundle project to a remote OBR
+* _deploy-file_ adds a local bundle file to a remote OBR
+* _clean_ cleans the local OBR, removing missing bundles
+
+Any of these goals can be disabled by setting `\-DobrRepository=NONE`
+
+== obr:install
+
+The _install_ goal updates the local OBR with the details of the installed bundle from the local Maven repository.
+
+(If the project has an `obr.xml` file somewhere in its resources, then it will be automatically detected and applied.)
+
+configuration:
+
+* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+
+To attach this goal to your project's lifecycle, use:
+
+ <plugin>
+   <groupId>org.apache.felix</groupId>
+   <artifactId>maven-obr-plugin</artifactId>
+   <version>1.2.0</version>
+   <executions>
+     <execution>
+       <goals>
+         <goal>install</goal>
+       </goals>
+     </execution>
+   </executions>
+ </plugin>
+
+== obr:install-file
+
+The _install-file_ goal updates the local OBR with the details of a bundle from the local filesystem.
+
+configuration:
+
+* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _groupId_ Maven groupId for the bundle, taken from _pomFile_ if given
+* _artifactId_ Maven artifactId for the bundle, taken from _pomFile_ if given
+* _version_ Maven version for the bundle, taken from _pomFile_ if given
+* _packaging_ Maven packaging type for the bundle, taken from _pomFile_ if given
+* _classifier_ Maven classifier type, defaults to none
+* _pomFile_ optional Pom file describing the bundle
+* _file_ bundle file, defaults to the bundle from the local Maven repository
+* _obrXml_ optional additional properties for the bundle
+
+Example:
+
+ mvn org.apache.felix:maven-obr-plugin:1.2.0:install-file \
+   -DpomFile=myPom.xml -Dfile=foo-1.0.jar
+
+== obr:deploy
+
+The _deploy goal_ updates the remote OBR with the details of the deployed bundle from the local Maven repository.
+The remote OBR is found by querying the `<distributionManagement>` section of the project, unless `\-DaltDeploymentRepository` is set.
+See http://maven.apache.org/plugins/maven-deploy-plugin/deploy-mojo.html for more details about these particular settings.
+
+(If the project has an `obr.xml` file somewhere in its resources, then it will be automatically detected and applied.)
+
+configuration:
+
+* _obrRepository_ name of remote OBR, defaults to `repository.xml`
+* _altDeploymentRepository_ alternative remote repository, _id::layout::url_
+* _ignoreLock_ ignore remote locking when updating the OBR
+
+To attach this goal to your project's lifecycle, use:
+
+ <plugin>
+   <groupId>org.apache.felix</groupId>
+   <artifactId>maven-obr-plugin</artifactId>
+   <version>1.2.0</version>
+   <executions>
+     <execution>
+       <goals>
+         <goal>deploy</goal>
+       </goals>
+     </execution>
+   </executions>
+ </plugin>
+
+== obr:deploy-file
+
+The _deploy-file_ goal updates the remote OBR with the details of a deployed bundle from the local filesystem.
+The remote OBR is found using the `\-DrepositoryId` and `\-Durl` parameters.
+See http://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html for more details about these particular settings.
+
+You can use the `\-DbundleUrl` parameter to give the public location of the deployed bundle, which may differ from the remote OBR location.
+
+configuration:
+
+* _obrRepository_ name of remote OBR, defaults to `repository.xml`
+* _repositoryId_ optional repository id, used to lookup authentication settings
+* _url_ remote repository transport URL, like
++
+scpexe://host/path/to/obr
+
+* _bundleUrl_ public URL of deployed bundle, like
++
+http://www.foo.org/bundles/foo.jar
+
+* _groupId_ Maven groupId for the bundle, taken from _pomFile_ if given
+* _artifactId_ Maven artifactId for the bundle, taken from _pomFile_ if given
+* _version_ Maven version for the bundle, taken from _pomFile_ if given
+* _packaging_ Maven packaging type for the bundle, taken from _pomFile_ if given
+* _classifier_ Maven classifier type, defaults to none
+* _pomFile_ optional Pom file describing the bundle
+* _file_ bundle file, defaults to the bundle from the local Maven repository
+* _obrXml_ optional additional properties for the bundle
+* _ignoreLock_ ignore remote locking when updating the OBR
+
+Example:
+
+ mvn org.apache.felix:maven-obr-plugin:1.2.0:deploy-file \
+   -DpomFile=myPom.xml -Dfile=foo-1.0.jar -Durl=file:/tmp/example/OBR \
+   -DbundleUrl=http://www.foo.org/bundles/foo.jar
+
+== obr:clean
+
+Sometimes you would like to clean your local OBR because it contains bundles that are no longer in your local Maven repository.
+This case often occurs when artifacts were deleted manually.
+The maven-obr-plugin provides a simple goal to check for missing bundles, and remove them from the local OBR.
+
+configuration:
+
+* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`{}{`}`/repository.xml`+++</local-maven-repository>+++
+
+To attach this goal to your project's lifecycle, use:
+
+ <plugin>
+   <groupId>org.apache.felix</groupId>
+   <artifactId>maven-obr-plugin</artifactId>
+   <version>1.2.0</version>
+   <executions>
+     <execution>
+       <goals>
+         <goal>clean</goal>
+       </goals>
+     </execution>
+   </executions>
+ </plugin>
+
+== Concurrent updates
+
+With a remote OBR, several uploads may occur at the same time.
+However, the remote OBR is centralized in one file, so concurrent modification must be avoided.
+To achieve this, the plug-in implements a locking system.
+Each time the plug-in tries to modify the file it sets a file based lock.
+If it can't take the lock, it will wait and retry.
+After 3 attempts the upload process fails.
+To bypass this lock add `\-DignoreLock` to the command-line (or add `<ignoreLock>true<ignoreLock>` to the configuration section of your Pom).
+
+== FTP protocol
+
+Not all protocols are supported by Maven out of the box.
+For example the ftp protocol requires the _wagon-ftp_ component.
+To enable the ftp protocol add this to your Pom:
+
+ <build>
+   <extensions>
+     <extension>
+       <groupId>org.apache.maven.wagon</groupId>
+       <artifactId>wagon-ftp</artifactId>
+       <version>1.0-alpha-6</version>
+     </extension>
+   </extensions>
+ </build>
+
+== How the plug-in computes the description of the bundle
+
+The description of the bundle comes from three different sources:
+
+* Bindex : Bindex is a tool that analyzes a bundle manifest to generate OBR description
+* pom.xml : by analyzing the pom file, various information is collected (symbolic name ...)
+* obr.xml : this file contains customized description and capabilities for the bundle
+
+These sources are merged together using the following precedence:
+
+ Bindex
+ | (overrides)
+ pom.xml
+ | (overrides)
+ obr.xml
+
+A warning message is displayed when existing information is overridden.
+
+== Known issues & limitations
+
+. obr.xml (file given by the user to add properties not found by Bindex) must be correct, because the plug-in does not check its syntax.

@@ -32,7 +32,7 @@ Finally, by clicking on the state variables shows the associated property keys a
 * The "Felix Logger" and "Cyber Debugger" menus enable displaying of the messages received and sent by the base driver (i.e. the content of the UDP communication).
 * The "Print Pending Devices" is a utility menu to verify whether incomplete hierarchy of embedded devices have been registered with the framework.
 * The "Check Errata UPnPDevices" menu may help the user verify that all the local UPnP Devices have been registered with the mandatory properties, otherwise they would not be exported.
-  
-  
 
-##### [Overview of the Base Driver Architecture]({{ refs.upnp-driver-architecture.path }}) << \| >> [The Felix UPnP Examples| UPnP Examples]
+
+
+##### [Overview of the Base Driver Architecture]({{ refs.upnp-driver-architecture.path }}) [The Felix UPnP Examples| UPnP Examples]

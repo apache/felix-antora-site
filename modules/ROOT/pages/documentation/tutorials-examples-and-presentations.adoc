@@ -1,0 +1,56 @@
+Title: Tutorials, Examples, and Presentations
+
+{% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}
+
+== Books
+
+The most important "books" on OSGi are of course the specifications themselves.
+They are quite a good read but are also complete and contain stuff, you might be interested in.
+So for a starter you might interested to read the following:
+
+* Core Specification (Layer, Services, LiveCycle part)
+* Compendium Specification
+* Enterprise Specification
+
+Visit the http://www.osgi.org/Specifications/HomePage[OSGi Alliance Specifications] page to download the specifications for free.
+
+Apart from the specifications a number of books have recently been published.
+They are listed here in no particular order:
+
+* http://www.manning.com/hall/[OSGi in Action];
+Richard Hall, Karl Pauls, Stuart McCulloch, David Savage;
+Manning Publications, 2011.
+Covers most (if not all) of R 4.2 specs and also contains a lot of side information.
+The authors of this book are committers and/or PMC members of the Apache Felix project.
+* http://www.amazon.com/OSGi-Equinox-Creating-Modular-Systems/dp/0321585712[OSGi and Equinox: creating highly modular Java systems];
+Jeff McAffer, Paul VanderLei, Simon Archer;
+Addison-Wesley, 2010.
+Despite its dependency on Equinox it might be helpful, because they use Declarative Services intensely for their sample application throughout the book and we use Declarative Services intensely, too.
+* http://www.manning.com/alves/[OSGi in Depth];
+Alexandre de Castro Alves;
+Manning, 2011.
+I cannot say anything on this book except that he seems to have used Apache Felix for the samples....
+* http://www.manning.com/cummins/[Enterprise OSGi in Action: With examples using Apache Aries];
+Holly Cummins, Timothy Ward;
+Manning, 2013 Covers Enterprise OSGi specifications, which are becoming more and more important.
+* http://www.amazon.com/Java-Application-Architecture-Modularity-Development/dp/0321247132[Java Application Architecture: Modularity Patterns with Examples Using OSGi (Agile Software Development Series)];
+Kirk Knoernschild;
+Prentice Hall, 2012 Primarily covers Java Application Architecture using OSGi for the framework to implement.
+* http://njbartlett.name/osgibook.html[OSGi in Practice];
+Neil Bartlett;
+Free PDF EBook.
+Many OSGi core concepts are greatly explained, and its free;
+* http://www.packtpub.com/open-services-gateway-initiative-starter/book[Instant OSGi Starter];
+Jamie Goodyear, Johan Edstrom;
+Packt, 2013
+* http://www.packtpub.com/osgi-and-apache-felix-30-beginners-guide/book[OSGi and Apache Felix 3.0 Beginner's Guide];
+Walid Joseph Gédéon;
+Packt, 2010
+* http://www.manning.com/cogoluegnes/[Spring Dynamic Modules in Action];
+Arnaud Cogoluègnes, Thierry Templier, Andy Piper;
+Manning, 2010
+* http://shop.oreilly.com/product/0636920028086.do#[Building Modular Cloud Apps with OSGi];
+Paul Bakker, Bert Ertman;
+O'Reilly, 2013.
+Uses Apache Felix.
+For experienced Java developers in the enterprise, this practical, hands-on book shows you how to use OSGi to design, develop, and deploy modular cloud applications.

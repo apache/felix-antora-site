@@ -1,0 +1,21 @@
+Title: Dependency Manager - History
+
+Dependency Manager has quite a long history, that starts over ten years ago.
+
+== The early years
+
+The first version of the Dependency Manager was created when Marcel started working on his first commercial OSGi project back in 2002.
+At that time, the OSGi specification was still at R2, and the only solution for managing dependencies was "service binder" which did not support the dynamics we needed at that time.
+Therefore, dependency manager was created, based on a fluent, declarative Java API.
+
+In 2005, after writing a white paper, dependency manager was presented at the OSGi DevCon in Paris.
+At that time, the project had been open sourced, but not yet at Apache.
+When the Oscar project finally decided to move to the incubator, where it became Felix, Dependency Manager was one of the subprojects that joined.
+
+== Life at Apache
+
+The move to Apache definitely gave the project a lot more visibility and, besides a larger user base, also attracted a few very talented developers.
+Xander did a lot of work in getting some of the higher level design patterns implemented, and Pierre added support for annotations and ensured that the code ran well on really big, multi-core systems.
+
+In 2014, after many discussions about new features and improvements we would like to add, we started experimenting with a completely new codebase, redesigning some aspects from the ground up based on all the knowledge and experience that we had gained over the years.
+About a year later, that lead to the release of Dependency Manager 4.

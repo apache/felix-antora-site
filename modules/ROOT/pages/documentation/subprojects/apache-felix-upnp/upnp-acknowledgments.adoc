@@ -1,0 +1,11 @@
+Title: UPnP Acknowledgments
+
+[cols=2*]
+|===
+| The Felix UPnP base driver and related bundles were originally developed by the http://domoware.isti.cnr.it/[Domoware] project which targeted the OSGi R3.
+The driver is based on a modified version of the "UPnP for Java" library released by the [Cyberlink
+| http://www.cybergarage.org/net/upnp/java/index.html] project.
+This version, called CyberDomo, is currently maintained by the Domoware project team and aligned to the Cyberlink library regularly.
+|===
+
+===== link:{{ refs.upnp-known-issues.path }}[Known Issues] <<

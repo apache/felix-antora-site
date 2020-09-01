@@ -1,0 +1,10 @@
+Title: Board Reports
+
+The Apache Felix project must submit quarterly reports to the Apache board.
+This page serves as a collection point for all submitted board reports.
+The reports are listed in chronological order, so the most recent board reports is last.
+Submitted board reports will be labeled as _[SUBMITTED]({{ refs.submitted.path }})_, but the most recent board report may be labeled _[NOT SUBMITTED]_ while it is being created;
+once finalized and submitted then it will also be labeled as _[SUBMITTED]_.
+The [Apache Felix Board Report Template] provides a proper starting point for creating a board report.
+
+{% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}

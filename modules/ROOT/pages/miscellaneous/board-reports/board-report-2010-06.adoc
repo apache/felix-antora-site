@@ -1,0 +1,16 @@
+Title: Board Report (2010-06)
+
+*[SUBMITTED]({{ refs.submitted.path }})*
+
+_Community_
+
+* Added Chris Custine to PMC.
+* Added Jamie Goodyear as a committer.
+
+_Software_
+
+* Recent subproject releases: ** Bundle Repository (1.6.0, 1.6.2) ** File Install (3.0.0) ** Framework (2.0.5, 3.0.0) ** Framework Security (1.2.0) ** Gogo (0.4.0, 0.6.0) ** iPOJO (1.6.0, 1.6.2) ** iPOJO Annotations (1.6.0, 1.6.2) ** iPOJO Ant (1.6.0) ** iPOJO API (1.6.0) ** iPOJO Arch (1.6.0) ** iPOJO Composite (1.6.0) ** iPOJO Event Admin Handler (1.6.0) ** iPOJO Manipulator (1.6.0, 1.6.2) ** iPOJO Online Manipulator (1.6.0) ** iPOJO Temporal Handler (1.6.0) ** Karaf (1.6.0) ** Main (2.0.5, 3.0.0) ** Maven Bundle Plugin (2.1.0) ** Maven iPOJO Plugin (1.6.0) ** Maven SCR Plugin (1.4.4) ** SCR Annotations (1.3.0) ** Utils (1.0.0) ** Web Console (3.0.0) ** Web Console Event Plugin (1.0.2) ** Web Console Memory Usage Plugin (1.0.0) ** Web Console UPNP Plugin (1.0.0)
+
+_Licensing and other issues_
+
+* The PMC voted to promote the Karaf subproject to TLP, resolution sent to board.

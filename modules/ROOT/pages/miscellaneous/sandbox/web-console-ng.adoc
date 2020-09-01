@@ -1,0 +1,18 @@
+:doctype: book
+
+Title: Web Console NG
+
+[cols=2*]
+|===
+| As discussed on the http://markmail.org/message/3c5y77mg3tiqgegt[list] stipulated by [Valentin Valchev's comment on FELIX-3773
+| https://issues.apache.org/jira/browse/FELIX-3773?focusedCommentId=13503120&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-13503120] lets collect _data_ in a next generation Web Console...
+|===
+
+= Ideas
+
+* New extension API built from ground up
+* Compatibility layer to support old plugins
+* Provide request information such as request extension (.json, .html, etc.) request extension string, path splitting
+* Support OSGi RFC-182 natively (see the http://www.osgi.org/Download/File?url=/download/osgi-early-draft-2012-10.pdf[OSGi Early Draft 2012.10] for details) (Stable/defined RESTful API)
+* Configuration Printers: support machine processable formats like returning json (right now we have text and html) ...
+please add ...

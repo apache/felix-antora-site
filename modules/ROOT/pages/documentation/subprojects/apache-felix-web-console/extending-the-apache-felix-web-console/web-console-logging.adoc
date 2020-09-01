@@ -1,0 +1,44 @@
+Title: Web Console Logging
+
+The Web Console does not provide its own mechanism for logging.
+Rather the Servlet Container logging mechanism is used by calling the `GenericServlet.log` methods for logging.
+It is expected by the OSGi Http Service implementation implements these `log` methods writing to the OSGi Log Service.
+
+The drawback of using servlet container logging is that we have no control over the logging levels used and applied to log messages.
+To at least allow some level of log message filtering the Web Console can be configured with a logging level using the `loglevel` property of the _Apache Felix OSGi Management Console_ (`org.apache.felix.webconsole.internal.servlet.OsgiManager`).
+
+The `AbstractWebConsolePlugin` class provides two addition `log` methods taking a `level` parameter which allow plugins to filter certain log messages:
+
+[cols=2*]
+|===
+| `log(int level, String message)`
+| Calls `GenericaServlet.log(String)` if the configured log level is less than or equal to the `level` parameter.
+
+| `log(int level, String message, Throwable t)`
+| Calls `GenericaServlet.log(String, Throwable)` if the configured log level is less than or equal to the `level` parameter.
+|===
+
+_Note 1:_ The `level` parameter is just used for filtering calls to the `GenericeServlet.log` methods and cannot define the actual log level used by the servlet container.
+
+_Note 2:_ Direct calls to one of the `GenericServlet.log` or `ServletContext.log` methods are not intercepted and are not filtered by the log level configured for the Web Console.
+
+The `level` parameter and the `loglevel` configuration property can be set to any of the constant values defined by the OSGi `LogService` class:
+
+[cols=3*]
+|===
+| 1
+| LOG_ERROR
+| This log entry indicates the bundle or service may not be functional.
+
+| 2
+| LOG_WARNING
+| This log entry indicates a bundle or service is still functioning but may experience problems in the future because of the warning condition.
+
+| 3
+| LOG_INFO
+| This log entry may be the result of any change in the bundle or service and does not indicate a problem.
+
+| 4
+| LOG_DEBUG
+| This log entry is used for problem determination and may be irrelevant to anyone but the bundle developer.
+|===

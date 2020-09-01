@@ -1,0 +1,34 @@
+Title: Dependency Manager - Bundle Dependency
+
+A bundle dependency allows you to depend on a bundle in a certain set of states, as indicated by a state mask.
+You can also use a filter condition that is matched against all manifest entries.
+Finally you can provide a  reference to an existing bundle.
+
+To define a bundle dependency, you need to use the http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/BundleDependency.html[BundleDependecy] interface.
+This interface can be created using DependencyActivatorBase.createBundleDependency() or DependencyManager.createBundleDependency() methods;
+
+Here is an example of a component which tracks all ACTIVE bundles having a Service-Component header in the manifest:
+
+....
+:::java
+public class Activator extends DependencyActivatorBase {
+    @Override
+    public void init(BundleContext ctx, DependencyManager dm) throws Exception {
+    	Component scr = createComponent()
+    			.setImplementation(ScrRuntime.class)
+    			.add(createBundleDependency().setFilter("(Service-Component=*").setStateMask(Bundle.ACTIVE).setCallbacks("bind", "unbind"));
+    }
+}
+
+public class ScrRuntime {
+	void bind(Bundle bundle) {
+		// load SCR descriptors from the starting bundle
+	}
+	
+	void unbind(Bundle bundle) {
+		// unload SCR descriptors from the starting bundle
+	}
+}
+....
+
+The dependency is optional by default, and will invoke the ScrRuntime.bind callback each time a bundle containing some Declarative Service component is started.

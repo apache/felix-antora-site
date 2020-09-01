@@ -1,0 +1,25 @@
+Title: Board Report (2011-09)
+
+*[SUBMITTED]({{ refs.submitted.path }})*
+
+_Community_
+
+* Normal mailing list and bug reporting activity.
+* Ken Gilmer has offered to contribute a lightweight OSGi HTTP Service implementation (FELIX-3084), which has received positive response from the community, so we just need to start the formal acceptance process.
+
+_Software_
+
+* Recent subproject releases: ** Bundle Repository (1.6.6) ** EventAdmin (1.2.14) ** Gogo Runtime, Shell, and Command (0.10.0) ** iPOJO Whiteboard Pattern Handler (1.6.0) ** Maven Bundle Plugin (2.3.5) ** Maven SCR Plugin (1.7.2) ** SCR Annotations (1.6.0) ** SCR Ant Task (1.1.2) ** SCR Generator (1.1.2)
+* Other software activity ** Felix Framework and Framework Security Provider are nearing completion on major new releases that will be compliant with the latest OSGi R4.3 specification.
+
+_Project Branding_
+
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open ** TM missing from all Logos
+* Project Metadata: done
+
+_Licensing and other issues_
+
+* None.

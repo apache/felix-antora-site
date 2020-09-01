@@ -1,0 +1,48 @@
+Title: Dependency Manager - Development
+
+When downloading or checking out the source code, please also consult release/resources/src/README.src for up to date instructions on how to build that particular version.
+
+== Prerequisites
+
+If you are using a corporate http proxy, you should set the following environment variables:
+
+ $ export GRADLE_OPTS="-Dhttp.proxyHost=<your proxy ip> -Dhttp.proxyPort=<your proxy port> -Dhttps.proxyHost=<your proxy ip> -Dhttps.proxyPort=<your proxy port>"
+ $ export http_proxy=<your proxy ip>:<your proxy port>
+ $ export https_proxy=<your proxy ip>:<your proxy port>
+
+== Compilation Using gradle:
+
+* Install latest Java 8 (the dm libraries has been built and tested with java 1.8.0_74)
+* Compile Dependendency Manager annotations bndtools plugin:
++
+$ ./gradlew org.apache.felix.dependencymanager.annotation:jar
+
+* Compile all other bundles:
++
+$ ./gradlew jar
+
+* Run junit tests:
++
+$ ./gradlew test
+
+* Run integration tests:
++
+$ ./gradlew check
+
+== Compilation Using Eclipse:
+
+* Install Latest Eclipse Mars.
+* Use the dependency manager folder as the root of your workspace.
+* Configure two JREs for Java 8:
+ ** Go to Windows \-> Preferences \-> Java \-> Installed JREs
+ ** Add your jdk8 JRE
+* Install BndTools 3.4.0 or later version and (optionally) a subversion plugin for Eclipse.
+* Open BndTools perspective
+* Import Dependency Manager into Eclipse, and compile everything
+* if it's the first time you import the project into eclipse, it may happen that some modules that requires the Dependency Manager Annotations bnd plugin don't compile: It's a know issue.
+To work around, restart eclipse and rebuild every modules.
+* Click on org.apache.felix.dependencymanager project and run it as "JUnit test".
+* Click on org.apache.felix.dependencymanager.shell and run it as "JUnit test"
+* Click on org.apache.felix.dependencymanager.itest and run it as "Bnd OSGi Test Launcher (Junit)".
+* Click on org.apache.felix.dependencymanager.runtime.itest and run it as ""Bnd OSGi Test Launcer (Junit)".
+* Click on org.apache.felix.dependencymanager.lambda.itest and run it as ""Bnd OSGi Test Launcer (Junit)".

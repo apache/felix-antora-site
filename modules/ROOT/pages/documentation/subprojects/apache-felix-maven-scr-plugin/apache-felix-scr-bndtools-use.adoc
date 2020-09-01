@@ -1,0 +1,139 @@
+Title: Apache Felix SCR Annotations BndTools Use Excerpt: Using the Apache Felix SCR Annotations Bnd plugin to generate Declarative Services and Metatype Service descriptors in BndTools.
+
+The org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin is a bnd plugin allowing to generate SCR annotations and metatype descriptors in the Eclipse BndTools environment.
+This page describes how to install the plugin in BndTools and also provides a simple tutorial, which won't be very fascinating, but will make it easy to demonstrate the use of Apache SCR annotations within BndTools.
+
+If you are not yet familiar with BndTools or if you have not already installed it, you can take a look at http://bndtools.org/[BndTools homepage].
+
+This tutorial has been made with Eclipse Kepler and with the latest BndTools development version.
+It is assumed that the eclipse workspace is currently set to ~/workspace/BNDTOOLS
+
+== Installing SCR Bnd plugin in BndTools
+
+*Create the cnf project*:
+
+If the BndTools "cnf" project does not already exist in your workspace, then create it:
+
+* In the Eclipse Windows menu, click on Preference \-> BndTools OSGi
+* Click on "Configuration Project/Check Now".
+This will create the "cnf" bndtools project.
+
+*Compile the SCR annotations bnd plugin and copy it in cnf project*:
+
+Now you have to copy the SCR annotations bnd plugin into the cnf project of your current workspace ("BNDTOOLS" in this example).
+For now, the plugin is not yet released, but you can build it yourself like this:
+
+ :::sh
+ $ svn checkout http://svn.apache.org/repos/asf/felix/trunk/scrplugin scrplugin
+ $ cd scrplugin
+ $ mvn clean install
+ $ mkdir ~/workspace/BNDTOOLS/cnf/plugins/org.apache.felix.scr.bnd/
+ $ cp scrplugin/bnd-scr-plugin/target/org.apache.felix.scr.bnd-X.Y.Z-SNAPSHOT.jar ~/workspace/BNDTOOLS/cnf/plugins/org.apache.felix.scr.bnd/
+
+*Configure the default BndTools plugin path*:
+
+In order to let BndTools load the SCR annotations bnd plugin, you can configure the default BndTools plugin path:
+
+First, if you have not yet opened the BndTools perspective, then open it: go to Window Menu \-> Open Perspective \-> BndTools.
+
+Now, in BndTools menu, click on "BndTools Open ext/pluginpaths.bnd", then click on "Source" and append the SCR bnd plugin ($\{plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-X.Y.Z-SNAPSHOT.jar) to the current plugin path.
+For example:
+
+ -pluginpath: ${plugin-dir}/biz.aQute.repository/biz.aQute.repository-2.1.0.jar, \
+     ${plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-1.0.0-SNAPSHOT.jar
+
+You have installed the SCR annotations bnd plugin in Eclipse BndTools, and you can now start using it (see the following Tutorial).
+
+== Tutorial
+
+In this tutorial, we'll create a "greeting" project, which provides a simple Greeting service with a "sayHello" method, and the implementation will use the Apache Felix SCR annotations:
+
+From the File menu, select New \-> Bndtools OSGi Project for creating an empty project, and call it "greeting".
+
+Then click on bnd.bnd file of the greeting project, then click on Source, and add the following (and then save the file)
+
+ -buildpath: ${plugin-dir}/org.apache.felix.scr.bnd/org.apache.felix.scr.bnd-1.0.0-SNAPSHOT.jar;version=file
+ -plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin
+ Private-Package: greeting.impl
+ Export-Package: greeting.api
+
+Create the greeting.api.Greeting interface:
+
+....
+:::java
+package greeting.api;
+
+public interface Greeting {
+    void sayHello(String name);
+}
+....
+
+And create the greeting.impl.GreetingImpl class:
+
+....
+:::java
+package greeting.impl;
+
+import greeting.api.Greeting;
+
+import org.apache.felix.scr.annotations.Activate;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
+
+@Component(immediate=true)
+@Service
+public class GreetingImpl implements Greeting {
+	@Activate
+	private void start() {
+		System.out.println("Starting Greeting Service");
+	}
+	
+	@Override
+	public void sayHello(String name) {
+		System.out.println("Hello " + name);
+	}
+}
+....
+
+Now, click on bnd.bnd and rebuild the project.
+you have created your first bndtools project using SCR annotations.
+
+Create a Run descriptor (call it "run") with Apache Felix 4 With Gogo Shell.
+
+In Run requirement, add the greeting project, as well as Apache Felix SCR from Bnd HUB.
+
+Then Run the project: you should see in the console the "Starting Greeting Service" message displayed from the start() method.
+
+== Plugin Options
+
+You can possibly add some optional parameters in the plugin bnd directive (each one separated by a semicolon).
+For example:
+
+ -plugin: org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;log=debug;generateAccessors=false
+
+Here is the list of options:
+
+'''
+
+*`log`*  + _Required_: No  + _Default_: `warn` + The plugin enabled log level.
+You can select either one of "error", "warn", "info", or "debug".
+Plugin logs are written in ${java.io.tmpdir}/scrplugin/BSN.log (BSN is the Bundle Symbolic Name of the bundle being analyzed by the plugin).
+
+'''
+
+*`destdir`*  + _Required_: No  + _Default_: `bin` + The name of the directory where the descriptor files are generated into.
+This is also used as the directory where the compiled classes are generated by bndtools.
+
+'''
+
+*`generateAccessors`*  + _Required_:  No  + _Default_: `true`  + If this switch is turned on, the bind and unbind methods for unary references are automatically generated by the plugin.
+
+'''
+
+*`strictMode`*  + _Required_:  No  + _Default_:  `false`  + If set to true, a warning will be considered as an error and the build will fail with warnings generated by this task.
+
+'''
+
+*`specVersion`*  + _Required_:  No  + _Default_: -- + The plugin will generate a descriptor for the Declarative Service version (e.g.
+1.0, 1.1, or 1.2).
+If no value is specified, the plugin will detect the version and only use 1.1 if features from this version are used.

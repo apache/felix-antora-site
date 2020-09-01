@@ -24,14 +24,14 @@ The following code snippet shows a simple class implementing the `FooService` in
     @Provides
     public class FooProviderType1 implements FooService {
                 private String m_foo = "foo";
-    
+
                 public void foo() {
                             System.out.println("foo  " + m_foo);
                 }
-    
+
     }
 
-To provide a service, the implementation class *MUST* implement the service interface. 
+To provide a service, the implementation class *MUST* implement the service interface.
 
 In XML, to provide the service, the component type needs to contain the `<provides/>` element:
 
@@ -57,10 +57,8 @@ By default, it publishes all interfaces implemented by the implementation class 
         // ...
     }
 
-<div class="alert alert-warning info">
-<h4>Specification checking</h4>
+#### ALERT Specification checking
 <p>If you use the <code>specifications</code> attribute, the handler checks that all declared interfaces are really implemented by the implementation class. If an interface is not implemented, the handler logs a warning.</p>
-</div>
 
 <div class="alert alert-warning info">
 <h4>No service</h4>
@@ -77,10 +75,10 @@ Let's take a new example very closed of the last one:
     @Component
     @Provides
     public class FooProviderType1 implements FooService {
-    
+
         @ServiceProperty(name="foo", value="Foo")
     	private String m_foo;
-    
+
     	public void foo() {
     		System.out.println("foo  " + m_foo);
             m_foo = "bar";
@@ -110,10 +108,10 @@ You can also publish 'static' properties (not attached to a field):
     			@StaticServiceProperty(name="static", type="java.lang.String", value="this is a static property")
     	})
     public class FooProviderType1 implements FooService {
-    
+
         @ServiceProperty(name="foo", value="Foo")
     	private String m_foo;
-    
+
     	public void foo() {
     		System.out.println("foo  " + m_foo);
             m_foo = "bar";
@@ -149,13 +147,13 @@ Properties can also be 'mandatory'. Mandatories properties must receive a value 
     @Component
     @Provides
     public class MyComponent implements MyService {
-    
+
         @ServiceProperty(name="username", mandatory=true)
         private String m_username;
-    
+
         @Property(name="password", mandatory=true)
         private String m_password;
-    
+
         //...
     }
 
@@ -240,14 +238,14 @@ iPOJO supports instance reconfiguration. When an instance is dynamically reconfi
         private String myProp;
 
         //...
-        
+
     }
 
-    
+
 The previous code also declares an instance (created without any configuration). This instance registers `MyService` with the service property `prop=initial`. If this instance is reconfigured using a configuration like: `{prop="my value"}`, the published properties will be updated with the new value, so `prop=my value`.
-    
+
 ### Publishing an abstract or concrete class as a Service
-    
+
 It is also possible to expose an abstract or concrete class as a service. To to this, just specify the published class in the `specifications` attribute:
 
     :::java
@@ -277,7 +275,7 @@ To control the exposition of the published service, you can use a `service contr
     @Component
     @Provides
     public class ControllerCheckService implements FooService, CheckService {
-        
+
         @ServiceController
         private boolean controller; // Service Controller
 
@@ -310,21 +308,21 @@ The `controller` may have a value attribute setting the initial value. Setting t
     @Component
     @Provides
     public class ControllerCheckService implements FooService, CheckService {
-        
+
         @ServiceController(value=false)
         private boolean controller; // Service Controller
-    
+
         public boolean foo() {
             return controller;
         }
-    
+
         public boolean check() {
             System.out.println("Before : " + controller);
             controller = ! controller; // Change the publication
             System.out.println("After : " + controller);
             return controller;
         }
-    
+
     }
 
 
@@ -334,21 +332,21 @@ If several interfaces are exposed, the controller may have a `specification` att
     @Component
     @Provides
     public class ControllerCheckService implements FooService, CheckService {
-        
+
         @ServiceController(value=false, specification=FooService.class)
         private boolean controller; // Service Controller
-    
+
         public boolean foo() {
             return controller;
         }
-    
+
         public boolean check() {
             System.out.println("Before : " + controller);
             controller = ! controller; // Change the publication
             System.out.println("After : " + controller);
             return controller;
         }
-    
+
     }
 
 
@@ -391,9 +389,8 @@ Or by using the `@PostRegistration` and `@PostUnregistration` annotations:
 		System.out.println("Unregistered");
 	}
 
-    
+
 * The `post-registration` callback is called after the service publication
 * The `post-unregistration` callback is called after the service unpublication
-    
-Those callback methods must have the following signature: `public void name(ServiceReference ref)`. So they receive the published / unpublished service reference. The callbacks are called in the *same thread* as the publication / unpublication itself. 
-    
+
+Those callback methods must have the following signature: `public void name(ServiceReference ref)`. So they receive the published / unpublished service reference. The callbacks are called in the *same thread* as the publication / unpublication itself.

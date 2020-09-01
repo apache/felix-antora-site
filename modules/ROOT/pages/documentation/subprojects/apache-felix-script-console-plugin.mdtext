@@ -1,10 +1,5 @@
 Title: Apache Felix Script Console Plugin
 
-<style type="text/css">
-img {
- width:auto;
-}
-</style>
 
 Script Console is a Felix web console plugin which allows evaluation of scripts within the OSGi container. It provides following
 features

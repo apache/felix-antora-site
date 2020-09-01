@@ -19,6 +19,6 @@ This example, by exploiting the Felix HTTP Service implementation, installs a UP
 *Figure 9* The BinaryLight  GUI and the presentation page
 
 
-The source code for the Binary light is slightly different from the one for TV and Clock code because it has been written starting from a Light model which notifies its changes through the PropertyChangeListener interface. 
+The source code for the Binary light is slightly different from the one for TV and Clock code because it has been written starting from a Light model which notifies its changes through the PropertyChangeListener interface.
 
-##### [Testing UPnP Devices]({{ refs.upnp-testing-devices.path }}) << \| >> [Writing UPnP Devices and Control Points| UPnP Writing CD and CP]
+##### [Testing UPnP Devices]({{ refs.upnp-testing-devices.path }})  [Writing UPnP Devices and Control Points| UPnP Writing CD and CP]

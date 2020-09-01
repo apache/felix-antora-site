@@ -1,0 +1,25 @@
+Title: Apache Felix User Admin - MongoDB Store
+
+The Apache Felix User Admin MongoDB store provides a MongoDB-based store for use with the Felix UserAdmin service.
+It uses MongoDB to persist the role information.
+
+Note that this driver additionally needs the http://www.mongodb.org/display/DOCS/Java+Language+Center[MongoDB java driver] in order to operate!
+
+The MongoDB-based store service this bundle provides can be configured at runtime by using the service PID "[.code]``org.apache.felix.useradmin.mongodb``".
+The configuration options recognized by this service are:
+
+* "[.code]``server``": a space separated string containing the MongoDB servers.
+The format for this string is: "[.code]``<host1:port1> <host2:port2>``".
+This value is optional and defaults to "[.code]``localhost:27017``";
+* "[.code]``dbname``": a string value containing the name of the database to use for this store.
+This value is optional and defaults to "[.code]``ua_repo``";
+* "[.code]``collection``": the name of the database collection to use for this store.
+This value is optional and defaults to "[.code]``useradmin``";
+* "[.code]``username``": a string value representing the name of the user to authenticate against MongoDB.
+This value is optional and defaults to "" (empty string);
+* "[.code]``password``": a string value representing the password to authenticate against MongoDB.
+This value is optional and defaults to "" (empty string).
+
+Alternatively, one can also supply the above mentioned configuration keys prefixed with "[.code]``org.apache.felix.useradmin.mongodb.``" as system properties.
+For example by adding `-Dorg.apache.felix.useradmin.mongodb.server=my.mongo.server:29000` to your JVM arguments will let this service use the MongoDB server at "[.code]``my.mongo.server``" on port 29000.
+However, using system properties will imply that only a single store can be configured on a system (which could be a sensible default for some situations)!

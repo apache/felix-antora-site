@@ -1,0 +1,55 @@
+:doctype: book
+
+Title: apache-felix-ipojo-supportedOSGi
+
+= Supported OSGi Implementations
+
+_Despite iPOJO is an Apache Felix subproject, it relies only on *OSGi R4_ features.
+So, it is possible to use it on others OSGi implementations.*
+
+|===
+| Features | Apache Felix | Eclipse Equinox | Knowplerfish
+
+| Core features
+| __
+| __
+| __
+
+| Composites features
+| __
+| __
+| __
+
+| Configuration Admin
+| __
+| __
+| __
+
+| Temporal service dependencies
+| __
+| __
+| __
+
+| Whiteboard and Extender pattern handler
+| __
+| __
+| __
+
+| Event admin handler
+| __
+| __
+| __
+
+| JMX handler
+| __
+| __
+| __
+|===
+
+Feel free to send a mail on the Felix mailing list, if an implementation is not listed here.
+
+'''+++<div class="alert alert-success">+++Old version of Knopflerfish does not allow getting a service during its unregistration.
+To enable this feature, launch the Knopflerfish framework with the  `-Dorg.knopflerfish.servicereference.valid.during.unregistering=true` property.
+You can add this property in the `props.xargs` file.
+
+Recent version of KF does no more require this property.+++</div>+++

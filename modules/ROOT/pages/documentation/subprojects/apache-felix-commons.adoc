@@ -1,0 +1,152 @@
+Title: Apache Felix Commons
+
+=== Purpose
+
+Apache Felix Commons is a community effort to create OSGi bundle ("bundlized") versions of popular third-party open-source libraries.
+Today, OSGi developers must create bundles out of third-party libraries within their own development communities.
+The purpose of Felix Commons is to avoid duplicating the effort of bundle creation by sharing these bundlized artifacts.
+Our hope is that over time, the original developers of the third-party libraries can use these bundlized libraries to learn how to add OSGi metadata to their project artifacts and to become comfortable with the overall non-invasive process.
+Felix Commons is thus a large "project" of POMs where each bundle POM simply has a dependency on the library it wants to convert.
+The Felix Maven Bundle Plugin will then convert the dependency automatically and the bundle will be available via existing Maven infrastructure.
+
+This web page will be used to document who is doing what and to provide pointers to more information.
+
+=== How Can I Help?
+
+If you have libraries you have turned into bundles, then you can offer to contribute them.
+Additionally, you may request that a certain bundle be created.
+If you wish to submit a POM file for a specific library, you can attach it to a http://issues.apache.org/jira/browse/Felix[Felix JIRA issue] under the "Felix Commons" component.
+For Apache purposes, contributing a bundle POM is the same as contributing code.
+
+=== Getting Started
+
+In most cases, creating bundlized versions of a library is as simple as creating a POM file for the library using Felix' new link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[Maven Bundle Plugin].
+The OSGi headers are non-intrusive.
+A JAR can be made in such a way that it runs on the Classpath as well as a bundle in an OSGi framework.
+In short you:
+
+. Set the groupId to:+++<groupId>+++org.apache.felix.commons+++</groupId>+++
+. Append "-osgi" to the name of the artifact:+++<artifactId>+++FOO-osgi+++</artifactId>+++
+. Set the "packaging" to use the Maven Bundle Plugin:+++<packaging>+++bundle+++</packaging>+++
+. Set any configuration options in the link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[Maven Bundle Plugin].
+
+We recommend you read the longer link:{{ refs.creating-bundles-using-bnd.path }}[steps for converting a library to a bundle].
+
+=== Contributions
+
+|===
+| Library | Version | Description | Contributor | Grant OK | Committed
+
+| cglib
+| 2.0.2
+| CGLib
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-beanutils
+| 1.7.0
+| BeanUtils
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-codec
+| 1.2
+| Codec
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-configuration
+| 1.3
+| Configuration
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-digester
+| 1.8
+| Digester
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-el
+| 1.0
+| EL
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-fileupload
+| 1.1.1
+| FileUpload
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-httpclient
+| 3.0.1
+| Client-side HTTP.
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-io
+| 1.3
+| IO
+| Felix Meschberger
+| Yes
+| Yes
+
+| commons-lang
+| 2.2
+| Lang
+| Felix Meschberger
+| Yes
+| Yes
+
+| antlr
+| 2.7.6
+| Parser generator.
+| John Conlon
+| Yes
+| Yes
+
+| commons-collections
+| 3.2
+| Data structures for collections.
+| John Conlon
+| Yes
+| Yes
+
+| jzlib
+| 1.0.7
+| Data compression library.
+| John Conlon
+| Yes
+| Yes
+
+| commons-email
+| 1.0
+| An API for sending email.
+| Felix Meschberger
+| Yes
+| Yes
+|===
+
+=== Supporting Libraries
+
+These are projects that have expressed support for the Felix Commons initiative and that are working directly within their respective projects to support OSGi.
+
+| Project | Description | Supporter(s) | More Information | |--|--|--|--| | Spring |  | Adrian Colyer, Andy Piper | http://www.springframework.org/osgi[Spring-OSGi] | | SLF4J |  | Ceki Gülcü | http://www.slf4j.org/[SLF4J] | | Logback |  | Ceki Gülcü | http://logback.qos.ch/[Logback] | | MINA | NIO framework | Trustin Lee | http://issues.apache.org/jira/browse/DIRMINA-27[DIRMINA-27] | | HTTP Client | Client-side HTTP.
+| Roland Weber | https://issues.apache.org/jira/browse/HTTPCLIENT-639[HTTPCLIENT-639] | | Apache OFBiz | Enterprise automation.
+| Christopher Snow | http://mail-archives.apache.org/mod_mbox/incubator-felix-dev/200704.mbox/%3c8A31258D-1FB4-4F42-A145-94136D750EF0@coralms.com%3e[Mailing list archives] | | Jetty | Servlet engine.
+| Jan Bartel | Jetty 6.1.5 and onwards uses the 'maven-bundle-plugin'.|
+
+=== Similar Efforts
+
+Eclipse Orbit - http://www.eclipse.org/orbit/ \{quote} ...
+will provide a repository of bundled versions of third party libraries that are approved for use in one or more Eclipse projects.
+\{quote}

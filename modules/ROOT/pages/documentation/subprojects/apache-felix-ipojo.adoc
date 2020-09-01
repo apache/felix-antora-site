@@ -1,0 +1,48 @@
+Title: Apache Felix iPOJO+++<header class="jumbotron subhead">++++++<div class="row">++++++<div class="span6">+++A flexible and extensible service component model+++</div>+++
+
+image::/ipojo/ipojo-logo-150.png[]+++</div>++++++</header>+++
+
+////
+current iPOJO release: {{ipojo.release}}
+current iPOJO snapshot: {{ipojo.snapshot}}
+////+++<section id="section-overview">++++++<div class="row">++++++<div class="span6">+++[discrete]
+=== What's iPOJO ?
+
+*iPOJO* is a _service component runtime_ aiming to simplify OSGi application development.
+It natively supports *ALL* the dynamism of OSGi.
+iPOJO is made to run modern applications exhibiting modularity and requiring runtime adaption and autonomic behavior.</p> image:/ipojo/cubes.png[]+++</div>++++++<div class="span6">+++[discrete]
+=== Main features
+
+* __ Components are developed as POJOs - no dependencies or complex API
+* __ Use annotations, XML or a fluent API to declare your components and instances
+* __ Require and provide services without requiring code, while being amazingly powerful
+* __ iPOJO applications are natively resilient to dynamism
+* __ Extensible and customizable, develop your own component model
+* __ iPOJO applications are supporting dynamic adaptation, and exhibit autonomic behavior+++</div>++++++</div>++++++</section>+++
+
+'''+++<section id="section-where-to-go">++++++<div class="row">++++++<div class="span4 box info">+++[discrete]
+==== Why choose iPOJO
+
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html#schneider[iPOJO at Schneider Electric]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html#ugasp[iPOJO at Ubidreams]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html[others success stories]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-keypoints.html[iPOJO Key points]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-why-choose-ipojo.html[Why choose iPOJO]+++</div>++++++<div class="span4 box info">+++[discrete]
+==== Getting started
+
+* __ http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.distribution.quickstart/{{ipojo.release}}/org.apache.felix.ipojo.distribution.quickstart-{{ipojo.release}}.zip[Quickstart Distribution]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.html[iPOJO in 10 minutes]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/how-to-use-ipojo-annotations.html[Using Annotations]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-hello-word-maven-based-tutorial.html[Maven tutorial]
+* __ link:/documentation/subprojects/apache-felix-ipojo/ipojo-support.html[Support]+++</div>++++++<div class="span4 box info">+++[discrete]
+==== The developer corner
+
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components.html[Describing components]
+* __ link:/documentation/subprojects/apache-felix-ipojo/ipojo-reference-card.html[iPOJO Reference Card]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-eclipse-integration.html[Eclipse Integration]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/apache-felix-ipojo-online-manipulator.html[Online Manipulator]
+* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-faq.html[FAQ]+++</div>+++
+
+</section>
+
+'''+++<section id="section-news">+++# News {{ refs.ipojo-news.headers.excerpt|markdown }} __ [all news\...]({{ refs.ipojo-news.path }})+++</section>++++++</div>++++++</section>+++

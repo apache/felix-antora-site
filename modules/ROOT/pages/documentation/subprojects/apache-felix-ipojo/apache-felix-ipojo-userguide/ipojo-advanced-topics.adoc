@@ -1,0 +1,13 @@
+:doctype: book
+
+Title: iPOJO Advanced Topics
+
+= Advanced Topics
+
+_This page presents some advanced features._
+
+* link:{{ refs.combining-ipojo-and-configuration-admin.path }}[Combining iPOJO and Configuration Admin]
+* link:{{ refs.constructing-pojo-objects-with-factory-methods.path }}[Constructing POJO objects with factory methods]
+* link:{{ refs.how-to-use-ipojo-factories.path }}[How-to use iPOJO factories]
+* link:{{ refs.ipojo-hierarchical-composition-overview.path }}[iPOJO Hierarchical Composition Overview]
+* link:{{ refs.using-stereotypes.path }}[Using @Stereotype]

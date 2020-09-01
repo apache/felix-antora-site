@@ -41,14 +41,14 @@ A stereotyped annotation can support all of the regular iPOJO's annotations plus
 
     :::java
     import com.acme.app.ipojo.Custom; // Import a custom handler annotation
-    
+
     @Component                        // Use standard iPOJO annotation
     @Custom                           // Use the custome annotation
     @HandlerDeclaration("<ns:handler xmlns:ns='com.acme.app'/>")
     @Stereotype
     @Target(TYPE)
     public @interface AutoComponent {}
-    
+
 The stereotype developer needs to declare a compile time dependency on the ipojo annotations module:
 
     :::xml
@@ -58,11 +58,9 @@ The stereotype developer needs to declare a compile time dependency on the ipojo
         <version>${ipojo.version}</version> <!-- Since 1.10.1 -->
         <scope>provided</scope>
     </dependency>
-    
-<div class="alert alert-info info" markdown="1">
-<h4>Type and manipulation</h4>
+
+#### ALERT Type and manipulation
 <p>The artifact containing the stereotyped annotation *does not need* to be a bundle and it does not need to be manipulated.</p>
-</div>
 
 # Using the new stereotype
 Using a stereotyped annotation does not differ from using any annotation: it has decorate some type, method, field, ...

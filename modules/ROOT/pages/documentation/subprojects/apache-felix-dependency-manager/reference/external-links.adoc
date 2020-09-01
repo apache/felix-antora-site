@@ -1,0 +1,7 @@
+Title: Dependency Manager - External Links
+
+This page regroups Dependency Manager external articles and related links:
+
+* https://bitbucket.org/marrs/bndtools-dmdemo[BndTools based demo of Dependency Manager annotations]
+* http://arnhem.luminis.eu/introduction-apache-felix-dependency-manager[Introduction to Dependency Manager]
+* http://arnhem.luminis.eu/introduction-apache-felix-dependencymanager-part-2[Introduction to Dependency Manager, part II]

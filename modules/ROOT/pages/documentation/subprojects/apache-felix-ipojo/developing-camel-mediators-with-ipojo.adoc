@@ -1,0 +1,170 @@
+:doctype: book
+
+Title: Developing Camel mediators with iPOJO
+
+= Developing Camel mediators with iPOJO
+
+_The http://camel.apache.org/tutorial-osgi-camel-part1.html[Camel OSGi tutorial] provides a very simple and neat overview of Camel.
+This article mentions the usage of iPOJO to implement the mediator.
+This document provides this implementation._
+
+== Step 1 : Initial project setup
+
+Instead of using the 'spring-osgi-bundle-archetype' maven archetype, we will use the iPOJO one to create the iPOJO bundle.
+To create the simple iPOJO service project, execute the following command in your Unix/Dos console.
+
+ :::sh
+ mvn archetype:create -DarchetypeGroupId=org.apache.felix -DarchetypeArtifactId=maven-ipojo-plugin -DarchetypeVersion=1.0.0 -DgroupId=demo -DartifactId=demo.service-ipojo-bundle -Dversion=0.1
+
+== Step 2 : Develop the interface
+
+So now, it is time to create the interface that we will use in the project.
+Create a new folder "service" in `src/main/java/demo` tree.
+Add the interface `TransformService.java` and copy paste the code below:
+
+ :::java
+ package demo.service;
+ public interface TransformService {
+     public Object transform(Object obj);
+ }
+
+== Step 3 : Create the class implementing the interface
+
+Next, we will create the class `TransformServiceImpl` implementing the interface `TransformService`.
+Create the class `TransformServiceImpl.java` in the folder `src/main/java/demo/service/`
+
+....
+:::java
+package demo.service;
+
+import java.util.Date;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class TransformServiceImpl implements TransformService {
+    private static final transient Log LOG = LogFactory.getLog(TransformServiceImpl.class);
+    private boolean verbose = true;
+    private String prefix = "MyTransform";
+
+    public Object transform(Object body) {
+        String answer = prefix + " set body:  " + new Date();
+        if (verbose) {
+            System.out.println(">> call >> " + answer);
+        }
+        LOG.info(">> call >>" + answer);
+        return answer;
+    }
+
+    public boolean isVerbose() {
+        return verbose;
+    }
+
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+}
+....
+
+== Step 4 : Create the iPOJO configuration files
+
+The next step concerns the creation of the iPOJO configuration file who will allow the registration of the `TranformService` as an OSGi service.
+Create or edit the file `metadata.xml` in the folder `src/main/resources/`
+
+ :::xml
+ <?xml version="1.0" encoding="UTF-8"?>
+ <ipojo>
+ 	<component classname="demo.service.TransformServiceImpl" name="my-ipojo-transformer">
+    		<provides/>
+ 	</component>
+ 	<instance component="my-ipojo-transformer"/>
+ </ipojo>
+
+== Step 5 : Generate the bundle
+
+Before generating the bundle, we need to edit the {{pom.xml}} file to describe our bundle.
+
+ :::xml
+ <project>
+   <modelVersion>4.0.0</modelVersion>
+   <packaging>bundle</packaging>
+   <groupId>demo</groupId>
+   <artifactId>demo.service-ipojo-bundle</artifactId>
+   <version>0.1</version>
+   <name>demo.service-ipojo-bundle</name>
+
+   <build>
+     <plugins>
+       <plugin>
+         <groupId>org.apache.felix</groupId>
+         <artifactId>maven-bundle-plugin</artifactId>
+         <version>1.4.2</version>
+         <extensions>true</extensions>
+         <configuration>
+           <instructions>
+             <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+             <Import-Package>*</Import-Package>
+             <Export-Package>*</Export-Package>
+           </instructions>
+         </configuration>
+       </plugin>
+       <plugin>
+ 	      <groupId>org.apache.felix</groupId>
+ 	      <artifactId>maven-ipojo-plugin</artifactId>
+ 		  <executions>
+           	<execution>
+             	<goals>
+ 	              <goal>ipojo-bundle</goal>
+                </goals>
+           </execution>
+         </executions>
+       </plugin>
+     </plugins>
+   </build>
+
+   <dependencies>
+ 	  <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
+           <version>1.5.0</version>
+           <scope>provided</scope>
+         </dependency>
+         <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>com.springsource.slf4j.api</artifactId>
+           <version>1.5.0</version>
+           <scope>provided</scope>
+         </dependency>
+         <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>com.springsource.slf4j.log4j</artifactId>
+           <version>1.5.0</version>
+           <scope>provided</scope>
+           <exclusions>
+             <exclusion>
+                 <groupId>log4j</groupId>
+                 <artifactId>log4j</artifactId>
+             </exclusion>
+             <exclusion>
+                 <groupId>org.apache.log4j</groupId>
+                 <artifactId>com.springsource.org.apache.log4j</artifactId>
+             </exclusion>
+           </exclusions>
+         </dependency>
+     </dependencies>
+ </project>
+
+== Step 6 & 7: Create the Camel context file and the bundle
+
+These steps are exactly the same as into the OSGi Camel Tutorial.
+So refer to the step 6 and 7 of the http://camel.apache.org/tutorial-osgi-camel-part1.html[article].
+That's it.
+Deploy and enjoy.

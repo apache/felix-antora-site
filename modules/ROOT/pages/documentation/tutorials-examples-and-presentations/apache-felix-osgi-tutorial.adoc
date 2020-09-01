@@ -1,0 +1,16 @@
+Title: Apache Felix OSGi Tutorial
+
+This tutorial creates successively more complex OSGi bundles to illustrate most of the features and functionality offered by the OSGi framework.
+
+Trails:
+
+* link:{{ refs.apache-felix-tutorial-example-1.path }}[Apache Felix Tutorial Example 1]: A bundle that listens for OSGi service events.
+* link:{{ refs.apache-felix-tutorial-example-2.path }}[Apache Felix Tutorial Example 2]: A bundle that implements a dictionary service.
+* link:{{ refs.apache-felix-tutorial-example-2b.path }}[Apache Felix Tutorial Example 2b]: A bundle that implements another dictionary service.
+* link:{{ refs.apache-felix-tutorial-example-3.path }}[Apache Felix Tutorial Example 3]: A bundle that implements a simple dictionary service client.
+* link:{{ refs.apache-felix-tutorial-example-4.path }}[Apache Felix Tutorial Example 4]: A bundle that implements a more robust dictionary service client.
+* link:{{ refs.apache-felix-tutorial-example-5.path }}[Apache Felix Tutorial Example 5]: A bundle that implements a dictionary service client using the Service Tracker.
+* link:{{ refs.apache-felix-tutorial-example-6.path }}[Apache Felix Tutorial Example 6]: A bundle that implements a spell checker service using dictionary services.
+* link:{{ refs.apache-felix-tutorial-example-7.path }}[Apache Felix Tutorial Example 7]: A bundle that implements a spell checker service client.
+* link:{{ refs.apache-felix-tutorial-example-8.path }}[Apache Felix Tutorial Example 8]: A bundle that implements a spell checker service using Service Binder.
+* link:{{ refs.apache-felix-tutorial-example-9.path }}[Apache Felix Tutorial Example 9]: A bundle that implements a spell checker service using Declarative Services.

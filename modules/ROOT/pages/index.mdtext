@@ -2,7 +2,9 @@ Title: Welcome to Apache Felix
 
 Apache Felix is a community effort to implement the [OSGi Framework and Service platform](http://www.osgi.org/Specifications/HomePage) and other interesting OSGi-related technologies under the Apache license. The OSGi specifications originally targeted embedded devices and home services gateways, but they are ideally suited for any project interested in the principles of modularity, component-orientation, and/or service-orientation. OSGi technology combines aspects of these aforementioned principles to define a dynamic service deployment framework that is amenable to remote management.
 
-# News 
+# News
+
+A list of javascript extracted news excerpts:
 
 <ul id="newsExcerpt">
 </ul>
@@ -16,12 +18,3 @@ The Felix project is organized into subprojects, where each subproject targets a
 Please refer to the [Subprojects]({{ refs.subprojects.path }}) page for a complete list of subprojects. To see some projects using Felix subprojects, refer to the [Projects Using Felix]({{ refs.projects-using-felix.path }}) documentation.
 
 
-<script src="/res/jquery.js" type="text/javascript"></script>
-<script type="text/javascript">
-        $(document).ready(function() {
-            $.get("/news.html", function(news) {
-                var $newsExcerpt = $(news).find('li').slice(0,5);
-                $('#newsExcerpt').append($newsExcerpt);
-            });
-        });
-</script>

@@ -1,0 +1,30 @@
+Title: Board Report (2007-04)
+
+*[SUBMITTED]({{ refs.submitted.path }})*
+
+Community
+
+* Voted on and accepted Config Admin and Metatype service contributions from Day AG.
+* Added Felix Meschberger as committer.
+* Dealt with a PMC membership issue raised as a part of the graduation process;
+thanks to the board for their help with this issue.
+* Community celebrations after the graduation announcement.
+:-)
+
+Migration to TLP
+
+* Initial announcement sent to the list preparing people for the move, but no real migration progress to report at this point since graduation notification was so recent.
+
+Software
+
+* Added new OSGi R4 specification functionality to the core framework (e.g., Require-Bundle and extension bundle functionality).
+* Committed two more OSGi R4 service specification implementations (e.g., Config Admin and Metatype) from Day AG.
+* Improvements to OSGi R4 Declarative Services implementation by Felix Meschberger bringing it closer to specification compliance.
+* Felix Commons, headed by Enrique Rodriguez, started to offer bundle-ized versions of common open source libraries.
+Current contributions by John Conlon and Felix Meschberger.
+* Committed several significant community contributed patches for the Maven Bundle Plugin, our Maven plugin to simplify building OSGi bundles.
+* Continued improvements to other Felix sub-projects (e.g., the iPOJO service-oriented component model).
+
+Licensing and other issues
+
+* Software grants for Config Admin and Metatype were previously filed by Day AG.

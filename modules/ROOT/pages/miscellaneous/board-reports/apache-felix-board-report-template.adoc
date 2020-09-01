@@ -1,0 +1,21 @@
+Title: Apache Felix Board Report Template
+
+*[NOT SUBMITTED]({{ refs.not-submitted.path }})*
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+_Community_
+
+* _[Add community-related items here]({{ refs.add-community-related-items-here.path }})_
+
+_Software_
+
+* _[Add software-related items here]({{ refs.add-software-related-items-here.path }})_
+
+_Project Branding_
+
+* _[Add branding-related items here]({{ refs.add-branding-related-items-here.path }})_
+
+_Licensing and other issues_
+
+* _[Add licensing-related and other items here]({{ refs.add-licensing-related-and-other-items-here.path }})_

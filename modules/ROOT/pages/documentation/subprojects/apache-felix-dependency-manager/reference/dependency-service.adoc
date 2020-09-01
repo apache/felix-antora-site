@@ -1,0 +1,36 @@
+Title: Dependency Manager - Service Dependency
+
+A service dependency allows you to depend on a service, either by type or by using an additional filter  condition.
+You can even depend on an existing service directly by providing a reference to it.
+
+To define a service dependency, you need to use the http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/ServiceDependency.html[ServiceDependecy] interface.
+This interface can be created using DependencyActivatorBase.createServiceDependency() or DependencyManager.createServiceDependency() methods;
+
+Service dependencies can be injected on fields or using callbacks, can be required or optional, and NullObject pattern is supported for optional dependencies applied on class fields.
+
+Example:
+
+....
+:::java
+public class Activator extends DependencyActivatorBase {
+    public void init(BundleContext context, DependencyManager manager) throws Exception {
+        manager.add(createComponent()
+            .setImplementation(DataGenerator.class)
+            .add(createServiceDependency()
+                .setService(Store.class)
+                .setRequired(true)
+            )
+        );
+    }
+}
+
+public class DataGenerator {
+    private volatile Store m_store;
+
+    public void generate() {
+        for (int i = 0; i < 10; i++) {
+            m_store.put("#" + i, "value_" + i);
+        }
+    }
+}
+....

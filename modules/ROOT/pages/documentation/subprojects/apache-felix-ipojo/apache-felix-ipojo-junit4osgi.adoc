@@ -1,0 +1,35 @@
+:doctype: book
+:pp: {plus}{plus}
+
+Title: apache-felix-ipojo-junit4osgi
+
+= The JUnit4OSGi framework: a simple test framework for OSGi
+
+_JUnit4OSGi is a test framework executing JUnit tests on an OSGi runtime.
+JUnit4OSGi provides a JUnit{pp} environment specialized for OSGi, several runners and a maven plugin executing your tests during your build process_
+
+== Why JUnit4OSGi ?
+
+OSGi is a great technology to create modular and dynamic applications.
+However, creating modular applications raise the need of integration tests: How to be sure that all my modules/services...
+collaborate correctly.
+Unit test is great, but does not really check my whole system and the relation between my modules.
+Junit4OSGi is a framework allowing the execution of JUnit tests in an OSGi environment !
+It stems from the fact that testing applications on top on OSGi is quite complex compared to classic Java unitary tests.
+With junit4osgi you will be able to test all your bundles together and check that everything works correctly (integration tests).
+
+The goal of JUnit4OSGi is to provide the same mechanisms as unitary tests in an OSGi context.
+It allows using the JUnit concepts, although tests are run in an OSGi framework, using all of its distinctiveness.
+The JUnit4OSGi framework allows you to :
+
+* Perform OSGi services tests.
+* Test applications on different VMs, OSGi implementations.
+* Test dynamism impact.
+
+Interested by `junit4osgi`...
+start the adventure !
+
+* link:{{ refs.apache-felix-ipojo-junit4osgi-tutorial.path }}[Tutorial]
+* link:{{ refs.apache-felix-ipojo-junit4osgi-methods.path }}[OSGi and firends methods]
+* link:{{ refs.apache-felix-ipojo-junit4osgi-architecture.path }}[junit4osgi architecture]
+* link:{{ refs.apache-felix-ipojo-junit4osgi-maven.path }}[Running your test in Maven]

@@ -1,0 +1,179 @@
+Title: Site How To
+
+The site is managed with the https://www.apache.org/dev/cms.html[Apache CMS] where the source is kept in SVN at https://svn.apache.org/repos/asf/felix/site/trunk/content.
+
+== To update the documentation using the CMS system
+
+* Install the bookmarklet from the https://cms.apache.org/[cms] page.
+You only have to do this once.
+* Navigate to the page you wish to edit (on the live site, not in the cms).
+* Click the bookmarklet.
+There will be a short pause while the CMS system is initialised for you.
+* Click on `Edit` (to skip this step hack the bookmarklet to add an 'action=edit' param to the query string)
+* The page editor should then be displayed.
+* Click `Submit` to save your edit to the workarea
+* Click `Commit` to save the updated file to SVN and trigger a staged build.
+(to skip this step click on the "Quick Commit" checkbox in the `Edit` form).
+* The results should appear shortly on the http://felix.staging.apache.org/content/documentation.html[staging] site.
+(You may have to force the page to refresh in order to see the updated content)
+* Once you are happy with the updated page, click on `Publish Site` to deploy.
+
+There is also a https://www.apache.org/dev/cmsref.html[Reference Manual] of the Apache CMS as well as a video tutorial at http://s.apache.org/cms-tutorial.
+
+== Features of the Apache Felix Site
+
+This section lists some Apache Felix features to help with the maintenance of the site, such as automatic link generation.
+
+Start the file with a `Title:` line to define the page title and the first H1 tag:
+
+....
+Title: Page Title
+
+Here comes the content separated with a blank like from the
+header ...
+....
+
+The last modification information from SVN (revision, committer, and date/time) is automatically added when the page is rendered
+
+Excerpts can be added to a page using the `Excerpt:` header:
+
+ Title: Page Title
+ Excerpt: Summary of the page for inclusion in other pages;
+    continuation of the excerpt must be indented
+
+ Here comes the content separated with a blank like from the
+ header ...
+
+Metadata from child pages can be referred to in the content with the Django variable reference notation using the child page name (without extension) as its container;
+e.g.
+for the child page named `childpage`:
+
+ :::django
+ {{ y|default:"{{" }} children.childpage.headers.excerpt }}
+ {{ y|default:"{{" }} children.childpage.headers.title }}
+
+Content Pages can contain Django templates of the form `+{{ y|default:"{{" }}...}}+` and `+{{ y|default:"{%" }}...%}+`.
+If so, the page content is evaluated as a Django template before running it through the page template.
+
+Any page in the site can be referenced with refs.pagename returning properties:
+
+`.path`:: the absolute path of the page on the site
+
+`.headers`::
+page headers (e.g.
+`.title`, `.excerpt`)
+
+`.content`:: the raw page content
+
+All pages in the children namespace are also available in the refs namespace
+
+Some usefull hints:
+
+Printing title of another page "handler":
+
+    :::django
+    {{ y|default:"{{" }} refs.handler.headers.title }}
+
+Printing excerpt of another page "handler":
+
+    :::django
+    {{ y|default:"{{" }} refs.handler.headers.excerpt }}
+
+Linking to another page "handler":
+
+    :::django
+    ({{ y|default:"{{" }} refs.handler.path }})
+
+Printing title as a link to another page "handler":
+
+    :::django
+    [{{ y|default:"{{" }} refs.handler.headers.title }}]({{ y|default:"{{" }} refs.handler.path }})
+
+Printing excerpt as a link to another page "handler":
+
+    :::django
+    [{{ y|default:"{{" }} refs.handler.headers.excerpt }}]({{ y|default:"{{" }} refs.handler.path }})
+
+Print a bullet pointed child page list:
+
+    :::django
+    {{ y|default:"{%" }} for label, page in children %}* [{{ y|default:"{{" }} page.headers.title }}]({{ y|default:"{{" }} page.path }})
+    {{ y|default:"{%" }} endfor %}
+
+It is important to have the first part as a single line, otherwise the Django/Markdown combo will create a list for each entry.
+
+== Code Highlighting
+
+Code Highlighting works by indenting code by four blanks.
+To indicate the type of highlighting preced the code style text with either `:::<lexer>` to get high lighted code using the given `<lexer>` or `#!<lexer>` to get high lighted code with line numbers using the given `<lexer>`.
+See http://www.apache.org/dev/cmsref.html#code-hilighter for main info and http://pygments.org/docs/lexers/ for supported lexers
+
+== HTML and Markdown
+
+Markdown supports embedding HTML.
+But be aware that contents of HTML elements are not further handled by the Markdown converter.
+Thus it is not possible to embed Markdown syntax inside of HTML elements to have them converted.
+
+== Manual Generation
+
+When commiting changes to pages into SVN the pages are automatically generated in http://felix.staging.apache.org[the staging site].+++<div class="info">+++To generate the site locally, you must have checked out the complete SVN to access the tools:+++<div class="codehilite">+++$ svn https://svn.apache.org/repos/asf/felix/site/ felix-site+++</div>++++++</div>+++
+
+To manually generate the site or single pages the http://svn.apache.org/repos/asf/felix/site[site] can be checked out from SVN.
+In addition Perl and Python must be installed for the build tools to work.
+
+To prepare for site build, the Markdown daemon has to be started:
+
+ :::sh
+ $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
+ $ export PYTHONPATH="$PWD/tools/build"
+ $ python "$PWD/tools/build/markdownd.py"
+
+The `MARKDOWN_SOCKET` environment variables is also required by the `build_site.pl` and `build_file.pl` scripts to connect to the Markdown daemon.
+
+To build the complete site use the `build_site.pl` script:
+
+ :::sh
+ $ tools/build/build_site.pl --source-base $PWD/trunk \
+     --target-base $PWD/trunk/target
+
+To build a single page use the `build_file.pl` script:
+
+ :::sh
+ $ tools/build/build_site.pl --source-base $PWD/trunk \
+     --target-base $PWD/trunk/target \
+     --source content/documentation.mdtext
+
+The argument to the `--source` parameter is relative to the `--source-base` folder.
+
+== Configuring site generation on Mac
+
+Those instructions were computed on Mountain Lion.
+
+A couple of Python and Perl libraries are required and need to be installed
+
+ :::sh
+ $ sudo easy_install Pygments
+ $ sudo easy_install Markdown
+
+And for the Perl modules:
+
+ :::sh
+ $ sudo cpan install XML::Atom::Feed
+ $ sudo cpan install XML::RSS::Parser
+ $ sudo cpan install XML::Parser::Lite
+ $ sudo cpan install XML::RSS::Parser::Lite
+ $ sudo cpan install Net::Twitter
+ $ sudo cpan install SVN::Client
+
+Be careful that some of those commands require time...
+Once done, launch the mardown daemon with the following command from the SVN root:
+
+ :::sh
+ $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
+ $ export PYTHONPATH="$PWD/tools/build"
+ $ python "$PWD/tools/build/markdownd.py"
+
+And finally, generate the web site from the svn root with:
+
+ :::sh
+ tools/build/build_site.pl --source-base $PWD/trunk     --target-base $PWD/trunk/target

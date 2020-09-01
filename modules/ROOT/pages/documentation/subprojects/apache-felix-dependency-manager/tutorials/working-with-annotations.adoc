@@ -1,0 +1,219 @@
+Title: Dependency Manager - Annotations
+
+The Dependency Manager provides a compact and versatile Java API that allows you to declaratively and programmatically register, acquire, and manage dynamic OSGi components.
+This has many advantages, but also means you need to implement your own `BundleActivator`.
+In cases where your dependencies are not that dynamic, an alternative is to use annotations on your component.
+
+This tutorial outlines how to setup and use such annotations to describe your components and dependencies.
+We present a simple "Hello World" component defined using annotations, and also explain how to build the bundle using either Bnd, Ant, or Maven.
+
+== Hello World Component
+
+....
+package org.apache.felix.dependencymanager.samples.annotation.hello;
+
+import org.apache.felix.dm.annotation.api.Component;
+import org.apache.felix.dm.annotation.api.Start;
+
+@Component
+public class HelloWorld {
+    @Start
+    public void activate() {
+       System.out.println("Hello world !");
+    }
+}
+....
+
+== Compiling with BndTools:
+
+This section is a step-by-step tutorial showing how to create a "greeting" project under BndTools and how to use Dependency Manager annotations.
+BndTools is a nice Eclipse plugin on top of the popular "Bnd" builder tool (http://bndtools.org/[See The BndTools home page]).
+
+It is assumed that you have installed bndtools with a properly configured cnf project (using Bundle-Hub configuration).
+
+=== Add DM annotation.jar to the build repository and to the buildpath
+
+Before creating a project that uses the DM annotations, you first have to add the DM annotation jar in the "cnd/buildrepo".
+(In the future, we'll push the DM annotation.jar to the Felix OBR, so you will then simply only have to create a bndtools remote repository that will point to the remote Felix OBR).
+
+* Select the "Repositories" Window
+* Select the "Build" repository
+* Then click on the "Add Bundles to Repository" \-> "Add External Jar" and point the org.apache.felix.dependencymanager.anntation.jar.
+* Then click on "Finish" button
+
+Now, declare the DM annotation plugin in the BndTools plugin path:
+
+* Select "BndTools/Open ext/pluginpaths.bnd
+* Select the "+" button of the "Plugin Path" section, and select "buildrepo/org.apache.felix.dependencymanager.annotation/org.apache.felix.dependencymanager.annotation-X.Y.Z.jar (replace X.Y.Z by the actual version)
+* Then press "Ctrl-s" to save the configuration
+
+=== Create the greeting project
+
+Now we have properly configured the DM annotation plugin in bndtools, we can then create our "greeting" project.
+
+* From the File menu, select "New \-> Bndtools OSGi Project" for creating an empty project, and call it "greeting".
+* Click on bnd.bnd file of the greeting project, and click on the "Build" tab, then click on the "+" button, near the "Build Path" section.
+* Then select "Build/org.apache.felix.dependencymanager.annotation" bundle and click on "Add -->".
+* Click on Finish, and save the project (press Ctrl-s).
+
+=== Creating the HelloWorld component
+
+Since we have configured the buildpath, we are now ready to create our first HelloWorld component using annotations.
+Create the following class in the greeting project:
+
+....
+:::java
+package greeting;
+
+import org.apache.felix.dm.annotation.api.Component;
+import org.apache.felix.dm.annotation.api.Start;
+
+@Component
+public class HelloWorld {
+    @Start
+    void start() {
+        System.out.println("Hello World");
+    }
+}
+....
+
+=== Finalize the bnd configuration
+
+We have created our first HelloWorld component.
+We now have to finish the bnd configuration by specifying a Private-Package directive, and we also add the -plugin bnd directive in order to ask bnd to call the DM annotation plugin during compilation:
+
+* Click on the bnd.bnd file of the greeting project
+* Click on Contents and add the "greeting" package in the Private Packages
+* Finally, declare the DM annotation plugin by clicking on the "source" tab, and add the following:
+ ** -plugin org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug
+* Save configuration (Press Ctrl-s)
+* Click on "Build" and on "Rebuild"
+
+The greeting.jar should now be generated with a META-INF/dependencymanager/ directory.
+The plugin logs debug messages in /tmp/dmplugin/*
+
+So, the final bnd.bnd file should look like this:
+
+ Bundle-Version: 0.0.0.${tstamp}
+ -buildpath: org.apache.felix.dependencymanager.annotation
+ Private-Package: greeting
+ -plugin org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug
+
+=== Testing the bundle under bndtools:
+
+We are now going to execute a Felix framework under Eclipse/BndTools, and run our HelloWorld example.
+
+First, install the following necessary bundles in the "Local" repository: (in the future, we'll release the DM bundles in the Felix OBR, so you will only have to declare a remote repository, instead of doing this):
+
+* Click on Repositories
+* Add the following DM bundles in the "Local" Repository:
+ ** org.apache.felix.dependencymanager.jar
+ ** org.apache.felix.dependencymanager.shell.jar
+ ** org.apache.felix.dependencymanager.runtime.jar
+
+Now, configure the Felix framework, as well as the list of the bundles to be executed:
+
+* Click on the bnd.bnd file of the greeting project
+* Click on the "Run" tab
+* In the Core Runtime, Select the latest version of Felix currently available
+* Select Execution Env=JavaSE-1.7
+* In the "Run Bundles" section, add the following list:
+ ** org.apache.felix.configadmin.jar
+ ** org.apache.felix.metatype.jar
+ ** org.apache.felix.log.jar
+ ** org.apache.felix.gogo.command
+ ** org.apache.felix.gogo.runtime
+ ** org.apache.felix.gogo.shell
+ ** org.apache.felix.dependencymanager
+ ** org.apache.felix.dependencymanager.runtime
+ ** org.apache.felix.dependencymanager.shell
+* Then save the configuration (Press Ctrl-s).
+
+Now, Click on "Run OSGi".
+You should now see in the Console the Gogo Shell prompt with the message displayed by the HelloWorld component:
+
+ Hello World
+ Welcome to Apache Felix Gogo
+ g!
+
+Just type "dm" in the console, and you should see:
+
+ [2] org.apache.felix.dependencymanager.runtime
+  [0] org.apache.felix.dm.runtime.DependencyManagerRuntime registered
+     active (DependencyManager-Component=*) bundle optional available
+     org.osgi.service.packageadmin.PackageAdmin service required available
+     org.osgi.service.log.LogService service optional available
+ [10] greeting
+  [1] greeting.HelloWorld registered
+
+The bundle [2] is the dependency manager runtime bundle that is in charge of managing all bundles containing annotated components.
+And the bundle [10] is our greeting bundle (and the "greeting.HelloWorld" component is registered).
+
+== Compiling with Ant:
+
+Since Bnd provides a Ant task, you can use the bnd directives above with the following build.xml: (it is assumed that directives.bnd, bnd.jar, json-20070829.jar and org.apache.felix.dependencymanager.annotation.jar are in the current directory)
+
+....
+<project name="TestDM" default="bnd">
+	<property name="bnd" value="bnd.jar" />
+	<property name="json" value="json-20070829.jar" />
+	<property name="dmannot" value="org.apache.felix.dependencymanager.annotation.jar" />
+
+	<target name="compile">
+		<delete dir="target/classes" quiet="yes" />
+		<mkdir dir="target/classes" />
+		<javac srcdir="src/main/java" destdir="target/classes" classpath="${dmannot}" />
+	</target>
+
+	<target name="bnd" depends="compile">
+		<taskdef resource="aQute/bnd/ant/taskdef.properties" classpath="${dmannot}:${bnd}:${json}" />
+		<bnd classpath="target/classes" eclipse="false" files="directives.bnd" output="org.apache.felix.dependencymanager.samples.annotation.hello.jar" />
+	</target>
+</project>
+....
+
+== Compiling with Maven:
+
+When compiling with Maven, you have to invoke the Dependency Manager Bnd plugin, using the special "_plugin" directive.
+In the R1 Dependency Manager distribution, the bundles are not published to maven central, and you have to manually install the org.apache.felix.dependencymanager.annotation.jar file to your local repository, or to your own corporate nexus server.
+(http://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html[See this link] to manually install the dm annotation jar to your local repository.)
+
+ :::xml
+ <project ...>
+   <dependencies>
+     ...
+     <dependency>
+       <groupId>org.apache.felix</groupId>
+       <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+       <version>4.0.0</version>
+     </dependency>
+   </dependencies>
+   <build>
+     <plugins>
+       ...
+       <plugin>
+         <groupId>org.apache.felix</groupId>
+         <artifactId>maven-bundle-plugin</artifactId>
+         <version>2.5.0</version>
+ 	    <extensions>true</extensions>
+         <configuration>
+            <instructions>
+ 	       <Bundle-Name>Test</Bundle-Name>
+ 	       <Bundle-SymbolicName>test</Bundle-SymbolicName>
+ 	       <Import-Package>*</Import-Package>
+ 	       <Private-Package>test.dmannotations</Private-Package>
+            <!-- when setting log=debug, logs are writen to /tmp/dmplugin/ directory -->
+ 	       <_plugin>org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;log=debug</_plugin>
+            </instructions>
+         </configuration>
+         <dependencies>
+           <dependency>
+             <groupId>org.apache.felix</groupId>
+             <artifactId>org.apache.felix.dependencymanager.annotation</artifactId>
+             <version>4.0.0</version>
+           </dependency>
+         </dependencies>
+       </plugin>
+     </plugins>
+   </build>
+ </project>

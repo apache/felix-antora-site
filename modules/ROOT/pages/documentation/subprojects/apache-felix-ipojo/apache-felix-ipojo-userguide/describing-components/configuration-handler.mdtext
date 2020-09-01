@@ -22,11 +22,11 @@ The following code depicts a simple configurable component. The 'm_foo' field wi
     public class MyComponent implements MyService {
         @Property(name=".foo")
         private String m_foo;
-        
+
         public MyComponent(@Property String message) {
         	//...
         }
-    
+
         @Property(name="array")
         public void updateArray(String[] array) {
          //...
@@ -73,7 +73,7 @@ When an instance is reconfigured, an updated callback can also be called:
     public void updated() {
       // The instance was reconfigured
     }
-    
+
     // OR
     @Updated
     public void updated(Dictionary conf) {
@@ -91,7 +91,7 @@ So, using annotation, you should use the `managedservice` attribute as follow:
     :::java
     @Component(managedservice="my.pid")
     public class MyComponent {
-    
+
     }
 
 
@@ -114,10 +114,8 @@ Finally, instance may configure the managed service using the `managed.service.p
     </instance>
 
 
-<div class="alert alert-sucess" markdown="1">
-<strong>Type vs. Instance configuration</strong>
+### ALERT SUCCESS Type vs. Instance configuration
 <p>If the managed service pid is specified both in the component type and in the instance configuration, the instance configuration is used.</p>
-</div>
 
 The managed service pid is the identifier used by the Configuration Admin to attach configuration to Managed Services. First this pid must be unique (as any pid in OSGi). Moreover, this pid cannot be the same one that the pid used in the Managed Service Factory to create the instance (if you use this way to create your instance).
 
@@ -136,13 +134,13 @@ Updated callback are declared as follow using annotations:
     public void updated() {
       // The instance was reconfigured
     }
-    
+
     // OR
     @Updated
     public void updated(Dictionary conf) {
       // The instance was reconfigured, conf is the new configuration.
     }
-    
+
 In XML, the method name is given as an attribute of the {{properties}} element.
 
     :::xml

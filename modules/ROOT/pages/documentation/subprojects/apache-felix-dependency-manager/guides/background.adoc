@@ -1,0 +1,55 @@
+Title: Dependency Manager - Background
+
+== Background
+
+In an OSGi framework, services are deployed using bundles and these bundles feature two types of dependencies:
+
+. Package dependencies.
+A bundle can export a package which others import.
+These dependencies, although dynamic, are relatively easy to handle and the whole resolution process is handled by the OSGi framework for you.
+. Service dependencies.
+Services, implemented by components inside of bundles, can have their own life cycle within that of their containing bundle and therefore can be registered and unregistered at any time.
+Other components often depend on these services and need to deal with changes in their availability.
+
+When you look at dependency management, there are two aspects you need to take into account:
+
+The first is managing software configurations.
+This means you need to manage the dependencies from a configuration standpoint.
+What you are managing are bundles, since those are the units of deployment.
+What you need to manage are the package and service dependencies between bundles.
+Package dependencies are always visible by examining the bundle manifest and when a bundle is installed the framework will try to resolve such dependencies before that bundle can even be started.
+Service dependencies are only optionally described in the manifest by a list of services a bundle might export as well as a list it might use (import).
+The words 'optionally' and 'might' already indicate that these aren't things we can depend on.
+Even worse, these keywords have by now been deprecated.
+Besides that, the framework doesn't have to perform any checks on these attributes.
+
+The second is managing service dependencies at runtime.
+As mentioned before, a service oriented architecture is dynamic by design, so your implementation should be able to deal with this.
+Bundles can start in any order and any service can go away or be replaced by a different implementation at any point in time.
+OSGi itself offers basic assistance for tracking services.
+You can track them yourself by registering as a service listener.
+A slightly more advanced way is to create a service tracker, which you can subsequently query, or have it notify you on changes.
+All of these are too low-level to be good building blocks for developers.
+
+In real implementations, you are probably going to track multiple services.
+Using service trackers in such a scenario has the tendency to result in dependency logic that is entangled in the implementation instead of being expressed in a declarative way.
+Using a declarative way to specify dependencies has clear advantages when it comes to monitoring and managing them, a task that becomes more and more important in modern, federated, service oriented environments.
+
+The Dependency Manager provides you with the right building blocks to declaratively specify dependencies using a straightforward Java API that is easy to maintain and refactor.
+
+== Design Goals
+
+The goals that drove the design of the dependency manager are:
+
+* Provide a clean separation between a component implementation and the "glue" that binds it to the OSGi framework.
+The component implementation should not have to contain any OSGi specific code.
+In other words, it should be a POJO (Plain Old Java Object).
+* Minimize the amount of code that needs to be written.
+The specification and management of dependencies should be automated as much as possible, whilst still providing enough flexibility to customize the system.
+* Be extensible.
+Even though the core bundle provides a lot of different dependencies already, you should be able to add your own types of dependencies easily.
+* Easy to monitor and debug.
+Being a dynamic system, it's important to be able to see what the state of all components and dependencies are at any point in time.
+* Supporting powerful high level design patterns.
+When building real-world applications, more complex patterns need to be used, such as aspects and adapters.
+Support for these needs to be built into the core.

@@ -1,0 +1,169 @@
+Title: Apache Felix Inventory Printer
+
++++<a id="top">++++++</a>+++
+
+[TOC]
+
+The Apache Felix Inventory Printer is a simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
+Typical information includes currently installed bundles, their state, available configurations, framework properties, log files etc.
+
+Historically the Inventory Printer evolved from the Web Console Configuration Printer framework.
+
+== Introduction
+
+<<top,Top>>
+
+When trying to find a problem or analyzing the system it would be nice to have a single place to go to and get available information.
+The Apache Felix inventory bundle tries to exactly fill this gap.
+
+Originally, the idea started within the Apache Felix WebConsole and it's configuration printers - these pluggable printers allowed to view all available status information in a web browser or download this as zip file.
+While this already solves most use cases, tying this general functionality to a web console felt wrong, and that's when the inventory module started.
+
+The current version of the inventory implementation, registers all available InventoryPrinters (see below) as plugins to the web console as this is still the number one use case.
+
+== Requirements
+
+<<top,Top>>
+
+In and of itself the Apache Felix Inventory Printer module is independent of other modules.
+
+To actually get access to the output of Inventory Printer services, though, the Apache Felix Web Console must be installed.
+
+In the future <<gogo-shell,Integration with the Apache Felix Gogo Shell>> will also be provided in which case the Apache Felix Gogo Shell must be installed.
+
+== Inventory Printer Services
+
+<<top,Top>>
+
+Inventory Printer Services are registered as `org.apache.felix.inventory.InventoryPrinter` type OSGi services with the following service registration properties:
+
+|===
+| Property | Default Value | Description
+
+| `felix.inventory.printer.name`
+| --
+| The unique name of the printer.
+If there are two or more services with the same name, the service with the highest ranking is used.
+
+| `felix.inventory.printer.title`
+| --
+| The title displayed by tools when this printer is used.
+It should be descriptive but short.
+
+| `felix.inventory.printer.format`
+| --
+| The property defining the supported rendering formats.
+The value of this property is either a string or a string array containing valid names of link:/apidocs/inventory/1.0.0/org/apache/felix/inventory/Format.html[`Format`].
+If this property is missing or contains invalid values, the printer is ignored.
+
+| `felix.inventory.printer.webconsole`
+| `true`
+| Optional property controlling whether the printer will be displayed in the web console.
+By default, a printer is displayed in the web console, unless this property is added with the value 'false'.
+The property value can either be a boolean or a string.
+|===
+
+The first three properties are required for the Inventory Printer service to be accepted.
+Otherwise the service is ignored by the framework printing a message to the log.
+
+To prevent bundle resolution failure if the `InventoryPrinter` API is not available in the framework it is suggested to register the Inventory Printer services as service factories and dynamically import the API.
+See the question link:{{ ref.apache-felix-osgi-faq.path }}#how-to-provide-optional-services[{{ ref.apache-felix-osgi-faq.title }}] in the Apache Felix OSGi FAQ for more details.
+
+=== Example Inventory Printer Service
+
+ :::java
+ @Component
+ @Service
+ @Properties({
+     @Property(name = "felix.inventory.printer.name", value = "sample"),
+     @Property(name = "felix.inventory.printer.title", value = "This is a Sample"),
+     @Property(name = "felix.inventory.printer.format",
+               value = { "TEXT", "HTML", "JSON" })
+ })
+ public class SampleInvetoryPrinter implements InventoryPrinter
+ {
+     public void print(PrintWriter printWriter, Format format, boolean isZip)
+     {
+         if (format == Format.JSON)
+         {
+             printWriter.print("{ \"key\": \"Sample Output\" }");
+         }
+         else if (format == Format.HTML)
+         {
+             printWriter.print("<b>Sample Output</b>");
+         }
+         else
+         {
+             printWriter.print("Sample Output");
+         }
+     }
+ }
+
+See also the link:/apidocs/inventory/1.0.0/[API JavaDoc].
+
+== ZIP Attachment Provider
+
+<<top,Top>>
+
+If an Inventory Printer wants to provide additional contents to an Inventory ZIP File, it can implement the link:/apidocs/inventory/1.0.0/org/apache/felix/inventory/ZipAttachmentProvider.html[ZipAttachmentProvider] interface and provide additional files when the zip is created.
+
+== Configuration Printer Services
+
+<<top,Top>>
+
+For backwards compatibility the Inventory Printer framework also supports legacy Apache Felix Web Console `ConfigurationPrinter` services.
+
+Configuration Printer services are wrapped in an `InventoryPrinter` adapter and re-registered as Inventory Printer services.
+Thus they are registered with the Web Console or the Gogo Shell as if the Configuration Printer would be an Inventory Printer.
+
+Configuration Printer Services are registered as `org.apache.felix.webconsole.ConfigurationPrinter` type OSGi services with the following service registration properties:
+
+|===
+| Property | Default Value | Description
+
+| `felix.webconsole.title`
+| --
+| The title under which to display the Configuration Printer
+
+| `felix.webconsole.configprinter.modes`
+| --
+| The Configuration Printer modes supported.
+This may be one or more of the values `web`, `zip`, or `txt`.
+Alternatively the value `always` my be used to indicate support for all modes.
+
+| `modes`
+| --
+| Deprecated synonym for the `felix.webconsole.configprinter.modes` property.
+
+| `felix.webconsole.configprinter.web.unescaped`
+| `false`
+| Property indicating whether output generated in `web` mode is HTML (`true`) or plain text to be escaped for web rendering (`false`).
+|===
+
+== Integration with the Apache Felix Web Console
+
+<<top,Top>>
+
+The Inventory Printer framework has first class integration with the Apache Felix Web Console.
+Each `InventoryPrinter` service is registered as a plugin in the `Inventory` category of the Web Console.
+
+To prevent an Invetory Printer from being registered in the Web Console, the `felix.inventory.printer.webconsole` service registration property must be set to `false`.
+
++++<a id="gogo-shell">++++++</a>+++
+
+== Integration with the Apache Felix Gogo Shell
+
+<<top,Top>>
+
+Gogo Shell integration is not implemented in the first version of the Apache Felix Inventory Printer module.
+
+See the issue https://issues.apache.org/jira/browse/FELIX-4065[FELIX-4065 Provide Gogo Shell integration for InventoryPrinter services].
+
+== Issues
+
+<<top,Top>>
+
+Should you have any questions using the Inventory Printer, please send a note to one of our link:{{ refs.mailinglists.path }}[Mailing Lists].
+
+Please report any issues with the Inventory Printer in our issue tracking system (https://issues.apache.org/jira/browse/Felix[JIRA]) and be sure to report for the _Inventory_ component.
+See our link:{{ refs.issue-tracking.path }}[Issue Tracking] page for more details.

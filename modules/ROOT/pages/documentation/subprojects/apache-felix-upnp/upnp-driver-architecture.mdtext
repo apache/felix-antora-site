@@ -38,8 +38,8 @@ Finally the following properties are used to set the networking parameters. The 
 • *felix.upnpbase.cyberdomo.net.onlyIPV4* (default true)
 • *felix.upnpbase.cyberdomo.net.onlyIPV6* (default false)
 
-##### [Getting Started]({{ refs.upnp-getting-started.path }}) << \| >> [Testing UPnP Devices| UPnP Testing Devices]
+##### [Getting Started]({{ refs.upnp-getting-started.path }})  [Testing UPnP Devices| UPnP Testing Devices]
 
 
 ----
-\[1\]({{ refs.1.path }}) K. Mills, C. Dabrowski "Adaptive Jitter Control for UPnP M-Search" IEEE International Conference on Communications, 2003. ICC '03. page(s): 1008\- 1013 vol.2 
+\[1\]({{ refs.1.path }}) K. Mills, C. Dabrowski "Adaptive Jitter Control for UPnP M-Search" IEEE International Conference on Communications, 2003. ICC '03. page(s): 1008\- 1013 vol.2

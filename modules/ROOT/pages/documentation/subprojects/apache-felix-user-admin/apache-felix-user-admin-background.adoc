@@ -1,0 +1,25 @@
+Title: Apache Felix User Admin - Background
+
+For a detailed overview on the UserAdmin service, see the OSGi compendium specification version 4.0 or later.
+
+== Roles
+
+The UserAdmin service defines two types of roles: _users_ and _groups_.
+Other types of roles are not and cannot be defined.
+
+=== Users
+
+According to the UserAdmin specification, a `User` role refers to "??any entity that may have any number of credentials associated with it that it may use to authenticate itself??." Normally, `User` roles are used to authenticate an initiator of a certain action.
+Although the name suggests otherwise, a `User` role can also denote anything other than a human being.
+Examples of valid `User` roles are:
+
+* A human being with a username and password;
+* A machine with a hostname and SSL-certificate.
+
+=== Groups
+
+A group is an aggregation of other users and groups, allowing you to create authorization schemes.
+Roles are either _required_ or _basic_ members of a group.
+The basic members of a group define the set of members that can be authorized.
+This set is further reduced by requiring an initiator of an action to imply all required member of a group.
+A group can be implied only if it has at least one basic member and at least one required member.

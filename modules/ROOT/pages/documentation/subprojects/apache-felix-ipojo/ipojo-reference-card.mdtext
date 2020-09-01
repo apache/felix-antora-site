@@ -64,7 +64,7 @@ Java:
     @Instantiate
     public class Implementation {
       // ...
-    }    
+    }
 
 <table class="table table-striped">
   <thead>
@@ -169,13 +169,13 @@ Java:
     properties= {
     	@StaticServiceProperty(name="baz", type="java.lang.String")})
     public class ProvidesProperties implements FooService, BarService {
-        
+
         @ServiceProperty(name = "foo")
         public int m_foo = 0;
-        
+
         @ServiceProperty(name="bar", mandatory=true)
         public int m_bar;
-        
+
         // ...
     }
 
@@ -234,17 +234,17 @@ XML:
     </component>
 
 Java:
-    
+
     :::java
     @Component
     public class Dependency {
-    
+
         @Requires
         public FooService fs;
-    
+
         @Requires
         public BarService[] bs;
-        
+
         //...
     }
 
@@ -338,29 +338,29 @@ XML:
     	<callback type="bind" method="bind" />
     	<callback type="unbind" method="unbind" />
             <callback type="modified" method="modified" /> <!-- for filtered service dependencies, to be notified when a service is modified but still match -->
-        </requires>	
+        </requires>
     </component>
 
 Java:
 
     @Component
     public class Dependency {
-    
+
         @Unbind
         public synchronized void unbindBaz(BazService bz) {
             //...
         }
-        
+
         @Bind
         public synchronized void bindBaz(BazService bz) {
             // ...
         }
-    
+
         @Modified
         public synchronized void modifiedBaz() {
             // ...
         }
-    
+
       //...
     }
 
@@ -371,8 +371,8 @@ Java:
 | id | no | field name | dependency id |
 | field | no | automatically detected with annotations | injected field |
 | optional | no | false | specifies if the dependency if optional |
-  
-  
+
+
 | specification | yes/no | can be discovered from the code | specifies the required service specification. This attribute is required when the service type cannot be infered from the code (Collection type for fields, callbacks without service objects) |
 | filter | no | no filter | specifies the dependency LDAP filter |
 | from | no |  | specifies a specific provider by its name |
@@ -393,7 +393,7 @@ Java:
 * Thanks to the `requires.from` property, it is possible to override the `from` attribute value.
 
 {code:xml|From attribute configuration}
-<component 
+<component
    classname="...MyComponent"
    name="FOO">
 	<requires field="m_foo" id="id1">
@@ -412,19 +412,19 @@ Java:
 
      h2. Configuring the {{filter}} attribute
     * Thanks to the {{requires.filters}} property, it is possible to override the {{filter}} attribute value.
-    
+
     {code:xml|Filter attribute configuration}
-    <component 
-       classname="org.apache.felix.ipojo.example.FilteredDependency" 
+    <component
+       classname="org.apache.felix.ipojo.example.FilteredDependency"
        name="FOO">
     	<requires field="m_foo" fiter="(foo.property=FOO)" id="id1">
     		<callback type="bind" method="bind"/>
     		<callback type="unbind" method="unbind"/>
     	</requires>
     </component>
-    
+
     <instance name="FOO1" component="FOO"/> <!-- Use the default 'filter' value -->
-    
+
     <instance name="FOO2" component="FOO">
     	<property name="requires.filters">
     		<property name="id1" value="(foo.property=BAR)"/>
@@ -458,6 +458,7 @@ Java:
 * [Lifecycle Callback Handler]({{ refs.lifecycle-callback-handler.path }})
 
 ## Lifecycle callbacks
+* fake point
     :::xml
 <component classname="my.implementation" name="my-impl">
     <callback transition="validate" method="start" />
@@ -467,21 +468,22 @@ Java:
     {code:java|title=Annotations}
     @Component
     public class Implementation {
-        
+
         @Validate
         public void start() {
-            
+
         }
-        
+
         @Invalidate
         public void stop() {
-            
+
         }
     }
 
 * [Lifecycle Callback Handler]({{ refs.lifecycle-callback-handler.path }})
 
 # Declaring properties
+* fake point
     :::xml
 <component classname="my.Implementation" name="my-impl">
     <properties propagation="true" managedservice="MyPID">
@@ -503,15 +505,15 @@ Java:
     {code:java|title=Annotations}
     @Component(managedservice="MyPID", propagation=true)
     public class Implementation {
-        
+
         @Property(name="boo")
         public void setBoo(int boo) {
             //...
         }
-            
+
         @Property(mandatory=true)
         public int m_bar;
-    
+
         @Property(value="4")
         public int m_foo;
     }
@@ -546,7 +548,7 @@ Java:
     public void registered(ServiceReference ref) {
     	System.out.println("Registered");
     }
-    
+
     @PostUnregistration
     public void unregistered(ServiceReference ref) {
     	System.out.println("Unregistered");
@@ -613,13 +615,13 @@ arch -handlers => list available handlers
     import org.apache.felix.ipojo.annotations.Component;
     import org.apache.felix.ipojo.handler.temporal.Requires;
     import org.apache.felix.ipojo.test.scenarios.annotations.service.FooService;
-    
+
     @Component
     public class Implementation {
-        
+
         @Requires // org.apache.felix.ipojo.handler.temporal.Requires
         private FooService mytemporal;
-        
+
     }
 
 {div:class=borderedTable}
@@ -659,18 +661,18 @@ arch -handlers => list available handlers
     {code:java|title=Annotations}
     @Component
     public class MyComponent {
-        
+
         @Subscriber(name="s1", data_key="data")
         public void receive1(Object foo) {
             // Nothing
         }
-        
+
         @Subscriber(name="s2", topics="foo,bar", filter="(foo=true)")
         public void receive2(Event foo) {
             // Nothing
         }
-        
-        
+
+
         @Subscriber(name="s3", topics="foo", data_key="data", data_type="java.lang.String")
         public void receive3(String foo) {
             // Nothing
@@ -681,14 +683,14 @@ arch -handlers => list available handlers
 |Attribute name | Required | Default value | |
 |--|--|--|--|
 | name | yes | | specifies the name of the event subscriber, acting as a unique identifier. This name is used to configure event subscription in the instance configuration. |
-  
-  
+
+
 | topics | yes | | specifies the list (comma-separated-list) of the topics that the handler will listen to. Each event sent on a topic present in this list will be sent to the specified callback method. This parameter can be overridden by instances |
-  
-  
+
+
 If you use this attribute, the parameter passed to the callback method is the the value associated to this key, not the whole event. This attribute is generally used with the `data-type` attribute to specify the received object type. If an event is received and it does not contain such a key, it is ignored (with a warning message).  |
-  
-  
+
+
 | filter | no | no filter | specifies the event LDAP filter used to filter incoming events before sending them to the callback. The syntax of this field is described in the OSGi EventAdmin Specification. If you don't specify a filter, all events sent on the listened topics will be considered.   |
 {center}
 {div}
@@ -707,15 +709,15 @@ If you use this attribute, the parameter passed to the callback method is the th
 		</property>
 	</instance>
 
-    
+
     * [Event Admin Handlers]
-    
+
     h2. Sending events
-    
+
      * The event admin handler allows sending events to the Event Admin.
      * The event admin handler is implemented as an _external handlers_. To use it, deploy and start the event admin handler bundle and an implementation of the event admin service.
      * To send events, your code must contains a {{org.apache.felix.ipojo.handlers.event.publisher.Publisher}} field.
-    
+
         :::xml
     <ipojo
         xmlns:ev="org.apache.felix.ipojo.handlers.event.EventAdminHandler">
@@ -735,10 +737,10 @@ public class MyComponent {
     // We use qualified names to avoid conflict.
     @org.apache.felix.ipojo.handlers.event.Publisher(name="p1", synchronous=true)
     org.apache.felix.ipojo.handlers.event.publisher.Publisher publisher1;
-    
+
     @org.apache.felix.ipojo.handlers.event.Publisher(name="p2", synchronous=false, topics="foo,bar", data_key="data")
     org.apache.felix.ipojo.handlers.event.publisher.Publisher publisher2;
-    
+
     @org.apache.felix.ipojo.handlers.event.Publisher(name="p3", synchronous=true, topics="bar")
     org.apache.felix.ipojo.handlers.event.publisher.Publisher publisher3;
 
@@ -754,9 +756,9 @@ public class MyComponent {
     }
 }
 
-    
+
     * [Event Admin Handlers]
-    
+
     {div:class=borderedTable}
     {center}
     ||Attribute name || Required || Default value || ||
@@ -767,10 +769,10 @@ public class MyComponent {
     | synchronous | no | false | specifies if event sending is synchronous or not.   |
     {center}
     {div}
-    
+
     * Instance configuration
         ** event.topics : overrides {{topics}} attribute
-    
+
     {code:xml|title=Instance configuration}
     <instance component="...MyComponent">
     		<property name="event.topics">
@@ -787,12 +789,12 @@ public class MyComponent {
 <ipojo xmlns:extender="org.apache.felix.ipojo.extender">
 	<component
 		classname="org.apache.felix.ipojo.extender.Myextender">
-		
+
                 <!—Extender Pattern handler configuration -->
-		<extender:extender 
+		<extender:extender
                   extension="My-Extension"
-                  onArrival="onArrival" 
-                  onDeparture="onDeparture" 
+                  onArrival="onArrival"
+                  onDeparture="onDeparture"
                 />
 
 		<callback transition="invalidate" method="stopping" />
@@ -805,11 +807,11 @@ public class MyComponent {
     @Component
     @org.apache.felix.ipojo.extender.Extender(extension="My-Extension", onArrival="onArrival", onDeparture="onDeparture")
     public class Myextender {
-        
+
         public void onArrival(Bundle bundle, String extension) {
             // handle matching bundle arrival
         }
-        
+
         public void onDeparture(Bundle bundle) {
             // handler matching bundle departure
         }
@@ -833,39 +835,39 @@ public class MyComponent {
 
     :::xml
 <ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">
-     <component 
+     <component
           classname="org.apache.felix.ipojo.test.MyWhiteBoardPattern"
       >
-        <wbp:wbp 
-   	      filter="(my.property=1)" 
-              onArrival="onArrival" 
-              onDeparture="onDeparture" 
+        <wbp:wbp
+   	      filter="(my.property=1)"
+              onArrival="onArrival"
+              onDeparture="onDeparture"
               onModification="onModification"
          />
-       
+
          <provides/>
       </component>
 
     {code:java|title=Annotations}
     @Component
-    @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)", 
-            onArrival="onArrival", 
+    @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)",
+            onArrival="onArrival",
             onDeparture="onDeparture",
             onModification="onModification")
     public class WhiteBoardWIModification {
-        
+
         public void onArrival(ServiceReference ref) {
             // ...
         }
-     
+
         public void onDeparture(ServiceReference ref) {
             // ...
         }
-        
+
         public void onModification(ServiceReference ref) {
             // ...
         }
-    
+
     }
 
 
@@ -878,7 +880,7 @@ public class MyComponent {
 | omModification | no | | specifies the method called when a matching service provider is modified and is still matching. The method receives the ServiceReference object |
 {center}
 * [White Board Pattern Handler]({{ refs.white-board-pattern-handler.path }})
-  
-  
-  
-  
+
+
+
+

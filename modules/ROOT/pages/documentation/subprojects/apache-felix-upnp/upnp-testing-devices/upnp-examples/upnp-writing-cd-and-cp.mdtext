@@ -22,16 +22,16 @@ we would subscribe to the SwitchPower service offered by any device implementing
 
     private final static String CLOCK_DEVICE_TYPE = "urn:schemas-upnp-org:device:clock:1";
     private final static String TIME_SERVICE_TYPE = "urn:schemas-upnp-org:service:timer:1";
-    
+
     private final static String LIGHT_DEVICE_TYPE = "urn:schemas-upnp-org:device:light:1";
     private final static String POWER_SERVICE_TYPE = "urn:schemas-upnp-org:service:power:1";
-    
+
     private final static String AIRCON_DEVICE_TYPE = "urn:schemas-upnp-org:device:aircon:1";
     private final static String TEMP_SERVICE_TYPE = "urn:schemas-upnp-org:service:temp:1";
-    
+
     private final static String WASHER_DEVICE_TYPE = "urn:schemas-upnp-org:device:washer:1";
     private final static String STATUS_SERVICE_TYPE = "urn:schemas-upnp-org:service:state:1";
-    
+
     public void doSubscribe() {
       subscriber = new UPnPSubscriber(Activator.context, this);
       subscriber.subscribeEveryServiceType(CLOCK_DEVICE_TYPE, TIME_SERVICE_TYPE);
@@ -39,7 +39,7 @@ we would subscribe to the SwitchPower service offered by any device implementing
       subscriber.subscribeEveryServiceType(LIGHT_DEVICE_TYPE, POWER_SERVICE_TYPE);
       subscriber.subscribeEveryServiceType(WASHER_DEVICE_TYPE, STATUS_SERVICE_TYPE);
     }
-    
+
     public void undoSubscribe(){
            subscriber.unsubscribeAll();}
 
@@ -55,6 +55,6 @@ The former can be used to retrieve the XML description of both devices and servi
 The latter interface can be used to change the log messages of the base driver at runtime. Two different methods are available to modify the log level of the base driver or to enable the visualization of low level messages related to the UPnP stack protocol (CyberDomo). Furthermore, the interface allows developers to send an M-SEARCH discovery message to the UPnP networks, thus refreshing the list of imported devices.
 
 
-##### [The Felix UPnP Examples]({{ refs.upnp-examples.path }}) << \| >> [Known Issues| UPnP Known Issues]
+##### [The Felix UPnP Examples]({{ refs.upnp-examples.path }})  [Known Issues| UPnP Known Issues]
 ----
 \[1\]({{ refs.1.path }}) Developers should monitor UPnpEventListener services with a filter matching either the own service Id or service type, either the own device Id or device type and even a empty filter which are usually used to express interest for every UPnP device.

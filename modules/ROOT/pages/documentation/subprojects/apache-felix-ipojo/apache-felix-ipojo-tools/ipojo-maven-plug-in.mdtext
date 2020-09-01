@@ -13,20 +13,15 @@ To use the iPOJO Maven plug-in, edit the following pom.xml (replace all $XXX ele
 	:::xml
 	<project>
   		<modelVersion>4.0.0</modelVersion>
-
   		<groupId>$YOUR_GROUP_ID</groupId>
    		<artifactId>$YOUR_ARTIFACT_ID</artifactId>
    		<version>$YOUR_ARTIFACT_VERSION</version>
-   		
    		<name>$YOUR_PROJECT_NAME</name>
-
   		<!-- Use the bundle packaging type -->
   		<packaging>bundle</packaging>
-   
 		<dependencies>
 	       $YOUR_MAVEN_DEPENDENCIES
 		</dependencies>
-
 	 	<build>
 	      <plugins>
 	          <!-- BND Maven Plugin Configuration -->
@@ -153,7 +148,7 @@ The second option allows skipping annotations processing, by using the `ignoreAn
 
 You can also ignore embedded XML-Schemas to use external ones. To do so, add the `ignoreEmbeddedSchemas`. If set to `true`, the manipulator doesn't use embedded XML-Schemas:
 
-	:::xml	
+	:::xml
 	<plugin>
 	       <groupId>org.apache.felix</groupId>
 	       <artifactId>maven-ipojo-plugin</artifactId>
@@ -186,8 +181,8 @@ The maven-ipojo-plugin provides a way to generate the skeleton of your project. 
     -DpackageName=PACKAGE_NAME
 
 This command generates :
-* a pom file (to update), 
-* the src/main/java and src/main/resources folders, 
+* a pom file (to update),
+* the src/main/java and src/main/resources folders,
 * the structure of your package name.
 
 The generated project uses iPOJO annotation and is ready to be deployed.
@@ -244,7 +239,7 @@ It is also possible to describe iPOJO components and instances inside the pom fi
 	   		</executions>
 	</plugin>
 
-  
-  
-  
-  
+
+
+
+

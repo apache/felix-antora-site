@@ -1,0 +1,3 @@
+Title: Dependency Manager - JavaDocs
+
+The various Dependency Manager JavaDocs for the API, the Annotations, and the Runtime can be found from the http://felix.apache.org/apidocs/[main felix apidocs homepage].

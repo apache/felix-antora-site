@@ -1,0 +1,19 @@
+Title: Board Report (2010-03)
+
+*[SUBMITTED]({{ refs.submitted.path }})*
+
+_Community_
+
+* After numerous contributions to the Web Console subproject, Valentin Valchev was offered committership and accepted.
+* NetBeans 6.9 milestone includes Felix framework for its OSGi integration support.
+* Dependency Manager undergoing various additions, such as annotation, aspect and adapter support.
+
+_Software_
+
+* Recent contributions: ** UPNP Plugin for the Web Console by Valentin Valchev.
+* Recent subproject releases: ** Bundle Repository (1.4.3) ** EventAdmin (1.2.2) ** File Install (2.0.8) ** Framework/Main (2.0.3, 2.0.4) ** Framework Security (1.0.0) - With the release of this subproject, the Felix framework is now passing all core OSGi CT tests.
+** Karaf (1.4.0) ** Maven SCR Plugin (1.4.2) ** SCR (1.4.0) ** Shell (1.4.2) ** Web Console (2.0.6)
+
+_Licensing and other issues_
+
+* OSGi CT made available to Felix community members who submitted NDAs.

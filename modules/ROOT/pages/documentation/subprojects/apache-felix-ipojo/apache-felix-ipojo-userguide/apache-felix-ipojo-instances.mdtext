@@ -22,12 +22,12 @@ iPOJO provides several ways to create instances, this page presents these possib
 @Instantiate
 ============
 
-The @Instantiate annotation is the simplest way to declare an instance. In a class annotated with @Component, you just add the @Instantiate annotation. It instructs iPOJO to declare an instance of the component type described by the current class. 
+The @Instantiate annotation is the simplest way to declare an instance. In a class annotated with @Component, you just add the @Instantiate annotation. It instructs iPOJO to declare an instance of the component type described by the current class.
 
     :::java
     import org.apache.felix.ipojo.annotations.Component;
     import org.apache.felix.ipojo.annotations.Instantiate;
-        
+
     @Component
     @Instantiate
     public class MyComponent {
@@ -39,7 +39,7 @@ Optionally, you can set the instance name, using the `name` attribute.
     :::java
     import org.apache.felix.ipojo.annotations.Component;
     import org.apache.felix.ipojo.annotations.Instantiate;
-        
+
     @Component
     @Instantiate(name="myInstance")
     public class MyComponent {
@@ -60,12 +60,12 @@ The @Instance annotation is particularly useful to declare singleton instances, 
     :::java
     import org.apache.felix.ipojo.annotations.Component;
     import org.apache.felix.ipojo.annotations.Instantiate;
-        
+
     @Component(publicFactory=false)
     @Instantiate
     public class MySingleton {
         //...
-    }    
+    }
 
 The `publicFactory=false` attribute makes the component type _private_, so invisible from other bundles. No one else would be able to create another instance of the component type.
 
@@ -77,12 +77,9 @@ This second annotation is used on classes to create one or several instances usi
     :::java
   	import org.apache.felix.ipojo.configuration.Configuration;
   	import org.apache.felix.ipojo.configuration.Instance;
-
-
   	import static org.apache.felix.ipojo.configuration.Instance.instance;
   	@Configuration
   	public class ConfigureOneInstance {
-
   	    Instance myInstance = instance().of(MyComponent.class)
   	            .with("property").setto("value");
   	}
@@ -120,11 +117,11 @@ Using this configuration DSL allows creating a set of instances that you can con
 Configuration including lists and maps
 --------------------------------------
 The `setto` method accepts any object. To ease creating collections, the API proposed two methods to handle lists and maps:
-  
+
     :::java
     instance()
 		    .of(Mycomponent.class)
-    		// Lists	
+    		// Lists
         .with("list").setto(list(1, 2, 3))
         .with("list2").setto(list().with(1).with(2).with(3))
         // Maps
@@ -186,12 +183,12 @@ The _property_ element can be used to configure complex types such as arrays, li
 
     :::xml
     <!--Creates a string array-->
-  	<property name="array" type="array"> 
+  	<property name="array" type="array">
 	  	<property value="a"/>
 		  <property value="b"/>
   	</property>
     <!--Creates a list containing string-->
-  	<property name="list" type="list"> 
+  	<property name="list" type="list">
 	  	<property value="a"/>
 		  <property value="b"/>
   	</property>
@@ -201,7 +198,7 @@ The _property_ element can be used to configure complex types such as arrays, li
 		  <property name="b" value="b"/>
   	</property>
     <!--Creates a map containing string-->
-  	<property name="map" type="map"> 
+  	<property name="map" type="map">
 	  	<property name="a" value="a"/>
 		  <property name="b" value="b"/>
   	</property>
@@ -266,7 +263,7 @@ Once you have the right Factory service, you can create instances using `createC
 
 You can set the instance name using the 'instance.name' property can be used to specify the instance name.
 
-Instances are automatically started when created. However, the instance can be invalid, if at least one handler is not valid. 
+Instances are automatically started when created. However, the instance can be invalid, if at least one handler is not valid.
 
 The instance creation process can fail. Three exceptions can be thrown during the creation:
 
@@ -308,7 +305,7 @@ To reconfigure an instance, call the 'reconfigure' method on the ComponentInstan
 
 Following the factory state
 ---------------------------
-Factories can becomes invalid if one of the handler they require is not available. Basically, handlers are pieces of iPOJO containers. 
+Factories can becomes invalid if one of the handler they require is not available. Basically, handlers are pieces of iPOJO containers.
 
 You can check the factory state using the `Factory.getState()` method. This method returns `1` if the factory is valid, `0` if not.
 
@@ -317,7 +314,7 @@ You can also register a `org.apache.felix.ipojo.FactoryStateListener` object on 
 Creating instances using the OSGi Configuration Admin
 =====================================================
 
-The configuration admin service is a standard service specified by the OSGi Alliance to handle configurations. It allows an operator to configured the deployed bundles, and so iPOJO instances. 
+The configuration admin service is a standard service specified by the OSGi Alliance to handle configurations. It allows an operator to configured the deployed bundles, and so iPOJO instances.
 
 iPOJO supports the configuration admin and you can create, reconfigure and dispose instanced using this service.
 
@@ -328,8 +325,8 @@ Creating an instance is done by creating a _factory_ configuration:
 
     :::java
 	ConfigurationAdmin admin = ...// Let's assume with have the configuration admin
-	Configuration conf = admin.createFactoryConfiguration("...MyComponent", "?");	
-	
+	Configuration conf = admin.createFactoryConfiguration("...MyComponent", "?");
+
 	// Build the instance configuration
 	Dictionary dict = new Hashtable();
 	//...
@@ -339,7 +336,7 @@ Creating an instance is done by creating a _factory_ configuration:
 
 To create the _factory_ configuration, use the `createFactoryConfiguration` method on the Configuration Admin object. The first argument is the factory name. The second is the location binding. Using "?" is a wildcard, for more details, check the configuration admin specification.
 
-You populate this configuration with a dictionary. The configuration is actually created using the `update` method. 
+You populate this configuration with a dictionary. The configuration is actually created using the `update` method.
 
 Reconfiguring instances
 -----------------------

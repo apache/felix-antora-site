@@ -1,0 +1,7 @@
+Title: Apache Felix Framework
+
+The Felix Framework subproject is an implementation of the OSGi R6 core framework specification.
+
+== Framework documentation
+
+{% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}

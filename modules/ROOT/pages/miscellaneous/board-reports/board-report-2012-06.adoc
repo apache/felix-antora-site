@@ -1,0 +1,28 @@
+Title: Board Report (2012-06)
+
+*[SUBMITTED]({{ refs.submitted.path }})*
+
+Apache Felix is a project aimed at implementing specifications from the OSGi Alliance as well as implementing other supporting tools and technologies aligned with OSGi technology.
+
+_Community_
+
+* Normal mailing list and bug reporting activity.
+* David Jencks and Gokturk Gezer have been added as committers.
+* Richard S.
+Hall stepping down as PMC chair, Felix Meschberger voted in as his successor.
+
+_Software_
+
+* Recent subproject releases: ** Configuration Admin 1.4.0 (June, 10, 2012) ** File Install 3.2.0 (March 24, 2012) ** iPOJO Manipulator 1.8.4 (April 6, 2012) ** Shell Service 1.4.3 (March 14, 2012) ** Web Console 4.0 (June, 10, 2012) ** Web Console DS Plugin 1.0 (June, 10, 2012) ** Web Console Memory Usage Plugin 1.0.4 (June, 10, 2012) ** Web Console OBR Plugin 1.0 (June, 10, 2012) ** Web Console Package Admin Plugin 1.0.0 (June, 10, 2012) ** Web Console UPnP Plugin 1.0.2 (June, 10, 2012)
+
+_Project Branding_
+
+* Project Website Basics: done
+* Website Navigation Links: done
+* Trademark Attributions: done
+* Logos and Graphics: open ** TM missing from all Logos
+* Project Metadata: done
+
+_Licensing and other issues_
+
+* None.

@@ -1,11 +1,5 @@
 Title: Apache Felix JAAS Support
 
-<style type="text/css">
-img {
- width:auto;
-}
-</style>
-
 [TOC]
 
 Apache Felix JAAS support aims to simplify usage of JAAS in OSGi.
