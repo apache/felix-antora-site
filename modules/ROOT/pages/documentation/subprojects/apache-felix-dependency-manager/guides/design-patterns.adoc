@@ -15,7 +15,10 @@ Being able to declare such dependencies in code ensures consistent life cycle be
 
 === Structure
 
-image::./diagrams/singleton.png[Singleton,190]
+[umlet,opts=inline]
+----
+include::example$documentation/subprojects/apache-felix-dependency-manager/guides/diagrams/singleton.uxf[]
+----
 
 === Code Example
 
@@ -51,7 +54,10 @@ This allows you to dynamically add and remove aspects.
 
 === Structure
 
-image::./diagrams/aspect.png[Aspect,190]
+[umlet,opts=inline]
+----
+include::example$documentation/subprojects/apache-felix-dependency-manager/guides/diagrams/aspect.uxf[]
+----
 
 === Code Example
 
@@ -91,7 +97,10 @@ Adapters can dynamically be added and removed and allow you to keep your basic s
 
 === Structure
 
-image::./diagrams/adapter.png[Adapter,190]
+[umlet]
+----
+include::example$documentation/subprojects/apache-felix-dependency-manager/guides/diagrams/adapter.uxf[png]
+----
 
 === Code Example
 
@@ -134,7 +143,10 @@ They can be implemented to serve resources embedded in bundles, somewhere on a f
 
 === Structure
 
-image::./diagrams/resourceadapter.png[Singleton,180]
+[umlet]
+----
+include::example$documentation/subprojects/apache-felix-dependency-manager/guides/diagrams/resourceadapter.uxf[png]
+----
 
 == Temporal Dependency
 
