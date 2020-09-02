@@ -22,27 +22,27 @@ iPOJO is made to run modern applications exhibiting modularity and requiring run
 
 == Why choose iPOJO
 
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html#schneider[iPOJO at Schneider Electric]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html#ugasp[iPOJO at Ubidreams]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.html[others success stories]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-keypoints.html[iPOJO Key points]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-why-choose-ipojo.html[Why choose iPOJO]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.adoc#schneider[iPOJO at Schneider Electric]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.adoc#ugasp[iPOJO at Ubidreams]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-successstories.adoc[others success stories]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-keypoints.adoc[iPOJO Key points]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-why-choose-ipojo.adoc[Why choose iPOJO]
 
 == Getting started
 
 * __ http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.distribution.quickstart/{{ipojo.release}}/org.apache.felix.ipojo.distribution.quickstart-{{ipojo.release}}.zip[Quickstart Distribution]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.html[iPOJO in 10 minutes]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/how-to-use-ipojo-annotations.html[Using Annotations]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-hello-word-maven-based-tutorial.html[Maven tutorial]
-* __ link:/documentation/subprojects/apache-felix-ipojo/ipojo-support.html[Support]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.adoc[iPOJO in 10 minutes]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/how-to-use-ipojo-annotations.adoc[Using Annotations]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-hello-word-maven-based-tutorial.adoc[Maven tutorial]
+* xref:documentation/subprojects/apache-felix-ipojo/ipojo-support.adoc[Support]
 
 == The developer corner
 
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components.html[Describing components]
-* __ link:/documentation/subprojects/apache-felix-ipojo/ipojo-reference-card.html[iPOJO Reference Card]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-eclipse-integration.html[Eclipse Integration]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/apache-felix-ipojo-online-manipulator.html[Online Manipulator]
-* __ link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-faq.html[FAQ]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components.adoc[Describing components]
+* xref:documentation/subprojects/apache-felix-ipojo/ipojo-reference-card.adoc[iPOJO Reference Card]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-eclipse-integration.adoc[Eclipse Integration]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/apache-felix-ipojo-online-manipulator.adoc[Online Manipulator]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-faq.adoc[FAQ]
 
 '''
 

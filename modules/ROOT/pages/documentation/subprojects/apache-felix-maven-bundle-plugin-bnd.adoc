@@ -3,7 +3,8 @@
 This plugin for Maven 2/3 is based on the http://bnd.bndtools.org/[BND] tool from Peter Kriens.
 The way BND works is by treating your project as a big collection of classes (e.g., project code, dependencies, and the class path).
 The way you create a bundle with BND is to tell it the content of the bundle's JAR file as a subset of the available classes.
-This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.+++<div class="info">+++If you have questions about the maven-bundle-plugin please read the link:../faqs/apache-felix-bundle-plugin-faq.html[FAQ] first.
+This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.+++<div class="info">+++.
+If you have questions about the maven-bundle-plugin please read the xref:documentation/faqs/apache-felix-bundle-plugin-faq.adoc[FAQ] first.
 If you still have questions you can ask them on the http://felix.apache.org/site/mailinglists.html[Felix user list].</div>
 
 _NOTE: test scoped dependencies are *not* included in the classpath seen by BND._

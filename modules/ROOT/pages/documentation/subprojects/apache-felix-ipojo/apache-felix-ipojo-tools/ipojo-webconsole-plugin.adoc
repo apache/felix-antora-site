@@ -23,7 +23,7 @@ To use the plugin you need an OSGi platform with:
 * iPOJO
 * The iPOJO Web console plugin
 
-You can download link:ipojo-webconsole-quicktart-distribution.zip[this Felix distribution] as a deployment example.
+You can download link:{attachmentsdir}/ipojo/ipojo-webconsole-quicktart-distribution.zip[this Felix distribution] as a deployment example.
 Unzip the archive and go to the Felix directory to launch Felix:
 
  :::sh

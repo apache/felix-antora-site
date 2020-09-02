@@ -7,5 +7,6 @@ Currently the bundle does not support the following requirements:
 * icons for exported device are not tested
 * no localization support
 
-[discrete]
-===== link:{{ refs.upnp-writing-cd-and-cp.path }}[Writing UPnP Devices and Control Points] [Acknowledgments |UPnP Acknowledgments ]
+//
+* xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices/upnp-examples/upnp-writing-cd-and-cp.adoc[Writing UPnP Devices and Control Points]
+* xref:documentation/subprojects/apache-felix-upnp/upnp-acknowledgments.adoc[UPnP Acknowledgments ]

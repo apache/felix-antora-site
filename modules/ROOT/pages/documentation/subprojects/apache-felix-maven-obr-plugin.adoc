@@ -1,4 +1,4 @@
-= Apache Felix Maven OBR Plugin+++<div class="warning">+++The _maven-obr-plugin_ is _deprecated_ and its features have been _merged_ into the _1.4.0_ release of the _link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[maven-bundle-plugin]_+++</div>+++
+= Apache Felix Maven OBR Plugin+++<div class="warning">+++The _maven-obr-plugin_ is _deprecated_ and its features have been _merged_ into the _1.4.0_ release of the _xref:documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[maven-bundle-plugin]_+++</div>+++
 
 This Maven plug-in aims to automate OBR (OSGi Bundle Repository) management.
 It helps manage a local OBR for your local Maven repository, and also supports remote OBRs for bundle distribution.

@@ -9,11 +9,11 @@ OSGi technology combines aspects of these aforementioned principles to define a 
 A list of javascript extracted news excerpts:
 
 
-Refer to the news link:{{ refs.news.path }}[archive] for all news.
+Refer to the news xref:news.adoc[archive] for all news.
 
 == Apache Felix Subprojects
 
 The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology.
 
-Please refer to the link:{{ refs.subprojects.path }}[Subprojects] page for a complete list of subprojects.
-To see some projects using Felix subprojects, refer to the link:{{ refs.projects-using-felix.path }}[Projects Using Felix] documentation.
+Please refer to the xref:documentation/subprojects.adoc[Subprojects] page for a complete list of subprojects.
+To see some projects using Felix subprojects, refer to the xref:documentation/community/projects-using-felix.adoc[Projects Using Felix] documentation.

@@ -45,7 +45,7 @@ This is similar to a fully qualified class name in Java and is used to avoid nam
 If the `<name>` portion of the command is unique, then you only need to type it.
 If not, then you must either type the full `<scope>:<name>` or arrange the scope search path accordingly.+++</div>+++
 
-To install bundles, use the `felix:install` command, which is described in more detail in the next link:{{ refs.-installing-bundles.path }}[sub-section].
+To install bundles, use the `felix:install` command, which is described in more detail in the next xref:#_installing_bundles[sub-section].
 To list installed bundles, use the `felix:lb` command.
 To stop the framework type `stop 0` to stop the System Bundle;
 any installed bundles will automatically be reloaded (and potentially restarted) the next time you launch with the associated cache.
@@ -61,7 +61,7 @@ The Felix framework distribution comes with three bundles, which are located in 
 These bundles include the Gogo Runtime (core command processing functionality), Gogo Shell (text-based shell user interface), Gogo Command (basic set of commands), and Bundle Repository (a bundle repository service).
 In addition to these bundles, the bundle repository provides access to other bundles for easy installation.
 The bundle repository service provides a set of shell commands in the `obr:*` scope;
-refer to the link:{{ refs.apache-felix-osgi-bundle-repository.path }}[Apache Felix OSGi Bundle Repository] for more information.
+refer to the xref:documentation/subprojects/apache-felix-osgi-bundle-repository.adoc[Apache Felix OSGi Bundle Repository] for more information.
 
 Before installing any bundles, it is important to understand how bundles are manually deployed into the framework.
 Bundles are deployed in two stages;
@@ -152,7 +152,7 @@ For example:
  java -Dfelix.config.properties=file:/home/rickhall/config.properties -jar bin/felix.jar
 
 Configuration and system properties are accessible at run time via `BundleContext.getProperty()`, but configuration properties override system properties.
-For more information about available configuration properties, refer to the link:{{ refs.apache-felix-framework-configuration-properties.path }}[Apache Felix Framework Configuration Properties] document.
+For more information about available configuration properties, refer to the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc[Apache Felix Framework Configuration Properties] document.
 The Felix framework distribution contains a default `conf/config.properties`.
 
 === System Property Substitution

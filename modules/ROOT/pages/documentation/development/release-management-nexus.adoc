@@ -67,7 +67,7 @@ Everything else has been configured in the latest Felix parent POM:
 
 First prepare your POMs for release:
 
-. Make sure you have correct NOTICE, link:{{ refs.dependencies-file-template.path }}[DEPENDENCIES], and LICENSE files.
+. Make sure you have correct NOTICE, xref:documentation/development/dependencies-file-template.adoc[DEPENDENCIES], and LICENSE files.
 Remember to update the copyright year.
 . Make sure you have an updated change log file, typically in `doc/changelog.txt` but in the project root is also acceptable.
 . Make sure there are no snapshots in the POMs to be released
@@ -251,6 +251,9 @@ To do this, execute the following command in a checkout of the release tag (targ
      -DremoteOBR=releases.xml \
      -DaltDeploymentRepository=apache.website::default::file:///${obr}
  $ svn commit -m"..." ${obr}/repository.xml
+
+
+WARNING: the following about the site is wrong and needs to be rewritten
 
 After committing the site must be published.
 If you release to OBR before link:update-the-site[updating the site] you can defer publishing until after that.

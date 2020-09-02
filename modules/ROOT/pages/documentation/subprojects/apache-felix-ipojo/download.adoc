@@ -55,7 +55,7 @@ More details about these annotations are available [here
 | 1.8.6
 | Automatic download from the Maven repository
 | The iPOJO Maven plug-in allow creating iPOJO bundle with Maven.
-Using this plug-in requires that you configure your POM file correctly as explained link:{{ refs.ipojo-maven-plug-in.path }}[here].
+Using this plug-in requires that you configure your POM file correctly as explained xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-maven-plug-in.adoc[here].
 This [tutorial
 | iPOJO Hello Word (Maven-Based) tutorial]demonstrates how to use this plug-in to build iPOJO bundle (both for individual project and multi-module project).
 |===

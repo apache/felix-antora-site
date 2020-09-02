@@ -2,7 +2,7 @@
 
 Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished.
 If you want to help support Felix, this page is intended as a starting point for specific contribution ideas.
-To further understand how the Felix community operates, refer to the https://www.apache.org/foundation/how-it-works.html[Community Roles and Processes] document and/or join the link:{{ refs.project-info.path }}[mailing lists].
+To further understand how the Felix community operates, refer to the https://www.apache.org/foundation/how-it-works.html[Community Roles and Processes] document and/or join the xref:documentation/community/project-info.adoc[mailing lists].
 
 The Felix project organizes its "to do" list using the https://issues.apache.org/jira/browse/Felix[JIRA] issue tracking system.
 Specific items from Felix' JIRA issue tracking system are highlighted on this page, but are not limited to it.
@@ -18,7 +18,7 @@ There is no specific JIRA issue for this task, but any contributions could be po
 
 == Programmers
 
-Before contributing, make sure to be subscribed to the link:{{ refs.project-info.path }}[developer mailing list].
+Before contributing, make sure to be subscribed to the xref:documentation/community/project-info.adoc[developer mailing list].
 If you don't have your own issue to scratch, you can browse open issues in https://issues.apache.org/jira/browse/Felix[JIRA] and submit a patch.
 
 Source code contributions fall into two categories: pull requests or grants.
@@ -31,7 +31,7 @@ If you have created a change, you should:
 
 . Create a https://issues.apache.org/jira/browse/Felix[JIRA] issue (or find a pertinent existing issue) describing the issue needing to be addressed.
 . Create a pull requests against the git repository containing the code.
-. The pull request will eventually be reviewed and applied (if accepted) by a Felix committer, but feel free to bug us [nicely]({{ refs.nicely.path }}) if you get impatient.
+. The pull request will eventually be reviewed and applied (if accepted) by a Felix committer, but feel free to bug us [nicely]({{ refs.nicely.adoc) if you get impatient.
 
 Providing pull requests is a very good way to become a committer at Felix, since we'd rather have you review and apply the patches than us.
 :-)
@@ -48,7 +48,7 @@ For grants, you should:
 +
 [cols=2*]
 |===
-| Review our link:{{ refs.development.path }}[developer documentation] as well as the general [Apache documentation
+| Review our xref:documentation/development.adoc[developer documentation] as well as the general [Apache documentation
 | https://www.apache.org/foundation/getinvolved.html] to determine whether you would really like be involved with us and how we work.
 |===
 

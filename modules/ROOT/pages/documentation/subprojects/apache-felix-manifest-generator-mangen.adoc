@@ -70,8 +70,7 @@ Two phases of process happen after JAR scanning has completed:
 [cols=2*]
 |===
 | Use of the word 'typically' is significant in the above descriptions.
-A basic set of link:{{ refs.-mangenrules.path }}[rules] and [reports
-| #MangenReports] are included with `mangen` to perform various useful tasks.
+A basic set of xref:#_rules[rules] and xref:#_reports[reports] are included with `mangen` to perform various useful tasks.
 This set is infinitely extensible, however, and `mangen` places no restriction on the types of tasks that rules and reports can perform.
 |===
 
@@ -84,7 +83,7 @@ Properties to control `mangen` behaviour can either be supplied on the command l
 If the same property name is specified in both then the `-D` command line property value will take precedence of the property file value.
 
 For added flexibility a simple variable expansion syntax is provided to allow the value of one Property value to be used within another property.
-Every property value will be scanned for `$\{property-name\`} markers.
+Every property value will be scanned for `$\{property-name}` markers.
 Where these are found the marker will be replaced with the value of the associated `property-name`.
 
 _Example:_
@@ -109,7 +108,7 @@ _Example:_
 There are two places in which the `mangen.osgi.level` Property is used:
 
 * internally within `mangen` to determine the correct format of Manifest headers to be processed and generated.
-* as a means to guide which rulesets are executed, using the link:{{ refs.-variableexpansionsyntax.path }}[variable-expansion syntax]
+* as a means to guide which rulesets are executed, using the xref:#_configuring_mangen_with_properties[variable-expansion syntax]
 
 At present, this Property should be set to a value of '3' or '4' (the default if not specified will be '3');
 
@@ -134,7 +133,7 @@ The following example shows a ruleset definition for 2 rules:
 As shown in the example, `mangen` will take each ruleset name and look for sequentially numbered properties, starting from 0 and finishing when no property name is found.
 Each rule found will be executed to completion against the processed set of bundle JARs before the next rule property is processed.
 
-Rulesets can be combined with link:{{ refs.-variableexpansionsyntax.path }}[variable-expansion] to provide OSGi version dependent rules as shown the following example.
+Rulesets can be combined with xref:#_configuring_mangen_with_properties[variable-expansion] to provide OSGi version dependent rules as shown the following example.
 
      mangen.osgi.level=3
      mangen.rulesets=mangen-rule-R${mangen.osgi.level}-
@@ -150,9 +149,9 @@ Rules themselves are simply specified as a rule type followed by a space separat
      mangen-rule-basic-0=Ignore imports(${mangen.R4.syspackages})
      mangen-rule-basic-1=DontImportOwnExports
 
-See the link:{{ refs.-mangenrules.path }}[Rules] section for full details of the currently support rule types.
+See the xref:#_rules[Rules] section for full details of the currently support rule types.
 
-==== mangen-report-
+==== mangen-report
 
 Reports in `mangen` work in a similar fashion to rules but without the ruleset concept.
 The set of sequentially numbered `mangen-report-` properties will be scanned to determine which reports should be run e.g.
@@ -160,7 +159,7 @@ The set of sequentially numbered `mangen-report-` properties will be scanned to 
      mangen-report-0=RuleReport .*
      mangen-report-1=BundleReport .*
 
-See the link:{{ refs.-mangenreports.path }}[Reports] section for full details of the currently support report types.
+See the xref:#_reports[Reports] section for full details of the currently support report types.
 
 ==== mangen.failonerror
 
@@ -357,7 +356,7 @@ One other aspect to note with the Merge option is that it also provides an alter
 
 By default, `mangen` will not actually process any of the JAR files specified, it will simply create objects to access them.
 
-Being able to skip `mangen` processing of bundle JARs is useful behaviour in a small number of instances, such as the link:{{ refs.-obrreport.path }}[ObrReport] that will generally be run against existing bundle Manifest headers rather than `mangen` generated sets of imports and exports.
+Being able to skip `mangen` processing of bundle JARs is useful behaviour in a small number of instances, such as the xref:#_obrreport[ObrReport] that will generally be run against existing bundle Manifest headers rather than `mangen` generated sets of imports and exports.
 
 For most cases, however, `mangen` import and export processing will be required and this Rule should be included.
 
@@ -519,8 +518,7 @@ The following third party libraries are also included in the distribution:
 
 Thanks also go to the following contributors:
 
-* link:{{ refs.mailto-heavy-ungoverned-org.path }}[Richard S.
-Hall] - both for his assistance in the development and testing of `mangen` and for his contribution of the ASM based class scanning implementation.
+* link:{{ refs.mailto-heavy-ungoverned-org.path }}[Richard S. Hall] - both for his assistance in the development and testing of `mangen` and for his contribution of the ASM based class scanning implementation.
 
 == Extending `mangen`
 
@@ -589,9 +587,9 @@ The change history has been maintained here for completeness.
 
 ===== Version 0.1.2
 
-* Inclusion of link:{{ refs.-obrreport.path }}[ObrReport] for generation of OBR descriptors _[ oscar-osgi-Feature Requests-1221468 ]_
+* Inclusion of xref:#_obrreport[ObrReport] for generation of OBR descriptors _[ oscar-osgi-Feature Requests-1221468 ]_
 * Removed "default" processing of JARs.
-Now an explicit link:{{ refs.-processbundles.path }}[ProcessBundles] must be included to force JAR processing to take place.
+Now an explicit xref:#_processbundles[ProcessBundles] must be included to force JAR processing to take place.
 This allows reports, such as the new ObrReport to skip `mangen` import/export processing and just work from existing manifests.
 * default `mangen.properties` now explicitly lists each non java.* package rather than using wildcards, proved safer and more reliable when creating OSGi R4 manifests
 
@@ -626,7 +624,7 @@ Those which are more speculative have been left below.
 
 [cols=3*]
 |===
-| Extending the concept of link:{{ refs.-manifestlessusage.path }}[Manifest-less usage] comes an interesting possibility that a specific OSGi platform such as [Oscar
+| Extending the concept of Manifest-less usage (no link) comes an interesting possibility that a specific OSGi platform such as [Oscar
 | http://oscar.objectweb.org/] could be extended to load any JAR and automatically 'fix-up' a usable Manifest.
 This would require internal access/knowledge of the specific platform's implementation since the existing standard OSGi API would not supply sufficient details and access to the set of loaded bundle JARs.
 Additionally, it would probably need to be a "multi-step" process since until a largely complete set of bundle JARs were loaded it may not be possible to resolve all imports and exports.

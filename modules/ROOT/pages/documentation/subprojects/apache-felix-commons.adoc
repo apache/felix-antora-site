@@ -20,17 +20,17 @@ For Apache purposes, contributing a bundle POM is the same as contributing code.
 
 == Getting Started
 
-In most cases, creating bundlized versions of a library is as simple as creating a POM file for the library using Felix' new link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[Maven Bundle Plugin].
+In most cases, creating bundlized versions of a library is as simple as creating a POM file for the library using Felix' new xref:documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[Maven Bundle Plugin].
 The OSGi headers are non-intrusive.
 A JAR can be made in such a way that it runs on the Classpath as well as a bundle in an OSGi framework.
 In short you:
 
-. Set the groupId to:+++<groupId>+++org.apache.felix.commons+++</groupId>+++
-. Append "-osgi" to the name of the artifact:+++<artifactId>+++FOO-osgi+++</artifactId>+++
-. Set the "packaging" to use the Maven Bundle Plugin:+++<packaging>+++bundle+++</packaging>+++
-. Set any configuration options in the link:{{ refs.apache-felix-maven-bundle-plugin-bnd.path }}[Maven Bundle Plugin].
+. Set the groupId to: `<groupId>org.apache.felix.commons</groupId>`
+. Append "-osgi" to the name of the artifact: `<artifactId>FOO-osgi</artifactId>`
+. Set the "packaging" to use the Maven Bundle Plugin: `<packaging>bundle</packaging>`
+. Set any configuration options in the xref:documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[Maven Bundle Plugin].
 
-We recommend you read the longer link:{{ refs.creating-bundles-using-bnd.path }}[steps for converting a library to a bundle].
+We recommend you read the longer xref:documentation/subprojects/apache-felix-commons/creating-bundles-using-bnd.adoc[steps for converting a library to a bundle].
 
 == Contributions
 

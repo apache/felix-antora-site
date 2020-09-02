@@ -1,6 +1,6 @@
 = Developing Camel mediators with iPOJO
 
-_The http://camel.apache.org/tutorial-osgi-camel-part1.html[Camel OSGi tutorial] provides a very simple and neat overview of Camel.
+_The http://camel.apache.org/tutorial-osgi-camel-part1.adoc[Camel OSGi tutorial] provides a very simple and neat overview of Camel.
 This article mentions the usage of iPOJO to implement the mediator.
 This document provides this implementation._
 
@@ -161,6 +161,6 @@ Before generating the bundle, we need to edit the {{pom.xml}} file to describe o
 == Step 6 & 7: Create the Camel context file and the bundle
 
 These steps are exactly the same as into the OSGi Camel Tutorial.
-So refer to the step 6 and 7 of the http://camel.apache.org/tutorial-osgi-camel-part1.html[article].
+So refer to the step 6 and 7 of the http://camel.apache.org/tutorial-osgi-camel-part1.adoc[article].
 That's it.
 Deploy and enjoy.

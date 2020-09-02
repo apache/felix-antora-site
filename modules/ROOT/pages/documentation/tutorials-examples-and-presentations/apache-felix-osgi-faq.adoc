@@ -102,7 +102,7 @@ To increase the complexity lets assume the API for the optional service may not 
 So assuming there is no service consumer, the bundle should not fail to start if the API is not available.
 
 Lets illustrate with a concrete example: Consider a bundle executes some business logic.
-Optionally the bundle provides information through the link:{{ refs.apache-felix-web-console.path }}[Apache Felix Web Console].
+Optionally the bundle provides information through the xref:documentation/subprojects/apache-felix-web-console.adoc[Apache Felix Web Console].
 The bundle should resolve and be active regardless of whether the web console is present or not.
 
 The OSGi Core specification has two helpful mechanism at hand for these situations: `ServiceFactory` and `DynamicImport-Package`.

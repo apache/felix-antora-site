@@ -19,7 +19,7 @@ Indeed, thanks to the configuration admin it should be possible to:
 * Create new component instances
 * Configuring / reconfiguring these instances
 * Destroying these instances
-* Reconfiguring instances by using Managed Services (not addressed in this page, see link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/configuration-handler.html[here] for further information)
+* Reconfiguring instances by using Managed Services (not addressed in this page, see xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/configuration-handler.adoc[here] for further information)
 
 The configuration admin is persistent, so stored configuration will be reload it the framework restarts.
 Moreover, using the configuration admin allows avoiding describing instances inside iPOJO metadata file.

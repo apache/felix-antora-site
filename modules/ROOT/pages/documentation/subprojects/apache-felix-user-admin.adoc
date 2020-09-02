@@ -4,8 +4,8 @@
 
 == Table of contents
 
-* link:{{ refs.apache-felix-user-admin-background.path }}[Background] explains the problem being solved and the main design goals;
-* link:{{ refs.apache-felix-user-admin-getting-started.path }}[Getting Started] helps you with the basic concepts by example;
-* link:{{ refs.apache-felix-user-admin-file-store.path }}[Using the file store] helps you with using the file-based repository store;
-* link:{{ refs.apache-felix-user-admin-mongodb-store.path }}[Using the MongoDB store] helps you with using the MongoDB-based repository store;
-* link:{{ refs.apache-felix-user-admin-custom-repository-store.path }}[Writing custom repository stores] helps you in writing your own repository store.
+* xref:documentation/subprojects/apache-felix-user-admin/apache-felix-user-admin-background.adoc[Background] explains the problem being solved and the main design goals;
+* xref:documentation/subprojects/apache-felix-user-admin/apache-felix-user-admin-getting-started.adoc[Getting Started] helps you with the basic concepts by example;
+* xref:documentation/subprojects/apache-felix-user-admin/apache-felix-user-admin-file-store.adoc[Using the file store] helps you with using the file-based repository store;
+* xref:documentation/subprojects/apache-felix-user-admin/apache-felix-user-admin-mongodb-store.adoc[Using the MongoDB store] helps you with using the MongoDB-based repository store;
+* xref:documentation/subprojects/apache-felix-user-admin/apache-felix-user-admin-custom-repository-store.adoc(broken link)Writing custom repository stores helps you in writing your own repository store.

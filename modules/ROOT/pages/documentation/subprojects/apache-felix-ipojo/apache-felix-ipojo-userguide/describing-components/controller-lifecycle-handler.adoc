@@ -2,7 +2,7 @@
 
 _The lifecycle controller allows a component implementation to participate to the instance lifecycle.
 So, you can immediately decide to stop an instance if the configuration is incorrect (correct properties, accessible resources...).
-The licecyel controller impacts the instance lifecycle, if you want to impact only the registered service, have a look to the service controller (link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/providing-osgi-services.html[service providing]._
+The licecyel controller impacts the instance lifecycle, if you want to impact only the registered service, have a look to the service controller (xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/providing-osgi-services.adoc[service providing]._
 
 
 

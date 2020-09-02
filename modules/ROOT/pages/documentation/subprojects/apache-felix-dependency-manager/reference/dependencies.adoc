@@ -22,10 +22,10 @@ If you don't, they'll be invoked on the component instance.
 
 Out of the box, several types of dependencies are supported:
 
-* link:dependency-service.html[Service]
-* link:dependency-configuration.html[Configuration]
-* link:dependency-bundle.html[Bundle]
-* link:dependency-resource.html[Resource]
+* xref:documentation/subprojects/apache-felix-dependency-manager/reference/dependency-service.adoc[Service]
+* xref:documentation/subprojects/apache-felix-dependency-manager/reference/dependency-configuration.adoc[Configuration]
+* xref:documentation/subprojects/apache-felix-dependency-manager/reference/dependency-bundle.adoc[Bundle]
+* xref:documentation/subprojects/apache-felix-dependency-manager/reference/dependency-resource.adoc[Resource]
 
 However, it's quite easy to add your own custom type of dependency too, as is described below.
 

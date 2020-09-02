@@ -1,6 +1,6 @@
 = Apache Felix Remote Shell
 
-The Apache Felix Remote Shell provided by the `org.apache.felix.shell.remote` bundle offers remote access to link:{{ refs.apache-felix-shell.path }}[Apache Felix Shell] and [Apache Felix Gogo] using telnet clients.
+The Apache Felix Remote Shell provided by the `org.apache.felix.shell.remote` bundle offers remote access to xref:documentation/subprojects/apache-felix-shell.adoc[Apache Felix Shell] and [Apache Felix Gogo] using telnet clients.
 The remote shell provides simple telnet access with no bells and whistles -- it just works.
 
 To use remote shell with the Felix shell, you have to install the `org.apache.felix.shell` bundle in addition to the `org.apache.felix.shell.remote` bundle.

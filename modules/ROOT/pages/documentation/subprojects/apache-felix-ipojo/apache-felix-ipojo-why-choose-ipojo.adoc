@@ -102,6 +102,6 @@ Moreover, iPOJO supports service isolation to get your own private service.
 
 == Conclusion
 
-link:{{ refs.ipojo-in-10-minutes.path }}[Give it a try!].
+xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.adoc[Give it a try!].
 
 For any questions or feedback, send an email on the link:mailto:users@felix.apache.org[users@felix.apache.org] mailing list (send a mail to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org] to subscribe).

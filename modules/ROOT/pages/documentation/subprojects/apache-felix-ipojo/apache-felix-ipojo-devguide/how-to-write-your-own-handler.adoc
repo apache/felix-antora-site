@@ -9,7 +9,7 @@ First, iPOJO concepts are briefly explained.
 The second section explains the steps to create a handler.
 The two last sections describes the implementation and the usage of two small example handlers : a Log Handler, logging messages inside the OSGi log service, and a Property Handler, injecting properties values inside fields.
 
-The code is available in this link:ipojo-handler-tutorial-project.zip[archive file].
+The code is available in this link:{attachmentsdir}/ipojo/ipojo-handler-tutorial-project.zip[archive file].
 
 == iPOJO Concepts
 

@@ -1,11 +1,11 @@
 = Apache Felix Shell
 
-* link:{{ refs.-overview.path }}[Overview]
-* link:{{ refs.-service.path }}[How the Shell Service Works]
-* link:{{ refs.-commands.path }}[How Commands Work]
-* link:{{ refs.-creating.path }}[Creating a Command]
-* link:{{ refs.-security.path }}[Security and the Shell Service]
-* link:{{ refs.-feedback.path }}[Feedback]
+* xref:#_overview[Overview]
+* xref:#_how_the_shell_service_works[How the Shell Service Works]
+* xref:#_how_commands_work[How Commands Work]
+* xref:#_creating_a_command[Creating a Command]
+* xref:#_security_and_the_shell_service[Security and the Shell Service]
+* xref:#_feedback[Feedback]
 
 == Overview
 
@@ -250,7 +250,7 @@ Security handling may change in future release after some experience is gained t
 
 [cols=2*]
 |===
-| Subscribe to the Felix users mailing list by sending a message to link:{{ refs.mailto-users-subscribe-felix-apache-org.path }}[users-subscribe@felix.apache.org];
+| Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe-felix-apache-org[users-subscribe@felix.apache.org];
 after subscribing, email questions or feedback to [users@felix.apache.org
 | mailto:users@felix.apache.org].
 |===

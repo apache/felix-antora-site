@@ -7,7 +7,7 @@ The Apache Felix Maven SCR Plugin is a great tool to ease the development of OSG
 Components and services are defined through annotations and the plugin creates the necessary descriptors for the OSGi Declarative Services, Config Admin and Metatype services.
 Recent versions of the plugin support OSGi Declarative Services versions 1.0, 1.1, and 1.2.
 
-Make sure to see the link:{{ refs.apache-felix-scr-plugin-faq.path }}[FAQ] for known problems.
+Make sure to see the xref:documentation/faqs/apache-felix-scr-plugin-faq.adoc[FAQ] for known problems.
 
 == Introduction
 
@@ -56,12 +56,12 @@ The descriptions of the data is provided in one or more XML files and associated
 
 == Where to go from here
 
-* link:{{ refs.apache-felix-maven-scr-plugin-use.path }}[{{ refs.apache-felix-maven-scr-plugin-use.headers.excerpt }}]
-* link:{{ refs.apache-felix-scr-ant-task-use.path }}[{{ refs.apache-felix-scr-ant-task-use.headers.excerpt }}]
-* link:{{ refs.apache-felix-scr-bndtools-use.path }}[{{ refs.apache-felix-scr-bndtools-use.headers.excerpt }}]
-* link:{{ refs.scr-annotations.path }}[{{ refs.scr-annotations.headers.excerpt }}]
-* link:{{ refs.scr-javadoc-tags.path }}[{{ refs.scr-javadoc-tags.headers.excerpt }}]
-* link:{{ refs.extending-scr-annotations.path }}[{{ refs.extending-scr-annotations.headers.excerpt }}]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-ant-task-use.adoc[]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.adoc[]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/scr-annotations.adoc[]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/scr-javadoc-tags.adoc[]
+* xref:documentation/subprojects/apache-felix-maven-scr-plugin/extending-scr-annotations.adoc[]
 
 == Differences between JavaDoc tags and annotations
 

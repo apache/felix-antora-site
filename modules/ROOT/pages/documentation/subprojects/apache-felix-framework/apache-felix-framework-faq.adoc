@@ -4,15 +4,15 @@
 
 == Is the Felix framework compliant with the OSGi specification?
 
-Refer to the link:{{ refs.apache-felix-framework-osgi-r4-2-ct-results.path }}[Apache Felix Framework OSGi R4.2 CT Results] document.
+Refer to the BROKEN_LINK xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-osgi-r4-2-ct-results[Apache Felix Framework OSGi R4.2 CT Results] document.
 
 == If I use bundles from Felix, will my application be tied to the Felix framework?
 
-See the answer in the link:{{ refs.apache-felix-osgi-faq-felix-dependencies.path }}[OSGi FAQ].
+See the answer in the BROKEN_LINK xref:documentation/subprojects/apache-felix-framework/apache-felix-osgi-faq-felix-dependencies.adoc[OSGi FAQ].
 
 == When I update my bundle, why are my bundle's old classes still being used?
 
-See the answer in the link:{{ refs.apache-felix-osgi-faq-bundle-not-updated.path }}[OSGi FAQ].
+See the answer in the BROKEN_LINK xref:documentation/subprojects/apache-felix-framework/apache-felix-osgi-faq-bundle-not-updated.adoc[OSGi FAQ].
 
 == Why do I get an "Unknown protocol: http" exception when I run Felix on a non-Sun JRE?
 

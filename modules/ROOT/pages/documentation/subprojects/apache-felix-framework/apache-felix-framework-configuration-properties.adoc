@@ -1,10 +1,10 @@
 = Apache Felix Framework Configuration Properties
 
-* link:{{ refs.-overview.path }}[Overview]
-* link:{{ refs.-framework.path }}[Framework configuration properties]
-* link:{{ refs.-launcher.path }}[Launcher configuration properties]
-* link:{{ refs.-migrating.path }}[Mirgrating from earlier versions]
-* link:{{ refs.-feedback.path }}[Feedback]
+* xref:#_overview[Overview]
+* xref:#_framework_configuration_properties[Framework configuration properties]
+* xref:#_launcher_configuration_properties[Launcher configuration properties]
+* xref:#_migrating_from_earlier_versions[Migrating from earlier versions]
+* xref:#_feedback[Feedback]
 
 == Overview
 
@@ -129,7 +129,7 @@ For the most part, these changes are minor and previous behavior achieved from o
 
 [cols=2*]
 |===
-| Subscribe to the Felix users mailing list by sending a message to link:{{ refs.mailto-users-subscribe-felix-apache-org.path }}[users-subscribe@felix.apache.org];
+| Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
 after subscribing, email questions or feedback to [users@felix.apache.org
 | mailto:users@felix.apache.org].
 |===

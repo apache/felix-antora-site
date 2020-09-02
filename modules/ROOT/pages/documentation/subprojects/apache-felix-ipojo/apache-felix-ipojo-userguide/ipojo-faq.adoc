@@ -176,7 +176,7 @@ Moreover, iPOJO is weekly tested on Apache Felix, Eclipse Equinox and Knopflerfi
 
 [cols=2*]
 |===
-| For further information, refer to the link:{{ refs.apache-felix-ipojo-supportedosgi.path }}[supported OSGi implementations] page and on this [blog
+| For further information, refer to the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-supportedosgi.adoc[supported OSGi implementations] page and on this [blog
 | http://ipojo-dark-side.blogspot.com/2008/11/lessons-learned-from-ipojo-testing.html] post.
 |===
 
@@ -238,9 +238,9 @@ The iPOJO bundle is downloaded from the central maven repository.
 [cols=2*]
 |===
 | Thanks to File install you can create, disposed and reconfigure instances from _cfg_ files.
-You can also reconfiguring a creatged instance (configured to expose a http://felix.apache.org/site/configuration-handler.html#ConfigurationHandler-ExposingaManagedService[ManagedService]) with _cfg_ files too.
+You can also reconfiguring a creatged instance (configured to expose a xref:configuration-handler.adoc#ConfigurationHandler-ExposingaManagedService[ManagedService]) with _cfg_ files too.
 More information about this topic is available [here
-| http://ipojo-dark-side.blogspot.com/2009/04/ipojo-and-file-install-configuring.html].
+| http://ipojo-dark-side.blogspot.com/2009/04/ipojo-and-file-install-configuring.adoc].
 |===
 
 == iPOJO handler _start_ level

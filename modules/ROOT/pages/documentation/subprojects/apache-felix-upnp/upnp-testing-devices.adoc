@@ -49,5 +49,6 @@ the content of the UDP communication).
 * The "Print Pending Devices" is a utility menu to verify whether incomplete hierarchy of embedded devices have been registered with the framework.
 * The "Check Errata UPnPDevices" menu may help the user verify that all the local UPnP Devices have been registered with the mandatory properties, otherwise they would not be exported.
 
-[discrete]
-===== link:{{ refs.upnp-driver-architecture.path }}[Overview of the Base Driver Architecture] [The Felix UPnP Examples| UPnP Examples]
+//
+* xref:documentation/subprojects/apache-felix-upnp/upnp-driver-architecture.adoc[Overview of the Base Driver Architecture]
+* xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices/upnp-examples.adoc[The Felix UPnP Examples| UPnP Examples]

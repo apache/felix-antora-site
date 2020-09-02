@@ -50,7 +50,7 @@ The loopback interface is usually disabled :
 • _felix.upnpbase.cyberdomo.net.loopback_ (default false) • _felix.upnpbase.cyberdomo.net.onlyIPV4_ (default true) • _felix.upnpbase.cyberdomo.net.onlyIPV6_ (default false)
 
 [discrete]
-===== link:{{ refs.upnp-getting-started.path }}[Getting Started]  [Testing UPnP Devices| UPnP Testing Devices]
+===== xref:documentation/subprojects/apache-felix-upnp/upnp-getting-started.adoc[Getting Started]  [Testing UPnP Devices| UPnP Testing Devices]
 
 '''
 

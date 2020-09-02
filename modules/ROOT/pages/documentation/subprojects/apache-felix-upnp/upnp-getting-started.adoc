@@ -1,6 +1,6 @@
 = Getting Started
 
-Assuming that, as described in link:{{ refs.building-felix.path }}[Building Felix] web page, you have already checked out the Felix project in the $FELIX__HOME directory, the Felix UPnP project is located at $FELIX__HOME/trunk/upnp directory.
+Assuming that, as described in xref:documentation/subprojects/building-felix.adoc[Building Felix] web page, you have already checked out the Felix project in the $FELIX__HOME directory, the Felix UPnP project is located at $FELIX__HOME/trunk/upnp directory.
 The project is organized in different directories shown in Figure 1.
 
 !UPnP-Project-Structure.jpg!
@@ -23,7 +23,7 @@ _Figure 2_ Bundles installed by the script "upnp.sh.bat"
 [cols=2*]
 |===
 | To stop the devices launched by the script you can close their windows, while to start them again type "start 10 11 12 13" from the Felix shell.
-See the sections "link:{{ refs.upnp-testing-devices.path }}[Testing UPnP devices]" and "[The UPnP Examples
+See the sections "xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices.adoc[Testing UPnP devices]" and "[The UPnP Examples
 | UPnP Examples]" for details on how to use the these bundles.
 |===
 
@@ -34,8 +34,7 @@ The UPnP Base Driver can be built also with the JDK1.3 as target;
 to this end you have to define the "platform" property in the command line: type "mvn Dplatform=jdk13 install" from the /upnp/basedriver directory.
 For details on configuring your Eclipse IDE see [3]({{ refs.3.path }}).
 
-[discrete]
-=== Common Issues
+== Common Issues
 
 If you experience problems discovering the UPnP devices of your network:
 
@@ -48,8 +47,9 @@ The base driver by default is configured for not using the localhost as loopback
 If you want to run and test UPnP devices on a machine disconnected by any network, you should install and activate a loopback interface.
 Pay attention to disable the loopback interface when you are connected to a network again, otherwise both interfaces will be used to expose the UPnP services registered with the framework.
 
-[discrete]
-===== link:{{ refs.apache-felix-upnp.path }}[Introduction]  [Overview of the Base Driver Architecture|UPnP Driver architecture]
+//
+* xref:documentation/subprojects/apache-felix-upnp.adoc[Introduction]
+* xref:documentation/subprojects/apache-felix-upnp/upnp-driver-architecture.adoc[UPnP Driver architecture]
 
 '''
 

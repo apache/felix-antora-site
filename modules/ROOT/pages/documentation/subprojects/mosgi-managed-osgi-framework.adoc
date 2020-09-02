@@ -23,7 +23,7 @@ The overall architecture is presented in the following picture :
 == How it works
 
 Managed OSGi gateways can install JMX probes from various repositories.
-A JMX probe is a standard OSGi bundle that registers an link:{{ refs.-mbean.path }}[#MBean] component in the managed gateway's JMX agent.
+A JMX probe is a standard OSGi bundle that registers an xref:#_mbean_definition[#MBean] component in the managed gateway's JMX agent.
 
 The management console (running in a standard OSGi framework) is connected to each gateway through the JMX remoting protocol.
 When it connects for the first time to a managed gateway, it asks for probes that are installed (i.e.
@@ -97,7 +97,7 @@ These bundles are :
 * OSGi Platform : a probe that gets information from current 	running gateway
 
 These plugin are developed as simple examples and are available in felix repository.
-A link:{{ refs.probeguide.path }}[ProbeGuide] that  describes plugin integration is available.
+A xref:documentation/subprojects/mosgi-managed-osgi-framework/probeguide.adoc[ProbeGuide] that  describes plugin integration is available.
 Plugin are dynamically removed and reinstalled each time you change your selected gateway.
 
 [discrete]

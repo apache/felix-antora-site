@@ -67,4 +67,4 @@ Moreover, if you use 'advanced' XML Editor supporting schemas, editing iPOJO des
 
 The manipulator embeds the iPOJO XML Schemas to avoid using a network connection to download them during the validation process.
 Keep the same url, the manipulator will just resolve the URL differently to use embedded schemas.
-You can also skipped this shortcut thanks the the `ignoreEmbeddedSchemas` parameter (refer to the link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-ant-task.html[Ant Task]) and to the link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-maven-plug-in.html[Maven Plugin] for further information about configuration).
+You can also skipped this shortcut thanks the the `ignoreEmbeddedSchemas` parameter (refer to the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-ant-task.adoc[Ant Task]) and to the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-maven-plug-in.adoc[Maven Plugin] for further information about configuration).

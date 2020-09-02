@@ -8,12 +8,12 @@ This page aims to answer to the following question: "What can I write in my iPOJ
 Core features are provided with the iPOJO runtime bundles.
 You can use it directly, as soon as the iPOJO runtime is deployed.
 
-* link:{{ refs.service-requirement-handler.path }}[How to require a service]
-* link:{{ refs.providing-osgi-services.path }}[How to publish and provide a service]
-* link:{{ refs.lifecycle-callback-handler.path }}[How to react to lifecycle state changes]
-* link:{{ refs.configuration-handler.path }}[How to description component configuration]
-* link:{{ refs.architecture-handler.path }}[How to enable/disable instance introspection]
-* link:{{ refs.controller-lifecycle-handler.path }}[How to act on the instance state from the implementation]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/service-requirement-handler.adoc[How to require a service]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/providing-osgi-services.adoc[How to publish and provide a service]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/lifecycle-callback-handler.adoc[How to react to lifecycle state changes]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/configuration-handler.adoc[How to description component configuration]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/architecture-handler.adoc[How to enable/disable instance introspection]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/controller-lifecycle-handler.adoc[How to act on the instance state from the implementation]
 
 == Extensions
 
@@ -21,14 +21,14 @@ Extensions _extend_ the iPOJO model to add a specific functionality.
 This is made thanks to the external handler mechanism.
 So before using one of these features, deploy the attached external handler.
 
-* link:{{ refs.event-admin-handlers.path }}[How to receive and send events with the Event Admin]
-* link:{{ refs.ipojo-jmx-handler.path }}[How to reconfigure instances with JMX]
-* link:{{ refs.extender-pattern-handler.path }}[How to implement an extender pattern]
-* link:{{ refs.white-board-pattern-handler.path }}[How to implement a whiteboard pattern]
-* link:{{ refs.temporal-service-dependency.path }}[How to wait for services and inject proxies]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/event-admin-handlers.adoc[How to receive and send events with the Event Admin]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/ipojo-jmx-handler.adoc[How to reconfigure instances with JMX]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/extender-pattern-handler.adoc[How to implement an extender pattern]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/white-board-pattern-handler.adoc[How to implement a whiteboard pattern]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/temporal-service-dependency.adoc[How to wait for services and inject proxies]
 
 == A missing functionality ?
 
 iPOJO component model is extensible.
 So, you can implement your own handler managing you specific requirement.
-Refer the handler development guide (link:{{ refs.how-to-write-your-own-handler.path }}[How to write your own handler]) for more details.
+Refer the handler development guide (xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/how-to-write-your-own-handler.adoc[How to write your own handler]) for more details.

@@ -24,7 +24,7 @@ The JUnit4OSGi framework allows you to :
 Interested by `junit4osgi`...
 start the adventure !
 
-* link:{{ refs.apache-felix-ipojo-junit4osgi-tutorial.path }}[Tutorial]
-* link:{{ refs.apache-felix-ipojo-junit4osgi-methods.path }}[OSGi and firends methods]
-* link:{{ refs.apache-felix-ipojo-junit4osgi-architecture.path }}[junit4osgi architecture]
-* link:{{ refs.apache-felix-ipojo-junit4osgi-maven.path }}[Running your test in Maven]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-junit4osgi/apache-felix-ipojo-junit4osgi-tutorial.adoc[Tutorial]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-junit4osgi/apache-felix-ipojo-junit4osgi-methods.adoc[OSGi and firends methods]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-junit4osgi/apache-felix-ipojo-junit4osgi-architecture.adoc[junit4osgi architecture]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-junit4osgi/apache-felix-ipojo-junit4osgi-maven.adoc[Running your test in Maven]

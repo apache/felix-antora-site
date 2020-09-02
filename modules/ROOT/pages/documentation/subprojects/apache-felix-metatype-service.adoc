@@ -5,7 +5,7 @@ This information can optionally be localized, thus allowing the developer to pro
 The specification defines a rich dynamic typing system to describe service attributes in a precise way, which makes it possible to dynamically create user interfaces to configure services.
 
 The simplest way to specify service metatype information is to add one or more XML files in the `OSGI-INF/metatype` folder.
-For example, the `OSGI-INF/metatype/metatype.xml` file included in the link:{{ refs.apache-felix-file-install.path }}[Apache Felix File Install] subproject is as follows:
+For example, the `OSGI-INF/metatype/metatype.xml` file included in the xref:documentation/subprojects/apache-felix-file-install.adoc[Apache Felix File Install] subproject is as follows:
 
 ....
 <?xml version="1.0" encoding="UTF-8"?>
@@ -51,7 +51,7 @@ The following types are supported by the specification:
 == Localization
 
 As mentioned before, it is possible to localize metatype information.
-A good example is the link:{{ refs.apache-felix-web-console.path }}[Apache Felix Web Console] subproject, which includes the following metatype information:
+A good example is the xref:documentation/subprojects/apache-felix-web-console.adoc[Apache Felix Web Console] subproject, which includes the following metatype information:
 
 ....
 <?xml version="1.0" encoding="UTF-8"?>

@@ -338,7 +338,7 @@ The performed tests give out the following results :
 |===
 | So now you know everything required to run test inside OSGi.
 You can start developing your own test.
-To help you a little bit, junit4osgi provides link:{{ refs.apache-felix-ipojo-junit4osgi-methods.path }}[utilities methods] greatly reducing the amount of code to write in your tests.
+To help you a little bit, junit4osgi provides xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-junit4osgi/apache-felix-ipojo-junit4osgi-methods.adoc[utilities methods] greatly reducing the amount of code to write in your tests.
 Moreover, if you're a Maven user, the [maven-junit4osgi-plugin
 | apache-felix-ipojo-junit4osgi-maven] is made for you.
 It just runs your test directly during the maven build process.

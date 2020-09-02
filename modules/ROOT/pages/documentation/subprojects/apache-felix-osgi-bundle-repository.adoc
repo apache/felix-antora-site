@@ -177,7 +177,7 @@ Unfortunately, this may not be the case, thus the deployment algorithm might hav
 In response to this type of scenario, the OBR deployment algorithm tries to favor updating existing bundles, if possible, as opposed to installing new bundles to satisfy dependencies.
 
 In the general case, OBR user's will not use the OBR API directly, but will use its functionality indirectly from another tool or user interface.
-For example, interactive access to OBR is available via a command for Felix' link:{{ refs.apache-felix-shell.path }}[shell service].
+For example, interactive access to OBR is available via a command for Felix' xref:documentation/subprojects/apache-felix-shell.adoc[shell service].
 The OBR shell command is discussed in the next section.
 
 == OBR Shell Command

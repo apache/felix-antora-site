@@ -32,7 +32,7 @@ Java:
 | specifies the component class name
 |===
 
-* link:{{ refs.how-to-use-ipojo-factories.path }}[How-to use iPOJO factories]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/how-to-use-ipojo-factories.adoc[How-to use iPOJO factories]
 
 == Creating component instances
 
@@ -109,7 +109,7 @@ Java:
 | specifies the service object creation policy among `singleton`, `service` (OSGi Service Factory), `method` (use the factory method), `instance` (an object per instance)
 |===
 
-* link:{{ refs.providing-osgi-services.path }}[Providing OSGi services]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/providing-osgi-services.adoc[Providing OSGi services]
 
 == Publishing service properties
 
@@ -177,7 +177,7 @@ public class ProvidesProperties implements FooService, BarService {
 | specified the property type
 |===
 
-* link:{{ refs.providing-osgi-services.path }}[Providing OSGi services]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/providing-osgi-services.adoc[Providing OSGi services]
 
 == Using services with field injection
 
@@ -266,7 +266,7 @@ This attribute is required when the service type cannot be inferred from the cod
 | specifies the comparator class used to sort service providers
 |===
 
-* link:{{ refs.service-requirement-handler.path }}[Service Requirement Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/service-requirement-handler.adoc[Service Requirement Handler]
 
 == Using services with method injection
 
@@ -354,7 +354,7 @@ The ``method`` attribute specified the method to call.
 The ``modified` callback is called when the service properties of a bound service are modified and the service still match the filter.
 \{center} \{div}
 
-* link:{{ refs.service-requirement-handler.path }}[Service Requirement Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/service-requirement-handler.adoc[Service Requirement Handler]
 
 == Configuring service dependencies in the instance configuration
 
@@ -406,7 +406,7 @@ Configuring the `from` attribute
 
 {div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | immediate | no | false // true for instances that don't provide a service | specifies if the instance is immediate or not | \{center} \{div}
 
-* link:{{ refs.lifecycle-callback-handler.path }}[Lifecycle Callback Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/lifecycle-callback-handler.adoc[Lifecycle Callback Handler]
 
 === Lifecycle callbacks
 
@@ -429,7 +429,7 @@ public class Implementation {
 }
 ....
 
-* link:{{ refs.lifecycle-callback-handler.path }}[Lifecycle Callback Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/lifecycle-callback-handler.adoc[Lifecycle Callback Handler]
 
 == Declaring properties
 
@@ -456,7 +456,7 @@ public class Implementation {
 {div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | propagation | no | false | specifies if the properties propagation (properties are also published as service properties) is enabled or disabled | | managedservice | no | instance name | specifies the PID of the published managed service.
 // This value can be overidden by the `managed.service.pid` instance property | | name | no | field name or computed from the method name | specifies if the the property name | | value | no |  | specifies the default property value | | field | no | automatically detected with annotations | specifies the field in which the property value will be injected | | method | no | automatically detected with annotations | specifies the setter method in which the property value will be injected | | mandatory | no | false | specifies if the property has to receive a value from the instance configuration | \{center} \{div}
 
-* link:{{ refs.configuration-handler.path }}[Configuration Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/configuration-handler.adoc[Configuration Handler]
 
 == PostRegistration and PostUnregistration callbacks
 
@@ -477,7 +477,7 @@ public void unregistered(ServiceReference ref) {
 }
 ....
 
-* http://felix.apache.org/site/providing-osgi-services.html#ProvidingOSGiservices-Beingnotifiedoftheserviceregistrationandunregistration[Provided Service Handler]
+* xref:providing-osgi-services.adoc#ProvidingOSGiservices-Beingnotifiedoftheserviceregistrationandunregistration[Provided Service Handler]
 
 == Controlling service publication
 
@@ -489,7 +489,7 @@ public void unregistered(ServiceReference ref) {
  @ServiceController(value="false")
  private boolean controller
 
-* http://felix.apache.org/site/providing-osgi-services.html[Provided Service Handler]
+* xref:providing-osgi-services.adoc[Provided Service Handler]
 
 == Using 'arch'
 
@@ -498,8 +498,8 @@ public void unregistered(ServiceReference ref) {
 +
 {code:java|title=Felix Gogo}   ipojo:instances \=> displays instances name & state (equivalent to arch -instances)   ipojo:instance $instance_name \=> displays complete information about the instance $instance_name   ipojo:factories \=> display the list of available factories   ipojo:factory $factory_name \=> display complete information about the factory $factory_name   ipojo:handlers \=> list available handlers
 
-* link:{{ refs.ipojo-arch-command.path }}[iPOJO Arch Command]
-* link:{{ refs.architecture-handler.path }}[Architecture Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.adoc[iPOJO Arch Command]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/architecture-handler.adoc[Architecture Handler]
 
 == Temporal Dependencies
 
@@ -534,7 +534,7 @@ This attribute is required when the injected field is a Collection | | proxy | n
 Service injected as proxies can be given to collaborators | | filter | no |  no filter | Filter use to discover matching filter.
 | \{center} \{div}
 
-* link:{{ refs.temporal-service-dependency.path }}[Temporal Service Dependency]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/temporal-service-dependency.adoc[Temporal Service Dependency]
 
 == Sending and receiving events
 
@@ -701,7 +701,7 @@ the required Manifest key) | | onArrival | yes | | specifies the method called w
 The method receives the Bundle object and the extension value | | onDeparture | yes | | specifies the method called when a matching bundle leaves.
 The method receives the Bundle object | \{center} \{div}
 
-* link:{{ refs.extender-pattern-handler.path }}[Extender Pattern Handler]
+* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/extender-pattern-handler.adoc[Extender Pattern Handler]
 
 == Whiteboard Pattern
 
@@ -709,4 +709,4 @@ The method receives the Bundle object | \{center} \{div}
 * The whiteboard pattern handler is implemented as an _external handlers_.
 To use it, deploy and start the whiteboard pattern handler bundle.
 +
-:::xml+++<ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">++++++<component classname="org.apache.felix.ipojo.test.MyWhiteBoardPattern">++++++<wbp:wbp filter="(my.property=1)" onArrival="onArrival" onDeparture="onDeparture" onModification="onModification">++++++</wbp:wbp>+++ +++<provides>++++++</provides>++++++</component>+++ {code:java|title=Annotations} @Component @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)", onArrival="onArrival", onDeparture="onDeparture", onModification="onModification") public class WhiteBoardWIModification { public void onArrival(ServiceReference ref) { // \... } public void onDeparture(ServiceReference ref) { // \... } public void onModification(ServiceReference ref) { // \... } } \{center} |Attribute name | Required | Default value | | |--|--|--|--| | filter | yes | | specifies LDAP filter used to detect required service providers | | onArrival | yes | | specifies the method called when a matching service provider arrives. The method receives the ServiceReference object | | onDeparture | yes | | specifies the method called when a matching service provider leaves. The method receives the ServiceReference object | | omModification | no | | specifies the method called when a matching service provider is modified and is still matching. The method receives the ServiceReference object | \{center} * [White Board Pattern Handler]({{ refs.white-board-pattern-handler.path }})+++</ipojo>+++
+:::xml+++<ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">++++++<component classname="org.apache.felix.ipojo.test.MyWhiteBoardPattern">++++++<wbp:wbp filter="(my.property=1)" onArrival="onArrival" onDeparture="onDeparture" onModification="onModification">++++++</wbp:wbp>+++ +++<provides>++++++</provides>++++++</component>+++ {code:java|title=Annotations} @Component @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)", onArrival="onArrival", onDeparture="onDeparture", onModification="onModification") public class WhiteBoardWIModification { public void onArrival(ServiceReference ref) { // \... } public void onDeparture(ServiceReference ref) { // \... } public void onModification(ServiceReference ref) { // \... } } \{center} |Attribute name | Required | Default value | | |--|--|--|--| | filter | yes | | specifies LDAP filter used to detect required service providers | | onArrival | yes | | specifies the method called when a matching service provider arrives. The method receives the ServiceReference object | | onDeparture | yes | | specifies the method called when a matching service provider leaves. The method receives the ServiceReference object | | omModification | no | | specifies the method called when a matching service provider is modified and is still matching. The method receives the ServiceReference object | \{center} * [White Board Pattern Handler]({{ refs.white-board-pattern-handler.adoc)+++</ipojo>+++

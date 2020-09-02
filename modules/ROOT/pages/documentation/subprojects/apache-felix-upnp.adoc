@@ -14,10 +14,10 @@ However, the Felix UPnP project has defined few additional interfaces, so a base
 
 Table of Content:
 
-. link:{{ refs.-upnp-getting-started.path }}[Getting Started]
-. link:{{ refs.-upnp-driver-architecture.path }}[Overview of the Base Driver Architecture]
-. link:{{ refs.-upnp-testing-devices.path }}[Testing UPnP devices]
-. link:{{ refs.-upnp-examples.path }}[The UPnP examples]
-. link:{{ refs.-upnp-writing-cd-and-cp.path }}[Writing UPnP Devices and Control Points]
-. link:{{ refs.-upnp-known-issues.path }}[Known issues]
-. link:{{ refs.-upnp-acknowledgments.path }}[Acknowledgments]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-getting-started.adoc[Getting Started]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-driver-architecture.adoc[Overview of the Base Driver Architecture]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices.adoc[Testing UPnP devices]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices/upnp-examples.adoc[The UPnP examples]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices/upnp-examples/upnp-writing-cd-and-cp.adoc[Writing UPnP Devices and Control Points]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-known-issues.adoc[Known issues]
+. xref:documentation/subprojects/apache-felix-upnp/upnp-acknowledgments.adoc[Acknowledgments]

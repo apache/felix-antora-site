@@ -1,5 +1,7 @@
 = Site How To
 
+WARNING: This page is totaly wrong and needs to be rewritten.
+
 The site is managed with the https://www.apache.org/dev/cms.html[Apache CMS] where the source is kept in SVN at https://svn.apache.org/repos/asf/felix/site/trunk/content.
 
 == To update the documentation using the CMS system

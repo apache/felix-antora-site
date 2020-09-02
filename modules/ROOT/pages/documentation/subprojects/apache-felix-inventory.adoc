@@ -49,7 +49,7 @@ It should be descriptive but short.
 | `felix.inventory.printer.format`
 | --
 | The property defining the supported rendering formats.
-The value of this property is either a string or a string array containing valid names of link:/apidocs/inventory/1.0.0/org/apache/felix/inventory/Format.html[`Format`].
+The value of this property is either a string or a string array containing valid names of xref:apidocs/inventory/1.0.0/org/apache/felix/inventory/Format.html[`Format`].
 If this property is missing or contains invalid values, the printer is ignored.
 
 | `felix.inventory.printer.webconsole`
@@ -63,7 +63,7 @@ The first three properties are required for the Inventory Printer service to be 
 Otherwise the service is ignored by the framework printing a message to the log.
 
 To prevent bundle resolution failure if the `InventoryPrinter` API is not available in the framework it is suggested to register the Inventory Printer services as service factories and dynamically import the API.
-See the question link:{{ ref.apache-felix-osgi-faq.path }}#how-to-provide-optional-services[{{ ref.apache-felix-osgi-faq.title }}] in the Apache Felix OSGi FAQ for more details.
+See the question xref:documentation/tutorials-examples-and-presentations/apache-felix-osgi-faq.adoc#how-to-provide-optional-services[{{ ref.apache-felix-osgi-faq.title }}] in the Apache Felix OSGi FAQ for more details.
 
 === Example Inventory Printer Service
 

@@ -109,8 +109,8 @@ The latter interface can be used to change the log messages of the base driver a
 Two different methods are available to modify the log level of the base driver or to enable the visualization of low level messages related to the UPnP stack protocol (CyberDomo).
 Furthermore, the interface allows developers to send an M-SEARCH discovery message to the UPnP networks, thus refreshing the list of imported devices.
 
-[discrete]
-===== link:{{ refs.upnp-examples.path }}[The Felix UPnP Examples]  [Known Issues| UPnP Known Issues]
+* xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices/upnp-examples.adoc[The Felix UPnP Examples]
+* xref:documentation/subprojects/apache-felix-upnp/upnp-known-issues.adoc[Known Issues| UPnP Known Issues]
 
 '''
 

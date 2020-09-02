@@ -8,4 +8,4 @@ The driver is based on a modified version of the "UPnP for Java" library release
 This version, called CyberDomo, is currently maintained by the Domoware project team and aligned to the Cyberlink library regularly.
 |===
 
-== link:{{ refs.upnp-known-issues.path }}[Known Issues] <<
+== xref:documentation/subprojects/apache-felix-upnp/upnp-known-issues.adoc[Known Issues]

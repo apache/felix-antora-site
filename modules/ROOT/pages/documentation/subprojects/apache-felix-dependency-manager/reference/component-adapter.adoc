@@ -1,6 +1,6 @@
 = Dependency Manager - Adapter
 
-Adapters, like link:component-aspect.html[aspects], are used to "extend" existing services, and can publish  different services based on the existing one.
+Adapters, like xref:documentation/subprojects/apache-felix-dependency-manager/reference/component-aspect.adoc[aspects], are used to "extend" existing services, and can publish  different services based on the existing one.
 An example would be implementing a management interface.
 
 An adapter will be applied to any service that matches the specified interface and filter.

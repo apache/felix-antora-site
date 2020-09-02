@@ -38,5 +38,4 @@ Accessing the presentation page by means of a web browser you can switch the lig
 
 The source code for the Binary light is slightly different from the one for TV and Clock code because it has been written starting from a Light model which notifies its changes through the PropertyChangeListener interface.
 
-[discrete]
-===== link:{{ refs.upnp-testing-devices.path }}[Testing UPnP Devices]  [Writing UPnP Devices and Control Points| UPnP Writing CD and CP]
+=== xref:documentation/subprojects/apache-felix-upnp/upnp-testing-devices.adoc[Testing UPnP Devices]  [Writing UPnP Devices and Control Points| UPnP Writing CD and CP]

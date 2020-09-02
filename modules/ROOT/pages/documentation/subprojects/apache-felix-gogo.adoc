@@ -34,7 +34,7 @@ Welcome to Apache Felix Gogo
 g!
 ----
 
-Gogo shell integration in the framework distribution is also discussed in the link:{{ refs.apache-felix-framework-usage-documentation.path }}[framework usage document]
+Gogo shell integration in the framework distribution is also discussed in the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-usage-documentation.adoc[framework usage document]
 
 == Built in shell features
 
@@ -208,5 +208,5 @@ Types:
 == Origin in RFC 147
 
 Gogo is based on the OSGi RFC 147, which describes a standard shell for OSGi-based environments.
-See link:{{ refs.rfc-147-overview.path }}[RFC 147 Overview] for more information.
+See xref:documentation/subprojects/apache-felix-gogo/rfc-147-overview.adoc[RFC 147 Overview] for more information.
 Unfortunately this RFC was never made a standard.

@@ -73,7 +73,7 @@ However, SCA does not specify how the dynamism should be handled.
 The distinction between component types and instances When you declare a `<component>` (or a `<composite>`) in your metadata, you're declaring a component type.
 Then you declare instances from these component types.
 This mechanism is critic for the iPOJO composition.
-Indeed, inside a composite, you're able to create instances from any (public) component types (Refer to the link:{{ refs.how-to-use-ipojo-factories.path }}[Factory] web page for further details).
+Indeed, inside a composite, you're able to create instances from any (public) component types (Refer to the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/how-to-use-ipojo-factories.adoc[Factory] web page for further details).
 On the top of this mechanism, we can define the concept of service implementation.
 A service implementation is just a component type where the instances provide a service.
 For example, if the instance from a component type provides the service S, the component type is a service implementation of S, and so can be used to create a provider of S.
@@ -103,7 +103,7 @@ Then, you can test the different examples by copying and pasting commands from t
 
 == Let's start with a first composition
 
-In the link:{{ refs.ipojo-in-10-minutes.path }}[iPOJO in 10 minutes] tutorial, we created an application checking a sentence against dictionaries.
+In the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.adoc[iPOJO in 10 minutes] tutorial, we created an application checking a sentence against dictionaries.
 We'll reuse this simple application in this tutorial.
 So first, we need to implements several component types:
 

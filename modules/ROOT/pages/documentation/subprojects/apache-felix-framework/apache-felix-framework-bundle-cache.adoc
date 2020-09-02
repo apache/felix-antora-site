@@ -1,8 +1,8 @@
 =  Apache Felix Framework Bundle Cache
 
-* link:{{ refs.-introduction.path }}[Introduction]
-* link:{{ refs.-default-behavior.path }}[Default Behavior]
-* link:{{ refs.-configuring-behavior.path }}[Configuring Default Behavior]
+* xref:#_introduction[Introduction]
+* xref:#_default_behavior[Default Behavior]
+* xref:#_configuring_default_behavior[Configuring Default Behavior]
 
 == Introduction
 
@@ -85,7 +85,7 @@ either way it is necessary to increment the refresh count and rename the revisio
 == Configuring Default Behavior
 
 It is possible to modify the default behavior of Felix' bundle cache by setting certain configuration properties;
-see the link:{{ refs.apache-felix-framework-usage-documentation-configuring-framework.path }}[usage document] for information on how to set configuration properties for Felix.
+see the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-usage-documentation.adoc#_configuring_the_framework[usage document] for information on how to set configuration properties for Felix.
 Felix' bundle cache recognizes the following configuration properties:
 
 * `org.osgi.framework.storage` - Sets the directory to use as the bundle cache;

@@ -58,7 +58,7 @@ They are invoked sequentially.
 Service accepted by all tracking interceptors are composed the _matching set_.
 Notice that the OSGi LDAP filters are tracking interceptors.
 
-image::narrowing.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/narrowing.png[]
 
 Unlike service tracking interceptors, only one ranking interceptor can be plugged on a service dependency.
 The ranking interceptor transforms the matching set to the _selected set_ by selecting and sorting services.

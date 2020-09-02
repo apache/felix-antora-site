@@ -32,7 +32,7 @@ See also the following property in the org.apache.felix.dependencymanager.sample
 
 Here, all components will be handled by Executors provided by the ComponentExecutorFactory, except those having a package starting with "org.apache.felix.dependencymanager.samples.tpool" (because the threadpool is itself defined using the Dependency Manager API).
 
-You will find a full description of the new thread model in the link:../reference/thread-model.html[Reference] section.
+You will find a full description of the new thread model in the xref:documentation/subprojects/apache-felix-dependency-manager/reference/thread-model.adoc[Reference] section.
 
 == New features
 

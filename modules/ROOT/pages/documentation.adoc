@@ -2,18 +2,18 @@ Title: Documentation
 
 In an effort to make it easier to find desired documentation, we have divided our documentation section into the following six areas:
 
-* link:{{ refs.getting-started.path }}[Getting started] - This area captures a few links from the areas below that will help you get started with Felix.
-* link:{{ refs.faqs.path }}[FAQs] - This area captures all FAQ documentation, which typically varies from subproject to subproject.
-* link:{{ refs.community.path }}[Community] - This area captures documentation associated with how the Felix community works and how to become involved in it.
-* link:{{ refs.development.path }}[Development] - This area captures documentation for Felix developers or those interested in becoming Felix developers;
+* xref:documentation/getting-started.adoc[Getting started] - This area captures a few links from the areas below that will help you get started with Felix.
+* xref:documentation/faqs.adoc[FAQs] - This area captures all FAQ documentation, which typically varies from subproject to subproject.
+* xref:documentation/community.adoc[Community] - This area captures documentation associated with how the Felix community works and how to become involved in it.
+* xref:documentation/development.adoc[Development] - This area captures documentation for Felix developers or those interested in becoming Felix developers;
 this is not intended for Felix users although some information may be useful.
-* link:{{ refs.subprojects.path }}[Subprojects] - This area captures user documentation for the various Felix subprojects.
-* link:{{ refs.tutorials-examples-and-presentations.path }}[Tutorials, examples, and presentations] - This area captures general user documentation that does not necessarily fit into any single subproject.
+* xref:documentation/subprojects.adoc[Subprojects] - This area captures user documentation for the various Felix subprojects.
+* xref:documentation/tutorials-examples-and-presentations.adoc[Tutorials, examples, and presentations] - This area captures general user documentation that does not necessarily fit into any single subproject.
 
-In addition a https://felix.apache.org/sitemap.html[site map] is available as a table of contents of the site.
+In addition a xref:auto-index.adoc[site map] is available as a table of contents of the site.
 
-If you are unable to find the documentation you need, please ask on the link:{{ refs.mailinglists.path }}[mailing lists].
+If you are unable to find the documentation you need, please ask on the xref:{{ refs.mailinglists.adoc[mailing lists].
 Also, feedback on improving the documentation and/or organization of this site is welcome.
 
-_The Felix web site and documentation are managed with the https://www.apache.org/dev/cms.html[Apache CMS].
-For Apache Felix specific extensions see the link:{{refs.site-how-to.path}}[Site How-To]._
+_The Felix web site and documentation are managed with link:https://antora.org[Antora].
+For Apache Felix specific information see the xref:documentation/development/site-how-to.adoc[Site How-To]._

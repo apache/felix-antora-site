@@ -63,8 +63,8 @@ Almost everything is possible...
 == Going further
 
 * Want to go further;
-read the link:{{ refs.apache-felix-ipojo-why-choose-ipojo.path }}[Why choose iPOJO page].
+read the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-why-choose-ipojo.adoc[Why choose iPOJO page].
 * Want to try;
-look at the link:{{ refs.ipojo-in-10-minutes.path }}[iPOJO in 10 minutes tutorial]
+look at the xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ipojo-in-10-minutes.adoc[iPOJO in 10 minutes tutorial]
 * Want more information;
 feel free to send an email on link:mailto:users@felix.apache.org[users@felix.apache.org]

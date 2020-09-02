@@ -79,11 +79,11 @@ However, we're still setting everything correctly, it should be done shortly.
 * _iPOJO And Distributed Services_ : New tutorial about Distributed OSGi and iPOJO available.
 (2009-07-05)
 * _iPOJO web console plugin is now available_ : Manages your iPOJO system with the Apache Felix Web Console.
-More info link:{{ refs.ipojo-webconsole-plugin.path }}[here] (2009-06-30)
+More info xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-webconsole-plugin.adoc[here] (2009-06-30)
 * _iPOJO online manipulator is now available_ : It allows to avoid offline manipulation!
-More info link:{{ refs.apache-felix-ipojo-online-manipulator.path }}[here] (2009-04-22)
+More info xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/apache-felix-ipojo-online-manipulator.adoc[here] (2009-04-22)
 * _iPOJO API is now in the iPOJO Trunk_ : The iPOJO API is now available from the iPOJO Trunk (2009-02-09)
-* _Integrating iPOJO inside Eclipse_ : link:{{ refs.apache-felix-ipojo-eclipse-integration.path }}[How to don't break your compile & run cycle] (2009-02-05)
+* _Integrating iPOJO inside Eclipse_ : xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-eclipse-integration.adoc[How to don't break your compile & run cycle] (2009-02-05)
 * _Towards iPOJO 1.2.0_ : The release process has began (2009-01-15)
 * _Release of the Apache Felix iPOJO 1.0.0_ : iPOJO 1.0.0 is available in the http://felix.apache.org/downloads.cgi[download section], Enjoy!
 (2008-10-22)

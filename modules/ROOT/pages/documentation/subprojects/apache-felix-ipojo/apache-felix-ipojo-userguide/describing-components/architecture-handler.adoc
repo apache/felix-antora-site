@@ -4,7 +4,7 @@ _The architecture feature allows obtaining an architectural / component view of 
 It exposes a snapshot of the present instances & factories, the state of these instances...
 Moreover;
 iPOJO defines an 'arch' command displaying this architecture in Felix.
-You need to install link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.html[the arch command]._
+You need to install xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.adoc[the arch command]._
 
 
 
@@ -57,7 +57,7 @@ instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name
     handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
 ....
 
-More info on the `arch` command are available link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.html[here].
+More info on the `arch` command are available xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.adoc[here].
 
 == Technical information
 
