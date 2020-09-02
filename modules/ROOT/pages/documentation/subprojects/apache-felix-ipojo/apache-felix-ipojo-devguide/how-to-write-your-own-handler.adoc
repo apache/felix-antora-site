@@ -39,7 +39,7 @@ can interact with the POJO;
 can manage relations with external entity like database, or other POJOs...
 For example, a persistence handler may interact with a database to store and inject POJO state, while an administration handler may use JMX to allow remote configuration of instance properties.
 
-image::POJO-Container-Handler.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/POJO-Container-Handler.png[]
 
 iPOJO is an extensible model allowing developer to manage other non functional concerns.
 Indeed, handlers can be developed singly, without modifying the iPOJO core.
@@ -90,7 +90,7 @@ Refer to the <<annotations,annotations>> section.
 
 A handler lifecycle is composed of four different states.
 
-image::Handler-Lifecycle.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/Handler-Lifecycle.png[]
 
 * First, when iPOJO parses the metadata of a bundle, it detects that a certain component type use your handler (using XML qualified names, see the following _Using your handler_ section).
 When it finds such a reference, it initializes the handler by calling the `initializeComponentFactory()` method.

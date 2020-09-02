@@ -41,12 +41,12 @@ OBR defines the following entities:
 
 The following diagram illustrates the relationships among these entities:
 
-image::obr-entities.png[alt text]
+image::documentation/subprojects/obr-entities.png[alt text]
 
 The client has access to a federated set of repositories via the Repository Admin service;
 such as depicted in this view:
 
-image::obr-high-level.png[alt text]
+image::documentation/subprojects/obr-high-level.png[alt text]
 
 == OBR Repository File
 

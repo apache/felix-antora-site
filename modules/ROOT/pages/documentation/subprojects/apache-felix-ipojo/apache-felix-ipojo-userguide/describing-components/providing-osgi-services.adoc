@@ -39,7 +39,7 @@ In XML, to provide the service, the component type needs to contain the `<provid
          <provides/>
  </component>
 
-image::ps-foo.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/ps-foo.png[]
 
 The `<provides/>` or `@Provides` suffice to declare that each instance of this type will provide the FooService (for more info about instances see 'link:/documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/how-to-use-ipojo-factories.html[How to use iPOJO factories]`).
 The provided specifications can be discovered by analyzing the implementation class.
@@ -236,7 +236,7 @@ This case is useful when service properties are different for the different serv
                  </provides>
  </component>
 
-image::ps-foobar2.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/ps-foobar2.png[]
 
 === Service Property Propagation
 
@@ -244,7 +244,7 @@ The configuration handler has the possibility to propagate received properties t
 So, when the propagation is activated (on the `properties` element or on the `@Component` annotation), all properties received by the configuration handler will be propagated to all published services.
 If some properties are mapped on methods, these methods are invoked with the new value in argument.
 
-image::ps-propagation.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/ps-propagation.png[]
 
 If an instance configuration contains properties starting with `service.`, they are automatically propagated.
 In the following example, the `service.pid` is automatically propagated.

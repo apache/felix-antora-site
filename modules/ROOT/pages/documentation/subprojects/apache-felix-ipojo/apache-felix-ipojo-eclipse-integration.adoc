@@ -9,13 +9,13 @@ Bundles are executed inside Equinox._
 
 Download the link:MyiPOJOBundle-1.4.2.zip[project archive], and import it as an _Existing Project into the Workspace_
 
-image:Picture 1.png[] image:Picture 2.png[] image:Picture 3.png[]
+image:documentation/subprojects/apache-felix-ipojo/Picture 1.png[] image:documentation/subprojects/apache-felix-ipojo/Picture 2.png[] image:documentation/subprojects/apache-felix-ipojo/Picture 3.png[]
 
 Then click on _finish_
 
 == 2) Configure the target platform
 
-image:Picture 4.png[] image:Picture 5.png[]
+image:documentation/subprojects/apache-felix-ipojo/Picture 4.png[] image:documentation/subprojects/apache-felix-ipojo/Picture 5.png[]
 
 The resulting project, you looks like the left picture.
 
@@ -47,14 +47,14 @@ Once you're done, you are able to run your bundle !
 
 == 4) Run your bundle
 
-image::Picture 6.png[]
+image::documentation/subprojects/apache-felix-ipojo/Picture 6.png[]
 
 Right-click on the _.launch_ file and then go on _Run-As \-> MyiPOJOBundle_.
 Equinox will be started and your iPOJO bundle deployed and started: Once run for the first time, you can re-run it from the {\{run}} icon.
 In the console view, you get your Equinox shell, and you see your application result.
 If you don't edit the given development, the output is as:
 
-image::Picture 8.png[]
+image::documentation/subprojects/apache-felix-ipojo/Picture 8.png[]
 
 == Iterate :-)
 

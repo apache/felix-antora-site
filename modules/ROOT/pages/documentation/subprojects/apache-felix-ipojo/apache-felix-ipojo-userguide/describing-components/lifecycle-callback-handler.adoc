@@ -21,7 +21,7 @@ For example, an instance requiring a service (and so using the dependency handle
 
 An instance starts and stops in the invalid state.
 
-image::lifecycle.png[,25%]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/lifecycle.png[,25%]
 
 == Lifecycle callback
 
@@ -29,7 +29,7 @@ This handler supports two kinds of callback.
 The INVALID\=>VALID callback are invoked when the instance becomes valid (at starting or when an event allows the instance to become valid).
 The VALID\=>INVALID callback are invoked when the instance becomes invalid (at stopping or when an event invalids the instance).
 
-image::callback.png[,10%]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/callback.png[,10%]
 
 == An example
 
@@ -151,7 +151,7 @@ The constructor is call only once time.
 The validate callback is re-called each time the instance becomes valid.
 Components that do not provide services are automatically set as immediate.
 
-image::constructor.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/constructor.png[]
 
 To set a component as immediate you must add the `immediate` attribute to `component`:
 

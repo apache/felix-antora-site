@@ -32,7 +32,7 @@ The life cycle of the dependency manager itself, and the components it manages, 
 
 Each component you define gets its own life cycle, which is explained in the state diagram below.
 
-image::./diagrams/statediagram.png[State diagram,430]
+image::documentation/subprojects/apache-felix-dependency-manager/reference/diagrams/statediagram.png[State diagram,430]
 
 A component is associated with an instance.
 This instance can either be specified directly, or you can specify its class.

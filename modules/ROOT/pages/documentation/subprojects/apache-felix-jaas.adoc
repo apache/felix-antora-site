@@ -72,7 +72,7 @@ Any bundle which provides a LoginModule class needs to provide this information 
 JAAS module depends on OSGi Configuration for managing the LoginModule configuration.
 The configuration factory PID is `org.apache.felix.jaas.Configuration.factory`.It provides the required metatype descriptor thus enabling configuration via "Configuration" tab of Felix WebConsole
 
-image::jaas-config.png[]
+image::documentation/subprojects/jaas-config.png[]
 
 Configuration properties
 
@@ -287,7 +287,7 @@ Refer to http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/app/src/main/
 There are various ways in which LoginContext can be created depending on the usage mode.
 The JAAS support exposes following properties
 
-image::jaas-spi-config.png[]
+image::documentation/subprojects/jaas-spi-config.png[]
 
 * `Default JAAS Realm` - Name of the realm to use in case a LoginModule does not provide an explicit realmName.
 This is useful for single application mode where all LoginModule in an OSGi container are to be used.
@@ -306,7 +306,7 @@ This should minimize any disruption in shared mode
 
 The runtime JAAS realm is exposed via a WebConsole Plugin.
 
-image::jaas-plugin.png[]
+image::documentation/subprojects/jaas-plugin.png[]
 
 == Resources
 

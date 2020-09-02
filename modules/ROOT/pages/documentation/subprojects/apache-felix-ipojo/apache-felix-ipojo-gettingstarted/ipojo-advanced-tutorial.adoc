@@ -12,7 +12,7 @@ Both of the vendors implement (and provide) the vendor service.
 The hot dog vendor depends on two others services to get the ingredients (buns and wiener).
 To sell pop corn, the pop corn vendor requires having enough corn in stock.
 
-image::vendor.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/vendor.png[]
 
 == Preparing the tutorial
 

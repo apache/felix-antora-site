@@ -29,7 +29,7 @@ It consists of 5 bundles:
 * An Adder Service importer bundle containing the remote-service file explaining to DOSGi how to import and from where to import the Adder service.
 * An Adder Service consumer bundle.
 
-image::design.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/design.png[]
 
 The service implementation and consumer bundle are built using iPOJO.
 The Adder Service interface is as follows:
@@ -84,7 +84,7 @@ Once the shell prompt appears, execute the following command in the shell:
 
 At this point, the service should be available remotely (wait until the console stops printing stuff), you can check this by obtaining the WSDL: http://localhost:9090/adder?wsdl
 
-image::wsdl.png[,600px]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/wsdl.png[,600px]
 
 == The Adder Service Consumer
 

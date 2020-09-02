@@ -169,7 +169,7 @@ We expose now the attributes in the jmx:config tag in the metadata :
 
 Now, we could get and write the properties in the JConsole :
 
-image::JMXHandler_1.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/JMXHandler_1.png[]
 
 === Exposing Methods
 
@@ -213,7 +213,7 @@ We add corresponding tags in the metadata to expose these methods:
 Now the three methods are exposed in the operations tab of the JConsole.
 We can invoked these methods :
 
-image::JMXHandler_2.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/JMXHandler_2.png[]
 
 === Attribute Notifications:
 
@@ -229,7 +229,7 @@ In our example if we want to be notified when m_level is modified, we change the
 So now if we change the string through JConsole (or in the VisualVM) or if the POJO is modified in other way, a notification will be sent to every listener.
 For example, we subscribe in the notification tab, and we get notification when the message changes :
 
-image::JMXHandler_3.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/JMXHandler_3.png[]
 
 == Configuring the handler with annotations
 

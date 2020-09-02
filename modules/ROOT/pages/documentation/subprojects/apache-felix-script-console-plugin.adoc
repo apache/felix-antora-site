@@ -168,4 +168,4 @@ At times you need to access some private class to see the runtime state.
 
 == Screenshots
 
-image::script-console-1.png[]
+image::documentation/subprojects/script-console-1.png[]

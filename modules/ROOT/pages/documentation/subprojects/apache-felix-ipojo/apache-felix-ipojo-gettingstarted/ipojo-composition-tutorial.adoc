@@ -114,7 +114,7 @@ So first, we need to implements several component types:
 We will reuse the same implementation than in the previous tutorial.
 The current application is designed as follow:
 
-image::app1.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app1.png[]
 
 However, imagine that you want to isolate services provided and required by your application.
 For example, you want to isolate a stateful service or a critical (private) resource.
@@ -125,7 +125,7 @@ So, those services will be accessible only from instances living in the composit
 The GUI will also be instantiated inside the composite.
 The composition will be something like:
 
-image::app2.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app2.png[]
 
 The descriptor of this application is:
 
@@ -215,7 +215,7 @@ Now, when can deploy our composition:
 
 Once deployed and started, the fancy GUI appears:
 
-image::ss-comp.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ss-comp.png[]
 
 Now, you can check that the functional services are not unavailable outside the composite:
 
@@ -302,7 +302,7 @@ The `action` attribute specifies that we want to import the service from the par
 superior).
 The `specification` attribute indicates the required service.
 
-image::app3.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app3.png[]
 
 Now, relaunch Felix and enter another profile name (`composition2` for example).
 Once started, executes the following commands:
@@ -381,7 +381,7 @@ This means that the composite looks for an implementation of the Dictionary serv
 component type) inside the composition.
 If several implementations are available, the composite chooses one, and switches to another one if the used implementation becomes unavailable.
 
-image::app4.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app4.png[]
 
 To execute this composition, launch Felix and execute the following command:
 
@@ -479,7 +479,7 @@ In the previous composition, the composite exports the spell checker service.
 Moreover, the GUI is also created but in the global context.
 At runtime, the result will be as following:
 
-image::app5.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app5.png[]
 
 The composite published the spell checker service in the OSGi service registry.
 The GUI tracks this service in the OSGi service registry too.
@@ -593,7 +593,7 @@ The `composition5` contains an instance of the `composition4` and of the GUI.
 So the spell checker service exported by the composition4 is published inside the service context of the `composite 5` (the parent context).
 The GUI instance lives in this service context, and so can access to the exported Spell checker service.
 
-image::app6.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/app6.png[]
 
 To execute this composition, restart Felix and launch the following commands:
 

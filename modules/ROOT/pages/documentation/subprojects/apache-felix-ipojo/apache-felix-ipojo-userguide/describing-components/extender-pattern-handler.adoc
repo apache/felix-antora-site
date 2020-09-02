@@ -15,7 +15,7 @@ This architecture-style is based on two different roles:
 * The extender
 * The extension
 
-image::extender.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/extender.png[]
 
 The relation is basically a 1..n relation.
 The extender tracks extensions.

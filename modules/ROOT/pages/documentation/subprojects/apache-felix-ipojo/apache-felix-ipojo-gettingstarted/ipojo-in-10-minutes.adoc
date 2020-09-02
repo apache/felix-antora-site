@@ -50,7 +50,7 @@ This application is composed by three components:
 * A component requiring the dictionary service and providing a spellchecker service
 * A component requiring the spellchecker and providing an user interface
 
-image::spell.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/spell.png[]
 
 === Preparing the tutorial
 
@@ -553,13 +553,13 @@ As you can see, all our instances are valid.
 
 In the gui (that should have appeared), you can interact with the spell service by entering a passage and clicking on the check button:
 
-image::ss.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/ss.png[]
 
 Then, stop the _Dictionary_ service provider (with the _stop 8_) command.
 The GUI disappears.
 Indeed, Spell Checker service cannot be provided as it depends on the Dictionary service.
 
-image::spell2.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/spell2.png[]
 
 You can check the validity of the instances and see that the SpellChecker and the Gui are invalid.
 
@@ -574,7 +574,7 @@ The GUI reappears immediately.
 You can try to stop the _check speller_ service provider without stopping the _dictionary_ service provider with the _stop 9_ command.
 As for the last manipulation, the GUI disappears.
 
-image::spell3.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingstarted/spell3.png[]
 
 This time, the Gui is invalid, but the English dictionary is valid:
 

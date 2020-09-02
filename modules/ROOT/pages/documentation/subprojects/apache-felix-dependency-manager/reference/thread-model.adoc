@@ -17,7 +17,7 @@ This mechanism allows to serially handle all Component events (service dependenc
 
 The following diagram illustrates the thread model we just described:
 
-image::./diagrams/serial-queue.png[Serial Queue,600]
+image::documentation/subprojects/apache-felix-dependency-manager/reference/diagrams/serial-queue.png[Serial Queue,600]
 
 == Enabling parallelism with a _ComponentExecutorFactory_
 
@@ -30,7 +30,7 @@ However,  jobs scheduled in the Serial Queue of a given Component are still exec
 
 Here is a diagram which illustrates all this:
 
-image::./diagrams/concurrent-serial-queue.png[Concurrent Serial Queue,600]
+image::documentation/subprojects/apache-felix-dependency-manager/reference/diagrams/concurrent-serial-queue.png[Concurrent Serial Queue,600]
 
 If you want to ensure that all Components are initialized after the ComponentExecutorFactory is registered in the OSGI registry, you can use the "org.apache.felix.dependencymanager.parallel"  OSGi system property which specifies the list of components which must wait for the ComponentExecutorFactory service.
 This property value can be set to a wildcard ("*"), or a list of  components implementation class prefixes (comma separated).

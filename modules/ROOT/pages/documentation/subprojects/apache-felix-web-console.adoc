@@ -233,16 +233,12 @@ This should also help in keeping browser support on the broadest possible basis.
 
 == Extending the Web Console
 
-link:{{ refs.-top.path }}[Top]
-
 The Web Console can be extended by registering an OSGi service for the interface `javax.servlet.Servlet` with the service property `felix.webconsole.label` set to the label (last segment in the URL) of the page.
 The respective service is called a Web Console Plugin or a plugin for short.
 
 Please for to the link:{{ refs.extending-the-apache-felix-web-console.path }}[Extending the Apache Felix Web Console] for full documentation on extending the Apache Felix Web Console.
 
 == RESTful API
-
-link:{{ refs.-top.path }}[Top]
 
 While the Web Console does not have a full featured and documented REST-ful API, most plugins try to follow REST approaches.
 For example the Bundles plugin is able to send information on all bundles or a single directly addressed bundle.
@@ -251,8 +247,6 @@ An attempt is made to document the current state of REST-like APIs at link:{{ re
 
 == Issues
 
-link:{{ refs.-top.path }}[Top]
-
 Should you have any questions using the Web Console, please send a note to one of our link:{{ refs.mailinglists.path }}[Mailing Lists].
 
 Please report any issues with the Web Console in our issue tracking system (https://issues.apache.org/jira/browse/Felix[JIRA]) and be sure to report for the _Web Console_ component.
@@ -260,7 +254,7 @@ See our [Issue Tracking] page for more details.
 
 == Screenshots
 
-link:{{ refs.-top.path }}[Top]
+NOTE: This table is equally broken in markdown.
 
 [cols=6*]
 |===

@@ -184,7 +184,7 @@ Then, this 	dictionary is sent as a regular event.
 
 Here is shown the global architecture of the EventHandler : the interactions between the user components (i.e., POJO), the handler and the OSGi runtime environment.
 
-image::handler-arch.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/handler-arch.png[]
 
 == EventHandler Features
 

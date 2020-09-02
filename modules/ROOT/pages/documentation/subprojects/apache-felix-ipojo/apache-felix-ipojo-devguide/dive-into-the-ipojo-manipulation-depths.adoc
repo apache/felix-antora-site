@@ -14,7 +14,7 @@ The iPOJO byte code manipulation goals are two-fold:
 * Preparing classes to be managed at run time and
 * Translating XML or annotation metadata into an internal format to avoid run-time XML and annotation parsing.
 
-image::process.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/process.png[]
 
 [cols=2*]
 |===
@@ -25,7 +25,7 @@ To inject values and supervise the execution inside component implementation cla
 To facilitate this, iPOJO uses class byte code manipulation.
 |===
 
-image::injection.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/injection.png[]
 
 Besides manipulating byte code, iPOJO translates the XML or annotation metadata to an internal syntax.
 This eliminates any run-time dependencies on the particular metadata format.
@@ -41,11 +41,11 @@ As illustrated in the following image, the manipulated class instance interacts 
 The metadata impacts the set of handlers;
 it does not impact the manipulated class, nor the instance manager (which is the iPOJO container foundation).
 
-image::principles.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/principles.png[]
 
 The following image explains what happens during the manipulation.
 
-image::manipulation.png[]
+image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-devguide/manipulation.png[]
 
 First, each manipulated class implements the `POJO` interface.
 This interface introduces a method to get a reference to the instance container.
