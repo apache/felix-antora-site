@@ -1,4 +1,4 @@
-Title: Documentation
+= Documentation
 
 In an effort to make it easier to find desired documentation, we have divided our documentation section into the following six areas:
 

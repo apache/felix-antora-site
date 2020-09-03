@@ -1,6 +1,6 @@
 = Apache Felix Maven SCR Plugin Use
 
-Excerpt: Using the Apache Felix Maven SCR Plugin to generate Declarative Services and Metatype Service descriptors during a Maven Build
+== Using the Apache Felix Maven SCR Plugin to generate Declarative Services and Metatype Service descriptors during a Maven Build
 
 Support for automatic generation of the compenent and metadata descriptors is embeded in the `org.apache.felix:maven-scr-plugin` plugin.
 To use this plugin, it has to be declared in the project descriptor as a `<plugin>` element:
