@@ -201,5 +201,5 @@ Bundles that run on Felix will run on every other implementation of the same OSG
 
 == Feedback
 
-Subscribe to the Felix users mailing list by sending a message to link:{{ refs.mailto-users-subscribe-felix-apache-org.path }}[users-subscribe@felix.apache.org];
+Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
 after subscribing, email questions or feedback to link:mailto:users@felix.apache.org[users@felix.apache.org].

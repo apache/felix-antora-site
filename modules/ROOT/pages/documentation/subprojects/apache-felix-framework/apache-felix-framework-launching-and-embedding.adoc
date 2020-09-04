@@ -838,7 +838,7 @@ If you find errors please report them so the that they can be corrected.
 
 [cols=2*]
 |===
-| Subscribe to the Felix users mailing list by sending a message to link:{{ refs.mailto-users-subscribe-felix-apache-org.path }}[users-subscribe@felix.apache.org];
+| Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
 after subscribing, email questions or feedback to [users@felix.apache.org
 | mailto:users@felix.apache.org].
 |===
