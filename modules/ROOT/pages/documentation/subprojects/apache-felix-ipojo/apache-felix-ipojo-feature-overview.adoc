@@ -20,9 +20,9 @@ This list is not exhaustive, but represents the set of features that are potenti
   *** Member field injection does not require cluttering component code with bind/unbind methods.
   *** Member method injection supports various method signatures
    **** method() - Acts as a simple event-callback mechanism.
-   **** method(+++<service-interface>+++svc) - Receives the service object cast to the appropriate interface.+++</service-interface>+++
+   **** method(<service-interface>svc) - Receives the service object cast to the appropriate interface.
    **** method(ServiceReference ref) - Receives the OSGi ServiceReference for the service object.
-   **** method(ServiceReference ref, +++<service-interface>+++svc) - Receives the OSGi ServiceReference and the service object cast to the appropriate interface.+++</service-interface>+++
+   **** method(ServiceReference ref, <service-interface>svc) - Receives the OSGi ServiceReference and the service object cast to the appropriate interface.
  ** _Binding policies_ -       Allow components to control how/when their dependencies are bound.
   *** _Static_ - Static dependencies _cannot_ change        without invalidating the component instance, so injected services        typically do not change at run time and service departures typically        result in the component instance being destroyed and potentially        recreated.
   *** _Dynamic_ - Dynamic dependencies _can_ change        without invalidating the component instance, so injected services can        change at run time, but _do not_ change with respect to service        priority changes (i.e., they do not automatically switch if a higher        priority service appears).

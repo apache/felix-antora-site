@@ -170,7 +170,7 @@ For other strategies, specify the qualified name of the CreationStrategy class.
 (optional, default =  SINGLETON)
 * properties : array containing `@StaticServiceProperties` defining service properties not attached to fields.
 
-*OSGi Service Factory* + The +++<tt>+++SERVICE+++</tt>+++ strategy refers to the OSGi service factory.
+*OSGi Service Factory* The SERVICE strategy refers to the OSGi service factory.
 So, one service object per asking bundle will be created.
 
 === @Requires
@@ -201,7 +201,7 @@ _Goal:_ Defines a service property _Target:_ Field _Attributes:_
 * mandatory : is the property mandatory?
 (optional, default=false)
 
-*Mandatory property* + A mandatory property must receive a value either from the component type description (+++<tt>+++value+++</tt>+++ attribute), or the instance configuration.
+*Mandatory property* + A mandatory property must receive a value either from the component type description (value attribute), or the instance configuration.
 
 === @ServiceController
 

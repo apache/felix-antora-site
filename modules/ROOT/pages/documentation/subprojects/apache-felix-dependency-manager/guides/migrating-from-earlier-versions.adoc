@@ -11,7 +11,7 @@ DependencyManager 4.0 has some API changes that need to be taken into account wh
 * You no longer have to call setInstanceBound() when adding a dependency from within the init() method of a component.
 Therefore the setInstanceBound() method has been removed from all Dependency interfaces.
 * in the Dependency interface, the following method have been removed: isInstanceBound, invokeAdded, invokeRemoved, createCopy.
-* In the Component interface, the "Object Component.getService()" method has been replaced by the "+++<T>+++T getInstance()" method.+++</T>+++
+* In the Component interface, the "Object Component.getService()" method has been replaced by the "<T>T getInstance()" method.
 * In the Component interface, the "void addStateListener(ComponentStateListener listener) method" has been replaced by the "add(ComponentStateListener listener)" method.
 * In the Component interface, the "start", "stop", "getDependencies" methods have been removed.
 * In the Component interface and in the DependencyManager class, the createTemporalServiceDependency() method is now taking a timeout parameter: createTemporalServiceDependency(long timeout).

@@ -81,8 +81,10 @@ You use the framework factory to construct and configure a framework instance (o
 The configuration map may contain any of the framework configuration properties listed in the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc[Apache Felix Framework Configuration Properties] document, not the launcher configuration properties.
 The configuration map is copied and the keys are treated as case insensitive.
 You are not able to change the framework's configuration after construction.
-If you need a different configuration, you must create a new framework instance.+++<div class="warning">+++*WARNING* Felix configuration properties have change considerably starting from `1.4.0`;
-if you are upgrading from an earlier version, the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc#_migrating_from_earlier_versions[configuration property document] describes the configuration property changes.+++</div>+++
+If you need a different configuration, you must create a new framework instance.
+
+WARNING: *WARNING* Felix configuration properties have change considerably starting from `1.4.0`;
+if you are upgrading from an earlier version, the xref:documentation/subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc#_migrating_from_earlier_versions[configuration property document] describes the configuration property changes.
 
 === Starting the Framework Instance
 
@@ -440,9 +442,11 @@ This section presents the mechanisms for embedding Felix into a host application
 === Host/Felix Interaction
 
 In the section on xref:#_launching[launching] the framework above, the `Felix` class accepts a configuration property called `felix.systembundle.activators`, which is a list of bundle activator instances.
-These bundle activator instances provide a convenient way for host applications to interact with the Felix framework.+++<div class="warning">+++*WARNING* The `felix.systembundle.activators` configuration property is specific to the Felix framework implementation.
+These bundle activator instances provide a convenient way for host applications to interact with the Felix framework.
+
+WARNING: *WARNING* The `felix.systembundle.activators` configuration property is specific to the Felix framework implementation.
 If you want your code to work with other framework implementations, you should call `init()` on the framework instance and use `getBundleContext()` directly.
-Otherwise, the approach would be very similar.+++</div>+++
+Otherwise, the approach would be very similar.
 
 Each activator instance passed into the constructor effectively becomes part of the system bundle.
 This means that the `start()`/`stop()` methods of each activator instance in the list gets invoked when the system bundle's activator `start()`/`stop()` methods gets invoked, respectively.

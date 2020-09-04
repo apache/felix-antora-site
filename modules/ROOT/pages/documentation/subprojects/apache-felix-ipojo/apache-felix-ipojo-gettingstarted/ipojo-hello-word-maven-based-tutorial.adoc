@@ -46,7 +46,7 @@ This archive contains a version of Felix (configured with iPOJO), and the projec
 === Preparing Maven & Installing the tutorial
 
 The first step is to download and install Maven;
-the example was created using Maven 2.1+.
+the example was created using Maven 2.1.
 Once maven is installed on your machine, you can compile the tutorial by unzipping the archive, and by launching the `mvn clean install` command at the root of tutorial.
 
 _Be aware that Maven outputs a lot of information while it executes and often downloads a lot of required JAR files into its local repository._
@@ -75,82 +75,86 @@ public interface Hello {
 ----
 
 In the project directory, the pom.xml file contains the instructions to build the bundle.
-The bundle uses the _maven-bundle-plugin_ (see here for more information on this plug-in).+++<div class="pom">+++<project> + &nbsp;&nbsp;&nbsp;
-<modelVersion>4.0.0</modelVersion> + &nbsp;&nbsp;&nbsp;
-<packaging>bundle</packaging> + &nbsp;&nbsp;&nbsp;
-+++<font color="#ff0000">+++<groupId>ipojo.example</groupId>+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp;
-<artifactId>hello.service</artifactId>+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp;
-<version>1.0.0</version>+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp;
-<name>Hello Service</name>+++</font>+++
+The bundle uses the _maven-bundle-plugin_ (see here for more information on this plug-in).<div class="pom"><project>
 
-<build> + &nbsp;&nbsp;&nbsp;
-<plugins> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<plugin> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<groupId>org.apache.felix</groupId> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<artifactId>maven-bundle-plugin</artifactId> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<version>2.0.1</version> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<extensions>true</extensions> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<configuration> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<instructions> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-<Bundle-SymbolicName> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-${pom.artifactId} + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-</Bundle-SymbolicName> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-+++<font color="#ff0000">+++<Export-Package>+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-ipojo.example.hello+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-</Export-Package>+++</font>+++ + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-</instructions> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-</configuration> + &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-</plugin> + &nbsp;&nbsp;&nbsp;
-</plugins> + </build>
+[source,xml]
+----
+<modelVersion>4.0.0</modelVersion>
+<packaging>bundle</packaging>
+<groupId>ipojo.example</groupId>
+<artifactId>hello.service</artifactId>
+<version>1.0.0</version>
+<name>Hello Service</name>
 
-</project>+++</div>+++
+<build>
+<plugins>
+
+<plugin>
+
+
+<groupId>org.apache.felix</groupId>
+
+
+<artifactId>maven-bundle-plugin</artifactId>
+
+
+<version>2.0.1</version>
+
+
+<extensions>true</extensions>
+
+
+<configuration>
+
+
+
+<instructions>
+
+
+
+
+<Bundle-SymbolicName>
+
+
+
+
+
+${pom.artifactId}
+
+
+
+
+</Bundle-SymbolicName>
+
+
+
+
+<Export-Package>
+
+
+
+
+
+
+ipojo.example.hello
+
+
+
+
+</Export-Package>
+
+
+
+</instructions>
+
+
+</configuration>
+
+</plugin>
+</plugins>  </build>
+
+</project>
+----
 
 Then, the project is ready to be built issuing the following Maven command inside the project directory:
 
@@ -182,7 +186,7 @@ public class HelloImpl implements Hello {
      * @return Hello message
      * @see ipojo.example.hello.Hello#sayHello(java.lang.String)
      */
-    public String sayHello(String name) { return "hello " + name;  }
+    public String sayHello(String name) { return "hello "  name;  }
 }
 ----
 
@@ -212,50 +216,56 @@ When the '_provides_' element does not contain an interface attribute, as is the
 it is also possible to specify the precise service interface.
 The '_instance_' element asks iPOJO to create an instance of your component when the bundle is started.
 
-Finally, the `pom.xml` file contains instructions to build the bundle:+++<div class="pom">+++<project> + &nbsp;&nbsp;<modelVersion>4.0.0</modelVersion> + &nbsp;
-<packaging>bundle</packaging> + &nbsp;&nbsp;+++<font color="red">+++<groupId>ipojo.example</groupId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;<artifactId>hello.impl</artifactId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;<version>1.0.0</version>+++</font>+++
+Finally, the `pom.xml` file contains instructions to build the bundle:
 
-&nbsp;&nbsp;+++<font color="red">+++<name>Hello Service Provider</name>+++</font>+++
+[source,xml]
+----
+<project>
+ <modelVersion>4.0.0</modelVersion>
+<packaging>bundle</packaging>  <groupId>ipojo.example</groupId>  <artifactId>hello.impl</artifactId>  <version>1.0.0</version>
 
-+++<font color="red">+++&nbsp;
-<dependencies>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;
-&nbsp;<dependency> <!--Compilation (i.e.
-class) dependency on the service interface -->+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<groupId>ipojo.example</groupId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<artifactId>hello.service</artifactId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<version>+++</font>++++++<font color="#ff0000">+++1.0.0+++</font>++++++<font color="red">+++</version>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;
-&nbsp;</dependency>+++</font>+++ + +++<font color="red">+++&nbsp;
-</dependencies>+++</font>+++
+<name>Hello Service Provider</name>
 
-&nbsp;&nbsp;<build> + &nbsp;&nbsp;
-<plugins> + &nbsp;&nbsp;&nbsp;&nbsp;
-<plugin> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<groupId>org.apache.felix</groupId> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<artifactId>maven-bundle-plugin</artifactId> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<version>2.0.1</version> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<extensions>true</extensions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<configuration> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<instructions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-+++<font color="red">+++<Private-Package>ipojo.example.hello.impl</Private-Package>+++</font>+++ + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</instructions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</configuration> + &nbsp;&nbsp;&nbsp;&nbsp;
-</plugin> + &nbsp;&nbsp;&nbsp;&nbsp;
-<plugin> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<groupId>org.apache.felix</groupId> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<artifactId>maven-ipojo-plugin</artifactId> + &nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-<version>{{ipojo.release}}</version> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<executions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<execution> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<goals> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<goal>ipojo-bundle</goal> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</goals> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;</execution> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</executions> + &nbsp;&nbsp;&nbsp;&nbsp;
-</plugin> + &nbsp;&nbsp;
-</plugins> + &nbsp;</build> + </project>+++</div>+++
+
+<dependencies>
+<dependency> <!--Compilation (i.e.
+class) dependency on the service interface -->
+<groupId>ipojo.example</groupId>
+<artifactId>hello.service</artifactId>
+<version>1.0.0</version>
+</dependency>
+</dependencies>
+
+<build>
+<plugins>
+<plugin>
+<groupId>org.apache.felix</groupId>
+<artifactId>maven-bundle-plugin</artifactId>
+<version>2.0.1</version>
+<extensions>true</extensions>
+<configuration>
+<instructions>
+<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+<Private-Package>ipojo.example.hello.impl</Private-Package>
+</instructions>
+</configuration>
+</plugin>
+<plugin>
+<groupId>org.apache.felix</groupId>
+<artifactId>maven-ipojo-plugin</artifactId>
+
+
+
+<version>{{ipojo.release}}</version>  <executions>
+<execution>
+<goals>
+<goal>ipojo-bundle</goal>
+</goals>
+</execution>
+</executions>
+</plugin>
+</plugins>  </build>  </project>
+----
 
 The text highlighted in red above indicates the important information related to the project.
 The first part of the POM file indicates that the packaging format is an iPOJO bundle and also includes some information about the project (name, groupId, and artifactId).
@@ -326,7 +336,7 @@ public class HelloClient implements Runnable {
      * Invoke hello services.
      */
     public void invokeHelloServices() {
-        for (int i = 0; i < m_hello.length; i++) {
+        for (int i = 0; i < m_hello.length; i) {
             // Update with your name.
             System.out.println(m_hello[i]({{ refs.i.path }}).sayHello("world"));
         }
@@ -402,54 +412,59 @@ The '_requires_' element describes the _Hello_ service dependency by simply spec
 The '__callback'__elements describe which method to invoke when the component's state changes.
 Then the '_instance_' element asks iPOJO to create an instance of the component (notice that no instance name is provided here, iPOJO will give an instance name to the instance automatically).
 
-Finally, the `pom.xml` file contains instructions to build the bundle:+++<div class="pom">+++<project> + &nbsp;&nbsp;<modelVersion>4.0.0</modelVersion> + &nbsp;&nbsp;<packaging>bundle</packaging> + &nbsp;&nbsp;+++<font color="red">+++<groupId>ipojo.example</groupId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;<artifactId>hello.client</artifactId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;<version>1.0.0</version>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;<name>Hello Client</name>+++</font>+++
+Finally, the `pom.xml` file contains instructions to build the bundle:
 
-+++<font color="red">+++&nbsp;&nbsp;<dependencies>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;
-&nbsp;<dependency> <!--+++</font>+++ +++<font color="red">+++Compilation (i.e.
-class) dependency on the service interface --+++</font>++++++<font color="red">+++>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<groupId>ipojo.example</groupId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<artifactId>hello.service</artifactId>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;<version>+++</font>++++++<font color="#ff0000">+++1.0.0+++</font>++++++<font color="red">+++</version>+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;
-&nbsp;</dependency>+++</font>+++ + +++<font color="red">+++&nbsp;
-</dependencies>+++</font>+++
+[source,xml]
+----
+<project>  <modelVersion>4.0.0</modelVersion>  <packaging>bundle</packaging>  <groupId>ipojo.example</groupId>  <artifactId>hello.client</artifactId>  <version>1.0.0</version>  <name>Hello Client</name>
 
-&nbsp;
-<build> + &nbsp;&nbsp;&nbsp;&nbsp;
-<plugins> + &nbsp;&nbsp;&nbsp;&nbsp;
-<plugin> + &nbsp;&nbsp;&nbsp;&nbsp;
-<groupId>org.apache.felix</groupId> + &nbsp;&nbsp;&nbsp;&nbsp;
-<artifactId>maven-bundle-plugin</artifactId> + &nbsp;&nbsp;&nbsp;&nbsp;
-<version>2.0.1</version> + &nbsp;&nbsp;&nbsp;&nbsp;
-<extensions>true</extensions> + &nbsp;&nbsp;&nbsp;&nbsp;
-<configuration> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<instructions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-+++<font color="red">+++<Private-Package>ipojo.example.hello.client</Private-Package>+++</font>+++ + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</instructions> + &nbsp;&nbsp;&nbsp;&nbsp;
-</configuration> + &nbsp;&nbsp;
-</plugin> + &nbsp;&nbsp;
-<plugin> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<groupId>org.apache.felix</groupId> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<artifactId>maven-ipojo-plugin</artifactId> + &nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;
-<version>{{ipojo.release}}</version> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<executions> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<execution> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<goals> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<goal>ipojo-bundle</goal> + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</goals> + &nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-</execution> + &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;&nbsp;
-</executions> + &nbsp;&nbsp;
-</plugin> + &nbsp;</plugins> + &nbsp;
-</build> + </project>+++</div>+++
+<dependencies>
+<dependency> <!-- Compilation (i.e.
+class) dependency on the service interface -->
+<groupId>ipojo.example</groupId>
+<artifactId>hello.service</artifactId>
+<version>1.0.0</version>
+</dependency>
+</dependencies>
+
+
+<build>
+<plugins>
+<plugin>
+<groupId>org.apache.felix</groupId>
+<artifactId>maven-bundle-plugin</artifactId>
+<version>2.0.1</version>
+<extensions>true</extensions>
+<configuration>
+<instructions>
+<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+<Private-Package>ipojo.example.hello.client</Private-Package>
+</instructions>
+</configuration>
+</plugin>
+<plugin>
+<groupId>org.apache.felix</groupId>
+<artifactId>maven-ipojo-plugin</artifactId>
+
+
+<version>{{ipojo.release}}</version>
+<executions>
+<execution>
+<goals>
+<goal>ipojo-bundle</goal>
+</goals>
+
+
+
+
+</execution>
+
+
+
+</executions>
+</plugin>  </plugins>
+</build>  </project>
+----
 
 The text highlighted in red</code> above indicates the information related to the project.
 The _dependencies_ element tells Maven that the client bundle has a compilation dependency on the service provider bundle.
@@ -511,16 +526,19 @@ Stop the provider (with the '_stop 7_' command) and the client will automaticall
 If multiple Hello services are deployed, the client will connect to all of them.
 If you restart the bundle (with the _start 7_ command), the client becomes valid.
 
-During these operations, you can use the arch command to check the state of instances.+++<div class="shell">+++-> stop 7 + -> arch + Instance ArchCommand -> valid + +++<font color="red">+++Instance ipojo.example.hello.client.HelloClient-0 -> invalid+++</font>+++ + -> arch -instance ipojo.example.hello.client.HelloClient-0 + instance name="ipojo.example.hello.client.HelloClient-0" + &nbsp;component.type="ipojo.example.hello.client.HelloClient" + &nbsp;state="+++<font color="red">+++invalid+++</font>+++" bundle="8" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-object name="ipojo.example.hello.client.HelloClient@137c60d" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-+++<font color="red">+++handler name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler" state="invalid"+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++</font>++++++<font color="red">+++requires aggregate="true" optional="false" state="resolved" specification="ipojo.example.hello.Hello"+++</font>+++ + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-handler name="org.apache.felix.ipojo.handlers.lifecycle.callback.LifecycleCallbackHandler" state="valid" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-handler name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler" state="valid" + -> start 7 + hello world + -> arch + Instance ArchCommand -> valid + +++<font color="red">+++Instance ipojo.example.hello.client.HelloClient-0 -> valid+++</font>+++ + Instance HelloService -> valid + -> arch -instance ipojo.example.hello.client.HelloClient-0 + instance name="ipojo.example.hello.client.HelloClient-0" + &nbsp;component.type="ipojo.example.hello.client.HelloClient" + &nbsp;
-state="valid" bundle="8" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-object name="ipojo.example.hello.client.HelloClient@137c60d" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-+++<font color="red">+++handler name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler" state="valid"+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++</font>++++++<font color="red">+++requires aggregate="true" optional="false" state="resolved" specification="ipojo.example.hello.Hello"+++</font>+++ + +++<font color="red">+++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+++</font>+++ +++<font color="red">+++uses service.id="38" instance.name="HelloService"+++</font>+++ + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-handler name="org.apache.felix.ipojo.handlers.lifecycle.callback.LifecycleCallbackHandler" state="valid" + &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-handler name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler" state="valid"+++</div>+++
+During these operations, you can use the arch command to check the state of instances.
+
+[source,sh]
+-> stop 7  -> arch  Instance ArchCommand -> valid  Instance ipojo.example.hello.client.HelloClient-0 -> invalid  -> arch -instance ipojo.example.hello.client.HelloClient-0  instance name="ipojo.example.hello.client.HelloClient-0"  component.type="ipojo.example.hello.client.HelloClient"  state="invalid" bundle="8"
+object name="ipojo.example.hello.client.HelloClient@137c60d"
+handler name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler" state="invalid"  requires aggregate="true" optional="false" state="resolved" specification="ipojo.example.hello.Hello"
+handler name="org.apache.felix.ipojo.handlers.lifecycle.callback.LifecycleCallbackHandler" state="valid"
+handler name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler" state="valid"  -> start 7  hello world  -> arch  Instance ArchCommand -> valid  Instance ipojo.example.hello.client.HelloClient-0 -> valid  Instance HelloService -> valid  -> arch -instance ipojo.example.hello.client.HelloClient-0  instance name="ipojo.example.hello.client.HelloClient-0"  component.type="ipojo.example.hello.client.HelloClient"
+state="valid" bundle="8"
+object name="ipojo.example.hello.client.HelloClient@137c60d"
+handler name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler" state="valid"  requires aggregate="true" optional="false" state="resolved" specification="ipojo.example.hello.Hello"   uses service.id="38" instance.name="HelloService"
+handler name="org.apache.felix.ipojo.handlers.lifecycle.callback.LifecycleCallbackHandler" state="valid"
+handler name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler" state="valid"
 
 == Conclusion
 

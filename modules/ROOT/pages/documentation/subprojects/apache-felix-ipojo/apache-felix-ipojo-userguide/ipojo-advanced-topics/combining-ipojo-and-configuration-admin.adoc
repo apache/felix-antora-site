@@ -223,9 +223,11 @@ Obviously it is possible to create several instance of the same type:
  Instance org.apache.felix.ipojo.example.ca.component.Hello2.aaf1927c-1a81-490d-bd7b-21b13d454987 -> valid
  Instance org.apache.felix.ipojo.example.ca.component.Hello2.9344fdbe-c35e-4afc-b839-f7ad0ea59a9d -> valid
 
-The 'arch' command displays the two created instances.+++<div class="alert alert-info info">+++==== Delete configurations
+The 'arch' command displays the two created instances.
 
-you can delete all created configurations with the delete_conf all command+++</div>+++
+==== Delete configurations
+
+you can delete all created configurations with the delete_conf all command
 
 === Property Propagation
 

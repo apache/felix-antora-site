@@ -1,7 +1,9 @@
-= Web Console RESTful API+++<div class="warning">+++Please note that the APIs described on this page have not been standardized or stabilized yet.
+= Web Console RESTful API
+
+WARNING: Please note that the APIs described on this page have not been standardized or stabilized yet.
 As such they cannot be relied upon.
 They are merely a description of the current code.
-In future releases these APIs will be fixed to be properly RESTful.+++</div>+++
+In future releases these APIs will be fixed to be properly RESTful.
 
 
 
@@ -40,8 +42,9 @@ e.g.
 `+.../bundles/0.json+`.
 The HTML response is destined at browsers and is not further described here.
 
-==== GET .../bundles.json+++<div class="note">+++Due to a bug https://issues.apache.org/jira/browse/FELIX-3132[FELIX-3132] the form `+.../bundles.json+` only works in builds after SVN Revision 1175527.
-As a workaround request `+.../bundles/.json+`+++</div>+++
+==== GET .../bundles.json
+NOTE: Due to a bug https://issues.apache.org/jira/browse/FELIX-3132[FELIX-3132] the form `+.../bundles.json+` only works in builds after SVN Revision 1175527.
+As a workaround request `+.../bundles/.json+`
 
 Request to this URL sends back an overview of all bundles along with an overview of all bundles (bundles existing, active, fragment, resolved, installed)
 

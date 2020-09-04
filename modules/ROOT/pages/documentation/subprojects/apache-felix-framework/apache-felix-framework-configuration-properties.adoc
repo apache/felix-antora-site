@@ -84,12 +84,12 @@ the default value is `true`.
 Activating the URL Handlers service will result in the `URL.setURLStreamHandlerFactory()` and `URLConnection.setContentHandlerFactory()` being called.
 * `felix.native.processor.alias.<procName>` - An alias for resolving native processor requirements new with R6.
 This can be used to add new or override existing processors.
-The +++<procName>+++represents the key for the processor architecture such as x86-64 (which may not contain spaces) then the property value is a comma delimited list of aliases such as x86\_64,amd64.
-EX felix.native.processor.alias.x86-64=x86\_64,amd64+++</procName>+++
+The <procName> represents the key for the processor architecture such as x86-64 (which may not contain spaces) then the property value is a comma delimited list of aliases such as x86\_64,amd64.
+EX felix.native.processor.alias.x86-64=x86\_64,amd64
 * `felix.native.osname.alias.<osName>` - An alias for resolving native operating system requirements new with R6.
 This can be used to add new or override existing operating systems.
-The +++<osName>+++represents the key for the operating system such as windows7 (which may not contain spaces) then the property value is a comma delimited list of aliases such as Windows 7,win32.
-EX felix.native.osname.alias.windows7=Windows 7,win32+++</osName>+++
+The <osName> represents the key for the operating system such as windows7 (which may not contain spaces) then the property value is a comma delimited list of aliases such as Windows 7,win32.
+EX felix.native.osname.alias.windows7=Windows 7,win32
 
 == Launcher configuration properties
 

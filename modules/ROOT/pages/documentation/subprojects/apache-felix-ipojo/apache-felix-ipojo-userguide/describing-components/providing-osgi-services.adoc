@@ -64,15 +64,15 @@ However, it is possible to explicitly declare which service specifications are p
      // ...
  }
 
-[discrete]
-==== ALERT Specification checking
+=== Specification checking
 
 If you use the `specifications` attribute, the handler checks that all declared interfaces are really implemented by the implementation class.
-If an interface is not implemented, the handler logs a warning.+++<div class="alert alert-warning info">+++[discrete]
-==== No service
+If an interface is not implemented, the handler logs a warning.
+
+=== No service
 
 If the implementation class does not implement any interface, you cannot provide a service.
-In this case, the handler throws an error.+++</div>+++
+In this case, the handler throws an error.
 
 == Service Properties
 

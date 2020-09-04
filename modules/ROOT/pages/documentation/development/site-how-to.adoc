@@ -118,7 +118,7 @@ Thus it is not possible to embed Markdown syntax inside of HTML elements to have
 
 == Manual Generation
 
-When commiting changes to pages into SVN the pages are automatically generated in http://felix.staging.apache.org[the staging site].+++<div class="info">+++To generate the site locally, you must have checked out the complete SVN to access the tools:+++<div class="codehilite">+++$ svn https://svn.apache.org/repos/asf/felix/site/ felix-site+++</div>++++++</div>+++
+When commiting changes to pages into SVN the pages are automatically generated in http://felix.staging.apache.org[the staging site].<div class="info">To generate the site locally, you must have checked out the complete SVN to access the tools:<div class="codehilite">$ svn https://svn.apache.org/repos/asf/felix/site/ felix-site</div></div>
 
 To manually generate the site or single pages the http://svn.apache.org/repos/asf/felix/site[site] can be checked out from SVN.
 In addition Perl and Python must be installed for the build tools to work.

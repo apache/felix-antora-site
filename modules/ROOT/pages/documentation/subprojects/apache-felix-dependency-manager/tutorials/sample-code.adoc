@@ -11,7 +11,7 @@ All samples can be built using either gradle or maven.
 To build with gradle, simply type "./gradlew jar", and to build with maven, type "mvn clean install".
 If you are using an http proxy, you must set the following environment:
 
-* for gradle: export GRADLE_OPTS="-Dhttp.proxyHost=+++<ip>+++-Dhttp.proxyPort=+++<port>+++-Dhttps.proxyHost=+++<ip>+++-Dhttps.proxyPort=+++<port>++++++</port>++++++</ip>++++++</port>++++++</ip>+++
+* for gradle: `export GRADLE_OPTS="-Dhttp.proxyHost=<ip> -Dhttp.proxyPort=<port> -Dhttps.proxyHost=<ip> -Dhttps.proxyPort=<port>`
 * for maven, you must setup your http proxy in your ~/.m2/settings.xml
 
 Once built, the three jars for all hello projects can be put in the felix-framework-6.0.1/bundles/ directory.

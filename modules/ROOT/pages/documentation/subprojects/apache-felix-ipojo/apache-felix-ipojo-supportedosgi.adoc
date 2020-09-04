@@ -44,8 +44,10 @@ So, it is possible to use it on others OSGi implementations.*
 
 Feel free to send a mail on the Felix mailing list, if an implementation is not listed here.
 
-'''+++<div class="alert alert-success">+++Old version of Knopflerfish does not allow getting a service during its unregistration.
+'''
+
+ALERT: Old version of Knopflerfish does not allow getting a service during its unregistration.
 To enable this feature, launch the Knopflerfish framework with the  `-Dorg.knopflerfish.servicereference.valid.during.unregistering=true` property.
 You can add this property in the `props.xargs` file.
 
-Recent version of KF does no more require this property.+++</div>+++
+Recent version of KF does no more require this property.

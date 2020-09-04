@@ -94,7 +94,20 @@ For example `onTimeout="o.a.f.i.MyDefaultLogServiceImpl"`.
 In this case, the handler will inject an instance of this object instead of a real service object.
 On aggregate dependency, an array with one default-implementation object is returned.
 +
-[source,xml]+++<iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">++++++<component className="org.apache.felix.ipojo.example.Temporal">+++// Temporal dependency configuration +++<temporal:requires field="fs" timeout="300" ontimeout="nullable">++++++</temporal:requires>+++ +++<provides>++++++</provides>++++++</component>++++++</iPOJO>+++
+[source,xml]
+----
+    <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
+    <component
+        className="org.apache.felix.ipojo.example.Temporal">
+
+        <!-- Temporal dependency configuration -->
+        <temporal:requires field="fs" timeout="300" ontimeout="nullable"/>
+
+        <provides/>
+
+    </component>
+    </iPOJO>
+----
 
 This is equivalent to:
 

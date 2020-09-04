@@ -331,11 +331,13 @@ iPOJO will create and inject the service object array.
 iPOJO discover that the dependency is aggregate during the bytecode introspection.
 
 Array types cannot be 'proxied'.
-Moreover array dependencies cannot be injected as constructor parameter.+++<div class="alert alert-info info">+++==== Synchronization
+Moreover array dependencies cannot be injected as constructor parameter.
+
+==== Synchronization
 
 The synchronization is managed by iPOJO.
 As soon as you are 'touching' a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method.
-Nested methods will share the same service object set.+++</div>+++
+Nested methods will share the same service object set.
 
 ==== Aggregate Dependency with field injection: list, vector, collection and set
 
@@ -347,11 +349,20 @@ It is also possible to inject service objects inside fields of the type:
 * set
 +
 [source,java]
-    @Component   public class HelloConsumer {        @Requires(specification="org.apache.felix.ipojo.example.Hello")        private List+++<Hello>+++m_hellos;
-public doSomething() { for(Hello h : m_hellos) { System.out.println(h).getMessage());
-} } }+++</Hello>+++
+----
+    @Component
+    @Instantiate
+    public class HelloConsumer {
+        @Requires
+        private Hello m_hello;
 
+        public doSomething() {
+            System.out.println(m_hello.getMesage());
+        }
+    }
+----
 For this component, XML metadata could be:
+
 [source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hellos" specification="org.apache.felix.ipojo.example.Hello"/>
@@ -361,15 +372,19 @@ For this component, XML metadata could be:
 In this case, just use the supported type that you want.
 iPOJO will automatically understand that it is an aggregate dependency, and will create the collection object containing service objects.
 However, you must specify the service specification.
-Indeed, generics types cannot be discovered at runtime reliably.+++<div class="alert alert-info info">+++==== Service specification discovery
+Indeed, generics types cannot be discovered at runtime reliably.
+
+==== Service specification discovery
 
 The service specification (i.e.
 interface) cannot be discovered when using these types as the bytecode does not provide enough information.
-So, you have to indicate the required service interface (with the 'specification' attribute) in the requirement description.+++</div>++++++<div class="alert alert-info info">+++==== How iPOJO manage the synchronization for you
+So, you have to indicate the required service interface (with the 'specification' attribute) in the requirement description.
+
+==== How iPOJO manage the synchronization for you
 
 As in the previous case, the synchronization is managed by iPOJO.
 As soon as you are *touching* a dependency in a method, iPOJO ensure that you will keep these objects until the end of the method.
-Nested methods will share the same service object set.+++</div>+++
+Nested methods will share the same service object set.
 
 ==== Aggregate Dependency with callbacks
 
@@ -389,6 +404,7 @@ Nested methods will share the same service object set.+++</div>+++
  }
 
 This dependency can also be described in XML as follow:
+
 [source,xml]
  <requires  aggregate="true">
      <callback type="bind" method="bindHello"/>
@@ -397,10 +413,12 @@ This dependency can also be described in XML as follow:
 
 In this case, iPOJO cannot detect if the dependency is aggregate or not.
 So, you need to add the '_aggregate_' attribute.
-The bindHello and unbindHello will be called each time a Hello service appears or disappears.+++<div class="alert alert-info info">+++==== Synchronization
+The bindHello and unbindHello will be called each time a Hello service appears or disappears.
+
+==== Synchronization
 
 To avoid the list modification during the loop, you need synchronized the block.
-Indeed, as the field is not an iPOJO requirement, iPOJO will not manage the synchronization.+++</div>+++
+Indeed, as the field is not an iPOJO requirement, iPOJO will not manage the synchronization.
 
 === Optional Requirement (Scalar)
 

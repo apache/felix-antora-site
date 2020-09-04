@@ -266,11 +266,12 @@ So, when a POJO objects, callback are called in this order:
 
 . bind methods
 . validate method
-. setter methods from instance configuration+++<div class="alert alert-info info">+++[discrete]
-==== Changes in the 1.3.0-SNAPSHOT
+. setter methods from instance configuration
+
+=== Changes in the 1.3.0-SNAPSHOT
 
 iPOJO 1.3.0-SNAPSHOT sets the lifecycle callback handler level to 2.
-So, setter methods from instance properties are called before the validate method.+++</div>+++
+So, setter methods from instance properties are called before the validate method.
 
 == Why does my bundle import unused packages?
 

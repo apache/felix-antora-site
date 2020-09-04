@@ -834,8 +834,8 @@ iPOJO has the ability to reconfigure component instances while they are running.
 When instances are reconfigured, their used handler need to update their configuration (if they support such an operation).
 To do so, reconfigurable handlers must override the `reconfigure()` method, which notify the concerned handlers of the new instance configuration (represented as a `Dictionary`).
 
-+++<a name="description">++++++</a>+++
 
+[#description]
 === Describing your handler
 
 Handlers have the possibility to describe their state, overriding the `getDescription()` method and the `HandlerDescription` class.
@@ -871,8 +871,7 @@ The standard way to add description to your handler is shown hereafter :
     }
  }
 
-+++<a name="annotations">++++++</a>+++
-
+[#annotations]
 == Handler's annotations
 
 Your handle can also provide annotations.
@@ -971,8 +970,7 @@ NOTE: To customize this hierarchy, you can also use the `id/parent` annotation a
 The id attribute is used to refer to an Element.
 An annotation with a `parent` (targeting an `id`) attribute will be processed as a sub-element of the Element identified by the given `id`.
 
-+++<a name="schemas">++++++</a>+++
-
+[#schemas]
 == Handler's XSD
 
 Coming soon...

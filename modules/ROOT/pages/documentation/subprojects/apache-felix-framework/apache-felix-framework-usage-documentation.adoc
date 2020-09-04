@@ -30,20 +30,22 @@ If you want to start the framework using a different bundle cache directory, you
  java -jar bin/felix.jar <cache-path>
 
 Where `<cache-path>` is the path you want to use as the bundle cache.
-If you specify a relative cache path, then it will be treated as relative to the current working directory.+++<div class="info">+++*Useful Information* + Previous versions of the framework prompted for a profile name when executed.
+If you specify a relative cache path, then it will be treated as relative to the current working directory.
+INFO: *Useful Information* + Previous versions of the framework prompted for a profile name when executed.
 The profile name was used to create a directory inside `.felix/` in the user home directory.
 This approach allowed users to have different sets of bundles for different purposes, e.g., testing, production, etc.
 If this behavior is still desired, it is very easy to mimic.
 Modify `conf/config.properties` to include "[.code]``felix.cache.rootdir=${user.home}/.felix``".
-Now, if you start Felix with something like "[.code]``java -jar bin/felix.jar foo``", it will use "[.code]``${user.home}/.felix/foo/``" as the bundle cache directory, where "[.code]``${user.home}``" is automatically substituted with the appropriate system property by the launcher.+++</div>+++
+Now, if you start Felix with something like "[.code]``java -jar bin/felix.jar foo``", it will use "[.code]``${user.home}/.felix/foo/``" as the bundle cache directory, where "[.code]``${user.home}``" is automatically substituted with the appropriate system property by the launcher.
 
 == Framework Shell
 
 The main way to interact with the framework is via the supplied Apache Felix Gogo shell.
-After starting the framework, type `help` into the shell to see the list of the available commands and `help <command-name>` to get help for a specific command.+++<div class="info">+++*Useful Information* + In Gogo, command names are made up of two parts: `<scope>:<name>`.
+After starting the framework, type `help` into the shell to see the list of the available commands and `help <command-name>` to get help for a specific command.
+INFO: *Useful Information* + In Gogo, command names are made up of two parts: `<scope>:<name>`.
 This is similar to a fully qualified class name in Java and is used to avoid naming collisions.
 If the `<name>` portion of the command is unique, then you only need to type it.
-If not, then you must either type the full `<scope>:<name>` or arrange the scope search path accordingly.+++</div>+++
+If not, then you must either type the full `<scope>:<name>` or arrange the scope search path accordingly.
 
 To install bundles, use the `felix:install` command, which is described in more detail in the next xref:#_installing_bundles[sub-section].
 To list installed bundles, use the `felix:lb` command.
@@ -93,10 +95,11 @@ The `felix:stop` command is used to stop a bundle and the `felix:uninstall` comm
 As an alternative to using the `felix:install` and `felix:start` commands explicitly, it is also possible to install and start a bundle in one step by using the `felix:start` command with a bundle URL.
 
 Bundles can be updated using the `felix:update` command.
-The update command allows you to specify an URL from which to retrieve the updated bundle, but if one is not specified it will try to update the bundle from the bundle's `Bundle-UpdateLocation` manifest attribute, if present, or the bundle's original location URL.+++<div class="info">+++*Useful Information* + When you use `felix:update` or `felix:uninstall`, the changes appear to take effect immediately, but in reality the changes are only partially enacted.
+The update command allows you to specify an URL from which to retrieve the updated bundle, but if one is not specified it will try to update the bundle from the bundle's `Bundle-UpdateLocation` manifest attribute, if present, or the bundle's original location URL.
+INFO: *Useful Information* + When you use `felix:update` or `felix:uninstall`, the changes appear to take effect immediately, but in reality the changes are only partially enacted.
 If a bundle is updated or uninstalled and it was exporting packages, these packages are not removed until the framework is refreshed using the `PackageAdmin` service.
 The Felix shell offers a convenient `refresh` command for this purpose.
-This is the correct behavior as defined by the OSGi specification.+++</div>+++
+This is the correct behavior as defined by the OSGi specification.
 
 For an introduction to writing bundles and services, refer to the Felix bundle tutorial.
 

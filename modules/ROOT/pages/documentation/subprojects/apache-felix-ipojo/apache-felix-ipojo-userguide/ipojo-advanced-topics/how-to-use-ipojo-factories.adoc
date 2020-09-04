@@ -37,7 +37,7 @@ A public factory allows creating instances dynamically and from other bundles.
 A private factory can only be used to create instances by declaring them in the same metadata.xml file that defines the instances' component type (i.e.
 in the same bundle).
 By default, factories are public.
-To set the factory to private add the 'public="false"'' attribute in the '+++<component>+++' element, such as:+++</component>+++
+To set the factory to private add the 'public="false"'' attribute in the '<component>' element, such as:
 [source,xml]
  <component classname="..." name="MyPrivateFactory" public="false">
      ...

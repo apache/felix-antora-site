@@ -240,7 +240,8 @@ So it might cause issue while running in co deployed scenarios like Application 
 
 Refer to http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/app/src/main/java/org/apache/felix/example/jaas/app/internal/GlobalConfigDemoServlet.java[GlobalConfigDemoServlet] for an example
 
-==== +++<a name="boot-classpath">++++++</a>+++Modified Boot Classpath Mode
+[[boot-classpath]]
+==== Modified Boot Classpath Mode
 
 In previous modes (except the LoginContextFactory mode) the client code needs to switch the Thread Context Classloader (TCCL).
 This is due the way JAAS logic instantiates the `LoginModule`.
@@ -281,7 +282,8 @@ Note that in above code we do not have to manage TCCL and neither add an import 
 
 Refer to http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/app/src/main/java/org/apache/felix/example/jaas/app/internal/BootClasspathDemoServlet.java[BootClasspathDemoServlet] for code sample
 
-=== +++<a name="configuration-spi">++++++</a>+++JAAS Configuration SPI Settings
+[[configuration-spi]]
+=== JAAS Configuration SPI Settings
 
 There are various ways in which LoginContext can be created depending on the usage mode.
 The JAAS support exposes following properties

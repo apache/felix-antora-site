@@ -6,14 +6,14 @@ iPOJO is a component model enforcing strictly the distinction between component 
 The relationship between types and instances is the same as the one between classes and objects in OOP.
 You can _instantiate_ as many instances as you want from a component type.
 These instances can be configured with different properties.
-As a consequence, just using @Component or +++<component>++++++</component>+++ declares a component type, not an instance.
+As a consequence, just using @Component or <component> declares a component type, not an instance.
 So, at runtime, nothing will happen until you actually declare or create an instance.
 
 iPOJO provides several ways to create instances, this page presents these possibilities:
 
 * @Instantiate to create an instance directly from the a class annotated with @Component
 * @Configuration to declare a set of instances
-* using +++<instance>+++in the XML metadata+++</instance>+++
+* using <instance>in the XML metadata
 * using the iPOJO Factory service
 * using the OSGi Configuration Admin
 * using the `DeclarationBuilderService`
@@ -243,7 +243,7 @@ You can use this OSGi service to create, reconfigure and dispose instances from 
 
 === The Factory service
 
-The published service interface is `+[org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html)+` and provides the following methods:
+The published service interface is `[org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html)` and provides the following methods:
 
 [source,java]
 ----
@@ -309,7 +309,7 @@ The next snippet shows an example of instance creation:
  try {
      instance = fact.createComponentInstance(props);
  } catch(Exception e) {
-    fail("Cannot create the instance : " + e.getMessage());
+    fail("Cannot create the instance : "  e.getMessage());
  }
 
 === Disposing created instance

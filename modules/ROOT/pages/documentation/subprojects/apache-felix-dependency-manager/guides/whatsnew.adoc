@@ -38,9 +38,9 @@ You will find a full description of the new thread model in the xref:documentati
 
 In addition, some new features have been implemented in dependency manager:
 
-* Auto Config Iterable fields: AutoConfig dependencies can be applied on Iterable+++<Service>+++fields in order to be able to traverse currently injected services safely.
+* Auto Config Iterable fields: AutoConfig dependencies can be applied on Iterable<Service>fields in order to be able to traverse currently injected services safely.
 The Iterable must be parameterized with the Service type.
-[see this sample code](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/SpellChecker.java) from the source distribution samples.+++</Service>+++
+[see this sample code](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/SpellChecker.java) from the source distribution samples.
 * AutoConfig Map field: AutoConfig dependencies can be applied on a field with a Map<Service, Dictionary> type, allowing to traverse currently injected services safely, including service properties.
 The Map must be traversed using the Map.Entry iterator.
 See the _ServiceDependency.setAutConfig(boolean autoConfig)_ http://felix.apache.org/apidocs/dependencymanager/4.0.0/org/apache/felix/dm/ServiceDependency.html[javadoc] for more more informations.

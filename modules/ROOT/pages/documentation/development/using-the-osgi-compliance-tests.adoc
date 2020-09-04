@@ -106,7 +106,8 @@ To run a specific test suite, do the following:
 [source,bash]
  $ java -jar jar/bnd.jar runtests --title osgi.ct <bnd-file>
 
-Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.+++<div class="note">+++*Be Aware* Tests for native code loading will fail on Java 6, so do not use this JDK for testing the framework.+++</div>+++
+Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.
+NOTE: *Be Aware* Tests for native code loading will fail on Java 6, so do not use this JDK for testing the framework.
 
 Reports for the tests suites are generated in the `reports/` subdirectory and are named after the appropriate test suite.
 

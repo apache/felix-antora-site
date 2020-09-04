@@ -33,7 +33,7 @@ The handler needs to be added in the metadata.xml, you just add a namespace (e.g
  </ipojo>
 
 So, you could now expose in JMX properties and methods of your component.
-They are surrounded by the +++<jmx:config>+++tag.+++</jmx:config>+++
+They are surrounded by the <jmx:config>tag.
 [source,xml]
  <jmx:config>
      <jmx:property name="message" field="m_msg" rights="w" notification="true"/>
@@ -87,7 +87,9 @@ The value of this attribute must comply with the ObjectName value syntax, as des
 | These attributes allow to specify methods to carry out operations before and after being registered or unregistered from the MBean server.
 |===
 
-== Properties attributes+++<table class="table table-bordered">++++++<thead>++++++<tr>++++++<th>+++Attribute name+++</th>+++
+== Properties attributes
+
++++<table class="table table-bordered">++++++<thead>++++++<tr>++++++<th>+++Attribute name+++</th>+++
       +++<th>+++Required+++</th>+++
       +++<th>+++Description+++</th>++++++</tr>++++++</thead>+++
   +++<tbody>++++++<tr>++++++<td>+++field+++</td>+++

@@ -223,7 +223,7 @@ public class Dependency {
 | aggregate
 | no
 | false + (automatically detected with fields)
-| specifies if the dependency is aggregate of +++<tt>+++scalar+++</tt>+++
+| specifies if the dependency is aggregate of scalar
 
 | specification
 | yes/no
@@ -243,8 +243,8 @@ This attribute is required when the service type cannot be inferred from the cod
 
 | policy
 | no
-| +++<tt>+++dynamic+++</tt>+++
-| specifies the binding policy among +++<tt>+++dynamic+++</tt>+++, +++<tt>+++static+++</tt>+++ and +++<tt>+++dynamic-priority+++</tt>+++
+| dynamic
+| specifies the binding policy among dynamic, static and dynamic-priority
 
 | nullable
 | no
@@ -353,20 +353,39 @@ The ``modified` callback is called when the service properties of a bound servic
 
 == Configuring service dependencies in the instance configuration
 
-h2.
-Configuring the `from` attribute
+
+=== Configuring the `from` attribute
 
 * Thanks to the `requires.from` property, it is possible to override the `from` attribute value.
 
-{code:xml|From attribute configuration}+++<component classname="...MyComponent" name="FOO">++++++<requires field="m_foo" id="id1">++++++<callback type="bind" method="bind">++++++</callback>+++ +++<callback type="unbind" method="unbind">++++++</callback>++++++</requires>++++++</component>++++++<instance name="FOO1" component="FOO">++++++</instance>+++
-
-// Use the default 'from' value+++<instance name="FOO2" component="FOO">++++++<property name="requires.from">++++++<property name="id1" value="myprovider">++++++</property>++++++</property>++++++</instance>+++
-
+.From Attribute Configuration
+[source,xml]
 ----
- h2. Configuring the {{filter}} attribute
-* Thanks to the {{requires.filters}} property, it is possible to override the {{filter}} attribute value.
+<component
+   classname="...MyComponent"
+   name="FOO">
+	<requires field="m_foo" id="id1">
+		<callback type="bind" method="bind"/>
+		<callback type="unbind" method="unbind"/>
+	</requires>
+</component>
 
-{code:xml|Filter attribute configuration}
+<instance name="FOO1" component="FOO"/> <!-- Use the default 'from' value -->
+
+<instance name="FOO2" component="FOO">
+	<property name="requires.from">
+		<property name="id1" value="myprovider"/>
+	</property>
+</instance>
+----
+
+=== Configuring the \{filter} attribute
+
+* Thanks to the \{requires.filters} property, it is possible to override the \{filter} attribute value.
+
+.Filter attribute configuration
+[source,xml]
+----
 <component
    classname="org.apache.felix.ipojo.example.FilteredDependency"
    name="FOO">
@@ -391,17 +410,28 @@ Configuring the `from` attribute
 
 * A POJO object (implementation object) is created as soons as the instance becomes valid
 * Instances that don't provide services becomes automatically immediate
-[source,xml]
-<component classname="my.service.implementation" name="my-service-impl" immediate="true">++++++<provides>++++++</provides>++++++</component>+++
 
- {code:java|title=Annotations}
+[source,xml]
+<component classname="my.service.implementation" name="my-service-impl" immediate="true">
+   <provides/>
+</component>
+
+.Annotations
+[source,java]
  @Component(immediate=true)
  @Provides
  public class Implementation implements FooService {
     ...
  }
 
-{div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | immediate | no | false // true for instances that don't provide a service | specifies if the instance is immediate or not | \{center} \{div}
+|===
+|Attribute name | Required | Default value | Meaning
+
+| immediate
+| no
+| false // true for instances that don't provide a service
+| specifies if the instance is immediate or not |
+|===
 
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/lifecycle-callback-handler.adoc[Lifecycle Callback Handler]
 
@@ -410,10 +440,14 @@ Configuring the `from` attribute
 * fake point
 
 [source,xml]
-<component classname="my.implementation" name="my-impl">++++++<callback transition="validate" method="start">++++++</callback>+++ +++<callback transition="invalidate" method="stop">++++++</callback>++++++</component>+++
+<component classname="my.implementation" name="my-impl">
+    <callback transition="validate" method="start" />
+    <callback transition="invalidate" method="stop" />
+</component>
 
+.Annotations
+[source,java]
 ----
-{code:java|title=Annotations}
 @Component
 public class Implementation {
 
@@ -436,7 +470,22 @@ public class Implementation {
 * fake point
 
 [source,xml]
-<component classname="my.Implementation" name="my-impl">++++++<properties propagation="true" managedservice="MyPID">++++++<property name="boo" method="setBoo">++++++</property>+++ +++<property field="m_bar" mandatory="true">++++++</property>+++ +++<property field="m_foo" value="4">++++++</property>++++++</properties>++++++</component>++++++<instance component="my-impl">++++++<property name="boo" value="...">++++++</property>+++ +++<property name="m_bar" value="...">++++++</property>++++++</instance>++++++<instance component="my-impl">++++++<property name="boo" value="...">++++++</property>+++ +++<property name="m_bar" value="...">++++++</property>+++ +++<property name="managed.service.pid" value="AnotherPID">++++++</property>++++++</instance>+++
+<component classname="my.Implementation" name="my-impl">
+    <properties propagation="true" managedservice="MyPID">
+        <property name="boo" method="setBoo" />
+	<property field="m_bar" mandatory="true"/>
+	<property field="m_foo" value="4"/>
+    </properties>
+</component>
+<instance component="my-impl">
+    <property name="boo" value="..."/>
+    <property name="m_bar" value="..."/>
+</instance>
+<instance component="my-impl">
+    <property name="boo" value="..."/>
+    <property name="m_bar" value="..."/>
+    <property name="managed.service.pid" value="AnotherPID"/>
+</instance>
 
 .Annotations
 [source,java]
@@ -457,8 +506,23 @@ public class Implementation {
 }
 ----
 
-{div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | propagation | no | false | specifies if the properties propagation (properties are also published as service properties) is enabled or disabled | | managedservice | no | instance name | specifies the PID of the published managed service.
-// This value can be overidden by the `managed.service.pid` instance property | | name | no | field name or computed from the method name | specifies if the the property name | | value | no |  | specifies the default property value | | field | no | automatically detected with annotations | specifies the field in which the property value will be injected | | method | no | automatically detected with annotations | specifies the setter method in which the property value will be injected | | mandatory | no | false | specifies if the property has to receive a value from the instance configuration | \{center} \{div}
+|===
+|Attribute name | Required | Default value |
+
+| propagation | no | false | specifies if the properties propagation (properties are also published as service properties) is enabled or disabled
+
+| managedservice | no | instance name | specifies the PID of the published managed service. // This value can be overidden by the `managed.service.pid` instance property
+
+| name | no | field name or computed from the method name | specifies if the the property name
+
+| value | no |  | specifies the default property value
+
+| field | no | automatically detected with annotations | specifies the field in which the property value will be injected
+
+| method | no | automatically detected with annotations | specifies the setter method in which the property value will be injected
+
+| mandatory | no | false | specifies if the property has to receive a value from the instance configuration
+|===
 
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/configuration-handler.adoc[Configuration Handler]
 
@@ -466,10 +530,16 @@ public class Implementation {
 
 * This feature is part of the provided service handler, and so requires that the component provides a service.
 * The callback receives a `ServiceReference` as parameter.
-[source,xml]+++<component classname="...">++++++<provides post-unregistration="unregistered" post-registration="registered">++++++</provides>++++++</component>+++
+[source,xml]
+<component
+     classname="...">
+    <provides
+	post-unregistration="unregistered" post-registration="registered"/>
+</component>
 
+.Annotations
+[source,java]
 ----
-{code:java|title=Annotations}
 @PostRegistration
 public void registered(ServiceReference ref) {
 	System.out.println("Registered");
@@ -487,9 +557,15 @@ public void unregistered(ServiceReference ref) {
 
 * This feature is part of the provided service handler, and so requires that the component provides a service.
 * It allows a component to force the un-publication of a service.
-[source,xml]+++<component classname="...">++++++<provides>++++++<controller field="controller" value="false">++++++</controller>++++++</provides>++++++</component>+++
+[source,xml]<component
+classname="...">
+<provides>
+<controller field="controller" value="false"/>
+</provides>
+</component>
 
- {code:java|title=Annotations}
+.Annotations
+[source,java]
  @ServiceController(value="false")
  private boolean controller
 
@@ -500,7 +576,9 @@ public void unregistered(ServiceReference ref) {
 * Deploy the 'arch' command bundle (available for Felix and Equinox)
 * Launch the 'arch' command in the OSGi Framework Shell {code:java|title=Felix Shell} arch \=> displays instances name & state (equivalent to arch -instances) arch -instance $instance__name \=> displays complete information about the instance $instance__name arch -factories \=> display the list of available factories arch -factory $factory__name \=> display complete information about the factory $factory__name arch -handlers \=> list available handlers
 +
-{code:java|title=Felix Gogo}   ipojo:instances \=> displays instances name & state (equivalent to arch -instances)   ipojo:instance $instance_name \=> displays complete information about the instance $instance_name   ipojo:factories \=> display the list of available factories   ipojo:factory $factory_name \=> display complete information about the factory $factory_name   ipojo:handlers \=> list available handlers
+.Felix Gogo
+[source,gogo]
+ipojo:instances \=> displays instances name & state (equivalent to arch -instances)   ipojo:instance $instance_name \=> displays complete information about the instance $instance_name   ipojo:factories \=> display the list of available factories   ipojo:factory $factory_name \=> display complete information about the factory $factory_name   ipojo:handlers \=> list available handlers
 
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.adoc[iPOJO Arch Command]
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/architecture-handler.adoc[Architecture Handler]
@@ -514,10 +592,22 @@ If a timeout is reached, a timeout policy is executed.
 * Temporal dependencies are implemented as an _external handlers_.
 To use them, deploy and start the temporal dependency handler bundle.
 +
-[source,xml]+++<iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">++++++<component className="my.Implementation">+++// Temporal dependency configuration +++<temporal:requires field="mytemporal">++++++</temporal:requires>+++ +++<provides>++++++</provides>++++++</component>++++++</iPOJO>+++
-
+[source,xml]
 ----
-{code:java|title=Annotations}
+<iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
+<component
+    className="my.Implementation">
+
+    <!-- Temporal dependency configuration -->
+    <temporal:requires field="mytemporal"/>
+    <provides/>
+</component>
+</iPOJO>
+----
+
+.Annotations
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.handler.temporal.Requires;
 import org.apache.felix.ipojo.test.scenarios.annotations.service.FooService;
@@ -531,12 +621,25 @@ public class Implementation {
 }
 ----
 
-{div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | field | no | automatically detected with annotations | specifies the field in which the service object will be injected | | timeout | no | 3000 ms | specifies the timeout value (in ms).
-When the timeout is reached, the on timeout policy is executed | | onTimeout | no | Runtime Exception | specifies the on timeout policy.
-Possible values are: `null`, `nullable`, `empty`, _default-implementation_ (class name) | | specification | only when using Collections |  | specifies the required service specification.
-This attribute is required when the injected field is a Collection | | proxy | no | false | enables/disables proxy injection.
-Service injected as proxies can be given to collaborators | | filter | no |  no filter | Filter use to discover matching filter.
-| \{center} \{div}
+|===
+|Attribute name | Required | Default value | |
+
+| field | no | automatically detected with annotations | specifies the field in which the service object will be injected |
+
+| timeout | no | 3000 ms | specifies the timeout value (in ms).
+When the timeout is reached, the on timeout policy is executed |
+
+| onTimeout | no | Runtime Exception | specifies the on timeout policy.
+Possible values are: `null`, `nullable`, `empty`, _default-implementation_ (class name) |
+
+| specification | only when using Collections |  | specifies the required service specification.
+This attribute is required when the injected field is a Collection |
+
+| proxy | no | false | enables/disables proxy injection.
+Service injected as proxies can be given to collaborators |
+
+| filter | no |  no filter | Filter use to discover matching filter.
+|===
 
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/temporal-service-dependency.adoc[Temporal Service Dependency]
 
@@ -549,10 +652,19 @@ Service injected as proxies can be given to collaborators | | filter | no |  no 
 To use it, deploy and start the event admin handler bundle and an implementation of the event admin service.
 * Event (or data) are receive thanks to a callback method.
 +
-[source,xml]+++<ipojo xmlns:ev="org.apache.felix.ipojo.handlers.event.EventAdminHandler">++++++<component className="...MyComponent">++++++<ev:subscriber name="mySubscriber" callback="receive" topics="foo">++++++</ev:subscriber>++++++</component>++++++</ipojo>+++
+[source,xml]<ipojo
+xmlns:ev="org.apache.felix.ipojo.handlers.event.EventAdminHandler">
+<component className="...MyComponent">
+<ev:subscriber
+name="mySubscriber"
+callback="receive"
+topics="foo"/>
+</component>
+</ipojo>
 
+.Annotations
+[source,java]
 ----
-{code:java|title=Annotations}
 @Component
 public class MyComponent {
 
@@ -573,39 +685,48 @@ public class MyComponent {
     }
 ----
 
-{div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | name | yes | | specifies the name of the event subscriber, acting as a unique identifier.
+|===
+|Attribute name | Required | Default value | |
+
+| name | yes | | specifies the name of the event subscriber, acting as a unique identifier.
 This name is used to configure event subscription in the instance configuration.
 |
 
-[cols=4*]
-|===
 | topics
 | yes
 |
 | specifies the list (comma-separated-list) of the topics that the handler will listen to.
 Each event sent on a topic present in this list will be sent to the specified callback method.
 This parameter can be overridden by instances
-|===
 
-|===
 | If you use this attribute, the parameter passed to the callback method is the the value associated to this key, not the whole event.
 This attribute is generally used with the `data-type` attribute to specify the received object type.
 If an event is received and it does not contain such a key, it is ignored (with a warning message).
-|===
 
 | filter | no | no filter | specifies the event LDAP filter used to filter incoming events before sending them to the callback.
 The syntax of this field is described in the OSGi EventAdmin Specification.
 If you don't specify a filter, all events sent on the listened topics will be considered.
-| \{center} \{div}
+|===
 
-* Instance configuration  **  event.topics : overrides `topics` attribute  ** event.filter : overrides `filter` attribute
+* Instance configuration
+**  event.topics : overrides `topics` attribute
+** event.filter : overrides `filter` attribute
 
-{code:xml|title=Instance configuration}+++<instance component="...MyComponent">++++++<property name="event.topics">++++++<property name="mySubscriber" value="foo">++++++</property>++++++</property>+++ +++<property name="event.filter">++++++<property name="mySubscriber" value="|((arg=Minibar)(arg=Coconuts))">++++++</property>++++++</property>++++++</instance>+++
+[source,xml]
+<instance component="...MyComponent">
+		<property name="event.topics">
+			<property name="mySubscriber" value="foo"/>
+		</property>
+		<property name="event.filter">
+			<property name="mySubscriber"
+				    value="|((arg=Minibar)(arg=Coconuts))"/>
+		</property>
+	</instance>
 
 ----
 * [Event Admin Handlers]
 
-h2. Sending events
+=== Sending events
 
  * The event admin handler allows sending events to the Event Admin.
  * The event admin handler is implemented as an _external handlers_. To use it, deploy and start the event admin handler bundle and an implementation of the event admin service.
@@ -623,16 +744,12 @@ h2. Sending events
 </ipojo>
 ----
 
-[cols=2*]
-|===
-| {code:java
-| title=Annotations}
-|===
-
+.Annotations
+[source,java]
+----
 @Component public class MyComponent {     // We use qualified names to avoid conflict.
 @org.apache.felix.ipojo.handlers.event.Publisher(name="p1", synchronous=true)     org.apache.felix.ipojo.handlers.event.publisher.Publisher publisher1;
 
-----
 @org.apache.felix.ipojo.handlers.event.Publisher(name="p2", synchronous=false, topics="foo,bar", data_key="data")
 org.apache.felix.ipojo.handlers.event.publisher.Publisher publisher2;
 
@@ -649,25 +766,25 @@ public void doSomething() {
     // Send event
     publisher1.send(e);
 } }
-
+----
 
 * [Event Admin Handlers]
 
-{div:class=borderedTable}
-{center}
-||Attribute name || Required || Default value || ||
+|===
+|Attribute name || Required || Default value || ||
 | name | yes | | specifies the name of the event publisher, acting as a unique identifier. This name is used to configure event publishing in the instance configuration. |
 | field | yes \\ automatically detected with annotations | | specifies The name of the field used to send events. The field is initialized at component instantiation time. The type of the field must be : {{org.apache.felix.ipojo.handlers.event.publisher.Publisher}}. |
 | topics | yes | | specifies the list (comma-separated-list) of the topics on which events will be sent. This parameter can be overridden by instances |
 | data-key \\ data_key when using annotations | no | user.data | specifies the data key used when you want to send data events.  This attribute's value is the key, in the event's dictionary, in which sent data are stored. When you use the _sendData_ method of the Publisher, the given object is placed in the event dictionary, associated with the specified data-key.  |
 | synchronous | no | false | specifies if event sending is synchronous or not.   |
-{center}
-{div}
+|===
 
 * Instance configuration
-    ** event.topics : overrides {{topics}} attribute
+    ** event.topics : overrides \{topics} attribute
 
-{code:xml|title=Instance configuration}
+.Instance configuration
+[source,xml]
+----
 <instance component="...MyComponent">
 		<property name="event.topics">
 			<property name="myPublisher" value="foo"/>
@@ -681,10 +798,28 @@ public void doSomething() {
 * The extender pattern handler is implemented as an _external handlers_.
 To use it, deploy and start the external pattern handler bundle.
 +
-[source,xml]+++<ipojo xmlns:extender="org.apache.felix.ipojo.extender">++++++<component classname="org.apache.felix.ipojo.extender.Myextender">+++<!--Extender Pattern handler configuration -\-> +++<extender:extender extension="My-Extension" onArrival="onArrival" onDeparture="onDeparture">++++++</extender:extender>+++ +++<callback transition="invalidate" method="stopping">++++++</callback>+++ +++<callback transition="validate" method="starting">++++++</callback>++++++</component>++++++</ipojo>+++
-
+[source,xml]
 ----
-{code:java|title=Annotations}
+<ipojo xmlns:extender="org.apache.felix.ipojo.extender">
+	<component
+		classname="org.apache.felix.ipojo.extender.Myextender">
+
+                <!—Extender Pattern handler configuration -->
+		<extender:extender
+                  extension="My-Extension"
+                  onArrival="onArrival"
+                  onDeparture="onDeparture"
+                />
+
+		<callback transition="invalidate" method="stopping" />
+		<callback transition="validate" method="starting" />
+	</component>
+</ipojo>
+----
+
+.Annotations
+[source,java]
+----
 @Component
 @org.apache.felix.ipojo.extender.Extender(extension="My-Extension", onArrival="onArrival", onDeparture="onDeparture")
 public class Myextender {
@@ -699,10 +834,18 @@ public class Myextender {
 }
 ----
 
-{div:class=borderedTable} \{center} |Attribute name | Required | Default value | | |--|--|--|--| | extension | yes | | specifies the required extension (i.e.
-the required Manifest key) | | onArrival | yes | | specifies the method called when a matching bundle arrives.
-The method receives the Bundle object and the extension value | | onDeparture | yes | | specifies the method called when a matching bundle leaves.
-The method receives the Bundle object | \{center} \{div}
+|===
+|Attribute name | Required | Default value | |
+
+| extension | yes | | specifies the required extension (i.e.
+the required Manifest key) |
+
+| onArrival | yes | | specifies the method called when a matching bundle arrives.
+The method receives the Bundle object and the extension value |
+
+| onDeparture | yes | | specifies the method called when a matching bundle leaves.
+The method receives the Bundle object |
+|===
 
 * xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/describing-components/extender-pattern-handler.adoc[Extender Pattern Handler]
 
@@ -712,4 +855,50 @@ The method receives the Bundle object | \{center} \{div}
 * The whiteboard pattern handler is implemented as an _external handlers_.
 To use it, deploy and start the whiteboard pattern handler bundle.
 +
-[source,xml]+++<ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">++++++<component classname="org.apache.felix.ipojo.test.MyWhiteBoardPattern">++++++<wbp:wbp filter="(my.property=1)" onArrival="onArrival" onDeparture="onDeparture" onModification="onModification">++++++</wbp:wbp>+++ +++<provides>++++++</provides>++++++</component>+++ {code:java|title=Annotations} @Component @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)", onArrival="onArrival", onDeparture="onDeparture", onModification="onModification") public class WhiteBoardWIModification { public void onArrival(ServiceReference ref) { // \... } public void onDeparture(ServiceReference ref) { // \... } public void onModification(ServiceReference ref) { // \... } } \{center} |Attribute name | Required | Default value | | |--|--|--|--| | filter | yes | | specifies LDAP filter used to detect required service providers | | onArrival | yes | | specifies the method called when a matching service provider arrives. The method receives the ServiceReference object | | onDeparture | yes | | specifies the method called when a matching service provider leaves. The method receives the ServiceReference object | | omModification | no | | specifies the method called when a matching service provider is modified and is still matching. The method receives the ServiceReference object | \{center} * [White Board Pattern Handler]({{ refs.white-board-pattern-handler.adoc)+++</ipojo>+++
+[source,xml]
+<ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">
+     <component
+          classname="org.apache.felix.ipojo.test.MyWhiteBoardPattern"
+      >
+        <wbp:wbp
+   	      filter="(my.property=1)"
+              onArrival="onArrival"
+              onDeparture="onDeparture"
+              onModification="onModification"
+         />
+
+         <provides/>
+      </component>
+
+[source,java]
+----
+    @Component
+    @org.apache.felix.ipojo.whiteboard.Wbp(filter="(my.property=1)",
+            onArrival="onArrival",
+            onDeparture="onDeparture",
+            onModification="onModification")
+    public class WhiteBoardWIModification {
+
+        public void onArrival(ServiceReference ref) {
+            // ...
+        }
+
+        public void onDeparture(ServiceReference ref) {
+            // ...
+        }
+
+        public void onModification(ServiceReference ref) {
+            // ...
+        }
+
+    }
+----
+
+|===
+|Attribute name | Required | Default value | |
+|--|--|--|--|
+| filter | yes | | specifies LDAP filter used to detect required service providers |
+| onArrival | yes | | specifies the method called when a matching service provider arrives. The method receives the ServiceReference object |
+| onDeparture | yes | | specifies the method called when a matching service provider leaves. The method receives the ServiceReference object |
+| omModification | no | | specifies the method called when a matching service provider is modified and is still matching. The method receives the ServiceReference object |
+|===

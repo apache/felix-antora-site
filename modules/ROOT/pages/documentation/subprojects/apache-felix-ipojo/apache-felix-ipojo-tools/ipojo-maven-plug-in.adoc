@@ -185,10 +185,12 @@ This command generates :
 * the src/main/java and src/main/resources folders,
 * the structure of your package name.
 
-The generated project uses iPOJO annotation and is ready to be deployed.+++<div class="alert alert-info">+++[discrete]
+The generated project uses iPOJO annotation and is ready to be deployed.
+
+INFO: [discrete]
 ==== Maven Archetype
 
-The maven-ipojo-plugin archetype generates a pom file using the latest released version of the maven-ipojo-plugin.+++</div>+++
+The maven-ipojo-plugin archetype generates a pom file using the latest released version of the maven-ipojo-plugin.
 
 == Describing iPOJO configuration in the pom file
 

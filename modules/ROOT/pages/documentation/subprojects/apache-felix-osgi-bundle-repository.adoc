@@ -317,8 +317,8 @@ These properties are:
 * http.proxyAuth - the user name and password to use when connecting to the proxy;
 this string should be the user name and password separated by a colon (e.g., rickhall:mypassword).
 
-These system properties can be set directly on the command line when starting the JVM using the standard "-D+++<prop>+++=+++<value>+++" syntax or you can put them in the lib/system.properties file of your Felix installation;
-see documentation on configuring Felix for more information.+++</value>++++++</prop>+++
+These system properties can be set directly on the command line when starting the JVM using the standard "-D<prop>=<value>" syntax or you can put them in the lib/system.properties file of your Felix installation;
+see documentation on configuring Felix for more information.
 
 == Bundle Source Packaging
 

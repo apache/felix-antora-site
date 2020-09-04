@@ -3,13 +3,14 @@
 The objective of this handler is to simplify the development of white-board architecture.
 This architecture-style is based is very close to the extender architecture style but relies on services instead of bundles.
 
-ALERT:: Change in the 1.2.0
+== Change in the 1.2.0
 
-The 1.2.0 uses the namespace `org.apache.felix.ipojo.whiteboard` instead of `org.apache.felix.ipojo.white-board-pattern`+++</div>++++++<div class="alert alert-info info">+++[discrete]
-==== Change in the 1.7.0
+The 1.2.0 uses the namespace `org.apache.felix.ipojo.whiteboard` instead of `org.apache.felix.ipojo.white-board-pattern`
+
+== Change in the 1.7.0
 
 The 1.7.0 has introduced a new annotations allowing to declare several whiteboard patterns in the same class.
-The `@Whiteboards` annotation is not available in previous version.+++</div>+++
+The `@Whiteboards` annotation is not available in previous version.
 
 == The whiteboard pattern
 
@@ -95,11 +96,12 @@ The handler has only three mandatory attributes:
 * onDeparture: declaring the method to invoke when a matching service leaves
 
 The onModification attribute is optional.
-This method is called when an injected service reference is modified but stills valid against the filter.+++<div class="alert alert-info info">+++[discrete]
-==== Notifications
+This method is called when an injected service reference is modified but stills valid against the filter.
+
+== Notifications
 
 The implementation will be notified of arrivals, modifications and departures, despite the instance is invalid.
-Indeed, the implementation must release all objects created from another bundle as soon it leaves.+++</div>+++
+Indeed, the implementation must release all objects created from another bundle as soon it leaves.
 
 == Configuring the handler with annotations
 

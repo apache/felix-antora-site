@@ -56,8 +56,8 @@ _Note: on Windows platforms you will need to use a '' in place of the '/' file  
 
 Where:
 
-* *+++<file-list>+++* - is either a list of bundle JARs to be processed or a list of directories, or a mix of both.
-Each directory will be scanned and all JAR files in the directory, or any sub-directories will be included in the bundle JARs processed.+++</file-list>+++
+* *<file-list>* - is either a list of bundle JARs to be processed or a list of directories, or a mix of both.
+Each directory will be scanned and all JAR files in the directory, or any sub-directories will be included in the bundle JARs processed.
 
 The basic behaviour of `mangen` is to process the set of bundle JARs supplied and scan the classes within each JAR to build up a set of the possible exports and required imports for each JAR.
 Where inner jars are defined using the OSGi `Bundle-ClassPath` header the classes in these will also be scanned and the possible exports and required imports will be included in the sets generated for their enclosing JAR.
@@ -186,14 +186,16 @@ The rule syntax is as follows:
 
 Where:
 
-* *+++<rule-type>+++* - must be the name of a valid existing rule type, details of which can be found in this section.+++</rule-type>+++
-* *+++<rule-options>+++* - will be a list of one or more of the standard options and/or rule specific options.
-The standard options are as follows: ** `imports()` - a comma seperated list of package patterns, using the JDK regex format.
-These will be matched against a bundle's own import packages during rule processing, the specific handling undertaken for each match being dependent on the *+++<rule-type>+++*.
-*Note: each pattern must be separated from the next by a comma (,) and the list must not contain any space characters.* ** `exports()` - a comma seperated list of package patterns, using the JDK regex format.
-These will be matched against a bundle's own export packages during rule processing, the specific handling undertaken for each match being dependent on the *+++<rule-type>+++*.
+* *<rule-type>* - must be the name of a valid existing rule type, details of which can be found in this section.
+* *<rule-options>* - will be a list of one or more of the standard options and/or rule specific options.
+The standard options are as follows:
+** `imports()` - a comma seperated list of package patterns, using the JDK regex format.
+These will be matched against a bundle's own import packages during rule processing, the specific handling undertaken for each match being dependent on the *<rule-type>*.
+*Note: each pattern must be separated from the next by a comma (,) and the list must not contain any space characters.*
+** `exports()` - a comma seperated list of package patterns, using the JDK regex format.
+These will be matched against a bundle's own export packages during rule processing, the specific handling undertaken for each match being dependent on the *<rule-type>*.
 ** `sys-packages()` - a comma seperated list of standard 'system package' patterns, using the JDK regex format.
-The specific handling undertaken for each match being dependent on the *+++<rule-type>+++*+++</rule-type>++++++</rule-type>++++++</rule-type>++++++</rule-options>+++
+The specific handling undertaken for each match being dependent on the *<rule-type>*
 
 Rules will can have either "global" scope, in which case every bundle JAR processed will have the rule appplied, or "local" scope meaning that they will only apply to a single bundle JAR.
 Global rules will be included in the `mangen.properties` file.
@@ -208,7 +210,7 @@ Local rules are placed within the Manifest for the appropriate bundle in a speci
     mangen-rule-0: Ignore imports(com\.adobe\.acrobat.*,webeq\..*,javax\.help,javax\.media)
 ----
 
-Details are included below showing whether a *+++<rule-type>+++* can be used in a global or a local context+++</rule-type>+++
+Details are included below showing whether a *<rule-type>* can be used in a global or a local context
 
 ==== AttributeStamp
 
@@ -492,8 +494,8 @@ Whilst running, the ObrReport will look for a number of specific properties to a
 
 The templates include a simple "tag substitution" mechanism that will expand the following tags:
 
-* `@@hdr:<header-name>@@` - include the attribute value of +++<header-name>+++from the bundle's Manifest.
-The `mangen` attributes will be searched first, followed by the Main attributes+++</header-name>+++
+* `@@hdr:<header-name>@@` - include the attribute value of <header-name>from the bundle's Manifest.
+The `mangen` attributes will be searched first, followed by the Main attributes
 * `@@imports@@` - process the list of imports and generate descriptor text based on the `mangen.obr.import.<obr-ver>` template
 * `@@exports@@` - process the list of exports and generate descriptor text based on the `mangen.obr.export.<obr-ver>` template
 * `@@import-ver@@` - will be expanded using `mangen.obr.import.ver.<obr-ver>` if an explicit version was included for the import package

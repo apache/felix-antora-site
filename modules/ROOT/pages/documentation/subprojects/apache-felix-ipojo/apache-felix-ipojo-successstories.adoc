@@ -3,8 +3,8 @@
 _On this page, you will find comments from industrial users of iPOJO.
 They come from different domains such as home gateways, mobile phones, or enterprise applications._
 
-+++<a id="schneider">++++++</a>+++
-
+[#schneider]
+[quote,'Sylvain Marie, Software Architect, Schneider Electric']
 ____
 Over 90% of processors are now used for embedded applications.
 At Schneider Electric we believe that java is a fantastic opportunity to develop some of our applications faster and better.
@@ -14,12 +14,11 @@ We also use it for our open source OSGi DPWS Base Driver ('SOA for devices' forg
 And it's not just about us: partners of the SOA4D forge are using it, too.
 ____
 
-+++<cite>+++-- Sylvain Marie, Software Architect, Schneider Electric+++</cite>+++
 
 '''
 
-+++<a id="ugasp">++++++</a>+++
-
+[#ugasp]
+[quote,'Romain Pellerin, Ubidreams CEO']
 ____
 Ubiquitous Multi-player games are one of next trends of mobile games.
 This type of games offers new experience: users interact with the real world and with the virtual world at the same time!
@@ -45,10 +44,11 @@ Moreover, for the developer point of view, this is completely hidden.
 To get more info about uGasp, visit our http://gasp.objectweb.org/ubiquitous-osgi-middleware.html[web site] or contact http://www.ubidreams.com[Ubidreams].
 ____
 
-+++<cite>+++-- Romain Pellerin, Ubidreams CEO+++</cite>+++
 
 '''
 
+[#jonas]
+[quote,'Guillaume Sauthier, JOnAS Application Server Developer']
 ____
 JOnAS is a Java EE server developed inside the OW2 consortium.
 It embraces the new trend of modular and dynamic application servers and aims at implementing the entire Java EE specification by re-using third-part components.
@@ -64,8 +64,6 @@ As iPOJO reduces drastically the impact on the code, we have reused the high maj
 The JOnAS team is very happy with iPOJO, and will go on using, promoting and improving it.
 If you want more info on JOnAS visit our http://wiki.jonas.objectweb.org/xwiki/bin/view/Main/WebHome[website].
 ____
-
-+++<cite>+++-- Guillaume Sauthier, JOnAS Application Server Developer+++</cite>+++
 
 *Are you also using iPOJO ?* + You are using iPOJO, and you want to be listed there to tell how you are using iPOJO.
 Feel free to send us link:mailto:clement@apache.org[a mail] with your story.

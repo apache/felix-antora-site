@@ -8,13 +8,13 @@ Apache Felix artifacts are distributed in two channels: The Maven Repository and
 
 The basic steps for releasing are:
 
-* <<staging-the-release-candidates,Release the module with the Maven Release plugin deploying to the Nexus Staging repository>>
+* <<#_staging_the_release_candidates,Release the module with the Maven Release plugin deploying to the Nexus Staging repository>>
 * Check the artifacts
-* <<starting-the-vote,Call for vote>>
-* <<promoting-the-release,Publish the release candidate>>:
+* <<#_starting_the_vote,Call for vote>>
+* <<#_promoting_the_release,Publish the release candidate>>:
  ** Publish the staged artifacts from Nexus Staging
  ** `svn add` the artifacts to the `dist` Subversion repository and `svn rm` the artifacts from the previous release
-* <<create-an-announcement,Announce the release>>
+* <<#_create_an_announcement,Announce the release>>
 
 The Apache Felix PMC appreciates all committers playing release manager for the projects they maintain.
 Due to restrictions imposed on us, only members of the PMC are actually able to commit the releases to the distribution repository (See <<promoting-the-release,Publish the release candidate>>).
@@ -197,18 +197,19 @@ Click on _Staging_ on the left.
 Then click on _org.apache.felix_ in the list of repositories.
 In the panel below you should see a closed repository that is linked to your username and IP (if it's not yet closed you need to right click and select _Close_).
 Right click on this repository and select _Drop_.
-. rollback the version in the `pom.xml` and commit any fixes you need to make+++<div class="info">+++The release manager is free to either reuse the same version when proposing a new release for vote (for example 2.1.2 after a failed 2.1.2 release attempt), or choose a different number (for example 2.1.4 after a failed 2.1.2 attempt).
-(cf.
-vote on 02/14/11).+++</div>+++
+. rollback the version in the `pom.xml` and commit any fixes you need to make
+
+INFO: The release manager is free to either reuse the same version when proposing a new release for vote (for example 2.1.2 after a failed 2.1.2 release attempt), or choose a different number (for example 2.1.4 after a failed 2.1.2 attempt).
+(cf. vote on 02/14/11).
 
 == Promoting the Release
 
 If the vote passes:
 
-* <<upload-the-artifacts,Upload the Artifacts>>
-* <<release-to-the-maven-repository,Release to the Maven Repository>>
-* <<release-bundle-to-the-obr,Release Bundles to the OBR>>
-* <<update-the-site,Update the Site>>
+* <<#_upload_the_artifacts,Upload the Artifacts>>
+* <<#_release_to_the_maven_repository,Release to the Maven Repository>>
+* <<#_release_bundles_to_the_obr,Release Bundles to the OBR>>
+* <<#_update_the_site,Update the Site>>
 
 === Upload the Artifacts
 
@@ -254,7 +255,7 @@ To do this, execute the following command in a checkout of the release tag (targ
 WARNING: the following about the site is wrong and needs to be rewritten
 
 After committing the site must be published.
-If you release to OBR before link:update-the-site[updating the site] you can defer publishing until after that.
+If you release to OBR before xref:#_update_the_site[updating the site] you can defer publishing until after that.
 Otherwise publish the site by visiting the https://cms.apache.org/felix/publish[Site Publication] link.
 
 The https://felix.apache.org/obr/releases.xml[releases] page is updated immediately.
@@ -338,15 +339,15 @@ If you are using a *nix system with a working OpenSSH, GnuPG, and bash you can c
 [source,bash]
  $ gpg --gen-key
 
-When gpg asks for e-mail linked the key you _MUST USE_ the +++<committer>+++@apache.org one.
-When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY".+++</committer>+++
+When gpg asks for e-mail linked the key you _MUST USE_ the <committer>@apache.org one.
+When gpg asks for comment linked the key you *SHOULD USE* "CODE SIGNING KEY".</committer>
 
 Second, _Add the key to_ (https://dist.apache.org/repos/dist/release/felix/KEYS).
 
 Only PMC members can commit to files in the dist area, so you should do the key export in the  shell commands below, and send the results along to a friendly PMC member for assistance.
 
-Type the following command replacing the word e-mail with your Apache's one (+++<committer>+++@apache.org).
-To update you have to checkout the Felix dist release repository (you also need this to publish a release):+++</committer>+++
+Type the following command replacing the word e-mail with your Apache's one (<committer>@apache.org).
+To update you have to checkout the Felix dist release repository (you also need this to publish a release):</committer>
 
 [source,bash]
  $ (gpg --list-sigs e-mail && gpg --export --armor e-mail) > toadd.key

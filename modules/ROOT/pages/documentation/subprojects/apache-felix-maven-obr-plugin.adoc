@@ -35,7 +35,7 @@ The _install_ goal updates the local OBR with the details of the installed bundl
 
 configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 
 To attach this goal to your project's lifecycle, use:
 
@@ -58,7 +58,7 @@ The _install-file_ goal updates the local OBR with the details of a bundle from 
 
 configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 * _groupId_ Maven groupId for the bundle, taken from _pomFile_ if given
 * _artifactId_ Maven artifactId for the bundle, taken from _pomFile_ if given
 * _version_ Maven version for the bundle, taken from _pomFile_ if given
@@ -146,7 +146,7 @@ The maven-obr-plugin provides a simple goal to check for missing bundles, and re
 
 configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`{}{`}`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`{}{`}`/repository.xml`
 
 To attach this goal to your project's lifecycle, use:
 

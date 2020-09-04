@@ -3,7 +3,9 @@
 This plugin for Maven 2/3 is based on the http://bnd.bndtools.org/[BND] tool from Peter Kriens.
 The way BND works is by treating your project as a big collection of classes (e.g., project code, dependencies, and the class path).
 The way you create a bundle with BND is to tell it the content of the bundle's JAR file as a subset of the available classes.
-This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.+++<div class="info">+++.
+This plugin wraps BND to make it work specifically with the Maven 2 project structure and to provide it with reasonable default behavior for Maven 2 projects.
+
+INFO:
 If you have questions about the maven-bundle-plugin please read the xref:documentation/faqs/apache-felix-bundle-plugin-faq.adoc[FAQ] first.
 If you still have questions you can ask them on the http://felix.apache.org/site/mailinglists.html[Felix user list].</div>
 
@@ -11,7 +13,11 @@ _NOTE: test scoped dependencies are *not* included in the classpath seen by BND.
 
 Since the 1.4.0 release, this plugin also aims to automate OBR (OSGi Bundle Repository) management.
 It helps manage a local OBR for your local Maven repository, and also supports remote OBRs for bundle distribution.
-The plug-in automatically computes bundle capabilities and requirements, using a combination of Bindex and Maven metadata.+++<div class="tip">+++http://felix.apache.org/components/bundle-plugin/index.html[Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin]</div>+++<div class="tip">+++http://bnd.bndtools.org/chapters/790-format.html[A complete list of instructions and their format is available from the BND website]</div>
+The plug-in automatically computes bundle capabilities and requirements, using a combination of Bindex and Maven metadata.
+
+TIP: http://felix.apache.org/components/bundle-plugin/index.html[Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin]</div>
+
+TIP: http://bnd.bndtools.org/chapters/790-format.html[A complete list of instructions and their format is available from the BND website]</div>
 
 == Simple Example
 
@@ -420,14 +426,14 @@ Version 2 of the bundleplugin now supports the same style of filter clauses in `
  ** _`manifestLocation`_ defaults to ${project.build.outputDirectory}/META-INF
  ** _`supportedProjectTypes`_ defaults to "jar","bundle"
 * _`install`_ - adds the current bundle project to the local OBR configuration options:
- ** _`obrRepository`_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+ ** _`obrRepository`_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
  ** _`supportedProjectTypes`_ defaults to "jar","bundle"
 
 More GOALs are available in the _1.4.0_ release:
 
 * _`ant`_ - create an Ant build script to rebuild the bundle
 * _`install-file`_ - adds a local bundle file to the local OBR configuration options:
- ** _`obrRepository`_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+ ** _`obrRepository`_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
  ** _`groupId`_ Maven groupId for the bundle, taken from _pomFile_ if given
  ** _`artifactId`_ Maven artifactId for the bundle, taken from _pomFile_ if given
  ** _`version`_ Maven version for the bundle, taken from _pomFile_ if given
@@ -461,7 +467,7 @@ More GOALs are available in the _1.4.0_ release:
  ** _`obrXml`_ optional additional properties for the bundle
  ** _`ignoreLock`_ ignore remote locking when updating the OBR
 * _`clean`_ - cleans the local OBR, removing missing bundles configuration options:
- ** _`obrRepository`_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+ ** _`obrRepository`_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 * _`remote-clean`_ - cleans a remote OBR, removing missing bundles configuration options:
  ** _`remoteOBR`_ name of remote OBR, defaults to NONE (which means no remote cleaning)
  ** _`obrRepository`_ used when the remoteOBR name is blank, defaults to `repository.xml`
@@ -473,7 +479,7 @@ More GOALs are available in the _1.4.0_ release:
 There are also new instructions available from the underlying BND tool, which continues to be improved independently;
 for the latest see http://bnd.bndtools.org/[BND documentation].
 
-The default goal _`bundle`_ will be initialized by setting the +++<packaging>+++entry to "bundle".+++</packaging>+++
+The default goal _`bundle`_ will be initialized by setting the <packaging>entry to "bundle".
 
 == The following features are only available from version 1.2.0 onwards
 
@@ -768,7 +774,7 @@ The _install-file_ goal updates the local OBR with the details of a bundle from 
 
 Configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 * _groupId_ Maven groupId for the bundle, taken from _pomFile_ if given
 * _artifactId_ Maven artifactId for the bundle, taken from _pomFile_ if given
 * _version_ Maven version for the bundle, taken from _pomFile_ if given
@@ -839,7 +845,7 @@ The maven-bundle-plugin provides a simple goal to check for missing bundles, and
 
 Configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 
 Example:
 
@@ -851,9 +857,9 @@ The `index` goal allows the creation of an OBR repository based on a set of jars
 
 Configuration:
 
-* _obrRepository_ path to local OBR, defaults to *+++<local-maven-repository>+++*`/repository.xml`+++</local-maven-repository>+++
+* _obrRepository_ path to local OBR, defaults to *<local-maven-repository>*`/repository.xml`
 * _urlTemplate_ template for generating urls for OBR resources
-* _mavenRepository_ path to the maven repository, defaults to *+++<local-maven-repository>+++*+++</local-maven-repository>+++
+* _mavenRepository_ path to the maven repository, defaults to *<local-maven-repository>*
 
 Possible values for the `urlTemplate` are:
 
@@ -915,4 +921,4 @@ A warning message is displayed when existing information is overridden.
 == Feedback
 
 Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
-after subscribing, email questions or feedback to link:mailto:users@felix.apache.org[users@felix.apache.org].+++</div>++++++</div>++++++</div>+++
+after subscribing, email questions or feedback to link:mailto:users@felix.apache.org[users@felix.apache.org].

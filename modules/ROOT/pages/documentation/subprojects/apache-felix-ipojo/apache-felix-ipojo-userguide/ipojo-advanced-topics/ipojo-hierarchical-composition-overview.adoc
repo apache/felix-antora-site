@@ -221,7 +221,8 @@ Additionally, required sub-services can specify:
 
 * Cardinality: Indicates whether a single provider instance is imported or an aggregated set of the available providers instances is imported.
 * Optionality: Indicates whether the imported sub-service is optional or mandatory.
-* Filtering: Indicates how the services available in the parent composite can be further filtered using an LDAP expression evaluated over their service properties.+++<requires specification="org.apache.felix.ipojo.test.scenarios.service.Hello" optional="true" aggregate="true" filter="(language=en)">++++++</requires>+++
+* Filtering: Indicates how the services available in the parent composite can be further filtered using an LDAP expression evaluated over their service properties.
+<requires specification="org.apache.felix.ipojo.test.scenarios.service.Hello" optional="true" aggregate="true" filter="(language=en)">/requires>
 
 === Service Provisioning
 
@@ -253,7 +254,8 @@ Additionally, the sub-service may specify:
 * Cardinality: Indicates whether a single provider instance is created or an aggregated set of the available provider instances is imported.
 * Optionality: Indicates whether the created sub-service instance is optional or mandatory.
 * Filtering: Indicates how the service factories available in the parent composite can be further filtered using an LDAP expression evaluated over their service properties.
-* Configuration: Indicates the configuration to inject in the created instances.+++<composite name="composite.bar ">++++++<service specification="org.apache.felix.ipojo.test.scenarios.service.Hello">++++++<property name="language" value="en">++++++</property>++++++</service>++++++</composite>+++
+* Configuration: Indicates the configuration to inject in the created instances.
+<composite name="composite.bar "><service specification="org.apache.felix.ipojo.test.scenarios.service.Hello"><property name="language" value="en"></property></service></composite>
 
 === Instance injection
 

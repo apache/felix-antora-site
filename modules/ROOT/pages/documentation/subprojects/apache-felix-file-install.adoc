@@ -146,9 +146,9 @@ If a configuration managed by File Install is modified, File Install will write 
 == Property substitution in configuration files
 
 It is possible to use system properties to specify the values of properties in configuration files.
-This is achieved through system property substitution, which is instigated by using `$\{<property>\`} syntax, where +++<property>+++is the name of a system property to substitute.
+This is achieved through system property substitution, which is instigated by using `$\{<property>\`} syntax, where <property>is the name of a system property to substitute.
 Bundle context properties will take precedence over system properties if available.
-Example:+++</property>+++
+Example:</property>
 
  ftp.port = ${system.ftp.port}
 
@@ -157,7 +157,7 @@ Example:+++</property>+++
 Starting with version 3.1.0 it is possible to specify several directories to watch with the system property `felix.fileinstall.dir`;
 this property can either point to a single directory or a comma separated list of directories.
 In addition, Apache Felix File Install provides a ManagedServiceFactory to create multiple instances of File Install.
-Asuming you have a File Install bundle watching a `bundles` folder, creating a new instance is as simple as creating a new configuration file `org.apache.felix.fileinstall-<pid>.cfg` in that folder (substitute +++<pid>+++with a unique Id for the new service instance):+++</pid>+++
+Asuming you have a File Install bundle watching a `bundles` folder, creating a new instance is as simple as creating a new configuration file `org.apache.felix.fileinstall-<pid>.cfg` in that folder (substitute <pid>with a unique Id for the new service instance):</pid>
 
  felix.fileinstall.poll=2000
  felix.fileinstall.dir=/configDir
