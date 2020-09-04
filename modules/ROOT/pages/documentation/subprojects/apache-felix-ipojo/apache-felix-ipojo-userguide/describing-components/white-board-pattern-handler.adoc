@@ -26,8 +26,7 @@ Several services specified in the OSGi specification use white board pattern suc
 == Using the handler
 
 First of all, you need to configure the component type to use the handler such as:
-
- :::xml
+[source,xml]
  <ipojo xmlns:wbp="org.apache.felix.ipojo.whiteboard">
  <component
            className="org.apache.felix.ipojo.test.FooWhiteBoardPattern">
@@ -47,7 +46,7 @@ A matching service is detected by confronting the service reference against the 
 The filter can target specific service interface (with the objectclass property) or property values.
 In the previous example, these methods could be:
 
- :::java
+[source,java]
  public class FooWhiteBoardPattern {
      List list = new ArrayList();
      int modifications = 0;
@@ -65,8 +64,8 @@ All methods received the arriving, leaving or modified service reference.
 
 You can also use annotation to declare the same component:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Wbp(
   filter="my.property=1",
@@ -85,7 +84,7 @@ public class FooWhiteBoardPattern {
     public synchronized void onModification(ServiceReference ref) {
 	   //...
     }
-....
+----
 
 == Configuration
 
@@ -107,8 +106,8 @@ Indeed, the implementation must release all objects created from another bundle 
 It is possible to configure the handler with a simple annotation available in the annotation pack ('annotation' project in the iPOJO trunk).
 Here is an example of usage:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.osgi.framework.ServiceReference;
 
@@ -132,14 +131,14 @@ public class WhiteBoardExemple {
     }
 
 }
-....
+----
 
 The `onModification` attribute is optional.The `filter` attribute allows setting the service filter.
 
 In the 1.7.0, a new annotation was introduced to support the declaration of several whiteboard patterns in the same component:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Whiteboards(whiteboards={
      @Wbp(filter="(foo=true)",
@@ -155,4 +154,4 @@ public class WhiteBoardExemple {
     // ...
 
 }
-....
+----

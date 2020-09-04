@@ -38,8 +38,7 @@ Please refer to https://maven.apache.org/guides/mini/guide-encryption.html[Passw
 In the past we staged release candidates on our local machines using a semi-manual process.
 Now that we inherit from the Apache parent POM version 5, a repository manager will automatically handle staging for you.
 This means you now only need to specify your GPG passphrase in the release profile of your `$\{user.home\}/.m2/settings.xml`:
-
- :::xml
+[source,xml]
  <settings>
    ...
    <profiles>
@@ -54,8 +53,7 @@ This means you now only need to specify your GPG passphrase in the release profi
  </settings>
 
 Everything else has been configured in the latest Felix parent POM:
-
- :::xml
+[source,xml]
  <parent>
    <groupId>org.apache.felix</groupId>
    <artifactId>felix-parent</artifactId>
@@ -117,8 +115,8 @@ You can then rollback your release (see _Canceling the Release_) and repeat the 
 
 Propose a vote on the dev list with the closed issues, the issues left, and the staging repository - for example:
 
-....
-:::text
+[source,text]
+----
 To: "Felix Developers List" <dev@felix.apache.org>
 Subject: [VOTE] Release Felix XXX version Y.Z
 
@@ -145,7 +143,7 @@ Please vote to approve this release:
 [ ] -1 Veto the release (please provide specific comments)
 
 This vote will be open for 72 hours.
-....
+----
 
 [cols=2*]
 |===
@@ -170,8 +168,8 @@ The list of binding voters is available at link:{{ refs.project-management-commi
 
 If the vote is successful, post the result to the dev list - for example:
 
-....
-:::text
+[source,text]
+----
 To: "Felix Developers List" <dev@felix.apache.org>
 Subject: [RESULT] [VOTE] Release Felix XXX version Y.Z
 
@@ -184,7 +182,7 @@ The vote has passed with the following result :
 
 I will copy this release to the Felix dist directory and
 promote the artifacts to the central Maven repository.
-....
+----
 
 If the vote is unsuccessful, you need to fix the issues and restart the process - see _Canceling the Release_.
 If the vote is successful, you need to promote and distribute the release - see _Promoting the Release_.
@@ -242,7 +240,7 @@ Updating the mirrors takes another few hours (up to a day).
 If you're releasing bundles, you can also add them to the Felix Release OBR.
 To do this, execute the following command in a checkout of the release tag (target/checkout if is still around, otherwise a new one):
 
- :::bash
+[source,bash]
  $ export site=# your checkout of (https://svn.apache.org/repos/asf/felix/site/trunk/content)
  $ export obr=${site}/obr
  $ mvn clean install \
@@ -264,8 +262,7 @@ The https://felix.apache.org/obr/releases.xml[releases] page is updated immediat
 NOTE: the project building the bundle must use the link:{{ maven-bundle-plugin.path }}[{{ maven-bundle-plugin.headers.title }}] and use a version equal to or higher than 1.4.2.
 
 NOTE: with Maven 3, you must add an extension to your `<build>` providing the SCP/SSH protocol:
-
- :::xml
+[source,xml]
  <build>
  ...
    <extensions>
@@ -302,8 +299,8 @@ This procedure applies currently only to the `maven-bundle-plugin`:
 
 == Create an Announcement
 
-....
-:::text
+[source,text]
+----
 To: "Felix Users List" <users@felix.apache.org>
 Subject: [ANN] Felix XXX version Y.Z Released
 
@@ -328,7 +325,7 @@ Release Notes:
 Enjoy!
 
 -The Felix team
-....
+----
 
 Remember to forward this announcement to `users@felix.apache.org` - try _not_ to cross-post (CC:) announcements to both user and dev lists.
 
@@ -338,7 +335,7 @@ _Remind Carsten about this release when he writes the next board report ;)_
 
 If you are using a *nix system with a working OpenSSH, GnuPG, and bash you can create and add your own key with the following command:
 
- :::bash
+[source,bash]
  $ gpg --gen-key
 
 When gpg asks for e-mail linked the key you _MUST USE_ the +++<committer>+++@apache.org one.
@@ -351,12 +348,12 @@ Only PMC members can commit to files in the dist area, so you should do the key 
 Type the following command replacing the word e-mail with your Apache's one (+++<committer>+++@apache.org).
 To update you have to checkout the Felix dist release repository (you also need this to publish a release):+++</committer>+++
 
- :::bash
+[source,bash]
  $ (gpg --list-sigs e-mail && gpg --export --armor e-mail) > toadd.key
 
 Provide the file to a PMC member, who will:
 
- :::bash
+[source,bash]
  $ svn checkout https://dist.apache.org/repos/dist/release/felix felix-dist
  $ cat toadd.key >> felix-dist/KEYS
  $ scn commit -m"KEYS += <committer>" felix-dist/KEYS

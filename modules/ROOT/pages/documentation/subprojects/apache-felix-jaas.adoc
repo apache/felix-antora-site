@@ -21,7 +21,7 @@ This poses problem in OSGi env as the client bundle does not have the visibility
 
 A typical use of JAAS login looks like below
 
- :::java
+[source,java]
  // let the LoginContext instantiate a new Subject
  LoginContext lc = new LoginContext("myApp");
  lc.login();
@@ -63,8 +63,7 @@ It consist of two parts
 ===== Manifest Header Entry
 
 Any bundle which provides a LoginModule class needs to provide this information via _Jaas-ModuleClass_ manifest header.
-
- :::xml
+[source,xml]
  <Jaas-ModuleClass>org.apache.felix.example.jaas.config.internal.SampleConfigLoginModule</Jaas-ModuleClass>
 
 ===== Configuration
@@ -103,8 +102,8 @@ It would be used to order the various login modules.
 
 Interface
 
-....
-:::java
+[source,java]
+----
 /**
  * A factory for creating {@link LoginModule} instances.
  */
@@ -134,7 +133,7 @@ public interface LoginModuleFactory
      */
     LoginModule createLoginModule();
 }
-....
+----
 
 Refer to http://svn.apache.org/repos/asf/felix/trunk/examples/jaas/lm-jdbc/src/main/java/org/apache/felix/example/jaas/jdbc/JdbcLoginModuleFactory.java[JdbcLoginModuleFactory] for one example of its usage.
 It constructs a JdbcLoginModule based on the configuration and passes on the datasource.
@@ -174,8 +173,8 @@ Following points to be noted for this usage pattern
 In this mode the client logic explicitly fetch the JAAS Configuration and then pass it on to the LoginContext.
 In this mode the <<configuration-spi,JAAS Configuration Policy>> is set to `Default`.
 
-....
-:::java
+[source,java]
+----
 CallbackHandler handler = ...;
 
 Subject subject = new Subject();
@@ -197,7 +196,7 @@ finally
 {
     Thread.currentThread().setContextClassLoader(cl);
 }
-....
+----
 
 In above flow the `Configuration` instance is explicitly fetched and passed on to the
 
@@ -214,8 +213,8 @@ Refer to <<boot-classpath,Boot classpath>> section for more details
 In this mode the JAAS bundle would replace the Global configuration through Configuration.setConfiguration call.
 In this mode the client code would use the normal LoginContext creation and the <<configuration-spi,JAAS Configuration Policy>> is set to `Replace Global Configuration`.
 
-....
-:::java
+[source,java]
+----
 final ClassLoader cl = Thread.currentThread().getContextClassLoader();
 try
 {
@@ -229,7 +228,7 @@ finally
 {
     Thread.currentThread().setContextClassLoader(cl);
 }
-....
+----
 
 Following points need to be considered this mode
 
@@ -255,7 +254,7 @@ The client bundle  would need to
 . Have an explicit import for `org.apache.felix.jaas.boot` package and
 . Manage TCCL explicitly which making JAAS related calls.
 
-  :::java
+ [source,java]
   final Thread current = Thread.currentThread();
   final ClassLoader orig = current.getContextClassLoader();
   try {
@@ -274,7 +273,7 @@ Another way would involve modifying the boot classpath.
 . Place the `org.apache.felix.jaas-xxx-boot.jar` in the boot classpath via `-Xbootclasspath:bootclasspath` option
 . Make the `org.apache.felix.jaas.boot` part of boot delegation list
 
-  :::java
+ [source,java]
   LoginContext lc = new LoginContext("sample", subject, handler);
   lc.login();
 

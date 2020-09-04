@@ -19,7 +19,7 @@ Annotated components can then be inspected with the DependencyManager Gogo shell
 To register a service, your can annotate your class with a _@Component_ annotation, and  an instance of your class will be registered under all directly implemented interfaces  into the OSGi registry.
 You can however take control on the interfaces to be exposed, and  in this case, you can use the _provides_ attribute, which takes a list of classes to expose from the registry:
 
- :::java
+[source,java]
  @Component
  class WebServiceImpl implements WebService {
      ...
@@ -33,8 +33,8 @@ Such DictionaryService represents a real  dictionary for a given language (it  h
 
 Now we have introduced the background, let's define our SpellChecker component:
 
-....
-:::java
+[source,java]
+----
 @Component(provides=SpellChecker.class)
 @Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation")
 @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})
@@ -46,7 +46,7 @@ public class SpellChecker {
        // ...
     }
 }
-....
+----
 
 In the code above, you see that the SpellCheck is annotated with the _@Component_  annotation.
 Gogo runtime does not required shell commands to implement a  specific  interface.
@@ -58,7 +58,7 @@ It is not shown here, but service properties can also be  provided dynamically f
 Our SpellChecker component can expose itself as a Gogo shell command, but before being  registered into the OSGi registry, we also need to be   injected with two dependencies:  one required dependency (at minimum) on a DictionaryService, and another optional one on  a LogService.
 First, let's look at the DictionaryService, which is a simple interface:
 
- :::java
+[source,java]
  public interface DictionaryService {
      /**
       * Check for the existence of a word.
@@ -70,8 +70,8 @@ First, let's look at the DictionaryService, which is a simple interface:
 
 And here is our previous SpellChecker component, augmented with two new ServiceDependency  annotations:
 
-....
-:::java
+[source,java]
+----
 @Component(provides=SpellChecker.class)
 @Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation")
 @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})
@@ -105,7 +105,7 @@ public class SpellChecker {
        System.err.println("word " + word + " is incorrect");
     }
 }
-....
+----
 
 There are many things to describe in the code above:
 
@@ -152,7 +152,7 @@ This allows for example to create the component instance using a dynamic proxy.
 
 Here is a sample showing a Hello component:
 
- :::java
+[source,java]
  /**
    * This component will be activated once the bundle is started.
    */
@@ -174,8 +174,8 @@ So, if you need your component to be instantiated multiple times, you first need
 
 Example:
 
-....
-:::java
+[source,java]
+----
 /**
   * All component instances will be created/updated/removed by the "HelloFactory" component
   */
@@ -215,7 +215,7 @@ class HelloFactory {
         c2.delete();
    }
 }
-....
+----
 
 In the above example, the PID is "my.factory.pid", and the HelloFactory component uses the `ConfigurationAdmin` service in order to create some factory configurations using the "my.factory.pid".
 This pattern allows to  programatically create/update/remove multiple instances of the same Component.
@@ -239,7 +239,7 @@ Usage example:
 
 Here, the `Aspect` class is registered into the OSGI registry each time an  InterceptedService is found from the registry.
 
- :::java
+[source,java]
  @AspectService(ranking=10))
  class Aspect implements InterceptedService {
      // The service we are intercepting (injected by reflection)
@@ -264,7 +264,7 @@ You can define an aspect service using the @AdapterService annotation (see  http
 
 Here, the AdapterService is registered into the OSGI registry each time an AdapteeService is  found from the registry.
 
- :::java
+[source,java]
  interface AdapteeService {
      void method1();
      void method2();
@@ -308,7 +308,7 @@ If you declare the original bundle as a member it will be injected.
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
- :::java
+[source,java]
  @BundleAdapterService(filter = "(Video-Path=*)", stateMask = Bundle.ACTIVE, propagate=true)
  public class VideoPlayerImpl implements VideoPlayer {
      volatile Bundle bundle; // Injected by reflection
@@ -387,7 +387,7 @@ the _removed_ callbacks are just invoked, if declared in the annotation.
 
 The following example shows a basic component, which uses the @Start annotation:
 
- :::java
+[source,java]
  /**
   * A Component Using lifecyce callbacks
   */
@@ -406,8 +406,8 @@ The following example shows a basic component, which uses the @Start annotation:
 
 The following example shows a component, which returns some service properties from its start method,  and the component also defines the @Registered annotation in order to get the actual ServiceRegistration for the provided service:
 
-....
-:::java
+[source,java]
+----
 /**
  * A Component Using lifecyce callbacks
  */
@@ -436,7 +436,7 @@ class X implements Y {
         // once our service is registered, we can obtainer here the corresponding ServiceRegistration ...
     }
 }
-....
+----
 
 === Lifecycle control
 
@@ -453,8 +453,8 @@ Such a case  is supported using the @LifecyceController annotation, which gives 
 
 Let's illustrate this use case with a concrete example: First here is the DHT asynchronous API:
 
-....
-:::java
+[source,java]
+----
 /**
  * This is an element which can be inserted into the distributed hash table.
  */
@@ -468,12 +468,12 @@ public interface DHTElement {
 public interface DHTService {
    void insert(DHTElement element); // will callback element.inserted() later, once registered into the DHT.
 }
-....
+----
 
 Next, here is our service, which uses the @LifecycleController in  order to take control of when the service is published into the OSGi  registry:
 
-....
-:::java
+[source,java]
+----
 @Component(provides={MyService.class})
 public class MyServiceImpl implements MyService, DHTElement {
     @ServiceDependency
@@ -500,12 +500,12 @@ public class MyServiceImpl implements MyService, DHTElement {
         // Our Service will be published once this method returns.
     }
 }
-....
+----
 
 Same example as above, using java8 method reference:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyServiceImpl implements MyService {
     @ServiceDependency
@@ -524,7 +524,7 @@ public class MyServiceImpl implements MyService {
         // method called after the m_dht service has called the m_registered.run() method.
     }
 }
-....
+----
 
 == Dependencies
 
@@ -566,7 +566,7 @@ So, take care to traverse the map using an iterator on the map entry set, which 
 
 This is an example where you inject a `Dependency` service on a class field:
 
- :::java
+[source,java]
  @Component
  class MyComponent {
      @ServiceDependency
@@ -575,7 +575,7 @@ This is an example where you inject a `Dependency` service on a class field:
 
 Another example, were we inject multiple dependencies to an Iterable field
 
- :::java
+[source,java]
  @Component
  class MyComponent {
      @ServiceDependency
@@ -584,7 +584,7 @@ Another example, were we inject multiple dependencies to an Iterable field
 
 And next, we inject multiple dependencies to a Map field, allowing to inspect service  dependency properties (the keys hold the services, and the values hold the associated service  properties):
 
- :::java
+[source,java]
  @Component
  class MyComponent {
      @ServiceDependency
@@ -598,7 +598,7 @@ In this case you can use the  ServiceDependency.defaultImpl attribute which allo
 
 Example:
 
- :::java
+[source,java]
  @Component
  public class MyComponent {
      @ServiceDependency(required=false, defaultImpl=MyDefaultImpl.class)
@@ -637,7 +637,7 @@ The callbacks allows to get notified when a service is added, and support the fo
 
 Example:
 
- :::java
+[source,java]
  @Component
  class MyComponent {
      @ServiceDependency
@@ -646,7 +646,7 @@ Example:
 
 Same example as before, but the callback signatures includes service properties:
 
- :::java
+[source,java]
  @Component
  class MyComponent {
      @ServiceDependency
@@ -655,8 +655,8 @@ Same example as before, but the callback signatures includes service properties:
 
 Same example as before, but this time we track service change:
 
-....
-:::java
+[source,java]
+----
 @Component
 class MyComponent {
     @ServiceDependency(change="updated")
@@ -664,12 +664,12 @@ class MyComponent {
 
     void updated(MyDependency dependency, Map<String, Object> serviceProperties) {}
 }
-....
+----
 
 Example where you track added/changed/removed service:
 
-....
-:::java
+[source,java]
+----
 @Component
 class MyComponent {
     @ServiceDependency(change="updated", remove="unbind")
@@ -679,7 +679,7 @@ class MyComponent {
 
     void unbind(MyDependency dependency, Map<String, Object> serviceProperties) {}
 }
-....
+----
 
 ==== Whiteboard pattern
 
@@ -694,8 +694,8 @@ So what you need is to make sure your are injected with the TaskMetrics and the 
 To do so, simply define two required dependencies on the `Executor` and the `TasksMetrics`, and define an optional dependency on the Task services.
 This will ensure that the Tasks callbacks are  invoked after your component is started:
 
-....
-:::java
+[source,java]
+----
 interface Task extends Runnable {
 }
 
@@ -719,7 +719,7 @@ TaskExecutor {
          m_taskMetrics.taskScheduled();
     }
  }
-....
+----
 
 ==== Tracking any services matching a given filter
 
@@ -728,8 +728,8 @@ In this case, you need to use the `service=ServiceDependency.ANY` attribute
 
 For example:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.ServiceDependency;
 import org.apache.felix.dm.annotation.api.ServiceDependency.Any;
 
@@ -739,7 +739,7 @@ public class MyService {
     void bind(Object allServices) {
     }
 }
-....
+----
 
 ==== Service dependency properties propagation
 
@@ -748,7 +748,7 @@ When the service dependency properties are propagated, they will be appended to 
 
 Example:
 
- :::java
+[source,java]
  @Component
  @Properties(name="p1", value="v1")
  public class MyServiceImpl implements MyService {
@@ -765,8 +765,8 @@ When you define a service dependency, it is possible to define a swap callback i
 
 Example:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyServiceImpl {
     @ServiceDependency(swap="swap")
@@ -776,13 +776,13 @@ public class MyServiceImpl {
     void swap(OtherService old, OtherService replace) {
     }
 }
-....
+----
 
 So, if an aspect service is registered for the OtherService service, then your swap method will be called so you can take the service replacement into account.
 
 The swap callback supports the following signatures:
 
- :::java
+[source,java]
  (Service old, Service replace)
  (Object old, Object replace)
  (ServiceReference old, Service old, ServiceReference replace, Service replace)
@@ -807,7 +807,7 @@ On timeout, an unchecked  IllegalStateException exception is raised (but the ser
 
 To use this feature, you need to specify a `timeout` attribute like this:
 
- :::java
+[source,java]
  @Component
  class MyServer implements Runnable {
    @ServiceDependency(timeout=15000)
@@ -918,8 +918,8 @@ In case a lookup does not yield a value from the underlying map or dictionary,  
 
 In the following example, the "Printer" component depends on a configuration with  "org.apache.felix.sample.Printer" PID:
 
-....
-:::java
+[source,java]
+----
 package org.apache.felix.sample;
 
 @Component
@@ -929,11 +929,11 @@ public class Printer {
         // load printer ip/port from the provided dictionary.
     }
 }
-....
+----
 
 Here is the same example using a type safe configuration:
 
- :::java
+[source,java]
  package sample;
 
  public interface PrinterConfiguration {
@@ -977,8 +977,8 @@ so from the init() method, you can then pick up whatever information needed from
 
 In the following example, the "SCR" Component allows to track all bundles containing a  specific "Service-Component" OSGi header, in order to load and manage all  Declarative Service components specified in the SCR xml documents referenced by the  header:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class SCR {
     @BundleDependency(required = false,
@@ -994,7 +994,7 @@ public class SCR {
         // unload all service component we loaded from our "loadServiceComponents" method.
     }
 }
-....
+----
 
 === Dynamic dependency configuration
 
@@ -1011,13 +1011,13 @@ For a given named dependency, the corresponding filter and required flag must be
 
 For instance, if you define a Dependency like this:
 
- :::java
+[source,java]
  @ServiceDependency(name="foo")
  FooService fooService;
 
 Then you can return this map from your @Init method:
 
- :::java
+[source,java]
  @Init
  Map init() {
      Map m = new HashMap();
@@ -1034,8 +1034,8 @@ Usage example of a dynamic dependency:
 In this sample, the "PersistenceImpl" component dynamically configures the "storage"  dependency from the "init" method.
 The dependency "required" flag and filter string are derived  from an xml configuration that is already injected before the init method.
 
-....
-:::java
+[source,java]
+----
 @Component
 public class PersistenceImpl implements Persistence {
     // Injected before init.
@@ -1073,14 +1073,14 @@ public class PersistenceImpl implements Persistence {
        storage.store(key, value);
     }
 }
-....
+----
 
 Notice that you can also add dynamic dependencies using the Dependency Manager API, or using DM-Lambda.
 In this case, no need to define service dependencies with annotations.
 Here is the same example as above, but this time, the dependency on the Storage service is defined from the init method using the DM API:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class PersistenceImpl implements Persistence {
     // Injected before init.
@@ -1117,12 +1117,12 @@ public class PersistenceImpl implements Persistence {
        storage.store(key, value);
     }
 }
-....
+----
 
 Same example as above, but this time the dependency is added from the init method using the  Dependency Manager Lambda API:
 
-....
-:::java
+[source,java]
+----
 import static org.apache.felix.dm.lambda.DependencyManagerActivator.component;
 
 @Component
@@ -1160,7 +1160,7 @@ public class PersistenceImpl implements Persistence {
        storage.store(key, value);
     }
 }
-....
+----
 
 == Component Composition
 
@@ -1173,8 +1173,8 @@ So, all  dependencies, as well as lifecycle annotations  (@Init, @Start, @Stop, 
 
 The following example illustrates a composition of two object instances, which are part of the implementation of a _MyService_ service:
 
-....
-:::java
+[source,java]
+----
 /**
  * Main implementation for the MyService Service
  */
@@ -1219,7 +1219,7 @@ public class Helper {
      return extraServiceProperties;
   }
 }
-....
+----
 
 Here, MyServiceImpl is the main component implementation, but is composed of the Helper object  instance.
 So all Dependencies defined in MyServiceImpl  will be also injected to the Helper (if the Helper  declares the fields or methods).
@@ -1255,8 +1255,8 @@ Example:
 
 Here is a MyService component with PROTOTYPE scope, each requester will get its own copy of  MyService instance, and the MyServiceImpl.start() method will be called for each instance:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.Component;
 import org.apache.felix.dm.annotation.api.ServiceScope;
 
@@ -1267,12 +1267,12 @@ public class MyServiceImpl implements MyService {
         // called on each MyService instance
     }
 }
-....
+----
 
 The above service will then automatically be instantiated for each service requester:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.Component;
 import org.apache.felix.dm.annotation.api.ServiceScope;
 
@@ -1291,13 +1291,13 @@ public class Client2 {
            // Client2 will be injected with its own MyService instance
     }
 }
-....
+----
 
 The two Client1/Client2 above will be injected with two distinct component instances for the  MyService service (each MyServiceImpl instance will be invoked in its start callback).
 Now, if you want to control the creation of the MyService, you can then define a bind method which  takes as argument a ServiceObjects parameter like this:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.Component;
 import org.apache.felix.dm.annotation.api.ServiceScope;
 
@@ -1313,13 +1313,13 @@ public static class Client {
         }
     }
 }
-....
+----
 
 Internally, DM will use the  PrototypeServiceFactory.getService(Bundle clientBundle, ServiceRegistration reg) method in order to  instantiate the MyServiceImpl component.
 So, the MyServiceImpl component can optionally use the  @Inject annotation in order to get injected with the clientBundle and/or the service registration,  like this:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.Component;
 import org.apache.felix.dm.annotation.api.ServiceScope;
 
@@ -1337,12 +1337,12 @@ public static class MyServiceImpl implements MyService {
 	   // called on each MyService instance.
 	}
 }
-....
+----
 
 The Bundle and ServiceRegistration can also be injected in the component Constructor:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.Component;
 import org.apache.felix.dm.annotation.api.ServiceScope;
 
@@ -1358,7 +1358,7 @@ public static class MyServiceImpl implements MyService {
 	   // called on each MyService instance.
 	}
 }
-....
+----
 
 *Notice that when defining a scoped service with annotations, it is not possible to return service  properties dynamically from the start method (annotated with @Start).*
 
@@ -1377,8 +1377,8 @@ Let's assume your write an OSGi r7 jaxrs servlet context which needs the two  fo
 
 Then you can first define your own annotation (but you could also reuse the default  annotations provided by the new upcomming jaxrs whiteboard r7 api, from the  org.osgi.service.jaxrs.whiteboard.propertytypes package):
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dependencymanager.annotation.PropertyType;
 
 @PropertyType
@@ -1386,11 +1386,11 @@ import org.apache.felix.dependencymanager.annotation.PropertyType;
     String osgi_http_whiteboard_context_name() default AppServletContext.NAME;
     String osgi_http_whiteboard_context_path();
 }
-....
+----
 
 In the above, the underscore is mapped to ".", and you can apply the above annotation on  top of your component like this:
 
- :::java
+[source,java]
  @Component
  @ServletContext(osgi_http_whiteboard_context_path="/game")
  public class AppServletContext extends ServletContextHelper {
@@ -1398,7 +1398,7 @@ In the above, the underscore is mapped to ".", and you can apply the above annot
 
 You can also use configuration admin service in order to override the default s ervice properties:
 
- :::java
+[source,java]
  @Component
  @ServletContext(osgi_http_whiteboard_context_path="/game")
  public class AppServletContext extends ServletContextHelper {
@@ -1414,7 +1414,7 @@ You can also use configuration admin service in order to override the default s 
 You can also define multiple property type annotations, and possibly single valued  annotation, like it is the case with standard r7 DS.
 In this case, you can use the  standard R7 PREFIX_ constants in order to specify the property prefix, and the property  name will be derived from the single valued annotation (using camel case convention):
 
- :::java
+[source,java]
  @PropertyType
  @interface ContextName { // will map to "osgi.http.whiteboard.context.name" property name
      String PREFIX_="osgi.http.whiteboard.";
@@ -1435,7 +1435,7 @@ In this case, you can use the  standard R7 PREFIX_ constants in order to specify
 
 Same example as above, but also using configuration admin service in order to override  default service properties: Here, as in OSGi r7 declarative service, you can define a  callback method which accepts as arguments all (or some of) the defined property types:
 
- :::java
+[source,java]
  @Component
  @ContextName(AppServletContext.NAME)
  @ContextPath("/game")
@@ -1449,7 +1449,7 @@ Same example as above, but also using configuration admin service in order to ov
 
 The following is the same example as above, but this time the configuration callback can also define a Dictionary in the first argument (in case you want to also get the raw configuration dictionary:
 
- :::java
+[source,java]
  @Component
  @ContextName(AppServletContext.NAME)
  @ContextPath("/game")
@@ -1464,7 +1464,7 @@ The following is the same example as above, but this time the configuration call
 Empty Marker annotations can also be used: when you define an empty annotation, it will be mapped to a java.lang.Boolean property type with Boolean.TRUE value.
 For example, the following component will be registered with "osgi.jaxrs.resource" service property with Boolean.TRUE value:
 
- :::java
+[source,java]
  @PropertyType
  @interface JaxrsResource { // will map to "osgi.jaxrs.resource" property name
      String PREFIX_="osgi.";
@@ -1481,7 +1481,7 @@ For example, the following component will be registered with "osgi.jaxrs.resourc
 
 User defined property types can also be applied on factory components, for example,  in the following, the service properties are declared using the user-defined annotations  (they will be overriden from the factory configuratin, if present in the config):
 
- :::java
+[source,java]
  @Component(factoryPid="my.factory.pid", propagate=true)
  @ContextName(AppServletContext.NAME)
  ContextPath("/game")

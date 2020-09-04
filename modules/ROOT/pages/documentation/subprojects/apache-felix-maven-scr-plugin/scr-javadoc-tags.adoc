@@ -278,7 +278,7 @@ _Notes_:
 It is important to carefully define the name of properties.
 By using a constant of the form
 
- :::java
+[source,java]
  /** @scr.property value="default value" */
  static final String CONSTANT_NAME = "property.name";
 

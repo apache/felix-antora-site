@@ -65,7 +65,7 @@ Normally in the OSGi framework, a bundle is not necessarily associated with a si
 instead, it may have multiple archives associated with it at run time depending on whether it has been updated or not.
 In the Felix framework implementation, we call these things modules and this naming was chosen for that reason:
 
-....
+----
     public interface VirtualModule {
         void resolve(Wire bootWire, List<Wire> wires) throws BundleException;
 
@@ -77,7 +77,7 @@ In the Felix framework implementation, we call these things modules and this nam
         Enumeration<String> getEntryPaths(String path);
         Enumeration<URL> findEntries(String path, String filePattern, boolean recurse);
     }
-....
+----
 
 The `VirtualModule` interface is implemented by a manager wishing to provide a virtual bundle.
 The core of the interface provides access to the content (i.e., both classes and entries).

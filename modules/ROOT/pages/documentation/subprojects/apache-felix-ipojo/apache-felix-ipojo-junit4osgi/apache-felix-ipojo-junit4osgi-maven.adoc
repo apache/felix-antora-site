@@ -5,12 +5,12 @@ This page describes the maven-junit4osgi-plugin allowing a seamless maven integr
 
 == What does the maven-junit4osgi-plugin provide?
 
-....
+----
 * Allows testing OSGi applications
 * Integrated in a Maven-based build process
 * Provides the same output as Surefire
 * Supports Maven site generation
-....
+----
 
 == Using the plug-in
 
@@ -124,7 +124,7 @@ This is useful during test generation.
 
 To execute test, just launch the `mvn clean integration-test` command.
 
-....
+----
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Building iPOJO Primitive Manipulation Test Suite
@@ -180,7 +180,7 @@ Cleaning test suites ...
 [INFO] Finished at: Mon Nov 10 21:30:21 CET 2008
 [INFO] Final Memory: 9M/18M
 [INFO] ------------------------------------------------------------------------
-....
+----
 
 Failures and errors are reported in the plugin output.
 
@@ -206,7 +206,7 @@ To do this, add the following report configuration to the project executing test
 This snippet configures the maven-surefire-report-plugin to collect results from the 'target/surefire-reports' directory.
 Then execute the plugin with the following command: {code:none} mvn org.apache.maven.plugins:maven-surefire-report-plugin:2.4.3:report
 
-....
+----
 This command generates the web page with test results in 'target/site'. This page shows an example of page generated with this command.
 
 h2. Plug-in design
@@ -222,4 +222,4 @@ This page has presented a front-end automating the execution of junit4osgi tests
     * Is able to generate Surefire-like reports
 \\
 \\
-....
+----

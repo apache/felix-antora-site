@@ -28,8 +28,7 @@ Notice that in the R1 version, we are not pushing DM distribution to maven, so y
 We'll try to release DM artifacts to maven central in the next release (R2).
 
 For example:
-
- :::xml
+[source,xml]
  <project ...>
    <dependencies>
      ...

@@ -12,7 +12,7 @@ In the following source code, the bundle uses its bundle context to register the
 We implement the dictionary service as an inner class of the bundle activator class, but we could have also put it in a separate file.
 The source code for our bundle is as follows in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -96,7 +96,7 @@ public class Activator implements BundleActivator
         }
     }
 }
-....
+----
 
 We must create a manifest.mf file that contains the metadata for our bundle;
 the manifest file contains the following:

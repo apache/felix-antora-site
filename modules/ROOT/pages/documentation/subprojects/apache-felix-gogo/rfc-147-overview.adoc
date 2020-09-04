@@ -12,7 +12,7 @@ This is an overview of its main features:
 Commands are registered via service attributes, you don't have to register a specific service.
 This allows commands to be registered by existing services, just by adding the new attributes:
 
- :::java
+[source,java]
  Dictionary<String, Object> dict = new Hashtable<String, Object>();
  dict.put(CommandProcessor.COMMAND_SCOPE, "shell");
  dict.put(CommandProcessor.COMMAND_FUNCTION, new String[] {"sleep", "grep"});
@@ -28,8 +28,8 @@ If the scope is omitted (e.g.
 Arguments are coerced to call the best matching method using reflection.
 A `CommandSession` argument is inserted if required:
 
-....
-:::java
+[source,java]
+----
 public void sleep(long millis) throws InterruptedException{
     Thread.sleep(millis);
 }
@@ -37,11 +37,11 @@ public void sleep(long millis) throws InterruptedException{
 public void sleep(String[] args) throws Exception;
 
 public boolean grep(CommandSession session, String[] args) throws Exception;
-....
+----
 
 The `CommandSession` interface provides methods for executing commands and getting and setting session variables:
 
- :::java
+[source,java]
  public interface org.apache.felix.service.command.CommandSession {
      Object execute(CharSequence commandline) throws Exception;
      Object get(String name);
@@ -53,20 +53,20 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * basic commands
 
-   :::shell
+[source,sh]ell
    g! echo hello world
    hello world
 
 * session variables
 
-   :::shell
+[source,sh]ell
    g! msg = "hello world"
    g! echo $msg
    hello world
 
 * execution quotes `()` - similar to bash backquotes
 
-   :::shell
+[source,sh]ell
    g! (bundle 1) location
    file:/Users/derek/Downloads/felix-framework-3.0.0/bundle/org.apache.felix.bundlerepository-1.6.2.jar
 
@@ -74,7 +74,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * lists - `[]`
 
-   :::shell
+[source,sh]ell
    g! list = [1 2 a b]
    1
    2
@@ -83,7 +83,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * maps - `[]`
 
-   :::shell
+[source,sh]ell
    g! map = [Jan=1 Feb=2 Mar=3]
    Jan                 1
    Feb                 2
@@ -91,7 +91,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * pipes - `|`
 
-   :::shell
+[source,sh]ell
    g! bundles | grep gogo
        2|Active     |    1|org.apache.felix.gogo.command (0.6.0)
        3|Active     |    1|org.apache.felix.gogo.runtime (0.6.0)
@@ -99,7 +99,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * closures - `{}`
 
-   :::shell
+[source,sh]ell
    g! echo2 = { echo xxx $args yyy }
    g! echo2 hello world
    xxx hello world yyy
@@ -108,7 +108,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * exception handling - console shows summary, but full context available
 
-   :::shell
+[source,sh]ell
    g! start xxx
    E: Cannot coerce start[xxx] to any of [(Bundle)]
    g! $exception printstacktrace
@@ -122,7 +122,7 @@ The `CommandSession` interface provides methods for executing commands and getti
 
 * add all public methods on `java.lang.System` as commands:
 
-   :::shell
+[source,sh]ell
    g! addcommand system (loadClass java.lang.System)
    g! system:getproperties
    sun.io.unicode.encodingUnicodeLittle
@@ -140,7 +140,7 @@ Command implementations don't need to reference any OSGi interfaces.
 They can use `System.in`, `System.out` and `System.err`, just as you would in a trivial Java application.
 The `ThreadIO` service transparently manages the singleton `System.out` etc, so that each thread sees the appropriate stream:
 
- :::java
+[source,java]
  public void cat(String[] args) throws Exception {
      for (String arg : args) {
          IOUtil.copy(arg, System.out);
@@ -149,7 +149,7 @@ The `ThreadIO` service transparently manages the singleton `System.out` etc, so 
 
 === Normal commands can provide control primitives
 
- :::java
+[source,java]
  public void each(CommandSession session, Collection<Object> list, Function closure) throws Exception {
      for (Object x : list) {
          closure.execute(session, null);
@@ -158,7 +158,7 @@ The `ThreadIO` service transparently manages the singleton `System.out` etc, so 
 
 then
 
- :::shell
+[source,sh]ell
  g! each [Jan Feb Mar] { echo $it | grep . }
  Jan
  Feb

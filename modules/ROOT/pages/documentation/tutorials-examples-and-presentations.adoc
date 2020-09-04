@@ -29,7 +29,7 @@ Despite its dependency on Equinox it might be helpful, because they use Declarat
 * http://www.manning.com/alves/[OSGi in Depth];
 Alexandre de Castro Alves;
 Manning, 2011.
-I cannot say anything on this book except that he seems to have used Apache Felix for the samples....
+I cannot say anything on this book except that he seems to have used Apache Felix for the samples----
 * http://www.manning.com/cummins/[Enterprise OSGi in Action: With examples using Apache Aries];
 Holly Cummins, Timothy Ward;
 Manning, 2013 Covers Enterprise OSGi specifications, which are becoming more and more important.

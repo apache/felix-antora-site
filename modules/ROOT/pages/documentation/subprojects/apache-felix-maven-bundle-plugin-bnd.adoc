@@ -507,7 +507,7 @@ The first MATCH in a clause will filter against the artifactId.
 
 some examples:
 
-....
+----
 <!-- embed all compile and runtime scope dependencies -->
 <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 
@@ -522,18 +522,18 @@ some examples:
 
 <!-- inline contents of selected folders from all dependencies -->
 <Embed-Dependency>*;inline=images/**|icons/**</Embed-Dependency>
-....
+----
 
 examples of using `+{maven-dependencies}+`:
 
-....
+----
 <Include-Resource>
   {maven-resources}, {maven-dependencies},
   org/foo/Example.class=target/classes/org/foo/Example.class
 </Include-Resource>
 
 <Bundle-ClassPath>.,{maven-dependencies},some.jar</Bundle-ClassPath>
-....
+----
 
 By default matched dependencies are embedded in the bundle as `artifactId-version.jar`.
 This behaviour can be modified using the following instructions:
@@ -601,7 +601,7 @@ to disable OBR installation set the obrRepository to NONE, for example:
 It is possible to configure the Maven Bundle Plugin to put the bundle manifest where Eclipse/PDE expects it, and use the Maven Dependency Plugin to arrange for any embedded dependencies to appear in a local directory that matches the Bundle-ClassPath entries.
 Here is an example POM that does this:
 
-....
+----
 <project>
 
   <properties>
@@ -699,7 +699,7 @@ Here is an example POM that does this:
   </dependencies>
 
 </project>
-....
+----
 
 To generate the Eclipse metadata use:
 
@@ -756,11 +756,11 @@ The customized Ant script uses the BND tool to rebuild the bundle, so any source
 
 Example:
 
-....
+----
 mvn ant:ant bundle:ant
 
 ant clean package
-....
+----
 
 === bundle:install-file
 

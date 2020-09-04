@@ -7,7 +7,7 @@ The specification defines a rich dynamic typing system to describe service attri
 The simplest way to specify service metatype information is to add one or more XML files in the `OSGI-INF/metatype` folder.
 For example, the `OSGI-INF/metatype/metatype.xml` file included in the xref:documentation/subprojects/apache-felix-file-install.adoc[Apache Felix File Install] subproject is as follows:
 
-....
+----
 <?xml version="1.0" encoding="UTF-8"?>
 <metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0">
 
@@ -25,7 +25,7 @@ For example, the `OSGI-INF/metatype/metatype.xml` file included in the xref:docu
     </Designate>
 
 </metatype:MetaData>
-....
+----
 
 The main elements of this simple example are:
 
@@ -53,7 +53,7 @@ The following types are supported by the specification:
 As mentioned before, it is possible to localize metatype information.
 A good example is the xref:documentation/subprojects/apache-felix-web-console.adoc[Apache Felix Web Console] subproject, which includes the following metatype information:
 
-....
+----
 <?xml version="1.0" encoding="UTF-8"?>
 
 <metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/metatype">
@@ -71,7 +71,7 @@ A good example is the xref:documentation/subprojects/apache-felix-web-console.ad
     </Designate>
 
 </metatype:MetaData>
-....
+----
 
 The key elements to write a localized metatype definition are
 
@@ -81,7 +81,7 @@ The key elements to write a localized metatype definition are
 
 The following example shows the localization property file of the Web Console:
 
-....
+----
 manager.name = Apache Felix OSGi Management Console
 manager.description = Configuration of the Apache Felix OSGi Management Console.
 
@@ -102,7 +102,7 @@ password.description = The password for the user allowed to access the OSGi \
 default.render.name = Default Page
 default.render.description = The name of the default configuration page \
  when invoking the OSGi Management console.
-....
+----
 
 == Metatype Service API
 

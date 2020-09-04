@@ -30,7 +30,7 @@ The shell service is currently not intended to be sophisticated, rather it is ju
 The shell service maintains a list of command services, each of which have a unique command name.
 The shell service is defined by the following service interface:
 
-....
+----
 package org.apache.felix.shell;
 
 public interface ShellService
@@ -43,7 +43,7 @@ public interface ShellService
         String commandLine, PrintStream out, PrintStream err)
         throws Exception;
 }
-....
+----
 
 Using the shell service interface, it is possible to access and execute available commands.
 The shell service methods perform the following functions:
@@ -76,7 +76,7 @@ All commands available in the shell service are implemented as OSGi services.
 The advantage of this approach is two-fold: the shell service can leverage OSGi service events to maintain its list of available commands and the set available commands is dynamically extendable by installed bundles.
 The command service interface is defined as follows:
 
-....
+----
 package org.apache.felix.shell;
 
 public interface Command
@@ -86,7 +86,7 @@ public interface Command
     public String getShortDescription();
     public void execute(String line, PrintStream out, PrintStream err);
 }
-....
+----
 
 The semantics of the command service methods are:
 
@@ -102,7 +102,7 @@ this should be one line and as short as possible (this is used for generating th
 
 The following example creates a simple version of the `start` command.
 
-....
+----
 package test;
 
 import java.io.PrintStream;
@@ -181,13 +181,13 @@ public class MyStartCommandImpl implements Command
         }
     }
 }
-....
+----
 
 A bundle activator class is needed for packaging the command servce;
 the bundle activator registers the command service in its `start()` method.
 Note: You do not need one activator per command, a single activator can register any number of commands.
 
-....
+----
 package test;
 
 import org.osgi.framework.BundleActivator;
@@ -213,7 +213,7 @@ public class MyStartActivator implements BundleActivator
         // we don't have to unregister the factory here.
     }
 }
-....
+----
 
 To compile these classes you will need to have `org.apache.felix.framework-x.y.z.jar` and `org.apache.felix.shell-x.y.z.jar` on your class path.
 Compile all of the source files using a command like:

@@ -110,8 +110,8 @@ Example:
 When using the DependencyManager API, you can use the _Component.setComposition_ method to declare a special callback in your component that  returns the list of object that are part of the component, and all dependencies and lifecycle callbacks will be invoked on the objects returned by the method.
 Let's take an example, with a _ProviderImpl_ top-level service implementation that is internally implemented using three Pojos: _ProviderImpl_, _ProviderParticipant1_, and  _ProviderParticipant2_:
 
-....
-:::java
+[source,java]
+----
 public class ProviderImpl implements Provider {
     private final ProviderParticipant1 m_participant1 = new ProviderParticipant1();
     private final ProviderParticipant2 m_participant2 = new ProviderParticipant2();
@@ -142,11 +142,11 @@ public class ProviderParticipant2 {
         m_log.log(LogService.LOG_INFO, "ProviderParticipant2.start()");
     }
 }
-....
+----
 
 And here is the Activator, which uses the _setComposition_ method:
 
- :::java
+[source,java]
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext ctx, DependencyManager m) throws Exception {
          m.add(createComponent()
@@ -166,8 +166,8 @@ Interestingly, you can also mix the usage of a Factory object and a Composition 
 The following is the same example as in the previous section (Composition), but using a Factory approach in order to instantiate a composition of objects:  The "ProviderFactory" is first injected with a Configuration that can possibly be used to create and configure all the other objects that are part of the composition;
 each object will also be injected with the dependencies defined in the Activator.
 
-....
-:::java
+[source,java]
+----
 public class ProviderFactory {
     private ProviderParticipant1 m_participant1;
     private ProviderParticipant2 m_participant2;
@@ -207,12 +207,12 @@ public class ProviderFactory {
         return new Object[] { m_providerImpl, m_participant1, m_participant2 };
     }
 }
-....
+----
 
 And here is the Activator: notice the _setFactory_ method that specifies the factory to use to create the implementation.
 Also pay attention to the _setComposition_ method, which indicates the method to call in order to get all instances that  are part of a composition and need dependencies injected:
 
- :::java
+[source,java]
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext ctx, DependencyManager m) throws Exception {
          ProviderFactory factory = new ProviderFactory();

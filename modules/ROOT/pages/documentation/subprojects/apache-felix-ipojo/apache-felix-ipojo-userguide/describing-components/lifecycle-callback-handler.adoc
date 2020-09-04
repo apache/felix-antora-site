@@ -36,8 +36,8 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 Let's take an example.
 The following class requires a FooService and has two lifecycle callbacks: start and stop.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Instantiate
 public class Foo {
@@ -58,11 +58,10 @@ public class Foo {
             			if(fs!=null) { fs.foo(); }
                 }
 }
-....
+----
 
 You can also remove the annotations to use the XML format:
-
- :::xml
+[source,xml]
  <component className="...Foo">
         <requires field="fs"/>
         <callback transition="validate" method="start"/>
@@ -85,8 +84,8 @@ One usage of lifecycle callback is when the instance needs to create threads.
 Indeed, the thread can be created in the validate callback, and stopped in the invalidate method.
 The next class shows an example of a class handling a thread by using lifecycle callbacks.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Instantiate
 public class HelloRequesterImpl implements Runnable {
@@ -122,7 +121,7 @@ public class HelloRequesterImpl implements Runnable {
 
     @Invalidate
     public void stopping() { end = true; }
-....
+----
 
 == Invalidate callbacks and services
 
@@ -130,7 +129,7 @@ The invalidate callback has to be developed defensively.
 Indeed, inside this callback, it might be possible that a service is no more there (the departure of this service has thrown the instance invalidation, which calls the callback).
 So, you must check that the service is not `null` before using it:
 
- :::java
+[source,java]
  @Invalidate
  public void stop() {
    if (myservice != null) {
@@ -155,7 +154,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 
 To set a component as immediate you must add the `immediate` attribute to `component`:
 
- :::java
+[source,java]
  @Component(immediate=true)
  @Instantiate
  public class MyComponent implements MyService {

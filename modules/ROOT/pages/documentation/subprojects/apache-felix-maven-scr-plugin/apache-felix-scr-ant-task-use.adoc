@@ -4,8 +4,8 @@
 
 The SCR Ant Task is implemented in the `org.apache.felix.scr.ant` library which must be registered as an Ant Task in the build file as follows:
 
-....
-:::xml
+[source,xml]
+----
 <project ...>
 
   <taskdef
@@ -13,7 +13,7 @@ The SCR Ant Task is implemented in the `org.apache.felix.scr.ant` library which 
     classpath="org.apache.felix.scr.ant-1.8.0.jar" />
 
 </project>
-....
+----
 
 Of course the value you set in the `classpath` attribute depends on the actual location of the `org.apache.felix.scr.ant` JAR file.
 
@@ -111,8 +111,8 @@ No further configuration is required as the SCR Ant Task automatically recognize
 
 The following is very simple example build file based on the http://svn.apache.org/repos/asf/sling/trunk/bundles/jcr/webconsole[Apache Sling JCR WebConsole] bundle:
 
-....
-:::xml
+[source,xml]
+----
 <project default="scr" basedir=".">
 
   <taskdef resource="scrtask.properties"
@@ -148,4 +148,4 @@ The following is very simple example build file based on the http://svn.apache.o
   </target>
 
 </project>
-....
+----

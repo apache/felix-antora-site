@@ -3,8 +3,7 @@
 == Basic configuration
 
 To use the iPOJO Maven plug-in, edit the following pom.xml (replace all $XXX elements):
-
- :::xml
+[source,xml]
  <project>
    		<modelVersion>4.0.0</modelVersion>
    		<groupId>$YOUR_GROUP_ID</groupId>
@@ -58,7 +57,7 @@ However it requires that your metadata file is either inside `src/main/ipojo` or
 To manipulate your project, use the "_mvn clean install_" command.
 The output should be like:
 
- :::sh
+[source,sh]
  [INFO] Scanning for projects...
  [INFO] ----------------------------------------------------------------------------
  [INFO] Building Hello Client
@@ -100,8 +99,7 @@ The output should be like:
 == Configuration Options
 
 You can configure the localization of the iPOJO metadata file as following:
-
- :::xml
+[source,xml]
  <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-ipojo-plugin</artifactId>
@@ -130,8 +128,7 @@ Before the `1.7.0`, the set location was searched in all resource folders.
 This is no more supported because it's an anti-pattern.
 
 The second option allows skipping annotations processing, by using the `ignoreAnnotations` element:
-
- :::xml
+[source,xml]
  <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-ipojo-plugin</artifactId>
@@ -151,8 +148,7 @@ The second option allows skipping annotations processing, by using the `ignoreAn
 You can also ignore embedded XML-Schemas to use external ones.
 To do so, add the `ignoreEmbeddedSchemas`.
 If set to `true`, the manipulator doesn't use embedded XML-Schemas:
-
- :::xml
+[source,xml]
  <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-ipojo-plugin</artifactId>
@@ -174,7 +170,7 @@ If set to `true`, the manipulator doesn't use embedded XML-Schemas:
 The maven-ipojo-plugin provides a way to generate the skeleton of your project.
 To generate this structure, just launch the following command:
 
- :::sh
+[source,sh]
  mvn org.apache.maven.plugins:maven-archetype-plugin:generate \
  -DarchetypeArtifactId=maven-ipojo-plugin \
  -DarchetypeGroupId=org.apache.felix \
@@ -198,8 +194,7 @@ The maven-ipojo-plugin archetype generates a pom file using the latest released 
 
 It is also possible to describe iPOJO components and instances inside the pom file (avoiding using a externalized file).
 The configuration can be described in the `metadata` attribute inside a CDATA block.
-
- :::xml
+[source,xml]
  <plugin>
  	    <groupId>org.apache.felix</groupId>
  	    <artifactId>maven-ipojo-plugin</artifactId>

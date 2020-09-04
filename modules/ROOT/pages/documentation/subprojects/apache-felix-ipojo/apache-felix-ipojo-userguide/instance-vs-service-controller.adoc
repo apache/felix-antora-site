@@ -20,8 +20,8 @@ Such controller is generally used when the component code:
 
 Instance Lifecycle Controller cannot be initialized, and generally are only set to `false`:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyComponent {
 
@@ -38,7 +38,7 @@ public class MyComponent {
 		}
 	}
 }
-....
+----
 
 When set to `false`:
 
@@ -57,8 +57,8 @@ Unlike the instance lifecycle controller, such controller can:
 
 The following example publishes the component's provided service only after initialization.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class MyComponent implements MyService {
@@ -75,7 +75,7 @@ public class MyComponent implements MyService {
 		controller = true;
 	}
 }
-....
+----
 
 When the controller is set to `true`, the `@PostRegistration` callback is called.
 When it is set to `false` the `@PostUnregistration` callback is called.

@@ -16,8 +16,8 @@ It presents:_
 
 The following code snippet shows a simple class implementing the `FooService` interface:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class FooProviderType1 implements FooService {
@@ -28,13 +28,12 @@ public class FooProviderType1 implements FooService {
             }
 
 }
-....
+----
 
 To provide a service, the implementation class _MUST_ implement the service interface.
 
 In XML, to provide the service, the component type needs to contain the `<provides/>` element:
-
- :::xml
+[source,xml]
  <component className="...FooProviderType1">
          <provides/>
  </component>
@@ -58,7 +57,7 @@ By default, it publishes all interfaces implemented by the implementation class 
 It collects all super-interfaces (interfaces implemented by implemented interfaces and by the super class).
 However, it is possible to explicitly declare which service specifications are published with the `specifications` attribute, such as:
 
- :::java
+[source,java]
  @Component
  @Provides(specifications={FooService.class})
  public class FooProviderType1 implements FooService, Runnable {
@@ -83,8 +82,8 @@ A property can be attached to a field (contained in the component implementation
 
 Let's take a new example very closed of the last one:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class FooProviderType1 implements FooService {
@@ -97,11 +96,10 @@ public class FooProviderType1 implements FooService {
         m_foo = "bar";
 	}
 }
-....
+----
 
 Using XML, it gives:
-
- :::xml
+[source,xml]
  <component classname="...FooProviderType1">
              <provides>
                          <property name="foo" field="m_foo" value="Foo"/>
@@ -120,8 +118,8 @@ If a published property value becomes `null`, the property is unpublished since 
 
 You can also publish 'static' properties (not attached to a field):
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides(properties= {
 			@StaticServiceProperty(name="static", type="java.lang.String", value="this is a static property")
@@ -136,15 +134,14 @@ public class FooProviderType1 implements FooService {
         m_foo = "bar";
 	}
 }
-....
+----
 
 The second property (`Static`) is published as a static property.
 This property is not attached to a field, so, we need to declare the property type.
 All primitive types or objects can be used has property type (for object, the qualified name of the class is used as java.lang.String).
 
 In XML, this can also be done:
-
- :::xml
+[source,xml]
  <component classname="...FooProviderType1">
              <provides>
                          <property name="foo" field="m_foo" value="Foo"/>
@@ -156,8 +153,7 @@ Properties may have a default value (set using the `value` attribute).
 This value will be used as initial value.
 The value can be given in the instance configuration.
 The default value will be overridden in this case:
-
- :::xml
+[source,xml]
  <instance component="...FooProviderType1">
     <property name="foo" value="My New Foo Value"/>
     <property name="static" value="My Value For Static"/>
@@ -168,8 +164,8 @@ Mandatories properties must receive a value from the instance configuration.
 If the instance configuration _forgets_ a mandatory properties, the configuration is rejected.
 Mandatory attribute let you be sure to receive the complete set of initialization values:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class MyComponent implements MyService {
@@ -182,7 +178,7 @@ public class MyComponent implements MyService {
 
     //...
 }
-....
+----
 
 For the previous components:
 
@@ -201,7 +197,7 @@ However, the handler supports the OSGi _Service Factory_.
 In this case, for each requester bundle, the handler sends a new object.
 To activate this policy, add the `strategy` attribute in the `provides` element:
 
- :::java
+[source,java]
  @Component
  @Provides(strategy="SERVICE")
  public class MyComponent implements MyService {
@@ -209,8 +205,7 @@ To activate this policy, add the `strategy` attribute in the `provides` element:
  }
 
 or:
-
- :::xml
+[source,xml]
  <provides strategy="SERVICE"/>
 
 Other strategies are available:
@@ -218,7 +213,8 @@ Other strategies are available:
 * `strategy="instance"` allows creating one service object per iPOJO instance using the service
 * it is possible to create your own creation strategy by extending the `org.apache.felix.ipojo.handlers.providedservice.CreationStrategy` class and by indicating the qualified class name in the `strategy` attribute:
 +
-:::java  @Component  @Provides(strategy="org.acme.foo.MyCreationStrategy")  public class MyComponent implements MyService {      //...
+[source,java]
+    @Component  @Provides(strategy="org.acme.foo.MyCreationStrategy")  public class MyComponent implements MyService {      //...
 }
 
 === Providing Several Services (XML only)
@@ -227,8 +223,7 @@ In XML, you can declare several `provides` inside the same component.
 All those provided services will be managed individually, so will be published using several publication (i.e.
 `org.osgi.frameowrk.ServiceRegistration`).
 This case is useful when service properties are different for the different services.
-
- :::xml
+[source,xml]
  <component classname="...FooProviderType1">
                  <provides specifications="...Foo"/>
                  <provides specifications="...Bar">
@@ -248,8 +243,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 
 If an instance configuration contains properties starting with `service.`, they are automatically propagated.
 In the following example, the `service.pid` is automatically propagated.
-
- :::xml
+[source,xml]
  <instance component="...">
      <property name="service.pid" value="my.pid"/>
  </instance>
@@ -260,8 +254,8 @@ iPOJO supports instance reconfiguration.
 When an instance is dynamically reconfigured and if the instance published service properties, the values are updated with the new configuration.
 For example, let's take the following component.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Instantiate
 @Provides
@@ -273,7 +267,7 @@ public class MyComponent implements MyService {
     //...
 
 }
-....
+----
 
 The previous code also declares an instance (created without any configuration).
 This instance registers `MyService` with the service property `prop=initial`.
@@ -284,7 +278,7 @@ If this instance is reconfigured using a configuration like: `{prop="my value"}`
 It is also possible to expose an abstract or concrete class as a service.
 To to this, just specify the published class in the `specifications` attribute:
 
- :::java
+[source,java]
  @Component
  @Provides(specifications=MyComponent.class)
  public class MyComponent {
@@ -292,8 +286,7 @@ To to this, just specify the published class in the `specifications` attribute:
  }
 
 or in XML:
-
- :::xml
+[source,xml]
  <component classname="...FooProviderType1">
                  <provides specifications="...AbstractFoo"/>
  </component>
@@ -312,8 +305,8 @@ The injected boolean field allows the code to impact the service publication.
 Setting the field to `false` unregisters the service from the service registry.
 Setting it back to `true` re-publishes the service.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class ControllerCheckService implements FooService, CheckService {
@@ -332,11 +325,10 @@ public class ControllerCheckService implements FooService, CheckService {
         return controller;
     }
 }
-....
+----
 
 Using XML, the previous component description is:
-
- :::xml
+[source,xml]
  <component classname="org.apache.felix.ipojo.test.scenarios.component.controller.ControllerCheckService"
      name="PS-Controller-1-default">
      <provides>
@@ -347,8 +339,8 @@ Using XML, the previous component description is:
 The `controller` may have a value attribute setting the initial value.
 Setting this value to `false` disables the initial service registration:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class ControllerCheckService implements FooService, CheckService {
@@ -368,12 +360,12 @@ public class ControllerCheckService implements FooService, CheckService {
     }
 
 }
-....
+----
 
 If several interfaces are exposed, the controller may have a `specification` attribute indicating the impacted service:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class ControllerCheckService implements FooService, CheckService {
@@ -393,11 +385,10 @@ public class ControllerCheckService implements FooService, CheckService {
     }
 
 }
-....
+----
 
 In XML, each `provides` can have one `controller` element.
-
- :::xml
+[source,xml]
  <component classname="org.apache.felix.ipojo.test.scenarios.component.controller.ControllerCheckService"
      name="PS-Controller-1-false">
      <provides>
@@ -409,8 +400,7 @@ In XML, each `provides` can have one `controller` element.
 
 You can also be notified when the service is published and unpublished.
 This is done by specifying the two callbacks in the `<provides/>` element:
-
- :::xml
+[source,xml]
  <component
       classname="org.apache.felix.ipojo.test.scenarios.component.callbacks.CallbacksCheckService"
       name="PS-Callbacks-both-1">
@@ -424,8 +414,8 @@ This is done by specifying the two callbacks in the `<provides/>` element:
 
 Or by using the `@PostRegistration` and `@PostUnregistration` annotations:
 
-....
-:::java
+[source,java]
+----
 @PostRegistration
 public void registered(ServiceReference ref) {
 	System.out.println("Registered");
@@ -435,7 +425,7 @@ public void registered(ServiceReference ref) {
 public void unregistered(ServiceReference ref) {
 	System.out.println("Unregistered");
 }
-....
+----
 
 * The `post-registration` callback is called after the service publication
 * The `post-unregistration` callback is called after the service unpublication

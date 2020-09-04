@@ -13,8 +13,8 @@ Example usage:
 
 Here is a sample showing a "MyComponent" component, which can be instantiated multiple times using a factory configuration:
 
-....
-:::java
+[source,java]
+----
 public interface MyConfig {
     int getPort();
     String getAddress();
@@ -39,4 +39,4 @@ public class Activator extends DependencyActivatorBase {
         dm.add(factoryComponent);
     }
 }
-....
+----

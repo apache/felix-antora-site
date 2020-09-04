@@ -28,6 +28,8 @@ In this case, there is not much point in doing that because the component has no
 
 Notice that the dependency manager API uses method chaining to create a more or less "fluent" API that, with proper indentation, is very easy to read.
 
+[source,java]
+----
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext context, DependencyManager manager) throws Exception {
          manager.add(createComponent()
@@ -36,19 +38,24 @@ Notice that the dependency manager API uses method chaining to create a more or 
          );
      }
  }
+----
 
 This is the service interface.
 Nothing special here.
 
+[source,java]
+----
  public interface Store {
      public void put(String key, Object value);
      public Object get(String key);
  }
+----
 
 And finally the implementation.
 Again, this is just a POJO, there is no reference here to any OSGi or dependency manager specific class or annotation.
 
-....
+[source,java]
+----
 public class MemoryStore implements Store {
     private Map m_map = new HashMap();
 
@@ -60,7 +67,7 @@ public class MemoryStore implements Store {
         m_map.put(key, value);
     }
 }
-....
+----
 
 == Depending on a service
 
@@ -70,6 +77,8 @@ This means that our component really needs a store to work, but if there is no l
 Also note that this component has no `setInterface` method, which simply means it is not itself a service.
 This is perfectly fine.
 
+[source,java]
+----
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext context, DependencyManager manager) throws Exception {
          manager.add(createComponent()
@@ -85,6 +94,7 @@ This is perfectly fine.
          );
      }
  }
+----
 
 Now let's look at our POJO.
 There are a couple of interesting things to explain.
@@ -98,6 +108,8 @@ It does not need to, since the dependency manager makes sure to inject a null ob
 The null object can be invoked and will do nothing.
 For a lot of cases that is good enough, but for those cases where it is not, our next example introduces callbacks that notify you of changes.
 
+[source,java]
+----
  public class DataGenerator {
      private volatile Store m_store;
      private volatile LogService m_log;
@@ -109,6 +121,7 @@ For a lot of cases that is good enough, but for those cases where it is not, our
          m_log.log(LogService.LOG_INFO, "Data generated.");
      }
  }
+----
 
 == Tracking services with callbacks
 
@@ -117,6 +130,8 @@ For all those cases, callbacks are your friends.
 Since one of our goals is to not introduce any kind of API in our POJO, callbacks are declared by specifying their method names instead of through some interface.
 In this case, we have a dependency on `Translator` services, and we define `added` and `removed` as callbacks.
 
+[source,java]
+----
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext context, DependencyManager manager) throws Exception {
          manager.add(createComponent()
@@ -129,18 +144,24 @@ In this case, we have a dependency on `Translator` services, and we define `adde
          );
      }
  }
+----
 
 This is the actual `Translator` service, which, for the purpose of this example, is not that important.
 
+[source,java]
+----
  public interface Translator {
      public boolean canTranslate(String from, String to);
      public Document translate(Document document, String from, String to);
  }
+----
 
 Finally, here's our implementation.
 It declares the callback methods with one parameter: the `Translator` service.
 Actually, the dependency manager will look for several different signatures (all explained in more detail in the reference section).
 
+[source,java]
+----
  public class DocumentTranslator {
      private List<Translator> m_translators = new ArrayList<Translator>();
 
@@ -161,6 +182,7 @@ Actually, the dependency manager will look for several different signatures (all
          return null;
      }
  }
+----
 
 == Depending on a configuration
 
@@ -170,6 +192,8 @@ When defining the dependency, you must define the persistent ID of the service.
 The component will not become active until the configuration you depend on is available  _and_ is valid.
 The latter can be checked by your implementation as we will see below.
 
+[source,java]
+----
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext context, DependencyManager manager) throws Exception {
          manager.add(createComponent()
@@ -180,13 +204,15 @@ The latter can be checked by your implementation as we will see below.
          );
      }
  }
+----
 
 Here's our code that implements `ManagedService` and has an `updated` method.
 This method checks if the provided configuration is valid and throw a  `ConfigurationException` if it is not.
 As long as this method does not accept the  configuration, the corresponding component will not be activated.
 Notice that your component does not necessarily implement the ManagedService interface, and the updated callback can also throw any exceptions:
 
-....
+[source,java]
+----
 public class Task implements ManagedService {
     private String m_interval;
 
@@ -203,4 +229,4 @@ public class Task implements ManagedService {
         }
     }
 }
-....
+----

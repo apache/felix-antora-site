@@ -22,7 +22,7 @@ Method Metadata contains method name, the sorted list of argument types and retu
 Manipulation (i.e.
 PojoMetadata) can be obtained form the factory of a (primitive) component type such as in:
 
- :::java
+[source,java]
  public void configure(InstanceManager im, Element metadata, Dictionary configuration)  {
      ...
      PojoMetadata manipulation = getFactory().getPojoMetadata();
@@ -60,14 +60,14 @@ You can obtain a Callback object from the Method Metadata.
 By this way, you are sure that the method exists in the implementation.
 To create the callback, use the following code:
 
- :::java
+[source,java]
  PojoMetadata manip = getFactory().getPojoMetadata();
  MethodMetadata method = manip.getMethod("your_method_name");
  Callback cb = new Callback(method, im);
 
 Then you can directly invoke your method:
 
- :::java
+[source,java]
  Object[] args = ...;  // Build your argument array
  cb.call(args);
  ...

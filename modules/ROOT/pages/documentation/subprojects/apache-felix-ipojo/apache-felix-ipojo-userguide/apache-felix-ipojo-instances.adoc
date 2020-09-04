@@ -24,8 +24,8 @@ The @Instantiate annotation is the simplest way to declare an instance.
 In a class annotated with @Component, you just add the @Instantiate annotation.
 It instructs iPOJO to declare an instance of the component type described by the current class.
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 
@@ -34,12 +34,12 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 public class MyComponent {
     //...
 }
-....
+----
 
 Optionally, you can set the instance name, using the `name` attribute.
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 
@@ -48,7 +48,7 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 public class MyComponent {
     //...
 }
-....
+----
 
 The @Instantiate annotation is easy to use but, has a couple of limitations:
 
@@ -62,8 +62,8 @@ The @Instance annotation is particularly useful to declare singleton instances, 
 a component type with only one instance.
 To create a singleton instance, combine the @Instantiate annotation and the `publicFactory` attribute of the @Component annotation:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Instantiate;
 
@@ -72,7 +72,7 @@ import org.apache.felix.ipojo.annotations.Instantiate;
 public class MySingleton {
     //...
 }
-....
+----
 
 The `publicFactory=false` attribute makes the component type _private_, so invisible from other bundles.
 No one else would be able to create another instance of the component type.
@@ -81,7 +81,7 @@ No one else would be able to create another instance of the component type.
 
 This second annotation is used on classes to create one or several instances using a fluent API.
 
- :::java
+[source,java]
    	import org.apache.felix.ipojo.configuration.Configuration;
    	import org.apache.felix.ipojo.configuration.Instance;
    	import static org.apache.felix.ipojo.configuration.Instance.instance;
@@ -98,8 +98,8 @@ The instance is named `myInstance` (the field name).
 
 You can declare several instances in the same @Configuration class:
 
-....
-:::java
+[source,java]
+----
   	@Configuration
 public class ConfigureTwoInstances {
 
@@ -114,12 +114,12 @@ public class ConfigureTwoInstances {
   // Declare an instance of AnotherComponent
   Instance myInstance2 = instance().of(AnotherComponent.class);
   	}
-....
+----
 
 By default, the instance name is set to the field name.
 However, you can also set the instance name:
 
- :::java
+[source,java]
  // Declare an instance of MyComponent named hello
  Instance myInstance2 = instance().of(MyComponent.class)
          .named("hello")
@@ -132,7 +132,7 @@ Using this configuration DSL allows creating a set of instances that you can con
 The `setto` method accepts any object.
 To ease creating collections, the API proposed two methods to handle lists and maps:
 
- :::java
+[source,java]
  instance()
  	    .of(Mycomponent.class)
  		// Lists
@@ -149,8 +149,8 @@ To ease creating collections, the API proposed two methods to handle lists and m
 The class annotated with @Configuration does not only handle fields, but also handles methods returning Instance object.
 These methods can have either no arguments or the BundleContext as unique argument.
 
-....
-:::java
+[source,java]
+----
 Instance instance1() {
     return instance().of(MyComponent.class);
 }
@@ -158,7 +158,7 @@ Instance instance1() {
 Instance instance2(BundleContext bc) {
     return instance().of(MyComponent.class);
 }
-....
+----
 
 As for fields, the method name is used as instance name except if the instance already received a name.
 
@@ -168,8 +168,7 @@ NOTE: the injected BundleContext is the BundleContext of the bundle containing t
 
 You can declare instances using the iPOJO XML descriptor.
 If you use XML to describe you component type, you probably want to use this way to create your instances.
-
- :::xml
+[source,xml]
  	<instance component="factory.name">
     		<property name="property" value="value"/>
  	  <property name="another property" value="another value"/>
@@ -186,8 +185,7 @@ They can targets component types declared within the same bundles or not.
 === Setting the instance name
 
 To set the instance name you can use the _name_ attribute of the _instance_ element or the _instance.name_ property:
-
- :::xml
+[source,xml]
  <instance component="…MyComponent" name="my-instance"/>
  <instance component="…MyComponent">
  	<property name="instance.name" value="my-instance-2"/>
@@ -196,8 +194,7 @@ To set the instance name you can use the _name_ attribute of the _instance_ elem
 === Describing complex properties in XML
 
 The _property_ element can be used to configure complex types such as arrays, lists and maps.
-
- :::xml
+[source,xml]
  <!--Creates a string array-->
    	<property name="array" type="array">
    	<property value="a"/>
@@ -248,8 +245,8 @@ You can use this OSGi service to create, reconfigure and dispose instances from 
 
 The published service interface is `+[org.apache.felix.ipojo.Factory](http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html)+` and provides the following methods:
 
-....
-:::java
+[source,java]
+----
 /**
  * Creates an instance manager (i.e. component type instance).
  * @param configuration the configuration properties for this component.
@@ -268,12 +265,12 @@ ComponentInstance createComponentInstance(Dictionary configuration) throws Unacc
  * @throws MissingHandlerException if an handler is missing.
  */
 void reconfigure(Dictionary conf) throws UnacceptableConfiguration, MissingHandlerException;
-....
+----
 
 You can identify the factory using the _factory.name_.
 So target a specific component type, use the following filter:
 
- :::sh
+[source,sh]
  	(factory.name=...MyComponent)
 
 If you grab all factories, you can check their names using the `getName()` method.
@@ -304,7 +301,7 @@ If an error occurs, a comprehensive message is reported in order to solve the is
 
 The next snippet shows an example of instance creation:
 
- :::java
+[source,java]
    	// Assume we get a Factory in the `fact` field
  Properties props = new Properties();
  props.put("instance.name","instance-name");
@@ -320,7 +317,7 @@ The next snippet shows an example of instance creation:
 You can only disposed instances that you created.
 To dispose an instance, just call the `dispose` method on the ComponentInstance object (returned by the createComponentInstance method).
 
- :::java
+[source,java]
  instance.dispose();
 
 === Reconfiguring instance
@@ -329,7 +326,7 @@ To reconfigure an instance, call the 'reconfigure' method on the ComponentInstan
 This method receives the new set of properties.
 Be aware that the 'instance.name' property cannot be changed.
 
- :::java
+[source,java]
  Properties props2 = new Properties();
  props2.put("foo", "abc");
  instance.reconfigure(props2);
@@ -355,8 +352,8 @@ iPOJO supports the configuration admin and you can create, reconfigure and dispo
 
 Creating an instance is done by creating a _factory_ configuration:
 
-....
-:::java
+[source,java]
+----
 ConfigurationAdmin admin = ...// Let's assume with have the configuration admin
 Configuration conf = admin.createFactoryConfiguration("...MyComponent", "?");
 
@@ -366,7 +363,7 @@ Dictionary dict = new Hashtable();
 
 // Push the configuration to the configuration admin
 conf.update(dict);
-....
+----
 
 To create the _factory_ configuration, use the `createFactoryConfiguration` method on the Configuration Admin object.
 The first argument is the factory name.
@@ -396,7 +393,7 @@ are unregistered when the bundle is not `ACTIVE` anymore).
 Declarations can be build using the `DeclarationBuilderService` (see interface below).
 Instances (of components), types (components) and iPOJO extensions can also be build using this service.
 
- :::java
+[source,java]
  public interface DeclarationBuilderService {
      InstanceBuilder newInstance(String type);
      InstanceBuilder newInstance(String type, String name);
@@ -407,8 +404,8 @@ Instances (of components), types (components) and iPOJO extensions can also be b
 
 Instances created through declaration can indeed be configured.
 
-....
-:::java
+[source,java]
+----
 // Obtain the service through the service registry
 DeclarationBuilderService service = ...
 
@@ -423,7 +420,7 @@ DeclarationHandle handle = builder.name("a-unique-name") // Make sure name is un
 
 // Push the InstanceDeclaration service in the registry
 handle.publish();
-....
+----
 
 The builder ultimately produces handles to declarations.
 Handles are the live link to the underlying declarations: service publication and un-registration are done through the `handle.publish()` and `handle.retract()` methods.

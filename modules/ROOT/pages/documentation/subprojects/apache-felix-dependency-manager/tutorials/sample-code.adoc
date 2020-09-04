@@ -29,7 +29,8 @@ You should then see the following logs displayed to stdout:
 You can also play with the dm shell commands.
 First, type "help dm":
 
-....
+[source,gogo]
+----
 g! help dm
 
 dm - List dependency manager components
@@ -46,10 +47,12 @@ dm - List dependency manager components
       components, c   <Regex(s) used to filter on component implementation class names (comma separated), can be negated using "!" prefix> [optional]
       services, s   <OSGi filter used to filter some service properties> [optional]
       top   <Max number of top components to display (0=all)> This command displays components callbacks (init/start) times> [optional]
-....
+----
 
 Now type "dm" in order to see all dependency manager components:
 
+[source,gogo]
+----
   g! dm
  [1] hello.annotations
   [3] hello.HelloComponent registered
@@ -62,3 +65,4 @@ Now type "dm" in order to see all dependency manager components:
      active (DependencyManager-Component=*) bundle optional available
      org.osgi.service.packageadmin.PackageAdmin service required available
      org.osgi.service.log.LogService service optional unavailable
+----

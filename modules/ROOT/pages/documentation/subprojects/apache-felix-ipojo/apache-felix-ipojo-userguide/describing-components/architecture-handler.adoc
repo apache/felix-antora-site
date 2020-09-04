@@ -20,8 +20,7 @@ This information allows you to know why an instance does not start, or why the c
 The architecture (i.e.
 instance introspection) is activated by default.
 To disable it, you need to add an attribute `architecture="false"` to the component element:
-
- :::xml
+[source,xml]
  <component classname="org.apache.felix.ipojo.hello.impl.HelloServiceImpl" architecture="false">
 
 By default, the architecture feature is enabled.
@@ -38,8 +37,8 @@ The Gogo commands are the following:
 
 For example:
 
-....
-:::sh
+[source,sh]
+----
 $ instances
 Instance ArchCommand -> valid
 Instance spell.english.EnglishDictionary-0 -> valid
@@ -55,7 +54,7 @@ instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name
             property value="spell.checker.SpellCheck" name="factory.name"
             property value="spell.checker.SpellCheck-0" name="instance.name"
     handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
-....
+----
 
 More info on the `arch` command are available xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-tools/ipojo-arch-command.adoc[here].
 

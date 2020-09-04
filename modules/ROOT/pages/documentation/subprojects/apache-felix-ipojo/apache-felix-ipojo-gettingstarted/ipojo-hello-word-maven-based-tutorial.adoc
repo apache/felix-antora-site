@@ -57,8 +57,8 @@ The first project is the _hello.service_ project.
 This project contains only the _hello_ service interface.
 Look at the `src/main/java/ipojo/example/hello/Hello.java` file:
 
-....
-:::java
+[source,java]
+----
 /**
  * Hello Interface.
  * @author <a href="mailto:dev@felix.apache.org">Felix Project Team</a>
@@ -72,7 +72,7 @@ public interface Hello {
      */
     String sayHello(String name);
 }
-....
+----
 
 In the project directory, the pom.xml file contains the instructions to build the bundle.
 The bundle uses the _maven-bundle-plugin_ (see here for more information on this plug-in).+++<div class="pom">+++<project> + &nbsp;&nbsp;&nbsp;
@@ -154,7 +154,7 @@ ipojo.example.hello+++</font>+++ + +++<font color="#ff0000">+++&nbsp;&nbsp;&nbsp
 
 Then, the project is ready to be built issuing the following Maven command inside the project directory:
 
- :::sh
+[source,sh]
  mvn clean install
 
 Maven should report that the build was a success;
@@ -168,8 +168,8 @@ The component implementation of the service is a simple Java class implementing 
 The implementation is in the _hello.impl_ project.
 The file `src/main/java/ipojo/example/hello/impl/HelloImpl.java` contains the following service implementation:
 
-....
-:::java
+[source,java]
+----
 /**
  * Component implementing the Hello service.
  * @author <a href="mailto:dev@felix.apache.org">Felix Project Team</a>
@@ -184,13 +184,12 @@ public class HelloImpl implements Hello {
      */
     public String sayHello(String name) { return "hello " + name;  }
 }
-....
+----
 
 To manage the component, iPOJO needs some metadata to understand that the component provides the _Hello_ service.
 iPOJO metadata file is at the root of the _hello.impl_ project ("metadata.xml").
 It contains the following metadata (Note: iPOJO also supports a JAR manifest-based syntax):
-
- :::xml
+[source,xml]
  <?xml version="1.0" encoding="UTF-8"?>
  <ipojo
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -267,7 +266,7 @@ The service provider bundle exports the package of _Hello_ interface.
 
 Then, the project is ready to be built issuing the following Maven command inside the project directory:
 
- :::sh
+[source,sh]
  mvn clean install
 
 Maven should report that the build was a success;
@@ -280,8 +279,8 @@ A copy of the bundle JAR file will also be present in the "target" directory ins
 The Hello service consumer is inside the _hello.client_ project.
 The file `src/main/java/ipojo/example/hello/client/HelloClient.java` contains the following _Hello_ service client:
 
-....
-:::java
+[source,java]
+----
 package ipojo.example.hello.client;
 
 import ipojo.example.hello.Hello;
@@ -349,7 +348,7 @@ public class HelloClient implements Runnable {
         m_end = true;
     }
 }
-....
+----
 
 The _Hello_ service client creates a thread that periodically invokes the available _Hello_ services.
 The thread starts when at least one _Hello_ service provider is present using iPOJO's call back mechanism.
@@ -375,8 +374,8 @@ The component metadata will instruct iPOJO to invoke these methods when the comp
 
 The iPOJO metadata file describing the component is "metadata.xml" and contains the following metadata:
 
-....
-:::xml
+[source,xml]
+----
 <?xml version="1.0" encoding="UTF-8"?>
 <ipojo
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -396,7 +395,7 @@ The iPOJO metadata file describing the component is "metadata.xml" and contains 
     <property name="hello.name" value="clement" />
   </instance>
 </ipojo>
-....
+----
 
 The component element again has the '_classname'_ attribute that refers to the component implementation class.
 The '_requires_' element describes the _Hello_ service dependency by simply specifying its associated component field.
@@ -459,7 +458,7 @@ After building the service provider bundle JAR file, Maven installs it into a lo
 To resolve compilation dependencies, Maven looks in the local repository to find required JAR files.
 After the skeleton "pom.xml" file is modified, the project is ready to be built issuing the following Maven command inside the project directory:
 
- :::sh
+[source,sh]
  mvn clean install
 
 Maven should report that the build was a success;
@@ -474,12 +473,12 @@ A distribution of Felix is provided in the felix-1.0.3 directory.
 This version is configured to launch iPOJO automatically.
 From the Felix directory, launch the following command to start the framework
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar
 
 You can check installed bundles by using the '_ps'_ command:
 
- :::sh
+[source,sh]
  -> ps
  START LEVEL 1
     ID   State         Level  Name
@@ -496,7 +495,7 @@ The bundle 5 is a Felix shell command allowing the introspection of iPOJO compon
 
 Install the Hello service bundle, the _Hello_ service provider and the client that were created above:
 
- :::sh
+[source,sh]
  start file:../hello.service/target/hello.service-1.0.0.jar
  start file:../hello.impl/target/hello.impl-1.0.0.jar
  start file:../hello.client/target/hello.client-1.0.0.jar
@@ -504,7 +503,7 @@ Install the Hello service bundle, the _Hello_ service provider and the client th
 By starting the _Hello_ service provider bundle, the client component will automatically be activated.
 So, the _'hello world'_ messages are displayed.
 
- :::sh
+[source,sh]
  -> hello world
  hello world
 

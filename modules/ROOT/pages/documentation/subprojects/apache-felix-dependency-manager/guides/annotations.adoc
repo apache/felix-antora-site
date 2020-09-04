@@ -35,8 +35,8 @@ ConfigAdmin is also able to instantiate some Services (using ManagedServiceFacto
 
 Now we have introduced the background, here is the SpellCheck component:
 
-....
-:::java
+[source,java]
+----
 @Component(provides={SpellChecker.class},
            properties={@Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation"),
                        @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})})
@@ -49,7 +49,7 @@ public class SpellChecker {
        // ...
     }
 }
-....
+----
 
 In the code above, you see that the SpellCheck is annotated with the _@Component_  annotation.
 Gogo runtime does not required shell commands to implement a  specific  interface.
@@ -63,7 +63,7 @@ It is not shown here, but service properties can also be  provided dynamically f
 Our SpellChecker component can expose itself as a Gogo shell command, but before being  registered into the OSGi registry, we also need to be   injected with two dependencies:  one required dependency (at minimum) on a DictionaryService, and another optional one on  a LogService.
 First, let's look at the DictionaryService, which is a simple interface:
 
- :::java
+[source,java]
  public interface DictionaryService {
      /**
       * Check for the existence of a word.
@@ -75,8 +75,8 @@ First, let's look at the DictionaryService, which is a simple interface:
 
 And here is our previous SpellChecker component, augmented with two new ServiceDependency  annotations:
 
-....
-:::java
+[source,java]
+----
 @Component(provides={SpellChecker.class},
            properties={@Property(name=CommandProcessor.COMMAND_SCOPE, value="dmsample.annotation"),
                        @Property(name=CommandProcessor.COMMAND_FUNCTION, values={"spellcheck"})})
@@ -111,7 +111,7 @@ public class SpellChecker {
        System.err.println("word " + word + " is incorrect");
     }
 }
-....
+----
 
 There are many things to describe in the code above:
 
@@ -137,8 +137,8 @@ To illustrate this, let's take a look at our DictionaryImpl class which is part 
 This service is required by the SpellChecker component, when  checking for proper word existence.
 And you can instantiate as many DictionaryService as  you want, from ConfigAdmin ...
 
-....
-:::java
+[source,java]
+----
 @FactoryConfigurationAdapterService(factoryPid="DictionaryImplFactoryPid", updated="updated")
 public class DictionaryImpl implements DictionaryService {
    /**
@@ -172,7 +172,7 @@ public class DictionaryImpl implements DictionaryService {
       return m_words.contains(word);
    }
 }
-....
+----
 
 Our DictionaryImpl class implements a DictionaryService, and our class will be registered  under that interface (all directly implemented  interfaces are used when registering the  service, but you can select  some others using the _provides_ attribute).
 The _@FactoryConfigurationAdapterService_ annotation will instantiate our service for  each configuration created  from web console (and matching our "DictionaryImplFactoryPid"  factoryPid).
@@ -188,8 +188,8 @@ So, let's revisit our DisctionaryImpl service,  but this time with meta type sup
 
 First, we define an interface for describing our configuration metadata, with bnd metatype annotations:
 
-....
-:::java
+[source,java]
+----
 import java.util.List;
 
 import aQute.bnd.annotation.metatype.Meta.AD;
@@ -203,12 +203,12 @@ public interface DictionaryConfiguration {
     @AD(description = "Declare here the list of words supported by this dictionary. This properties starts with a Dot and won't be propagated with Dictionary OSGi service properties")
     List<String> words();
 }
-....
+----
 
 Next, here is our DictionaryImpl that will use the bnd "Configurable" helper in order to retrieve the actual configuration:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.annotation.api.FactoryConfigurationAdapterService;
 import org.apache.felix.dm.annotation.api.ServiceDependency;
 import org.apache.felix.dm.annotation.api.Start;
@@ -238,7 +238,7 @@ public class DictionaryImpl implements DictionaryService {
       return m_words.contains(word);
    }
 }
-....
+----
 
 == Providing an Aspect
 
@@ -253,8 +253,8 @@ This class uses the _@Aspect_ Service annotation in  order to add some custom wo
 The Extra words to add to the English Dictionary will be configured from  ConfigAdmin.
 That's why the class also uses a _@ConfigurationDependency_ annotation:
 
-....
-:::java
+[source,java]
+----
 @AspectService(ranking = 10, filter = "(lang=en)")
 public class DictionaryAspect implements DictionaryService {
    /**
@@ -292,7 +292,7 @@ public class DictionaryAspect implements DictionaryService {
       return m_originalDictionary.checkWord(word);
     }
 }
-....
+----
 
 The annotation does the following: because our class implements the  DictionaryService  contract, it will instantiate our service each time it finds another existing  DictionaryService matching the filter attribute  we provide in the annotation  (filter="(lang=en)").
 And it will inject the existing service in our  m_originalDictionary field, by reflection.

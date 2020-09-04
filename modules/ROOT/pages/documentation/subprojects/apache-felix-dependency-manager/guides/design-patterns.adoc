@@ -22,6 +22,8 @@ include::example$documentation/subprojects/apache-felix-dependency-manager/guide
 
 === Code Example
 
+[source,java]
+----
  public class Activator extends DependencyActivatorBase {
      public void init(BundleContext context, DependencyManager manager) throws Exception {
          manager.add(createComponent()
@@ -40,6 +42,7 @@ include::example$documentation/subprojects/apache-felix-dependency-manager/guide
 
      public void destroy(BundleContext context, DependencyManager manager) throws Exception {}
  }
+----
 
 == Aspect Service
 
@@ -61,7 +64,8 @@ include::example$documentation/subprojects/apache-felix-dependency-manager/guide
 
 === Code Example
 
-....
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     public void init(BundleContext context, DependencyManager manager) throws Exception {
         manager.add(createAspectService(Manageable.class, "(monitor=true)", 50)
@@ -84,7 +88,7 @@ public class ManageableMonitor implements Manageable {
         m_manageable.setProperty(key, value);
     }
 }
-....
+----
 
 == Adapter Service
 
@@ -104,7 +108,8 @@ include::example$documentation/subprojects/apache-felix-dependency-manager/guide
 
 === Code Example
 
-....
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     public void init(BundleContext context, DependencyManager manager) throws Exception {
         manager.add(createAdapterService(Manageable.class, "(publish=servlet)")
@@ -129,7 +134,7 @@ public class ManageableServlet implements HttpServlet {
         m_manageable.setProperty(key, value);
     }
 }
-....
+----
 
 == Resource Adapter Service
 

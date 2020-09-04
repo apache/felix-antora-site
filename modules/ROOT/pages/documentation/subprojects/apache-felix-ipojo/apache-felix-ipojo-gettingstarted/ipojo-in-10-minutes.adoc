@@ -78,7 +78,7 @@ It is not an iPOJO powered bundle.
 Go inside the spell.services directory and open the file "src/spell/services/DictionaryService.java".
 It's a very simple service interface with one method:
 
- :::java
+[source,java]
  package spell.services;
  /**
   * A simple service interface that defines a dictionary service.
@@ -96,7 +96,7 @@ It's a very simple service interface with one method:
 
 Then, open the file `src/spell/services/SpellChecker.java`, and replace the `TODO` comment with for the following `check` method:
 
- :::java
+[source,java]
  package spell.services;
  /**
   * A simple service interface that defines a spell checker service.
@@ -120,7 +120,7 @@ Then, open the file `src/spell/services/SpellChecker.java`, and replace the `TOD
 
 Once created, you can build the project by launching Ant from the project directory.
 
- :::sh
+[source,sh]
  $ ant
  Buildfile: build.xml
  clean:
@@ -152,8 +152,8 @@ The first step is to implement the service.
 Go in the spell.english directory and open the "src/spell/english/EnglishDictionary.java" file.
 Replace its content with:
 
-....
-:::java
+[source,java]
+----
 package spell.english;
 
 import org.apache.felix.ipojo.annotations.Component;
@@ -192,7 +192,7 @@ public class EnglishDictionary implements DictionaryService {
         return false;
     }
 }
-....
+----
 
 Notice that this class does not contains neither OSGi nor iPOJO specific code except a few annotations.
 It is just an implementation of the Dictionary Service interface.
@@ -206,8 +206,9 @@ The relation between components and instances is the same than between classes a
 Then, we are able to create the bundle.
 In the spell.english directory launch the ant command:
 
-....
-:::sh
+
+[source,sh]
+----
 $ ant
 Buildfile: /Users/clement/Projects/felix-trunk/ipojo/distributions/ten-minutes-tutorial/target/test/spell.english/build.xml
 
@@ -237,7 +238,7 @@ Apache Felix iPOJO Manipulator - 1.9.0-SNAPSHOT
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
-....
+----
 
 The created bundle is inside the output directory (spell.english.jar).
 The build process is based on BND and on the iPOJO Ant task.
@@ -252,8 +253,8 @@ During this step, we will create an iPOJO component requiring a Dictionary servi
 First, go the the spell.checker directory and open the file `src/spell/checker/SpellCheck.java`.
 Replace its content with:
 
-....
-:::java
+[source,java]
+----
 package spell.checker;
 
 import org.apache.felix.ipojo.annotations.Component;
@@ -314,7 +315,7 @@ public class SpellCheck implements SpellChecker {
         return errorList.toArray(new String[errorList.size()]);
     }
 }
-....
+----
 
 This class implements the SpellChecker service interface as it provides it.
 Moreover, it has a _special_ field `dictionary`.
@@ -340,8 +341,8 @@ Go to the spell.checker.gui directory.
 Open the `src\spell\gui\SpellCheckerGui.java`.
 Replace its content with:
 
-....
-:::java
+[source,java]
+----
 package spell.gui;
 
 import org.apache.felix.ipojo.annotations.*;
@@ -462,7 +463,7 @@ public class SpellCheckerGui extends JFrame {
         this.dispose();
     }
 }
-....
+----
 
 Look at the three last methods.
 The _check_ methods collects the user input and uses a _Check speller_ service to check this input.
@@ -490,13 +491,13 @@ This version is configured to launch iPOJO automatically.
 From the Felix directory, launch the following command to start the framework.
 Then enter a profile name.
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar
 
 You can check installed bundles by using the '_lb_' command:
 
-....
-:::sh
+[source,sh]
+----
 ____________________________
 Welcome to Apache Felix Gogo
 
@@ -511,20 +512,23 @@ START LEVEL 1
     5|Active     |    1|Apache Felix iPOJO (1.9.0.SNAPSHOT)
     6|Active     |    1|Apache Felix iPOJO Gogo Command (1.0.1)
 g!
-....
+----
 
 iPOJO runtime is the bundle 5.
 Once started, install the four created bundles as below:
 
- :::sh
+[source,sh]
+----
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker/output/spell.checker.jar
  start file:../spell.checker.gui/output/spell.checker.gui.jar
+----
 
 The new set of bundles is:
 
- :::sh
+[source,sh]
+----
  g! lb
  START LEVEL 1
     ID|State      |Level|Name
@@ -539,15 +543,18 @@ The new set of bundles is:
      8|Active     |    1|spell.english (0.0.0)
      9|Active     |    1|spell.checker (0.0.0)
     10|Active     |    1|spell.checker.gui (0.0.0)
+----
 
 iPOJO provides a command to check created instances:
 
- :::sh
+[source,sh]
+----
  g! instances
  Instance org.apache.felix.ipojo.arch.gogo.Arch-0 -> valid
  Instance spell.checker.SpellCheck-0 -> valid
  Instance spell.gui.SpellCheckerGui-0 -> valid
  Instance spell.english.EnglishDictionary-0 -> valid
+----
 
 As you can see, all our instances are valid.
 
@@ -563,11 +570,13 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 You can check the validity of the instances and see that the SpellChecker and the Gui are invalid.
 
- :::sh
+[source,sh]
+----
  g! instances
  Instance org.apache.felix.ipojo.arch.gogo.Arch-0 -> valid
  Instance spell.checker.SpellCheck-0 -> invalid
  Instance spell.gui.SpellCheckerGui-0 -> invalid
+----
 
 Then, restart the Dictionary service provider with the _start 8_ command.
 The GUI reappears immediately.
@@ -578,11 +587,13 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 This time, the Gui is invalid, but the English dictionary is valid:
 
- :::sh
+[source,sh]
+----
  g! instances
  Instance org.apache.felix.ipojo.arch.gogo.Arch-0 -> valid
  Instance spell.gui.SpellCheckerGui-0 -> invalid
  Instance spell.english.EnglishDictionary-0 -> valid
+----
 
 == Conclusion
 

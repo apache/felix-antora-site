@@ -6,7 +6,7 @@ The functionality of the spell checker client reads passages from standard input
 Our bundle uses its bundle context to create a `ServiceTracker` object to monitor spell checker services.
 The source code for our bundle is as follows in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -121,7 +121,7 @@ public class Activator implements BundleActivator
     {
     }
 }
-....
+----
 
 The client uses the Service Tracker to listen for spell checker services.
 Like normal, we must create a `manifest.mf` file that contains the meta-data for our bundle;

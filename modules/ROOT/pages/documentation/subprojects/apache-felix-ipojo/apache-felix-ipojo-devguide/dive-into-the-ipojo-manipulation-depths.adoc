@@ -84,7 +84,7 @@ In this case, fields won't be delegated, and methods won't be intercepted.
 The manipulation has a special behavior when a visible (at run time) method or constructor annotation is detected.
 As the methods are replaced by private methods, the annotations are moved to the iPOJO-generated methods, such as in:
 
- :::java
+[source,java]
  public class MyClass {
    @MyAnnotation
    public void myMethod() {
@@ -94,7 +94,7 @@ As the methods are replaced by private methods, the annotations are moved to the
 
 is transformed into:
 
- :::java
+[source,java]
  public class MyClass {
    @MyAnnotation
    public void myMethod() {
@@ -128,8 +128,8 @@ The solution is to extend the manipulator with new annotation' support.
 
 That can be done through the implementation of a `Module`:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.manipulator.spi.AbsBindingModule;
 import org.apache.felix.ipojo.manipulator.spi.AnnotationVisitorFactory;
 import org.apache.felix.ipojo.manipulator.spi.BindingContext;
@@ -147,7 +147,7 @@ public class SampleBindingModule extends AbsBindingModule {
             });
    }
 }
-....
+----
 
 The `AbsBindingModule.configure()` method has to be implemented by each new Module.
 It contains the annotation binding specification(s).
@@ -159,7 +159,7 @@ In the example case, when the `@Hello` annotation is encountered in a class' byt
 
 Here are the `@Hello` annotation and `HelloVisitor` class for better understanding:
 
- :::java
+[source,java]
  @Target(ElementType.TYPE)
  public @interface Hello {
      String name();
@@ -167,8 +167,8 @@ Here are the `@Hello` annotation and `HelloVisitor` class for better understandi
 
 The `@Hello` annotation has a mandatory `name` attribute.
 
-....
-:::java
+[source,java]
+----
 public class HelloVisitor extends EmptyVisitor implements AnnotationVisitor {
 
     private Element hello = new Element("hello", "org.apache.felix.ipojo.sample");
@@ -196,7 +196,7 @@ public class HelloVisitor extends EmptyVisitor implements AnnotationVisitor {
         workbench.getElements().put(hello, null);
     }
 }
-....
+----
 
 The `HelloVisitor` is an ASM `AnnotationVisitor`.
 `AnnotationVisitor.visit(String, Object)` is called for each declared attribute of the annotation.
@@ -210,7 +210,7 @@ Finally, in `visitEnd()`, we contribute our Element to the workbench.
 
 Last work to do: declare the new `Module` in a `META-INF/services/org.apache.felix.ipojo.manipulator.spi.Module` file:
 
- :::sh
+[source,sh]
  org.apache.felix.ipojo.sample.SampleBindingModule
 
 At this point, we can use the jar file that contains the extension within the manipulator.
@@ -220,8 +220,7 @@ In ant, It's probably a matter of changing the classpath.
 === Finally
 
 At the end, all this mechanics will help you to simply your code from:
-
- :::xml
+[source,xml]
  <ipojo xmlns:s="org.apache.felix.ipojo.sample">
    <component ...>
      <s:hello name="Guillaume" />
@@ -230,14 +229,14 @@ At the end, all this mechanics will help you to simply your code from:
 
 with a non-annotated component's class:
 
- :::java
+[source,java]
  public class MyComponent {
      // ...
  }
 
 to a more elegant (and concise), with no XML:
 
- :::java
+[source,java]
  @Component
  @Hello(name = "Guillaume")
  public class MyComponent {

@@ -42,7 +42,7 @@ A test suite aggregates several test cases (and even other test suites), includi
 Tests can be organized according to the different requirements they try to validate.
 The skeleton of a JUnit `TestCase` and `TestSuite` is shown just above :
 
-....
+----
 /**
  * The skeleton of a JUnit test case
  */
@@ -89,7 +89,7 @@ public class MyTestSuite extends junit.framework.TestSuite {
     return suite;
  }
 }
-....
+----
 
 First, tests methods are declared in the test case.
 Their name must begin with "test", so JUnit will execute them on demand.
@@ -107,7 +107,7 @@ The only thing the `OSGiTestCase` class adds is the access to the bundle context
 
 The structure of an `OSGiTestCase` is exactly the same as a classic JUnit `TestCase` :
 
-....
+----
  /**
   * The structure of an OSGiTestCase
   */
@@ -124,7 +124,7 @@ The structure of an `OSGiTestCase` is exactly the same as a classic JUnit `TestC
  ...
  public void tearDown() {...}
  }
-....
+----
 
 By extension, OSGi test suites are collections of OSGi test cases.
 But you can also add classic JUnit test cases inside your `OSGiTestSuite`.
@@ -204,7 +204,7 @@ Here is the list of the bundles to deploy and start:
 This example is a simple conversion of a classic JUnit example derived from the JUnit Cookbook.
 The test case and the test suite are shown to remind you JUnit principles.
 
-....
+----
 package junit.example;
 import junit.framework.TestCase;
 import junit.money.Money;
@@ -241,7 +241,7 @@ public class SimpleTestSuite {
 		return suite;
 	}
 }
-....
+----
 
 The following bnd file declares the test suite in the target bundle's header :
 
@@ -271,7 +271,7 @@ This example shows you how to interact with the OSGi framework within your tests
 The test bundle provide a service (HelloService) and tests its work normally.
 To get the service reference of the HelloService, it uses the bundle context field of the OSGiTestCase class (named `'context'`) and interacts with it like any other OSGi bundle does.
 
-....
+----
 package junit.example;
 
 import junit.service.hello.HelloService;
@@ -310,7 +310,7 @@ public class SimpleTestCase extends OSGiTestCase {
         assertEquals("Check the message", "hello", message);
     }
 }
-....
+----
 
 The performed tests give out the following results :
 

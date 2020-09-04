@@ -18,7 +18,7 @@ User roots and system root are bundle specific, and cannot be accessed by other 
 
 If the OSGi platform provides a Preferences Service, getting a reference to it is as simple as doing a normal OSGi service lookup:
 
-....
+----
 public class Activator implements BundleActivator
 {
 	public void start(BundleContext context) throws Exception
@@ -33,7 +33,7 @@ public class Activator implements BundleActivator
 	}
 
 	//..
-....
+----
 
 To access the _system root_
 
@@ -47,7 +47,7 @@ To access a _user root_
 
 The _Preferences_ interface offers some simple methods to store key/value pairs:
 
-....
+----
 public void put(String key, String value);
 
 public void putInt(String key, int value);
@@ -61,7 +61,7 @@ public void putFloat(String key, float value);
 public void putDouble(String key, double value);
 
 public void putByteArray(String key, byte[] value);
-....
+----
 
 For each of these methods, a correspondent _get_ method exists.
 Get methods always accept two arguments: the first to specify the key of the property to retrieve, the second a default value in case of not-existent property (or in case of errors).

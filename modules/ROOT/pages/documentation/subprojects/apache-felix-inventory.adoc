@@ -67,7 +67,7 @@ See the question xref:documentation/tutorials-examples-and-presentations/apache-
 
 === Example Inventory Printer Service
 
- :::java
+[source,java]
  @Component
  @Service
  @Properties({

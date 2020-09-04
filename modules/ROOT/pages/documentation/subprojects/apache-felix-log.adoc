@@ -23,8 +23,8 @@ The methods of this service are deprecated and it is recommended to use LoggerFa
 
 Loggers are obtained through the `LoggerFactory` service:
 
-....
-:::java
+[source,java]
+----
 public class Activator implements BundleActivator
 {
     private volatile LoggerFactory loggerFactory;
@@ -39,16 +39,16 @@ public class Activator implements BundleActivator
     }
 
     //..
-....
+----
 
 Elsewhere in the bundle you can then use the `LoggerFactory` to get a `Logger` for any class:
 
- :::java
+[source,java]
  Logger logger = loggerFactory.getLogger(Foo.class);
 
 Declarative Services (_since 1.4_) has a convenient integration which allows a component to obtain a logger specific to it's class with little effort by using a reference who's service type is `LoggerFactory` while the injection type is either `Logger` or `FormatterLogger`:
 
- :::java
+[source,java]
  @Reference(service = LoggerFactory.class)
  private Logger logger;
 
@@ -69,8 +69,8 @@ Since 1.4 the *Log Service Specification* provides the ability to manage the log
 
 Programatic configuration is achieved through the `LoggerAdmin` service:
 
-....
-:::java
+[source,java]
+----
 ServiceReference ref = context.getServiceReference(
     LoggerAdmin.class.getName());
 
@@ -94,7 +94,7 @@ if (ref != null)
         Collections.singletonMap(
             Logger.ROOT_LOGGER_NAME, LogLevel.DEBUG));
 }
-....
+----
 
 Likewise logging configuration can be handled through *Configuration Admin*.
 Following the previous example of configuring *Felix SCR* for `DEBUG`  mode:
@@ -107,8 +107,8 @@ Following the previous example of configuring *Felix SCR* for `DEBUG`  mode:
 
 To access a `LogService` instance it is necessary to look it up in the OSGi service registry as demonstrated in the following code snippet:
 
-....
-:::java
+[source,java]
+----
 public class Activator implements BundleActivator
 {
     public void start(BundleContext context) throws Exception
@@ -123,7 +123,7 @@ public class Activator implements BundleActivator
     }
 
     //..
-....
+----
 
 It is possible, and advisable, to use more sophisticated service acquisition mechanisms like a Service Tracker, Declarative Services or iPOJO.
 
@@ -131,8 +131,8 @@ It is possible, and advisable, to use more sophisticated service acquisition mec
 
 The `LogService` interface provides four methods for logging:
 
-....
-:::java
+[source,java]
+----
 public interface LogService
 {
     //..
@@ -149,7 +149,7 @@ public interface LogService
     // Log a message specifying the ServiceReference and exception
     public log(ServiceReference sr, int level, java.lang.String message, java.lang.Throwable exception)
 }
-....
+----
 
 Log levels are defined in the same interface:
 
@@ -163,7 +163,7 @@ Log levels are defined in the same interface:
 The `LogReaderService` provides a `getLog()` method to retrieve an `Enumeration` of the latest log entries.
 The following code snippets demonstrates how to retrieve it from the service registry and use it:
 
- :::java
+[source,java]
  ServiceReference ref = context.getServiceReference(LogReaderService.class.getName());
  if (ref != null)
  {
@@ -178,7 +178,7 @@ it's up to the developer to implement this functionality or to choose an availab
 To create such a bundle, the first step is to create an implementation of the `LogListener` interface.
 The following code shows a simple implementation that echoes the log message:
 
- :::java
+[source,java]
  public class LogWriter implements LogListener
  {
      // Invoked by the log service implementation for each log entry
@@ -191,7 +191,7 @@ The following code shows a simple implementation that echoes the log message:
 The only method to implement is `logged()` method, which is called every time a log entry is created in the associated logging service.
 A `LogListener` implementation must be registered with the `LogReaderService` so it can start receiving log entries, as demonstrated in the following code snippet:
 
- :::java
+[source,java]
  ServiceReference ref = context.getServiceReference(LogReaderService.class.getName());
  if (ref != null)
  {

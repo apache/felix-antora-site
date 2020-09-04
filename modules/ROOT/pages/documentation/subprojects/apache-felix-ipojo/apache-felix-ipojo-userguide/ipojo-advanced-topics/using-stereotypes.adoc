@@ -9,7 +9,7 @@ iPOJO recognize these annotations and act as if all the grouped annotations were
 
 The `@AutoComponent` is a stereotyped annotation (notice the `@Stereotype`) that will act as a 'container' for `@Component` and `@Instantiate`.
 
- :::java
+[source,java]
  @Component
  @Instantiate
  @Stereotype
@@ -18,7 +18,7 @@ The `@AutoComponent` is a stereotyped annotation (notice the `@Stereotype`) that
 
 The `MyComponent` class will be considered as a component with an instance.
 
- :::java
+[source,java]
  @AutoComponent
  public class MyComponent {
      // ...
@@ -43,8 +43,8 @@ Any `@Target` can be specified (`TYPE`, `METHOD`, `FIELD`, `CONSTRUCTOR` and `AN
 
 A stereotyped annotation can support all of the regular iPOJO's annotations plus all other externally supported types (custom handler, manipulator binding extensions, ...).
 
-....
-:::java
+[source,java]
+----
 import com.acme.app.ipojo.Custom; // Import a custom handler annotation
 
 @Component                        // Use standard iPOJO annotation
@@ -53,11 +53,10 @@ import com.acme.app.ipojo.Custom; // Import a custom handler annotation
 @Stereotype
 @Target(TYPE)
 public @interface AutoComponent {}
-....
+----
 
 The stereotype developer needs to declare a compile time dependency on the ipojo annotations module:
-
- :::xml
+[source,xml]
  <dependency>
      <groupId>org.apache.felix</groupId>
      <artifactId>org.apache.felix.ipojo.annotations</artifactId>

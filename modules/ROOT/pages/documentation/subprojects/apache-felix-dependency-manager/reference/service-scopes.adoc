@@ -29,8 +29,8 @@ You can also define a constructor which takes as argument the  client bundle as 
 
 So, here is a MyService component with PROTOTYPE scope, and each requester will get its own copy  of MyService instance (the MyServiceImpl.start() method will be called for each MyServiceImpl  instance):
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -46,11 +46,11 @@ public class MyServiceImpl implements MyService {
         // called on each MyService instance
     }
 }
-....
+----
 
 The MyServiceImpl, like with annotations, can define a constructor in order to be injected with  the client bundle invoking the service and also the service Registration:
 
- :::java
+[source,java]
  public class MyServiceImpl implements MyService {
      public MyServiceImpl(Bundle clientBundle, ServiceRegistration reg) { ... }
      void start() {
@@ -62,8 +62,8 @@ The MyServiceImpl, like with annotations, can define a constructor in order to b
 
 Here is a Client component which simply depends on the MyService service using a basic DM  activator (nothing special to do):
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -82,13 +82,13 @@ public class Client {
         // component will get its own private copy of MyService component instance
     }
 }
-....
+----
 
 == Example using ServiceObjects API
 
 If now you want to control the creation of the MyService using raw OSGI ServiceObjects API,  you can also do it like this:
 
- :::java
+[source,java]
  public class Client {
      void bind(ServiceObjects<MyService> so) {
          MyService s1 = so.getService();
@@ -110,8 +110,8 @@ And when one client will request a component instance, then a clone will be crea
 
 Example of a scoped component which defines an init method:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -135,7 +135,7 @@ public static class MyServiceImpl implements MyService {
 	   // called on each clone, not on the prototype instance singleton
 	}
 }
-....
+----
 
 So, if you don't specify an init callback then the prototype instance singleton won't be instantiated.
 Also,
@@ -146,8 +146,8 @@ When using DependencyManager ServiceDependency from the DM API (not using annota
 If now you really want to disable the auto-deref ServiceDependency  (because you want to directly use the ServiceObjects API), you must then use the  "setDereference(false") method on your ServiceDependency: in this way, you tell DM to never  dereference internally the scoped service.
 Here is an example:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -168,7 +168,7 @@ public class Client {
         so.ungetService(s2); // will deactivate the MyService s2 instance
     }
 }
-....
+----
 
 In the above example, the Activator defines the ServiceDependency using the  ServiceDependency.setDereference(false) method because it's the Client.bind method which will  create the MyService instances manually.
 

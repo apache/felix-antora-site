@@ -46,7 +46,7 @@ More details are available on the Junit web site http://www.junit.org/.
 
 The Money class was introduced in the Junit tutorial and was implemented as the following:
 
-....
+----
 package junit.money;
 
 public class Money {
@@ -78,7 +78,7 @@ public class Money {
         }
         return false;
     }
-....
+----
 
 So, to test this implementation, we decide to write a simple class testing the equals and add methods.
 This class can be implemented as the following:
@@ -139,14 +139,14 @@ Finally, run the test with the junit command
 The argument indicates the bundle containing the test suite to execute.
 The "all" special argument runs every available test suites.
 
-....
+----
 -> junit 8
 Executing [Money Simple Test Suite]
 ..
 Time: 0,001
 
 OK (2 tests)
-....
+----
 
 == Writing Junit Test Case and Test Suite specialized for OSGi
 
@@ -154,20 +154,20 @@ The previous example has illustrated how creating thest cases and test suites by
 However, junit4osgi has the particularity to support specialized test for OSGi.
 For example, imagine the very simple Hello Service implemented by the following class:
 
-....
+----
 public class HelloProvider implements HelloService {
 
     public String getHelloMessage() {
         return "hello";
     }
 }
-....
+----
 
 The bundle containing this implementation should register it.
 So you can decide to check this and to check the returned hello message.
 Instead of extending TestCase, this test case will extend OSGiTestCase (provided by the Junit4OSGi framework):
 
-....
+----
 public class SimpleTestCase extends OSGiTestCase {
 
     public void testHelloAvailability() {
@@ -186,7 +186,7 @@ public class SimpleTestCase extends OSGiTestCase {
     }
 
 }
-....
+----
 
 First, note that this class follows the same rules than regular test cases.
 All methods with a name starting with _test_ will be executed.

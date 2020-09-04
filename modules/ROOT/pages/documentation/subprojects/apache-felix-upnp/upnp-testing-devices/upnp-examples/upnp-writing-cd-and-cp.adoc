@@ -48,7 +48,7 @@ we would subscribe to the SwitchPower service offered by any device implementing
 Looking at the Felix UPnP TV sample code, the UPnPSubscriber class is used in the file http://svn.apache.org/viewvc/felix/trunk/upnp/samples/tv/src/main/java/org/apache/felix/upnp/sample/tv/TvDevice.java?view=markup[org.apache.felix.upnp.sample.tv.TVDevice] to subscribe to the different service types offered by the Cyberlink sample devices.
 However, in this case, the utility method {color:black}{_}subscribeEveryServiceType{_}\{color} is used to provide just the device and service types.
 
-....
+----
 private final static String CLOCK_DEVICE_TYPE = "urn:schemas-upnp-org:device:clock:1";
 private final static String TIME_SERVICE_TYPE = "urn:schemas-upnp-org:service:timer:1";
 
@@ -71,7 +71,7 @@ public void doSubscribe() {
 
 public void undoSubscribe(){
        subscriber.unsubscribeAll();}
-....
+----
 
 [cols=8*]
 |===

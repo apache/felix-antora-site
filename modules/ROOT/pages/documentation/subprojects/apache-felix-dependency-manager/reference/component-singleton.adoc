@@ -9,7 +9,7 @@ These dependencies will influence their life cycle as component will only be act
 To define a singleton component, you can use the DependencyActivatorBase.createComponent() or  the DependencyManager.createComponent() method,  like in the following example which defines a "TranslationService" osgi service having one required  dependency on the "LocalizationService" and one optional dependency on a "LogService".
 Dependencies are optional by default, unless you invoke the ServiceDependency.setRequired(boolean) method:
 
- :::java
+[source,java]
  public class GoogleBasedTranslationService implements TranslationService {
      volatile LocalizationService m_localizationService; // injected by reflection
      volatile LogService m_log;
@@ -34,8 +34,8 @@ Dependencies are optional by default, unless you invoke the ServiceDependency.se
 
 You can also inject dependencies using callbacks:
 
-....
-:::java
+[source,java]
+----
 public class GoogleBasedTranslationService implements TranslationService {
     volatile LocalizationService m_localizationService; // injected by reflection
     void bind(LogService log {...}
@@ -57,7 +57,7 @@ public class Activator extends DependencyActivatorBase {
         dm.add(c);
    }
 }
-....
+----
 
 Notice that when you define an optional dependency without using callbacks, then a "NullObject" method is injected in the class field (by reflection) when the actual optional service is not available.
 In this case any invocation on the optional service won't do anything.

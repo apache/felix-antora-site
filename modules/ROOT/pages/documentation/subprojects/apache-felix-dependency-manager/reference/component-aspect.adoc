@@ -12,8 +12,8 @@ Usage example:
 In this example, a "DatabaseCache" aspect service is used to add caching functionality  to an existing Database service.
 Here is the DatabaseCache aspect service will sit  between any Database service consumer and the original Database service:
 
-....
-:::java
+[source,java]
+----
 interface Database {
     String get(String key);
 }
@@ -28,4 +28,4 @@ public class Activator extends DependencyActivatorBase {
          dm.add(aspectComponent);
      }
 }
-....
+----

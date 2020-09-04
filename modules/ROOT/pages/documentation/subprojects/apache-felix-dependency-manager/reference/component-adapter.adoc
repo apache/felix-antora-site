@@ -15,7 +15,7 @@ This interface extends the Component interface in order to add extra setters met
 
 Here is a sample showing a HelloServlet adapter component which creates a servlet each time a HelloService is registered in the osgi service registry with the "foo=bar" service property.
 
- :::java
+[source,java]
  public class Activator extends DependencyActivatorBase {
      &Override
       public void init(BundleContext context, DependencyManager dm) throws Exception {

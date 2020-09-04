@@ -27,7 +27,7 @@ You can expect noticeable speedup if you have at least several hundred services.
 
 === Examples
 
-....
+----
 -Dorg.apache.felix.dependencymanager.filterindex=objectClass Sets an index on `objectClass`, speeding up lookups for any filter that contains an `objectClass` in its filter (all regular services do).
 
 -Dorg.apache.felix.dependencymanager.filterindex=objectClass,id This filter helps if you have a lot of similar services, identified by some `id`.
@@ -35,4 +35,4 @@ You can expect noticeable speedup if you have at least several hundred services.
 -Dorg.apache.felix.dependencymanager.filterindex=objectClass,id;objectClass,ipAddress This is a set of two filter indices, helping when you have one set of services that has an `id`, and another set that uses an `ipAddress` for identification.
 
 -Dorg.apache.felix.dependencymanager.filterindex=*aspect* Provides indexing for all Aspect services.
-....
+----

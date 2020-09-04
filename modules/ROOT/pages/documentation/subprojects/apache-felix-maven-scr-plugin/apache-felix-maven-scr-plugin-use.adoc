@@ -4,8 +4,7 @@
 
 Support for automatic generation of the compenent and metadata descriptors is embeded in the `org.apache.felix:maven-scr-plugin` plugin.
 To use this plugin, it has to be declared in the project descriptor as a `<plugin>` element:
-
- :::xml
+[source,xml]
  <project>
    ...
    <build>
@@ -37,8 +36,7 @@ The `scr` goal is bound to the `generate-resources` phase and will generate a se
 However, in order to be able to process annotations, a dependency to an annotation processor needs to be added as well.
 There are two sets of annotations: the standard annotations as defined in the Declarative Services specification and the annotations defined in the Apache Felix project.
 If you want to use the annotations from the Apache Felix project, add this dependency to your pom:
-
- :::xml
+[source,xml]
  <project>
    ...
    <dependencies>
@@ -55,8 +53,7 @@ If you want to use the annotations from the Apache Felix project, add this depen
  </project>
 
 If you want to process the standard annotations with the `maven-scr-plugin` add this dependency:
-
- :::xml
+[source,xml]
  <project>
    ...
    <dependencies>
@@ -104,8 +101,7 @@ This is usefull if the annotations are actually defined in JVM-based languages s
 Currently the `maven-scr-plugin` only creates the component descriptor files.
 Adding the descriptor to the bundle and setting the `Service-Component` manifest header accordingly is a different task.
 However, if you're using the `org.apache.felix:maven-bundle-plugin` to construct the bundle and its manifest, then the `maven-scr-plugin` will add the following settings automatically for the `org.apache.felix:maven-bundle-plugin` (given default `maven-scr-plugin` configuration), so you don't have to configure this yourself:
-
- :::xml
+[source,xml]
  ...
  <Include-Resource>
      src/main/resources,

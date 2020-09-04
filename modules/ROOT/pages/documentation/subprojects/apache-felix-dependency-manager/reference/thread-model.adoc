@@ -42,7 +42,8 @@ Notice that if the ComponentExecutorFactory itself and all its dependent service
 
 === Examples usage of the _org.apache.felix.dependencymanager.parallel_ property:
 
-....
+[source,properties]
+----
 org.apache.felix.dependencymanager.parallel=*
      -> means all components must be cached until a ComponentExecutorFactory comes up.
 
@@ -54,18 +55,19 @@ org.apache.felix.dependencymanager.parallel=foo.bar, foo.zoo
 org.apache.felix.dependencymanager.parallel=!foo.threadpool, *
      -> means all components must be delayed until the ComponentExecutorFactory comes up, except the
      components whose implementations class names are starting with "foo.threadpool" prefix).
-....
+----
 
 === Examples of a ComponentExecutorFactory that provides a shared threadpool:
 
 First, we define the OSGi bundle context system property to enable parallelism for all DM Components excepts the one which declares the ComponentExecutorFactory:
 
+[source,properties]
  org.apache.felix.dependencymanager.parallel=!com.acme.management.threadpool, *
 
 Next, here is the Activator which declares the ComponentExecutorFactory:
 
-....
-:::java
+[source,java]
+----
 package com.acme.management.threadpool;
 import org.apache.felix.dm.*;
 
@@ -78,11 +80,12 @@ public class Activator extends DependencyActivatorBase {
               .setPid("com.acme.management.threadpool.ComponentExecutorFactoryImpl")));
    }
 }
-....
+----
 
 And here is the implementation for our ComponentExecutorFactory:
 
-....
+[source,java]
+----
    package com.acme.management.threadpool;
    import org.apache.felix.dm.ComponentExecutorFactory;
 
@@ -99,7 +102,7 @@ And here is the implementation for our ComponentExecutorFactory:
           return sharedThreadPool; // Use a shared threadpool for all Components
       }
   }
-....
+----
 
 You will find a live example in the source distribution https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/[sample codes]:
 

@@ -45,7 +45,7 @@ As a workaround request `+.../bundles/.json+`+++</div>+++
 
 Request to this URL sends back an overview of all bundles along with an overview of all bundles (bundles existing, active, fragment, resolved, installed)
 
- :::json
+[source,json]
  {
     "status": "Bundle information: 84 bundles in total - all 84 bundles active.",
     "s": [ 84, 81, 3, 0, 0 ],
@@ -60,7 +60,7 @@ Request to this URL sends back an overview of all bundles along with an overview
           "symbolicName": "org.apache.felix.framework",
           "category": ""
        },
-       ....
+       ----
     ]
  }
 
@@ -68,7 +68,7 @@ Request to this URL sends back an overview of all bundles along with an overview
 
 This URL returns detailed information of a bundle like the bundle headers, imported packages, exported packages, importing bundles, registered services.
 
- :::json
+[source,json]
  {
      "status": "Bundle information: 84 bundles in total - all 84 bundles active.",
      "s": [
@@ -273,7 +273,7 @@ This action does not require a bundle in the URL and just ignores if one is prov
 
 The response on those actions requiring a bundle is a simple JSON response:
 
- :::json
+[source,json]
  {
      "fragment": -- whether the bundle is a fragement
      "stateRaw": -- the state code of the bundle after executing the action

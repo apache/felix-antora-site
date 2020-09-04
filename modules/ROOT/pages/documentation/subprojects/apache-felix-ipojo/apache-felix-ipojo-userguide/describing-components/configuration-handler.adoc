@@ -21,8 +21,8 @@ The 'm_foo' field will be injected using the 'foo' property, and will also be ex
 The `updateArray` method is a 'setter' method where the 'array' property will be injected.
 Properties injected into field are available in the constructor, setter method are available only after the constructor.
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class MyComponent implements MyService {
@@ -38,11 +38,10 @@ public class MyComponent implements MyService {
      //...
     }
 }
-....
+----
 
 The previous component can also be described using XML:
-
- :::xml
+[source,xml]
  <component classname="...MyComponent">
     <properties propagation="false"/>
         <property name=".foo" field="m_foo"/>
@@ -52,8 +51,7 @@ The previous component can also be described using XML:
  </component>
 
 The instance contains the configuration:
-
- :::xml
+[source,xml]
  <instance component="...MyComponent">
     <property name="foo" value="bar"/>
     <property name="array" value="{1, 2, 3}"/>
@@ -72,7 +70,7 @@ all properties contained in the configuration are propagated to the service regi
 For example, in the previous example, not only `foo` will be published but `array` are also published.
 To disable propagation use:
 
- :::java
+[source,java]
  @Component(propagation=false)
 
 If a property has a method, this method is invoked each time that the property value changes (the method is called to push the initial value just after the constructor).
@@ -80,8 +78,8 @@ The method receives one argument of the type of the property (an integer array i
 
 When an instance is reconfigured, an updated callback can also be called:
 
-....
-:::java
+[source,java]
+----
 @Updated
 public void updated() {
   // The instance was reconfigured
@@ -92,7 +90,7 @@ public void updated() {
 public void updated(Dictionary conf) {
   // The instance was reconfigured, conf is the new configuration.
 }
-....
+----
 
 == Exposing a Managed Service
 
@@ -106,17 +104,16 @@ In XML this is done using the `pid` attribute in the properties element (XML)
 
 So, using annotation, you should use the `managedservice` attribute as follow:
 
-....
-:::java
+[source,java]
+----
 @Component(managedservice="my.pid")
 public class MyComponent {
 
 }
-....
+----
 
 In XML, the `pid` attribute of the `properties` element does the same job.
-
- :::xml
+[source,xml]
  <component classname="...MyComponent">
     <!-- ... -->
     <properties pid="my.pid"/>
@@ -125,8 +122,7 @@ In XML, the `pid` attribute of the `properties` element does the same job.
  </component>
 
 Finally, instance may configure the managed service using the `managed.service.pid` configuration property:
-
- :::xml
+[source,xml]
  <instance component="...MyComponent">
    <property name="managed.service.pid" value="my.pid.2"/>
  </instance>
@@ -159,8 +155,8 @@ Properties with no value are not in the received configuration.
 
 Updated callback are declared as follow using annotations:
 
-....
-:::java
+[source,java]
+----
 @Updated
 public void updated() {
   // The instance was reconfigured
@@ -171,11 +167,10 @@ public void updated() {
 public void updated(Dictionary conf) {
   // The instance was reconfigured, conf is the new configuration.
 }
-....
+----
 
 In XML, the method name is given as an attribute of the {\{properties}} element.
-
- :::xml
+[source,xml]
  <component className="...MyComponent">
     <!-- ... -->
     <properties updated="updated"/>

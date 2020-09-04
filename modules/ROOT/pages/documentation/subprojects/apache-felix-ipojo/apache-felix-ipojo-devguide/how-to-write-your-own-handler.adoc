@@ -73,7 +73,7 @@ By doing that, iPOJO can recognize that a certain component uses your handler, s
 You need to declare, using the `@Handler` annotations.
 You can, of course, declare several handlers, and even declare components using these handlers, in the same bundle.
 
- :::java
+[source,java]
  @Handler(name = "Log", namespace = LogHandler.NAMESPACE)
  public class LogHandler extends PrimitiveHandler {
      public static final String NAMESPACE = "org.apache.felix.ipojo.log.handler";
@@ -134,13 +134,13 @@ the children elements)
 _Note :_ As described in the <<description,description>> section, a name and a namespace are associated to each handler.
 To safely retrieve the configuration of this handler from the component metadata, you can take inspiration from the following snippet (the `componentMetadata` variable is the component root `Element` passed to the `initializeComponentFactory()` and `configure()` methods) :
 
- :::java
+[source,java]
  Element[] log_elements = metadata.getElements("log", NAMESPACE);
 
 For example, the log handler provided in the archive file has the following configure method:
 
-....
-:::java
+[source,java]
+----
 /**
  * Parses the component's metadata to retrieve the log level in which we log messages.
  *
@@ -169,14 +169,14 @@ public void configure(Element metadata, Dictionary configuration) throws Configu
 
     instanceManager = getInstanceManager();
 }
-....
+----
 
 You can also access instance configuration (properties defined in the `instance` tag).
 The instance properties are directly passed, as a `Dictionary,` to the `configure()` method.
 With these properties, you can easily allow instances to override some component fixed configuration.
 The property handler given in the archive file extract the location of the loaded properties file from the instance configuration:
 
- :::java
+[source,java]
  // Look if the instance overrides file location :
  String instanceFile = (String) configuration.get("properties.file");
  if (instanceFile != null) {
@@ -204,8 +204,8 @@ It allows you to register interceptors, that are called before and after POJO me
 
 The property handler is registering field interceptors on injected properties:
 
-....
-:::java
+[source,java]
+----
 //First get Pojo Metadata metadata :
 PojoMetadata pojoMeta = getPojoMetadata();
 Enumeration e = m_properties.keys();
@@ -225,7 +225,7 @@ while (e.hasMoreElements()) {
     // All checks are ok, register the interceptor.
     getInstanceManager().register(fm, this);
 }
-....
+----
 
 The InstanceManager manages the component instance attached to your handler instance.
 Thus, it can't be available in the `initializeComponentFactory()` because this method is run before the creation of any component instance.
@@ -243,8 +243,8 @@ It's the standard way to inject a value in the field : returning a specific obje
 
 The property handler contains the following ``onGetz and ``onSet` methods:
 
-....
-:::java
+[source,java]
+----
 /**
  * This method is called at each time the pojo 'get' a listened field. The method return the stored value.
  * @param pojo : pojo object getting the field
@@ -269,7 +269,7 @@ public void onSet(Object pojo, String field, Object newvalue) {
     // So, we update the stored value.
     m_properties.put(field, newvalue);
 }
-....
+----
 
 You need to implements some of the following methods to intercept methods accesses.
 When these methods are called, the first parameter is the POJO's instance on which the intercepted method is called and the second parameter contains the descriptor of the called method.
@@ -297,8 +297,7 @@ Once your handler has been declared, you can use it in iPOJO components.
 To do so, you first have to be bound to your handler's namespace (using standard XML namespace declaration).
 Then you can configure the handler in your components type description.
 An example of bundle's `metadata.xml` declaring components using the handler is shown hereafter :
-
- :::xml
+[source,xml]
  <ipojo xmlns:your-shortcut="the.namespace.of.your.handler">
      ...
      <component className="your.component.class">
@@ -318,8 +317,8 @@ Obviously, you probably want to use annotations.
 You just have to provide the annotation classes: `handler_namespace.handler_element`.
 For instance, the log handler provides the `org.apache.felix.ipojo.log.handler.Log` annotation:
 
-....
-:::java
+[source,java]
+----
 package org.apache.felix.ipojo.log.handler;
 
 /**
@@ -336,7 +335,7 @@ public @interface Log {
      */
     Level level();
 }
-....
+----
 
 The remainder of this document describes two examples of handlers:
 
@@ -354,8 +353,8 @@ The handler namespace is `org.apache.felix.ipojo.log.handler.LogHandler`.
 It is also the name of the handler implementation class.
 You can note that the handler has an optional dependency on a OSGi log service.
 
-....
-:::java
+[source,java]
+----
 // Declare a handler.
 @Handler(name = "Log", namespace = LogHandler.NAMESPACE)
 public class LogHandler extends PrimitiveHandler {
@@ -369,7 +368,7 @@ public class LogHandler extends PrimitiveHandler {
     private int logLevel;
 
 //...
-....
+----
 
 === Handler implementation
 
@@ -389,8 +388,8 @@ The handler needs to be notified when component instances becomes valid or inval
 This method reads the component description and configures the handler.
 Then, the handler registers itself to the instance manager to be informed of the component's validity changes.
 
-....
-:::java
+[source,java]
+----
 /**
  * Parses the component's metadata to retrieve the log level in which we log messages.
  *
@@ -419,14 +418,14 @@ public void configure(Element metadata, Dictionary configuration) throws Configu
 
     instanceManager = getInstanceManager();
 }
-....
+----
 
 ==== StateChanged Method
 
 This method is called by the instance manager to notify that the component instance state changes.
 The handler needs to log a message containing the new state.
 
- :::java
+[source,java]
  /**
   * Logging messages when the instance state is changing
   *
@@ -449,8 +448,8 @@ The handler needs to log a message containing the new state.
 
 The handler also contains two methods called by the instance manager when the underlying instance starts and stops.
 
-....
-:::java
+[source,java]
+----
 /**
  * The instance is starting.
  */
@@ -468,7 +467,7 @@ public void stop() {
         log.log(logLevel, "The component instance " + instanceManager.getInstanceName() + " is stopping");
     }
 }
-....
+----
 
 == Handler packaging
 
@@ -481,8 +480,8 @@ To use this handler, a component use the `Log` annotation, with a level attribut
 This level attribute's value can be `"error"`, `"warning"` or `"info"`.
 Here is an usage example:
 
-....
-:::java
+[source,java]
+----
 package org.apache.felix.ipojo.log.handler.example;
 
 import org.apache.felix.ipojo.annotations.*;
@@ -508,7 +507,7 @@ public class SimpleComponent {
         System.out.println("Stopping...");
     }
 }
-....
+----
 
 === Playing with the handler
 
@@ -518,7 +517,7 @@ Unzip the archive, and build the whole project using Maven: `mvn clean install`.
 It builds the log handler and the property handler.
 Then navigate to the felix-framework-VERSION directory:
 
- :::sh
+[source,sh]
  mvn clean install
  #...
  cd Log-Handler-In-Felix/target/felix-framework-4.2.1/
@@ -526,8 +525,8 @@ Then navigate to the felix-framework-VERSION directory:
 
 Once you have launched Felix, you get the Gogo Shell prompt:
 
-....
-:::sh
+[source,sh]
+----
 Starting...
 Foo
 The component instance my.simple.consumer becomes valid
@@ -549,12 +548,12 @@ START LEVEL 1
     9|Active     |    1|iPOJO Log Handler (1.9.0.SNAPSHOT)
    10|Active     |    1|Apache Felix Log Service (1.0.1)
 g!
-....
+----
 
 You can already see some of the messages printed by the handler (`The component instance my.simple.consumer becomes valid`).
 To see more message, stop and start the Foo Service bundle:
 
- :::sh
+[source,sh]
  g! stop 8
  The component instance my.simple.consumer becomes invalid
  Stopping...
@@ -599,8 +598,8 @@ The class has several fields:
 
 NOTE: the file name is the absolute path on the local machine of the file.
 
-....
-:::java
+[source,java]
+----
 /**
  * This handler load a properties file containing property value.
  * The handler injects this values inside fields. When stopped the handler stores updated value inside the file. The
@@ -627,7 +626,7 @@ public class PropertiesHandler extends PrimitiveHandler {
      * The properties file location, configured in the component's metadata.
      */
     private String m_file;
-....
+----
 
 ==== Configure Method
 
@@ -637,8 +636,8 @@ According to the result, the configure method can return immediately or parse th
 Then, it builds a field list (String array) to register to field notification.
 By registering with a field array, the handler is going to be notified of field access.
 
-....
-:::java
+[source,java]
+----
 /**
  * This method is the first to be invoked.
  * This method aims to configure the handler. It receives the component type metadata and the instance
@@ -709,7 +708,7 @@ public void configure(Element metadata, Dictionary configuration) throws Configu
         getInstanceManager().register(fm, this);
     }
 }
-....
+----
 
 Notice that the handler is using the instance configuration.
 So instances can set their own file location using the `properties.file` property.
@@ -718,12 +717,12 @@ So instances can set their own file location using the `properties.file` propert
 
 The start method does nothing, but needs to be implemented.
 
- :::java
+[source,java]
  public void start() {}
 
 The stop method stores properties inside the properties file.
 
- :::java
+[source,java]
  public void stop() {
      try {
          saveProperties();
@@ -740,8 +739,8 @@ The onGet method is called when the POJO need a field value.
 When called, the method needs to return the stored value.The onSet method is called when the POJO modifies a field value.
 If the new value if null, the handler will remove this properties from the property list.
 
-....
-:::java
+[source,java]
+----
 public Object onGet(Object pojo, String field, Object o) {
     // When the pojo requires a value for a managed field,
     // this method is invoked.
@@ -755,14 +754,14 @@ public void onSet(Object pojo, String field, Object newvalue) {
     // So, we update the stored value.
     m_properties.put(field, newvalue);
 }
-....
+----
 
 === Creating the annotation
 
 The handler provides an annotation to ease its use:
 
-....
-:::java
+[source,java]
+----
 package org.apache.felix.ipojo.handler.properties;
 
 /**
@@ -778,7 +777,7 @@ public @interface Properties {
     String file();
 
 }
-....
+----
 
 === Handler packaging
 
@@ -788,13 +787,13 @@ This handler needs to be inside a bundle importing the `org.apache.felix.ipojo` 
 
 As for the log handler , the archive contains a felix distribution with all bundles deployed.
 
- :::sh
+[source,sh]
  cd Property-Handler-In-Felix/target/felix-framework-4.2.1/
  java -jar bin/felix.jar
 
 In Gogo you immediately see the loaded properties:
 
- :::sh
+[source,sh]
  -- listing properties --
  property2="bbb"
  property1="aaa"
@@ -817,8 +816,7 @@ In this example, we have two instances of the same component type loading differ
 The first instance loads the default properties file.
 The second one is configured to read another one.
 This configuraiton is given in the instance configuration:
-
- :::xml
+[source,xml]
  <ipojo>
      <!-- Declare an instance illustrating instance configuration -->
      <instance component="PropertiesTester"
@@ -844,7 +842,7 @@ Handlers have the possibility to describe their state, overriding the `getDescri
 By default, only the handler's name and validity are displayed in component instance's description (informations displayed by the (`arch -instance an.instance.name` command).
 The standard way to add description to your handler is shown hereafter :
 
- :::java
+[source,java]
  public class YourHandler extends PrimitiveHandler {
      ...
      // Method returning the handler description.
@@ -892,8 +890,8 @@ Then, 'scalar' annotation attributes are mapped to Attribute.
 Sub-annotations (annotation attribute) are mapped to sub-elements.
 For example, the annotation for the property handler is:
 
-....
-:::java
+[source,java]
+----
 package org.apache.felix.ipojo.properties.handler;
 
 import java.lang.annotation.ElementType;
@@ -905,11 +903,11 @@ public @interface Properties {
     String file();
 
 }
-....
+----
 
 This annotations is put on the {\{class}} element, and allows setting the property file:
 
- :::java
+[source,java]
  @Component
  @Properties(file="/Users/clement/felix/properties/i1.properties")
  public class Example {
@@ -925,8 +923,8 @@ In this case, to recreate the Element/Sub-Element hierarchy, iPOJO processes as 
 
 For example, the following code:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.handlers.jmx.Config;
 import org.apache.felix.ipojo.handlers.jmx.Method;
@@ -950,11 +948,11 @@ public class JMXSimple {
         return m_foo;
     }
 }
-....
+----
 
 will be translated to:
 
- :::sh
+[source,sh]
  component {
      $classname="org.apache.felix.ipojo.test.scenarios.component.jmx.JMXSimple"
      $public="true" $name="org.apache.felix.ipojo.test.scenarios.component.jmx.JMXSimple"

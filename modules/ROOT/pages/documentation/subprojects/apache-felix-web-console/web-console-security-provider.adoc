@@ -50,7 +50,7 @@ This is the
 * role.
 */ public boolean authorize( Object user, String role );
 
-....
+----
 {note}
 Use of the {{authorize}} method is not currently implemented, though. Mainly this is because it is not readily clear, what exactly the {{role}} means. One possible interpretation could be that this is the label of the plugin whose access is checked. Or it might be a combination of the plugin called and the request method used.
 {note}
@@ -95,7 +95,7 @@ String USER_ATTRIBUTE = "org.apache.felix.webconsole.user";
  * @return <code>true</code> If the request provided valid credentials.
  */
 public boolean authenticate( HttpServletRequest request, HttpServletResponse response );
-....
+----
 
 This method is in full control of authentication and thus has to extract the user credentials from the request and can also fail the request.
 

@@ -21,8 +21,8 @@ Each test JAR file has an associated BND file which supplies the configuration B
 Modifying the BND files is fairly straightforward.
 A typical BND file looks like this:
 
-....
-:::plaintext
+[source,bash]
+----
 # bnd pack for project org.osgi.test.cases.startlevel
 # Mon Aug 31 18:50:18 EDT 2009
 build=.
@@ -40,7 +40,7 @@ build=.
 report="true", \
 osgi.compatibility.bootdelegation="false", \
 osgi.resolverMode="strict"
-....
+----
 
 The important parts are the following settings:
 
@@ -56,7 +56,7 @@ The following two examples show how to edit these files for the Felix framework 
 The Felix framework is tested against the core CT.
 The first thing to do is extract the core CT JAR file, which includes test suites for:
 
-###Core functionality
+=== Core functionality
 
 * Framework core (`org.osgi.test.cases.framework.bnd`)
 * Framework launching (`org.osgi.test.cases.framework.launch.bnd`)
@@ -69,7 +69,7 @@ The following CT tests from the Compendium/Enterprise CT also pass with the Feli
 
 * XML Parser Specification (`org.osgi.test.cases.xml.bnd`)
 
-###Security components
+=== Security components
 
 OSGi Security components are optional.
 They are supported by Felix but require security support to be enabled.
@@ -88,7 +88,7 @@ For each of the associated BND files, the `-runpath` needs to be edited to refer
 The easiest way to do this is by modifying the `shared.inc` file which is included by  all BND files.
 It should look something like this after editing:
 
- :::plaintext
+[source,plaintext]
  -runpath = \
      /path/to/felix/framework/org.apache.felix.framework-4.4.1.jar;version=file, \
      jar/com.springsource.junit-3.8.2.jar;version=file;export="junit.framework;version=3.8"
@@ -97,13 +97,13 @@ Typically, it is not necessary to change anything else in the BND files and it i
 
 After editing the BND files, run the tests using:
 
- :::plaintext
+[source,plaintext]
  source runtests
 
 This will run all test suites for all BND files.
 To run a specific test suite, do the following:
 
- :::bash
+[source,bash]
  $ java -jar jar/bnd.jar runtests --title osgi.ct <bnd-file>
 
 Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.+++<div class="note">+++*Be Aware* Tests for native code loading will fail on Java 6, so do not use this JDK for testing the framework.+++</div>+++
@@ -118,7 +118,7 @@ Reports for the tests suites are generated in the `reports/` subdirectory and ar
 The exception to this is for the framework test suites for security.
 To test with security enabled, you will need to add the framework security provider in `-runbundles` like this:
 
- :::plaintext
+[source,plaintext]
  -runbundles = \
      /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
 
@@ -128,7 +128,7 @@ To test with security enabled, you will need to add the framework security provi
 
 When running the Core R5 CT the following error appears:
 
- :::plaintext
+[source,plaintext]
  testEERequirement
  junit.framework.AssertionFailedError: Required Execution Environment is available: Unresolved constraint in bundle org.osgi.test.cases.framework.div.tb7a [214]: Unable to resolve 214.0: missing requirement [214.0] osgi.ee; (|(osgi.ee=div/tb7a)(osgi.ee=div/tb7b))
  at org.osgi.test.support.OSGiTestCase.fail(OSGiTestCase.java:70)
@@ -140,7 +140,7 @@ This is a known deviation in the Core R5 CT and can be ignored.
 
 When running the Core R6 CT the following error appears:
 
- :::plaintext
+[source,plaintext]
  testArrayServiceReferenceDTO
  junit.framework.AssertionFailedError: ServiceReferenceDTO[] for stopped bundle is null
  at junit.framework.Assert.fail(Assert.java:47)
@@ -162,20 +162,20 @@ For the Felix framework, you will have to add the security provider to the `-run
 
 For example, to test Felix' Event Admin bundle, edit the `-runbundles` setting in `org.osgi.test.cases.event.bnd` to look something like this:
 
- :::plaintext
+[source,plaintext]
  -runbundles = \
      /path/to/felix/eventadmin/org.apache.felix.eventadmin-1.0.0.jar;version=file,\
      /path/to/felix/framework.security/org.apache.felix.framework.security-1.0.0.jar.jar;version=file
 
 After editing the BND files to refer to the appropriate bundles, run the tests using:
 
- :::plaintext
+[source,plaintext]
  source runtests
 
 This will run all test suites for all BND files.
 To run a specific test suite, do the following:
 
- :::bash
+[source,bash]
  $ java -jar jar/bnd.jar runtests --title osgi.ct <bnd-file>
 
 Where `<bnd-file>` specifies one or more BND files associated with the desired test suites.

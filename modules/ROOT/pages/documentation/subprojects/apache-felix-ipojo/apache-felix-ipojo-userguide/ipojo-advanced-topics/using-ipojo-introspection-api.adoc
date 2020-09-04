@@ -13,7 +13,8 @@ There is two way to get the instance description:
 * By using the `architecture` service exposed by an instance providing introspection support.
 * By calling the `getInstanceDescription()` method on a ComponentInstance object (that you create thanks to a Factory)
 +
-:::java   /**
+[source,java]
+    /**
 
  ** Returns the instance description.
  ** @return the instance description of the current instance    */   InstanceDescription getInstanceDescription();
@@ -30,8 +31,8 @@ Then, you have access to every primitive instance aspects:
 
 &nbsp;
 
-....
-:::java
+[source,java]
+----
 /**
  * Gets the list of object created by the described instance.
  * @return the created objects.
@@ -87,15 +88,15 @@ public ProvidedServiceDescription[] getProvidedServices() {
 public PropertyDescription[] getProperties() {
     ...
 }
-....
+----
 
 == Manipulating dependencies
 
 You can get service dependencies from the `PrimitiveInstanceDescription`.
 Once you get the dependency (`DependencyDescription` object that you want to manipulate you can call one of those method on it:
 
-....
-:::java
+[source,java]
+----
 public boolean isMultiple() { ... }
 
 public boolean isOptional() { ... }
@@ -171,7 +172,7 @@ public void setOptional(boolean isOpt) { ... }
  * @return the required service specification class name.
  */
 public String getSpecification() { ... }
-....
+----
 
 These methods allows getting the dependency state as well as reconfiguring the dependency by setting a new filter...
 
@@ -183,8 +184,8 @@ The second one returns the list of currently used providers.
 
 You also can manipulate provided services {\{ProvidedServiceDescription}}.
 
-....
-:::java
+[source,java]
+----
 /**
  * Gets the list of provided service specifications.
  * @return the provided contract name.
@@ -232,7 +233,7 @@ public ServiceReference getServiceReference() { ... }
 public Object getService() { ... }
 
 public Object[] getServices() { ... }
-....
+----
 
 Thanks to these method, you can get service objects, get the registered services, and manipulate service properties.
 
@@ -240,8 +241,8 @@ Thanks to these method, you can get service objects, get the registered services
 
 The last think that you can do from the `PrimitiveInstanceDescription` is to get configuration properties (`PropertyDescription`).
 
-....
-:::java
+[source,java]
+----
 /**
  * Gets the current property name.
  * @return the property name.
@@ -268,6 +269,6 @@ public String getValue() { ... }
  * @param value the new value.
  */
 public void setValue(Object value) { ... }
-....
+----
 
 With these methods you can get a property object and update its value dynamically.

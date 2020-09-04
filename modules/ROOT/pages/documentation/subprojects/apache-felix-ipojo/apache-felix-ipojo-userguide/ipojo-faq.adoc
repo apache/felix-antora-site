@@ -8,7 +8,7 @@ It is possible to a POJO to get its `BundleContext`.
 A POJO can receive its bundle context as an argument of its constructor.
 The next code snippet shows an example:
 
- :::java
+[source,java]
  public class ASimplePOJO{
  	private BundleContext context;
  	public ASimplePOJO(BundleContext bc) {
@@ -48,8 +48,7 @@ You can configure the version of the manipulator that you want to use when you'r
 This allows to benefit latest improvements.
 
 For Maven, Just declare a dependency on the manipulator that you want to use in the maven-ipojo-plugin plugin section:
-
- :::xml
+[source,xml]
  <plugin>
          <groupId>org.apache.felix</groupId>
          <artifactId>maven-ipojo-plugin</artifactId>
@@ -70,8 +69,7 @@ For Maven, Just declare a dependency on the manipulator that you want to use in 
        </plugin>
 
 For Ant, just configure the classpath of the iPOJO ant task with the Manipulator that you want to use:
-
- :::xml
+[source,xml]
  <taskdef name="ipojo"
           classname="org.apache.felix.ipojo.task.IPojoTask"
           classpath="../ipojo/manipulator/org.apache.felix.ipojo.manipulator-1.7.0-SNAPSHOT.jar; lib/org.apache.felix.ipojo.ant-1.7.0-SNAPSHOT.jar;" />
@@ -81,8 +79,8 @@ For Ant, just configure the classpath of the iPOJO ant task with the Manipulator
 A lot of handlers define callbacks to notify the implementation class.
 The 'core' callbacks are called in the following order:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class CallbacksOrder implements MyService {
@@ -139,7 +137,7 @@ public class CallbacksOrder implements MyService {
 	}
 
 }
-....
+----
 
 == Disabling proxies in iPOJO 1.6+
 
@@ -151,13 +149,12 @@ This property is either a system property (`-Dipojo.proxy=disabled` in the comma
 
 You can also disable proxies for specific dependencies by using the `proxy` attribute:
 
- :::java
+[source,java]
  @Requires(proxy=false)
  private LogService log
 
 or
-
- :::xml
+[source,xml]
  <requires field="log" proxy="false"/>
 
 The default value of the `proxy` attribute is the value of the `ipojo.proxy` property.
@@ -188,20 +185,23 @@ By disabling proxies, you can easily check to unavailability.
 
 * First, disable the proxy injection:
 +
-:::java   @Requires(proxy=false)   private LogService log;
+[source,java]
+    @Requires(proxy=false)   private LogService log;
 
 * The injected object will be a direct reference.
 By default, iPOJO injects a `Nullable` object, on which you can call service method without checking for `null`.
 To detect Nullable objects, just use `instanceof`
 +
-:::java   @Requires(proxy=false)   private LogService log;
+[source,java]
+    @Requires(proxy=false)   private LogService log;
 +
 public void doSomething() {       if (log instanceof Nullable) {           // Service unavailable       } else {          // Service available       }   }
 
 * If you prefer injecting `null` instead of a `Nullable`, just disable Nullable injection too.
 However, be care to check for `null` before each invocation.
 +
-:::java   @Requires(proxy=false, nullable=false)   private LogService log;
+[source,java]
+    @Requires(proxy=false, nullable=false)   private LogService log;
 +
 public void doSomething() {       if (log == null) {           // Service unavailable       } else {          // Service available       }   }
 
@@ -216,19 +216,18 @@ However, each bundle containing component types can specify a different log leve
 To set this level, add the _ipojo-log-level_ header in your manifest.
 The possible values for these two properties are:
 
-....
+----
 * info
 * debug
 * warning (default)
 * error
-....
+----
 
 == Installing iPOJO in Service Mix Kernel
 
 You can use iPOJO in Service Mix Kernel.
 To deploy and start it, just execute the following command line in the ServiceMix Kernel Shell.
-
- :::xml
+[source,xml]
  osgi install -s mvn:org.apache.felix/org.apache.felix.ipojo/1.2.0
 
 The iPOJO bundle is downloaded from the central maven repository.

@@ -7,7 +7,7 @@ More precisely, we define a spell checker service will aggregate all dictionary 
 Our bundle will only provide the spell checker service if there is at least one dictionary service available.
 First, we will start by defining the spell checker service interface in a file called `SpellChecker.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -34,7 +34,7 @@ public interface SpellChecker
     **/
     public String[] check(String passage);
 }
-....
+----
 
 The service interface is quite simple, with only one method that needs to be implemented.
 Notice that we put the service interface in the package `tutorial.example6.service`, instead of just putting it in `tutorial.example6`.
@@ -49,7 +49,7 @@ These actions must be performed in a synchronized block to avoid interference fr
 Additionally, since the bundle is monitoring the dynamic availability of the dictionary services, when the number of dictionary services falls to zero or increases from zero, the bundle must unregister and register its spell checker service, respectively.
 We implement our bundle in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -297,7 +297,7 @@ public class Activator implements BundleActivator, ServiceListener
         }
     }
 }
-....
+----
 
 Note that we do not need to unregister the service in stop() method, because the OSGi framework will automatically do so for us.
 The spell checker service that we have implemented is very simple;

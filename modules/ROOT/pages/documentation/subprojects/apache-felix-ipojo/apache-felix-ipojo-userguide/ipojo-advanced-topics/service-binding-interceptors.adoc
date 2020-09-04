@@ -17,8 +17,8 @@ They can be iPOJO components, but it's not a necessity.
 Each interceptor can manage a set of dependencies.
 The interceptor selects this set with a LDAP filter, exposed as service properties (named `target`):
 
-....
-:::java
+[source,java]
+----
 @Component(immediate = true)
 @Provides
 public class AddLocationTrackingInterceptor extends 	DefaultServiceTrackingInterceptor {
@@ -28,7 +28,7 @@ private String target = "(dependency.id=foo)";
 
 	//...
 }
-....
+----
 
 The properties on which the filter can rely are explained below.
 
@@ -98,8 +98,8 @@ Service tracking interceptors are responsible for accepting matching services.
 Their main goal is to filter the _base set_.
 The following tracking interceptor hides all services with the `hidden` property:
 
-....
-:::java
+[source,java]
+----
 @Component(immediate = true)
 @Provides
 public class HidingTrackingInterceptor extends DefaultServiceTrackingInterceptor {
@@ -121,13 +121,13 @@ public class HidingTrackingInterceptor extends DefaultServiceTrackingInterceptor
 	}
 
 }
-....
+----
 
 Such interceptor needs to be instantiated with a configuration specifying the `target` property.
 
 Service Tracking Interceptors can also transform service references to add/remove service properties:
 
- :::java
+[source,java]
  @Override
  public <S> TransformedServiceReference<S> accept(DependencyModel dependency,
  BundleContext context, TransformedServiceReference<S> ref) {
@@ -139,7 +139,7 @@ Service Tracking Interceptors can also transform service references to add/remov
 Tracking interceptors can decide to _invalidate_ the matching set and ask to be re-evaluated.
 For example, a reconfigured interceptor must reevaluate all services from the base set:
 
- :::java
+[source,java]
  @Override
  public void set(String newValue) {
      prop = newValue;
@@ -157,8 +157,8 @@ The last evaluated tracking interceptor is the iPOJO LDAP filter.
 Service Ranking Interceptors receive the services from the matching set as input and returns a sorted sub-set.
 Unlike service tracking interceptors, only one ranking interceptor can manage a dependency.
 
-....
-:::java
+[source,java]
+----
 @Component(immediate = true)
 @Provides
 public class FilterRankingInterceptor extends DefaultServiceRankingInterceptor {
@@ -185,7 +185,7 @@ public class FilterRankingInterceptor extends DefaultServiceRankingInterceptor {
 		return references;
 	}
 }
-....
+----
 
 The `FilterRankingInterceptor` filters and ranks the matching services.
 First, it ignores all services without the `grade` property.
@@ -196,7 +196,7 @@ Unlike tracking interceptors, they process a set of services (the matching set).
 
 When a ranking interceptors changes its ranking criteria, it can invalid the selected set with the `invalidateSelectedServices` method:
 
- :::java
+[source,java]
  @Override
  public void set(String newValue) {
      inverse = Boolean.parseBoolean(newValue);
@@ -213,8 +213,8 @@ The last category of interceptors is bindings interceptors.
 They intercepts the binding weaving, and thus, can _change_ the injected service objects.
 This kind of interceptors are often used to inject a proxy intercepting some invocations:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Provides
 public class ProxyBindingInterceptor extends DefaultDependencyInterceptor implements ServiceBindingInterceptor {
@@ -236,6 +236,6 @@ public class ProxyBindingInterceptor extends DefaultDependencyInterceptor implem
 	public <S> void ungetService(DependencyModel dependency, ServiceReference<S> reference) {
 		deps.remove(reference);
 	}
-....
+----
 
 Several binding intercepts can be plugged on the same service dependency, creating a chain of interception.

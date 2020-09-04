@@ -27,16 +27,14 @@ See the link:{{ refs.download.path }}[Download] page to download and compile the
 == How to use it
 
 The handler needs to be added in the metadata.xml, you just add a namespace (e.g., jmx) :
-
- :::xml
+[source,xml]
  <ipojo xmlns:jmx="org.apache.felix.ipojo.handlers.jmx">
  	...
  </ipojo>
 
 So, you could now expose in JMX properties and methods of your component.
 They are surrounded by the +++<jmx:config>+++tag.+++</jmx:config>+++
-
- :::xml
+[source,xml]
  <jmx:config>
      <jmx:property name="message" field="m_msg" rights="w" notification="true"/>
      <jmx:method name="doSomethingBad"/>
@@ -134,7 +132,7 @@ In this part, we will give you a complete example of a component managed with JM
 In first time we create a simple component named MyComponent.
 We have add two fields named m__level (int) and m__message (String).
 
- :::java
+[source,java]
  public class MyComponent ... {
  	// Exposed attributes
  	private String m_message;
@@ -143,8 +141,8 @@ We have add two fields named m__level (int) and m__message (String).
 
 We expose now the attributes in the jmx:config tag in the metadata :
 
-....
-:::xml
+[source,xml]
+----
 <?xml version="1.0" encoding="UTF-8"?>
 <iPOJO xmlns:jmx="org.apache.felix.ipojo.handlers.jmx">
     <component className="...MyComponent"
@@ -165,7 +163,7 @@ We expose now the attributes in the jmx:config tag in the metadata :
     <instance
       component="...MyComponent"/>
 </iPOJO>
-....
+----
 
 Now, we could get and write the properties in the JConsole :
 
@@ -175,8 +173,8 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 
 We could now add methods in the initial class :
 
-....
-:::java
+[source,java]
+----
 /**
 Do something good
 */
@@ -197,11 +195,10 @@ Do nothing
 public void doNothing() {
 		...
 }
-....
+----
 
 We add corresponding tags in the metadata to expose these methods:
-
- :::xml
+[source,xml]
  <!-- Exposed methods -->
  <jmx:method name="doSomethingGood"
        description="Do something good."/>
@@ -219,8 +216,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 
 You could subscribe to attribute notification by adding the notification attribute in property tag.
 In our example if we want to be notified when m_level is modified, we change the property line in the metatada like this:
-
- :::xml
+[source,xml]
  <jmx:property field="m_level"
        name="The level"
        rights="r"
@@ -236,8 +232,8 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide
 It is possible to configure the handler with simple annotations available with iPOJO annotations.
 Here is an example of usage:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.handlers.jmx.Config;
 import org.apache.felix.ipojo.handlers.jmx.Method;
@@ -261,7 +257,7 @@ public class JMXSimple {
         return m_foo;
     }
 }
-....
+----
 
 The `@org.apache.felix.ipojo.handlers.jmx.Config` (`@Config` if the package it correctly imported) annotation is a type annotation (so placed on the `class` element.
 This annotation indicates that the instance will be exposed as an MBean.

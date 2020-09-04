@@ -7,11 +7,9 @@ Templating and Internationalization support of the Web Console is based on Java 
 All requests handled by web console plugins are wrapped by response wrapper, which installs a Writer filter if the response is a `text/html` response.
 This writer filter recognizes variables of the pattern `+$&#123;name&#125;+` and tries to replace that part of the output with another string:
 
-....
 * If a variable of that name exists, the value of that variable is used. See Variable Resolution below.
 * Otherwise if a resource bundle provides a translated string for the name, that string is used. See Resource Bundles below.
 * Otherwise the name itself is just placed in the output.
-....
 
 === Example
 

@@ -7,7 +7,7 @@ Implementing an OSGi service is a two-step process, first we must define the int
 In this particular example, we will create a dictionary service that we can use to check if a word exists, which indicates if the word is spelled correctly or not.
 First, we will start by defining a simple dictionary service interface in a file called `DictionaryService.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -28,7 +28,7 @@ public interface DictionaryService
     **/
     public boolean checkWord(String word);
 }
-....
+----
 
 The service interface is quite simple, with only one method that needs to be implemented.
 Notice that we put the service interface in the package `tutorial.example2.service`, instead of just putting it in `tutorial.example2`.
@@ -39,7 +39,7 @@ In the following source code, the bundle uses its bundle context to register the
 We implement the dictionary service as an inner class of the bundle activator class, but we could have also put it in a separate file.
 The source code for our bundle is as follows in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -122,7 +122,7 @@ public class Activator implements BundleActivator
         }
     }
 }
-....
+----
 
 Note that we do not need to unregister the service in the `stop()` method, because the OSGi framework will automatically do so for us.
 The dictionary service that we have implemented is very simple;

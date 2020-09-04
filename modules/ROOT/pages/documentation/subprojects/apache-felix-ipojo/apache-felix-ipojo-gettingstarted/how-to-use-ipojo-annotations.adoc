@@ -21,8 +21,7 @@ Do not forget to use a Java compiler accepting annotations (1.5 or higher).
 === With Maven
 
 Add the following dependency:
-
- :::xml
+[source,xml]
  <dependency>
        <groupId>org.apache.felix</groupId>
        <artifactId>org.apache.felix.ipojo.annotations</artifactId>
@@ -31,8 +30,7 @@ Add the following dependency:
 
 Moreover, you need to set that the source code and the target code are Java 1.5 code.
 To achieve this, just add the following plugin in your plugins section:
-
- :::xml
+[source,xml]
  <plugin>
    <groupId>org.apache.maven.plugins</groupId>
  	<artifactId>maven-compiler-plugin</artifactId>
@@ -60,8 +58,8 @@ The provider uses two annotations.
 The "component" annotation is mandatory and defines that the class defines a component type.
 Then the "provides" annotation just declare that the defined component type provides a service.
 
-....
-:::java
+[source,java]
+----
 package ipojo.example.hello.impl;
 
 import ipojo.example.hello.Hello;
@@ -79,7 +77,7 @@ public class HelloImpl implements Hello {
      return "hello " + name;
     }
 }
-....
+----
 
 === Hello Service Consumer
 
@@ -89,8 +87,8 @@ To defines its "immediate" behavior, it add the 'immediate' attribute.
 Then, it uses the requires annotation to define a service dependency.
 Finally, it uses the validate and invalidate annotations to define lifecycle callbacks.
 
-....
-:::java
+[source,java]
+----
 package ipojo.example.hello.client;
 
 import org.apache.felix.ipojo.annotations.Component;
@@ -138,7 +136,7 @@ public void invoke() {
      end = true;
  }
 }
-....
+----
 
 == Defined Annotations
 

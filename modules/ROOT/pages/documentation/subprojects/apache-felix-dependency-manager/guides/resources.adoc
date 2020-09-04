@@ -24,7 +24,8 @@ As the filter specifies in this case the resource of interest is the bundle mani
 For each MANIFEST.MF found a new instance of ManifestAdapter will be created and registered.
 Each instance gets access to the resource by injecting the URL of the resource into the implementation object.
 
-....
+[source,java]
+----
 public class ManifestAdapter {
 
 	private volatile URL url;
@@ -34,7 +35,7 @@ public class ManifestAdapter {
 	}
 
 }
-....
+----
 
 But how does DM know where to go looking for manifest files?
 We'll it does not automatically.
@@ -48,7 +49,8 @@ The example resource repository is a bundle resource repository which as it's na
 
 A simplified bundle resource repository looks as follows:
 
-....
+[source,java]
+----
 public class BundleResourceRepositoryImpl {
 
 	private Map<ServiceReference, ResourceHandler> handlers = new ConcurrentHashMap<>();
@@ -90,10 +92,11 @@ public class BundleResourceRepositoryImpl {
 		return true; // more specific checks required
 	}
 }
-....
+----
 
 The resource repository is registered in the bundle activator as follows:
 
+[source,java]
  	manager.add(createComponent().setImplementation(BundleResourceRepositoryImpl.class)
  			.add(createServiceDependency().setService(ResourceHandler.class).setCallbacks("addHandler", "removeHandler")));
 

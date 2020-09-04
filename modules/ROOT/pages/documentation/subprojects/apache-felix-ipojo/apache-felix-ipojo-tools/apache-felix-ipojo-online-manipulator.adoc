@@ -39,12 +39,12 @@ You can download it from the http://felix.apache.org/downloads.cgi[Felix downloa
 Using the handler is quite easy.
 When you want to deploy a non-manipulated iPOJO bundle just use an url like
 
- :::sh
+[source,sh]
  install ipojo:file:/.../bundle.jar
 
 The complete URL syntax is
 
- :::sh
+[source,sh]
  install ipojo:bundle_url[!metadata_url]
 
 When using the `ipojo:` prefix, the OSGi platform delegates the loading to the url handler manipulating the bundle before its installation.
@@ -55,7 +55,7 @@ This manipulation is exactly the same as the offline manipulation.
 If the installed bundle contains a `metadata.xml` file either in its root or in the `META-INF` directory, the online manipulator will use it.
 However, you can also provide an external `metadata.xml` file by indicating the url of the file like in
 
- :::sh
+[source,sh]
  install ipojo:bundle_url!metadata_url
 
 If you provide such url, it will override the contained `metadata.xml` file.

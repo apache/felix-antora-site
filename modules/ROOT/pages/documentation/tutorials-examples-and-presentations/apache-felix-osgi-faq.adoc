@@ -117,7 +117,7 @@ Here's how to implement the the example from above:
 
 (1) Create a `ServiceFactory`
 
- :::java
+[source,java]
  private class PluginServiceFactory {
      private final BusinessObject bo;
      public Object getService(Bundle bundle, ServiceRegistration registration) {
@@ -130,7 +130,7 @@ Here's how to implement the the example from above:
 
 (2) Register the service
 
- :::java
+[source,java]
  Hashtable props = new Hashtable();
  props.put("", "Business Object");
  props.put("", "bo");
@@ -139,8 +139,7 @@ Here's how to implement the the example from above:
      props);
 
 (3) Dynamically import the API
-
- :::xml
+[source,xml]
  DynamicImport-Package: javax.servlet;javax.servlet.http;version=2.3
 
 For an example of using this pattern, you might want to look at the http://svn.apache.org/repos/asf/felix/trunk/jaas[Apache Felix JAAS bundle], particularly the http://svn.apache.org/repos/asf/felix/trunk/jaas/pom.xml[POM File] and the http://svn.apache.org/repos/asf/felix/trunk/jaas/src/main/java/org/apache/felix/jaas/internal/Activator.java[Activator class] with the `ServiceFactory`.

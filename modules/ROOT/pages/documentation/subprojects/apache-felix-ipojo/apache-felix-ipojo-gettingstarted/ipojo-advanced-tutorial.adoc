@@ -23,7 +23,7 @@ Then, launch `ant` to compile the bundles composing this tutorial.
 Once compiled, you can launch Felix and start the tutorial.
 To launch, Felix launch the following command from the `felix` directory:
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar
 
 == Writing a component providing two services
@@ -33,8 +33,8 @@ The hot dog vendor requires at the same time the bun service and the wiener serv
 In our application these services are provided by the same component.
 This component can be implemented as follows (src\org\apache\felix\ipojo\example\vendor\provider\BunWienerProvider.java):
 
-....
-:::java
+[source,java]
+----
 public class BunWienerProvider implements BunService, WienerService {
 
     public void getBun() {
@@ -45,13 +45,13 @@ public class BunWienerProvider implements BunService, WienerService {
         System.out.println("Get a wiener");
     }
 }
-....
+----
 
 This class just implements the two service interfaces.
 Its descriptor (contained in the metadata.xml file) is:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
     classname="org.apache.felix.ipojo.example.vendor.provider.BunWienerProvider"
@@ -61,7 +61,7 @@ Its descriptor (contained in the metadata.xml file) is:
 
 <instance component="buns_and_wieners"/>
 </ipojo>
-....
+----
 
 In the descriptor, we declare a component type for this vendor which contains the implementation class.
 The `classname` attribute contains the qualified name of the component implementation.
@@ -90,7 +90,7 @@ The hot dog vendor only provides the Vendor service.
 To provide this service, it uses a bun service and a wiener service.
 The following code (contained in the _src/org/apache/felix/ipojo/example/vendor/hotdog/HotDogVendor.java_ file) shows a very simple implementation of this component:
 
- :::java
+[source,java]
  public class HotDogVendor implements Vendor {
 
      /**
@@ -123,8 +123,8 @@ The field attributes in the "requires" elements are used to inject the required 
 At runtime, iPOJO injects automatically a BunService provider in the "bunProvider" field and a WienerService provider in the "wienerProvider" field.
 The implementation uses these fields the same way it would have used any other fields (as illustrated in the sell method).
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
    classname="org.apache.felix.ipojo.example.vendor.hotdog.HotDogVendor"
@@ -136,15 +136,15 @@ The implementation uses these fields the same way it would have used any other f
 
 <instance component="HD"/>
 </ipojo>
-....
+----
 
 The component type declares a provided service (the Vendor Service).
 Then, the component declares the two service dependencies (using the "requires" element).
 However, we would like to add a service property on the Vendor service describing the sold product (here, "hotdog").
 To achieve this, we just need to add a property element in the "provides" tags:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
    classname="org.apache.felix.ipojo.example.vendor.hotdog.HotDogVendor"
@@ -158,7 +158,7 @@ To achieve this, we just need to add a property element in the "provides" tags:
 
 <instance component="HD"/>
 </ipojo>
-....
+----
 
 iPOJO then publishes the "product" property in the "vendor" service registration.
 This property has the "hotdog" value.
@@ -170,8 +170,8 @@ In our case, these service properties will describe the stock of ingredients.
 Each time the service is used, the property value is decreased.
 To achieve this, we modify the current implementation to add a field representing the property:
 
-....
-:::java
+[source,java]
+----
 public class BunWienerProvider implements BunService, WienerService {
 
     private int bunStock;
@@ -186,13 +186,13 @@ public class BunWienerProvider implements BunService, WienerService {
         wienerStock = wienerStock - 1;
     }
 }
-....
+----
 
 The stock accesses are synchronized to avoid multiple accesses at the same time.
 The component type metadata must also be modified in order to describe this property:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
    classname="org.apache.felix.ipojo.example.vendor.provider.BunProvider"
@@ -205,7 +205,7 @@ The component type metadata must also be modified in order to describe this prop
 
 <instance component="buns_and_wieners"/>
 </ipojo>
-....
+----
 
 In the `provides` element, two properties are added.
 This property contains a `field` attribute aiming to attach the service property with a field of the implementation class.
@@ -221,8 +221,8 @@ In the previous example, the properties were configured in the component type de
 It is also possible to customize any property value in the instance declaration.
 This way, each instance can obtain different values.
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
    classname="org.apache.felix.ipojo.example.vendor.provider.BunProvider"
@@ -238,7 +238,7 @@ This way, each instance can obtain different values.
 	<property name="wieners" value="8"/>
 </instance>
 </ipojo>
-....
+----
 
 The previous metadata shows how to push a configuration in instance declarations.
 The instance declaration contains two property elements containing the name of the value of the property.
@@ -253,8 +253,8 @@ Now that bun and wiener providers publish their remaining stock, the hot dog pro
 To achieve this, we must describe an LDAP filter in the service requirement description.
 The following XML snipped shows this metadata:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
    classname="org.apache.felix.ipojo.example.vendor.hotdog.HotDogVendor"
@@ -268,7 +268,7 @@ The following XML snipped shows this metadata:
 
 <instance component="HD"/>
 </ipojo>
-....
+----
 
 When a provider does no more matches with the LDAP filter, the provider is no more used, and another (matching with the filter) is tracked.
 If no provider fulfilling the constraint is found, the instance becomes invalid and waits a matching provider.
@@ -282,7 +282,7 @@ Now that we get the hot dog provider, we are going to implement customers.
 Customers are implemented in the _vendor.customer_ project).
 A customer simply looks for a vendor service and buys a product:
 
- :::java
+[source,java]
  public class Customer {
 
      private VendorService vendor;
@@ -301,8 +301,7 @@ With iPOJO there are two different way to "activate" an instance as soon as it b
 The first one uses the lifecycle callback (described in the previous tutorial).
 The second one is by declaring the component as an immediate component.
 An immediate component instance creates an object of its implementation as soon as it becomes valid.
-
- :::xml
+[source,xml]
  <ipojo>
  <component
      classname="org.apache.felix.ipojo.example.vendor.customer.Customer"
@@ -336,8 +335,7 @@ Moreover, we didn't declare instances in the descriptor.
 
 Another metadata file can be used to declare instances from the customer type, this descriptor being contained in another bundle.
 The following descriptor creates 10 customer instances (look at the _vendor.customer.creator\metadata.xml_ file):
-
- :::xml
+[source,xml]
  <ipojo>
  <instance component="customer">
  	<property name="name" value="customer-1"/>
@@ -382,7 +380,7 @@ Compile the bundles, by launching ant at the root of the tutorial.
 Then launch Felix is indicated above.
 Once started, launch the following commands
 
- :::sh
+[source,sh]
  start file:../vendor.services/output/vendor.services.jar
  start file:../vendor.buns-and-wieners/output/vendor.buns-and-wieners.jar
  start file:../vendor.hotdog/output/vendor.hotdog.jar
@@ -391,7 +389,7 @@ Once started, launch the following commands
 
 Something like this should appear:
 
- :::sh
+[source,sh]
  Customer customer-1 bought Hotdog from Fenway Park
  Customer customer-2 bought Hotdog from Fenway Park
  Customer customer-3 bought Hotdog from Fenway Park
@@ -414,8 +412,8 @@ When the stock reaches 0, it cannot sell popcorns any more (so the vendor servic
 
 The following implementation (_src\org\apache\felix\ipojo\example\vendor\popcorn\PopCornVendor.java_) uses a field to control the lifecycle.
 
-....
-:::java
+[source,java]
+----
 /**
  * The corn stock.
  */
@@ -448,13 +446,13 @@ public synchronized Product sell() {
         return PopCorn.NO_MORE_POPCORN;
     }
 }
-....
+----
 
 Once the field is set to "false", the instance is invalidated (the vendor service is no more available).
 To configure the controller, you can use the following metadata:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
     classname="org.apache.felix.ipojo.example.vendor.popcorn.PopCornVendor"
@@ -465,12 +463,12 @@ To configure the controller, you can use the following metadata:
 
 <instance component="popcorn"/>
 </ipojo>
-....
+----
 
 The instance can be re-validated by setting the field to true.
 So, no deploy the pop corn vendor.
 
- :::sh
+[source,sh]
  -> start file:../vendor.popcorn/output/vendor.popcorn.jar
  Customer customer-10 bought popcorn from D & P
  Customer customer-9 bought popcorn from D & P
@@ -478,7 +476,7 @@ So, no deploy the pop corn vendor.
 Our two last customers are no more hungry.
 However, new customers arrives, we have the following situation:
 
- :::sh
+[source,sh]
  -> update 10
  Customer customer-1 bought popcorn from D & P
  Customer customer-2 bought popcorn from D & P
@@ -495,7 +493,7 @@ OSGi specified the Configuration Admin mechanism aiming to handler service and b
 This section will describe how you can use the Configuration Admin and iPOJO to add corn inside our popcorn vendor.
 First, we will change the pop corn vendor to add a method reinjecting the new stock:
 
- :::java
+[source,java]
  /**
       * A transporter refills the stock of corn.
       * This method is synchronized to avoid to client being served
@@ -512,8 +510,8 @@ First, we will change the pop corn vendor to add a method reinjecting the new st
 
 Once added, we need to update the component type descriptor to use this method:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 <component
     classname="org.apache.felix.ipojo.example.vendor.popcorn.PopCornVendor"
@@ -529,7 +527,7 @@ Once added, we need to update the component type descriptor to use this method:
 	<property name="managed.service.pid" value="Super.PopCorn.Stock"/>
 </instance>
 </ipojo>
-....
+----
 
 We add two different things.
 First we add a "stock" property attached to the _refillStock_ method.
@@ -544,7 +542,7 @@ a corn transporter !
 Inside the _vendor.corn.transporter_ project, we have a component dealing with the ConfigurationAdmin to push the new pop corn vendor configuration.
 The implementation is contained in the _src\org\apache\felix\ipojo\example\vendor\corn\transporter\CornTransporter.java_ file.
 
- :::java
+[source,java]
  public class CornTransporter {
 
      private ConfigurationAdmin m_configAdmin;
@@ -582,7 +580,7 @@ More information on the Configuration Admin is available in the OSGi R4 Compendi
 
 So, now if we deploy this bundle, we will provide enough corn to feed all the customers:
 
- :::sh
+[source,sh]
  -> start file:../vendor.corn.transporter/output/vendor.corn.transporter.jar
  Update configuration of Super.PopCorn.Stock(
         file:../vendor.popcorn/output/vendor.popcorn.jar)

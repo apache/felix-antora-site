@@ -75,7 +75,7 @@ For instance a Probe that declares a single management function _int getValue()_
 
 And the following class:
 
-....
+----
 package foo;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -107,7 +107,7 @@ public class Probe implements BundleActivator,ProbeMBean{
    return "http://somewhere/agraphicaltab.jar"
   }
 }
-....
+----
 
 Once the probe is made as a bundle it can be deployed on the remote gateway.
 Then a manager (management console) can ask communicate with the gateway agent to manage the probe.

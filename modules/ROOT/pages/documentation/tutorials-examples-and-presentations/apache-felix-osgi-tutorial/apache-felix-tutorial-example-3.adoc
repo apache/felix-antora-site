@@ -8,7 +8,7 @@ Our client bundle uses the first dictionary service it finds and if none are fou
 Using an OSGi service is the same as using any Java interface, we simply need to cast it to the known dictionary service interface.
 The source code for our bundle is as follows in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -112,7 +112,7 @@ public class Activator implements BundleActivator
         // NOTE: The service is automatically released.
     }
 }
-....
+----
 
 Note that we do not need to unget or release the service in the `stop()` method, because the OSGi framework will automatically do so for us.
 We must create a `manifest.mf` file that contains the meta-data for our bundle;

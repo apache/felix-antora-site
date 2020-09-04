@@ -31,8 +31,8 @@ and the provider also depends on:
 
 Then we have the following typical Activator (we define both components in the same Activator for simplicity):
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.DependencyActivatorBase;
 ...
 
@@ -60,12 +60,12 @@ public class Activator extends DependencyActivatorBase {
        dm.add(provider);
     }
 }
-....
+----
 
 Now, let's rework the above example, using the new dm-lambda API:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 ...
 
@@ -84,7 +84,7 @@ public class Activator extends DependencyManagerActivator {
             .provides(ServiceProvider.class, p1 -> "v1", p2 -> 123)
             .withSvc(true, LogService.class, EventAdmin.class));
 }
-....
+----
 
 == Principle
 
@@ -105,8 +105,8 @@ There are two ways to use these builders:
 
 You can first instantiate builders using some of the convenient factory methods available from the DependencyManagerActivator class, which is the new base class for dm-lambda activators:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 import org.apache.felix.dm.lambda.ComponentBuilder;
 import org.apache.felix.dm.Component;
@@ -119,14 +119,14 @@ public class Activator extends DependencyManagerActivator {
 	    dm.add(comp);
     }
 }
-....
+----
 
 The `component()` method returns a `ComponentBuilder` and the call to `build` at the end of the method calls chain returns the actual DM Component object.
 
 Here is a shorter version:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 import org.apache.felix.dm.Component;
 
@@ -137,7 +137,7 @@ public class Activator extends DependencyManagerActivator {
         dm.add(comp);
     }
 }
-....
+----
 
 Now, most of the time, in an Activator you usually create a Component and immediately add it to the `dm` object.
 So, in order to reduce the code size, you can then use a component() method that accepts a lambda which takes as  argument a `Consumer<ComponentBuilder>` parameter.
@@ -146,8 +146,8 @@ The constructed Component is then automatically added to the `dm` object.
 
 The following is the same as above, using a `consumer<ComponentBuilder>` lambda expression:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 import org.apache.felix.dm.lambda.ComponentBuilder;
 
@@ -157,12 +157,12 @@ public class Activator extends DependencyManagerActivator {
         component((ComponentBuilder comp) -> comp.impl(Hello.class));
     }
 }
-....
+----
 
 Here is a more concise version where the type of the lambda parameter is not declared:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -171,7 +171,7 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class));
     }
 }
-....
+----
 
 == Dependency default mode (required or optional ?)
 
@@ -190,8 +190,8 @@ Unavailable optional dependencies are injected as "[.code]``Null Objects``".
 
 The following example adds a service dependency on a LogService with a service filter.
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 import org.apache.felix.dm.lambda.ServiceDependencyBuilder;
 
@@ -202,12 +202,12 @@ public class Activator extends DependencyManagerActivator {
             .withSvc(LogService.class, (ServiceDependencyBuilder svc) -> svc.filter("(vendor=apache)")));
     }
 }
-....
+----
 
 Here is a more concise version where the type of the `svc` lambda parameter is not declared:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -216,7 +216,7 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.filter("(vendor=apache)")));
     }
 }
-....
+----
 
 When injecting services in class fields (auto config mode), there are shotcuts that avoid using a lambda when defining a service dependency.
 These shortcuts are available from the ComponentBuilder interface.
@@ -226,31 +226,31 @@ Examples:
 [discrete]
 ==== Declaring multiple auto config dependencies in one shot (using varargs of interfaces):
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, EventAdmin.class, MetatypeService.class));
 
 [discrete]
 ==== Declaring multiple auto config dependencies in one shot with a `required` flag:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withSvc(true, ConfigurationAdmin.class, EventAdmin.class, MetatypeService.class));
 
 [discrete]
 ==== Declaring an autoconfig dependency with a `required` flag:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, true));
 
 [discrete]
 ==== Declaring an autoconfig dependency with a `filter ` and `required` flag:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, "(vendor=apache)", true));
 
 [discrete]
 ==== Declaring a autoconfig dependency with a `filter `, an explicit class field, and `required` flag:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withSvc(ConfigurationAdmin.class, "(vendor=apache)", "configadmin", true));
 
 Dependency services can be injected in the following kind of fields:
@@ -272,8 +272,8 @@ So, take care to traverse the map using an iterator on the map entry set,  which
 
 You can specify callbacks on the component implementation class using the "[.code]``add/change/remove/swap``" `ServiceDependencyBuilder` methods:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -282,12 +282,12 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add("setLog")));
     }
 }
-....
+----
 
 Now you can also use a more type-safe callback using a Java 8 method reference:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -296,12 +296,12 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog)));
     }
 }
-....
+----
 
 or:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -310,13 +310,13 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog).remove(Hello::unsetLog)));
     }
 }
-....
+----
 
 The following callback methods signatures are supported when using method references:
 
 For add/change/remove method references:
 
- :::java
+[source,java]
  method(S service)
  method(S service, ServiceReference<S> serviceRef),
  method(S service, Map<String, Object> serviceProperties)
@@ -326,7 +326,7 @@ For add/change/remove method references:
 
 and for swap method references:
 
- :::java
+[source,java]
  method(S oldService, S newService)
  method(S oldService, S newService, Component component))
  method(ServiceReference<S> oldRef, S old, ServiceReference<S> newRef, S newService)
@@ -337,8 +337,8 @@ and for swap method references:
 Sometimes, you want to inject the dependency to a separate object that is not part of the component implementation classes.
 For example, the following example injects a dependency in a DependencyHandler instance:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -348,12 +348,12 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(depHandler, "setLog")));
     }
 }
-....
+----
 
 or using method reference:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -363,12 +363,12 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(depHandler::setLog)));
     }
 }
-....
+----
 
 You can chain multiple callbacks:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -378,7 +378,7 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).withSvc(LogService.class, svc -> svc.add(Hello::setLog).add(depHandler::setLog)));
     }
 }
-....
+----
 
 == Providing a service
 
@@ -386,8 +386,8 @@ When a component provides a service with some properties, so far it was necessar
 
 Now you can pass properties directly to the `provides` method as varargs of properties (a suite of key-value properties):
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -396,12 +396,12 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).provides(HelloService.class, "p1", "v1", "p2", 123));
     }
 }
-....
+----
 
 or if you build your application using the `-parameters` javac option, you can also use the "[.code]``FluentProperty``" lambda that allows to declare service properties as a suite of "``+key -> value+``" lambdas, like this:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -410,7 +410,7 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Hello.class).provides(HelloService.class, p1 -> "v1", p2 -> 123));
     }
 }
-....
+----
 
 *CAUTION*: defining service properties using lambda parameters only works with Java8 , not  Java9/10/11, and this feature may be removed in next version.
 
@@ -471,48 +471,48 @@ In case a lookup does not yield a value from the underlying map or dictionary, t
 You can first pass a configuration pid to the `withCnf` method.
 In this example, the Hello component has an "[.code]``updated(Dictionary properties)``" method called when configuration is available or updated.
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withCnf("my.pid"))
 
 You can pass a "[.code]``configuration type``" to the `withCnf` method.
 The pid is assumed to be the fqdn of the type passed to the `withCnf` method, and the callback is assumed to be "[.code]``updated``" and to accept as argument an implementation of the specified configuration type:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withCnf(MyConfiguration.class))
 
 You can define the updated callback method explicitly using a ConfigurationDependencyBuilder lambda that you can pass to the "[.code]``withCnf``" method:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withCnf((ConfigurationDependencyBuilder cnf) -> cnf.pid("my.pid").update("modified")));
 
 Here is shorter version which does not declare the type of the lambda passed to the `withCnf` method:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update("modified")));
 
 You can also define the callback using a method reference:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.pid("my.pid").update(Hello::modified)));
 
 And finally, you can define a configuration type, and a callback using a method reference.
 Here, the updated callback has to take  in argument the configuration type parameter (the pid is assumed to be the fqdn of the configuration type):
 
-....
-:::java
+[source,java]
+----
 component(comp -> comp.impl(Hello.class).withCnf(cnf -> cnf.update(MyConfiguration.class, Hello::modified)));
 
 class Hello {
     void modified(MyConfiguration properties) { ... }
 }
-....
+----
 
 ==== Configuration Dependency Examples based on method references:
 
 Code example with a component that defines a Configuration Dependency using a specific callback method reference, and the method accepts in argument a configuration type  (the pid is assumed to be the fqdn of the configuration type):
 
-....
-:::java
+[source,java]
+----
 public interface MyConfig {
     String getAddress();
     int getPort();
@@ -533,7 +533,7 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(ServiceImpl.class).withCnf(conf -> conf.update(MyConfig.class, ServiceImpl::updated)));
     }
 }
-....
+----
 
 Same example, using a shortcut for the `withCnf` dependency, which is only defining the configuration type  (the pid is assumed to be the fqdn of the config type, and the callback name is assumed to be "updated"):
 
@@ -545,7 +545,7 @@ Same example, using a shortcut for the `withCnf` dependency, which is only defin
 
 Code example with a component that defines a Configuration Dependency using a specific callback method reference which accepts a Dictionary in argument:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          component(comp -> comp
@@ -558,7 +558,7 @@ Code example with a component that defines a Configuration Dependency using a sp
 
 Code example which defines a configuration dependency injected in the "ServiceImpl.updated(Dictionary)" callback (the pid is directly passed in argument to the `withCnf` method):
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          component(comp -> comp.impl(ServiceImpl.class).withCnf("my.pid")));
@@ -567,7 +567,7 @@ Code example which defines a configuration dependency injected in the "ServiceIm
 
 Code example with a component that defines a Configuration Dependency using a specific callback method name:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          component(comp -> comp.impl(ServiceImpl.class).withCnf(conf -> conf.pid("my.pid").update("modified")));
@@ -581,8 +581,8 @@ You can manage Components outside of the Activator by using some static factory 
 For example, consider a use case where you want to retrieve some information from some already injected services, and you then want to dynamically add more dependencies from your `init` component callback.
 First let's look at the Activator:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -591,13 +591,13 @@ public class Activator extends DependencyManagerActivator {
         component(comp -> comp.impl(Pojo.class).withCnf("pojo.pid"));
     }
 }
-....
+----
 
 Here, we define a Configuration dependency with a "pojo.pid" configuration pid.
 So, now, the Pojo will then for example be able to parse an xml from the configuration, and depending on what it has parsed, it will possibly add more dependencies, like this:
 
-....
-:::java
+[source,java]
+----
 import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
 import org.apache.felix.dm.Component;
 
@@ -612,12 +612,12 @@ public class Pojo {
         }
     }
 }
-....
+----
 
 The available variety of factory methods allows you to also create some DM objects and add them manually, like:
 
-....
-:::java
+[source,java]
+----
 import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
 import org.apache.felix.dm.Component;
 import org.apache.felix.dm.ServiceDependency;
@@ -636,12 +636,12 @@ public class Pojo {
         }
     }
 }
-....
+----
 
 And an example where you create a new DM component from the code:
 
-....
-:::java
+[source,java]
+----
 import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
 import org.apache.felix.dm.DependencyManager;
 
@@ -652,7 +652,7 @@ public class Pojo {
         component(m_dm, comp -> comp.impl(NewComponent.class).withSvc(LogService.Class, EventAdmin.class));
     }
 }
-....
+----
 
 == Component Lifecycle Callbacks
 
@@ -668,7 +668,7 @@ Then the optional dependency callbacks are invoked (after the start callback).
 You can change the callback names using the "init"/"start"/"stop"/"destroy" methods from the ComponentBuilder interface.
 For example:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Pojo.class)
      .init("initialize")
      .start("activate")
@@ -707,7 +707,7 @@ The aspect decorates a LogService.
 The aspect also depends on a DictionaryService that is internally used to perform log spell checking.
 The LogService and DictionaryService services are injected in the aspect implementation using reflection on class  fields:
 
- ::::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          aspect(LogService.class, (ServiceAspectBuilder asp) -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(DictionaryService.class));
@@ -716,7 +716,7 @@ The LogService and DictionaryService services are injected in the aspect impleme
 
 Same more concise example which does not declare the type of the lambda builder argument:
 
- ::::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          aspect(LogService.class, asp -> asp.impl(SpellCheckLogAspect.class).rank(10).withSvc(DictionaryService.class));
@@ -725,7 +725,7 @@ Same more concise example which does not declare the type of the lambda builder 
 
 Same example, but using callbacks for injecting LogService and DictionaryService in the aspect implementation class:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
         aspect(LogService.class, asp -> asp
@@ -743,7 +743,7 @@ Using the "[.code]``adapter``" factory method, you can pass to it consumer of an
 Code example that adapts a "Device" service to an HttpServlet service.
 The adapter is created using a ServiceAdapterBuilder that is passed to the lambda.
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          adapter(Device.class, (ServiceAdapterBuilder adapt) -> adapt.impl(DeviceServlet.class).provides(HttpServlet.class).properties(alias -> "/device");
@@ -752,7 +752,7 @@ The adapter is created using a ServiceAdapterBuilder that is passed to the lambd
 
 Same more concise example which does not declare the type of lambda parameter:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          adapter(Device.class, adapt -> adapt.impl(DeviceServlet.class).provides(HttpServlet.class).properties(alias -> "/device");
@@ -767,7 +767,7 @@ To declare a factory pid configuration adapter, use the `factoryPid` method avai
 Example that defines a factory configuration adapter service for the "foo.bar" factory pid.
 For each factory pid instance, an instance of the DictionaryImpl component will be created:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
         factoryPidAdapter((FactoryPidAdapterBuilder adapter) -> adapter
@@ -778,7 +778,7 @@ For each factory pid instance, an instance of the DictionaryImpl component will 
 
 Same more concise example that is not declaring the type of the lambda type:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
         factoryPidAdapter(adapter -> adapter
@@ -789,8 +789,8 @@ Same more concise example that is not declaring the type of the lambda type:
 
 Example that defines a factory configuration adapter using a user defined configuration type (the pid is by default assumed to match the fqdn of the configuration type):
 
-....
-:::java
+[source,java]
+----
 public interface DictionaryConfiguration {
     public String getLanguage();
     public List<String> getWords();
@@ -803,7 +803,7 @@ public class Activator extends DependencyManagerActivator {
             .withSvc(LogService.class, log -> log.optional()));
     }
 }
-....
+----
 
 == Creating a Bundle Adapter component
 
@@ -812,7 +812,7 @@ To build a DM adapter, you can use the "[.code]``bundleAdapter``" factory method
 
 Example that creates a BundleAdapter service for each started bundle (the bundle is added using a method reference):
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
         bundleAdapter(adapt -> adapt
@@ -842,8 +842,8 @@ And once the result completes, start() will be called, and at this point, the Tr
 
 So, the Activator looks like this:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.dm.lambda.DependencyManagerActivator;
 
 public class Activator extends DependencyManagerActivator {
@@ -855,14 +855,14 @@ public class Activator extends DependencyManagerActivator {
            .withSvc(Tracked.class, svc -> svc.optional().add(Pojo::bindTracked));
     }
 }
-....
+----
 
 Now, here is the implementation for our component which downloads the URL from its init method.
 The init method will declare a "FutureDependency" for the result of the `CompletableFuture<String>` returned by the HttpClient.
 And once the result is injected in the setPage callback, then the start() callback will be called, and finally, any registered Tracked services will be injected in the "bindTracked" method:
 
-....
-:::java
+[source,java]
+----
 import static org.apache.felix.dm.lambda.DependencyManagerActivator.*;
 import org.apache.felix.dm.Component;
 
@@ -896,7 +896,7 @@ public class Pojo implements PojoService {
         // (optional service callbacks are always invoked after the start callback).
     }
 }
-....
+----
 
 So, using the Future Dependency we can nicely reuse the jdk CompletableFuture as a required dependency.
 Without using the FutureDependency on the CompletableFuture returned by the HttpClient, we would then have to manually register our service using bundleContext.registerService (once the web page has been downloaded), and we  would then have to check if the webpage has been downloaded each time a Tracked service is injected.

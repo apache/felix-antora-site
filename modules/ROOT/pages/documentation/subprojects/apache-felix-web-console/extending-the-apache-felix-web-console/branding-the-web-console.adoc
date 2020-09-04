@@ -9,7 +9,8 @@ The Web Console uses the branding from the `BrandingPlugin` service registered w
 
 The `BrandingPlugin` interface provides the following information used for branding:
 
-....
+[source,java]
+----
 // Returns an indicative name of the branding plugin
 // This value is used as the Window/Page title together with the
 // title of the respective plugin
@@ -45,7 +46,7 @@ String getFavIcon();
 // Returns the absolute path to a CSS file to be used as the main CSS for
 // the basic admin site.
 String getMainStyleSheet();
-....
+----
 
 If no `BrandingPlugin` service is registered, the `DefaultBrandingPlugin` is used.
 
@@ -105,24 +106,43 @@ Branding the CSS Stylesheet is basically possible with the `BrandingPlugin.getMa
 The default value of the `DefaultBrandingPlugin` points to http://svn.apache.org/viewvc/felix/trunk/webconsole/src/main/resources/res/ui/webconsole.css?view=markup[`webconsole.css`].
 This allows styling the main content structure as shown here:
 
-{code:html}+++<body>++++++<div id="main">+++// Lead+++<div id="lead">+++link:productURL[image:productImage[\]]+++</div>+++
+[source,html]
+----
+<body>
+    <div id="main">
 
-// Top Navigation+++<div id="technav">+++// regular link
+        <!-- Lead -->
+        <div id="lead">
+            <h1>
+                Bundle Name
+                <br>
+                Page Title
+            </h1>
+            <p>
+                <a target="_blank" href="productURL" title="productName">
+                    <img src="productImage" border="0"/>
+                </a>
+            </p>
+        </div>
 
-link:[title]
+        <!-- Top Navigation -->
+        <div id="technav">
+            <!-- regular link -->
+            <a href="">title</a>
+            <!-- label of current page -->
+            <span class="technavat">title</span>
+            <!-- label of current page if drawing as link -->
+            <a href="" class="technavat">title</a>
+        </div>
 
-// label of current page
+        <!-- this should be inside a div ... -->
+        <div id="content">
+            <!-- here comes the content -->
+        </div>
+    </div>
+</body>
+----
 
-[.technavat]#title#
-
-// label of current page if drawing as link
-
-link:[title]+++</div>+++
-
-// this should be inside a div ...+++<div id="content">+++// here comes the content+++</div>++++++</div>++++++</body>+++
-
-....
 Predefined plugins use other styles defined by further CSS styles contained in the web console bundle.
 
 It is yet unclear how these plugins can be styled....
-....

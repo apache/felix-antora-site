@@ -22,8 +22,7 @@ The second goal is to make the existence of any released Felix provisional API c
 However, any such release is likely to involve numerous problems such as incorrect semantic versioning or version mismatch between the provisional and eventual OSGi release and bundle version inflation if the Felix provisional api is removed after the OSGi API is released.
 
 As an example, to provisionally export the `org.apache.felix.service.metatype` package, the `Export-Package` statement would look something like this:
-
- :::xml
+[source,xml]
  <Export-Package>
    org.apache.felix.service.metatype; version="0.1"; mandatory:="status"; status="provisional"
  </Export-Package>

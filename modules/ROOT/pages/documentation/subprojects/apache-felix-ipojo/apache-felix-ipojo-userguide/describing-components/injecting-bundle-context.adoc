@@ -16,7 +16,7 @@ The API of the bundle context is available http://www.osgi.org/javadoc/r4v43/cor
 
 The first way to retrieve the bundle context is as a constructor parameter:
 
- :::java
+[source,java]
  public MyComponent(BundleContext context) {
      // context is the bundle context
  }
@@ -29,8 +29,8 @@ Notice that such injection can be mixed with other constructor injection such as
 The second way to retrieve the `Bundle Context` uses a _bundle context handler_ responsible for injecting the bundle context.
 This handler let you inject the bundle context in a field, in a setter method or as constructor parameter:
 
-....
-:::java
+[source,java]
+----
 @Component
 public MyComponent {
     /**
@@ -54,14 +54,14 @@ public MyComponent {
         // ...
     }
 }
-....
+----
 
 The `@Context` annotation takes an optional parameter indicating which `Bundle Context` has to be injected.
 By default it injects the `component` bundle context, meaning the bundle context of the bundle declaring the component.
 But, you can asks iPOJO to injects the `instance` bundle context, i.e.
 the bundle context of the bundle declaring the instance:
 
- :::java
+[source,java]
  @Component
  public MyComponent {
      /**

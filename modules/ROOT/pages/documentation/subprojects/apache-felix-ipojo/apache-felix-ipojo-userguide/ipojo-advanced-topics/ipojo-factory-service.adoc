@@ -15,7 +15,7 @@ They also expose the `org.apache.felix.ipojo.Factory` service.
 By default, factories are public.
 However, you can hide them with:
 
- :::java
+[source,java]
  @Component(publicFactory=false)
 
 == The Factory service
@@ -27,8 +27,8 @@ The http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/F
 
 Let's imagine you have the following class:
 
-....
-:::java
+[source,java]
+----
 @Component(name="my-factory")
 public class MyImplementation {
 
@@ -38,14 +38,14 @@ public class MyImplementation {
 
 		//...
 }
-....
+----
 
 Once packaged and deployed, iPOJO finds it and creates the factory object and registers it in the OSGi service registry (because this factory is public).
 However, to find the right Factory service from within the OSGi service registry, you must a filter to distinguish this factory from the other ones.
 Fortunately, iPOJO exposed a service property allowing this distinction: `factory.name`.
 In the previous example you can retrieve the factory service with:
 
- :::java
+[source,java]
  @Requires(filter="(factory.name=my-factory)")
  private Factory factory;
 
@@ -67,8 +67,8 @@ Check the http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/i
 
 To illustrate factory's state retrieval, let's look at the following code displaying the name, version and state of all the available factories.
 
-....
-:::java
+[source,java]
+----
 @Requires
 private Factory[] factories;
 
@@ -79,7 +79,7 @@ public void dump() {
         System.out.println("Factory " + factory.getName() + " " + version + " " + state);
     }
 }
-....
+----
 
 === Creating an instance
 
@@ -87,7 +87,7 @@ Factory services are generally used to create instances.
 The `createComponentInstance` method let you create instances.
 It receives a configuration object (potentially `null`):
 
- :::java
+[source,java]
  public void createMyInstance() throws Exception {
  		ComponentInstance instance = factory.createComponentInstance(null);
  		//...
@@ -99,7 +99,7 @@ This object is representing the created instance, and let you manage it (to reco
 The configuration you can pass to the `createComponentInstance` method let you configure the instance properties.
 For example, you can gives a value to the `message` property (From the component example):
 
- :::java
+[source,java]
  public void createMyInstance() throws Exception {
  	Dictionary<String, Object> configuration = new Hashtable<String, Object>();
  	configuration.put("message", "hello");
@@ -112,7 +112,7 @@ To give a name to your instance, set the `instance.name` property.
 
 The Factory service also allows you to retrieve the created instances:
 
- :::java
+[source,java]
  public void listInstancesFromFactory(Factory factory) {
  	for (ComponentInstance instance : factory.getInstances()) {
  			System.out.println(instance.getInstanceName());
@@ -143,8 +143,8 @@ To avoid to have to listen and manage these events, you can use an http://felix.
 An instance declaration is a service you publish to instruct iPOJO to create an instance and manage its lifecycle.
 `InstanceDeclaration` are created through the `DeclarationBuilderService` (since 1.12):
 
-....
-:::java
+[source,java]
+----
 // Obtain the service through the service registry
 DeclarationBuilderService service = ...
 
@@ -159,7 +159,7 @@ DeclarationHandle handle = builder.name("a-unique-name") // Make sure name is un
 
 // Push the InstanceDeclaration service in the registry
 handle.publish();
-....
+----
 
 In this snippet, we've registered a named `InstanceDeclaration` service for the `my-factory` component type, we've created a handle though an `InstanceBuilder` object.
 The builder helps to configure and produce an InstanceDeclaration that is controllable through the handle.

@@ -25,7 +25,7 @@ This will create the "cnf" bndtools project.
 Now you have to copy the SCR annotations bnd plugin into the cnf project of your current workspace ("BNDTOOLS" in this example).
 For now, the plugin is not yet released, but you can build it yourself like this:
 
- :::sh
+[source,sh]
  $ svn checkout http://svn.apache.org/repos/asf/felix/trunk/scrplugin scrplugin
  $ cd scrplugin
  $ mvn clean install
@@ -61,19 +61,19 @@ Then click on bnd.bnd file of the greeting project, then click on Source, and ad
 
 Create the greeting.api.Greeting interface:
 
-....
-:::java
+[source,java]
+----
 package greeting.api;
 
 public interface Greeting {
     void sayHello(String name);
 }
-....
+----
 
 And create the greeting.impl.GreetingImpl class:
 
-....
-:::java
+[source,java]
+----
 package greeting.impl;
 
 import greeting.api.Greeting;
@@ -95,7 +95,7 @@ public class GreetingImpl implements Greeting {
 		System.out.println("Hello " + name);
 	}
 }
-....
+----
 
 Now, click on bnd.bnd and rebuild the project.
 you have created your first bndtools project using SCR annotations.

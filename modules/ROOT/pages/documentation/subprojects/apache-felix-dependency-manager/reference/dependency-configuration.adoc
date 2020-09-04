@@ -66,8 +66,8 @@ In case a lookup does not yield a value from the underlying map or dictionary, t
 
 Here is a component depends on a configuration:
 
-....
-:::java
+[source,java]
+----
 public class ServiceImpl {
     void updated(Dictionary<String, Object> cnf) {
         if (cnf != null) {
@@ -86,12 +86,12 @@ public class Activator extends DependencyActivatorBase {
           .add(createConfigurationDependency().setPid(ServiceImpl.class.getName()));
     }
 }
-....
+----
 
 Here is the same example, but a custom configuration type interface is used  (by default, the FQDN of the configuration type is assumed to be the configuration pid):
 
-....
-:::java
+[source,java]
+----
 public interface MyConfig {
     String getAddress();
     int getPort();
@@ -115,4 +115,4 @@ public class Activator extends DependencyActivatorBase {
           .add(createConfigurationDependency().setCallback("modified", MyConfig.class);
     }
 }
-....
+----

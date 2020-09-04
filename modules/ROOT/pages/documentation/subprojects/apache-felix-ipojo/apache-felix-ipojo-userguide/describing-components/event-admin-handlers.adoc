@@ -13,8 +13,8 @@ The `@Publisher` annotation is now deprecated and replaced by `@Publishes`.+++</
 
 Hereafter is presented a small example :
 
-....
-:::java
+[source,java]
+----
 @Component
 @Instantiate
 public class MyComponent {
@@ -32,11 +32,10 @@ public class MyComponent {
        // Do something with the event
     }
 }
-....
+----
 
 This component can also be described using the XML formalism:
-
- :::xml
+[source,xml]
  <ipojo
      xmlns:ev="org.apache.felix.ipojo.handlers.event">
  	<component className="...MyComponent">
@@ -195,8 +194,7 @@ In this section, you will find some examples of the handler's features.
 As described in the 'Instance configuration' section, you can (re)define some of the subscribers or publishers attributes.
 You can notice that required attributes that are not defined in the component description must be defined in the instance configuration section.
 Hereafter is an example of an instance configuration of this handler :
-
- :::xml
+[source,xml]
  <ipojo>
  	<instance component="...MyComponent">
  		<property name="event.topics">
@@ -218,8 +216,7 @@ The EventHandler hides the dictionary manipulation and allows iPOJO components t
 
 First, you have define the _data-key_ attribute in the publisher configuration (`dataKey` in annotations).
 Sent objects will be contained in the event dictionary and are accessible with the "user.data" key.
-
- :::xml
+[source,xml]
  <ipojo
      xmlns:ev="org.apache.felix.ipojo.handlers.event">
      <component className="...DataPublisher">
@@ -234,8 +231,8 @@ Sent objects will be contained in the event dictionary and are accessible with t
 
 Then you can use the _sendData_ method of your configured publisher.
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.handlers.event.publisher.Publisher;
 //...
 public class DataPublisher ... {
@@ -249,15 +246,14 @@ public class DataPublisher ... {
       m_publisher.sendData(data);
     }
 }
-....
+----
 
 The second step is to configure an event subscriber to receive such events.
 The _data-key_ attribute's  value of the subscriber must be the same than the publisher's one.
 The _data-type_ describes the type of received data events, and thus, must be compatible with the sent object's type (i.e., super-class or inherited interface).
 Then you can finally receive the sent object in the callback method.
 The parameter type of the callback must be the same than the data-type attribute value.
-
- :::xml
+[source,xml]
  <ipojo
     xmlns:ev="org.apache.felix.ipojo.handlers.event">
  	<component className="...DataEventSubscriber">
@@ -273,7 +269,7 @@ The parameter type of the callback must be the same than the data-type attribute
 
 &nbsp;
 
- :::java
+[source,java]
  import my.package.MyFavoriteInterface;
  //...
  public class DataEventSubscriber ... {
@@ -309,8 +305,8 @@ Despite it goes against MOM principles, this property is useful to trace events 
 It is possible to configure the handler with a simple annotations available in the annotation pack ('annotation' project in the iPOJO trunk).
 Here is an example of usage:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.handlers.event.Subscriber;
 import org.apache.felix.ipojo.handlers.event.Publishes;
@@ -344,4 +340,4 @@ public class PubSub {
         // Process event
     }
 }
-....
+----

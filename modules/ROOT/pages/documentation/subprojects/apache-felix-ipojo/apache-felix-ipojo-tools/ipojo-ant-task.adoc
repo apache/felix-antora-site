@@ -14,8 +14,7 @@ The iPOJO Ant Task can ben downloaded from http://felix.apache.org/downloads.cgi
 The iPOJO Ant task take an input bundle and a metadata file and create the final (i.e.
 manipulated) bundle.
 To use the task declare a target in your build.xml as:
-
- :::xml
+[source,xml]
  <target name="main">
      <!-- Change the path to point on the iPOJO Ant task jar-->
      <taskdef name="ipojo"
@@ -54,8 +53,7 @@ The iPOJO Ant Task requires an input bundle.
 BND is a tools simplifying bundle creation.
 So, it is possible to combine the two tools to create your bundle automatically.
 The following build.xml shows you an example of combination.
-
- :::xml
+[source,xml]
  <project default="main" basedir=".">
      <target name="bnd">
          <!-- Change to use the latest BND version -->
@@ -89,8 +87,7 @@ For instance, the BND file is foo.bnd, so the input jar must be foo.jar.
 To be sure that the BND bundle is already created, you can add the "_depends_" clause in the target using the iPOJO task to the target creating the bundle.
 
 However, it is possible to create only one target doing the two operations as:
-
- :::xml
+[source,xml]
  <target name="main">
      <!-- Change to use the latest BND version -->
      <taskdef
@@ -117,8 +114,7 @@ The manipulator can take a directory in input.
 In this case, classes from this folder is manipulated.
 You can also set the manifest file location too.
 Here in an example of configuration using this mode:
-
- :::xml
+[source,xml]
  <target name="manipulate">
  	<!-- Set the manipulated directory and manifest location -->
      <ipojo

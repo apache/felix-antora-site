@@ -9,7 +9,8 @@ We present a simple "Hello World" component defined using annotations, and also 
 
 == Hello World Component
 
-....
+[source,java]
+----
 package org.apache.felix.dependencymanager.samples.annotation.hello;
 
 import org.apache.felix.dm.annotation.api.Component;
@@ -22,7 +23,7 @@ public class HelloWorld {
        System.out.println("Hello world !");
     }
 }
-....
+----
 
 == Compiling with BndTools:
 
@@ -61,8 +62,8 @@ Now we have properly configured the DM annotation plugin in bndtools, we can the
 Since we have configured the buildpath, we are now ready to create our first HelloWorld component using annotations.
 Create the following class in the greeting project:
 
-....
-:::java
+[source,java]
+----
 package greeting;
 
 import org.apache.felix.dm.annotation.api.Component;
@@ -75,7 +76,7 @@ public class HelloWorld {
         System.out.println("Hello World");
     }
 }
-....
+----
 
 === Finalize the bnd configuration
 
@@ -132,12 +133,17 @@ Now, configure the Felix framework, as well as the list of the bundles to be exe
 Now, Click on "Run OSGi".
 You should now see in the Console the Gogo Shell prompt with the message displayed by the HelloWorld component:
 
+[source,console]
+----
  Hello World
  Welcome to Apache Felix Gogo
  g!
+----
 
 Just type "dm" in the console, and you should see:
 
+[source,console]
+----
  [2] org.apache.felix.dependencymanager.runtime
   [0] org.apache.felix.dm.runtime.DependencyManagerRuntime registered
      active (DependencyManager-Component=*) bundle optional available
@@ -145,6 +151,7 @@ Just type "dm" in the console, and you should see:
      org.osgi.service.log.LogService service optional available
  [10] greeting
   [1] greeting.HelloWorld registered
+----
 
 The bundle [2] is the dependency manager runtime bundle that is in charge of managing all bundles containing annotated components.
 And the bundle [10] is our greeting bundle (and the "greeting.HelloWorld" component is registered).
@@ -153,7 +160,8 @@ And the bundle [10] is our greeting bundle (and the "greeting.HelloWorld" compon
 
 Since Bnd provides a Ant task, you can use the bnd directives above with the following build.xml: (it is assumed that directives.bnd, bnd.jar, json-20070829.jar and org.apache.felix.dependencymanager.annotation.jar are in the current directory)
 
-....
+[source,xml]
+----
 <project name="TestDM" default="bnd">
 	<property name="bnd" value="bnd.jar" />
 	<property name="json" value="json-20070829.jar" />
@@ -170,7 +178,7 @@ Since Bnd provides a Ant task, you can use the bnd directives above with the fol
 		<bnd classpath="target/classes" eclipse="false" files="directives.bnd" output="org.apache.felix.dependencymanager.samples.annotation.hello.jar" />
 	</target>
 </project>
-....
+----
 
 == Compiling with Maven:
 
@@ -178,7 +186,8 @@ When compiling with Maven, you have to invoke the Dependency Manager Bnd plugin,
 In the R1 Dependency Manager distribution, the bundles are not published to maven central, and you have to manually install the org.apache.felix.dependencymanager.annotation.jar file to your local repository, or to your own corporate nexus server.
 (http://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html[See this link] to manually install the dm annotation jar to your local repository.)
 
- :::xml
+[source,xml]
+----
  <project ...>
    <dependencies>
      ...
@@ -217,3 +226,4 @@ In the R1 Dependency Manager distribution, the bundles are not published to mave
      </plugins>
    </build>
  </project>
+----

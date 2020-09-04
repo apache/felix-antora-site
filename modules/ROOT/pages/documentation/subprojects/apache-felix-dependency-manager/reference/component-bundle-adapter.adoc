@@ -15,7 +15,7 @@ This interface extends the Component interface in order to add extra setters met
 
 In the following example, a "VideoPlayer" Service is registered into the OSGi registry each time an active bundle containing a "Video-Path" manifest header is detected:
 
- :::java
+[source,java]
  public class Activator extends DependencyManagerActivator {
      public void init(BundleContext ctx, DependencyManager dm) throws Exception {
          Component c = dm.createBundleComponent()

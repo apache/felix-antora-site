@@ -9,8 +9,8 @@ This interface can be created using DependencyActivatorBase.createBundleDependen
 
 Here is an example of a component which tracks all ACTIVE bundles having a Service-Component header in the manifest:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext ctx, DependencyManager dm) throws Exception {
@@ -29,6 +29,6 @@ public class ScrRuntime {
 		// unload SCR descriptors from the starting bundle
 	}
 }
-....
+----
 
 The dependency is optional by default, and will invoke the ScrRuntime.bind callback each time a bundle containing some Declarative Service component is started.

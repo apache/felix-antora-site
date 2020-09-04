@@ -1,24 +1,7 @@
 =  Apache Felix Framework Launching and Embedding
 
-_[This document describes framework launching introduced in Felix Framework 2.0.0 and continuing with the latest releases;
-it is incompatible with older versions of the Felix framework.]({{ refs.this-document-describes-framework-launching-introduced-in-felix-framework-2-0-0-and-continuing-with-the-latest-releases-it-is-incompatible-with-older-versions-of-the-felix-framework.path }})_
-
-* xref:#_introduction[Introduction]
-* xref:#_overview[OSGi Launching and Embedding API Overview]
-** xref:#_creating-and-configuring[Creating and Configuring the Framework Instance]
-** xref:#_starting-instance[Starting the Framework Instance]
-** xref:#_stopping-instance[Stopping the Framework Instance]
-* xref:#_launching[Launching Felix]
-** xref:#_standard-launcher[Standard Felix Launcher]
-** xref:#_custom-launcher[Custom Felix Launcher]
-* xref:#_embedding[Embedding Felix]
-** xref:#_host-interaction[Host/Felix Interaction]
-** xref:#_host-services[Providing Host Application Services]
-** xref:#_host-service-usage[Using Services Provided by Bundles]
-** xref:#_service-reflection[Using Bundle Services via Reflection]
-** xref:#_service-other[Other Approaches]
-* xref:#_caveat[Caveat]
-* xref:#_feedback[Feedback]
+NOTE: This document describes framework launching introduced in Felix Framework 2.0.0 and continuing with the latest releases;
+it is incompatible with older versions of the Felix framework.
 
 == Introduction
 
@@ -38,6 +21,8 @@ The approach is to have the framework implement the `org.osgi.framework.launch.F
 These interfaces provide the necessary means to launch and manage framework instances.
 The `Bundle` interface is defined as:
 
+[source,java]
+----
  public interface Bundle
  {
      BundleContext getBundleContext();
@@ -64,21 +49,28 @@ The `Bundle` interface is defined as:
      void update() throws BundleException;
      void update(InputStream is) throws BundleException;
  }
+----
 
 The `Framework` interface is defined as:
 
+[source,java]
+----
  public interface Framework extends Bundle
  {
      void init();
      FrameworkEvent waitForStop(long timeout);
  }
+----
 
 To actually construct a framework instance, the R4.2 specification defines the `FrameworkFactory` interface:
 
+[source,java]
+----
  public interface FrameworkFactory
  {
      Framework newFramework(Map config);
  }
+----
 
 The framework factory can be used to create configured framework instances.
 It is obtained following the standard `META-INF/services` approach.
@@ -146,7 +138,8 @@ Most special launching requirements should be resolved by creating a custom laun
 This section describes how the standard launcher works.
 The following code represents the complete `main()` method of the standard launcher, each numbered comment will be described in more detail below:
 
-....
+[source,java]
+----
 public static void main(String[] args) throws Exception
 {
     // (1) Check for command line arguments and verify usage.
@@ -247,7 +240,7 @@ public static void main(String[] args) throws Exception
         System.exit(0);
     }
 }
-....
+----
 
 The general steps of the standard launcher are quite straightforward:
 
@@ -293,6 +286,8 @@ This section creates a bare-bones launcher to demonstrate the minimum requiremen
 This example uses the standard Gogo shell bundles for interactivity, but any other bundles could be used instead.
 This example launcher project has the following directory structure:
 
+[source,text]
+----
  launcher/
     lib/
        org.apache.felix.main-3.0.0.jar
@@ -303,6 +298,7 @@ This example launcher project has the following directory structure:
     src/
        example/
           Main.java
+----
 
 The `lib/` directory contains Felix' main JAR file, which also contains the OSGi core interfaces.
 The main JAR file is used so that we can reuse the default launcher's auto-install/auto-start configuration property handling;
@@ -311,7 +307,8 @@ The `bundle/` directory contains the shell service and textual shell interface b
 Note: If you do not launch the framework with interactive bundles, it will appear as if the framework instance is hung, but it is actually just sitting there waiting for someone to tell it to do something.
 The `src/example/` directory contains the following `Main.java` file, which is a very simplistic framework launcher.
 
-....
+[source,java]
+----
 package example;
 
 import java.io.*;
@@ -373,7 +370,7 @@ public class Main
         throw new Exception("Could not find framework factory.");
     }
 }
-....
+----
 
 This launcher relies on the default behavior of `AutoProcessor` to automatically deploy the shell bundles.
 This simple, generic launcher provides a good starting point if the default Felix launcher is not sufficient.
@@ -382,39 +379,53 @@ For the bundle auto-deploy directory, "[.code]``bundle``" in the current directo
 
 By breaking down the above source code into small chunks, it is quite easy to see what is going on.
 
+[source,java]
+----
              m_fwk = getFrameworkFactory().newFramework(null);
              m_fwk.init()
+----
 
 These steps get a the framework factory service and use it to create a framework instance with a default configuration.
 Once the framework instance is created, it is initialized with `init()`.
 
+[source,java]
+----
              AutoProcessor.process(null, m_fwk.getBundleContext());
+----
 
 The `AutorProcessor` will automatically deploy bundles in the auto-deploy directory and any referenced from the auto-install/start properties.
 Since we are using an empty configuration, the auto-deploy directory is the `bundle` directory in the current directory and there are no auto properties.
 Therefore, in this case, the shell bundles will be installed.
 
+[source,java]
+----
              m_fwk.start();
              m_fwk.waitForStop(0);
              System.exit(0);
+----
 
 These final steps start the framework and cause the launching application thread to wait for the framework to stop and when it does the launching thread calls `System.exit()` to make sure the VM actually exits.
 
+[source,java]
+----
      private static FrameworkFactory getFrameworkFactory() throws Exception
      {
          ...
      }
+----
 
 This method retrieves the framework factory service by doing a META-INF/services resource lookup, which it can use to obtain the concrete class name for the factory.
 If you are using Java 6, then you can use the `ServiceLoader` API in the JRE to further simplify the factory service lookup.
 
 The following command compiles the launcher when run from the root directory of the launcher project:
 
+[source,sh]
  javac -d . -classpath lib/org.apache.felix.main-3.0.0.jar src/example/Main.java
 
 After executing this command, an `example/` directory is created in the current directory, which contains the generated class file.
 The following command executes the simple launcher when run from the root directory of the launcher project:
 
+[source,sh]
  java -cp .:lib/org.apache.felix.main-3.0.0.jar example.Main
 
 After executing this command, a "[.code]``felix-cache/``" directory is created that contains the cached bundles, which were installed from the `bundle/` directory.
@@ -438,7 +449,9 @@ This means that the `start()`/`stop()` methods of each activator instance in the
 Each activator instance will be given the system bundle's `BundleContext` object so that they can interact with the framework.
 Consider following snippet of a bundle activator:
 
-....
+
+[source,java]
+----
 public class HostActivator implements BundleActivator
 {
     private BundleContext m_context = null;
@@ -462,11 +475,12 @@ public class HostActivator implements BundleActivator
         return null;
     }
 }
-....
+----
 
 Given the above bundle activator, it is now possible to embed the Felix framework into a host application and interact with it as the following snippet illustrates:
 
-....
+[source,java]
+----
 public class HostApplication
 {
     private HostActivator m_activator = null;
@@ -512,7 +526,7 @@ public class HostApplication
         m_felix.waitForStop(0);
     }
 }
-....
+----
 
 Notice how the `HostApplication.getInstalledBundles()` method uses its activator instance to get access to the system bundle's context in order to interact with the embedded Felix framework instance.
 This approach provides the foundation for all interaction between the host application and the embedded framework instance.
@@ -527,19 +541,21 @@ This is achieved using the `org.osgi.framework.system.packages.extra` configurat
 
 Consider the follow simple property lookup service:
 
-....
+[source,java]
+----
 package host.service.lookup;
 
 public interface Lookup
 {
     public Object lookup(String name);
 }
-....
+----
 
 This package is simply part of the host application, which is potentially packaged into a JAR file and started with the "[.code]``java -jar``" command.
 Now consider the following host application bundle activator, which will be used to register/unregister the property lookup service when the embedded framework instance starts/stops:
 
-....
+[source,java]
+----
 package host.core;
 
 import java.util.Map;
@@ -584,11 +600,12 @@ public class HostActivator implements BundleActivator
         m_context = null;
     }
 }
-....
+----
 
 Given the above host application bundle activator, the following code snippet shows how the host application could create an embedded version of the Felix framework and provide the property lookup service to installed bundles:
 
-....
+[source,java]
+----
 package host.core;
 
 import java.util.List;
@@ -649,7 +666,7 @@ public class HostApplication
         m_felix.waitForStop(0);
     }
 }
-....
+----
 
 Rather than having the host application bundle activator register the service, it is also possible for the the host application to simply get the bundle context from the bundle activator and register the service directly, but the presented approach is perhaps a little cleaner since it allows the host application to register/unregister the service when the system bundle starts/stops.
 
@@ -663,7 +680,8 @@ This is achieved using the `org.osgi.framework.system.packages.extra` configurat
 
 Consider the following simple command service interface for which bundles provide implementations, such as might be used to create an extensible interactive shell:
 
-....
+[source,java]
+----
 package host.service.command;
 
 public class Command
@@ -672,12 +690,13 @@ public class Command
     public String getDescription();
     public boolean execute(String commandline);
 }
-....
+----
 
 This package is simply part of the host application, which is potentially packaged into a JAR file and started with the "[.code]``java -jar``" command.
 Now consider the previously introduced host application bundle activator below, which simply provides access to the system bundle context:
 
-....
+[source,java]
+----
 package host.core;
 
 import org.osgi.framework.BundleActivator;
@@ -702,12 +721,13 @@ public class HostActivator implements BundleActivator
         return m_context;
     }
 }
-....
+----
 
 With this bundle activator, the host application can use command services provided by bundles installed inside its embedded Felix framework instance.
 The following code snippet illustrates one possible approach:
 
-....
+[source,java]
+----
 package host.core;
 
 import java.util.List;
@@ -791,7 +811,7 @@ public class HostApplication
         m_felix.waitForStop(0);
     }
 }
-....
+----
 
 The above example is overly simplistic with respect to concurrency issues and error conditions, but it demonstrates the overall approach for using bundle-provided services from the host application.
 

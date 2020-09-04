@@ -199,14 +199,14 @@ Rules will can have either "global" scope, in which case every bundle JAR proces
 Global rules will be included in the `mangen.properties` file.
 Local rules are placed within the Manifest for the appropriate bundle in a special `mangen` attributes section e.g.
 
-....
+----
     Bundle-Name: Help Component
     Bundle-ClassPath: .,help4.jar,oracle_ice.jar,ohj-jewt.jar
     Metadata-Location: metadata.xml
 
     Name: com/ascert/openosgi/mangen
     mangen-rule-0: Ignore imports(com\.adobe\.acrobat.*,webeq\..*,javax\.help,javax\.media)
-....
+----
 
 Details are included below showing whether a *+++<rule-type>+++* can be used in a global or a local context+++</rule-type>+++
 
@@ -319,14 +319,14 @@ The Merge rule provides two mechanisms in which these known imports and exports 
 
 _Example:_
 
-....
+----
     Manifest-Version: 1.0
     Bundle-Name: mybundle
     Export-Package: my.bundle.package
 
     Name: com/ascert/openosgi/mangen
     Import-Package: some.other.package
-....
+----
 
 A `Merge existing` rule using the above example would ensure that `my.bundle.package` appeared in the list of packages to export.
 A `Merge fixed` would ensure that `some.other.package` appeared in the list of packages to import.
@@ -362,12 +362,12 @@ For most cases, however, `mangen` import and export processing will be required 
 
 _Example:_
 
-....
+----
     mangen.rulesets=mangen-rule-initial- , mangen-rule-Ant- , mangen-rule-R${mangen.osgi.level}- , mangen-rule- , mangen-rule-final-
 
     mangen-rule-initial-0=ProcessBundles
     ...
-....
+----
 
 ==== ResolveImportsToExports
 

@@ -3,8 +3,7 @@
 The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix.
 All annotations are in the `org.apache.felix.scr.annotations` package.
 If you want to use the annotations in your project, you have to use a `maven-scr-plugin` version >= 1.24.0 and make sure that you add a dependency to the annotations to your `POM`:
-
- :::xml
+[source,xml]
  <dependency>
      <groupId>org.apache.felix</groupId>
      <artifactId>org.apache.felix.scr.annotations</artifactId>
@@ -153,7 +152,7 @@ Generating `<properties>` elements referring to bundle entries is not currently 
 Multiple property annotations on the class level can be embedded in the `@Properties` annotation.
 For example:
 
- :::java
+[source,java]
  @Properties({
      @Property(name = "prop1", value = "value1"),
      @Property(name = "prop2", value = "value2")
@@ -165,7 +164,7 @@ For example:
 It is important to carefully define the name of properties.
 By using a constant of the form
 
- :::java
+[source,java]
  @Property(value="default value")
  static final String CONSTANT_NAME = "property.name";
 
@@ -180,7 +179,7 @@ To support user interfaces which provide a selection list of values or a list of
 
 The value of the `options` attribute is a list of ``@PropertyOption``s annotations:
 
- :::java
+[source,java]
  @Property(name = "sample",
      options = {
          @PropertyOption(name = "option1", value = "&option.label.1"),

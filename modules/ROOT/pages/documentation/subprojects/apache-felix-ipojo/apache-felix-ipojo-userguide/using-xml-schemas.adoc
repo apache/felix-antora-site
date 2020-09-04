@@ -23,8 +23,7 @@ NOTE: the schemas are also provided inside the iPOJO bundles.
 
 NOTE: to use the 'dev' schemas, replace `CURRENT` by `SNAPSHOT` in the URL.
 To use those schemas you have to declares those schemas in your metadata.xml file such as in the next snippet using the iPOJO core XML-schema:
-
- :::xml
+[source,xml]
  <ipojo
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="org.apache.felix.ipojo http://felix.apache.org/ipojo/schemas/CURRENT/core.xsd"
@@ -38,8 +37,7 @@ Then, declares used namespaces and schemas in the 'xsi:schemaLocation' attribute
 This attribute contains pairs 'namespace url' separated by spaces.
 Finally, declares the default namespace to "org.apache.felix.ipojo".
 You can also use several schemas in the same descriptor by using a header like:
-
- :::xml
+[source,xml]
  <ipojo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  	xsi:schemaLocation="org.apache.felix.ipojo http://felix.apache.org/ipojo/schemas/CURRENT/core.xsd
  	    org.apache.felix.ipojo.extender http://felix.apache.org/ipojo/schemas/CURRENT/extender-pattern.xsd"

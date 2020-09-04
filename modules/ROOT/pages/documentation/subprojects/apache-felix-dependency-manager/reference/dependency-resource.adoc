@@ -9,8 +9,8 @@ This interface can be created using DependencyActivatorBase.createResourceDepend
 Here is an example where a bundle activation declares a VideoPlayer component which depends on a resource URL.
 The component uses an optional dependency callback, which is invoked each time an URL is registered.
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext ctx, DependencyManager dm) throws Exception {
@@ -27,12 +27,12 @@ public class VideoPlayer {
 
 	}
 }
-....
+----
 
 And here is a component which registers some URL resources:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext ctx, DependencyManager dm) throws Exception {
@@ -93,4 +93,4 @@ class ResourceProvider {
             }
         }
     }
-....
+----

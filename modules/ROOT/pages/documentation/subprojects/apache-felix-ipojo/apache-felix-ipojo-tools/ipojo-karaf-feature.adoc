@@ -6,7 +6,7 @@ If you are using http://karaf.apache.org[Apache Karaf], there is a set of _featu
 
 First, launch Karaf and add the http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.features/{{ipojo.release}}/org.apache.felix.ipojo.features-{{ipojo.release}}.xml[iPOJO Feature] file:
 
- :::sh
+[source,sh]
  features:addurl http://repo1.maven.org/maven2/org/apache/felix/org.apache.felix.ipojo.features/{{ipojo.release}}/org.apache.felix.ipojo.features-{{ipojo.release}}.xml
 
 == Installing features:
@@ -20,5 +20,5 @@ Several features are available:
 
 Installing a feature is quite simple:
 
- :::sh
+[source,sh]
  features:install ipojo-command

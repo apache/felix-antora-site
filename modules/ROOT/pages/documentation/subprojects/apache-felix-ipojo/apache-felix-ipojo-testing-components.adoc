@@ -39,7 +39,7 @@ You can use mock object as illustrated in the example.
 When you launch the `mvn clean install` command, maven compiles your classes and executes the tests.
 If the tests are executed successfully, the build process continues and creates the bundle as follows:
 
-....
+----
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Building Dummy Component
@@ -96,7 +96,7 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Finished at: Tue Oct 21 14:03:03 CEST 2008
 [INFO] Final Memory: 11M/25M
 [INFO] ------------------------------------------------------------------------
-....
+----
 
 == Executing integration tests
 

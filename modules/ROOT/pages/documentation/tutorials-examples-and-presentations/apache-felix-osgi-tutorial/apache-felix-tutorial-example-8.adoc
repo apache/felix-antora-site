@@ -17,7 +17,7 @@ To do this, the Service Binder replaces the BundleActivator code with a generic 
 Instead of writing a lot of complex code, we simply write a declarative XML file.
 For an example, consider the following code for the new service's bundle activator in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -45,7 +45,7 @@ import org.apache.felix.servicebinder.GenericActivator;
 public class Activator extends GenericActivator
 {
 }
-....
+----
 
 All custom functionality has been removed from the bundle activator, it is only necessary to subclass the generic activator exported by the Service Binder.
 The generic activator performs its task by parsing an XML meta-data file that describes what instances should be created and what their service dependencies are;
@@ -89,7 +89,7 @@ At any given point in time, a specific instance may be valid (if all service dep
 The code for our new spell checker service is very similar to the implementation in Example 6, but it is no longer implemented as an inner class of the activator.
 We define the new spell checker service in a file called `SpellCheckerImpl.java` as follows:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -216,7 +216,7 @@ public class SpellCheckerImpl implements SpellChecker
         return (String[]) errorList.toArray(new String[errorList.size()]);
     }
 }
-....
+----
 
 Notice how much simpler this service implementation is when compared to the same service implemented in Example 6.
 There are no references to OSGi interfaces in our application code and all tricky and complex code dealing with monitoring of services is handled for us.

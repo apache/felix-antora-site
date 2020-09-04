@@ -13,8 +13,7 @@ This project is intended to help bridge the last frontier of OSGi logging by lev
 == Depedencies
 
 To add Logback to an OSGi framework include the following dependencies
-
- :::xml
+[source,xml]
  <dependency>
      <groupId>ch.qos.logback</groupId>
      <artifactId>logback-classic</artifactId>
@@ -39,7 +38,7 @@ Configuring logback is easily handled by setting the system property `logback.co
 
 This is an example using a _bndrun_ file:
 
- :::properties
+[source,properties]
  -runproperties: logback.configurationFile=${fileuri;${.}/logback.xml}
 
 where the bnd macro `${.}` gives the path to the directory of the bndrun file and macro `${fileuri;<path>}` converts the path to a system compatible path.
@@ -58,17 +57,17 @@ A default configuration file can be embedded in the executable jar with the `-in
 This places the default logback config inside the executable jar at `META-INF/logback.xml`.
 Now the following directive can be used:
 
- :::properties
+[source,properties]
  -runproperties: logback.configurationFile=META-INF/logback.xml
 
 The defaults will be used when executing the jar.
 
- :::bash
+[source,bash]
  java -jar executable.jar
 
 Of course this property can be overloaded by the system property when executing the jar:
 
- :::bash
+[source,bash]
  java -jar executable.jar -Dlogback.configurationFile=file:/some/path/logback.xml
 
 Remember to use the `file:` protocol in this case to alert logback to the fact this path is not on the classpath.
@@ -158,8 +157,8 @@ This greatly improves the configurability.
 
 Consider the following `logback.xml` example:
 
-....
-:::xml
+[source,xml]
+----
 <configuration>
 
     <!-- defined a console append -->
@@ -188,7 +187,7 @@ Consider the following `logback.xml` example:
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
-....
+----
 
 == Notes
 

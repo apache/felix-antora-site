@@ -95,8 +95,8 @@ When activated, a new OSGi service is registered under the `org.apache.felix.ipo
 `QueueListener` has to be registered in this service, when added, they'll be invoked with all stored events.
 After that, the proxy simply forward the queue events to registered listeners.
 
-....
-:::java
+[source,java]
+----
 /**
  * This service record events from a {@link org.apache.felix.ipojo.extender.queue.QueueService}.
  * When a listener is added, all recorded events are replayed into the listener.
@@ -115,7 +115,7 @@ public interface QueueEventProxy {
      */
     void removeQueueListener(QueueListener listener);
 }
-....
+----
 
 === Event Dispatcher
 

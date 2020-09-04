@@ -15,8 +15,7 @@ A component type is a kind of instance template.
 If we compare component concepts with object oriented programming, component types are classes and component instances are objects.
 A component type is declared inside a metadata file (generally named 'metadata.xml').
 The next snippet shows you a component type declaration:
-
- :::xml
+[source,xml]
  <component classname="..." name="MyFactory">
      ...
      <!--component type configuration -->
@@ -39,8 +38,7 @@ A private factory can only be used to create instances by declaring them in the 
 in the same bundle).
 By default, factories are public.
 To set the factory to private add the 'public="false"'' attribute in the '+++<component>+++' element, such as:+++</component>+++
-
- :::xml
+[source,xml]
  <component classname="..." name="MyPrivateFactory" public="false">
      ...
      <!--component type configuration -->
@@ -103,8 +101,7 @@ When a instance declaration targets an external public factory, it will wait unt
 So, the instance will be created only when the factory appears and is valid.
 If the factory disappears after the instance creation, the instance is disposed and will be recreated as soon as the factory comes back.
 The next snippet shows how to declare an instance in the metadata:
-
- :::xml
+[source,xml]
  <instance component="component factory name" name = "instance name" >
     <property name="a property name" value="a string form of the value"/>
     <property name="another prop name" value="the string form value "/>
@@ -119,8 +116,7 @@ If not set, iPOJO will generate a unique name for you.
 Then, instances can declare properties.
 Those property are mostly key-value pair.
 The key refer to a property name from the component type declaration such as in:
-
- :::xml
+[source,xml]
  <component classname="..." name="my-factory">
      <properties>
          <property name="foo" field="m_foo"/>
@@ -134,8 +130,7 @@ The string-form of the property value will be use to create the real object at r
 If an unacceptable configuration is set, the instance is not created, and an error message appears to the console (and in the Log Service if present).
 Instance declaration properties can be more complex than only 'key-value'.
 It can contains structure like list, map, dictionary and arrays such as in:
-
- :::xml
+[source,xml]
  <instance component="a.factory" name="complex-props">
          <!--Creates a string array-->
  	<property name="array" type="array">
@@ -184,8 +179,7 @@ iPOJO manages those properties.
 
 A public factory is accessible through an exposed service (http://felix.apache.org/ipojo/api/{{ipojo.release}}/org/apache/felix/ipojo/Factory.html[org.apache.felix.ipojo.Factory]).
 This service is accessible as any other OSGi service, and could be an iPOJO dependency using a LDAP filter or the 'from' attribute such as in:
-
- :::xml
+[source,xml]
  <component classname="...">
      <!-- These two requirement descriptions are equivalent -->
  	<requires field="a_field" filter="(factory.name=factory-name)"/>
@@ -196,7 +190,7 @@ This service is accessible as any other OSGi service, and could be an iPOJO depe
 
 Once you have a reference on the factory you can create instance with the 'createComponentInstance' method.
 
- :::java
+[source,java]
  ComponentInstance createComponentInstance(java.util.Dictionary configuration)
                                            throws UnacceptableConfiguration,
                                                   MissingHandlerException,
@@ -226,7 +220,7 @@ The cause can be either an issue in the component type description or an invalid
 If an error occurs, a comprehensive message is reported in order to solve the issue.
 The next snippet shows an example of instance creation:
 
- :::java
+[source,java]
    	// Assume we get a Factory in the fact field
  Properties props = new Properties();
  props.put("instance.name","instance-name");
@@ -242,7 +236,7 @@ The next snippet shows an example of instance creation:
 You can only disposed instances that you created.
 To dispose an instance, just call the 'dispose' method on the ComponentInstance object (returned by the createComponentInstance method).
 
- :::java
+[source,java]
  instance.dispose();
 
 === Reconfiguring instance
@@ -251,7 +245,7 @@ To reconfigure an instance, call the `reconfigure` method on the ComponentInstan
 This method receives the new set of properties.
 Be aware that the `instance.name` property cannot be changed.
 
- :::java
+[source,java]
  Properties props2 = new Properties();
  props2.put("foo", "abc");
  instance.reconfigure(props2);
@@ -261,7 +255,7 @@ Be aware that the `instance.name` property cannot be changed.
 You can obviously access services exposed by an instance that you create.
 To do this just use the OSGi API and the bundle context in order to query service references in the service registry such as in
 
- :::java
+[source,java]
  ComponentInstance instance = ...
  // ...
  try {
@@ -282,7 +276,7 @@ the object contained in your instance).
 
 If your instance does not provide services, you can access to the instance by following principles illustrated in the next snippet:
 
- :::java
+[source,java]
  if (instance.getState() == ComponentInstance.VALID) {
     ImplementationClass object =
        (ImplementationClass) ((InstanceManager) instance).getPojoObject();

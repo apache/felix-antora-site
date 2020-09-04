@@ -17,8 +17,8 @@ Usage Example:
 Here, the "VideoPlayer" service provides a video service on top of any movie  resources, with service properties "host"/"port"/"protocol"/"path" extracted  from the resource URL.
 There will be one VideoPlayerImpl instantiated and started for each  available URL:
 
-....
-:::java
+[source,java]
+----
 public class VideoPlayerImpl implements VideoPlayer {
     // Injected by reflection
     volatile URL resource;
@@ -38,14 +38,14 @@ public class Activator extends DependencyManagerActivator {
         dm.add(c);
     }
 }
-....
+----
 
 Notice that resource adapters are only supported with the DM API, not using annotations or using DM lambda.
 
 Now, here is the resource provider, which provides two URLS:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext ctx, DependencyManager dm) throws Exception {
@@ -107,4 +107,4 @@ class ResourceProvider {
         }
     }
 }
-....
+----

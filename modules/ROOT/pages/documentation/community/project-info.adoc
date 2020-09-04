@@ -30,7 +30,7 @@ https://github.com/apache/felix-dev
 
 The Felix source code can be checked out (anonymously) with the following command:
 
- :::sh
+[source,sh]
  $ git clone https://github.com/apache/felix-dev
 
 == Mailing lists

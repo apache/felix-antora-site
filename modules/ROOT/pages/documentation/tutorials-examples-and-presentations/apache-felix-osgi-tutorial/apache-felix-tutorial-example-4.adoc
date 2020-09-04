@@ -13,7 +13,7 @@ monitoring service events allows the bundle to monitor the dynamic availability 
 Our client uses the first dictionary service it finds.
 The source code for our bundle is as follows in a file called `Activator.java`:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -206,7 +206,7 @@ public class Activator implements BundleActivator, ServiceListener
         }
     }
 }
-....
+----
 
 The client listens for service events indicating the arrival or departure of dictionary services.
 If a new dictionary service arrives, the bundle will start using that service if and only if it currently does not have a dictionary service.

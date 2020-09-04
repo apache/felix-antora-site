@@ -15,7 +15,7 @@ There is no need to write an Activator.
 
 We define the new spell checker service in a file called `SpellCheckerImpl.java` as follows:
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -117,7 +117,7 @@ public class SpellCheckServiceImpl implements SpellCheckService
         return errorList.toArray( new String[errorList.size()] );
     }
 }
-....
+----
 
 Notice how much simpler this service implementation is when compared to the same service implemented in Example 6.
 There are no references to OSGi interfaces in our application code and all tricky and complex code dealing with monitoring of services is handled for us.

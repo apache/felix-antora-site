@@ -62,7 +62,7 @@ Those object have to be created in the `setUp` method and `disposed` in the `tea
 So, for example, if you write iPOJO tests, you can use the iPOJO helper providing a lot of utility functions simplifying the development of tests.
 {code:java} public class MyTest extends OSGiTestCase { 	ComponentInstance fooProvider1, fooProvider2;
 
-....
+----
 IPOJOHelper helper; // Helper object
 
 public void setUp() {
@@ -81,4 +81,4 @@ helper.dispose(); // Dispose it, instances will be disposed too.
 You can also implements your own helper (for specific purpose) by just implementing the {{Helper}} interface.
 \\
 \\
-....
+----

@@ -19,8 +19,7 @@ To make use of this plugin you need to
 Refer to http://felix.apache.org/downloads.cgi[downloads] for getting the bundle.
 
 For Maven use following coordinates
-
- :::xml
+[source,xml]
  <dependency>
    <groupId>org.apache.felix</groupId>
    <artifactId>org.apache.felix.webconsole.plugins.scriptconsole</artifactId>
@@ -62,17 +61,17 @@ Can be used to access the OSGi runtime
 
 So simplest script that can work is
 
- :::groovy
+[source,groovy]
  out.println ("Hello world!!");
 
 To access a service use `osgi.getService`
 
- :::groovy
+[source,groovy]
  def httpService = osgi.getService(org.osgi.service.http.HttpService.class)
 
 To access a service satisfying OSGi filter
 
- :::groovy
+[source,groovy]
  def eventPlugin = osgi.getServices(javax.servlet.Servlet.class,'(felix.webconsole.label=events)')[0]
 
 Following hotkeys work
@@ -101,8 +100,8 @@ Note the scripts might be depending on implementation details to access the rele
 
 . Script to find out servlets which are registered problematically with Felix HTTP Service
 +
-....
- :::groovy
+[source,groovy]
+----
  import org.osgi.service.http.HttpService
  import org.osgi.framework.FrameworkUtil
  import org.osgi.framework.Bundle
@@ -112,13 +111,13 @@ Note the scripts might be depending on implementation details to access the rele
      Bundle bnd = FrameworkUtil.getBundle(servlet.class)
      println "$alias : ${servlet.class.name} ($bnd.symbolicName)"
  }
-....
+----
 
 . Script to load a class which is not exported and then invoke some static method on that class.
 At times you need to access some private class to see the runtime state.
 +
-....
- :::groovy
+[source,groovy]
+----
  import org.osgi.framework.Bundle
  import org.osgi.framework.BundleContext
 
@@ -143,12 +142,12 @@ At times you need to access some private class to see the runtime state.
  //Invoke some static method
  def result = clazz.metaClass.invokeStaticMethod(clazz, 'foo',  arg1)
  println result
-....
+----
 
 . Script to find out which bundle embeds a given class
 +
-....
- :::groovy
+[source,groovy]
+----
  import org.osgi.framework.Bundle
  import org.osgi.framework.BundleContext
 
@@ -164,7 +163,7 @@ At times you need to access some private class to see the runtime state.
  bundles.each{
      println it
  }
-....
+----
 
 == Screenshots
 

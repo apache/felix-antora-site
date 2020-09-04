@@ -31,7 +31,7 @@ So far, aspects or adapters were defined using many methods from DependencyManag
 
 For example, in DependencyManager.java, we have many signatures
 
- :::java
+[source,java]
  public class DependencyManager {
      public Component createAdapterService(Class<?> serviceInterface, String serviceFilter) {...}
      public Component createAdapterService(Class<?> serviceInterface, String serviceFilter, String autoConfig) {...}
@@ -64,7 +64,7 @@ All other existing methods have been moved to DependencyManagerCompat/Dependency
 
 For example, let's first show how an factory pid component was declared so far (a factory pid component is one which can be instantated multiple times using a "factory configuration" created using standard "configuration admin" service):
 
- :::java
+[source,java]
  public class Activator extends DependencyActivatorBase {
      @Override
      public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -78,7 +78,7 @@ For example, let's first show how an factory pid component was declared so far (
 So, now, there is a new FactoryComponent interface which extends the Component interface and it contains all the various parameters used when declaring a factory pid component.
 So the example above becomes:
 
- :::java
+[source,java]
  public class Activator extends DependencyActivatorBase {
      @Override
      public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -98,8 +98,8 @@ You will find the javadoc of the new dm api http://felix.apache.org/apidocs/depe
 
 The ConfigurationDependency and Factory components can now support updated callbacks with multiple configuration types, for example, the following Activator defines a factory component (using the enhanced api) and multiple configuration types can now be provided:
 
-....
-:::java
+[source,java]
+----
 public class Activator extends DependencyActivatorBase {
     @Override
     public void init(BundleContext context, DependencyManager dm) throws Exception {
@@ -114,19 +114,19 @@ public class Activator extends DependencyActivatorBase {
 public class MyComponent {
     void updated(MyConfig1 cnf1, MyConfig2 cnf2) { ... }
 }
-....
+----
 
 Moreover, you can define a Dictionary parameter as the first argument in the updated callback, because sometimes, it's useful to be injected with the raw dictionary configuration, as well as with the configuration types.
 Example:
 
- :::java
+[source,java]
  public class MyComponent {
      void updated(Dictionary<String, Object> rawConfig, MyConfig1 cnf1, MyConfig2 cnf2) { ... }
  }
 
 so, the new signatures for the updated callbacks are now the following (for both ConfigurationDependency and Factory Component):
 
- :::java
+[source,java]
  updated(Dictionary cnf)
  updated(Component comp, Dictionary cnf)
  updated(Component comp, Property interfaces ...)
@@ -175,12 +175,12 @@ Simply use standard metatype annotation.
 When using Java 9 / 10 / 11, then you can't use fluent service properties anymore with dm-lambda,  because in these new jdk versions, the "-parameters" option does not generate lambda parameters  metadata anymore.
 So, the following example won't work *using jdk 9/10/11*  (but still works using Java 8):
 
- :::java
+[source,java]
  component(comp -> comp.impl(Foo.class).provides(FooService.class, property -> "service property value"));
 
 With Java 9/10/11, use this instead:
 
- :::java
+[source,java]
  component(comp -> comp.impl(Foo.class).provides(FooService.class, "property", "service property value"));
 
 The fluent service properties using lambda expression maybe removed in future DM version if a solution is not found to make it working with Java 9/10/11

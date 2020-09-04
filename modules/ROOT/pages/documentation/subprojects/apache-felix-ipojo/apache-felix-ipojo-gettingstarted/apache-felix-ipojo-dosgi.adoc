@@ -34,7 +34,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 The service implementation and consumer bundle are built using iPOJO.
 The Adder Service interface is as follows:
 
- :::java
+[source,java]
  public interface AdderService {
      int add(int a,int b);
  }
@@ -62,8 +62,7 @@ Indeed, the component type enables property propagation;
 so all defined properties will be published on exported services.
 This propagation also works with the configuration admin.
 This feature is pretty nice, as it does not impact the component implementation and its description.
-
- :::xml
+[source,xml]
  <instance component="org.apache.felix.ipojo.remote.adder.impl.AdderServiceImpl">
      <property name="osgi.remote.interfaces"value="*"/>
      <property name="osgi.remote.configuration.type"value="pojo"/>
@@ -73,12 +72,12 @@ This feature is pretty nice, as it does not impact the component implementation 
 So let's install the server side in Felix.
 Launch Felix from the `felix` directory with:
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar server
 
 Once the shell prompt appears, execute the following command in the shell:
 
- :::sh
+[source,sh]
  start file:../AdderServiceInterface/target/AdderServiceInterface-0.0.1-SNAPSHOT.jar
  start file:../AdderServiceProvider/target/AdderServiceProvider-0.0.1-SNAPSHOT.jar
 
@@ -92,8 +91,8 @@ The service consumer is also created using iPOJO.
 Thanks to DOSGi, iPOJO can inject the service as any regular OSGi service.
 So, the code is pretty simple:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class AdderConsumer {
 
@@ -104,7 +103,7 @@ public class AdderConsumer {
     System.out.println("Using adder service: 1 + 1 = "+ adder.add(1, 1));
  }
 }
-....
+----
 
 [cols=2*]
 |===
@@ -113,15 +112,13 @@ Then, it uses it as a regular field.
 This bundle also contains a [metadata.xml
 | http://svn.apache.org/repos/asf/felix/sandbox/clement/ipojo-tutorials/dosgi/AdderServiceConsumer/src/main/resources/metadata.xml] file declaring an instance of this type without any special configuration:
 |===
-
- :::xml
+[source,xml]
  <instance component="org.apache.felix.ipojo.remote.consumer.AdderConsumer"/>
 
 However, now we have to tell to DOSGi to import our Adder service.
 To achieve that, we create a very simple bundle that just contains the http://svn.apache.org/repos/asf/felix/sandbox/clement/ipojo-tutorials/dosgi/AdderServiceImporter/src/main/resources/OSGI-INF/remote-service/remote-services.xml[remote-services.xml] file.
 This file is analyzed by CXF in order to import the service.
-
- :::xml
+[source,xml]
  <service-descriptions xmlns="http://www.osgi.org/xmlns/sd/v1.0.0">
    <service-description>
      <provide interface="org.apache.cxf.dosgi.samples.ds.AdderService"/>
@@ -133,13 +130,13 @@ This file is analyzed by CXF in order to import the service.
 
 Now, let's start another instance of Felix:
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar client
 
 Then, execute the following command in the shell:
 
-....
-:::sh
+[source,sh]
+----
 start file:../AdderServiceInterface/target/AdderServiceInterface-0.0.1-SNAPSHOT.jar
 start file:../AdderServiceConsumer/target/AdderServiceConsumer-0.0.1-SNAPSHOT.jar
 start file:../AdderServiceImporter/target/AdderServiceImporter-0.0.1-SNAPSHOT.jar
@@ -147,12 +144,12 @@ start file:../AdderServiceImporter/target/AdderServiceImporter-0.0.1-SNAPSHOT.ja
 ... log messages may appear, after a little while the following message appears:
 
 Using adder service: 1 + 1 = 2
-....
+----
 
 The remote adder service has now been invoked.
 You will see the following line on the server side window:
 
- :::sh
+[source,sh]
  Adder service invoked: 1 + 1 = 2
 
 That's it !

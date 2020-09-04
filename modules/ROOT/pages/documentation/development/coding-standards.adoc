@@ -55,6 +55,7 @@ Java source files have the following ordering:
 
 All source files must begin with the comments shown in the following code sample.
 
+[source,text]
  /*
   * Licensed to the Apache Software Foundation (ASF) under one
   * or more contributor license agreements.  See the NOTICE file
@@ -82,13 +83,14 @@ The first non-comment line of most Java source files is a package statement.
 After an empty line import statements can follow.
 For example:
 
-....
+[source,java]
+----
 package org.apache.felix.whatever.this.is;
 
 import java.awt.Frame;
 import java.io.InputStream;
 import java.util.Vector;
-....
+----
 
 A few notes must be made here:
 
@@ -110,6 +112,7 @@ Finally the project-specific imports should be added.
 The following comment block is an example for the comment that belongs to the declaration of a class or an interface.
 The combination of JavaDoc syntax and keywords that are expanded by the source integrity tool result in the following block:
 
+[source,java]
  /**
   * This class is not really a class, because this file is just
   * a template that shows how the file header and class header
@@ -177,6 +180,7 @@ When an expression will not fit on a single line, break it according to these ge
 Some examples breaking an arithmetic expression.
 The first is preferred, since the break occurs outside the parenthesised expression:
 
+[source,java]
  longName1 = longName2 * (longName3 + longName4 - longName5)
      + 4; // preferred
  longName1 = longName2 * (longName3 + longName4
@@ -188,16 +192,19 @@ The first is preferred, since the break occurs outside the parenthesised express
 
 The Java language supports three different kinds of comments:
 
+[source,java]
  // text
 
 The compiler ignores everything from // to the end of the line.
 Use this style when adding a description or some kind of explanation at the same line of code.
 
+[source,java]
  /* text */
 
 The compiler ignores everything from /* to */.
 The next documentation style is preferred.
 
+[source,java]
  /** Documentation. */
 
 This indicates a documentation comment (doc comment, for short).
@@ -214,6 +221,7 @@ They can also be used in other places, such as within methods.
 For a description of class comment see 2.1.3.3 Class and Interface Declarations.
 A method block comment looks as follows:
 
+[source,java]
  /**
   * Position the splitter location at a specified position.
   * This method can for instance be used when the last position
@@ -292,6 +300,7 @@ In the clarifying text however, use the `
 
 Example:
 
+[source,java]
  /**
   * Prints a range from an object array. The range
   * is specified by the first element to print, and
@@ -318,6 +327,8 @@ When using multiple keywords use the following ordering of keywords:
 This order is also compatible with the order that is used in Java for the main() method.
 This results in following sequence:
 
+[source,java]
+[source,java]
  // A familiar one:
  public static void main(String[] args) {}
  private static String m_lastCreated = null;
@@ -330,11 +341,13 @@ It also is more clear about the explicit initialization of variables as discusse
 
 Example:
 
+[source,java]
  int level = 0;           // level where user enters the system
  int horizontalSize = 0;  // horizontal size of current level layer
 
 is preferred over:
 
+[source,java]
  int level, horizontalSize; // level and size of current level layer
 
 ==== Placement
@@ -360,7 +373,8 @@ When coding Java classes and interfaces, the following formatting rules should b
 
 Example:
 
-....
+[source,java]
+----
 class ShipmoTrial extends Trial
 {
     int m_index = 0;
@@ -372,7 +386,7 @@ class ShipmoTrial extends Trial
 
     void emptyMethod() {}
 }
-....
+----
 
 === Statements
 
@@ -382,6 +396,7 @@ Each line should contain at most one statement.
 
 Example:
 
+[source,java]
  // Do not use this
  argv++; argc++;
 
@@ -406,7 +421,8 @@ It can be a good practice to use always brackets because mistakes can be made ea
 
 The following example illustrates the correct use of brackets in a few different if-then-else constructions:
 
-....
+[source,java]
+----
 if (condition)
 {
     statement1;
@@ -432,7 +448,7 @@ else
     statement5;
     statement6;
 }
-....
+----
 
 Note that in the example the else if construction is started at a new line so the statement can not be overlooked.
 
@@ -447,6 +463,7 @@ Only when there are good reasons to use it, make sure that  it is very clear tha
 
 The next example shows the sample code that uses the guidelines for a switch statement:
 
+[source,java]
  switch (condition)
  {
      case A:
@@ -464,6 +481,7 @@ The next example shows the sample code that uses the guidelines for a switch sta
 
 A try - catch statement should have the following format:
 
+[source,java]
  try
  {
      statements;
@@ -475,6 +493,7 @@ A try - catch statement should have the following format:
 
 When using finally to add code that always will be executed this will look like:
 
+[source,java]
  try
  {
      statements;
@@ -513,6 +532,7 @@ Blank spaces should be used in the following circumstances:
 
 * A keyword followed by a parenthesis should be separated by a space.
 +
+[source,java]
 while (ready == false)   {   	...
 }
 
@@ -523,18 +543,19 @@ This helps to distinguish keywords from function calls.
 * All binary operators except "." should be separated from their operands by spaces.
 Blanks should never separate unary operators such as unary minus, increment("{pp}") and decrement("--") from their operands.
 +
+[source,java]
 a += c + d;
 a = (a + b) / (c * d);
 xCoord{pp};
 
 * The expressions in a for statement should be separated by blanks.
 +
-for (expr1;
-cond1;
-expr2)
+[source,java]
+for (expr1; cond1; expr2)
 
 * Casts should be followed by a blank.
 +
+[source,java]
 myInstance.doIt((TreeFrame) frame);
 
 === Naming conventions
@@ -542,10 +563,11 @@ myInstance.doIt((TreeFrame) frame);
 Naming conventions make programs more understandable by making them easier to read.
 They can also give information about the function of the identifier.
 
-|Identifier Type|Rules for Naming|Examples| |--|--|--|
 
-[cols=3*]
+[cols=3*,opts=headers]
 |===
+|Identifier Type|Rules for Naming|Examples
+
 | Interfaces
 | Interface names should be capitalized like class names.
 | interface Enumeration;
@@ -555,10 +577,7 @@ They can also give information about the function of the identifier.
 Within each method name capital letters separate words.
 Property methods or get-set methods are used as follows:
 |
-|===
 
-[cols=3*]
-|===
 | Constant (static final) variables
 | Names should be all uppercase with words separated by underscores ("_").
 | public static final int BLACK = 99;

@@ -25,8 +25,8 @@ The imported project contains a very simple component using annotations.
 But, obviously you can delete/change it.
 For XML-metadata, use `metadata.xml` file is in the project root.
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyComponentImpl {
 
@@ -41,7 +41,7 @@ public class MyComponentImpl {
     }
 
 }
-....
+----
 
 Once you're done, you are able to run your bundle !
 

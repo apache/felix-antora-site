@@ -23,8 +23,8 @@ This is a know problem of the used QDox version that reads the Java source files
 Usually this happens when an enum is used inline and does not end with a ";".
 So adding this character should solve the problem:
 
-....
-:::java
+[source,java]
+----
 public interface MyTest {
 
     /** more error codes may be added */
@@ -35,7 +35,7 @@ public interface MyTest {
     /** @return the result */
     public void getResult();
 }
-....
+----
 
 == NoClassDefFoundError during build
 
@@ -43,21 +43,20 @@ This error might happen with older versions of the Maven SCR Plugins in combinat
 In both cases, the scanned classes have to be loaded and static fields have to be initialized.
 If you have have for example something like
 
- :::java
+[source,java]
  private static final org.slf4f.Logger LOGGER = org.slf4j.LoggerFactory.getLogger("name");
 
 in your code, during the plugin run, a slf4j logger is tried to be instantiated.
 This requires an implementation of the logger.
 Ususally your module only depends on the slf4j API and therefore a
 
- :::plaintext
+[source,plaintext]
  java.lang.NoClassDefFoundError: org/slf4j/impl/StaticLoggerBinder
 
 is thrown - this often happens with slf4j but might also happen with other libraries.
 
 In these cases you should add a dependency to the missing class to the dependency list of the plugin, for example:
-
- :::xml
+[source,xml]
  <plugin>
      <groupId>org.apache.felix</groupId>
      <artifactId>maven-scr-plugin</artifactId>

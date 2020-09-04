@@ -22,8 +22,8 @@ The Gogo commands are the following:
 
 For example:
 
-....
-:::sh
+[source,sh]
+----
 $ instances
 Instance ArchCommand -> valid
 Instance spell.english.EnglishDictionary-0 -> valid
@@ -39,7 +39,7 @@ instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name
             property value="spell.checker.SpellCheck" name="factory.name"
             property value="spell.checker.SpellCheck-0" name="instance.name"
     handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
-....
+----
 
 == Equinox and Felix Shells
 
@@ -53,8 +53,8 @@ On Equinox and Felix (old) shell, the command is named _arch_:
 
 === Examples
 
-....
-:::sh
+[source,sh]
+----
 -> arch
 Instance ArchCommand -> valid
 Instance spell.english.EnglishDictionary-0 -> valid
@@ -70,7 +70,7 @@ instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name
 			property value="spell.checker.SpellCheck" name="factory.name"
 			property value="spell.checker.SpellCheck-0" name="instance.name"
 	handler state="valid" name="org.apache.felix.ipojo.handlers.architecture.ArchitectureHandler"
-....
+----
 
 == Reading instance architecture:
 
@@ -88,7 +88,7 @@ On the following example, the same dependency is no more resolved.
 
 As an example, the following snippet dumps the architecture of an instance:
 
- :::sh
+[source,sh]
  instance component.type="spell.checker.SpellCheck" state="invalid" bundle="8" name="spell.checker.SpellCheck-0"
  	handler state="invalid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
  		requires optional="false" aggregate="false" state="unresolved" binding-policy="dynamic" specification="spell.services.DictionaryService"
@@ -101,7 +101,7 @@ As an example, the following snippet dumps the architecture of an instance:
 Notes that, the instance also becomes invalid and that the provided service is unregistered.
 If the provider comes back, the dependency becomes `resolved` and the instance becomes `valid` If an instance begins to use a service, the bound providers are described in the instance architecture:
 
- :::sh
+[source,sh]
  instance component.type="spell.checker.SpellCheck" state="valid" bundle="8" name="spell.checker.SpellCheck-0"
  	object name="spell.checker.SpellCheck@e222eb"
  	handler state="valid" name="org.apache.felix.ipojo.handlers.dependency.DependencyHandler"
@@ -122,7 +122,7 @@ You can access factory list using the `factories` gogo command or the `arch -fac
 For every available (public) factories,the name and the state are displayed.
 A factory is valid if and only if all required handlers are available.
 
- :::sh
+[source,sh]
  -> arch -factories
  Factory spell.checker.SpellCheck (VALID)
  Factory spell.gui.SpellCheckerGui (VALID)
@@ -135,7 +135,7 @@ A factory is valid if and only if all required handlers are available.
 
 On Gogo:
 
- :::sh
+[source,sh]
  $factories
  Factory spell.checker.SpellCheck (VALID)
  Factory spell.gui.SpellCheckerGui (VALID)
@@ -153,7 +153,7 @@ You also get the list of required and missing handlers.
 
 Like listing factories, you can get the list of handlers.
 
- :::sh
+[source,sh]
  -> arch -handlers
  Handler org.apache.felix.ipojo:controller (VALID)
  Handler org.apache.felix.ipojo:callback (VALID)
@@ -165,7 +165,7 @@ Like listing factories, you can get the list of handlers.
 
 On Gogo:
 
- :::sh
+[source,sh]
  $handlers
  Handler org.apache.felix.ipojo:controller (VALID)
  Handler org.apache.felix.ipojo:callback (VALID)

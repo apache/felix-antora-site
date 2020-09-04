@@ -34,8 +34,8 @@ Nowadays, a lot of frameworks use this pattern such as iPOJO it-self (to find bo
 
 First of all, you need to configure the component type to use the handler such as:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo xmlns:extender="org.apache.felix.ipojo.extender">
 	<component
 		classname="org.apache.felix.ipojo.extender.MyExtender">
@@ -52,14 +52,14 @@ First of all, you need to configure the component type to use the handler such a
 		<provides />
 	</component>
 </ipojo>
-....
+----
 
 Notice that, this handler is an external handler.
 So, it uses the "org.apache.felix.ipojo.extender" namespace.
 You can also use annotations:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Extender(
 	onArrival="onBundleArrival",
@@ -85,13 +85,13 @@ public class MyExtender {
 	        // Do something
 	}
 }
-....
+----
 
 The methods specified methods will be called when a matching bundle arrives or leaves.
 In the previous example, these methods could be:
 
-....
-:::java
+[source,java]
+----
 void onBundleArrival(Bundle bundle, String header) {
          // Do something
 }
@@ -99,7 +99,7 @@ void onBundleArrival(Bundle bundle, String header) {
 void onBundleDeparture(Bundle bundle) {
         // Do something
 }
-....
+----
 
 Notice the different signatures of the methods.
 The arrival method is called with the arriving bundle and the matching header value (i.e.
@@ -121,8 +121,8 @@ The handler has only three mandatory attributes:
 It is possible to configure the handler with a simple annotation available in the annotation pack ('annotations' project in the iPOJO trunk).
 Here is an example of usage:
 
-....
-:::java
+[source,java]
+----
 import org.apache.felix.ipojo.annotations.Component;
 import org.osgi.framework.Bundle;
 
@@ -138,7 +138,7 @@ public class Extender {
         // do something
     }
 }
-....
+----
 
 The `extension` attribute allows setting the bundle filter.
 

@@ -10,7 +10,7 @@ In order for a bundle to get its unique bundle context, it must implement the `B
 this interface has two methods, `start()` and `stop()`, that both receive the bundle's context and are called when the bundle is started and stopped, respectively.
 In the following source code, our bundle implements the `BundleActivator` interface and uses the context to add itself as a listener for service events (the file for our bundle is called `Activator.java`):
 
-....
+----
 /*
  * Apache Felix OSGi tutorial.
 **/
@@ -83,7 +83,7 @@ public class Activator implements BundleActivator, ServiceListener
         }
     }
 }
-....
+----
 
 After implementing the Java source code for the bundle, we must also define a manifest file that contains meta-data needed by the OSGi framework for manipulating the bundle.
 The manifest is packaged into a JAR file along with the Java class file associated with our bundle;

@@ -28,12 +28,12 @@ This section lists some Apache Felix features to help with the maintenance of th
 
 Start the file with a `Title:` line to define the page title and the first H1 tag:
 
-....
+----
 = Page Title
 
 Here comes the content separated with a blank like from the
 header ...
-....
+----
 
 The last modification information from SVN (revision, committer, and date/time) is automatically added when the page is rendered
 
@@ -125,7 +125,7 @@ In addition Perl and Python must be installed for the build tools to work.
 
 To prepare for site build, the Markdown daemon has to be started:
 
- :::sh
+[source,sh]
  $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
  $ export PYTHONPATH="$PWD/tools/build"
  $ python "$PWD/tools/build/markdownd.py"
@@ -134,13 +134,13 @@ The `MARKDOWN_SOCKET` environment variables is also required by the `build_site.
 
 To build the complete site use the `build_site.pl` script:
 
- :::sh
+[source,sh]
  $ tools/build/build_site.pl --source-base $PWD/trunk \
      --target-base $PWD/trunk/target
 
 To build a single page use the `build_file.pl` script:
 
- :::sh
+[source,sh]
  $ tools/build/build_site.pl --source-base $PWD/trunk \
      --target-base $PWD/trunk/target \
      --source content/documentation.mdtext
@@ -153,13 +153,13 @@ Those instructions were computed on Mountain Lion.
 
 A couple of Python and Perl libraries are required and need to be installed
 
- :::sh
+[source,sh]
  $ sudo easy_install Pygments
  $ sudo easy_install Markdown
 
 And for the Perl modules:
 
- :::sh
+[source,sh]
  $ sudo cpan install XML::Atom::Feed
  $ sudo cpan install XML::RSS::Parser
  $ sudo cpan install XML::Parser::Lite
@@ -170,12 +170,12 @@ And for the Perl modules:
 Be careful that some of those commands require time...
 Once done, launch the mardown daemon with the following command from the SVN root:
 
- :::sh
+[source,sh]
  $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
  $ export PYTHONPATH="$PWD/tools/build"
  $ python "$PWD/tools/build/markdownd.py"
 
 And finally, generate the web site from the svn root with:
 
- :::sh
+[source,sh]
  tools/build/build_site.pl --source-base $PWD/trunk     --target-base $PWD/trunk/target

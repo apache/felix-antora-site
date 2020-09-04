@@ -12,8 +12,8 @@ To use the API, deploy and start the iPOJO-API bundle and the iPOJO core bundle.
 Let's imagine a simple component providing a service Foo.
 The following code is the implementation class of our component:
 
-....
-:::java
+[source,java]
+----
 package org.example.service.impl;
 
 import org.example.service.Foo;
@@ -25,11 +25,11 @@ public class FooImpl implements Foo {
     }
 
 }
-....
+----
 
 To create the component type and an instance of the component type just create a class, get the bundle context (either from a Bundle-Activator, or from an iPOJO component), and write the following code:
 
- :::java
+[source,java]
  new PrimitiveComponentType()
      .setBundleContext(context)
      .setClassName(FooImpl.class.getName())
@@ -39,8 +39,8 @@ To create the component type and an instance of the component type just create a
 So, now let's imagine another component using this service.
 The following code is the implementation class of this component type:
 
-....
-:::java
+[source,java]
+----
 package org.example.service.impl;
 
 import org.example.service.Foo;
@@ -53,13 +53,13 @@ public class MyComponentImpl {
     }
 
 }
-....
+----
 
 It is a regular iPOJO component expecting to get a Foo service in the `myFoo` field.
 It also has a method executed when the instance is valid using the Foo service.
 To describe this component, just write the following lines:
 
- :::java
+[source,java]
  new PrimitiveComponentType()
      .setBundleContext(context)
      .setClassName(MyComponentImpl.class.getName())
@@ -103,7 +103,16 @@ So, you can:
 * Set the creation strategy
 * Set the exposed service specifications
 +
-:::java  new PrimitiveComponentType()      .setBundleContext(context)      .setClassName(org.example.service.impl.MyComponentImpl.class.getName())      .addService(new Service()          .addProperty(new ServiceProperty()              .setField("myServiceProperty")              .setName("sample.myProperty"))          .setCreationStrategy(Service.INSTANCE_STRATEGY))      .createInstance();
+[source,java]
+  new PrimitiveComponentType()
+    .setBundleContext(context)
+    .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
+    .addService(new Service()
+      .addProperty(new ServiceProperty()
+        .setField("myServiceProperty")
+        .setName("sample.myProperty"))
+      .setCreationStrategy(Service.INSTANCE_STRATEGY))
+    .createInstance();
 
 == Service Dependencies
 
@@ -112,7 +121,7 @@ The dependency object offers all the iPOJO service dependency features.
 You can set the injected field and/or bind/unbind methods.
 Here is an example:
 
- :::java
+[source,java]
  new PrimitiveComponentType()
      .setBundleContext(context)
      .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
@@ -128,7 +137,7 @@ Here is an example:
 Thanks to the `addProperty` method, you can create component properties.
 Here is some example of properties:
 
- :::java
+[source,java]
  new PrimitiveComponentType()
      .setBundleContext(context)
      .setClassName(MyComponentImpl.class.getName())
@@ -146,7 +155,7 @@ Here is some example of properties:
 
 Temporal dependencies are also supported:
 
- :::java
+[source,java]
  new PrimitiveComponentType()
          .setBundleContext(context)
          .setClassName(MyComponentImpl.class.getName())
@@ -195,7 +204,7 @@ If the lookup success, you get an object allowing reconfiguring the service, dep
 If you are sure to create only one instance of your component type, you can use the singleton component type class.
 This is a kind of primitive component type, but when you start it (with the `create` method), it will automatically create an instance.
 
- :::java
+[source,java]
   PrimitiveComponentType type = new SingletonComponentType()
              .setBundleContext(context)
              .setClassName(org.example.service.impl.MyComponentImpl.class.getName())
@@ -218,7 +227,7 @@ iPOJO is extensible...
 So, it makes sense that the API is also extensible.
 So component type provides a method allowing to add external handler configuration:
 
- :::java
+[source,java]
  return new PrimitiveComponentType()
          .setBundleContext(context)
          .setClassName(HostImpl.class.getName())
@@ -234,8 +243,8 @@ Handler provider willing to support the API have to provide this class.
 For example, the example above uses `Whiteboard` that is the Whiteboard pattern handler description.
 This class is very simple, and is shown below:
 
-....
-:::java
+[source,java]
+----
 public class Whiteboard implements HandlerConfiguration {
 
     public static final String NAME = "wbp";
@@ -299,7 +308,7 @@ public class Whiteboard implements HandlerConfiguration {
         }
 
     }
-....
+----
 
 The only required method is `getElement` returning the `Element-Attribute` structure representing the handler configuration (this uses the internal iPOJO data format).
 If the metadata cannot be generated, the class throws IllegalStateExceptions.
@@ -320,7 +329,7 @@ Here are some examples:
 [discrete]
 ==== Creating instances inside a composite:
 
- :::java
+[source,java]
  PrimitiveComponentType prov = createAProvider(); // Create a primitive type
  PrimitiveComponentType cons = createAConsumer(); // Create another primitive type
 
@@ -335,7 +344,7 @@ Here are some examples:
 [discrete]
 ==== Importing a service
 
- :::java
+[source,java]
  CompositeComponentType type = new CompositeComponentType()
         .setBundleContext(context)
         .setComponentTypeName("comp3")
@@ -346,7 +355,7 @@ Here are some examples:
 [discrete]
 ==== Instantiating a service
 
- :::java
+[source,java]
  CompositeComponentType type = new CompositeComponentType()
         .setBundleContext(context)
         .setComponentTypeName("comp2")
@@ -357,7 +366,7 @@ Here are some examples:
 [discrete]
 ==== Exporting a service
 
- :::java
+[source,java]
  CompositeComponentType type = new CompositeComponentType()
         .setBundleContext(context)
         .setComponentTypeName("compExport")

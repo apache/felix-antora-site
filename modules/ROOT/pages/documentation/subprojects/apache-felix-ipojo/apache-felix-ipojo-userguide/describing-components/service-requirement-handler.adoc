@@ -47,14 +47,14 @@ iPOJO support several types of injections:
 As soon as the field is used, a consistent service object is      injected.
 This injection type fully hides the dynamism
 
- :::java
+[source,java]
  @Requires
  private LogService log;
 
 *Method invocation*: when a service appears, or disappears a method in the component is invoked.
 For each dependency, bind / unbind / modified methods are invoked to notify the component of the event.
 
- :::java
+[source,java]
  @Bind
  public void bindLogService(LogService log) { /*...*/ }
  @Unbind
@@ -65,7 +65,7 @@ For each dependency, bind / unbind / modified methods are invoked to notify the 
 *Constructor injection*: services can also be injected as constructor parameter (only if proxies are enabled).
 _1.7.0-SNAPSHOT_
 
- :::java
+[source,java]
  public MyComponent(@Requires LogService log) { /*...*/ }
 
 Moreover, the injections types can be mixed.
@@ -76,8 +76,8 @@ A component can declare a requirement containing both a field and 'binding' meth
 Let's imagine a Hello service with one method 'getMessage' returning a "Hello Message".
 The following component implementation can use this service by attaching this service to a field and by using the field:
 
-....
-:::java
+[source,java]
+----
 @Component
 @Instantiate
 public class HelloConsumer {
@@ -88,11 +88,10 @@ public class HelloConsumer {
         System.out.println(m_hello.getMesage());
     }
 }
-....
+----
 
 You can also use XML to describe this component type:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hello"/>
      ...
@@ -116,7 +115,7 @@ These methods can have one of these signatures:
 
 * Without any argument: the method is just a notification
 
-   :::java
+  [source,java]
    public void bindService() {
      // ...
    }
@@ -124,14 +123,14 @@ These methods can have one of these signatures:
 * With the service object: the object is the implicated service object.
 Service dependency type is inferred from the parameter's type.
 
-   :::java
+  [source,java]
    public void bindService(HelloService hello) {
      m_hello = hello;
    }
 
 * With an OSGi service reference: the service reference appearing or disappearing.
 
-   :::java
+  [source,java]
    public void bindService(ServiceReference<HelloService> reference) {
      // ...
    }
@@ -144,21 +143,21 @@ Service dependency type is inferred from the parameter's type.
 
 * With the service object and the OSGi service reference.
 
-   :::java
+  [source,java]
    public void bindService(HelloService hello, ServiceReference<HelloService> reference) {
      // ...
    }
 
 * With the service object and the service properties inside a Map (no adherence to OSGi APIs).
 
-   :::java
+  [source,java]
    public void bindService(HelloService hello, Map<String, Object> properties) {
      // ...
    }
 
 * With the service object and the service properties inside a Dictionary (no adherence to OSGi APIs).
 
-   :::java
+  [source,java]
    public void bindService(HelloService hello, Dictionary<String, Object> properties) {
          // ...
    }
@@ -172,8 +171,8 @@ Notice that, when missing (typically no interface can be inferred from the code)
 
 The following component implementation shows an example of implementation using this mechanism:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
   private Hello m_hello;
@@ -184,12 +183,11 @@ public class HelloConsumer {
   public void unbindHello() { m_hello = null; }
   public doSomething() { System.out.println(m_hello.getMesage()); }
 }
-....
+----
 
 The `modified` callback is not mandatory.
 The following XML metadata are describing the same component type:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
    <requires>
      <callback type="bind" method="bindHello"/>
@@ -204,8 +202,8 @@ By using this mechanism, you need to be sure to manage the dynamism correctly.
 
 Using the `@Modified` callback is also quite simple:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
   private Hello m_hello;
@@ -218,14 +216,14 @@ public class HelloConsumer {
   public void modifiedHello() { /* ... */ }
   public doSomething() { System.out.println(m_hello.getMesage()); }
 }
-....
+----
 
 === Using constructor injection (_1.7.0-SNAPSHOT_)
 
 Services can also be injected using constructor parameters:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyComponent {
     private LogService log;
@@ -234,7 +232,7 @@ public class MyComponent {
         this.log = log;
     }
 }
-....
+----
 
 === Mixing injections types
 
@@ -244,8 +242,8 @@ Constructor parameters get their values during the constructor invocation.
 So, if the field is used in the method, the returned value will be up to date.
 The following component implementation uses this mechanism:
 
-....
-:::java
+[source,java]
+----
 public class HelloConsumer {
      @Requires(id="hello")
      private Hello m_hello; // Injected Field
@@ -257,11 +255,10 @@ public class HelloConsumer {
 
      public doSomething() { System.out.println(m_hello.getMesage()); }
 }
-....
+----
 
 In XML, it results in:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires  field="m_hello">
          <callback type="bind" method="bindHello"/>
@@ -310,7 +307,7 @@ When a component requires several providers of the same service, it declares an 
 
 ==== Aggregate Dependency with field injection
 
- :::java
+[source,java]
  @Component
  public class HelloConsumer {
       @Requires
@@ -323,8 +320,7 @@ When a component requires several providers of the same service, it declares an 
  }
 
 For this component, XML metadata could be:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hellos"/>
      ...
@@ -350,13 +346,13 @@ It is also possible to inject service objects inside fields of the type:
 * collection
 * set
 +
-:::java   @Component   public class HelloConsumer {        @Requires(specification="org.apache.felix.ipojo.example.Hello")        private List+++<Hello>+++m_hellos;
+[source,java]
+    @Component   public class HelloConsumer {        @Requires(specification="org.apache.felix.ipojo.example.Hello")        private List+++<Hello>+++m_hellos;
 public doSomething() { for(Hello h : m_hellos) { System.out.println(h).getMessage());
 } } }+++</Hello>+++
 
 For this component, XML metadata could be:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hellos" specification="org.apache.felix.ipojo.example.Hello"/>
      ...
@@ -377,7 +373,7 @@ Nested methods will share the same service object set.+++</div>+++
 
 ==== Aggregate Dependency with callbacks
 
- :::java
+[source,java]
  public class HelloConsumer {
    private List m_hellos = new ArrayList();
    @Bind(aggregate=true)
@@ -393,8 +389,7 @@ Nested methods will share the same service object set.+++</div>+++
  }
 
 This dependency can also be described in XML as follow:
-
- :::xml
+[source,xml]
  <requires  aggregate="true">
      <callback type="bind" method="bindHello"/>
      <callback type="unbind" method="unbindHello"/>
@@ -414,8 +409,8 @@ Moreover, it is possible to inject a default service implementation when no _rea
 
 ==== Optional Requirement with field injection
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
          @Requires(optional=true)
@@ -425,11 +420,10 @@ public class HelloConsumer {
             System.out.println(m_hello.getMesage());
          }
 }
-....
+----
 
 For this component, equivalent XML metadata could be:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hello" optional="true"/>
      ...
@@ -445,8 +439,8 @@ For further information <<note-about-nullable-object-default-implementation,refe
 
 ==== Optional Dependency with callbacks invocation
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
      private Hello m_hello;
@@ -463,11 +457,10 @@ public class HelloConsumer {
           }
     }
 }
-....
+----
 
 For this component, XML metadata could be:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires optional="true">
          <callback type="bind" method="bindHello"/>
@@ -485,8 +478,8 @@ A dependency can be both aggregate and optional.
 
 ==== Aggregate & Optional Dependency with field injection
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
      @Requires(optional=true)
@@ -498,11 +491,10 @@ public class HelloConsumer {
            }
      }
 }
-....
+----
 
 For this component, XML metadata could be:
-
- :::xml
+[source,xml]
  <component classname="...HelloConsumer">
      <requires field="m_hellos" optional="true"/>
      ...
@@ -513,8 +505,8 @@ If no service available, iPOJO injects an empty array.
 
 ==== Aggregate & Optional Requirement with callbacks
 
-....
-:::java
+[source,java]
+----
 @Component
 public class HelloConsumer {
 
@@ -532,11 +524,10 @@ public class HelloConsumer {
                }
      }
 }
-....
+----
 
 For this component, XML metadata could be:
-
- :::xml
+[source,xml]
  <requires aggregate="true" optional="true">
       <callback type="bind" method="bindHello"/>
       <callback type="unbind" method="unbindHello"/>
@@ -552,22 +543,21 @@ A filtered dependency applies an LDAP filter on service provider.
 iPOJO reuses OSGi LDAP filter ability.
 The following metadata illustrates how to use filters:
 
-....
-:::java
+[source,java]
+----
 @Requires(filter="(language=fr)")
 private String DictionaryService dict;
-
-:::xml
+[source,xml]
 <requires filter="(language=fr)" field="dict"/>
-....
+----
 
 To add a filter, just add a 'filter' attribute in your dependency containing the LDAP filter.
 iPOJO will select only provider matching with this filter.
 
 When using a filter, you can also use the `modified` callback invoked when a matching service is _modified_ but still matches the filter:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyComponent {
 
@@ -580,7 +570,7 @@ public class MyComponent {
     @Modified
     public void modifiedDictionary() { ... }
 }
-....
+----
 
 Moreover, filters can be customized instance by instance.
 It is possible to specialize / change / add the filter of a component in the instance description.
@@ -589,8 +579,8 @@ To achieve this customization, you have to identify your dependency with the 'id
 Then, you can adapt the filter of the dependency in the instance description by using the property "requires.filters".
 In this property you can specify each dependency identified by its id and the new value of the filter.
 
-....
-:::xml
+[source,xml]
+----
 <component
    className="org.apache.felix.ipojo.example.FilteredDependency">
 	<requires field="m_foo" fiter="(foo.property=FOO)" id="id1">
@@ -612,7 +602,7 @@ In this property you can specify each dependency identified by its id and the ne
 		<property name="id1" value="(foo.property=BAZ)"/>
 	</property>
 </instance>
-....
+----
 
 The component type declares a service dependency with the 'id1' id.
 This dependency has no filter by default.
@@ -626,13 +616,12 @@ By using instance filter customization, it is possible to create complex applica
 A service dependency can choose a specific provider.
 To achieve this, add a 'from' attribute in your requirement description such as in:
 
- :::java
+[source,java]
  @Requires(from="MyHelloProvider")
  private Hello m_hello;
 
 or in XML:
-
- :::xml
+[source,xml]
  <requires from="MyHelloProvider" field="m_hello"/>
 
 iPOJO maps the `from` attribute to a specific filter : `|(instance.name=MyHelloProvider)(service.pid=MyHelloProvider)`.
@@ -645,8 +634,8 @@ To do it, you have to identify your dependency with an 'id' attribute.
 Then, you can adapt the 'from' of the dependency in the instance configuration by using the property "requires.from".
 In this property you can specify each dependency identified by its id and the 'from' value.
 
-....
-:::xml
+[source,xml]
+----
 <component
    className="org.apache.felix.ipojo.example.FilteredDependency"
    name="FOO">
@@ -669,7 +658,7 @@ In this property you can specify each dependency identified by its id and the 'f
 		<property name="id1" value="myotherprovider"/>
 	</property>
 </instance>
-....
+----
 
 The FOO component type declares a service dependency with the 'id1' id.
 This dependency has no 'from' attribute by default.
@@ -695,24 +684,22 @@ For aggregate dependency, the array is sorted.
 
 A static binding is declared as following:
 
- :::java
+[source,java]
  @Requires(policy=BindingPolicy.STATIC)
  private Hello[] m_hellos;
 
 or
-
- :::xml
+[source,xml]
  <requires field="m_hellos" policy="static"/>
 
 A dynamic-priority binding is declared as following:
 
- :::java
+[source,java]
  @Requires(policy=BindingPolicy.DYNAMIC_PRIORITY)
  private Hello[] m_hellos;
 
 or
-
- :::xml
+[source,xml]
  <requires field="m_hellos" policy="dynamic-priority"/>
 
 By default, the dynamic-priority policy uses the OSGi service ranking policy.
@@ -720,13 +707,12 @@ However, it is possible to customize the policy by adding the '_comparator_' att
 This attribute indicates the class name of a class implementing the `java.util.Comparator` interface.
 iPOJO creates an instance of your comparator and uses it to sort service references (so your customized comparator needs to be able to sort OSGi Service Reference).
 
- :::java
+[source,java]
  @Requires(policy=BindingPolicy.DYNAMIC_PRIORITY, comparator=MyComparator.class)
  private Hello[] m_hellos;
 
 or
-
- :::xml
+[source,xml]
  <requires field="m_hellos" policy="dynamic-priority" comparator="great.MyComparator"/>
 
 == Optional Scalar Dependencies - No Service actions
@@ -751,18 +737,17 @@ A nullable object returns:
 
 To inject `null` instead of a `nullable` object, just set the `nullable` attribute to `false`.
 
- :::java
+[source,java]
  @Requires(optional=true, nullable=false)
  private LogService m_log;
 
 or
-
- :::xml
+[source,xml]
   <requires field="m_log" optional="true" nullable="false"/>
 
 However be aware that in this case, you must check for `null` before using the service:
 
- :::java
+[source,java]
  if (m_log != null) {
    m_log.log(LogService.INFO, "an important message");
  }
@@ -777,13 +762,12 @@ The given class _MUST_ implement the required service interface.
 
 For example, the following component uses a `default-implementation` for a Log Service dependency:
 
- :::java
+[source,java]
  @Requires(optional=true, default-implementation=MyLogService.class)
  private LogService m_log;
 
 or
-
- :::xml
+[source,xml]
  <requires field="m_log" optional="true"
      default-implementation=
         "org.apache.felix.ipojo.example.default.MyLogService"/>
@@ -799,13 +783,12 @@ To throw an exception, use the `exception` attribute specifying the exception cl
 It must be a subclass of `RuntimeException`.
 Obvisouly, you can use `java.lang.RuntimeException` directly.
 
- :::java
+[source,java]
  @Requires(optional=true, exception=NoServiceException.class)
  private LogService m_log;
 
 or
-
- :::xml
+[source,xml]
  <requires field="m_log" optional="true"
    exception=
       "org.apache.felix.ipojo.example.default.NoServiceException"/>
@@ -819,7 +802,7 @@ If there are still no services available when the timeout is reached, then the n
 In the following example, the `AuthenticationService` is essential, but also may be subjected to updates.
 When the service is not there, you don't want to fail immediately, but give it a chance to re-appear _soon_:
 
- :::java
+[source,java]
  @Requires(optional=true, exception=UpdateInProgessException.class, timeout=1000)
  private AuthenticationService m_auth;
 

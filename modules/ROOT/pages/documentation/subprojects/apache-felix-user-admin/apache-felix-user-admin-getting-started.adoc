@@ -11,7 +11,7 @@ User user = m_userAdmin.getUser("username", getUserName());
 if (user == null || !user.hasCredential("password", getPassword())) {   throw new InvalidUsernameOrPasswordException();
 }
 
-....
+----
 h2. Authorization
 
 Only authorized users should be able to initiate privileged actions. Whether a user is authorized to do so depends on its membership in groups. The UserAdmin service aids in this by providing an {{Authorization}} facade that helps you to determine whether or not users are authorized to initiate certain actions.
@@ -27,4 +27,4 @@ Authorization auth = m_userAdmin.getAuthorization(user);
 if (!auth.hasRole("admin")) {
   throw new InsufficientRightsException();
 }
-....
+----

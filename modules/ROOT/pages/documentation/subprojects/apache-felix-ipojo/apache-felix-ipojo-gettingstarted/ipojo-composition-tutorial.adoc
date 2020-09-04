@@ -129,8 +129,8 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 The descriptor of this application is:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 
 <!--  Declares a composition -->
@@ -149,7 +149,7 @@ The descriptor of this application is:
 <instance component="composition1"/>
 
 </ipojo>
-....
+----
 
 First, a composite type is declared inside an iPOJO descriptor.
 A composite contain always a `name` attribute, which is the component type name.
@@ -161,7 +161,7 @@ Finally, an instance of our type is also declared.
 
 To execute our composition, go in the felix directory and launch the following command:
 
- :::sh
+[source,sh]
  java -jar bin/felix.jar
 
 This version of Felix starts with the iPOJO framework, the iPOJO Arch command and the composite support.
@@ -169,7 +169,7 @@ So, we just need to install our component types and the composition.
 
 In the Felix prompt, launch the following commands:
 
- :::sh
+[source,sh]
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker/output/spell.checker.jar
@@ -180,7 +180,7 @@ Remark that no 'functional'  (i.e.
 neither Check service, nor Dictionary service) services are provided.
 Deployed bundles provide only iPOJO Factory services:
 
- :::sh
+[source,sh]
  -> inspect s c
  System Bundle (0) provides:
  ---------------------------
@@ -210,7 +210,7 @@ Deployed bundles provide only iPOJO Factory services:
 
 Now, when can deploy our composition:
 
- :::sh
+[source,sh]
  start file:../example1/output/composition1.jar
 
 Once deployed and started, the fancy GUI appears:
@@ -219,7 +219,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 Now, you can check that the functional services are not unavailable outside the composite:
 
- :::sh
+[source,sh]
  -> inspect s c
  System Bundle (0) provides:
  ---------------------------
@@ -252,7 +252,7 @@ Now, you can check that the functional services are not unavailable outside the 
 
 Of course, if you stop a bundle providing a required service type, the application is stopped:
 
- :::sh
+[source,sh]
  -> stop 8
  -> start 8
 
@@ -270,8 +270,8 @@ If we use this implementation, we need to make a log service available inside th
 Else, the checker will not be valid.
 To achieve this, use the following composite:
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 
 <!--  Declares a composition -->
@@ -294,7 +294,7 @@ To achieve this, use the following composite:
 <instance component="composition2"/>
 
 </ipojo>
-....
+----
 
 This composite just adds a `subservice` nested element.
 This subservice allows importing a service inside the composite.
@@ -307,7 +307,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 Now, relaunch Felix and enter another profile name (`composition2` for example).
 Once started, executes the following commands:
 
- :::sh
+[source,sh]
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker-v2/output/spell.checker-v2.jar
@@ -323,7 +323,7 @@ the message is logged inside the log service.
 Of course, such composite support dynamism.
 Try the following scenario
 
- :::sh
+[source,sh]
  stop 9
  start 9
  stop 10
@@ -353,8 +353,8 @@ In the first composition, we create an instance of the English dictionary servic
 We can remove this coupling to this specific implementation.
 To do this, we will target any implementation of the dictionary service regardless the language.
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 
 <!--  Declares a composition -->
@@ -374,7 +374,7 @@ To do this, we will target any implementation of the dictionary service regardle
 <instance component="composition3"/>
 
 </ipojo>
-....
+----
 
 The previous composition instantiates a dictionary service.
 This means that the composite looks for an implementation of the Dictionary service and creates an instance of this implementation (i.e.
@@ -385,7 +385,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 To execute this composition, launch Felix and execute the following command:
 
- :::sh
+[source,sh]
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker/output/spell.checker.jar
@@ -396,7 +396,7 @@ These commands deploy component types and the composition.
 Only one implementation of the dictionary service is available (English).
 You can check this by executing the `service 8` command.
 
- :::sh
+[source,sh]
  -> inspect s c 9
  spell.english (9) provides:
  ---------------------------
@@ -414,14 +414,14 @@ You can check this by executing the `service 8` command.
 Note the `component.providedServiceSpecifications` property indicating provided services.
 Now deploy another implementation of the dictionary service, such as the French dictionary service ☺
 
- :::sh
+[source,sh]
  start file:../spell.french/output/spell.french.jar
 
 Write  `welcome` in the GUI and then check.
 The word is correctly spelled.
 Then, stop the bundle providing the English dictionary.
 
- :::sh
+[source,sh]
  stop 9
 
 Write `welcome` in the GUI, and check.
@@ -448,8 +448,8 @@ In this application, the GUI is externalized and lives in the global context (i.
 OSGi).
 So, the composition exports the spell checker service.
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 
 <!--  Declares a composition -->
@@ -473,7 +473,7 @@ So, the composition exports the spell checker service.
 <instance component="spell.gui.SpellCheckerGui"/>
 
 </ipojo>
-....
+----
 
 In the previous composition, the composite exports the spell checker service.
 Moreover, the GUI is also created but in the global context.
@@ -485,7 +485,7 @@ The composite published the spell checker service in the OSGi service registry.
 The GUI tracks this service in the OSGi service registry too.
 To execute this composition, launch Felix and execute following the commands:
 
- :::sh
+[source,sh]
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker/output/spell.checker.jar
@@ -494,7 +494,7 @@ To execute this composition, launch Felix and execute following the commands:
 
 You can check that the composition exports the service with the following command:
 
- :::sh
+[source,sh]
  -> services 12
  Bundle 12 provides:
  -------------------
@@ -522,7 +522,7 @@ Now, stop the bundle containing the GUI implementation.
 The checker service stills available.
 Indeed, the GUI is no more inside the composition, and so stills valid despite the unavailability of the GUI:
 
- :::sh
+[source,sh]
  -> stop 9
  -> start 9
  -> stop 11
@@ -551,8 +551,8 @@ A composition can also contain others compositions.
 Let's imagine a variation of the latest application.
 In this case, we define a composite containing the GUI and the previous composite.
 
-....
-:::xml
+[source,xml]
+----
 <ipojo>
 
 <!--  Declares the same composition than the latest one -->
@@ -587,7 +587,7 @@ In this case, we define a composite containing the GUI and the previous composit
 <instance component="composition5"/>
 
 </ipojo>
-....
+----
 
 The `composition5` contains an instance of the `composition4` and of the GUI.
 So the spell checker service exported by the composition4 is published inside the service context of the `composite 5` (the parent context).
@@ -597,7 +597,7 @@ image::documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-gettingst
 
 To execute this composition, restart Felix and launch the following commands:
 
- :::sh
+[source,sh]
  start file:../spell.services/output/spell.services.jar
  start file:../spell.english/output/spell.english.jar
  start file:../spell.checker/output/spell.checker.jar

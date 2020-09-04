@@ -22,8 +22,8 @@ When the field get the `true` value, the handler becomes valid, and if all handl
 
 Imagine the following component :
 
-....
-:::java
+[source,java]
+----
 @Component
 public class LifecycleControllerTest {
 
@@ -40,11 +40,10 @@ public class LifecycleControllerTest {
         }
     }
 }
-....
+----
 
 If you don't want to use annotations, the following snippet does the same job using XML:
-
- :::xml
+[source,xml]
  <component
     classname="org.apache.felix.ipojo.test.scenarios.component.LifecycleControllerTest">
  		<controller field="m_state"/>

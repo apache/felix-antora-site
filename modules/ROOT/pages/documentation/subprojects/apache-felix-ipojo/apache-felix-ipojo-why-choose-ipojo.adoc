@@ -22,17 +22,17 @@ let's have a look:
 
 To provide a service:
 
- :::java
+[source,java]
  @Component
  @Provides
  public class MyServiceImplementation implements MyService {
-  	//....
+  	//----
  }
 
 To require a service:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class MyServiceConsumer {
  	@Requires
@@ -40,7 +40,7 @@ public class MyServiceConsumer {
 
 	// Just use your required service as any regular field !
 }
-....
+----
 
 Isn't that easy?
 Providing and requiring OSGi services have never been so simple.
@@ -78,7 +78,7 @@ For example, if you need proxy injection, just deploy the temporal dependency  b
 The run-time overhead of iPOJO is also small.
 On the http://code.google.com/p/peaberry/wiki/Benchmarks[Peaberry benchmark], iPOJO has very good performance:
 
- :::sh
+[source,sh]
  Guice-Peaberry:	                     276.00 ns/call
  iPOJO Service Dependency:            118.00 ns/call
  Spring-DM:                          2384.00 ns/call

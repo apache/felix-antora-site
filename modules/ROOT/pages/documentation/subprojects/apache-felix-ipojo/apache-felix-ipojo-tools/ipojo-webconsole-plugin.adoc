@@ -26,14 +26,14 @@ To use the plugin you need an OSGi platform with:
 You can download link:{attachmentsdir}/ipojo/ipojo-webconsole-quicktart-distribution.zip[this Felix distribution] as a deployment example.
 Unzip the archive and go to the Felix directory to launch Felix:
 
- :::sh
+[source,sh]
  cd ipojo-webconsole-quicktart-1.9.0-SNAPSHOT/felix-framework-4.2.1/
  java -jar bin/felix.jar
 
 Once launched, you can check the deployed bundles:
 
-....
-:::sh
+[source,sh]
+----
 [INFO] Started jetty 6.1.x at port(s) HTTP:8080
 ____________________________
 Welcome to Apache Felix Gogo
@@ -66,7 +66,7 @@ START LEVEL 1
    18|Active     |    1|Apache Felix Web Console Package Admin Service Plugin (1.0.0)
    19|Active     |    1|osgi.cmpn (4.2.0.200908310645)
    20|Active     |    1|OW2 Chameleon - JSON Bundle (from org.json) (20090911.0.0.0002)
-....
+----
 
 You access the web console at: http://localhost:8080/system/console/.
 The login/password are _admin_/_admin_.

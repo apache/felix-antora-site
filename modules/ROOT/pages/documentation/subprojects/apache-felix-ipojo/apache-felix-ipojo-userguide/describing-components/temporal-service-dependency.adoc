@@ -14,8 +14,8 @@ If a timeout occurs, the handler throws a Runtime Exception._
 
 First of all, you need to configure the component type to use the handler such as:
 
-....
-:::xml
+[source,xml]
+----
 <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
 <component
     className="org.apache.felix.ipojo.example.Temporal">
@@ -27,7 +27,7 @@ First of all, you need to configure the component type to use the handler such a
 
 </component>
 </iPOJO>
-....
+----
 
 Notice that, this handler is an external handler.
 So, it uses the "org.apache.felix.ipojo.handler.temporal" namespace.
@@ -47,8 +47,8 @@ If a provider becomes available during this time, the field receives immediately
 
 You can also use annotations:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class UseTemporal {
 
@@ -56,7 +56,7 @@ public class UseTemporal {
     private FooService mytemporal;
 
 }
-....
+----
 
 == Configuration
 
@@ -94,12 +94,12 @@ For example `onTimeout="o.a.f.i.MyDefaultLogServiceImpl"`.
 In this case, the handler will inject an instance of this object instead of a real service object.
 On aggregate dependency, an array with one default-implementation object is returned.
 +
-:::xml+++<iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">++++++<component className="org.apache.felix.ipojo.example.Temporal">+++// Temporal dependency configuration +++<temporal:requires field="fs" timeout="300" ontimeout="nullable">++++++</temporal:requires>+++ +++<provides>++++++</provides>++++++</component>++++++</iPOJO>+++
+[source,xml]+++<iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">++++++<component className="org.apache.felix.ipojo.example.Temporal">+++// Temporal dependency configuration +++<temporal:requires field="fs" timeout="300" ontimeout="nullable">++++++</temporal:requires>+++ +++<provides>++++++</provides>++++++</component>++++++</iPOJO>+++
 
 This is equivalent to:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class Temporal {
 
@@ -107,15 +107,15 @@ public class Temporal {
     private FooService mytemporal;
 
 }
-....
+----
 
 == Collection injection
 
 Temporal dependencies can also be injected inside Collection.
 To achieve this, the 'specification' attribute must indicates the looked specification, and the field must be a Collection.
 
-....
-:::xml
+[source,xml]
+----
 <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
 <component
     className="org.apache.felix.ipojo.example.Temporal">
@@ -127,12 +127,12 @@ To achieve this, the 'specification' attribute must indicates the looked specifi
 
 </component>
 </iPOJO>
-....
+----
 
 This is equivalent to:
 
-....
-:::java
+[source,java]
+----
 @Component
 public class Temporal {
 
@@ -140,7 +140,7 @@ public class Temporal {
     private List<FooService> mycollection;
 
 }
-....
+----
 
 == Proxy injection
 
@@ -154,8 +154,8 @@ Proxies are enabled by default since the 1.7.0 version.
 
 To set a temporal dependency as a proxy, just add the `proxy` attribute as follows:
 
-....
-:::xml
+[source,xml]
+----
 <iPOJO xmlns:temporal="org.apache.felix.ipojo.handler.temporal">
 <component
     className="org.apache.felix.ipojo.example.Temporal">
@@ -168,7 +168,7 @@ To set a temporal dependency as a proxy, just add the `proxy` attribute as follo
 
 </component>
 </iPOJO>
-....
+----
 
 By default, proxies are *enabled*.
 Setting proxy to `false` disables them.
