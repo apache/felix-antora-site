@@ -147,7 +147,7 @@ Each of the aforementioned events actually contains a wider set of properties. C
 ## Configuration
 
 The Apache Felix Event Admin implementation is trying the deliver the events as fast as possible. Events sent from different threads are sent in parallel. Events from the same thread are sent in the order they are received (this is according to the spec).
-A timeout can be configured which is used for event handlers. If an event handler takes longer than the configured timeout to process an event, it is blacklisted. Once a handler is in a blacklist, it doesn't get sent any events anymore.
+A timeout can be configured which is used for event handlers. If an event handler takes longer than the configured timeout to process an event, it is denied. Once a handler is in a denylist, it doesn't get sent any events anymore.
 The Felix Event Admin can be configured either through framework properties or through the configuration admin using PID `org.apache.felix.eventadmin.impl.EventAdmin`. This is a list of configuration properties:
 
 ----
@@ -178,7 +178,7 @@ The ratio of asynchronous to synchronous threads in the internal thread pool. Ra
 *Default*: 5000  
 *Type*: Integer
 
-The black-listing timeout in milliseconds. The default value is 5000. Increase or decrease at own discretion. A value of less then 100 turns timeouts off. Any other value is the time in milliseconds granted to each event handler before it gets blacklisted.
+The deny-listing timeout in milliseconds. The default value is 5000. Increase or decrease at own discretion. A value of less then 100 turns timeouts off. Any other value is the time in milliseconds granted to each event handler before it gets denied.
 
 ----
 
