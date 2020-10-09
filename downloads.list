@@ -45,10 +45,10 @@ Event Admin|org.apache.felix.eventadmin|1.5.0
 File Install|org.apache.felix.fileinstall|3.6.4|||doc/changelog.txt
 Framework|org.apache.felix.framework|6.0.3|||doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.6.1|||doc/changelog.txt
-Gogo Runtime|org.apache.felix.gogo.runtime|1.1.2|project||doc/changelog.txt
+Gogo Runtime|org.apache.felix.gogo.runtime|1.1.4|project||doc/changelog.txt
 Gogo JLine|org.apache.felix.gogo.jline|1.1.4|project||doc/changelog.txt
-Gogo Shell|org.apache.felix.gogo.shell|1.1.2|project||doc/changelog.txt
-Gogo Command|org.apache.felix.gogo.command|1.1.0|project||doc/changelog.txt
+Gogo Shell|org.apache.felix.gogo.shell|1.1.4|project||doc/changelog.txt
+Gogo Command|org.apache.felix.gogo.command|1.1.2|project||doc/changelog.txt
 Health Check Annotations|org.apache.felix.healthcheck.annotation|2.0.0|project||-
 Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.0.8|project||-
