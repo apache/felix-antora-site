@@ -311,13 +311,17 @@ If the parameter `create`is sent, a new configuration with the PID is created. T
 
 #### Apply
 
-If the parameter `apply` is sent, the configuration is changed. The value of the parameter is not evaluated.
+If the parameter `apply` is sent, the configuration is changeg. The value of the parameter is not evaluated.
 The parameter `factoryPid` might contain the factory pid.
-The parameter `propertyList` contains a comma-separated list of all configuration property names that will be changed by this POST. For each name, the value of the corresponding request parameter is used to set the value. If such a parameter is missing, the property is not changed.
+The parameter `propertyList` contains a comma-separated list of all configuration property names that will be changed by this POST. For each name, the value of the corresponding request parameter is used to set the value. If such a parameter is missing, the property is not changed. Any existing property not listed in the property list will be removed from the configuration
 
 For example to use `curl` to apply a configuration the following command line can be used:
 
     curl -u admin:admin -X POST -d "apply=true" -d "propertylist=foo,bar" -d "foo=51" -d "bar=hello" http://localhost:8080/system/console/configMgr/com.acme.MyPid
+
+If the configuration contains property where the names clash with the commands of the rest api like `apply` or `propertyList` the request parameter name gets prefixed with a dollar sign:
+
+    curl -u admin:admin -X POST -d "apply=true" -d "propertylist=update" -d "$update=yes" http://localhost:8080/system/console/configMgr/com.acme.mypid
 
 To create a factory configuration, the special PID `[Temporary PID replaced by real PID upon save]` must be used, URL encoded. So to create a new factory configuration 
 for a factoryPid `com.acme.MyFactoryPid` the following can be used:
