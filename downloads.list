@@ -89,7 +89,7 @@ Log|org.apache.felix.log|1.2.2|project||doc/changelog.txt
 Log Extension|org.apache.felix.log.extension|1.0.0
 Logback|org.apache.felix.logback|1.0.2
 Main|org.apache.felix.main|7.0.0|project||main/doc/changelog.txt
-Metatype|org.apache.felix.metatype|1.2.2
+Metatype|org.apache.felix.metatype|1.2.4
 OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
