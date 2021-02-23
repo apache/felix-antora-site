@@ -29,6 +29,7 @@ framework|7.0.0
 #        bundle's release tag folder in SVN (default: changelog.txt)
 #        Use - to not have a changelog link
 #
+Atomos|org.apache.felix.atomos|1.0.0
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
 CM Json|org.apache.felix.cm.json|1.0.6
@@ -131,6 +132,7 @@ Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
 Maven SCR Plugin|maven-scr-plugin|1.26.4
 OSGi Check Maven Plugin|osgicheck-maven-plugin|0.1.0
+Atomos Maven Plugin|atomos-maven-plugin|0.9.0
 
 # (3) Ant Tasks
 # This list is sorted by the title before writing the table

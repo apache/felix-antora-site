@@ -190,6 +190,10 @@ If you are not a member of the Apache Felix PMC you might have to ask a member o
 the PMC to execute this step.
 </div>
 
+<div class="note">
+It is recommended to use the check_staged_release.sh script to download your release prior to releasing the staging repository. This will make the task of uploading the release to the Felix releases repository easier.
+</div>
+
 We use the distribution mechanism as described in [How do I upload a release (newer way)?](https://www.apache.org/dev/release.html#upload-ci)
 
 1. Check out the [Felix releases repository](https://dist.apache.org/repos/dist/release/felix);
