@@ -1,5 +1,24 @@
 = News
 
+* Apache Felix Configuration Admin 1.9.22 and Http Jetty 4.1.8 (May 7th, 2021)
+* Apache Felix Http Jetty 4.1.6 (March 18th, 2021)
+* Apache Felix Configurator 1.0.14 (March 6th, 2021)
+* Apache Felix Atomos 1.0.0 (February 23rd, 2021)
+* Apache Felix SCR 2.1.26 (February 22th, 2021)
+* Apache Felix CM Json 1.0.6 released (February 3rd, 2021)
+* Apache Felix CM Json 1.0.4 released (January 29th, 2021)
+* Apache Felix Dependency Manager r16 released (January 25th, 2021)
+* Apache Felix Metatype 1.2.4 released (January 18th, 2021)
+* Apache Felix Event Admin 1.6.2 released (January 11th, 2021)
+* Apache Felix Configadmin 1.9.20 released (January 7th, 2021)
+* Apache Felix Framework 7.0.0 and Framework Security 2.8.0 released (December 25th, 2020)
+* Apache Felix Webconsole 4.6.0 and EventAdmin 1.6.0 released (December 17th, 2020)
+* Apache Felix Framework 6.0.4 and Resolver 2.0.2 released (December 15th, 2020)
+* Apache Felix Http Jetty 4.1.4 (November 28th, 2020)
+* Apache Felix Gogo - Jline 1.1.8, BOM 1.0.6
+* Apache Felix Http Jetty 4.1.2, Http Bridge 4.1.2, and Http Base 4.1.2 (October 11th, 2020)
+* Apache Felix Gogo - Runtime 1.1.4, Shell 1.1.4, Command 1.1.2, BOM 1.0.4
+* Apache Felix Http Jetty 4.1.0, Http Bridge 4.1.0, and Http Base 4.1.0 (September 26th, 2020)
 * Apache Felix Configurator 1.0.12 (July 23rd, 2020)
 * Apache Felix Webconsole 4.5.4, Configadmin 1.9.18, and Http Jetty 4.0.20 (July 20th, 2020)
 * Apache Felix Maven Bundle Plugin 5.1.1 (July 14th, 2020)
