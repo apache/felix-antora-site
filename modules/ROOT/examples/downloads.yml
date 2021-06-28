@@ -1,0 +1,564 @@
+#
+# List of Apache Felix downloads
+# This file is processed by the downloads template and view
+# lines starting with a hash sign and empty lines are ignored
+
+#
+# This file contains three parts:
+#   (1) version number of the Felix Framework Distribution
+#   (2) Subprojects
+#   (3) Maven Plugins
+#   (4) Ant Tasks
+
+#
+# (1) Felix Framework Distribution version
+framework:
+  version: 7.0.0
+#
+# (2) Subprojects
+# This list is sorted by the title before writing the table
+# Format: title
+#artifactId
+#version[
+#source-classifier[
+#classifier][
+#changelog]]
+#
+#  - title: (required) user friendly module title
+#  - artifactId: (required) bundle file base name (Maven artifactId)
+#  - version: (required) module version
+#  - source-classifier: (optional) Maven classifier for source release archive
+#        default: source-release
+#        for pre-Felix parent POM 2.1 releases use: project
+#  - classifier: (optional) Non-Source Maven classifier (default: none)
+#  - changelog: (optional) path to the change log file relative to the
+#        bundle's release tag folder in SVN (default: changelog.txt)
+#        Use - to not have a changelog link
+#
+
+subprojects:
+  - title: Atomos
+    artifactId: org.apache.felix.atomos
+    version: 1.0.0
+
+  - title: AutoConf Resource Processor
+    artifactId: org.apache.felix.deployment.rp.autoconf
+    version: 0.1.8
+
+  - title: Bundle Repository
+    artifactId: org.apache.felix.bundlerepository
+    version: 2.0.10
+    changelog: doc/changelog.txt
+
+  - title: CM Json
+    artifactId: org.apache.felix.cm.json
+    version: 1.0.6
+
+  - title: Configuration Admin
+    artifactId: org.apache.felix.configadmin
+    version: 1.9.22
+
+  - title: Configurator
+    artifactId: org.apache.felix.configurator
+    version: 1.0.14
+
+  - title: Configuration Admin Interceptor Plugin
+    artifactId: org.apache.felix.configadmin.plugin.interpolation
+    version: 1.1.0
+
+  - title: Connect
+    artifactId: org.apache.felix.connect
+    version: 0.2.0
+
+  - title: Converter
+    artifactId: org.apache.felix.converter
+    version: 1.0.12
+
+  - title: Coordinator
+    artifactId: org.apache.felix.coordinator
+    version: 1.0.2
+
+  - title: Dependency Manager 4
+    artifactId: org.apache.felix.dependencymanager
+    version: r16
+    source-classifier: src
+    classifier: bin
+    targz: false
+
+  - title: Deployment Admin
+    artifactId: org.apache.felix.deploymentadmin
+    version: 0.9.10
+    changelog: changelog.txt
+
+  - title: Event Admin
+    artifactId: org.apache.felix.eventadmin
+    version: 1.6.2
+
+  - title: File Install
+    artifactId: org.apache.felix.fileinstall
+    version: 3.6.4
+    changelog: doc/changelog.txt
+
+  - title: Framework
+    artifactId: org.apache.felix.framework
+    version: 7.0.0
+    changelog: framework/doc/changelog.txt
+
+  - title: Framework Security
+    artifactId: org.apache.felix.framework.security
+    version: 2.8.0
+    changelog: framework.security/doc/changelog.txt
+
+  - title: Gogo Runtime
+    artifactId: org.apache.felix.gogo.runtime
+    version: 1.1.4
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Gogo JLine
+    artifactId: org.apache.felix.gogo.jline
+    version: 1.1.8
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Gogo Shell
+    artifactId: org.apache.felix.gogo.shell
+    version: 1.1.4
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Gogo Command
+    artifactId: org.apache.felix.gogo.command
+    version: 1.1.2
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Health Check Annotations
+    artifactId: org.apache.felix.healthcheck.annotation
+    version: 2.0.0
+    source-classifier: project
+
+  - title: Health Check API
+    artifactId: org.apache.felix.healthcheck.api
+    version: 2.0.4
+    source-classifier: project
+
+  - title: Health Check Core
+    artifactId: org.apache.felix.healthcheck.core
+    version: 2.0.8
+    source-classifier: project
+
+  - title: Health Check General Checks
+    artifactId: org.apache.felix.healthcheck.generalchecks
+    version: 2.0.6
+    source-classifier: project
+
+  - title: Health Check Webconsole Plugin
+    artifactId: org.apache.felix.healthcheck.webconsoleplugin
+    version: 2.0.2
+    source-classifier: project
+
+  - title: HTTP Service Base
+    artifactId: org.apache.felix.http.base
+    version: 4.1.2
+
+  - title: HTTP Service Bridge
+    artifactId: org.apache.felix.http.bridge
+    version: 4.1.2
+
+  - title: HTTP Service Jetty
+    artifactId: org.apache.felix.http.jetty
+    version: 4.1.8
+
+  - title: HTTP Service Proxy
+    artifactId: org.apache.felix.http.proxy
+    version: 3.0.6
+
+  - title: HTTP Service SSL filter
+    artifactId: org.apache.felix.http.sslfilter
+    version: 1.2.6
+
+  - title: HTTP Service Whiteboard
+    artifactId: org.apache.felix.http.whiteboard
+    version: 4.0.0
+
+  - title: HTTP Servlet 2.6 + 3.0 API
+    artifactId: org.apache.felix.http.servlet-api
+    version: 1.1.2
+
+  - title: Inventory Printer
+    artifactId: org.apache.felix.inventory
+    version: 1.0.6
+
+  - title: iPOJO (Core)
+    artifactId: org.apache.felix.ipojo
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO Runtime Project (containing all iPOJO runtime modules)
+    artifactId: org.apache.felix.ipojo.runtime-project
+    version: 1.12.1
+    source-classifier: source-release
+
+  - title: iPOJO Architecture Command for the Felix Shell
+    artifactId: org.apache.felix.ipojo.arch
+    version: 1.6.0
+    source-classifier: project
+
+  - title: iPOJO Architecture Command for Gogo
+    artifactId: org.apache.felix.ipojo.gogo
+    version: 1.12.1
+    source-classifier: source-release
+
+  - title: iPOJO Composite
+    artifactId: org.apache.felix.ipojo.composite
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO Annotations
+    artifactId: org.apache.felix.ipojo.annotations
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO Ant Task and CLI
+    artifactId: org.apache.felix.ipojo.ant
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO BND Plugin
+    artifactId: bnd-ipojo-plugin
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO WebConsole Plugin
+    artifactId: org.apache.felix.ipojo.webconsole
+    version: 1.7.0
+    source-classifier: project
+
+  - title: iPOJO API
+    artifactId: org.apache.felix.ipojo.api
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO Manipulator
+    artifactId: org.apache.felix.ipojo.manipulator
+    version: 1.12.1
+    source-classifier: project
+
+  - title: iPOJO Manipulator Project (containing all iPOJO manipulator modules)
+    artifactId: org.apache.felix.ipojo.manipulator-project
+    version: 1.12.1
+    source-classifier: source-release
+
+  - title: iPOJO Whiteboard pattern handler
+    artifactId: org.apache.felix.ipojo.handler.whiteboard
+    version: 1.6.0
+    source-classifier: project
+
+  - title: iPOJO Extender pattern handler
+    artifactId: org.apache.felix.ipojo.handler.extender
+    version: 1.4.0
+    source-classifier: project
+
+  - title: iPOJO JMX handler
+    artifactId: org.apache.felix.ipojo.handler.jmx
+    version: 1.4.0
+    source-classifier: project
+
+  - title: iPOJO Event Admin handler
+    artifactId: org.apache.felix.ipojo.handler.eventadmin
+    version: 1.8.0
+    source-classifier: project
+
+  - title: iPOJO Temporal Dependency handler
+    artifactId: org.apache.felix.ipojo.handler.temporal
+    version: 1.6.0
+    source-classifier: project
+
+  - title: Jaas Support Bundle
+    artifactId: org.apache.felix.jaas
+    version: 1.0.2
+    source-classifier: source-release
+    changelog: changelog.txt
+
+  - title: Jaas Support Boot Classpath Jar
+    artifactId: org.apache.felix.jaas
+    version: 1.0.2
+    source-classifier: source-release
+    classifier: boot
+    changelog: changelog.txt
+
+  - title: junit4osgi
+    artifactId: org.apache.felix.ipojo.junit4osgi
+    version: 1.0.0
+    source-classifier: project
+
+    changelog: doc/changelog.txt
+
+  - title: junit4osgi - shell command
+    artifactId: org.apache.felix.ipojo.junit4osgi.felix-command
+    version: 1.0.0
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: junit4osgi - swing gui
+    artifactId: org.apache.felix.ipojo.junit4osgi.swing-gui
+    version: 1.0.0
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Lightweight HTTP Service Core
+    artifactId: org.apache.felix.httplite.core
+    version: 0.1.4
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Lightweight HTTP Service Complete
+    artifactId: org.apache.felix.httplite.complete
+    version: 0.1.4
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Log
+    artifactId: org.apache.felix.log
+    version: 1.2.2
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Log Extension
+    artifactId: org.apache.felix.log.extension
+    version: 1.0.0
+
+  - title: Logback
+    artifactId: org.apache.felix.logback
+    version: 1.0.2
+
+  - title: Main
+    artifactId: org.apache.felix.main
+    version: 7.0.0
+    source-classifier: project
+    changelog: main/doc/changelog.txt
+
+  - title: Metatype
+    artifactId: org.apache.felix.metatype
+    version: 1.2.4
+
+  - title: OSGi OBR service API
+    artifactId: org.osgi.service.obr
+    version: 1.0.2
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Preferences
+    artifactId: org.apache.felix.prefs
+    version: 1.1.0
+
+  - title: Remote Shell
+    artifactId: org.apache.felix.shell.remote
+    version: 1.1.2
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Resolver
+    artifactId: org.apache.felix.resolver
+    version: 2.0.2
+    changelog: doc/changelog.txt
+
+  - title: SCR (Declarative Services)
+    artifactId: org.apache.felix.scr
+    version: 2.1.26
+
+  - title: SCR Compat (Declarative Services)
+    artifactId: org.apache.felix.scr.compat
+    version: 1.0.4
+
+  - title: SCR Annotations
+    artifactId: org.apache.felix.scr.annotations
+    version: 1.12.0
+
+  - title: SCR DS Annotations
+    artifactId: org.apache.felix.scr.ds-annotations
+    version: 1.2.10
+
+  - title: SCR Generator
+    artifactId: org.apache.felix.scr.generator
+    version: 1.18.4
+    source-classifier: project
+
+  - title: Shell
+    artifactId: org.apache.felix.shell
+    version: 1.4.3
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: Shell Text UI
+    artifactId: org.apache.felix.shell.tui
+    version: 1.4.1
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: UPnP Base Driver (JDK 1.4+)
+    artifactId: org.apache.felix.upnp.basedriver
+    version: 0.8.0
+    source-classifier: project
+
+  - title: UPnP Base Driver (JDK 1.3)
+    artifactId: org.apache.felix.upnp.basedriver
+    version: 0.8.0
+    source-classifier: project
+    classifier: jdk13
+
+  - title: UPnP Extra
+    artifactId: org.apache.felix.upnp.extra
+    version: 0.4.0
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: UPnP Tester
+    artifactId: org.apache.felix.upnp.tester
+    version: 0.4.0
+    source-classifier: project
+    changelog: doc/changelog.txt
+
+  - title: User Admin
+    artifactId: org.apache.felix.useradmin
+    version: 1.0.4
+    source-classifier: project
+
+  - title: User Admin File-based store
+    artifactId: org.apache.felix.useradmin.filestore
+    version: 1.0.2
+    source-classifier: project
+
+  - title: User Admin MongoDB-based store
+    artifactId: org.apache.felix.useradmin.mongodb
+    version: 1.0.1
+    source-classifier: project
+
+  - title: Utils
+    artifactId: org.apache.felix.utils
+    version: 1.11.0
+    changelog: doc/changelog.txt
+
+  - title: Web Console
+    artifactId: org.apache.felix.webconsole
+    version: 4.6.0
+
+  - title: Web Console (all-in-one bundle)
+    artifactId: org.apache.felix.webconsole
+    version: 4.6.0
+    classifier: all
+
+  - title: Web Console DS Plugin
+    artifactId: org.apache.felix.webconsole.plugins.ds
+    version: 2.1.0
+
+  - title: Web Console Event Admin Plugin
+    artifactId: org.apache.felix.webconsole.plugins.event
+    version: 1.1.8
+
+  - title: Web Console Memory Usage Plugin
+    artifactId: org.apache.felix.webconsole.plugins.memoryusage
+    version: 1.0.10
+
+  - title: Web Console OBR Plugin
+    artifactId: org.apache.felix.webconsole.plugins.obr
+    version: 1.0.4
+
+  - title: Web Console PackageAdmin Plugin
+    artifactId: org.apache.felix.webconsole.plugins.packageadmin
+    version: 1.0.4
+
+  - title: Web Console Script Console Plugin
+    artifactId: org.apache.felix.webconsole.plugins.scriptconsole
+    version: 1.0.2
+    source-classifier: project
+
+  - title: Web Console ServiceDiagnostics Plugin
+    artifactId: org.apache.felix.servicediagnostics.plugin
+    version: 0.1.3
+    changelog: changelog.txt
+
+  - title: Web Console Subsystems Plugin
+    artifactId: org.apache.felix.webconsole.plugins.subsystem
+    version: 0.1.0
+
+  - title: Web Console UPNP Plugin
+    artifactId: org.apache.felix.webconsole.plugins.upnp
+    version: 1.0.6
+
+  - title: Web Console User Admin Plugin
+    artifactId: org.apache.felix.webconsole.plugins.useradmin
+    version: 1.0.2
+
+# (3) Maven Plugins
+# This list is sorted by the title before writing the table
+# Format: title
+#artifactId
+#version[
+#classifier[
+#extension]]
+
+maven-plugins:
+  - title: Maven Bundle Plugin
+    artifactId: maven-bundle-plugin
+    version: 5.1.1
+    changelog: changelog.txt
+
+  - title: Maven iPOJO Plugin
+    artifactId: maven-ipojo-plugin
+    version: 1.12.1
+
+  - title: Maven junit4osgi Plugin
+    artifactId: maven-junit4osgi-plugin
+    version: 1.0.0
+    changelog: doc/changelog.txt
+
+  - title: Maven OBR Plugin
+    artifactId: maven-obr-plugin
+    version: 1.2.0
+
+  - title: Maven SCR Plugin
+    artifactId: maven-scr-plugin
+    version: 1.26.4
+
+  - title: OSGi Check Maven Plugin
+    artifactId: osgicheck-maven-plugin
+    version: 0.1.0
+
+  - title: Atomos Maven Plugin
+    artifactId: atomos-maven-plugin
+    version: 0.9.0
+
+# (3) Ant Tasks
+# This list is sorted by the title before writing the table
+# Format: title
+#artifactId
+#version[
+#classifier[
+#extension]]
+ant-tasks:
+  - title: iPOJO Ant Task and CLI
+    artifactId: org.apache.felix.ipojo.ant
+    version: 1.11.0
+
+  - title: SCR Ant Task
+    artifactId: org.apache.felix.scr.ant
+    version: 1.18.0
+
+# (3) Bnd PLugins
+# This list is sorted by the title before writing the table
+# Format: title
+#artifactId
+#version[
+#classifier[
+#extension]]
+
+bnd-plugins:
+  - title: SCR bnd Plugin
+    artifactId: org.apache.felix.scr.bnd
+    version: 1.9.6
+
+  - title: SCR Ext Anno
+    artifactId: org.apache.felix.scr.ext.anno
+    version: 1.0.0
