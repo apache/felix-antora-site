@@ -64,10 +64,6 @@ If this project is not using Maven, refer to the docs for the subproject on how 
 | A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
 | https://github.com/apache/felix-dev/tree/master/inventory[source]
 
-| xref:documentation/subprojects/apache-felix-ipojo.adoc[iPOJO]
-| A sophisticated service-oriented component model to simplify OSGi-based development.
-| https://github.com/apache/felix-dev/tree/master/ipojo[source]
-
 | xref:documentation/subprojects/apache-felix-log.adoc[Log]
 | A simple, memory-based implementation of the OSGi Log service specification.
 | https://github.com/apache/felix-dev/tree/master/log[source]
@@ -121,6 +117,7 @@ The last documentation may be found in the https://github.com/apache/felix-site-
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-autoconf.html[Auto Configuration]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-commons.html[Commons]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-deployment-admin.html[Deployment Admin]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-ipojo.html[iPOJO]
 * xref:documentation/subprojects/apache-felix-jaas.adoc[JAAS Support]
 * xref:documentation/subprojects/apache-felix-lightweight-http-service.adoc[Lightweight HTTP Service]
 * xref:documentation/subprojects/apache-felix-manifest-generator-mangen.adoc[Manifest Generator (mangen)]

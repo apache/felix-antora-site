@@ -1,9 +1,0 @@
-= Advanced Topics
-
-_This page presents some advanced features._
-
-* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/combining-ipojo-and-configuration-admin.adoc[Combining iPOJO and Configuration Admin]
-* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/constructing-pojo-objects-with-factory-methods.adoc[Constructing POJO objects with factory methods]
-* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/how-to-use-ipojo-factories.adoc[How-to use iPOJO factories]
-* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/ipojo-hierarchical-composition-overview.adoc[iPOJO Hierarchical Composition Overview]
-* xref:documentation/subprojects/apache-felix-ipojo/apache-felix-ipojo-userguide/ipojo-advanced-topics/using-stereotypes.adoc[Using @Stereotype]
