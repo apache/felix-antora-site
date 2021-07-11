@@ -1,4 +1,0 @@
-= Apache Felix Deployment Admin
-
-This project implements the OSGi Deployment Admin specification;
-please consult the OSGi Compendium Specification chapter 114 for more information.

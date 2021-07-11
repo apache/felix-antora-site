@@ -120,7 +120,7 @@ The last documentation may be found in the https://github.com/apache/felix-site-
 
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-autoconf.html[Auto Configuration]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-commons.html[Commons]
-* xref:documentation/subprojects/apache-felix-deployment-admin.adoc[Deployment Admin]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-deployment-admin.html[Deployment Admin]
 * xref:documentation/subprojects/apache-felix-jaas.adoc[JAAS Support]
 * xref:documentation/subprojects/apache-felix-lightweight-http-service.adoc[Lightweight HTTP Service]
 * xref:documentation/subprojects/apache-felix-manifest-generator-mangen.adoc[Manifest Generator (mangen)]
