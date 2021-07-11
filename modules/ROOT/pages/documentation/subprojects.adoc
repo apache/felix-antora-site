@@ -118,7 +118,7 @@ The last documentation may be found in the https://github.com/apache/felix-site-
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-commons.html[Commons]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-deployment-admin.html[Deployment Admin]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-ipojo.html[iPOJO]
-* xref:documentation/subprojects/apache-felix-jaas.adoc[JAAS Support]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-jaas.html[JAAS Support]
 * xref:documentation/subprojects/apache-felix-lightweight-http-service.adoc[Lightweight HTTP Service]
 * xref:documentation/subprojects/apache-felix-manifest-generator-mangen.adoc[Manifest Generator (mangen)]
 * xref:documentation/subprojects/apache-felix-maven-obr-plugin.adoc[Maven OBR Plugin]
