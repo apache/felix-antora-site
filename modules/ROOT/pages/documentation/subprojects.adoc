@@ -119,7 +119,7 @@ The following projects are no longer maintained and are not documented in this s
 The last documentation may be found in the https://github.com/apache/felix-site-pub/tree/last-cms repository.
 
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-autoconf.html[Auto Configuration]
-* xref:documentation/subprojects/apache-felix-commons.adoc[Commons]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-commons.html[Commons]
 * xref:documentation/subprojects/apache-felix-deployment-admin.adoc[Deployment Admin]
 * xref:documentation/subprojects/apache-felix-jaas.adoc[JAAS Support]
 * xref:documentation/subprojects/apache-felix-lightweight-http-service.adoc[Lightweight HTTP Service]
