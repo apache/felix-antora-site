@@ -128,5 +128,5 @@ The last documentation may be found in the https://github.com/apache/felix-site-
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-osgi-core.html[OSGi Core]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-script-console-plugin.html[Script Console Plugin]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-serialization-framework.html[Serialization Framework]
-* xref:documentation/subprojects/apache-felix-upnp.adoc[UPnP]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-upnp.html[UPnP]
 * xref:documentation/subprojects/apache-felix-user-admin.adoc[User Admin]
