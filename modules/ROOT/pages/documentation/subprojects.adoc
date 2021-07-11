@@ -113,11 +113,12 @@ If this project is not using Maven, refer to the docs for the subproject on how 
 | https://github.com/apache/felix-dev/tree/master/webconsole[source]
 |===
 
-== Maintenance
+== Retired projects
 
-The following projects are in maintenance mode meaning there is no active development anymore.
+The following projects are no longer maintained and are not documented in this site.
+The last documentation may be found in the https://github.com/apache/felix-site-pub/tree/last-cms repository.
 
-* xref:documentation/subprojects/apache-felix-autoconf.adoc[Auto Configuration]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-autoconf.html[Auto Configuration]
 * xref:documentation/subprojects/apache-felix-commons.adoc[Commons]
 * xref:documentation/subprojects/apache-felix-deployment-admin.adoc[Deployment Admin]
 * xref:documentation/subprojects/apache-felix-jaas.adoc[JAAS Support]

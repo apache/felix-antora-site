@@ -1,4 +1,0 @@
-= Apache Felix Auto Configuration
-
-This project implements the OSGi Auto Configuration specification;
-please consult the OSGi Compendium Specification chapter 115 for more information.
