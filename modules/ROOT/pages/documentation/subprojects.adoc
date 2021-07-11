@@ -122,7 +122,7 @@ The last documentation may be found in the https://github.com/apache/felix-site-
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-lightweight-http-service.html[Lightweight HTTP Service]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-manifest-generator-mangen.html[Manifest Generator (mangen)]
 * https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-maven-obr-plugin.html[Maven OBR Plugin]
-* xref:documentation/subprojects/apache-felix-maven-osgi-plugin.adoc[Maven OSGi Plugin]
+* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-maven-osgi-plugin.html[Maven OSGi Plugin]
 * xref:documentation/subprojects/apache-felix-maven-scr-plugin.adoc[Maven SCR Plugin]
 * xref:documentation/subprojects/mosgi-managed-osgi-framework.adoc[MOSGi Managed OSGi framework]
 * xref:documentation/subprojects/apache-felix-osgi-core.adoc[OSGi Core]
