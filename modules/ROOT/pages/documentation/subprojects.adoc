@@ -1,4 +1,6 @@
 = Apache Felix Subproject Documentation
+:site-pub: https://github.com/apache/felix-site-pub
+:last-cms-subprojects: {site-pub}/blob/last-cms/documentation/subprojects
 
 == Building Apache Felix
 
@@ -112,21 +114,21 @@ If this project is not using Maven, refer to the docs for the subproject on how 
 == Retired projects
 
 The following projects are no longer maintained and are not documented in this site.
-The last documentation may be found in the https://github.com/apache/felix-site-pub/tree/last-cms repository.
+The last documentation may be found in the {site-pub}/tree/last-cms repository.
 
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-autoconf.html[Auto Configuration]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-commons.html[Commons]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-deployment-admin.html[Deployment Admin]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-ipojo.html[iPOJO]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-jaas.html[JAAS Support]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-lightweight-http-service.html[Lightweight HTTP Service]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-manifest-generator-mangen.html[Manifest Generator (mangen)]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-maven-obr-plugin.html[Maven OBR Plugin]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-maven-osgi-plugin.html[Maven OSGi Plugin]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-maven-scr-plugin.html[Maven SCR Plugin]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/mosgi-managed-osgi-framework.html[MOSGi Managed OSGi framework]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-osgi-core.html[OSGi Core]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-script-console-plugin.html[Script Console Plugin]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-serialization-framework.html[Serialization Framework]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-upnp.html[UPnP]
-* https://github.com/apache/felix-site-pub/blob/last-cms/documentation/subprojects/apache-felix-user-admin.html[User Admin]
+* {last-cms-subprojects}/apache-felix-autoconf.html[Auto Configuration]
+* {last-cms-subprojects}/apache-felix-commons.html[Commons]
+* {last-cms-subprojects}/apache-felix-deployment-admin.html[Deployment Admin]
+* {last-cms-subprojects}/apache-felix-ipojo.html[iPOJO]
+* {last-cms-subprojects}/apache-felix-jaas.html[JAAS Support]
+* {last-cms-subprojects}/apache-felix-lightweight-http-service.html[Lightweight HTTP Service]
+* {last-cms-subprojects}/apache-felix-manifest-generator-mangen.html[Manifest Generator (mangen)]
+* {last-cms-subprojects}/apache-felix-maven-obr-plugin.html[Maven OBR Plugin]
+* {last-cms-subprojects}/apache-felix-maven-osgi-plugin.html[Maven OSGi Plugin]
+* {last-cms-subprojects}/apache-felix-maven-scr-plugin.html[Maven SCR Plugin]
+* {last-cms-subprojects}/mosgi-managed-osgi-framework.html[MOSGi Managed OSGi framework]
+* {last-cms-subprojects}/apache-felix-osgi-core.html[OSGi Core]
+* {last-cms-subprojects}/apache-felix-script-console-plugin.html[Script Console Plugin]
+* {last-cms-subprojects}/apache-felix-serialization-framework.html[Serialization Framework]
+* {last-cms-subprojects}/apache-felix-upnp.html[UPnP]
+* {last-cms-subprojects}/apache-felix-user-admin.html[User Admin]
