@@ -1,0 +1,15 @@
+= Apache Felix Shell TUI
+
+The Apache Felix Shell TUI (Textual User Interface) sub-project provides a simple, text-based user interface for the xref:subprojects/apache-felix-shell.adoc[Apache Felix Shell].
+This bundle is not of much use by itself and should always be used in conjunction with the shell service bundle.
+The shell service and shell TUI bundles are used by the standard Felix launcher to provide a means for interacting with the launched Felix framework instance.
+The shell TUI bundle is not required to use the shell service;
+it is possible to use it programmatically, via a GUI interface, or a remote access interface.
+
+Shell TUI supports one configuration property:
+
+* `shell.tui.checkinput` - This is a simple workaround for a JRE bug which can appear when running Shell TUI inside Eclipse;
+the default value is `false`.
+Note that if this workaround is enabled, when running from the command line under Windows, character input is not echoed back to the screen.
+
+To set this property, add it to the `conf/config.properties` file of your Felix installation.

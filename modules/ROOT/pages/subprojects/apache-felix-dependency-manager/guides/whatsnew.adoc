@@ -1,0 +1,71 @@
+= Dependency Manager - What's new in version 4?
+
+Even though the focus for this version is to completely redo the internals, we also added a few new features to the code.
+The most important one is the new thread model, described directly below.
+Apart from that we also added a few smaller features, enumerated below that.
+
+== New thread model
+
+DependencyManager 4 has been significantly reworked to improve support for concurrency.
+The following principles form the basis of the new concurrency model in DM4.
+
+* All external events that influence the state of dependencies are recorded and given to the serial executor of the component.
+We record whatever data comes in, so when the actual job is run by the serial executor, we still have access to the original data without having to access other sources whose state might have changed since.
+* The serial executor of a component will execute a job immediately if it is being called by the thread that is already executing jobs.
+* If the serial executor of a component had not yet started a job, it will queue and start it on the current thread.
+* If the serial executor gets invoked from a different thread than the one currently executing jobs, the job will be put at the end of the queue.
+As mentioned before, any data associated with the event will also be recorded so it is available when the job executes.
+* State in the component and dependency can only be modified via the serial executor thread.
+This means we don't need explicit synchronization anywhere.
+
+DependencyManager 4 now also supports parallel execution of component wiring.
+
+Added support for parallelism: To allow components to be started and handled in parallel, you can now register in the OSGi service registry a ComponentExecutorFactory service that is used to get an Executor for the management of all components dependencies/lifecycle callbacks.
+See javadoc from the org.apache.felix.dm.ComponentExecutorFactory interface for more information.
+
+You can also take a look at the the org.apache.felix.dependencymanager.samples project, which is registering a ComponentExecutorFactory from org.apache.felix.dependencymanager.samples.tpool bundle.
+
+See also the following property in the org.apache.felix.dependencymanager.samples/bnd.bnd
+
+ org.apache.felix.dependencymanager.parallel=\
+ 	'!org.apache.felix.dependencymanager.samples.tpool, *',\
+
+Here, all components will be handled by Executors provided by the ComponentExecutorFactory, except those having a package starting with "org.apache.felix.dependencymanager.samples.tpool" (because the threadpool is itself defined using the Dependency Manager API).
+
+You will find a full description of the new thread model in the xref:subprojects/apache-felix-dependency-manager/reference/thread-model.adoc[Reference] section.
+
+== New features
+
+In addition, some new features have been implemented in dependency manager:
+
+* Auto Config Iterable fields: AutoConfig dependencies can be applied on Iterable<Service>fields in order to be able to traverse currently injected services safely.
+The Iterable must be parameterized with the Service type.
+[see this sample code](https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/dictionary/api/SpellChecker.java) from the source distribution samples.
+* AutoConfig Map field: AutoConfig dependencies can be applied on a field with a Map<Service, Dictionary> type, allowing to traverse currently injected services safely, including service properties.
+The Map must be traversed using the Map.Entry iterator.
+See the _ServiceDependency.setAutConfig(boolean autoConfig)_ http://felix.apache.org/apidocs/dependencymanager/4.0.0/org/apache/felix/dm/ServiceDependency.html[javadoc] for more more informations.
+* Inject Configuration on separate callback instance (FELIX-2707): Configuration can be injected on a separate callback instance, like a CompositionManager for example.
+See the https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/compositefactory/[composite factory example] example available from the source distribution.
+* Added _propagate_ flag in service Adapters (FELIX-4600): you can now choose to propagate or not adaptee service properties.
+* "Top" command in the shell: a "top" command is now available from the shell and can be used to display all top components sorted by their init/start elapsed time.
+* The Annotations plugin can now automatically generate a Require-Capability header on the Dependency Manager Runtime bundle.
+Use "add-require-capability=true" option in the plugin declaration property to enable this new feature (see FELIX-4676):
++
+-plugin: org.apache.felix.dm.annotation.plugin.bnd.AnnotationPlugin;
+add-require-capability=true
+
+* The Configuration Dependency annotation now supports a "name" attribute (FELIX-4777): allow to dynamically configure configuration pids from the @Init method.
+* Added a benchmark tool for dependency manager (not released, only available from the https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.benchmark/[trunk].
+* The Annotations "Factory Sets" are deprecated (FELIX-4684): You can now use a DS-like ComponentFactory API by a nice api which is exported by the runtime bundle.
+See this https://svn.apache.org/repos/asf/felix/trunk/dependencymanager/org.apache.felix.dependencymanager.samples/src/org/apache/felix/dependencymanager/samples/device/annot/DeviceAndParameterFactory.java[example] from the samples in the source distribution.
+* Since the R8 version, a new "[.code]``dm-lambda``" library has been introduced in the distribution.
+This new library allows to programmatically declare OSGi components using a new style based on java8 lambda expressions and other goodies like method references.
+* Since the R8 version, you can now provide "configuration types".
+Configuration types are a new feature that allows you to specify an interface that is implemented by DM and such interface is then injected to your configuration callback instead of an actual configuration dictionary.
+
+== Sample code
+
+The source distribution includes many sample codes which can be run directly under Eclipse and BndTools.
+The samples are available in the  org.apache.felix.dependencymanager.samples/ module.
+Some of the samples require that you configure some pids or factory pids from Web Console, which can be accessed using _http://localhost:8080/system/console/configMgr_ URL.
+Please consult org.apache.felix.dependencymanager.samples/README.samples for up to date instructions on how to execute the various examples.

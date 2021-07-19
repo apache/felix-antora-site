@@ -1,0 +1,186 @@
+= What's New in R15
+
+This section describes some enhancements and API modification which have been performed in the dependency manager r15 release.
+Mainly,
+
+* Support for Java 9/10/11
+* annotation API has been simplified
+* support for user-defined annotation property types
+* DM API has been reworked to simplify the definition of aspect and adapters.
+* Lightweight support for OSGI service scopes
+* The dependency manager is now built using bndtools 3.5.0 as well as with bndlib 3.5.0
+* dependencymanager-deps is not used anymore (all required build time binary dependencies are now downloaded from maven central, and the gradle wrapper jar is also downloaded from the gradlew script).
+Moreover semantic versioning is now using a baseline that is downloaded from maven central.
+
+== API enhancements
+
+Some enhancements have been done in the dm API:
+
+* the api to define aspects and adapters have been reworked (but dm API remains backward compatible)
+* support for http://felix.apache.org/documentation/subprojects/apache-felix-dependency-manager/reference/service-scopes.adoc[service scopes]
+* you can now declare multiple property type interfaces when using Configuration Dependency or Factory Components (this was needed to implement the enhancements for the annotations)
+* configuration dependency using metatypes can now declare property types
+* Allow to specify if propagated configuration dependencies must override service service properties (it was not possible to override service properties with propagated service properties so far)
+* Added the following signatures in Component interface:
+* setInterface(Class serviceName, Dictionary properties)
+* setInterface(Class[] serviceNames, Dictionary properties)
+
+=== Aspect/Adapters API enhancements
+
+So far, aspects or adapters were defined using many methods from DependencyManager or DependencyActivatorBase classes:
+
+For example, in DependencyManager.java, we have many signatures
+
+[source,java]
+ public class DependencyManager {
+     public Component createAdapterService(Class<?> serviceInterface, String serviceFilter) {...}
+     public Component createAdapterService(Class<?> serviceInterface, String serviceFilter, String autoConfig) {...}
+     public Component createAdapterService(Class<?> serviceInterface, String serviceFilter, String add, String change, String remove) {...}
+     public Component createAdapterService(Class<?> serviceInterface, String serviceFilter, String add, String change, String remove, String swap) {...}
+     public Component createAdapterService(Class<?> serviceInterface, String serviceFilter, String autoConfig, Object callbackInstance, String add, String change, String remove, String swap, boolean propagate) {...}
+
+     public Component createFactoryConfigurationAdapterService(String factoryPid, String update, boolean propagate) {...}
+     public Component createFactoryConfigurationAdapterService(String factoryPid, String update, boolean propagate, Object callbackInstance) {...}
+     public Component createFactoryConfigurationAdapterService(String factoryPid, String update, boolean propagate, Class<?> configType) {...}
+     public Component createFactoryConfigurationAdapterService(String factoryPid, String update, boolean propagate, Object callbackInstance, Class<?> configType) {...}
+     public Component createAdapterFactoryConfigurationService(String factoryPid, String update, boolean propagate,String heading, String desc, String localization, PropertyMetaData[] propertiesMetaData) {...}
+
+     public Component createBundleAdapterService(int bundleStateMask, String bundleFilter, boolean propagate) {...}
+     public Component createBundleAdapterService(int bundleStateMask, String bundleFilter, boolean propagate, Object callbackInstance, String add, String change, String remove) {...}
+
+     public Component createResourceAdapterService(String resourceFilter, boolean propagate, Object callbackInstance, String callbackChanged) {...}
+     public Component createResourceAdapterService(String resourceFilter, boolean propagate, Object callbackInstance, String callbackSet, String callbackChanged)
+     public Component createResourceAdapterService(String resourceFilter, Object propagateCallbackInstance, String propagateCallbackMethod, Object callbackInstance, String callbackChanged) {...}
+     public Component createResourceAdapterService(String resourceFilter, Object propagateCallbackInstance, String propagateCallbackMethod, Object callbackInstance, String callbackSet, String callbackChanged) {...}
+
+     public Component createAspectService(Class<?> serviceInterface, String serviceFilter, int ranking, String autoConfig) {...}
+     public Component createAspectService(Class<?> serviceInterface, String serviceFilter, int ranking) {...}
+     public Component createAspectService(Class<?> serviceInterface, String serviceFilter, int ranking, String add, String change, String remove) {...}
+     public Component createAspectService(Class<?> serviceInterface, String serviceFilter, int ranking, String add, String change, String remove, String swap) {...}
+     public Component createAspectService(Class<?> serviceInterface, String serviceFilter, int ranking, Object callbackInstance, String add, String change, String remove, String swap) {...}
+
+So, in this new release, we have simplified the usage of the aspect/adapters like this: instead of having to use some of the many methods from the DependencyManager or DependencyActivatorBase, we have added some new interfaces for the aspect and adapters, and these interfaces are extending the Component interface.
+All other existing methods have been moved to DependencyManagerCompat/DependencyActivatorBaseCompat classes and the DependencyManager/DependencyActovatorBase classes are now extending the compat classes: this allows to simplify the reading of the javadocs for DependencyManager/DependencyActovatorBase.
+
+For example, let's first show how an factory pid component was declared so far (a factory pid component is one which can be instantated multiple times using a "factory configuration" created using standard "configuration admin" service):
+
+[source,java]
+ public class Activator extends DependencyActivatorBase {
+     @Override
+     public void init(BundleContext context, DependencyManager dm) throws Exception {
+         dm.add(createFactoryConfigurationAdapterService("my.factory.pid", "updated", true, MyConfig.class)
+             .setInterface(MyService.class.getName(), null)
+             .setImplementation(MyServiceImpl.class)
+             .add(createServiceDependency().setService(LogService.class))); // NullObject
+     }
+ }
+
+So, now, there is a new FactoryComponent interface which extends the Component interface and it contains all the various parameters used when declaring a factory pid component.
+So the example above becomes:
+
+[source,java]
+ public class Activator extends DependencyActivatorBase {
+     @Override
+     public void init(BundleContext context, DependencyManager dm) throws Exception {
+         dm.add(createFactoryComponent()
+             .setFactoryPid("my.factory.pid")
+             .setPropagate(true)
+             .setConfigType(MyConfig.class)
+             .setInterface(MyService.class.getName(), null)
+             .setImplementation(MyServiceImpl.class)
+             .add(createServiceDependency().setService(LogService.class))); // NullObject
+     }
+ }
+
+You will find the javadoc of the new dm api http://felix.apache.org/apidocs/dependencymanager/r15[here]
+
+=== Support for multiple configuration types in callbacks
+
+The ConfigurationDependency and Factory components can now support updated callbacks with multiple configuration types, for example, the following Activator defines a factory component (using the enhanced api) and multiple configuration types can now be provided:
+
+[source,java]
+----
+public class Activator extends DependencyActivatorBase {
+    @Override
+    public void init(BundleContext context, DependencyManager dm) throws Exception {
+        Component factoryComponent = createFactoryComponent()
+        	.setFactoryPid(pid).
+        	.setConfigType(MyConfig1.class, MyConfig2.class)
+        	.setImplementation(MyComponent.class);
+        dm.add(factoryComponent);
+    }
+}
+
+public class MyComponent {
+    void updated(MyConfig1 cnf1, MyConfig2 cnf2) { ... }
+}
+----
+
+Moreover, you can define a Dictionary parameter as the first argument in the updated callback, because sometimes, it's useful to be injected with the raw dictionary configuration, as well as with the configuration types.
+Example:
+
+[source,java]
+ public class MyComponent {
+     void updated(Dictionary<String, Object> rawConfig, MyConfig1 cnf1, MyConfig2 cnf2) { ... }
+ }
+
+so, the new signatures for the updated callbacks are now the following (for both ConfigurationDependency and Factory Component):
+
+[source,java]
+ updated(Dictionary cnf)
+ updated(Component comp, Dictionary cnf)
+ updated(Component comp, Property interfaces ...)
+ updated(Property interfaces ...)
+ updated(Dictionary cnf, Property interfaces ...)
+ updated(Component comp, Dictionary cnf, Property interfaces ...)
+
+== Annotations enhancements and changes
+
+Essentially, the following enhancements and modifications have been done regarding annotations:
+
+* added support for new user defined property type annotations (similar to OSGI R7).
+* annotations using standard r7 @ComponentPropertyType are also supported.
+Indeed, not only declarative service is using this annotation, other r7 apis like jaxrs whiteboard are also defining some annotations that are themselves annotated with @ComponentPropertyType;
+so it is important to support this annotation (The dm annotation plugin has been enhanced by reusing some part of the ds annotation scanner from bndlib, which is full of reusable useful code which has been applied to dm (scanning of property types, PREFIX_, etc ...)
+* Allow ServiceDependency to auto detect the service type when the annotation is applied on a collection class field
+* removed FactoryComponentAdapterService (some attributes have been added in the Component annotation in order to declare factory pid components with the @Component annotation)
+* removed some old annotations / attributes.
+The attributes and annotations related to metatype have been removed since you can now use the standard metatype annotations.
+if users need to old version, then they can simply use the previous 4.2.1 from old dm annotation api.
+Notice that the dm runtime is compatible with old and new annotations version, so you can use latest dm annotation runtime and old annotation api.
+* removed "dereference" attribute in ServiceDependencyAnnotation, because we can now infer if the service dependency callbacks accepts a ServiceReference or a ServiceObjects parameter
+* propagated configuration dependencies are now taking precedence over component service properties, meaning that a component is defined with some service properties, then the service properties which are also found from the propagated configuration will be overriden (by the configuration properties)
+* Since some incompatible changes have been made, the major version of the annotation bundle has been bumped to 5.0.0.
+
+Please check new xref:subprojects/apache-felix-dependency-manager/reference/dm-annotations.adoc[dependency manager annotations doc]
+
+=== Not backward compatible annotation changes
+
+The following has been removed in the annotation api:
+
+* removed FactoryConfigurationAdapterService annotation, which was too verbose.
+when you need to define some factory pid component, just reuse the @Component annotation and declare the new factoryPid/propagate/updated attributes that have been added in the @Component annotation
+* Removed PropertyMetadata annotation: it was related to metatypes, but as of today, osgi metatypes can be defined using standard metatype annotations.
+No need to support this anymore.
+* Removed ResourceAdapterService and ResourceDependency annotations because it was needed to depend on some classes from the dependency manager API.
+The DM Api should be used directly.
+* Removed the following attributes from the Component annotation: -- FACTORY_NAME -- FACTORY_INSTANCE -- factorySet -- factoryMethod These attributes were used to be able to create component instances multiple times.
+Now, simply use factoryPid Component attribute and use standard Configuration Admin in order to instantiate multiple instances of a given service (using factory configuration).
+* Removed PropertyMetaData annotation, which was related to osgi metatype.
+Simply use standard metatype annotation.
+* propagated configuration dependencies are now taking precedence over component service properties, meaning that a component is defined with some service properties, then the service properties which are also found from the propagated configuration will be overriden (by the configuration properties)
+
+== Usage of Java 9/10/11
+
+When using Java 9 / 10 / 11, then you can't use fluent service properties anymore with dm-lambda,  because in these new jdk versions, the "-parameters" option does not generate lambda parameters  metadata anymore.
+So, the following example won't work *using jdk 9/10/11*  (but still works using Java 8):
+
+[source,java]
+ component(comp -> comp.impl(Foo.class).provides(FooService.class, property -> "service property value"));
+
+With Java 9/10/11, use this instead:
+
+[source,java]
+ component(comp -> comp.impl(Foo.class).provides(FooService.class, "property", "service property value"));
+
+The fluent service properties using lambda expression maybe removed in future DM version if a solution is not found to make it working with Java 9/10/11

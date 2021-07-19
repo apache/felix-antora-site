@@ -1,0 +1,109 @@
+=  Apache Felix Framework Bundle Cache
+
+* xref:#_introduction[Introduction]
+* xref:#_default_behavior[Default Behavior]
+* xref:#_configuring_default_behavior[Configuring Default Behavior]
+
+== Introduction
+
+The OSGi specification states that the framework must cache bundles and their run-time state, but it does not explicitly define how this should be done.
+As a result, each OSGi framework implementation is likely to cache bundles differently.
+This document describes in detail how the Felix framework handles bundle caching by default and also describes the mechanisms to modify this default behavior.
+
+== Default Behavior
+
+Since the OSGi R4.2 specification, the standard framework launching and embedding API requires that frameworks should use "reasonable defaults" for all configuration properties so it is possible to start a framework without any configuration.
+One such default value is the location of the framework bundle cache.
+When the Felix framework is start, it creates a bundle cache directory, called `felix-cache`, in the current working directory by default.
+All bundle information is saved inside the bundle cache directory.
+
+The structure of a bundle cache directory is reasonably simple;
+it contains a directory for each bundle, where the directory name corresponds to the bundle identifier number.
+Each bundle directory contains a file for the bundle's location, identifier, start level, state, and a directory containing the bundle JAR file and any extracted embedded JAR files or native libraries if any exist.
+As an example, the bundle cache directory for a bundle containing an embedded JAR file and a native library looks like this:
+
+    ${user.dir}
+       felix-cache/
+          bundle4/
+             bundle.id
+             bundle.lastmodified
+             bundle.location
+             bundle.startlevel
+             bundle.state
+             data/
+             version0.0/
+                revision.location
+                bundle.jar
+                bundle.jar-embedded/
+                   embedded.jar
+                bundle.jar-lib/
+                   0/
+                      libnative.so
+
+The above directory structure indicates that the imaginary bundle is cached in the `felix-cache` in the current working directory and "4" is its bundle identifier.
+Additionally, besides the bundle JAR file, the bundle has one embedded JAR file and one native library.
+The naming convention is rather straightforward and consistent, although the directory structure may seem rather indirect.
+The precise details behind the rationale for the directory structure around embedded JAR files and native libraries is not so important, but suffice it to say it results from how fragment content can be shared among hosts.
+
+All cached bundle directories will follow the basic pattern displayed above, except for the names of the embedded JAR files and native libraries.
+Embedded JAR files and native libraries use the names specified in the bundle manifest and may also include sub-directories to avoid name clashes.
+The naming convention for the directory containing the bundle JAR file, `version0.0`, requires further explanation.
+
+The bundle JAR directory uses a numbering scheme to keep track of the number of times a bundle is updated and the number of times it is refreshed;
+the name of the directory maps like this: `version<refresh-count>.<revision-count>`.
+The reasoning behind this is tricky.
+It is necessary to keep track of the revision count because the OSGi specification requires when a bundle is updated that the update takes effect immediately.
+However, it also requires that old packages from older revisions of the updated bundle are kept available until a refresh of the framework is performed.
+As a result, it is possible for multiple revisions of a bundle JAR to be providing packages at a given time.
+
+For example, if a bundle provides package `foo` and it is updated and now provides packages `foo` and `bar`, then after the update `foo` will be supplied from the older revision and `bar` will be supplied from the newer revision.
+This is possible for any number of updates, thus the bundle JAR directory must keep each revision around until a refresh is performed.
+Such "revision directories" are generally only run-time directories and are removed when the framework is shutdown or refreshed, they are not intended to exist for multiple sessions of execution.
+
+To illustrate, upon initial installation, the bundle JAR file is placed into a revision directory named `revision0.0`.
+When an update is performed, the updated bundle JAR file is placed in a directory named `revision0.1`.
+If another update is performed without a refresh of the framework, the newer revision will be placed into a directory named `revision0.2` and so on.
+When the framework is refreshed or shutdown, all revision directories are purged from the bundle cache and only the most recent revision directory is maintained.
+
+Simply purging the old revision directories may appear adequate for refreshing the framework, but it is not due to how the JVM handles native libraries.
+When a native library is loaded it is associated with a specific class loader;
+no other class loader can load the same native library.
+The uniqueness of a native library is determined by its absolute path in the file system.
+Consequently, when the framework is refreshed, it is necessary to recreate the class loaders for all refreshed bundles.
+If a refreshed bundle has a native library, then this would result in an exception since the native library is still associated with the prior class loader;
+the refresh counter remedies this situation.
+
+After purging all old revision directories, the current revision directory is renamed based on the current refresh count.
+By renaming the directory, it is possible to re-load the native library since its path in the file system has changed.
+The old class loaders and native libraries will eventually be garbage collected.
+The current refresh count is stored in a file, called `refresh.counter`, in the bundle's directory.
+To illustrate, if a bundle was updated and has two revision directories, `revision0.0` and `revision0.1`, after a refresh the older revision directory will be deleted and the newest revision directory will be renamed to `revision1.0`.
+If the bundle is refresh again, its revision directory will become `revision2.0` and so on.
+Note: Bundles may be refreshed when they are updated or when they depend on other bundles that have been updated;
+either way it is necessary to increment the refresh count and rename the revision directory during a refresh operation.
+
+== Configuring Default Behavior
+
+It is possible to modify the default behavior of Felix' bundle cache by setting certain configuration properties;
+see the xref:subprojects/apache-felix-framework/apache-felix-framework-usage-documentation.adoc#_configuring_the_framework[usage document] for information on how to set configuration properties for Felix.
+Felix' bundle cache recognizes the following configuration properties:
+
+* `org.osgi.framework.storage` - Sets the directory to use as the bundle cache;
+by default bundle cache directory is `felix-cache` in the current working directory.
+The value should be a valid directory name.
+The directory name can be either absolute or relative.
+Relative directory names are relative to the current working directory.
+The specified directory will be created if it does not exist.
+* `org.osgi.framework.storage.clean` - Determines whether the bundle cache is flushed.
+The value can either be "[.code]``none``" or "[.code]``onFirstInit``", where "[.code]``none``" does not flush the bundle cache and "[.code]``onFirstInit``" flushes the bundle cache when the framework instance is first initialized.
+The default value is "[.code]``none``".
+* `felix.cache.rootdir` - Sets the root directory to use to calculate the bundle cache directory for relative directory names.
+If `org.osgi.framework.storage` is set to a relative name, by default it is relative to the current working directory.
+If this property is set, then it will be calculated as being relative to the specified root directory.
+* `felix.cache.bufsize` - Sets the buffer size to be used by the cache;
+the default value is 4096.
+The integer value of this string provides control over the size of the internal buffer of the disk cache for performance reasons.
+
+To be clear, if a relative bundle cache directory is specified then the absolute location of the bundle cache directory is computed like this: `$\{felix.cache.rootdir}+$\{org.osgi.framework.storage`}, where `felix.cache.rootdir` has the default value of the current working directory.
+If `$\{org.osgi.framework.storage`} is specified as absolute, then it is used as the location of the bundle cache.
+If the bundle cache directory does not exist, it is created.

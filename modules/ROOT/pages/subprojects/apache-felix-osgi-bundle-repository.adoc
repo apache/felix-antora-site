@@ -1,0 +1,344 @@
+= Apache Felix OSGi Bundle Repository (OBR)
+
+
+
+== Motivation
+
+The goal of the Apache Felix OSGi Bundle Repository (OBR) is two-fold:
+
+. To simplify deploying and using available bundles with Felix.
+. To encourage independent bundle development so that communities of interest can grow.
+
+OBR achieves the first goal by providing a service that can automatically install a bundle, with its deployment dependencies, from a bundle repository.
+This makes it easier for people to experiment with existing bundles.
+The second goal is achieved by raising the visibility of the available bundles and providing access to both the executable bundle and its source code.
+Hopefully, by making OBR and the bundles themselves more visible, community members will be encouraged to provide or improve service implementations.
+
+NOTE: OBR provides access to the Felix' default bundle repository, but you can also use it to deploy your own bundles by creating a bundle repository meta-data file for your local bundles;
+see the `obr list-url`, `obr add-url`, and `obr remove-url` commands for more details.
+
+== Overview
+
+As of release 2.0.x Felix OBR also supports the OSGi Repository 1.0 specification.
+Chapter 132 in the http://www.osgi.org/Download/Release5[OSGi R5 Enterprise specification].
+A client can look up the http://www.osgi.org/javadoc/r5/enterprise/org/osgi/service/repository/package-summary.html[OSGi Repository Service] in the service registry to interact with Felix OBR in a specification compliant way.
+
+For the most part, OBR is quite simple.
+An OBR "repository server" is not necessary, since all functionality may reside on the client side.
+OBR is able to provide its functionality by reading an XML-based meta-data file that describes the bundles available to it.
+The meta-data file essentially contains an XML encoding of the bundles' manifest information.
+From the meta-data, OBR is able to construct dependency information for deploying (i.e., installing and updating) bundles.
+
+OBR defines the following entities:
+
+* *Repository Admin* - a service to access a federation of repositories.
+* *Repository* - provides access to a set of resources.
+* *Resource* - a description of an artifact to be installed on a device.
+* *Capability* - a named set of properties.
+* *Requirement* - an assertion on a capability.
+* *Resolver* - an object to resolve resource dependencies and to deploy them.
+* *Repository file* - XML file containing resource meta-data.
+
+The following diagram illustrates the relationships among these entities:
+
+image::documentation/subprojects/obr-entities.png[alt text]
+
+The client has access to a federated set of repositories via the Repository Admin service;
+such as depicted in this view:
+
+image::documentation/subprojects/obr-high-level.png[alt text]
+
+== OBR Repository File
+
+The OBR repository file is an XML-based representation of bundle meta-data.
+The goal is provide a generic model for describing dependencies among resources;
+as such, the term *resource* is used instead of *bundle* in the OBR repository syntax.
+As of OBR release 2.0.2 two forms of metadata are supported:
+
+* Repository XML as defined by the OSGi Repository Specification 1.0.
+Such an XML file is in the http://www.osgi.org/xmlns/repository/v1.0.0 name space.
+* A Felix OBR-specific metadata format is also supported.
+This format predates the format from the specification.
+
+A detailed description of the standard XML format is described in chapter 132 in the http://www.osgi.org/Download/Release5[OSGi R5 Enterprise specification].
+The following XML snippet depicts the overall structure of a repository file, using the proprietary Felix OBR format:
+
+ <repository presentationname="..." symbolicname="..." ... >
+     <resource>
+         <description>...</description>
+         <size>...</size>
+         <documentation>...</documentation>
+         <source>...</source>
+         <category id="..."/>
+         <capability>...</capability>
+         ...
+         <requirement>...</requirement>
+         ...
+     </resource>
+     ...
+ </repository>
+
+The above repository defines a set of available resources, each described by a set of meta-data.
+Some resource meta-data is purely intended for human consumption;
+the most important aspects relate to the generic capability/requirement model.
+
+A resource can provide any number of capabilities.
+A capability is a typed set of properties.
+For example, the following is an exported package capability:
+
+ <capability name='package'>
+     <p n='package' v='org.foo.bar'/>
+     <p n='version' t='version' v='1.0.0'/>
+ </capability>
+
+This capability is of type 'package' and exports 'org.foo.bar' at version '1.0.0'.
+Conversely, a requirement is a typed LDAP query over a set of capability properties.
+For example, the following is an imported package requirement:
+
+ <require name='package' extend='false'
+     multiple='false' optional='false'
+     filter='(&amp;(package=org.foo.bar)(version&gt;=1.0.0))'>
+     Import package org.foo.bar
+ </require>
+
+This requirement is of type 'package' and imports 'org.foo.bar' at versions greater than '1.0.0'.
+Although this syntax looks rather complicated with the '\&' and '\>=' syntax, it is simply the standard OSGi LDAP query syntax in XML form (additionally, Peter Kriens has created a tool called `bindex` to generate this meta-data from a bundle's manifest).
+
+With this generic dependency model, OBR is able to provide mappings for the various OSGi bundle dependencies;
+e.g., import/export package, provide/require bundle, host/fragment, import/export service, execution environment, and native code.
+In addition, it is possible for bundles to introduce arbitrary dependencies for custom purposes.
+
+Two other important pieces of meta-data are `Bundle-SymbolicName` and `Bundle-Version`;
+these are standard OSGi bundle manifest attributes that OBR uses to uniquely identify a bundle.
+For example, if you want to use OBR to update a locally installed bundle, OBR gets its symbolic name and version and searches the repository metadata for a matching symbolic name.
+If the matching symbolic name is found, then OBR checks if there is a newer version than the local copy using the bundle version number.
+Thus, the symbolic name plus bundle version forms a unique key to match locally installed bundles to remotely available bundles.
+
+== OBR Service API
+
+Typically, OBR service clients only need to interact with the Repository Admin service, which provides the mechanisms necessary to discover available resources.
+The Repository Admin interface is defined as follows:
+
+ public interface RepositoryAdmin
+ {
+     public Resource[] discoverResources(String filterExpr);
+     public Resolver resolver();
+     public Repository addRepository(URL repository)?
+         throws Exception;
+     public boolean removeRepository(URL repository);
+     public Repository[] listRepositories();
+     public Resource getResource(String respositoryId);
+ }
+
+In order to resolve and deploy available resources, the Repository Admin provides Resolver instances, which are defined as follows:
+
+ public interface Resolver
+ {
+     public void add(Resource resource);
+     public Requirement[] getUnsatisfiedRequirements();
+     public Resource[] getOptionalResources();
+     public Requirement[] getReason(Resource resource);
+     public Resource[] getResources(Requirement requirement);
+     public Resource[] getRequiredResources();
+     public Resource[] getAddedResources();
+     public boolean resolve();
+     public void deploy(boolean start);
+ }
+
+When desired resources are discovered via the query mechanisms of the Repository Admin, they are added to a Resolver instance which will can be used to resolve all transitive dependencies and to reflect on any resolution result.
+The following code snippet depicts a typical usage scenario:
+
+ RepositoryAdmin repoAdmin = ... // Get repo admin service
+ Resolver resolver = repoAdmin.resolver();
+ Resource resource = repoAdmin.discoverResources(filterStr);
+ resolver.add(resource);
+ if (resolver.resolve())
+ {
+     resolver.deploy(true);
+ }
+ else
+ {
+     Requirement[] reqs = resolver.getUnsatisfiedRequirements();
+     for (int i = 0; i < reqs.length; i++)
+     {
+         System.out.println("Unable to resolve: " + reqs[i]);
+     }
+ }
+
+This code gets the Repository Admin service and then gets a Resolver instance from it.
+It then discovers an available resource and adds it to the resolver.
+Then it tries to resolve the resources dependencies.
+If successful it deploys the resource to the local framework instance;
+if not successful it prints the unsatisfied requirements.
+
+OBR's deployment algorithm appears simple at first glance, but it is actually somewhat complex due to the nature of deploying independently developed bundles.
+For example, in an ideal world, if an update for a bundle is made available, then updates for all of the bundles satisfying its dependencies are also made available.
+Unfortunately, this may not be the case, thus the deployment algorithm might have to install new bundles during an update to satisfy either new dependencies or updated dependencies that can no longer be satisfied by existing local bundles.
+In response to this type of scenario, the OBR deployment algorithm tries to favor updating existing bundles, if possible, as opposed to installing new bundles to satisfy dependencies.
+
+In the general case, OBR user's will not use the OBR API directly, but will use its functionality indirectly from another tool or user interface.
+For example, interactive access to OBR is available via a command for Felix' xref:subprojects/apache-felix-shell.adoc[shell service].
+The OBR shell command is discussed in the next section.
+
+== OBR Shell Command
+
+Besides providing a service API, OBR implements a Felix shell command for accessing its functionality.
+For the end user, the OBR shell command is accessed using the text-based or GUI-based user interfaces for Felix' shell service.
+This section describes the syntax for the OBR shell command.
+
+=== obr help
+
+Syntax:
+
+ obr help [add-url | remove-url | list-url | list | info | deploy | start | source | javadoc]
+
+This command is used to display additional information about the other OBR commands.
+
+=== obr list-url
+
+Syntax:
+
+ obr list-url
+
+This command gets the URLs to the repository files used by the Repository Admin.
+
+=== obr add-url
+
+Syntax:
+
+ obr add-url [<repository-file-url> ...]
+
+This command adds a repository file to the set of repository files for which the Repository Admin service provides access.
+The repository file is represented as a URL.
+If the repository file URL is already in the Repository Admin's set of repository files, the request is treated like a reload operation.
+
+=== obr remove-url
+
+Syntax:
+
+ obr remove-url [<repository-file-url> ...]
+
+This command removes a repository file to the set of repository files for which the Repository Admin service provides access.
+The repository file is represented as a URL.
+
+=== obr list
+
+Syntax:
+
+ obr list [<string> ...]
+
+This command lists bundles available in the bundle repository.
+If no arguments are specified, then all available bundles are listed, otherwise any arguments are concatenated with spaces and used as a substring filter on the bundle names.
+
+=== obr info
+
+Syntax:
+
+ obr info <bundle-name>[;<version>] ...
+
+This command displays the meta-data for the specified bundles.
+If a bundle's name contains spaces, then it must be surrounded by quotes.
+It is also possible to specify a precise version if more than one version exists, such as:
+
+ obr info "Bundle Repository";1.0.0
+
+The above example retrieves the meta-data for version "1.0.0" of the bundle named "Bundle Repository".
+
+=== obr deploy
+
+Syntax:
+
+ obr deploy <bundle-name>[;<version>] ... | <bundle-id> ...
+
+This command tries to install or update the specified bundles and all of their dependencies by default.
+You can specify either the bundle name or the bundle identifier.
+If a bundle's name contains spaces, then it must be surrounded by quotes.
+It is also possible to specify a precise version if more than one version exists, such as:
+
+ obr deploy "Bundle Repository";1.0.0
+
+For the above example, if version "1.0.0" of "Bundle Repository" is already installed locally, then the command will attempt to update it and all of its dependencies;
+otherwise, the command will install it and all of its dependencies.
+
+=== obr start
+
+Syntax:
+
+ obr start [-nodeps] <bundle-name>[;<version>] ...
+
+This command installs and starts the specified bundles and all of their dependencies by default;
+use the "-nodeps" switch to ignore dependencies.
+If a bundle's name contains spaces, then it must be surrounded by quotes.
+If a specified bundle is already installed, then this command has no effect.
+It is also possible to specify a precise version if more than one version exists, such as:
+
+ obr start "Bundle Repository";1.0.0
+
+The above example installs and starts the "1.0.0" version of the bundle named "Bundle Repository" and its dependencies.
+
+=== obr source
+
+Syntax:
+
+ obr source [-x] <local-dir> <bundle-name>[;<version>] ...
+
+This command retrieves the source archives of the specified bundles and saves them to the specified local directory;
+use the "-x" switch to automatically extract the source archives.
+If a bundle name contains spaces, then it must be surrounded by quotes.
+It is also possible to specify a precise version if more than one version exists, such as:
+
+ obr source /home/rickhall/tmp "Bundle Repository";1.0.0
+
+The above example retrieves the source archive of version "1.0.0" of the bundle named "Bundle Repository" and saves it to the specified local directory.
+
+=== obr javadoc
+
+Syntax:
+
+ obr javadoc [-x] <local-dir> <bundle-name>[;<version>] ...
+
+This command retrieves the javadoc archives of the specified bundles and saves them to the specified local directory;
+use the "-x" switch to automatically extract the javadoc archives.
+If a bundle name contains spaces, then it must be surrounded by quotes.
+It is also possible to specify a precise version if more than one version exists, such as:
+
+ obr javadoc /home/rickhall/tmp "Bundle Repository";1.0.0
+
+The above example retrieves the javadoc archive of version "1.0.0" of the bundle named "Bundle Repository" and saves it to the specified local directory.
+
+== Using OBR with a Proxy
+
+If you use a proxy for Web access, then OBR will not work for you in its default configuration;
+certain system properties must be set to enable OBR to work with a proxy.
+These properties are:
+
+* http.proxyHost - the name of the proxy host.
+* http.proxyPort - the port of the proxy host.
+* http.proxyAuth - the user name and password to use when connecting to the proxy;
+this string should be the user name and password separated by a colon (e.g., rickhall:mypassword).
+
+These system properties can be set directly on the command line when starting the JVM using the standard "-D<prop>=<value>" syntax or you can put them in the lib/system.properties file of your Felix installation;
+see documentation on configuring Felix for more information.
+
+== Bundle Source Packaging
+
+Coming soon...
+
+== Note on OSGi R3 Bundles
+
+In contrast to OSGi R4 the previous specifications, most notably R3, allowed bundles without the `Bundle-SymbolicName` header.
+The Felix OSGi Bundle Repository implementation heavily relies on the symbolic name being defined in bundles.
+As a consequence bundles without a symbolic name are not fully supported by the Bundle Repository:
+
+* Bundles installed in the framework are used by the Bundle Repository implementation to resolve dependencies regardless of whether they have a `Bundle-SymbolicName` header or not.
+Resolution of dependencies against the installed bundles takes place based on the `Export-Package` headers.
+* Bundles installed in the framework without a `Bundle-SymbolicName` header cannot be updated by the Bundle Repository implementation because updates from the bundle repository cannot be correlated to such "anonymous" bundles.
+
+== Feedback
+
+[cols=2*]
+|===
+| Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
+after subscribing, email questions or feedback to [users@felix.apache.org
+| mailto:users@felix.apache.org].
+|===

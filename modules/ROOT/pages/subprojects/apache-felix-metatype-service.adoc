@@ -1,0 +1,126 @@
+= Apache Felix Metatype Service
+
+The OSGi Metatype specification provides a unified way to describe metadata about services and a Java interface to retrieve and manipulate such information.
+This information can optionally be localized, thus allowing the developer to provide human-readable metadata descriptions in multiple languages.
+The specification defines a rich dynamic typing system to describe service attributes in a precise way, which makes it possible to dynamically create user interfaces to configure services.
+
+The simplest way to specify service metatype information is to add one or more XML files in the `OSGI-INF/metatype` folder.
+For example, the `OSGI-INF/metatype/metatype.xml` file included in the xref:subprojects/apache-felix-file-install.adoc[Apache Felix File Install] subproject is as follows:
+
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0">
+
+  <OCD description="FileInstaller" name="org.apache.felix.fileinstall" id="org.apache.felix.fileinstall">
+
+    <AD name="Poll directory"  id="felix.fileinstall.dir" required="true" type="String" default="load"/>
+    <AD name="Poll interval"  id="felix.fileinstall.poll" required="false" type="String" default="5000"/>
+    <AD name="Debug"  id="felix.fileinstall.debug" required="false" type="String" default="-1"/>
+    <AD name="Start new bundles?"  id="felix.fileinstall.bundles.new.start" required="false" type="String" default="true"/>
+
+  </OCD>
+
+    <Designate pid="org.apache.felix.fileinstall">
+        <Object ocdref="org.apache.felix.fileinstall"/>
+    </Designate>
+
+</metatype:MetaData>
+----
+
+The main elements of this simple example are:
+
+* _OCD_, Object Class Definition;
+contains the information about a set of attributes.
+* _AD_, Attribute Definition;
+describes an attribute (name, description, unique id, type, cardinality, default value, ...).
+* _Designate_, defines the association between an Object Class Definition and a pid;
+the pid can be a reference to a factory or a singleton configuration object.
+
+The following types are supported by the specification:
+
+* String
+* Long
+* Double
+* Float
+* Integer
+* Byte
+* Char
+* Boolean
+* Short
+
+== Localization
+
+As mentioned before, it is possible to localize metatype information.
+A good example is the xref:subprojects/apache-felix-web-console.adoc[Apache Felix Web Console] subproject, which includes the following metatype information:
+
+----
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metatype:MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.0.0" localization="OSGI-INF/metatype/metatype">
+
+    <OCD id="org.apache.felix.webconsole.internal.servlet.OsgiManager" name="%manager.name" description="%manager.description">
+        <AD id="manager.root" type="String" default="/system/console" name="%manager.root.name" description="%manager.root.description"/>
+        <AD id="default.render" type="String" default="bundles" name="%default.render.name" description="%default.render.description"/>
+        <AD id="realm" type="String" default="OSGi Management Console" name="%realm.name" description="%realm.description"/>
+        <AD id="username" type="String" default="admin" name="%username.name" description="%username.description"/>
+        <AD id="password" type="String" default="admin" name="%password.name" description="%password.description"/>
+    </OCD>
+
+    <Designate pid="org.apache.felix.webconsole.internal.servlet.OsgiManager">
+        <Object ocdref="org.apache.felix.webconsole.internal.servlet.OsgiManager"/>
+    </Designate>
+
+</metatype:MetaData>
+----
+
+The key elements to write a localized metatype definition are
+
+* The _localization_ attribute, that points to the property file that localize this XML.
+* The _%_ notation that specifies a localizable string name.
+* One or more property files defining localized strings.
+
+The following example shows the localization property file of the Web Console:
+
+----
+manager.name = Apache Felix OSGi Management Console
+manager.description = Configuration of the Apache Felix OSGi Management Console.
+
+manager.root.name = Root URI
+manager.root.description = The root path to the OSGi Management Console.
+
+realm.name = Realm
+realm.description = The name of the HTTP Authentication Realm.
+
+username.name = User Name
+username.description = The name of the user allowed to access the OSGi \
+ Management Console. To disable authentication clear this value.
+
+password.name = Password
+password.description = The password for the user allowed to access the OSGi \
+ Management Console.
+
+default.render.name = Default Page
+default.render.description = The name of the default configuration page \
+ when invoking the OSGi Management console.
+----
+
+== Metatype Service API
+
+Before using the Metatype Service API, it's worth noting that this specification is not part of the OSGi core specification, so it's not included in the standard Felix distribution.
+It is therefore necessary to download and install the additional Metatype bundle.
+
+Accessing the Metatype service is as simple as performing a lookup in the service registry:
+
+   ServiceReference metatypeRef = bundleContext.getServiceReference(MetaTypeService.class.getName());
+   MetaTypeService service = (MetaTypeService) bundleContext.getService(metatypeRef);
+
+   MetaTypeInformation information = service.getMetaTypeInformation(myBundle);
+
+After retrieving the `MetaTypeInformation` object for the required bundle, we have access to all the information contained in the metatype XML definition.
+In particular, it is possible to access the ObjectClassDefinition (optionally specifying a locale):
+
+   ObjectClassDefinition ocd = information.getObjectClassDefinition(pid, locale);
+
+With the `ObjectClassDefinition`, it is possible to retrieve all the attribute definitions:
+
+   AttributeDefinition[] attributes = ocd.getAttributeDefinitions(ObjectClassDefinition.ALL);

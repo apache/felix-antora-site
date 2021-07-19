@@ -4,85 +4,61 @@
 
 indexList::[relative=*.adoc]
 
-* Documentation
-
-indexList::[level=2,relative=documentation/*.adoc]
-
 ** Community
 
-indexList::[level=3,relative=documentation/community/*.adoc]
+indexList::[level=3,relative=community/*.adoc]
 
 ** Development
 
-indexList::[level=3,relative=documentation/development/*.adoc]
+indexList::[level=3,relative=development/*.adoc]
 
 ** FAQS
 
-indexList::[level=3,relative=documentation/faqs/*.adoc]
+indexList::[level=3,relative=faqs/*.adoc]
 
 ** Subprojects
 
-indexList::[level=3,relative=documentation/subprojects/*.adoc]
-
-*** Commons (retired)
-
-indexList::[level=4,relative=documentation/subprojects/apache-felix-commons/*.adoc]
+indexList::[level=3,relative=subprojects/*.adoc]
 
 *** Dependency Manager
 **** Guides
 
-indexList::[level=5,relative=documentation/subprojects/apache-felix-dependency-manager/guides/*.adoc]
+indexList::[level=5,relative=subprojects/apache-felix-dependency-manager/guides/*.adoc]
 
 **** Reference
 
-indexList::[level=5,relative=documentation/subprojects/apache-felix-dependency-manager/reference/*.adoc]
+indexList::[level=5,relative=subprojects/apache-felix-dependency-manager/reference/*.adoc]
 
 **** Tutorials
 
-indexList::[level=5,relative=documentation/subprojects/apache-felix-dependency-manager/tutorials/*.adoc]
+indexList::[level=5,relative=subprojects/apache-felix-dependency-manager/tutorials/*.adoc]
 
 *** Framework
 
-indexList::[level=4,relative=documentation/subprojects/apache-felix-framework/*.adoc]
+indexList::[level=4,relative=subprojects/apache-felix-framework/*.adoc]
 
 *** GoGo Shell
 
-indexList::[level=4,relative=documentation/subprojects/apache-felix-gogo/*.adoc]
-
-*** iPOJO (retired)
-
-indexList::[level=4,relative=documentation/subprojects/apache-felix-ipojo/**/*.adoc]
+indexList::[level=4,relative=subprojects/apache-felix-gogo/*.adoc]
 
 *** Maven SCR plugin
 
-indexList::[level=4,relative=documentation/subprojects/apache-felix-maven-scr-plugin/*.adoc]
-
-*** UPNP (retired)
-
-indexList::[level=4,relative=documentation/subprojects/apache-felix-upnp/**/*.adoc]
-
-*** User Admin (retired)
-
-indexList::[level=4,relative=documentation/subprojects/apache-felix-user-admin/*.adoc]
+indexList::[level=4,relative=subprojects/apache-felix-maven-scr-plugin/*.adoc]
 
 *** Web Console
 
-indexList::[level=4,relative=documentation/subprojects/apache-felix-web-console/*.adoc]
+indexList::[level=4,relative=subprojects/apache-felix-web-console/*.adoc]
 
 **** Extensions
 
-indexList::[level=5,relative=documentation/subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/*.adoc]
-
-*** MOSGI (retired)
-
-indexList::[level=4,relative=documentation/subprojects/mosgi-managed-osgi-framework/*.adoc]
+indexList::[level=5,relative=subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/*.adoc]
 
 ** Tutorials
 
-indexList::[level=3,relative=documentation/tutorials-examples-and-presentations/*.adoc]
+indexList::[level=3,relative=tutorials-examples-and-presentations/*.adoc]
 
 *** OSGI Tutorial
 
-indexList::[level=4,relative=documentation/tutorials-examples-and-presentations/apache-felix-osgi-tutorial/*.adoc]
+indexList::[level=4,relative=tutorials-examples-and-presentations/apache-felix-osgi-tutorial/*.adoc]
 
 //indexList::[]

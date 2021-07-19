@@ -1,0 +1,134 @@
+= Apache Felix Subproject Documentation
+:site-pub: https://github.com/apache/felix-site-pub
+:last-cms-subprojects: {site-pub}/blob/last-cms/documentation/subprojects
+
+== Building Apache Felix
+
+The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology.
+Most of these projects are in a single git repository, some have moved into separate git repositories.
+
+Use the below table of subprojects to find the git repository for that subproject, if you want to checkout the https://github.com/apache/felix-dev.git[main git repository] with most subprojects use `+git clone https://github.com/apache/felix-dev.git+`, otherwise use the git repository mentioned in the table.
+
+To get started:
+
+* Most Apache Felix projects use Apache Maven as the build tool.
+Therefore, download and install the latest Apache Maven 3 release.
+* Check out or update the git repository (see above).
+* Go to the sub project you're interested in and type: "mvn clean install" to build it.
+If this project is not using Maven, refer to the docs for the subproject on how to build it.
+
+== Active subprojects
+
+|===
+| Name | Description | Source
+
+| https://github.com/apache/felix-atomos[Atomos]
+| An OSGi module connector that enables loading bundles in a variety of environments, such as, jlink image, native-image, Android and flat class path.
+| https://github.com/apache/felix-atomos[source]
+
+| https://github.com/apache/felix-dev/tree/master/configadmin[Config Admin]
+| An implementation of the https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html[OSGi Configuration Admin service specification] for managing bundle configuration properties.
+| https://github.com/apache/felix-dev/tree/master/configadmin[source]
+
+| xref:subprojects/apache-felix-dependency-manager.adoc[Dependency Manager]
+| An API-based component model to simplify OSGi-based development.
+| https://github.com/apache/felix-dev/tree/master/dependencymanager[source]
+
+| xref:subprojects/apache-felix-event-admin.adoc[Event Admin]
+| An implementation of the OSGi Event Admin service specification for event-based communication.
+| https://github.com/apache/felix-dev/tree/master/eventadmin[source]
+
+| xref:subprojects/apache-felix-file-install.adoc[File Install]
+| A simple, directory-based management agent for managing bundle deployment.
+| https://github.com/apache/felix-dev/tree/master/fileinstall[source]
+
+| xref:subprojects/apache-felix-framework.adoc[Framework]
+| An implementation of the OSGi R7 core framework.
+| https://github.com/apache/felix-dev/tree/master/framework[source]
+
+| xref:subprojects/apache-felix-framework-security.adoc[Framework Security]
+|
+| https://github.com/apache/felix-dev/tree/master/framework.security[source]
+
+| xref:subprojects/apache-felix-gogo.adoc[Gogo]
+| An advanced shell for interacting with OSGi frameworks.
+| https://github.com/apache/felix-dev/tree/master/gogo[source]
+
+| xref:subprojects/apache-felix-healthchecks.adoc[Health Checks]
+| An extensible framework to monitor the status of the OSGi container at runtime.
+| https://github.com/apache/felix-dev/tree/master/healthcheck[source]
+
+| https://github.com/apache/felix-dev/tree/master/http[HTTP Service]
+| An implementation of the https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.whiteboard.html[OSGi HTTP Whiteboard] and https://osgi.org/specification/osgi.cmpn/7.0.0/service.http.html[Http Service specification].
+| https://github.com/apache/felix-dev/tree/master/http[source]
+
+| xref:subprojects/apache-felix-inventory.adoc[Inventory Printer]
+| A simple and extensible framework to retrieve inventory information about applications running in an OSGi Framework.
+| https://github.com/apache/felix-dev/tree/master/inventory[source]
+
+| xref:subprojects/apache-felix-log.adoc[Log]
+| A simple, memory-based implementation of the OSGi Log service specification.
+| https://github.com/apache/felix-dev/tree/master/log[source]
+
+| xref:subprojects/apache-felix-logback.adoc[Logback]
+| Apache Felix Logback is a small integration of the https://logback.qos.ch/[Logback] backend with OSGi.
+| https://github.com/apache/felix-dev/tree/master/logback[source]
+
+| xref:subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[Maven Bundle Plugin]
+| A Maven plugin to simplify building bundles.
+| https://github.com/apache/felix-dev/tree/master/tools/maven-bundle-plugin[source]
+
+| xref:subprojects/apache-felix-metatype-service.adoc[Metatype]
+| An implementation of the OSGi Metatype service to describe types needed by bundles.
+| https://github.com/apache/felix-dev/tree/master/shell[source]
+
+| xref:subprojects/apache-felix-osgi-bundle-repository.adoc[OSGi Bundle Repository]
+| A bundle repository service to simplify discovering and deploying bundles and their dependencies.
+| https://github.com/apache/felix-dev/tree/master/org.osgi.service.obr[source]
+
+| xref:subprojects/apache-felix-preferences-service.adoc[Preferences Service]
+| An implementation of the OSGi Preferences service specification for storing settings and preferences.
+| https://github.com/apache/felix-dev/tree/master/preferences[source]
+
+| xref:subprojects/apache-felix-remote-shell.adoc[Remote Shell]
+| A remote, text-based interface to the Apache Felix Shell.
+| https://github.com/apache/felix-dev/tree/master/shell.remote[source]
+
+| https://github.com/apache/felix-dev/tree/master/scr[Service Component Runtime]
+| An implementation of the https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html[OSGi Declarative Services specification] providing a service-oriented component model to simplify OSGi-based development.
+| https://github.com/apache/felix-dev/tree/master/scr[source]
+
+| xref:subprojects/apache-felix-shell.adoc[Shell]
+| A very simple shell service implemented as a bundle for interacting with an OSGi framework instance.
+| https://github.com/apache/felix-dev/tree/master/shell[source]
+
+| xref:subprojects/apache-felix-shell-tui.adoc[Shell TUI]
+| A simple, text-based interface to the Apache Felix Shell.
+| https://github.com/apache/felix-dev/tree/master/shell.tui[source]
+
+| xref:subprojects/apache-felix-web-console.adoc[Web Console]
+| A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
+| https://github.com/apache/felix-dev/tree/master/webconsole[source]
+|===
+
+== Retired projects
+
+The following projects are no longer maintained and are not documented in this site.
+The last documentation may be found in the {site-pub}/tree/last-cms repository.
+
+* {last-cms-subprojects}/apache-felix-autoconf.html[Auto Configuration]
+* {last-cms-subprojects}/apache-felix-commons.html[Commons]
+* {last-cms-subprojects}/apache-felix-deployment-admin.html[Deployment Admin]
+* {last-cms-subprojects}/apache-felix-ipojo.html[iPOJO]
+* {last-cms-subprojects}/apache-felix-jaas.html[JAAS Support]
+* {last-cms-subprojects}/apache-felix-lightweight-http-service.html[Lightweight HTTP Service]
+* {last-cms-subprojects}/apache-felix-manifest-generator-mangen.html[Manifest Generator (mangen)]
+* {last-cms-subprojects}/apache-felix-maven-obr-plugin.html[Maven OBR Plugin]
+* {last-cms-subprojects}/apache-felix-maven-osgi-plugin.html[Maven OSGi Plugin]
+* {last-cms-subprojects}/apache-felix-maven-scr-plugin.html[Maven SCR Plugin]
+* {last-cms-subprojects}/mosgi-managed-osgi-framework.html[MOSGi Managed OSGi framework]
+* {last-cms-subprojects}/apache-felix-osgi-core.html[OSGi Core]
+* {last-cms-subprojects}/apache-felix-script-console-plugin.html[Script Console Plugin]
+* {last-cms-subprojects}/apache-felix-serialization-framework.html[Serialization Framework]
+* {last-cms-subprojects}/apache-felix-upnp.html[UPnP]
+* {last-cms-subprojects}/apache-felix-user-admin.html[User Admin]

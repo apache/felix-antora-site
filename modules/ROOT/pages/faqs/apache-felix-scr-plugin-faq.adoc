@@ -1,0 +1,81 @@
+= Apache Felix SCR Plugin Frequently Asked Questions
+
+
+
+This page provides answers to frequently asked questions using the Maven SCR Plugin.
+See xref:subprojects/apache-felix-maven-scr-plugin.adoc[] for documentation on that plugin.
+
+== Should I still use the Apache Felix SCR annotations over the official OSGi annotations?
+
+Starting with the R6 release of the OSGi Declarative Services and Metatype specification, the official annotations support the same features as the Apache Felix SCR annotations in a more elegant manner and even provide additional functionality.
+Therefore the Apache Felix SCR annotations are now in maintenance mode and therefore you should rather use the official annotations.
+The Apache Felix maven-bundle-plugin, version 3.0.1 or higher supports those directly and there is no need for an additional plugin anymore.
+
+== Why are the (standard) annotations not processed?
+
+In order to process any annotations, a processor for them needs to be added as a dependency to your project.
+There are currently two different processors, one for the annotations defined within the Apache Felix project and another one for the standard annotations from the Declarative Services specification.
+
+== Syntax Error when Enums are used?
+
+During a SCR plugin run, a syntax error might occur if enums are used in the source code.
+This is a know problem of the used QDox version that reads the Java source files.
+Usually this happens when an enum is used inline and does not end with a ";".
+So adding this character should solve the problem:
+
+[source,java]
+----
+public interface MyTest {
+
+    /** more error codes may be added */
+    enum Result {
+        OK, UNKNOWN, ERROR, DENIED
+    };     // <!-- HERE
+
+    /** @return the result */
+    public void getResult();
+}
+----
+
+== NoClassDefFoundError during build
+
+This error might happen with older versions of the Maven SCR Plugins in combination with javadoc tags or newer versions in combination with the annotations.
+In both cases, the scanned classes have to be loaded and static fields have to be initialized.
+If you have have for example something like
+
+[source,java]
+ private static final org.slf4f.Logger LOGGER = org.slf4j.LoggerFactory.getLogger("name");
+
+in your code, during the plugin run, a slf4j logger is tried to be instantiated.
+This requires an implementation of the logger.
+Ususally your module only depends on the slf4j API and therefore a
+
+[source,plaintext]
+ java.lang.NoClassDefFoundError: org/slf4j/impl/StaticLoggerBinder
+
+is thrown - this often happens with slf4j but might also happen with other libraries.
+
+In these cases you should add a dependency to the missing class to the dependency list of the plugin, for example:
+[source,xml]
+ <plugin>
+     <groupId>org.apache.felix</groupId>
+     <artifactId>maven-scr-plugin</artifactId>
+     <version>...</version>
+     <dependencies>
+         <dependency>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-simple</artifactId>
+             <version>1.5.2</version>
+         </dependency>
+     </dependencies>
+     ...
+ </plugin>
+
+or in the special case of slf4j, using slf4j API 1.6 or higher solves the problem as well
+
+== No components or services available at runtime
+
+The SCR plugin generates a descriptor for Declarative Services (see OSGi compendium specification).
+Therefore at runtime, you must have an implementation of DS running in your OSGi framework, like the SCR implementation from the Apache Felix project.
+
+Otherwise your bundle might resolve fine, however no services are registered with the service registry and no components are activated.

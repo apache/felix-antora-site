@@ -1,0 +1,39 @@
+= Dependency Manager - Dependencies
+
+The dependency manager supports many different types of dependencies, all of which can be required or optional.
+A dependency can be added to one or more components and it is possible to add them dynamically (even from within the component itself if necessary, which allows for some really dynamic dependency configuration).
+
+== Injection
+
+One way to deal with dependencies is to have them injected into your component instances automatically.
+All you need to do is simply declare a field of the same type as your dependency, make the member volatile so any changes will become visible immediately and you're done.
+If a dependency is optional, a null object will be injected if the dependency is not available.
+
+Sometimes you need more control over injection, so optionally you can even specify the name of the field to inject into.
+This allows you to depend on different dependencies of the same type, or simply to prevent injection into more than one field.
+
+== Callbacks
+
+When keeping track of multiple instances of a dependency, or when you simply want something to happen whenever a dependency becomes (un)available or changes, you can define callbacks, like `added`, `changed` and `removed`.
+Optionally, you can provide the dependency manager with an instance to invoke these callback methods on.
+If you don't, they'll be invoked on the component instance.
+
+== Types of Dependencies
+
+Out of the box, several types of dependencies are supported:
+
+* xref:subprojects/apache-felix-dependency-manager/reference/dependency-service.adoc[Service]
+* xref:subprojects/apache-felix-dependency-manager/reference/dependency-configuration.adoc[Configuration]
+* xref:subprojects/apache-felix-dependency-manager/reference/dependency-bundle.adoc[Bundle]
+* xref:subprojects/apache-felix-dependency-manager/reference/dependency-resource.adoc[Resource]
+
+However, it's quite easy to add your own custom type of dependency too, as is described below.
+
+== Implementing Your Own Dependency
+
+All dependencies share a common API which you can implement yourself if you need a special type of dependency.
+Whilst not entirely trivial, this allows you to create your own types of dependencies.
+This can be useful for various scenarios where you want to have components that depend on things that are not services, bundles or configuration.
+
+An example implementation can be found in the samples available in the source distribution.
+In the org.apache.felix.dependencymanager.samples module, you can refer to src/org/apache/felix/dependencymanager/samples/customdep/README file, which describes a custom "PathDependency" that tracks files that are added or removed from /tmp/ directory.

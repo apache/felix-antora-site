@@ -1,0 +1,64 @@
+= Apache Felix Dependency Manager
+
+Welcome to the Dependency Manager, a great bundle for managing your components and dependencies!
+
+== Introduction
+
+In a service oriented architecture, applications are built out of components that are packaged in bundles and interact through services.
+These components, that both publish services and depend on other services, form networks that are often dynamic in nature.
+That makes managing these dependencies something the developer needs to address.
+
+Whilst the OSGi framework provides the low-level building blocks to do that in the form of service listeners and trackers, these should not be used directly by developers.
+Instead, a more declarative approach works best, and the Dependency Manager provides this in the form of a declarative API and/or annotations that allow you to dynamically declare and change dependencies.
+
+On top of that, a set of OSGi design patterns are defined and supported that can be used as building blocks for more complex applications.
+
+The documentation for the dependency manager is split into three sections:
+
+. Step-by-step tutorials which provide a good introduction to the technology and should get you started quickly.
+. Overviews and guides that provide more in-depth knowledge about specific aspects of the dependency manager.
+. Reference materials that describe all the individual nuts and bolts.
+
+Below is the full table of contents.
+
+== Table of Contents
+
+=== Step-by-step Tutorials
+
+* xref:subprojects/apache-felix-dependency-manager/tutorials/getting-started.adoc[Getting started]
+* xref:subprojects/apache-felix-dependency-manager/tutorials/leveraging-the-shell.adoc[Leveraging the shell]
+* xref:subprojects/apache-felix-dependency-manager/tutorials/sample-code.adoc[Hello World example projects]
+
+=== Overviews and Guides
+
+* xref:subprojects/apache-felix-dependency-manager/guides/history.adoc[History]
+* xref:subprojects/apache-felix-dependency-manager/guides/background.adoc[Background]
+* xref:subprojects/apache-felix-dependency-manager/guides/whatsnew.adoc[What's new in DM 4]
+* xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-r15.adoc[What's new in release r15]
+* xref:subprojects/apache-felix-dependency-manager/guides/bundles-and-dependencies.adoc[Bundles and dependencies]
+* xref:subprojects/apache-felix-dependency-manager/guides/migrating-from-earlier-versions.adoc[Migrating from earlier versions]
+* xref:subprojects/apache-felix-dependency-manager/guides/performance-tuning.adoc[Performance Tuning]
+* xref:subprojects/apache-felix-dependency-manager/guides/development.adoc[Development]
+* xref:subprojects/apache-felix-dependency-manager/guides/design-patterns.adoc[Design Patterns]
+* xref:subprojects/apache-felix-dependency-manager/guides/resources.adoc[Resource Adapters]
+* xref:subprojects/apache-felix-dependency-manager/guides/javadocs.adoc[Javadocs]
+
+=== Reference Guide
+
+* xref:subprojects/apache-felix-dependency-manager/reference/components.adoc[Components]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-singleton.adoc[Singleton]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-aspect.adoc[Aspect]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-adapter.adoc[Adapter]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-resource-adapter.adoc[Resource Adapter]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-bundle-adapter.adoc[Bundle Adapter]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/component-factory-configuration-adapter.adoc[Factory Configuration Adapter]
+* xref:subprojects/apache-felix-dependency-manager/reference/dependencies.adoc[Dependencies]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/dependency-service.adoc[Service]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/dependency-configuration.adoc[Configuration]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/dependency-bundle.adoc[Bundle]
+ ** xref:subprojects/apache-felix-dependency-manager/reference/dependency-resource.adoc[Resource]
+* xref:subprojects/apache-felix-dependency-manager/reference/service-scopes.adoc[Service Scopes]
+* xref:subprojects/apache-felix-dependency-manager/reference/dm-annotations.adoc[Dependency Manager Annotations]
+* xref:subprojects/apache-felix-dependency-manager/guides/dm-lambda.adoc[Dependency Manager Lambda]
+* xref:subprojects/apache-felix-dependency-manager/reference/thread-model.adoc[Thread Model]
+* xref:subprojects/apache-felix-dependency-manager/reference/external-links.adoc[External Links and Articles]

@@ -1,0 +1,73 @@
+= Contributing
+
+Apache Felix is a volunteer effort, so there is always plenty of work that needs to be accomplished.
+If you want to help support Felix, this page is intended as a starting point for specific contribution ideas.
+To further understand how the Felix community operates, refer to the https://www.apache.org/foundation/how-it-works.html[Community Roles and Processes] document and/or join the xref:community/project-info.adoc[mailing lists].
+
+The Felix project organizes its "to do" list using the https://issues.apache.org/jira/browse/Felix[JIRA] issue tracking system.
+Specific items from Felix' JIRA issue tracking system are highlighted on this page, but are not limited to it.
+The purpose of the list here is to highlight issues that are either more important or serve as good entry points for new contributors.
+
+It is important to point out that you do not need to be a programmer to contribute to Felix.
+As such, we will break out the list of issues below for non-programmers and programmers.
+
+== Non-Programmers
+
+* Improve web site or documentation (e.g., create/propose FAQ entries).
+There is no specific JIRA issue for this task, but any contributions could be posted as new JIRA issues for the Documentation component.
+
+== Programmers
+
+Before contributing, make sure to be subscribed to the xref:community/project-info.adoc[developer mailing list].
+If you don't have your own issue to scratch, you can browse open issues in https://issues.apache.org/jira/browse/Felix[JIRA] and submit a patch.
+
+Source code contributions fall into two categories: pull requests or grants.
+This document describes both and how to handle each.
+
+=== Pull Requests
+
+A pull request is a small change to existing code, typically in response to a bug fix or improvement.
+If you have created a change, you should:
+
+. Create a https://issues.apache.org/jira/browse/Felix[JIRA] issue (or find a pertinent existing issue) describing the issue needing to be addressed.
+. Create a pull requests against the git repository containing the code.
+. The pull request will eventually be reviewed and applied (if accepted) by a Felix committer, but feel free to bug us [nicely]({{ refs.nicely.adoc) if you get impatient.
+
+Providing pull requests is a very good way to become a committer at Felix, since we'd rather have you review and apply the patches than us.
+:-)
+
+=== Grants
+
+A grant involves donating a larger chunk of code developed elsewhere.
+The line dividing a patch and a grant is sort of like the definition of pornography, we know it when we see it.
+The steps for granting software are a little more complicated since we need to ensure proper IP handling.
+For grants, you should:
+
+. Verify that you have the authorization to donate the code.
+. {blank}
++
+[cols=2*]
+|===
+| Review our xref:development.adoc[developer documentation] as well as the general [Apache documentation
+| https://www.apache.org/foundation/getinvolved.html] to determine whether you would really like be involved with us and how we work.
+|===
+
+. Assuming you're still interested, create a https://issues.apache.org/jira/browse/Felix[JIRA] issue describing the code you wish to donate.
+. Attach an archive containing the code along with an MD5 signature of the archive to the above issue.
+You should remove any existing headers from the source files and add the standard Apache header to each.
+Note that you keep the rights to your code and can do anything with it you want, you will just grant us the right to use it too.
+. Allow the community time to discuss the contribution, after which a vote will be called to accept the contribution.
+. If the vote passes, then you will need to submit a https://www.apache.org/licenses/software-grant.txt[software grant] form.
+. {blank}
++
+[cols=2*]
+|===
+| It is also a good idea to submit an https://www.apache.org/licenses/icla.txt[ICLA] to ease future contributions.
+Depending on the company you work for, they may also want to contribute a [CCLA
+| https://www.apache.org/licenses/cla-corporate.txt], although this isn't strictly necessary from an Apache point of view, since it is your responsibility to verify your ability to submit an ICLA.
+|===
+
+. Once all of this information is received, then we will gather it and perform https://incubator.apache.org/ip-clearance/index.html[IP clearance].
+. After a few days, if no red flags are raised, then we'll commit the code and we're good to go.
+
+Granting code is also a path to committership at Felix, since we look more highly on contributions from developers who wish to stay involved in the continuing evolution and maintenance of the donated code.

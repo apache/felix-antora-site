@@ -1,0 +1,48 @@
+= Apache Felix Remote Shell
+
+The Apache Felix Remote Shell provided by the `org.apache.felix.shell.remote` bundle offers remote access to xref:subprojects/apache-felix-shell.adoc[Apache Felix Shell] and [Apache Felix Gogo] using telnet clients.
+The remote shell provides simple telnet access with no bells and whistles -- it just works.
+
+To use remote shell with the Felix shell, you have to install the `org.apache.felix.shell` bundle in addition to the `org.apache.felix.shell.remote` bundle.
+To use it with Gogo, you have to install the `org.apache.felix.gogo.runtime` and `org.apache.felix.gogo.shell` bundles in addition to the `org.apache.felix.shell.remote` bundle.
+Once you have the shell bundles installed with the remote shell bundle, start them all to enable remote shell access.
+INFO: *Default shell* If you have both the Felix shell and Gogo installed and active, then the default is to connect to Gogo when you telnet into the remote shell.
+If you wish to telnet into the Felix shell, you should stop the Gogo runtime bundle.
+
+== Configuration
+
+The Apache Felix Remote Shell bundle currently is configured using framework properties obtained from the bundle's context.
+The following properties are supported:
+
+|===
+| Property | Default Value | Description
+
+| `osgi.shell.telnet.ip`
+| 127.0.0.1
+| IP Address on which the remote shell is accessible (since 1.0.4).
+
+| `osgi.shell.telnet.port`
+| 6666
+| Port on which the remote shell is accessible.
+
+| `osgi.shell.telnet.maxconn`
+| 2
+| The maximum number of simultaneous connections.
+
+| `osgi.shell.telnet.socketTimeout`
+| 0
+| Sets the SO_TIMEOUT socket option to the given number of milliseconds.
+The default is no timeout (since 1.0.4).
+|===
+
+NOTE:: *Be aware* The remote shell does not listen on all interfaces by default;
+it only listens on the localhost.
+That is, by default the remote shell is only accessible from the host on which the remote shell is running.
+To access the system from another host, you have to configure the IP address of the interface to which the remote shell should be attached.
+
+== Security Note
+
+This remote shell bundle does not employ any security at all.
+Thus if no security manager is active in the framework's JVM, then any user connecting to the remote shell has full control over the framework.
+
+To have some minimum level of security ensure the IP Address configured with the `osgi.shell.telnet.ip` property is not publicly accessible.

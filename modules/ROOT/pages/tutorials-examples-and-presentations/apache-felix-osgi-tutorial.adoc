@@ -1,0 +1,16 @@
+= Apache Felix OSGi Tutorial
+
+This tutorial creates successively more complex OSGi bundles to illustrate most of the features and functionality offered by the OSGi framework.
+
+Trails:
+
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-1.adoc[Apache Felix Tutorial Example 1]: A bundle that listens for OSGi service events.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-2.adoc[Apache Felix Tutorial Example 2]: A bundle that implements a dictionary service.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-2b.adoc[Apache Felix Tutorial Example 2b]: A bundle that implements another dictionary service.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-3.adoc[Apache Felix Tutorial Example 3]: A bundle that implements a simple dictionary service client.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-4.adoc[Apache Felix Tutorial Example 4]: A bundle that implements a more robust dictionary service client.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-5.adoc[Apache Felix Tutorial Example 5]: A bundle that implements a dictionary service client using the Service Tracker.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-6.adoc[Apache Felix Tutorial Example 6]: A bundle that implements a spell checker service using dictionary services.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-7.adoc[Apache Felix Tutorial Example 7]: A bundle that implements a spell checker service client.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-8.adoc[Apache Felix Tutorial Example 8]: A bundle that implements a spell checker service using Service Binder.
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-tutorial/apache-felix-tutorial-example-9.adoc[Apache Felix Tutorial Example 9]: A bundle that implements a spell checker service using Declarative Services.

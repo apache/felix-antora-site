@@ -1,0 +1,212 @@
+= Apache Felix Gogo
+
+Apache Felix Gogo is a subproject of Apache Felix implementing a command line shell for OSGi.
+It is used in many OSGi runtimes and servers (Felix distro, Eclipse IDE, Apache Karaf, ...).
+
+== Overview
+
+The Gogo subproject consists of three bundles:
+
+* _runtime_ - implements the core command processing functionality.
+* _command_ - implements a set of basic commands.
+* _jline_ - Advanced textual user interface with features like completion and colors
+* _shell_ - provides a simple textual user interface to interact with the command processor.
+
+== Working with the sources
+
+You can find the https://svn.apache.org/repos/asf/felix/trunk/gogo/[sources on apache svn] there is also https://github.com/apache/felix/tree/trunk/gogo[a mirror at github].
+
+Clone 	git clone https://github.com/apache/felix
+
+Build 	cd gogo 	mvn clean install
+
+== Using Gogo with the Felix Framework
+
+Gogo is included as the default shell in the felix framework distribution.
+To use it, you just start the framework like normal:
+
+[source,console]
+----
+$ java -jar bin/felix.jar
+_______________
+Welcome to Apache Felix Gogo
+
+g!
+----
+
+Gogo shell integration in the framework distribution is also discussed in the xref:subprojects/apache-felix-framework/apache-felix-framework-usage-documentation.adoc[framework usage document]
+
+== Built in shell features
+
+* TAB
++
+Completion for commands and parameters
+
+* Cursor left, Cursor right
++
+Edit inside current line
+
+* Cursor up, Cursor down
++
+Scroll through history
+
+* Ctrl-C
++
+Interrupt execution of current command
+
+* Ctrl-D
++
+Exit the shell
+
+* Ctrl-R
++
+Search in history
+
+* {blank}
++
+[cols=2*]
+|===
+| _[command1]_
+| _[command2]_
+|===
++
+Pipe output of command1 as input of command2
+
+== Basic commands
+
+* cat _[URI]_
++
+Read URI and print to stdout
+
+* cd _[path]_
++
+Change working directory
+
+* diag _[bundleid]_
++
+Shows why a bundle is not working
+
+* help
++
+Show the available commands
+
+* help _[command]_
++
+Shows detailed help about a command
+
+* head _[bundleid]_
++
+Print bundle headers
+
+* history
++
+Shows the history of executed commands
+
+* inspect capability service _[bundleid]_
++
+Lists all services provided by a bundle
+
+* inspect requirement service _[bundleid]_
++
+Lists all services required by a bundle
+
+* install _[URI]_
++
+Install a bundle from file or URI
+
+* lb
++
+List bundles
+
+* {blank}
++
+[cols=2*]
+|===
+| _[command1]_
+| less
+|===
++
+Show output of command1 in a paged view
+
+* less _[file]_
++
+Show file in a paged view
+
+* ls _[directory]_
++
+Show directory contents
+
+* start _[bundleid]_
++
+Start the given bundle
+
+* stop _[bundleid]_
++
+Stop the given bundle
+
+* tac
++
+Capture stdin as string and optionally write to file
+
+* tail _[file]_
++
+Shows the last lines of a file.
+Using -f allows to follow the file changes.
+
+* uninstall _[bundleid]_
++
+Uninstall given bundle
+
+== Changing shell colors
+
+The colors of the command shell cane be adjusted by setting a property in an init script or directly on the shell.
+
+HIGHLIGHTER_COLORS = "rs=35:st=32:nu=32:co=32:va=36:vn=36:fu=94:bf=91:re=90"
+
+The property above forms a map from highlight type to ANSI color code.
+
+These are the highlight types
+
+* rs : Reserved words
+* st : Strings
+* nu : Numbers
+* co : Constants
+* va : Variable
+* vn : Variable name
+* fu : Function
+* bf : Bad function
+* un : Unknown
+* re : Repair
+
+The colors of the ls output can be adjusted using
+
+LS_COLORS = "dr=1;91:ex=1;92:sl=1;96:ot=34;43"
+
+The color types are these:
+
+* dr : Directory
+* ex : Executable
+* sl : Symbolic Link
+* ot : Other
+
+Last but not least grep can also be adjusted
+
+GREP_COLORS = "mt=1;31:fn=35:ln=32:se=36"
+
+Types:
+
+* mt : Hits in the text (sets both ms and mc)
+* ms : Matching text in selected line
+* mc : Matching text in context line
+* fn : File names
+* ln : Line numbers
+* se : Selected lines
+* sl : Whole selected line
+* cx : Context lines
+* rv : If set and match is inverted, the meaning of sl and cx is inverted
+
+== Origin in RFC 147
+
+Gogo is based on the OSGi RFC 147, which describes a standard shell for OSGi-based environments.
+See xref:subprojects/apache-felix-gogo/rfc-147-overview.adoc[RFC 147 Overview] for more information.
+Unfortunately this RFC was never made a standard.

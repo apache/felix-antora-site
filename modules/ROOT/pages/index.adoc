@@ -15,5 +15,5 @@ Refer to the news xref:news.adoc[archive] for all news.
 
 The Felix project is organized into subprojects, where each subproject targets a specific OSGi specification or OSGi-related technology.
 
-Please refer to the xref:documentation/subprojects.adoc[Subprojects] page for a complete list of subprojects.
-To see some projects using Felix subprojects, refer to the xref:documentation/community/projects-using-felix.adoc[Projects Using Felix] documentation.
+Please refer to the xref:subprojects.adoc[Subprojects] page for a complete list of subprojects.
+To see some projects using Felix subprojects, refer to the xref:community/projects-using-felix.adoc[Projects Using Felix] documentation.

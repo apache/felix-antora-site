@@ -1,0 +1,41 @@
+= Dependency Manager - Adapter
+
+Adapters, like xref:subprojects/apache-felix-dependency-manager/reference/component-aspect.adoc[aspects], are used to "extend" existing services, and can publish  different services based on the existing one.
+An example would be implementing a management interface.
+
+An adapter will be applied to any service that matches the specified interface and filter.
+For each matching service an adapter will be created based on the adapter implementation class.
+The adapter will be registered with the specified interface and existing properties from the original  service plus any extra properties you supply here.
+It will also inherit all dependencies, and if you declare  the original service as a member it will be injected.
+
+To define an adapter component, you need to create an http://felix.apache.org/apidocs/dependencymanager/r13/org/apache/felix/dm/AdapterComponent.html[AdapterComponent] component using the DependencyActivatorBase.createAdapterComponent() or the DependencyManager.createAdapterComponent() method.
+This interface extends the Component interface in order to add extra setters methods needed to define an adapter service component.
+
+== Usage example
+
+Here is a sample showing a HelloServlet adapter component which creates a servlet each time a HelloService is registered in the osgi service registry with the "foo=bar" service property.
+
+[source,java]
+ public class Activator extends DependencyActivatorBase {
+     &Override
+      public void init(BundleContext context, DependencyManager dm) throws Exception {
+          Component adapterComponent = createAdapterComponent()
+              .setAdaptee(HelloService.class, "(foo=bar)")
+              .setInterface(HttpServlet.class.getName(), null)
+              .setImplementation(HelloServlet.class);
+          dm.add(adapterComponent);
+      }
+ }
+
+ public interface HelloService {
+     String sayHello();
+ }
+
+ public class HelloServlet extends HttpServlet {
+     volatile HelloService adatpee; // injected
+
+     void doGet(HttpServletRequest req, HttpServletResponse resp) {
+         ...
+         resp.getWriter().println(adaptee.sayHello());
+     }
+ }

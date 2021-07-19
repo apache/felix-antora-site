@@ -1,0 +1,10 @@
+= Extending the Apache Felix Web Console
+
+The xref:subprojects/apache-felix-web-console.adoc[Apache Felix Web Console] is extensible in various ways described no these pages:
+
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/providing-web-console-plugins.adoc[Providing Web Console Plugins]
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/providing-resources.adoc[Providing Resources]
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/branding-the-web-console.adoc[Branding the Web Console]
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-output-templating.adoc[Web Console Output Templating]
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-logging.adoc[Web Console Logging]
+* xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-security-provider.adoc[Web Console Security Provider]

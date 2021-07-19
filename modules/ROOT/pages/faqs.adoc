@@ -1,0 +1,6 @@
+= Frequently Asked Questions
+
+* xref:tutorials-examples-and-presentations/apache-felix-osgi-faq.adoc[OSGi FAQ] - Contains answers to general OSGi-related questions.
+* xref:subprojects/apache-felix-framework/apache-felix-framework-faq.adoc[Framework FAQ] - Contains answers to questions that are specifically related to Felix' OSGi framework implementation.
+* xref:faqs/apache-felix-bundle-plugin-faq.adoc[Bundle Plugin FAQ] - Contains answers to questions about the Felix maven-bundle-plugin
+* xref:faqs/apache-felix-scr-plugin-faq.adoc[SCR Plugin FAQ] - Contains answers to questions about the Felix maven-scr-plugin
