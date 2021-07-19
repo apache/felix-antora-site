@@ -13,10 +13,12 @@
 #
 # (1) Felix Framework Distribution version
 framework:
-  version: 7.0.0
+  - title: Framework
+    artifactId: org.apache.felix.framework
+    version: 7.0.0
+    changelog: framework/doc/changelog.txt
 #
 # (2) Subprojects
-# This list is sorted by the title before writing the table
 # Format: title
 #artifactId
 #version[
@@ -40,10 +42,6 @@ subprojects:
   - title: Atomos
     artifactId: org.apache.felix.atomos
     version: 1.0.0
-
-  - title: AutoConf Resource Processor
-    artifactId: org.apache.felix.deployment.rp.autoconf
-    version: 0.1.8
 
   - title: Bundle Repository
     artifactId: org.apache.felix.bundlerepository
@@ -190,135 +188,6 @@ subprojects:
     artifactId: org.apache.felix.inventory
     version: 1.0.6
 
-  - title: iPOJO (Core)
-    artifactId: org.apache.felix.ipojo
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO Runtime Project (containing all iPOJO runtime modules)
-    artifactId: org.apache.felix.ipojo.runtime-project
-    version: 1.12.1
-    source-classifier: source-release
-
-  - title: iPOJO Architecture Command for the Felix Shell
-    artifactId: org.apache.felix.ipojo.arch
-    version: 1.6.0
-    source-classifier: project
-
-  - title: iPOJO Architecture Command for Gogo
-    artifactId: org.apache.felix.ipojo.gogo
-    version: 1.12.1
-    source-classifier: source-release
-
-  - title: iPOJO Composite
-    artifactId: org.apache.felix.ipojo.composite
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO Annotations
-    artifactId: org.apache.felix.ipojo.annotations
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO Ant Task and CLI
-    artifactId: org.apache.felix.ipojo.ant
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO BND Plugin
-    artifactId: bnd-ipojo-plugin
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO WebConsole Plugin
-    artifactId: org.apache.felix.ipojo.webconsole
-    version: 1.7.0
-    source-classifier: project
-
-  - title: iPOJO API
-    artifactId: org.apache.felix.ipojo.api
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO Manipulator
-    artifactId: org.apache.felix.ipojo.manipulator
-    version: 1.12.1
-    source-classifier: project
-
-  - title: iPOJO Manipulator Project (containing all iPOJO manipulator modules)
-    artifactId: org.apache.felix.ipojo.manipulator-project
-    version: 1.12.1
-    source-classifier: source-release
-
-  - title: iPOJO Whiteboard pattern handler
-    artifactId: org.apache.felix.ipojo.handler.whiteboard
-    version: 1.6.0
-    source-classifier: project
-
-  - title: iPOJO Extender pattern handler
-    artifactId: org.apache.felix.ipojo.handler.extender
-    version: 1.4.0
-    source-classifier: project
-
-  - title: iPOJO JMX handler
-    artifactId: org.apache.felix.ipojo.handler.jmx
-    version: 1.4.0
-    source-classifier: project
-
-  - title: iPOJO Event Admin handler
-    artifactId: org.apache.felix.ipojo.handler.eventadmin
-    version: 1.8.0
-    source-classifier: project
-
-  - title: iPOJO Temporal Dependency handler
-    artifactId: org.apache.felix.ipojo.handler.temporal
-    version: 1.6.0
-    source-classifier: project
-
-  - title: Jaas Support Bundle
-    artifactId: org.apache.felix.jaas
-    version: 1.0.2
-    source-classifier: source-release
-    changelog: changelog.txt
-
-  - title: Jaas Support Boot Classpath Jar
-    artifactId: org.apache.felix.jaas
-    version: 1.0.2
-    source-classifier: source-release
-    classifier: boot
-    changelog: changelog.txt
-
-  - title: junit4osgi
-    artifactId: org.apache.felix.ipojo.junit4osgi
-    version: 1.0.0
-    source-classifier: project
-
-    changelog: doc/changelog.txt
-
-  - title: junit4osgi - shell command
-    artifactId: org.apache.felix.ipojo.junit4osgi.felix-command
-    version: 1.0.0
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: junit4osgi - swing gui
-    artifactId: org.apache.felix.ipojo.junit4osgi.swing-gui
-    version: 1.0.0
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: Lightweight HTTP Service Core
-    artifactId: org.apache.felix.httplite.core
-    version: 0.1.4
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: Lightweight HTTP Service Complete
-    artifactId: org.apache.felix.httplite.complete
-    version: 0.1.4
-    source-classifier: project
-    changelog: doc/changelog.txt
-
   - title: Log
     artifactId: org.apache.felix.log
     version: 1.2.2
@@ -348,10 +217,6 @@ subprojects:
     version: 1.0.2
     source-classifier: project
     changelog: doc/changelog.txt
-
-  - title: Preferences
-    artifactId: org.apache.felix.prefs
-    version: 1.1.0
 
   - title: Remote Shell
     artifactId: org.apache.felix.shell.remote
@@ -396,44 +261,6 @@ subprojects:
     version: 1.4.1
     source-classifier: project
     changelog: doc/changelog.txt
-
-  - title: UPnP Base Driver (JDK 1.4+)
-    artifactId: org.apache.felix.upnp.basedriver
-    version: 0.8.0
-    source-classifier: project
-
-  - title: UPnP Base Driver (JDK 1.3)
-    artifactId: org.apache.felix.upnp.basedriver
-    version: 0.8.0
-    source-classifier: project
-    classifier: jdk13
-
-  - title: UPnP Extra
-    artifactId: org.apache.felix.upnp.extra
-    version: 0.4.0
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: UPnP Tester
-    artifactId: org.apache.felix.upnp.tester
-    version: 0.4.0
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: User Admin
-    artifactId: org.apache.felix.useradmin
-    version: 1.0.4
-    source-classifier: project
-
-  - title: User Admin File-based store
-    artifactId: org.apache.felix.useradmin.filestore
-    version: 1.0.2
-    source-classifier: project
-
-  - title: User Admin MongoDB-based store
-    artifactId: org.apache.felix.useradmin.mongodb
-    version: 1.0.1
-    source-classifier: project
 
   - title: Utils
     artifactId: org.apache.felix.utils
@@ -483,36 +310,22 @@ subprojects:
     artifactId: org.apache.felix.webconsole.plugins.subsystem
     version: 0.1.0
 
-  - title: Web Console UPNP Plugin
-    artifactId: org.apache.felix.webconsole.plugins.upnp
-    version: 1.0.6
-
-  - title: Web Console User Admin Plugin
-    artifactId: org.apache.felix.webconsole.plugins.useradmin
-    version: 1.0.2
-
 # (3) Maven Plugins
-# This list is sorted by the title before writing the table
 # Format: title
 #artifactId
 #version[
 #classifier[
 #extension]]
 
-maven-plugins:
+maven_plugins:
+  - title: Atomos Maven Plugin
+    artifactId: atomos-maven-plugin
+    version: 0.9.0
+
   - title: Maven Bundle Plugin
     artifactId: maven-bundle-plugin
     version: 5.1.1
     changelog: changelog.txt
-
-  - title: Maven iPOJO Plugin
-    artifactId: maven-ipojo-plugin
-    version: 1.12.1
-
-  - title: Maven junit4osgi Plugin
-    artifactId: maven-junit4osgi-plugin
-    version: 1.0.0
-    changelog: doc/changelog.txt
 
   - title: Maven OBR Plugin
     artifactId: maven-obr-plugin
@@ -526,22 +339,13 @@ maven-plugins:
     artifactId: osgicheck-maven-plugin
     version: 0.1.0
 
-  - title: Atomos Maven Plugin
-    artifactId: atomos-maven-plugin
-    version: 0.9.0
-
 # (3) Ant Tasks
-# This list is sorted by the title before writing the table
 # Format: title
 #artifactId
 #version[
 #classifier[
 #extension]]
-ant-tasks:
-  - title: iPOJO Ant Task and CLI
-    artifactId: org.apache.felix.ipojo.ant
-    version: 1.11.0
-
+ant_tasks:
   - title: SCR Ant Task
     artifactId: org.apache.felix.scr.ant
     version: 1.18.0

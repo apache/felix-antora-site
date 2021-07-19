@@ -2,7 +2,25 @@
 :dist: https://www.apache.org/dist/felix
 :mirror: https://www.apache.org/dyn/closer.lua/felix
 :query: ?action=download
-Under development
+
+
+== Felix Framework Distribution
+
+[cols="6*",opts="headers"]
+|===
+//|Sub project
+|Module
+|Version
+|Binary
+|tar.gz Source
+|zip Source
+|changelog
+
+|===
+
+jsonpathTable2::example$downloads.yml['$.framework.*', 'title|version|`{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])` |changelog']
+
+== Subprojects
 
 [cols="6*",opts="headers"]
 |===
@@ -17,3 +35,23 @@ Under development
 |===
 
 jsonpathTable2::example$downloads.yml['$.subprojects.*', 'title|version|`{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])` |changelog']
+
+== Maven Plugins
+
+[cols="6*",opts="headers"]
+|===
+//|Sub project
+|Module
+|Version
+|Binary
+|tar.gz Source
+|zip Source
+|changelog
+
+|===
+
+jsonpathTable2::example$downloads.yml['$.maven_plugins.*', 'title|version|`{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])` |changelog']
+
+== Historical releases
+
+If you are looking for previous releases of Apache Felix, have a look in the https://archive.apache.org/dist/felix/[archives].
