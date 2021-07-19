@@ -3,7 +3,7 @@
 There are different roles with which Felix community members may be associated, these roles are: users, contributors, committers, and Project Management Committee (PMC) members.
 These roles are assigned and assumed based on merit.
 Everyone in the Felix community can participate to whatever level they desire, but participating and the resulting merit gained is directly linked to the role an individual may obtain.
-To further understand how the Felix community operates, refer to the https://www.apache.org/foundation/how-it-works.html[Community Roles and Processes] document and/or join the <<mailing-lists,mailing lists>>.
+To further understand how the Felix community operates, refer to the https://www.apache.org/foundation/how-it-works.html[Community Roles and Processes] document and/or join the <<_mailing_lists,mailing lists>>.
 
 == Committers and Project Management Committee (PMC)
 

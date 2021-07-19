@@ -1,0 +1,64 @@
+= Site map
+//uncomment to generate temporary nav file contents on console.
+//:antora-indexer-log-lists:
+
+indexList::[relative=*.adoc]
+
+* Community
+
+indexList::[level=2,relative=community/*.adoc]
+
+* Development
+
+indexList::[level=2,relative=development/*.adoc]
+
+* FAQS
+
+indexList::[level=2,relative=faqs/*.adoc]
+
+* Subprojects
+
+indexList::[level=2,relative=subprojects/*.adoc]
+
+** Dependency Manager
+*** Guides
+
+indexList::[level=4,relative=subprojects/apache-felix-dependency-manager/guides/*.adoc]
+
+*** Reference
+
+indexList::[level=4,relative=subprojects/apache-felix-dependency-manager/reference/*.adoc]
+
+*** Tutorials
+
+indexList::[level=4,relative=subprojects/apache-felix-dependency-manager/tutorials/*.adoc]
+
+** Framework
+
+indexList::[level=3,relative=subprojects/apache-felix-framework/*.adoc]
+
+** GoGo Shell
+
+indexList::[level=3,relative=subprojects/apache-felix-gogo/*.adoc]
+
+** Maven SCR plugin
+
+indexList::[level=3,relative=subprojects/apache-felix-maven-scr-plugin/*.adoc]
+
+** Web Console
+
+indexList::[level=3,relative=subprojects/apache-felix-web-console/*.adoc]
+
+*** Extensions
+
+indexList::[level=4,relative=subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/*.adoc]
+
+* Tutorials
+
+indexList::[level=2,relative=tutorials-examples-and-presentations/*.adoc]
+
+** OSGI Tutorial
+
+indexList::[level=3,relative=tutorials-examples-and-presentations/apache-felix-osgi-tutorial/*.adoc]
+
+//indexList::[]

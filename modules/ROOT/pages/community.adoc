@@ -1,3 +1,0 @@
-= Community Documentation
-
-{% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}

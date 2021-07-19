@@ -4,15 +4,15 @@ In an effort to make it easier to find desired documentation, we have divided ou
 
 * xref:getting-started.adoc[Getting started] - This area captures a few links from the areas below that will help you get started with Felix.
 * xref:faqs.adoc[FAQs] - This area captures all FAQ documentation, which typically varies from subproject to subproject.
-* xref:community.adoc[Community] - This area captures documentation associated with how the Felix community works and how to become involved in it.
-* xref:development.adoc[Development] - This area captures documentation for Felix developers or those interested in becoming Felix developers;
+* Community - This area captures documentation associated with how the Felix community works and how to become involved in it.
+* Development - This area captures documentation for Felix developers or those interested in becoming Felix developers;
 this is not intended for Felix users although some information may be useful.
 * xref:subprojects.adoc[Subprojects] - This area captures user documentation for the various Felix subprojects.
 * xref:tutorials-examples-and-presentations.adoc[Tutorials, examples, and presentations] - This area captures general user documentation that does not necessarily fit into any single subproject.
 
 In addition a xref:auto-index.adoc[site map] is available as a table of contents of the site.
 
-If you are unable to find the documentation you need, please ask on the xref:mailinglists.adoc[mailing lists].
+If you are unable to find the documentation you need, please ask on the xref:community/project-info.adoc#_mailing_lists[mailing lists].
 Also, feedback on improving the documentation and/or organization of this site is welcome.
 
 _The Felix web site and documentation are managed with link:https://antora.org[Antora].
