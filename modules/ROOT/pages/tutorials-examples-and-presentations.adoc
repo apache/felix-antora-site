@@ -1,6 +1,10 @@
 = Tutorials, Examples, and Presentations
 
-{% for label, page in children %}* link:{{ page.path }}[{{ page.headers.title }}] {% endfor %}
+== Tutorials and Examples
+
+indexList::[relative=tutorials-examples-and-presentations/*.adoc]
+
+indexList::[relative=subprojects/apache-felix-dependency-manager/tutorials/*.adoc]
 
 == Books
 
@@ -12,7 +16,7 @@ So for a starter you might interested to read the following:
 * Compendium Specification
 * Enterprise Specification
 
-Visit the http://www.osgi.org/Specifications/HomePage[OSGi Alliance Specifications] page to download the specifications for free.
+Visit the https://docs.osgi.org/specification/[OSGi Alliance Specifications] page to download the specifications for free.
 
 Apart from the specifications a number of books have recently been published.
 They are listed here in no particular order:
