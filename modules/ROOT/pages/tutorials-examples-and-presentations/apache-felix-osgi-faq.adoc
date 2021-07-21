@@ -1,7 +1,7 @@
 = OSGi Frequently Asked Questions
 
 
-
+[#subproject-independence]
 == If I use bundles from Felix, will my application be tied to the Felix framework?
 
 No.
@@ -17,6 +17,7 @@ Additionally, due to specification ambiguity, it is possible the Felix framework
 if in doubt, file a bug.
 In the future, it is also possible some subprojects may require Felix, but they will explicitly state this fact.
 
+[#bundle-update-visibility]
 == When I update my bundle, why are my bundle's old classes still being used?
 
 Updating a bundle does not necessarily cause the new classes to be used immediately, it depends on two factors:
@@ -31,7 +32,7 @@ If no other bundles are using the exported packages, then the new classes will b
 On the other hand, if any other bundles are using the exported packages, then the new classes will *not* become available immediately since the old version is still required by any dependent bundles.
 In this case, the new classes will not be made available until `PackageAdmin.refreshPackages()` is called (this can be invoked in the Felix shell using the `refresh` command).
 
-There is one partial exception to this latter case, it occurs when the exporting bundle does *not* also import its own exported packages (see "<<should-a-bundle-import-its-own-exported-packages,Should a bundle import its own exported packages?>>" below for more information on this topic).
+There is one partial exception to this latter case, it occurs when the exporting bundle does *not* also import its own exported packages (see "<<import-own-exports,Should a bundle import its own exported packages?>>" below for more information on this topic).
 In this case, the new classes become immediately accessible to the updated exporting bundle, but not to the dependent bundles;
 the dependent bundles continue to see the old version of the classes.
 This situation generally requires `PackageAdmin.refreshPackages()` to be invoked to bring the bundles back to a useful state.
@@ -44,13 +45,13 @@ This is done to reduce disruption when performing several updates.
 
 There is no easy answer to this question and it largely depends on the specific usage scenario.
 The OSGi specification had originally suggested that it was good practice to embed service API packages in the service provider bundle.
-In this case in OSGi R4, the service provider should both <<should-a-bundle-import-its-own-exported-packages,export and import>> the service API packages, which was the default for previous versions of the OSGi specification.
+In this case in OSGi R4, the service provider should both <<import-own-exports,export and import>> the service API packages, which was the default for previous versions of the OSGi specification.
 
 The OSGi specification never had an explicit stance on whether or not a consumer bundle should embed its dependent service API packages;
 although, it would not appear to be a best practice.
 Logically, there is some sense to this approach, since it potentially allows the consumer bundle to gracefully handle broken service dependencies.
 Of course, this depends on whether there is anything the bundle can do in the face of broken dependencies.
-If service API packages are embedded in the consumer bundle, then it should <<should-a-bundle-import-its-own-exported-packages,export and import>> the packages.
+If service API packages are embedded in the consumer bundle, then it should <<import-own-exports,export and import>> the packages.
 An alternative approach in this case is to dynamically import the service API (or even use optional imports if the dependency should only be considered once).
 
 The main advantages of embedding service API packages in bundles are that the dependencies can always be resolved and it does not require installing a lot of other bundles to resolve the dependencies.
@@ -66,6 +67,7 @@ This situation would be different if the service API were package in a separate 
 In this situation, all consumer bundles would be wired to the API bundle, not to the provider bundle.
 Thus, if the provider were updated or uninstalled and then refreshed, the consumer bundles would only be minimally impacted (i.e., they would either switch to the new version of the provider or to a different provider).
 
+[#import-own-exports]
 == Should a bundle import its own exported packages?
 
 In OSGi R3 this was always the case, since Export-Package implied Import-Package.
