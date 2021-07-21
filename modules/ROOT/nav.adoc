@@ -31,25 +31,6 @@
 * xref::subprojects.adoc[Subprojects]
 //indexList::[level=2,relative=subprojects/*.adoc]
 ** xref:subprojects/apache-felix-dependency-manager.adoc[]
-** xref:subprojects/apache-felix-event-admin.adoc[]
-** xref:subprojects/apache-felix-file-install.adoc[]
-** xref:subprojects/apache-felix-framework.adoc[]
-** xref:subprojects/apache-felix-framework-security.adoc[]
-** xref:subprojects/apache-felix-gogo.adoc[]
-** xref:subprojects/apache-felix-healthchecks.adoc[]
-** xref:subprojects/apache-felix-inventory.adoc[]
-** xref:subprojects/apache-felix-log.adoc[]
-** xref:subprojects/apache-felix-logback.adoc[]
-** xref:subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[]
-** xref:subprojects/apache-felix-metatype-service.adoc[]
-** xref:subprojects/apache-felix-osgi-bundle-repository.adoc[]
-** xref:subprojects/apache-felix-preferences-service.adoc[]
-** xref:subprojects/apache-felix-remote-shell.adoc[]
-** xref:subprojects/apache-felix-shell.adoc[]
-** xref:subprojects/apache-felix-shell-tui.adoc[]
-** xref:subprojects/apache-felix-web-console.adoc[]
-
-** Dependency Manager
 *** Guides
 //indexList::[level=4,relative=subprojects/apache-felix-dependency-manager/guides/*.adoc]
 **** xref:subprojects/apache-felix-dependency-manager/guides/migrating-from-earlier-versions.adoc[]
@@ -93,7 +74,9 @@
 **** xref:subprojects/apache-felix-dependency-manager/tutorials/leveraging-the-shell.adoc[]
 **** xref:subprojects/apache-felix-dependency-manager/tutorials/sample-code.adoc[]
 
-** Framework
+** xref:subprojects/apache-felix-event-admin.adoc[]
+** xref:subprojects/apache-felix-file-install.adoc[]
+** xref:subprojects/apache-felix-framework.adoc[]
 //indexList::[level=3,relative=subprojects/apache-felix-framework/*.adoc]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-bundle-cache.adoc[]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc[]
@@ -101,20 +84,23 @@
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-launching-and-embedding.adoc[]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-usage-documentation.adoc[]
 
-** GoGo Shell
+** xref:subprojects/apache-felix-framework-security.adoc[]
+** xref:subprojects/apache-felix-gogo.adoc[]
 //indexList::[level=3,relative=subprojects/apache-felix-gogo/*.adoc]
 *** xref:subprojects/apache-felix-gogo/rfc-147-overview.adoc[]
 
-** Maven SCR plugin
-//indexList::[level=3,relative=subprojects/apache-felix-maven-scr-plugin/*.adoc]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-ant-task-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/extending-scr-annotations.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/scr-annotations.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/scr-javadoc-tags.adoc[]
-
-** Web Console
+** xref:subprojects/apache-felix-healthchecks.adoc[]
+** xref:subprojects/apache-felix-inventory.adoc[]
+** xref:subprojects/apache-felix-log.adoc[]
+** xref:subprojects/apache-felix-logback.adoc[]
+** xref:subprojects/apache-felix-maven-bundle-plugin-bnd.adoc[]
+** xref:subprojects/apache-felix-metatype-service.adoc[]
+** xref:subprojects/apache-felix-osgi-bundle-repository.adoc[]
+** xref:subprojects/apache-felix-preferences-service.adoc[]
+** xref:subprojects/apache-felix-remote-shell.adoc[]
+** xref:subprojects/apache-felix-shell.adoc[]
+** xref:subprojects/apache-felix-shell-tui.adoc[]
+** xref:subprojects/apache-felix-web-console.adoc[]
 //indexList::[level=3,relative=subprojects/apache-felix-web-console/*.adoc]
 *** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console.adoc[]
 *** xref:subprojects/apache-felix-web-console/web-console-restful-api.adoc[]
@@ -127,6 +113,15 @@
 **** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/providing-web-console-plugins.adoc[]
 **** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-logging.adoc[]
 **** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-output-templating.adoc[]
+
+** Maven SCR plugin
+//indexList::[level=3,relative=subprojects/apache-felix-maven-scr-plugin/*.adoc]
+*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[]
+*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.adoc[]
+*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-ant-task-use.adoc[]
+*** xref:subprojects/apache-felix-maven-scr-plugin/extending-scr-annotations.adoc[]
+*** xref:subprojects/apache-felix-maven-scr-plugin/scr-annotations.adoc[]
+*** xref:subprojects/apache-felix-maven-scr-plugin/scr-javadoc-tags.adoc[]
 
 * xref::tutorials-examples-and-presentations.adoc[Tutorials]
 //indexList::[level=2,relative=tutorials-examples-and-presentations/*.adoc]
