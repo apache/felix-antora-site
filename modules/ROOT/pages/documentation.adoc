@@ -10,7 +10,7 @@ this is not intended for Felix users although some information may be useful.
 * xref:subprojects.adoc[Subprojects] - This area captures user documentation for the various Felix subprojects.
 * xref:tutorials-examples-and-presentations.adoc[Tutorials, examples, and presentations] - This area captures general user documentation that does not necessarily fit into any single subproject.
 
-In addition a xref:auto-index.adoc[site map] is available as a table of contents of the site.
+In addition a xref:site-map.adoc[site map] is available as a table of contents of the site.
 
 If you are unable to find the documentation you need, please ask on the xref:community/project-info.adoc#_mailing_lists[mailing lists].
 Also, feedback on improving the documentation and/or organization of this site is welcome.
