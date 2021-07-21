@@ -15,7 +15,7 @@
 framework:
   - title: Framework
     artifactId: org.apache.felix.framework
-    version: 7.0.0
+    version: 7.0.1
     changelog: framework/doc/changelog.txt
 #
 # (2) Subprojects
@@ -99,7 +99,7 @@ subprojects:
 
   - title: Framework
     artifactId: org.apache.felix.framework
-    version: 7.0.0
+    version: 7.0.1
     changelog: framework/doc/changelog.txt
 
   - title: Framework Security
