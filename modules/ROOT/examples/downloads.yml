@@ -14,7 +14,7 @@
 # (1) Felix Framework Distribution version
 framework:
   - title: Framework
-    artifactId: org.apache.felix.framework
+    artifactId: org.apache.felix.main.distribution
     version: 7.0.1
     changelog: framework/doc/changelog.txt
 #

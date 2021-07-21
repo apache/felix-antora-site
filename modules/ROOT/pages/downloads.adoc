@@ -18,7 +18,7 @@
 
 |===
 
-jsonpathTable2::example$downloads.yml['$.framework.*', 'title|version|`{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])` |changelog']
+jsonpathTable2::example$downloads.yml['$.framework.*', 'title|version|`{mirror}/$\{artifactId}-$\{version}.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])` |changelog']
 
 == Subprojects
 
