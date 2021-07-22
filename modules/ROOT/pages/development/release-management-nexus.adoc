@@ -17,7 +17,7 @@ The basic steps for releasing are:
 * <<#_create_an_announcement,Announce the release>>
 
 The Apache Felix PMC appreciates all committers playing release manager for the projects they maintain.
-Due to restrictions imposed on us, only members of the PMC are actually able to commit the releases to the distribution repository (See <<promoting-the-release,Publish the release candidate>>).
+Due to restrictions imposed on us, only members of the PMC are actually able to commit the releases to the distribution repository (See <<_promoting_the_release,Publish the release candidate>>).
 In this case please ask a member of the PMC to actually publish the release artifacts.
 Thanks.
 
@@ -280,10 +280,12 @@ NOTE: with Maven 3, you must add an extension to your `<build>` providing the SC
 
 === Update the Site
 
-. Update the news section on the website at https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/news.html[news];
-. Update the download page on the website at https://cms.apache.org/redirect?uri=http%3A//felix.apache.org/downloads.list[downloads] to point to the new release;
-. Commit your changes (click the commit link);
-. https://cms.apache.org/felix/publish[Publish the site].
+The appropriate parts of the website are in the https://github.com/apache/felix-antora-site repository or the Apache "original" copy.
+
+. Update the news section on the website at xref:news.adoc[];
+. Update the appropriate entry in  at modules/ROOT/examples/downloads.yml[] to point to the new release;
+. Commit your changes and push to GitHub (or the Apache mirror);
+. The published site will be updated by the Jenkins site build jobs.
 
 For the last two tasks, it's better to give the mirrors some time to distribute the uploaded artifacts (one day should be fine).
 This ensures that once the website (news and download page) is updated, people can actually download the artifacts.
@@ -293,6 +295,8 @@ This ensures that once the website (news and download page) is updated, people c
 Go to https://issues.apache.org/jira/secure/project/ViewProject.jspa?pid=12310100[Admin] section on the FELIX JIRA and mark the Y.Z version as released - create version Y.Z+1, if that hasn't already been done.
 
 == Publish Generated Documentation
+
+NOTE: This doesn't seem to relate well to the state of the CMS site.
 
 This procedure applies currently only to the `maven-bundle-plugin`:
 

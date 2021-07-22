@@ -1,181 +1,107 @@
 = Site How To
 
-WARNING: This page is totaly wrong and needs to be rewritten.
+The website is written in https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc], built using https://docs.antora.org/[Antora], and published using an https://cwiki.apache.org/confluence/display/INFRA/Git+-+.asf.yaml+features#Git.asf.yamlfeatures-WebSiteDeploymentServiceforGitRepositories[`.asf.yaml`] file in a git repo.
 
-The site is managed with the https://www.apache.org/dev/cms.html[Apache CMS] where the source is kept in SVN at https://svn.apache.org/repos/asf/felix/site/trunk/content.
+== Overall organization
 
-== To update the documentation using the CMS system
+For simplicity, this references the GitHub mirrors of the Apache gitbox repos.
 
-* Install the bookmarklet from the https://cms.apache.org/[cms] page.
-You only have to do this once.
-* Navigate to the page you wish to edit (on the live site, not in the cms).
-* Click the bookmarklet.
-There will be a short pause while the CMS system is initialised for you.
-* Click on `Edit` (to skip this step hack the bookmarklet to add an 'action=edit' param to the query string)
-* The page editor should then be displayed.
-* Click `Submit` to save your edit to the workarea
-* Click `Commit` to save the updated file to SVN and trigger a staged build.
-(to skip this step click on the "Quick Commit" checkbox in the `Edit` form).
-* The results should appear shortly on the http://felix.staging.apache.org/content/documentation.html[staging] site.
-(You may have to force the page to refresh in order to see the updated content)
-* Once you are happy with the updated page, click on `Publish Site` to deploy.
+General content::
+Content not specific to a particular subproject and unmigrated content is in the https://github.com/apache/felix-antora-site[felix-antora-site] repository.
+At the moment there is only one Antora component, version, and module, so the content is all under `modules/ROOT/pages`.
 
-There is also a https://www.apache.org/dev/cmsref.html[Reference Manual] of the Apache CMS as well as a video tutorial at http://s.apache.org/cms-tutorial.
+Subproject-specific content::
+Content specific to a subproject may be put in the subproject repo in the standard Antora layout.
+For instance, SCR content could be in `felix-dev` under `scr/docs/modules/ROOT/pages`.
+This feature is not yet used.
 
-== Features of the Apache Felix Site
+Antora playbook::
+The Antora playbook together with  the Node project to fetch and set up the required dependencies is in the https://github.com/apache/felix-antora[felix-antora] repository.
 
-This section lists some Apache Felix features to help with the maintenance of the site, such as automatic link generation.
+Antora UI::
+The UI for this website is in the https://github.com/apache/felix-antora-ui[felix-antora-ui] repository.
+For simplicity this is currently set up as an extension of the Antora default UI using https://gitlab.com/djencks/antora-ui-builder[].
 
-Start the file with a `Title:` line to define the page title and the first H1 tag:
+Published site content::
+The website build publishes the content to https://github.com/apache/felix-site-pub[felix-site-pub] in the `asf-site` branch.
+The `.asf.yaml` file is configured to publish the content to Apache servers.
 
+Automated site build::
+The site is built using Jenkins jobs https://ci-builds.apache.org/job/Felix/job/website-build[Felix/website-build] and https://ci-builds.apache.org/job/Felix/job/website-content-trigger[Felix/website-content-trigger].
+Committing to the `felix-antora-site` or `felix-antora` repositories will trigger a website build and publish.
+Changes to the UI will not trigger an automated build, but PMC members may trigger a build manually with the https://ci-builds.apache.org/job/Felix/job/website-build/build?delay=0sec[Build Now] button.
+If subproject content is moved to subproject repositories more trigger jobs will be needed.
+
+== Extensions currently in use
+
+https://github.com/Mogztter/asciidoctor-kroki[asciidoctor-kroki]::
+This provides access to numerous text-to-diagram converters.
+Currently it is used for some UMLet diagrams in the DependencyManager documentation.
+
+https://gitlab.com/djencks/asciidoctor-antora-indexer[asciidoctor-antora-indexer]::
+This queries the Antora content catalog and renders the results as lists, tables, etc.
+It is currently used in the xref:site-map.adoc[] page to partially automate generation.
+
+https://gitlab.com/djencks/asciidoctor-jsonpath[asciidoctor-jsonpath]::
+This queries a json, yaml, or toml document and renders the results as lists, tables, etc.
+It is currently used to generate the content on the downloads page.
+
+== Basic AsciiDoc
+
+The Intellij AsciiDoc plugin provides extensive syntax checking, side-by-side rendering, and a lot of other help.
+
+Consult the Asciidoctor and Antora documentation for complete coverage of syntax and features.
+
+Please use "ventilated prose", with one sentence per line.
+
+* A blank line indicates a new paragraph.
+* A page starts with a title, indicated by `= Title`.
+* Sections are marked with `==`, `===`, etc, the number of `=` indicating section nesting.
+* Sections are automatically assigned ids that can be used as the fragment in links.
+To manually specify an id, precede the section line with `[#my-id]` on a separate line.
+* Code blocks look like this:
+[source,adoc]
+------
+[source,java]
 ----
-= Page Title
-
-Here comes the content separated with a blank like from the
-header ...
+class Foo {
+...
+}
 ----
+------
 
-The last modification information from SVN (revision, committer, and date/time) is automatically added when the page is rendered
+== Local build
 
-Excerpts can be added to a page using the `Excerpt:` header:
+You need Node and npm installed.
+You also need git to clone the repositories locally, but the build itself does not use git.
 
- = Page Title
- Excerpt: Summary of the page for inclusion in other pages;
-    continuation of the excerpt must be indented
+I do not recommend following the instructions on the Antora site, which advise installing Antora globally.
+The playbook project is instead set up to use an npm script to install Antora and all required dependencies locally
+At a minimum:
 
- Here comes the content separated with a blank like from the
- header ...
+* Clone the `felix-antora` playbook project.
+* Run `npm run plain-install`.
+* Run `npm run build`.
 
-Metadata from child pages can be referred to in the content with the Django variable reference notation using the child page name (without extension) as its container;
-e.g.
-for the child page named `childpage`:
+This will build the site locally into build/site, using the remote content sources, such as `felix-antora-site`.
 
- :::django
- {{ y|default:"{{" }} children.childpage.headers.excerpt }}
- {{ y|default:"{{" }} children.childpage.headers.title }}
+Most likely you will want to modify content sources locally, and build using your local sources, before committing and pushing your changes.
+To enable this:
 
-Content Pages can contain Django templates of the form `+{{ y|default:"{{" }}...}}+` and `+{{ y|default:"{%" }}...%}+`.
-If so, the page content is evaluated as a Django template before running it through the page template.
+* Clone the `felix-antora-site` repository and any other content repositories you wish to work with next to the playbook project.
+* Modify the `antora-playbook.yml` to point to the local clones rather than the remote repositories.
+Be sure to specify `branches: HEAD` to use the worktree content rather than the local committed repository content.
+The appropriate changes are already in the playbook, commented out, with comments, for the `felix-antora-site` repository.
+* Build the site as above.
 
-Any page in the site can be referenced with refs.pagename returning properties:
+=== Working with the UI
 
-`.path`:: the absolute path of the page on the site
+* Clone the `felix-antora-ui` project next to the playbook project.
+* Run `npm i`.
+* Run `./node_modules/gulp/bin/gulp.js` to assemble the UI.
+* To see the results, run `cp build/felix-antora-ui-bundle.zip ../felix-antora/node_modules/@apache-felix/felix-antora-ui/build/felix-antora-ui-bundle.zip` and build the playbook project.
+* When you are satisfied with your changes, commit both source changes and the assembled UI bundle and push to the remote repository.
+* UI bundle changes do not trigger a site build; you'll need to start one manually.
 
-`.headers`::
-page headers (e.g.
-`.title`, `.excerpt`)
-
-`.content`:: the raw page content
-
-All pages in the children namespace are also available in the refs namespace
-
-Some usefull hints:
-
-Printing title of another page "handler":
-
-    :::django
-    {{ y|default:"{{" }} refs.handler.headers.title }}
-
-Printing excerpt of another page "handler":
-
-    :::django
-    {{ y|default:"{{" }} refs.handler.headers.excerpt }}
-
-Linking to another page "handler":
-
-    :::django
-    ({{ y|default:"{{" }} refs.handler.path }})
-
-Printing title as a link to another page "handler":
-
-    :::django
-    [{{ y|default:"{{" }} refs.handler.headers.title }}]({{ y|default:"{{" }} refs.handler.path }})
-
-Printing excerpt as a link to another page "handler":
-
-    :::django
-    [{{ y|default:"{{" }} refs.handler.headers.excerpt }}]({{ y|default:"{{" }} refs.handler.path }})
-
-Print a bullet pointed child page list:
-
-    :::django
-    {{ y|default:"{%" }} for label, page in children %}* [{{ y|default:"{{" }} page.headers.title }}]({{ y|default:"{{" }} page.path }})
-    {{ y|default:"{%" }} endfor %}
-
-It is important to have the first part as a single line, otherwise the Django/Markdown combo will create a list for each entry.
-
-== Code Highlighting
-
-Code Highlighting works by indenting code by four blanks.
-To indicate the type of highlighting preced the code style text with either `:::<lexer>` to get high lighted code using the given `<lexer>` or `#!<lexer>` to get high lighted code with line numbers using the given `<lexer>`.
-See http://www.apache.org/dev/cmsref.html#code-hilighter for main info and http://pygments.org/docs/lexers/ for supported lexers
-
-== HTML and Markdown
-
-Markdown supports embedding HTML.
-But be aware that contents of HTML elements are not further handled by the Markdown converter.
-Thus it is not possible to embed Markdown syntax inside of HTML elements to have them converted.
-
-== Manual Generation
-
-When commiting changes to pages into SVN the pages are automatically generated in http://felix.staging.apache.org[the staging site].<div class="info">To generate the site locally, you must have checked out the complete SVN to access the tools:<div class="codehilite">$ svn https://svn.apache.org/repos/asf/felix/site/ felix-site</div></div>
-
-To manually generate the site or single pages the http://svn.apache.org/repos/asf/felix/site[site] can be checked out from SVN.
-In addition Perl and Python must be installed for the build tools to work.
-
-To prepare for site build, the Markdown daemon has to be started:
-
-[source,sh]
- $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
- $ export PYTHONPATH="$PWD/tools/build"
- $ python "$PWD/tools/build/markdownd.py"
-
-The `MARKDOWN_SOCKET` environment variables is also required by the `build_site.pl` and `build_file.pl` scripts to connect to the Markdown daemon.
-
-To build the complete site use the `build_site.pl` script:
-
-[source,sh]
- $ tools/build/build_site.pl --source-base $PWD/trunk \
-     --target-base $PWD/trunk/target
-
-To build a single page use the `build_file.pl` script:
-
-[source,sh]
- $ tools/build/build_site.pl --source-base $PWD/trunk \
-     --target-base $PWD/trunk/target \
-     --source content/documentation.mdtext
-
-The argument to the `--source` parameter is relative to the `--source-base` folder.
-
-== Configuring site generation on Mac
-
-Those instructions were computed on Mountain Lion.
-
-A couple of Python and Perl libraries are required and need to be installed
-
-[source,sh]
- $ sudo easy_install Pygments
- $ sudo easy_install Markdown
-
-And for the Perl modules:
-
-[source,sh]
- $ sudo cpan install XML::Atom::Feed
- $ sudo cpan install XML::RSS::Parser
- $ sudo cpan install XML::Parser::Lite
- $ sudo cpan install XML::RSS::Parser::Lite
- $ sudo cpan install Net::Twitter
- $ sudo cpan install SVN::Client
-
-Be careful that some of those commands require time...
-Once done, launch the mardown daemon with the following command from the SVN root:
-
-[source,sh]
- $ export MARKDOWN_SOCKET="$PWD/tools/build/../markdown.socket"
- $ export PYTHONPATH="$PWD/tools/build"
- $ python "$PWD/tools/build/markdownd.py"
-
-And finally, generate the web site from the svn root with:
-
-[source,sh]
- tools/build/build_site.pl --source-base $PWD/trunk     --target-base $PWD/trunk/target
+Most likely making changes to src/partials/* templates will be fairly self-explanatory.
+Other changes are likely to need a fairly detailed understanding of the Antora default UI.
