@@ -62,13 +62,33 @@ To manually specify an id, precede the section line with `[#my-id]` on a separat
 * Code blocks look like this:
 [source,adoc]
 ------
-[source,java]
-----
+[source,java] <1>
+----  <2>
 class Foo {
 ...
 }
 ----
 ------
+<1> Any language you want: highlighting is available for most.
+<2> Block separator `----`
+
+=== Page links
+
+Between pages::
+Use the `xref:` inline macro:
+`+++xref:other-page.adoc[]+++`.
+
+* The path to the other page starts from the `pages` directory: it is not relative to the current page.
+* For a non-fragment reference, the default link text is the other page title.
+Custom text may be specified inside the `[]` brackets.
+* For fragment references you must specify the link text.
+
+Within a page::
+Use the form `+++<<#_fragment_name, link text>>+++`.
+For a link to a section, the default link text is the section title.
+
+NOTE: The Intellij asciidoc plugin has Antora-aware syntax checking and auto-complete, including the generated section ids.
+
 
 == Local build
 
