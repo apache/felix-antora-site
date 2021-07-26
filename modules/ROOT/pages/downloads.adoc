@@ -3,6 +3,7 @@
 :mirror: https://www.apache.org/dyn/closer.lua/felix
 :query: ?action=download
 
+Use the https://downloads.apache.org/felix/KEYS[KEYS] file contents to https://www.apache.org/info/verification.html[validate] the artifacts.
 
 == Felix Framework Distribution
 
