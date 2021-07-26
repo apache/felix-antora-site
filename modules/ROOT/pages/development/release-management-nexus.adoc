@@ -302,8 +302,17 @@ This procedure applies currently only to the `maven-bundle-plugin`:
 
 . Checkout the release tag of the plugin
 . Run `mvn clean package site`
-. Create a new folder for the new version at `+https://svn.apache.org/repos/asf/felix/site/trunk/content/components/bundle-plugin-archives/bundle-plugin-<version>+` and publish the generated site from `target/site` there
-. Remove the previous documentation from `components/bundle-plugin` and SVN-copy the new version there as well
+. Clone this https://github.com/apache/felix-antora-site.git[] repository.
+. Create a new directory for the new version  `modules/ROOT/attachments/components/bundle-plugin-archives/bundle-plugin-<version>`.
+. Run `git rm modules/ROOT/attachments/components/bundle-plugin/*`.
+. Copy the maven-generated `target/site` contents to the `bundle-plugin` and `bundle-plugin-<version>` directories.
+. `git add` the new content.
+. Commit and push.
+
+=== Previously undocumented apidocs
+
+Several subprojects appear to have generated javadoc for various versions under `modules/ROOT/attachments/apidocs`.
+There are no evident instructions on when or how to update these.
 
 == Create an Announcement
 
