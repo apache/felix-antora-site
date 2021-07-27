@@ -16,7 +16,7 @@ framework:
   - title: Framework
     artifactId: org.apache.felix.main.distribution
     version: 7.0.1
-    changelog: framework/doc/changelog.txt
+    changelog: felix-dev/blob/master/framework/doc/changelog.txt
 #
 # (2) Subprojects
 # Format: title
@@ -42,39 +42,48 @@ subprojects:
   - title: Atomos
     artifactId: org.apache.felix.atomos
     version: 1.0.0
+    changelog: false
 
   - title: Bundle Repository
     artifactId: org.apache.felix.bundlerepository
     version: 2.0.10
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/bundlerepository/doc/changelog.txt
 
   - title: CM Json
     artifactId: org.apache.felix.cm.json
     version: 1.0.6
+    changelog: false
 
   - title: Configuration Admin
     artifactId: org.apache.felix.configadmin
     version: 1.9.22
+    changelog: felix-dev/blob/master/configadmin/changelog.txt
 
   - title: Configurator
     artifactId: org.apache.felix.configurator
     version: 1.0.14
+    changelog: false
 
-  - title: Configuration Admin Interceptor Plugin
+  - title: Configuration Admin Interpolation Plugin
     artifactId: org.apache.felix.configadmin.plugin.interpolation
     version: 1.1.0
+    changelog: false
 
+#TODO remove ??
   - title: Connect
     artifactId: org.apache.felix.connect
     version: 0.2.0
+    changelog: false
 
   - title: Converter
     artifactId: org.apache.felix.converter
     version: 1.0.12
+    changelog: false
 
   - title: Coordinator
     artifactId: org.apache.felix.coordinator
     version: 1.0.2
+    changelog: false
 
   - title: Dependency Manager 4
     artifactId: org.apache.felix.dependencymanager
@@ -82,233 +91,275 @@ subprojects:
     source-classifier: src
     classifier: bin
     targz: false
+    changelog: felix-dev/blob/master/dependencymanager/org.apache.felix.dependencymanager/changelog.txt
 
+#TODO remove
   - title: Deployment Admin
     artifactId: org.apache.felix.deploymentadmin
     version: 0.9.10
-    changelog: changelog.txt
+    changelog: felix-dev/blob/master/deploymentadmin/deploymentadmin/changelog.txt
 
   - title: Event Admin
     artifactId: org.apache.felix.eventadmin
     version: 1.6.2
+    changelog: felix-dev/blob/master/eventadmin/impl/changelog.txt
 
   - title: File Install
     artifactId: org.apache.felix.fileinstall
     version: 3.6.4
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/fileinstall/doc/changelog.txt
 
   - title: Framework
     artifactId: org.apache.felix.framework
     version: 7.0.1
-    changelog: framework/doc/changelog.txt
+    changelog: felix-dev/blob/master/framework/doc/changelog.txt
 
   - title: Framework Security
     artifactId: org.apache.felix.framework.security
     version: 2.8.0
-    changelog: framework.security/doc/changelog.txt
-
-  - title: Gogo Runtime
-    artifactId: org.apache.felix.gogo.runtime
-    version: 1.1.4
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: Gogo JLine
-    artifactId: org.apache.felix.gogo.jline
-    version: 1.1.8
-    source-classifier: project
-    changelog: doc/changelog.txt
-
-  - title: Gogo Shell
-    artifactId: org.apache.felix.gogo.shell
-    version: 1.1.4
-    source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/framework.security/doc/changelog.txt
 
   - title: Gogo Command
     artifactId: org.apache.felix.gogo.command
     version: 1.1.2
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/gogo/command/doc/changelog.txt
+
+  - title: Gogo JLine
+    artifactId: org.apache.felix.gogo.jline
+    version: 1.1.8
+    source-classifier: project
+    changelog: felix-dev/blob/master/gogo/jline/doc/changelog.txt
+
+  - title: Gogo Runtime
+    artifactId: org.apache.felix.gogo.runtime
+    version: 1.1.4
+    source-classifier: project
+    changelog: felix-dev/blob/master/gogo/runtime/doc/changelog.txt
+
+  - title: Gogo Shell
+    artifactId: org.apache.felix.gogo.shell
+    version: 1.1.4
+    source-classifier: project
+    changelog: felix-dev/blob/master/gogo/shell/doc/changelog.txt
 
   - title: Health Check Annotations
     artifactId: org.apache.felix.healthcheck.annotation
     version: 2.0.0
     source-classifier: project
+    changelog: false
 
   - title: Health Check API
     artifactId: org.apache.felix.healthcheck.api
     version: 2.0.4
     source-classifier: project
+    changelog: false
 
   - title: Health Check Core
     artifactId: org.apache.felix.healthcheck.core
     version: 2.0.8
     source-classifier: project
+    changelog: false
 
   - title: Health Check General Checks
     artifactId: org.apache.felix.healthcheck.generalchecks
     version: 2.0.6
     source-classifier: project
+    changelog: false
 
   - title: Health Check Webconsole Plugin
     artifactId: org.apache.felix.healthcheck.webconsoleplugin
     version: 2.0.2
     source-classifier: project
+    changelog: false
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
     version: 4.1.2
+    changelog: false
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
     version: 4.1.2
+    changelog: false
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
     version: 4.1.8
+    changelog: false
 
   - title: HTTP Service Proxy
     artifactId: org.apache.felix.http.proxy
     version: 3.0.6
+    changelog: false
 
   - title: HTTP Service SSL filter
     artifactId: org.apache.felix.http.sslfilter
     version: 1.2.6
+    changelog: false
 
   - title: HTTP Service Whiteboard
     artifactId: org.apache.felix.http.whiteboard
     version: 4.0.0
+    changelog: false
 
   - title: HTTP Servlet 2.6 + 3.0 API
     artifactId: org.apache.felix.http.servlet-api
     version: 1.1.2
+    changelog: false
 
   - title: Inventory Printer
     artifactId: org.apache.felix.inventory
     version: 1.0.6
+    changelog: felix-dev/blob/master/inventory/changelog.txt
 
   - title: Log
     artifactId: org.apache.felix.log
     version: 1.2.2
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/log/doc/changelog.txt
 
   - title: Log Extension
     artifactId: org.apache.felix.log.extension
     version: 1.0.0
+    changelog: felix-dev/blob/master/log.extension/doc/changelog.txt
 
   - title: Logback
     artifactId: org.apache.felix.logback
     version: 1.0.2
+    changelog: felix-dev/blob/master/logback/doc/changelog.txt
 
   - title: Main
     artifactId: org.apache.felix.main
     version: 7.0.0
     source-classifier: project
-    changelog: main/doc/changelog.txt
+    changelog: felix-dev/blob/master/main/doc/changelog.txt
 
   - title: Metatype
     artifactId: org.apache.felix.metatype
     version: 1.2.4
+    changelog: felix-dev/blob/master/metatype/changelog.txt
 
+#TODO remove
   - title: OSGi OBR service API
     artifactId: org.osgi.service.obr
     version: 1.0.2
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: false
 
   - title: Remote Shell
     artifactId: org.apache.felix.shell.remote
     version: 1.1.2
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/shell.remote/doc/changelog.txt
 
   - title: Resolver
     artifactId: org.apache.felix.resolver
     version: 2.0.2
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/resolver/doc/changelog.txt
 
   - title: SCR (Declarative Services)
     artifactId: org.apache.felix.scr
     version: 2.1.26
+    changelog: felix-dev/blob/master/scr/changelog.txt
 
   - title: SCR Compat (Declarative Services)
     artifactId: org.apache.felix.scr.compat
     version: 1.0.4
+    changelog: felix-dev/blob/master/scr-compat/changelog.txt
 
+  - title: SCR Ext Anno
+    artifactId: org.apache.felix.scr.ext.anno
+    version: 1.0.0
+    changelog: false
+
+#TODO remove ??
   - title: SCR Annotations
     artifactId: org.apache.felix.scr.annotations
     version: 1.12.0
+    changelog: felix-dev/blob/master/tools/org.apache.felix.scr.annotations/changelog.txt
 
+#TODO remove ??
   - title: SCR DS Annotations
     artifactId: org.apache.felix.scr.ds-annotations
     version: 1.2.10
+    changelog: felix-dev/blob/master/tools/org.apache.felix.scr.ds-annotations/changelog.txt
 
+#TODO remove ??
   - title: SCR Generator
     artifactId: org.apache.felix.scr.generator
     version: 1.18.4
     source-classifier: project
+    changelog: felix-dev/blob/master/tools/org.apache.felix.scr.generator/changelog.txt
 
   - title: Shell
     artifactId: org.apache.felix.shell
     version: 1.4.3
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/shell/doc/changelog.txt
 
   - title: Shell Text UI
     artifactId: org.apache.felix.shell.tui
     version: 1.4.1
     source-classifier: project
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/shell.tui/doc/changelog.txt
 
   - title: Utils
     artifactId: org.apache.felix.utils
     version: 1.11.0
-    changelog: doc/changelog.txt
+    changelog: felix-dev/blob/master/utils/doc/changelog.txt
 
   - title: Web Console
     artifactId: org.apache.felix.webconsole
     version: 4.6.0
+    changelog: felix-dev/blob/master/webconsole/changelog.txt
 
   - title: Web Console (all-in-one bundle)
     artifactId: org.apache.felix.webconsole
     version: 4.6.0
     classifier: all
+    changelog: felix-dev/blob/master/webconsole/changelog.txt
 
   - title: Web Console DS Plugin
     artifactId: org.apache.felix.webconsole.plugins.ds
     version: 2.1.0
+    changelog: felix-dev/blob/master/webconsole-plugins/ds/changelog.txt
 
   - title: Web Console Event Admin Plugin
     artifactId: org.apache.felix.webconsole.plugins.event
     version: 1.1.8
+    changelog: felix-dev/blob/master/webconsole-plugins/event/changelog.txt
 
   - title: Web Console Memory Usage Plugin
     artifactId: org.apache.felix.webconsole.plugins.memoryusage
     version: 1.0.10
+    changelog: felix-dev/blob/master/webconsole-plugins/memoryusage/changelog.txt
 
   - title: Web Console OBR Plugin
     artifactId: org.apache.felix.webconsole.plugins.obr
     version: 1.0.4
+    changelog: felix-dev/blob/master/webconsole-plugins/obr/changelog.txt
 
   - title: Web Console PackageAdmin Plugin
     artifactId: org.apache.felix.webconsole.plugins.packageadmin
     version: 1.0.4
+    changelog: felix-dev/blob/master/webconsole-plugins/packageadmin/changelog.txt
 
   - title: Web Console Script Console Plugin
     artifactId: org.apache.felix.webconsole.plugins.scriptconsole
     version: 1.0.2
     source-classifier: project
+    changelog: felix-dev/blob/master/webconsole-plugins/script-console/changelog.txt
 
   - title: Web Console ServiceDiagnostics Plugin
     artifactId: org.apache.felix.servicediagnostics.plugin
     version: 0.1.3
-    changelog: changelog.txt
+    changelog: felix-dev/blob/master/webconsole-plugins/servicediagnostics/changelog.txt
 
   - title: Web Console Subsystems Plugin
     artifactId: org.apache.felix.webconsole.plugins.subsystem
     version: 0.1.0
+    changelog: false
 
 # (3) Maven Plugins
 # Format: title
@@ -321,23 +372,27 @@ maven_plugins:
   - title: Atomos Maven Plugin
     artifactId: atomos-maven-plugin
     version: 0.9.0
+    changelog: false
 
   - title: Maven Bundle Plugin
     artifactId: maven-bundle-plugin
     version: 5.1.1
-    changelog: changelog.txt
+    changelog: felix-dev/blob/master/tools/maven-bundle-plugin/changelog.txt
 
   - title: Maven OBR Plugin
     artifactId: maven-obr-plugin
     version: 1.2.0
+    changelog: false
 
   - title: Maven SCR Plugin
     artifactId: maven-scr-plugin
     version: 1.26.4
+    changelog: felix-dev/blob/master/tools/maven-scr-plugin/changelog.txt
 
   - title: OSGi Check Maven Plugin
     artifactId: osgicheck-maven-plugin
     version: 0.1.0
+    changelog: false
 
 # (3) Ant Tasks
 # Format: title
@@ -363,6 +418,3 @@ bnd-plugins:
     artifactId: org.apache.felix.scr.bnd
     version: 1.9.6
 
-  - title: SCR Ext Anno
-    artifactId: org.apache.felix.scr.ext.anno
-    version: 1.0.0
