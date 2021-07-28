@@ -6,6 +6,8 @@
 
 Use the https://downloads.apache.org/felix/KEYS[KEYS] file contents to https://www.apache.org/info/verification.html[validate] the artifacts.
 
+If available, the version links to the subproject changelog.
+
 == Felix Framework Distribution
 
 [cols="5*",opts="headers"]
@@ -19,7 +21,7 @@ Use the https://downloads.apache.org/felix/KEYS[KEYS] file contents to https://w
 
 |===
 
-jsonpathTable2::example$downloads.yml['$.framework.*', 'title|changelog ? `{repo-base}/$\{changelog}[$\{version}]` : version|`{mirror}/$\{artifactId}-$\{version}.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])`']
+jsonpathTable2::example$downloads.yml['$.framework.*', 'title|!!changelog ? `{repo-base}/$\{changelog}[$\{version}]` : version|`{mirror}/$\{artifactId}-$\{version}.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])`']
 
 == Subprojects
 
@@ -34,7 +36,7 @@ jsonpathTable2::example$downloads.yml['$.framework.*', 'title|changelog ? `{repo
 
 |===
 
-jsonpathTable2::example$downloads.yml['$.subprojects.*', 'title|!!changelog ? `{repo-base}/$\{changelog}[$\{version}]` : version|`{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-source-release.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-source-release.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-source-release.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-source-release.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-source-release.zip.sha1[sha1])`']
+jsonpathTable2::example$downloads.yml['$.subprojects.*', 'title|!!changelog ? `{repo-base}/$\{changelog}[$\{version}]` : version|!!jar ? `{mirror}/$\{artifactId}-$\{version}.jar{query}[jar] ({dist}/$\{artifactId}-$\{version}.jar.asc[asc], {dist}/$\{artifactId}-$\{version}.jar.sha1[sha1])` : "" |!!targz ?  `{mirror}/$\{artifactId}-$\{version}-$\{source_classifier}.tar.gz{query}[tar.gz] ({dist}/$\{artifactId}-$\{version}-$\{source_classifier}.tar.gz.asc[asc], {dist}/$\{artifactId}-$\{version}-$\{source_classifier}.tar.gz.sha1[sha1])` : "" |`{mirror}/$\{artifactId}-$\{version}-$\{source_classifier}.zip{query}[zip] ({dist}/$\{artifactId}-$\{version}-$\{source_classifier}.zip.asc[asc], {dist}/$\{artifactId}-$\{version}-$\{source_classifier}.zip.sha1[sha1])`']
 
 == Maven Plugins
 
