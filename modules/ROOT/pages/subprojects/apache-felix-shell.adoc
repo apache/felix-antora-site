@@ -248,9 +248,5 @@ Security handling may change in future release after some experience is gained t
 
 == Feedback
 
-[cols=2*]
-|===
-| Subscribe to the Felix users mailing list by sending a message to link:mailto:users-subscribe-felix-apache-org[users-subscribe@felix.apache.org];
-after subscribing, email questions or feedback to [users@felix.apache.org
-| mailto:users@felix.apache.org].
-|===
+Subscribe to the Felix users mailing list by sending a message to mailto:users-subscribe@felix.apache.org[users-subscribe@felix.apache.org];
+after subscribing, email questions or feedback to mailto:users@felix.apache.org[users@felix.apache.org].
