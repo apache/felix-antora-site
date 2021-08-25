@@ -51,8 +51,8 @@ Gogo Shell|org.apache.felix.gogo.shell|1.1.4|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|1.1.2|project||doc/changelog.txt
 Health Check Annotations|org.apache.felix.healthcheck.annotation|2.0.0|project||-
 Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
-Health Check Core|org.apache.felix.healthcheck.core|2.0.8|project||-
-Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.6|project||-
+Health Check Core|org.apache.felix.healthcheck.core|2.0.10|project||-
+Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.8|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.2|project||-
 HTTP Service Base|org.apache.felix.http.base|4.1.2
 HTTP Service Bridge|org.apache.felix.http.bridge|4.1.2
