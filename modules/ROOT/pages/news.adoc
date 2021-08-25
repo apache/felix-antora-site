@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Webconsole 4.6.4 released (August 25th, 2021)
 * Apache Felix Healthcheck Core 2.0.10, Healthcheck Generalchecks 2.0.8, Systemready 0.5.0, Rootcause 0.2.0
 * Apache Felix Configuration Admin 1.9.22 and Http Jetty 4.1.8 (May 7th, 2021)
 * Apache Felix Http Jetty 4.1.6 (March 18th, 2021)
