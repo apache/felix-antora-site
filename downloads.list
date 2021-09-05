@@ -54,9 +54,9 @@ Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.0.10|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.8|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.2|project||-
-HTTP Service Base|org.apache.felix.http.base|4.1.2
-HTTP Service Bridge|org.apache.felix.http.bridge|4.1.2
-HTTP Service Jetty|org.apache.felix.http.jetty|4.1.8
+HTTP Service Base|org.apache.felix.http.base|4.1.4
+HTTP Service Bridge|org.apache.felix.http.bridge|4.1.4
+HTTP Service Jetty|org.apache.felix.http.jetty|4.1.12
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
@@ -110,7 +110,7 @@ User Admin  |org.apache.felix.useradmin|1.0.4|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.11.0|||doc/changelog.txt
-Web Console|org.apache.felix.webconsole|4.6.0
+Web Console|org.apache.felix.webconsole|4.7.0
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.6.0||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.1.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
