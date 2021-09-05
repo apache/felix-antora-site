@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Webconsole 4.7.0, Http Jetty 4.1.12, Http Base 4.1.4 and Http Bridge 4.1.4 released (September 5th, 2021)
 * Apache Felix Healthcheck Generalchecks 2.0.12 (August 31st, 2021)
 * Apache Felix Healthcheck Generalchecks 2.0.10, Systemready 0.6.0 (August 28th, 2021)
 * Apache Felix Webconsole 4.6.4 released (August 25th, 2021)
