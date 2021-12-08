@@ -43,7 +43,7 @@ If this project is not using Maven, refer to the docs for the subproject on how 
 | https://github.com/apache/felix-dev/tree/master/fileinstall[source]
 
 | xref:subprojects/apache-felix-framework.adoc[Framework]
-| An implementation of the OSGi R7 core framework.
+| An implementation of the OSGi R8 core framework.
 | https://github.com/apache/felix-dev/tree/master/framework[source]
 
 | xref:subprojects/apache-felix-framework-security.adoc[Framework Security]
