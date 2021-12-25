@@ -7,7 +7,7 @@ This plugin wraps BND to make it work specifically with the Maven 2 project stru
 
 INFO:
 If you have questions about the maven-bundle-plugin please read the xref:faqs/apache-felix-bundle-plugin-faq.adoc[FAQ] first.
-If you still have questions you can ask them on the http://felix.apache.org/site/mailinglists.html[Felix user list].</div>
+If you still have questions you can ask them on the http://felix.apache.org/site/mailinglists.html[Felix user list].
 
 _NOTE: test scoped dependencies are *not* included in the classpath seen by BND._
 
@@ -15,9 +15,9 @@ Since the 1.4.0 release, this plugin also aims to automate OBR (OSGi Bundle Repo
 It helps manage a local OBR for your local Maven repository, and also supports remote OBRs for bundle distribution.
 The plug-in automatically computes bundle capabilities and requirements, using a combination of Bindex and Maven metadata.
 
-TIP: http://felix.apache.org/components/bundle-plugin/index.html[Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin]</div>
+TIP: http://felix.apache.org/components/bundle-plugin/index.html[Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin]
 
-TIP: https://bnd.bndtools.org/tools/felix-maven.html[A complete list of instructions and their format is available from the BND website]</div>
+TIP: https://bnd.bndtools.org/tools/felix-maven.html[A complete list of instructions and their format is available from the BND website]
 
 == Simple Example
 
