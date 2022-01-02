@@ -22,7 +22,7 @@ TIP: http://bnd.bndtools.org/chapters/790-format.html[A complete list of instruc
 == Simple Example
 
 Rather than going straight to a detailed list of plugin features, we will first look at a simple example of how to use the plugin to give an immediate flavor.
-A detailed "<<detailed-how-to,how to>>" will follow.
+A detailed "<<_detailed_how_to,how to>>" will follow.
 
 Assume that we have a simple bundle project that has a pubic API package an several implementation packages, such as:
 
@@ -53,14 +53,14 @@ If we also assume that we have a bundle activator in one of the implementation p
 The `<Export-Package>` and `<Private-Package>` instructions tell the plugin about the contents of the resulting bundle JAR file.
 The `<Export-Package>` instruction tells the plugin which of the available packages to copy into the bundle _and_ export, while the `<Private-Package>` instruction indicates which of the available packages to copy into the bundle _but not_ export.
 If the two sets overlap, as they do in the case, then the export takes precedence.
-Since we did not specify any values for any other bundle manifest headers, they will assume default values which are described <<default-behavior,below>>.
+Since we did not specify any values for any other bundle manifest headers, they will assume default values which are described <<_default_behavior,below>>.
 One specific behavior to highlight is that the plugin generates the `Import-Package` bundle manifest header based on the contents of the bundle, which means that you generally do not ever need to explicitly specify it yourself.
 That's it.
 
 == Features
 
 The BND library underlying the plugin defines instructions to direct its behavior.
-For this Maven plugin, these instructions are issued in the plugin configuration section of the POM file, as was illustrated <<simple-example,above>>.
+For this Maven plugin, these instructions are issued in the plugin configuration section of the POM file, as was illustrated <<_simple_example,above>>.
 BND recognizes three types of instructions:
 
 . _Manifest headers_ - Any instruction that starts with a capital letter will appear in the resulting bundle's manifest file;

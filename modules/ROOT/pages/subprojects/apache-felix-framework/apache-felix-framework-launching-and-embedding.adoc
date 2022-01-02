@@ -117,6 +117,7 @@ To know when the framework has finished its shutdown sequence, use the `waitForS
 A stopped framework will be in the `Bundle.RESOLVED` state.
 It is possible to restart the framework, using the normal combination of `init()`/`start()` methods as previously described.
 
+[[_launching]]
 == Launching a Framework
 
 Launching a framework is fairly simple and involves only four steps:
@@ -282,6 +283,7 @@ this is necessary because the framework never calls `System.exit()` and some lib
 The framework is not active until the `start()` method is called.
 If no shell bundles are installed and started or if there is difficulty locating the shell bundles specified in the auto-start property, then it will appear as if the framework is hung, but it is actually running without any way to interact with it since the shell bundles provide the only means of interaction.
 
+[[_custom-launcher]]
 === Custom Framework Launcher
 
 This section creates a bare-bones launcher to demonstrate the minimum requirements for creating an interactive launcher for the Felix framework.
