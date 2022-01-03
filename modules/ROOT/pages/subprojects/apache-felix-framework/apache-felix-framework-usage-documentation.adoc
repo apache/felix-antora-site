@@ -1,16 +1,5 @@
 = Apache Felix Framework Usage Documentation
 
-* <<downloading-the-framework,Downloading the Framework>>
-* <<starting-the-framework,Starting the Framework>>
-* <<framework-shell,Framework Shell>>
- ** <<installing-bundles,Installing Bundles>>
- ** <<web-proxy-issues-when-installing-bundles,Web Proxy Issues when Installing Bundles>>
-* <<bundle-auto-deploy,Bundle Auto-Deploy>>
-* <<configuring-the-framework,Configuring the Framework>>
- ** <<system-property-substitution,System Property Substitution>>
-* <<configuring-bundles,Configuring Bundles>>
-* <<feedback,Feedback>>
-
 == Downloading the Framework
 
 Go to the link:{{ refs.downloads.path }}[downloads] page and download the latest Felix framework distribution.
@@ -115,7 +104,7 @@ These properties are:
 this string should be the user name and password separated by a colon (e.g., `rickhall:mypassword`).
 
 These system properties can be set directly on the command line when starting the JVM using the standard "[.code]``\-D<prop>=<value>``" syntax or you can put them in the `lib/system.properties` file of your Felix installation;
-see the next section on <<configuring-the-framework,configuring Felix>> for more information.
+see the next section on <<_configuring_the_framework,configuring Felix>> for more information.
 
 == Bundle Auto-Deploy
 
@@ -174,7 +163,7 @@ To learn about the configuration options for specific bundles, refer to the docu
 Bundle properties may also be defined in the `conf/config.properties` property file.
 Any property placed in this file will be accessible via `BundleContext.getProperty()` at run time.
 The property file uses the standard Java property file syntax (i.e., attribute-value pairs).
-For information on changing the default location of this file, refer to the section on <<configuring-the-framework,configuring Felix>>.
+For information on changing the default location of this file, refer to the section on <<_configuring_the_framework,configuring Felix>>.
 
 == Feedback
 

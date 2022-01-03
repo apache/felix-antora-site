@@ -3,7 +3,7 @@
 
 
 This page provides answers to frequently asked questions using the Maven SCR Plugin.
-See xref:subprojects/apache-felix-maven-scr-plugin.adoc[] for documentation on that plugin.
+See xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[] for documentation on that plugin.
 
 == Should I still use the Apache Felix SCR annotations over the official OSGi annotations?
 
