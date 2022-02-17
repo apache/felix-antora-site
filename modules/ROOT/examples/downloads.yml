@@ -149,7 +149,7 @@ subprojects:
 
   - title: Health Check Core
     artifactId: org.apache.felix.healthcheck.core
-    version: 2.0.12
+    version: 2.0.14
     source_classifier: project
     changelog: false
 
