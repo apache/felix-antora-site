@@ -54,13 +54,13 @@ Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.0.14|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.0|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.2|project||-
-HTTP Service Base|org.apache.felix.http.base|4.1.4
-HTTP Service Bridge|org.apache.felix.http.bridge|4.1.4
-HTTP Service Jetty|org.apache.felix.http.jetty|4.1.12
+HTTP Service Base|org.apache.felix.http.base|4.2.0
+HTTP Service Bridge|org.apache.felix.http.bridge|4.2.0
+HTTP Service Jetty|org.apache.felix.http.jetty|4.2.0
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
-HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2
+HTTP Servlet 2.6 + 3.0 + 4.0 API|org.apache.felix.http.servlet-api|1.2.0
 Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-

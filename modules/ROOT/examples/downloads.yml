@@ -167,19 +167,19 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 4.1.6
+    version: 4.2.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
-    version: 4.1.6
+    version: 4.2.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 4.1.14
+    version: 4.2.0
     source_classifier: source-release
     changelog: false
 
@@ -201,9 +201,9 @@ subprojects:
     source_classifier: source-release
     changelog: false
 
-  - title: HTTP Servlet 2.6 + 3.0 API
+  - title: HTTP Servlet 2.6 + 3.0 + 4.0 API
     artifactId: org.apache.felix.http.servlet-api
-    version: 1.1.2
+    version: 1.2.0
     source_classifier: source-release
     changelog: false
 
