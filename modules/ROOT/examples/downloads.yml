@@ -264,7 +264,7 @@ subprojects:
 
   - title: SCR (Declarative Services)
     artifactId: org.apache.felix.scr
-    version: 2.1.26
+    version: 2.2.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/scr/changelog.txt
 
