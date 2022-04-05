@@ -98,7 +98,7 @@ The recommended version at this time is 2.0.4
  ** you should verify the deployment under the https://repository.apache.org/content/groups/snapshots/org/apache/felix[snapshot] repository on Apache
 . Prepare the release
 +
-[source,shell]
+[source,bash]
 ----
 $ mvn release:clean
 $ mvn release:prepare
@@ -106,7 +106,7 @@ $ mvn release:prepare
  ** preparing the release will create the new tag in git, automatically checking in on your behalf
 . Stage the release for a vote
 +
-[source,shell]
+[source,bash]
 ----
 $ mvn release:perform
 ----
