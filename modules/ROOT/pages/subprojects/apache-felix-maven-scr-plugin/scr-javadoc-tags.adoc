@@ -5,10 +5,10 @@ This page exists to define the support for JavaDoc tags upto Maven SCR Plugin ve
 
 The `scr` goal of the `maven-scr-plugin` looks for the following JavaDoc tags when building component descriptors:
 
-* <<scrcomponent,scr.component>>
-* <<scrproperty,scr.property>>
-* <<scrservice,scr.service>>
-* <<scrreference,scr.reference>>
+* <<_scr_component,scr.component>>
+* <<_scr_property,scr.property>>
+* <<_scr_service,scr.service>>
+* <<_scr_reference,scr.reference>>
 
 == scr.component
 
@@ -232,7 +232,7 @@ If a property should not be available for display in a configuration user interf
 | --
 | `AD.cardinality`
 | Defines the cardinality of the property and its collection type.
-If the cardinality is negative, the property is expected to be stored in a `java.util.Vector` (primitive types such as `boolean` are boxed in the Wrapper class), if the cardinality is positive, the property is stored in an array (primitve types are unboxed, that is `Boolean` type values are stored in `boolean\[\]({{ refs..path }})`).
+If the cardinality is negative, the property is expected to be stored in a `java.util.Vector` (primitive types such as `boolean` are boxed in the Wrapper class), if the cardinality is positive, the property is stored in an array (primitve types are unboxed, that is `Boolean` type values are stored in `boolean`).
 The actual value defines the maximum number of elements in the vector or array, where `Integer.MIN*INT` describes an unbounded Vector and `Integer.MAX*INT` describes an unbounded array.
 If the cardinality is zero, the property is a scalar value.
 If the defined value of the property is set in the `value` attribute, the cardinality defaults to `0` (zero for scalar value).
@@ -309,7 +309,7 @@ There may be properties, which have a list of values, such as a list of possible
 Such multiple values are defined in one more parameters whose name starts with `values`.
 Each parameter must of course have a unique name which is not in any except to differentiate the parameters.
 
-If the cardinality of the property is not explicilty set with the `cardinality` property, it defaults to `Integer.MAX_INT`, i.e.
+If the cardinality of the property is not explicitly set with the `cardinality` property, it defaults to `Integer.MAX_INT`, i.e.
 unbound array, if multiple values with a series of `values` parameters are defined.
 Otherwise the `cardinality` parameter may be set for example to a negative value to store the values in a `java.util.Vector` instead.
 

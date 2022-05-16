@@ -51,16 +51,16 @@ Gogo Shell|org.apache.felix.gogo.shell|1.1.4|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|1.1.2|project||doc/changelog.txt
 Health Check Annotations|org.apache.felix.healthcheck.annotation|2.0.0|project||-
 Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
-Health Check Core|org.apache.felix.healthcheck.core|2.0.10|project||-
-Health Check General Checks|org.apache.felix.healthcheck.generalchecks|2.0.8|project||-
+Health Check Core|org.apache.felix.healthcheck.core|2.0.14|project||-
+Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.0|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.0.2|project||-
-HTTP Service Base|org.apache.felix.http.base|4.1.4
-HTTP Service Bridge|org.apache.felix.http.bridge|4.1.4
-HTTP Service Jetty|org.apache.felix.http.jetty|4.1.12
+HTTP Service Base|org.apache.felix.http.base|4.2.0
+HTTP Service Bridge|org.apache.felix.http.bridge|4.2.0
+HTTP Service Jetty|org.apache.felix.http.jetty|4.2.0
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
-HTTP Servlet 2.6 + 3.0 API|org.apache.felix.http.servlet-api|1.1.2
+HTTP Servlet 2.6 + 3.0 + 4.0 API|org.apache.felix.http.servlet-api|1.2.0
 Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
@@ -95,7 +95,7 @@ OSGi OBR service API|org.osgi.service.obr|1.0.2|project||doc/changelog.txt
 Preferences|org.apache.felix.prefs|1.1.0
 Remote Shell|org.apache.felix.shell.remote|1.1.2|project||doc/changelog.txt
 Resolver|org.apache.felix.resolver|2.0.2|||doc/changelog.txt
-SCR (Declarative Services)|org.apache.felix.scr|2.1.26
+SCR (Declarative Services)|org.apache.felix.scr|2.2.0
 SCR Compat (Declarative Services)|org.apache.felix.scr.compat|1.0.4
 SCR Annotations|org.apache.felix.scr.annotations|1.12.0
 SCR DS Annotations|org.apache.felix.scr.ds-annotations|1.2.10
@@ -110,7 +110,7 @@ User Admin  |org.apache.felix.useradmin|1.0.4|project||-
 User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||-
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.11.0|||doc/changelog.txt
-Web Console|org.apache.felix.webconsole|4.7.0
+Web Console|org.apache.felix.webconsole|4.8.0
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.6.0||all
 Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.1.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8

@@ -335,7 +335,7 @@ The  manager which is in charge of maintaining the state of components is implem
 So, during activation, the component goes through a number of states, where each transition  includes the invocation of the following lifecycle method callbacks on the service implementation:
 
 * http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Init.html[@Init]: this callback is invoked after all required dependencies have been injected.
-In this method, you can  yet add more dynamic dependencies using the DM API, or you can possibly configure other dependencies filter and required flags (see <<# Dynamic dependency configuration,Dynamic dependency configuration>>).
+In this method, you can  yet add more dynamic dependencies using the DM API, or you can possibly configure other dependencies filter and required flags (see <<_dynamic_dependency_configuration,Dynamic dependency configuration>>).
 * http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Start.html[@Start]: this callback is invoked after all required dependencies added in the @Init method have been injected.
 * http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Registered.html[@Registered]: this callback is invoked after the service component is registered (if the component provides a service).
 The callback can takes as argument a ServiceRegistration parameter.
@@ -354,7 +354,7 @@ When all required dependencies are  available:
 * inject all optional dependencies defined on class fields, possibly with a _NullObject_ if the  dependency is not available.
 * call the component init method (annotated with _@Init_, see (see  http://felix.apache.org/apidocs/dependencymanager.annotations/r13/org/apache/felix/dm/annotation/api/Init.html[@Init javadoc]).).
 In the init method, you are yet allowed to add some additional dependencies using the Dependency  Manager API or DM Lambda).
-Alternatively, you can also configure some  dependencies dynamically  (explained later, in <<#dynamic-dependency-configuration,Dynamic Dependency Configuration>>.
+Alternatively, you can also configure some  dependencies dynamically  (explained later, in <<_dynamic_dependency_configuration,Dynamic Dependency Configuration>>.
 
 2) Wait for extra required dependencies optionally configured from the init() method.
 When all extra  required dependencies are available:

@@ -186,11 +186,8 @@ Since Asciidoc has some notion of grammar, you'll need to fix the problems.
 
 Title: ` :: replace with `= `
 
-Error `level 0 sections can only be used when doctype is book` :: More deeply nest sections so body sections are at least `== `.
-This may be facilitated in jetbrains products with an on-page regex search/replace from `
-(=+ )` to `
-
-=$1`.
+Error `level 0 sections can only be used when doctype is book` :: More deeply nest sections so body sections are at least ``== ``.
+This may be facilitated in jetbrains products with an on-page regex search/replace from ``(=+ )`` to `=$1`.
 
 There are numerous classes of problems this does not cover.
 The first step is probably to eliminate the command line errors/warnings.
@@ -236,7 +233,7 @@ echo '#!/bin/sh' >move-png.sh
 find modules -name "*.png" -exec sh -c     'echo mkdir -p `dirname $0`\\ngit mv $0 $0' {} \; |sed 's/\([gp]\) modules\/ROOT\/pages/\1 modules\/ROOT\/images/g' >>move-png.sh
 chmod u+x move-png.sh
 ./move-png.sh
----
+----
 
 You may need to move pngs with spaces in their filenames by hand.
 

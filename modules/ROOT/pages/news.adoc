@@ -1,5 +1,11 @@
 = News
 
+
+* Apache Felix Webconsole 4.8.0 (May 16th)
+* Apache Felix SCR 2.2.0 (February 23rd)
+* Apache Felix Http Jetty 4.2.0, Http Servlet API 1.2.0, Http Bridge 4.2.0, and Http Base 4.2.0 (February 20th)
+* Apache Felix Health Check Core 2.0.14 (February 17th, 2022)
+* Apache Felix Health Check Core 2.0.12, Health Check General Checks 3.0.0 (January 3rd, 2022)
 * Apache Felix Framework 7.0.3 and Framework Security 2.8.3 released (December 6th, 2021)
 * Apache Felix Configadmin Interpolation Plugin 1.2.2 released (October 29th, 2021)
 * Apache Felix Webconsole 4.7.0, Http Jetty 4.1.12, Http Base 4.1.4 and Http Bridge 4.1.4 released (September 5th, 2021)
