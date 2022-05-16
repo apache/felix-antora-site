@@ -17,7 +17,7 @@ The plug-in automatically computes bundle capabilities and requirements, using a
 
 TIP: http://felix.apache.org/components/bundle-plugin/index.html[Full Maven Site Plugin documentation for the current release of the maven-bundle-plugin]
 
-TIP: http://bnd.bndtools.org/chapters/790-format.html[A complete list of instructions and their format is available from the BND website]
+TIP: https://bnd.bndtools.org/tools/felix-maven.html[A complete list of instructions and their format is available from the BND website]
 
 == Simple Example
 
