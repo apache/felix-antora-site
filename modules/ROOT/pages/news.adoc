@@ -1,6 +1,6 @@
 = News
 
-
+* Apache Felix Webconsole 4.8.2 (May 23rd)
 * Apache Felix Webconsole 4.8.0 (May 16th)
 * Apache Felix SCR 2.2.0 (February 23rd)
 * Apache Felix Http Jetty 4.2.0, Http Servlet API 1.2.0, Http Bridge 4.2.0, and Http Base 4.2.0 (February 20th)
