@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Framework 7.0.4 released (May 25th, 2022)
 * Apache Felix Webconsole 4.8.2 (May 23rd)
 * Apache Felix Webconsole 4.8.0 (May 16th)
 * Apache Felix SCR 2.2.0 (February 23rd)
