@@ -18,7 +18,7 @@
 framework:
   - title: Framework
     artifactId: org.apache.felix.main.distribution
-    version: 7.0.4
+    version: 7.0.5
     changelog: felix-dev/blob/master/framework/doc/changelog.txt
 
 subprojects:
@@ -101,7 +101,7 @@ subprojects:
 
   - title: Framework
     artifactId: org.apache.felix.framework
-    version: 7.0.4
+    version: 7.0.5
     source_classifier: source-release
     changelog: felix-dev/blob/master/framework/doc/changelog.txt
 
@@ -233,7 +233,7 @@ subprojects:
 
   - title: Main
     artifactId: org.apache.felix.main
-    version: 7.0.4
+    version: 7.0.5
     source_classifier: project
     changelog: felix-dev/blob/master/main/doc/changelog.txt
 
