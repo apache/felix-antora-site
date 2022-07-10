@@ -1,6 +1,7 @@
 = News
 
-* Apache Felix Health Check General Checks 3.0.2 and Http Servlet API 2.0.0 (June 13th)
+* Apache Felix Health Check General Checks 3.0.4 (July 7th, 2022)
+* Apache Felix Health Check General Checks 3.0.2 and Http Servlet API 2.0.0 (June 13th, 2022)
 * Apache Felix Framework 7.0.5 released (Jun 3rd, 2022)
 * Apache Felix Framework 7.0.4 released (May 25th, 2022)
 * Apache Felix Webconsole 4.8.2 (May 23rd)

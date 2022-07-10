@@ -155,7 +155,7 @@ subprojects:
 
   - title: Health Check General Checks
     artifactId: org.apache.felix.healthcheck.generalchecks
-    version: 3.0.2
+    version: 3.0.4
     source_classifier: project
     changelog: false
 
