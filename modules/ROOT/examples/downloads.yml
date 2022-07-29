@@ -89,7 +89,7 @@ subprojects:
 
   - title: Event Admin
     artifactId: org.apache.felix.eventadmin
-    version: 1.6.2
+    version: 1.6.4
     source_classifier: source-release
     changelog: felix-dev/blob/master/eventadmin/impl/changelog.txt
 
