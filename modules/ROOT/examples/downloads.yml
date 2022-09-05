@@ -321,13 +321,13 @@ subprojects:
 
   - title: Web Console
     artifactId: org.apache.felix.webconsole
-    version: 4.8.2
+    version: 4.8.4
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt
 
   - title: Web Console (all-in-one bundle)
     artifactId: org.apache.felix.webconsole
-    version: 4.7.0
+    version: 4.8.4
     classifier: all
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt

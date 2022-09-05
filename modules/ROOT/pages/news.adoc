@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Webconsole 4.8.4 (September 5th, 2022)
 * Apache Felix Event Admin 1.6.4 (July 29th, 2022)
 * Apache Felix Health Check General Checks 3.0.4 (July 7th, 2022)
 * Apache Felix Health Check General Checks 3.0.2 and Http Servlet API 2.0.0 (June 13th, 2022)
