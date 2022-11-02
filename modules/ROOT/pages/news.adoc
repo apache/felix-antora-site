@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Http Servlet API 2.1.0 and Webconsole Plugin DS 2.2.0 (November 2nd, 2022)
 * Apache Felix Http Jetty 4.2.2, Http Bridge 4.2.2, and Http Base 4.2.2 (October 10th, 2022)
 * Apache Felix Webconsole 4.8.4 (September 5th, 2022)
 * Apache Felix Event Admin 1.6.4 (July 29th, 2022)

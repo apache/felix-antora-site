@@ -60,7 +60,7 @@ HTTP Service Jetty|org.apache.felix.http.jetty|4.2.2
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
-HTTP Servlet 2.6 + 3.0 + 4.0 + 5.0 API|org.apache.felix.http.servlet-api|2.0.0
+HTTP Servlet 2.6 + 3.0 + 4.0 + 5.0 API|org.apache.felix.http.servlet-api|2.1.0
 Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
@@ -112,7 +112,7 @@ User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project|
 Utils|org.apache.felix.utils|1.11.0|||doc/changelog.txt
 Web Console|org.apache.felix.webconsole|4.8.4
 Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.8.4||all
-Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.1.0
+Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.2.0
 Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
 Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.10
 Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.4

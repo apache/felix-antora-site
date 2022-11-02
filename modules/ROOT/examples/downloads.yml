@@ -203,7 +203,7 @@ subprojects:
 
   - title: HTTP Servlet 2.6 + 3.0 + 4.0 + 5.0 API
     artifactId: org.apache.felix.http.servlet-api
-    version: 2.0.0
+    version: 2.1.0
     source_classifier: source-release
     changelog: false
 
@@ -334,7 +334,7 @@ subprojects:
 
   - title: Web Console DS Plugin
     artifactId: org.apache.felix.webconsole.plugins.ds
-    version: 2.1.0
+    version: 2.2.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole-plugins/ds/changelog.txt
 
