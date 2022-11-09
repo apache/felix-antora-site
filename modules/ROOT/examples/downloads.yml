@@ -38,13 +38,13 @@ subprojects:
 
   - title: CM Json
     artifactId: org.apache.felix.cm.json
-    version: 1.0.6
+    version: 1.0.8
     source_classifier: source-release
     changelog: false
 
   - title: Configuration Admin
     artifactId: org.apache.felix.configadmin
-    version: 1.9.22
+    version: 1.9.26
     source_classifier: source-release
     changelog: felix-dev/blob/master/configadmin/changelog.txt
 
