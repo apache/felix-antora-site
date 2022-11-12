@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Http Jetty 5.0.0-RC1 and Http Base 5.0.0-RC1 (November 12th, 2022)
 * Apache Felix Configadmin 1.9.26 and CM JSON 1.0.8 (November 9th, 2022)
 * Apache Felix Http Servlet API 2.1.0 and Webconsole Plugin DS 2.2.0 (November 2nd, 2022)
 * Apache Felix Http Jetty 4.2.2, Http Bridge 4.2.2, and Http Base 4.2.2 (October 10th, 2022)
