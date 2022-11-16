@@ -38,7 +38,7 @@ subprojects:
 
   - title: CM Json
     artifactId: org.apache.felix.cm.json
-    version: 1.0.8
+    version: 2.0.0
     source_classifier: source-release
     changelog: false
 
@@ -50,7 +50,7 @@ subprojects:
 
   - title: Configurator
     artifactId: org.apache.felix.configurator
-    version: 1.0.14
+    version: 1.0.18
     source_classifier: source-release
     changelog: false
 
@@ -92,6 +92,12 @@ subprojects:
     version: 1.6.4
     source_classifier: source-release
     changelog: felix-dev/blob/master/eventadmin/impl/changelog.txt
+
+  - title: Feature
+    artifactId: org.apache.felix.feature
+    version: 1.0.2
+    source_classifier: source-release
+    changelog: false
 
   - title: File Install
     artifactId: org.apache.felix.fileinstall

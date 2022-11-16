@@ -32,9 +32,9 @@ framework|7.0.5
 Atomos|org.apache.felix.atomos|1.0.0
 AutoConf Resource Processor|org.apache.felix.deployment.rp.autoconf|0.1.8
 Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
-CM Json|org.apache.felix.cm.json|1.0.8
+CM Json|org.apache.felix.cm.json|2.0.0
 Configuration Admin|org.apache.felix.configadmin|1.9.26
-Configurator|org.apache.felix.configurator|1.0.14
+Configurator|org.apache.felix.configurator|1.0.18
 Configuration Admin Interceptor Plugin|org.apache.felix.configadmin.plugin.interpolation|1.2.2
 Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.12
@@ -42,6 +42,7 @@ Coordinator|org.apache.felix.coordinator|1.0.2
 Dependency Manager 4|org.apache.felix.dependencymanager|r16|src|bin
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.6.4
+Feature|org.apache.felix.feature|1.0.2
 File Install|org.apache.felix.fileinstall|3.6.4|||doc/changelog.txt
 Framework|org.apache.felix.framework|7.0.5|||framework/doc/changelog.txt
 Framework Security|org.apache.felix.framework.security|2.8.3|||framework.security/doc/changelog.txt
