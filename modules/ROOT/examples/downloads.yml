@@ -173,31 +173,43 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 5.0.0-RC2
+    version: 5.0.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
-    version: 4.2.2
+    version: 5.0.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 5.0.0-RC2
+    version: 5.0.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Proxy
     artifactId: org.apache.felix.http.proxy
-    version: 3.0.6
+    version: 4.0.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service SSL filter
     artifactId: org.apache.felix.http.sslfilter
-    version: 1.2.6
+    version: 2.0.0
+    source_classifier: source-release
+    changelog: false
+
+  - title: HTTP Service Inventory Printer
+    artifactId: org.apache.felix.http.inventoryprinter
+    version: 1.0.0
+    source_classifier: source-release
+    changelog: false
+
+  - title: HTTP Service Webconsole Plugin
+    artifactId: org.apache.felix.http.webconsoleplugin
+    version: 1.0.0
     source_classifier: source-release
     changelog: false
 
