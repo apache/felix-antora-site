@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix Http Base 5.0.2, Http Bridge 5.0.4, Http Jetty 5.0.4, Http Base 4.2.4, Http Bridge 4.2.6, Http Jetty 4.2.6, Webconsole 4.8.8 (February 24th, 2023)
 * Apache Felix Http Base 5.0.0, Http Bridge 5.0.0, Http Jetty 5.0.0, Http Proxy 4.0.0, Http SSL Filter 2.0.0, Http Inventory Plugin 1.0.0, Http Webconsole Plugin 1.0.0 (December 27th)
 * Apache Felix Http Jetty 5.0.0-RC2 and Http Base 5.0.0-RC2 (November 25th, 2022)
 * Apache Felix CM JSON 2.0.0, Configurator 1.0.18 and Feature 1.0.2 (November 16th, 2022)
