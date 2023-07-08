@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix HealthCheck Generalchecks 3.0.6 (July 8th, 2023)
 * Apache Felix Http Jetty 4.2.12 (May 6th, 2023)
 * Apache Felix Http Jetty 4.2.10, Http Bridge 4.2.8, Http Base 4.2.6 (March 12th, 2023)
 * Apache Felix Http Jetty 4.2.8 (March 4th, 2023)
