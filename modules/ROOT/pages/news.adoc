@@ -1,5 +1,7 @@
 = News
 
+* Apache Felix Webconsole 4.8.10 (July 23rd, 2023)
+* Apache Felix Http Jetty 4.2.14, Http Bridge 4.2.10, Http Base 4.2.8 (July 23rd, 2023)
 * Apache Felix HealthCheck Webconsole Plugin 2.1.0 (July 21th, 2023)
 * Apache Felix HealthCheck Generalchecks 3.0.6 (July 8th, 2023)
 * Apache Felix Http Jetty 4.2.12 (May 6th, 2023)
