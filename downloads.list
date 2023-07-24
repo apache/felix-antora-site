@@ -35,7 +35,7 @@ Bundle Repository|org.apache.felix.bundlerepository|2.0.10|||doc/changelog.txt
 CM Json|org.apache.felix.cm.json|2.0.0
 Configuration Admin|org.apache.felix.configadmin|1.9.26
 Configurator|org.apache.felix.configurator|1.0.18
-Configuration Admin Interceptor Plugin|org.apache.felix.configadmin.plugin.interpolation|1.2.2
+Configuration Admin Interceptor Plugin|org.apache.felix.configadmin.plugin.interpolation|1.2.8
 Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.12
 Coordinator|org.apache.felix.coordinator|1.0.2
