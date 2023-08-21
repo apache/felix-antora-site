@@ -173,19 +173,19 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 5.0.2
+    version: 5.0.4
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
-    version: 5.0.4
+    version: 5.0.6
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 5.0.4
+    version: 5.0.6
     source_classifier: source-release
     changelog: false
 
