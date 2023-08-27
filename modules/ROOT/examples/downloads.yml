@@ -155,13 +155,13 @@ subprojects:
 
   - title: Health Check Core
     artifactId: org.apache.felix.healthcheck.core
-    version: 2.0.14
+    version: 2.1.0
     source_classifier: project
     changelog: false
 
   - title: Health Check General Checks
     artifactId: org.apache.felix.healthcheck.generalchecks
-    version: 3.0.6
+    version: 3.0.8
     source_classifier: project
     changelog: false
 
@@ -173,19 +173,19 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 5.0.4
+    version: 5.1.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
-    version: 5.0.6
+    version: 5.1.0
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 5.0.6
+    version: 5.1.0
     source_classifier: source-release
     changelog: false
 
@@ -198,6 +198,12 @@ subprojects:
   - title: HTTP Service SSL filter
     artifactId: org.apache.felix.http.sslfilter
     version: 2.0.0
+    source_classifier: source-release
+    changelog: false
+
+  - title: HTTP Wrappers
+    artifactId: org.apache.felix.http.wrappers
+    version: 1.0.0
     source_classifier: source-release
     changelog: false
 

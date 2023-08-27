@@ -52,16 +52,17 @@ Gogo Shell|org.apache.felix.gogo.shell|1.1.4|project||doc/changelog.txt
 Gogo Command|org.apache.felix.gogo.command|1.1.2|project||doc/changelog.txt
 Health Check Annotations|org.apache.felix.healthcheck.annotation|2.0.0|project||-
 Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
-Health Check Core|org.apache.felix.healthcheck.core|2.0.14|project||-
-Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.6|project||-
+Health Check Core|org.apache.felix.healthcheck.core|2.1.0|project||-
+Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.8|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.1.0|project||-
-HTTP Service Base|org.apache.felix.http.base|5.0.4
-HTTP Service Bridge|org.apache.felix.http.bridge|5.0.6
-HTTP Service Jetty|org.apache.felix.http.jetty|5.0.6
+HTTP Service Base|org.apache.felix.http.base|5.1.0
+HTTP Service Bridge|org.apache.felix.http.bridge|5.1.0
+HTTP Service Jetty|org.apache.felix.http.jetty|5.1.0
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|1.2.6
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
 HTTP Servlet 2.6 + 3.0 + 4.0 + 5.0 API|org.apache.felix.http.servlet-api|2.1.0
+HTTP Wrappers|org.apache.felix.http.wrappers|1.0.0
 Inventory Printer|org.apache.felix.inventory|1.0.6
 iPOJO (Core)|org.apache.felix.ipojo|1.12.1|project||-
 iPOJO Runtime Project (containing all iPOJO runtime modules)|org.apache.felix.ipojo.runtime-project|1.12.1|source-release||-
