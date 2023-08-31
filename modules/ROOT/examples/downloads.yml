@@ -197,7 +197,7 @@ subprojects:
 
   - title: HTTP Service SSL filter
     artifactId: org.apache.felix.http.sslfilter
-    version: 2.0.0
+    version: 2.0.2
     source_classifier: source-release
     changelog: false
 
@@ -231,9 +231,9 @@ subprojects:
     source_classifier: source-release
     changelog: false
 
-  - title: Inventory Printer
+  - title: Inventory
     artifactId: org.apache.felix.inventory
-    version: 1.0.6
+    version: 2.0.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/inventory/changelog.txt
 
@@ -345,13 +345,13 @@ subprojects:
 
   - title: Web Console
     artifactId: org.apache.felix.webconsole
-    version: 4.8.12
+    version: 4.9.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt
 
   - title: Web Console (all-in-one bundle)
     artifactId: org.apache.felix.webconsole
-    version: 4.8.4
+    version: 4.9.0
     classifier: all
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt
