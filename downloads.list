@@ -54,7 +54,7 @@ Health Check Annotations|org.apache.felix.healthcheck.annotation|2.0.0|project||
 Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.1.0|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.8|project||-
-Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.1.0|project||-
+Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.2.0|project||-
 HTTP Service Base|org.apache.felix.http.base|5.1.0
 HTTP Service Bridge|org.apache.felix.http.bridge|5.1.0
 HTTP Service Jetty|org.apache.felix.http.jetty|5.1.0
@@ -113,12 +113,12 @@ User Admin File-based store|org.apache.felix.useradmin.filestore|1.0.2|project||
 User Admin MongoDB-based store|org.apache.felix.useradmin.mongodb|1.0.1|project||-
 Utils|org.apache.felix.utils|1.11.0|||doc/changelog.txt
 Web Console|org.apache.felix.webconsole|4.9.0
-Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.9.0||all
-Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.2.0
-Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.1.8
-Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.0.10
-Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.0.4
-Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.0.4
+Web Console (all-in-one bundle)|org.apache.felix.webconsole|4.9.2||all
+Web Console DS Plugin|org.apache.felix.webconsole.plugins.ds|2.3.0
+Web Console Event Admin Plugin|org.apache.felix.webconsole.plugins.event|1.2.0
+Web Console Memory Usage Plugin|org.apache.felix.webconsole.plugins.memoryusage|1.1.0
+Web Console OBR Plugin|org.apache.felix.webconsole.plugins.obr|1.1.0
+Web Console PackageAdmin Plugin|org.apache.felix.webconsole.plugins.packageadmin|1.1.0
 Web Console Script Console Plugin|org.apache.felix.webconsole.plugins.scriptconsole|1.0.2|project
 Web Console ServiceDiagnostics Plugin|org.apache.felix.servicediagnostics.plugin|0.1.3|||changelog.txt
 Web Console Subsystems Plugin|org.apache.felix.webconsole.plugins.subsystem|0.1.0
