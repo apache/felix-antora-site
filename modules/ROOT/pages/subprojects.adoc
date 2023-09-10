@@ -86,25 +86,9 @@ If this project is not using Maven, refer to the docs for the subproject on how 
 | A bundle repository service to simplify discovering and deploying bundles and their dependencies.
 | https://github.com/apache/felix-dev/tree/master/org.osgi.service.obr[source]
 
-| xref:subprojects/apache-felix-preferences-service.adoc[Preferences Service]
-| An implementation of the OSGi Preferences service specification for storing settings and preferences.
-| https://github.com/apache/felix-dev/tree/master/preferences[source]
-
-| xref:subprojects/apache-felix-remote-shell.adoc[Remote Shell]
-| A remote, text-based interface to the Apache Felix Shell.
-| https://github.com/apache/felix-dev/tree/master/shell.remote[source]
-
 | https://github.com/apache/felix-dev/tree/master/scr[Service Component Runtime]
 | An implementation of the https://osgi.org/specification/osgi.cmpn/7.0.0/service.component.html[OSGi Declarative Services specification] providing a service-oriented component model to simplify OSGi-based development.
 | https://github.com/apache/felix-dev/tree/master/scr[source]
-
-| xref:subprojects/apache-felix-shell.adoc[Shell]
-| A very simple shell service implemented as a bundle for interacting with an OSGi framework instance.
-| https://github.com/apache/felix-dev/tree/master/shell[source]
-
-| xref:subprojects/apache-felix-shell-tui.adoc[Shell TUI]
-| A simple, text-based interface to the Apache Felix Shell.
-| https://github.com/apache/felix-dev/tree/master/shell.tui[source]
 
 | xref:subprojects/apache-felix-web-console.adoc[Web Console]
 | A simple tool to inspect and manage OSGi framework instances using your favorite Web Browser.
@@ -128,7 +112,11 @@ The last documentation may be found in the {site-pub}/tree/last-cms repository.
 * {last-cms-subprojects}/apache-felix-maven-scr-plugin.html[Maven SCR Plugin]
 * {last-cms-subprojects}/mosgi-managed-osgi-framework.html[MOSGi Managed OSGi framework]
 * {last-cms-subprojects}/apache-felix-osgi-core.html[OSGi Core]
+* xref:subprojects/apache-felix-preferences-service.adoc[Preferences Service]
+* xref:subprojects/apache-felix-remote-shell.adoc[Remote Shell]
 * {last-cms-subprojects}/apache-felix-script-console-plugin.html[Script Console Plugin]
 * {last-cms-subprojects}/apache-felix-serialization-framework.html[Serialization Framework]
+* xref:subprojects/apache-felix-shell.adoc[Shell]
+* xref:subprojects/apache-felix-shell-tui.adoc[Shell TUI]
 * {last-cms-subprojects}/apache-felix-upnp.html[UPnP]
 * {last-cms-subprojects}/apache-felix-user-admin.html[User Admin]
