@@ -114,15 +114,6 @@
 **** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-logging.adoc[]
 **** xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/web-console-output-templating.adoc[]
 
-** Maven SCR plugin
-//indexList::[level=3,relative=subprojects/apache-felix-maven-scr-plugin/*.adoc]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-bndtools-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-scr-ant-task-use.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/extending-scr-annotations.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/scr-annotations.adoc[]
-*** xref:subprojects/apache-felix-maven-scr-plugin/scr-javadoc-tags.adoc[]
-
 * xref::tutorials-examples-and-presentations.adoc[Tutorials]
 //indexList::[level=2,relative=tutorials-examples-and-presentations/*.adoc]
 ** xref:tutorials-examples-and-presentations/apache-felix-application-demonstration.adoc[]
