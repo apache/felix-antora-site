@@ -1,6 +1,6 @@
 = Apache Felix SCR Plugin Frequently Asked Questions
 
-
+IMPORTANT: The Apache Felix SCR Tooling is not supported anymore. Please use the official OSGi annotations and bnd based tooling instead.
 
 This page provides answers to frequently asked questions using the Maven SCR Plugin.
 See xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[] for documentation on that plugin.

@@ -1,5 +1,7 @@
 = Extending SCR Annotations Excerpt: How add new Annotations extending the base Annotations
 
+IMPORTANT: The Apache Felix SCR Tooling is not supported anymore. Please use the official OSGi annotations and bnd based tooling instead.
+
 NOTE: This page documents functionality available with the SCR Generator 1.0.0 release providing the declaration file generation mechanism for the Maven SCR Plugin 1.6.0 (and newer) and the SCR Ant Task 1.0.0 (and newer).
 
 The SCR Annotations library has been updated in version 1.4.0 to comply with the rules described here.

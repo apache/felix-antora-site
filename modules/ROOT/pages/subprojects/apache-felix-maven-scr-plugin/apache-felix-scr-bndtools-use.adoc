@@ -1,5 +1,7 @@
 = Apache Felix SCR Annotations BndTools Use
 
+IMPORTANT: The Apache Felix SCR Tooling is not supported anymore. Please use the official OSGi annotations and bnd based tooling instead.
+
 == Using the Apache Felix SCR Annotations Bnd plugin to generate Declarative Services and Metatype Service descriptors in BndTools.
 
 The org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin is a bnd plugin allowing to generate SCR annotations and metatype descriptors in the Eclipse BndTools environment.

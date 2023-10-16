@@ -1,5 +1,7 @@
 = SCR Annotations Excerpt: Using Java 5 Annotations to describe the component or service.
 
+IMPORTANT: The Apache Felix SCR Tooling is not supported anymore. Please use the official OSGi annotations and bnd based tooling instead.
+
 The `maven-scr-plugin` uses the `SCR` annotations from the corresponding subproject at Apache Felix.
 All annotations are in the `org.apache.felix.scr.annotations` package.
 If you want to use the annotations in your project, you have to use a `maven-scr-plugin` version >= 1.24.0 and make sure that you add a dependency to the annotations to your `POM`:
