@@ -109,7 +109,7 @@ The last documentation may be found in the {site-pub}/tree/last-cms repository.
 * {last-cms-subprojects}/apache-felix-manifest-generator-mangen.html[Manifest Generator (mangen)]
 * {last-cms-subprojects}/apache-felix-maven-obr-plugin.html[Maven OBR Plugin]
 * {last-cms-subprojects}/apache-felix-maven-osgi-plugin.html[Maven OSGi Plugin]
-* xref:subprojects/apache-felix-maven-scr-plugin.adoc[Maven SCR Plugin]
+* xref:subprojects/apache-felix-maven-scr-plugin/apache-felix-maven-scr-plugin-use.adoc[Maven SCR Plugin]
 * {last-cms-subprojects}/mosgi-managed-osgi-framework.html[MOSGi Managed OSGi framework]
 * {last-cms-subprojects}/apache-felix-osgi-core.html[OSGi Core]
 * xref:subprojects/apache-felix-preferences-service.adoc[Preferences Service]
