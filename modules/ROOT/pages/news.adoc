@@ -1,5 +1,6 @@
 = News
 
+* Apache Felix iPOJO Manipulator 1.13.0 (Decembre 8th, 2023)
 * Apache Felix Http Bridge 4.2.14 (November 6th, 2023)
 * Apache Felic Http Jetty 5.1.4 and Http Jetty 4.2.20 (November 4th, 2023)
 * Apache Felix Webconsole 4.9.6 (October 7th, 2023)

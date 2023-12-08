@@ -416,6 +416,11 @@ maven_plugins:
     version: 5.1.1
     changelog: felix-dev/blob/master/tools/maven-bundle-plugin/changelog.txt
 
+  - title: Maven iPOJO Plugin
+    artifactId: maven-ipojo-plugin
+    version: 1.13.0
+    changelog: felix-dev/blob/master/ipojo/manipulator/changelog.txt
+
   - title: Maven OBR Plugin
     artifactId: maven-obr-plugin
     version: 1.2.0
@@ -443,3 +448,6 @@ bnd-plugins:
     artifactId: org.apache.felix.scr.bnd
     version: 1.9.6
 
+  - title: iPOJO Bnd Plugin
+    artifactId: bnd-ipojo-plugin
+    version: 1.13.0

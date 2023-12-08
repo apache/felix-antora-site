@@ -74,8 +74,8 @@ iPOJO Ant Task and CLI|org.apache.felix.ipojo.ant|1.12.1|project||-
 iPOJO BND Plugin|bnd-ipojo-plugin|1.12.1|project||-
 iPOJO WebConsole Plugin|org.apache.felix.ipojo.webconsole|1.7.0|project||-
 iPOJO API|org.apache.felix.ipojo.api|1.12.1|project||-
-iPOJO Manipulator|org.apache.felix.ipojo.manipulator|1.12.1|project||-
-iPOJO Manipulator Project (containing all iPOJO manipulator modules)|org.apache.felix.ipojo.manipulator-project|1.12.1|source-release||-
+iPOJO Manipulator|org.apache.felix.ipojo.manipulator|1.13.0|project||-
+iPOJO Manipulator Project (containing all iPOJO manipulator modules)|org.apache.felix.ipojo.manipulator-project|1.13.0|source-release||-
 iPOJO Whiteboard pattern handler|org.apache.felix.ipojo.handler.whiteboard|1.6.0|project||-
 iPOJO Extender pattern handler|org.apache.felix.ipojo.handler.extender|1.4.0|project||-
 iPOJO JMX handler|org.apache.felix.ipojo.handler.jmx|1.4.0|project||-
@@ -129,7 +129,7 @@ Web Console User Admin Plugin|org.apache.felix.webconsole.plugins.useradmin|1.0.
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
 Maven Bundle Plugin|maven-bundle-plugin|5.1.1|||changelog.txt
-Maven iPOJO Plugin|maven-ipojo-plugin|1.12.1|||-
+Maven iPOJO Plugin|maven-ipojo-plugin|1.13.0|||-
 Maven junit4osgi Plugin|maven-junit4osgi-plugin|1.0.0|||doc/changelog.txt
 Maven OBR Plugin|maven-obr-plugin|1.2.0|||-
 Maven SCR Plugin|maven-scr-plugin|1.26.4
@@ -145,5 +145,6 @@ SCR Ant Task|org.apache.felix.scr.ant|1.18.0
 # (3) Bnd PLugins
 # This list is sorted by the title before writing the table
 # Format: title|artifactId|version[|classifier[|extension]]
+iPOJO Bnd Plugin|bnd-ipojo-plugin|1.13.0
 SCR bnd Plugin|org.apache.felix.scr.bnd|1.9.6
 SCR Ext Anno|org.apache.felix.scr.ext.anno|1.0.0
