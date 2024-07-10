@@ -185,13 +185,13 @@ subprojects:
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 5.1.22
+    version: 5.1.24
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty12
     artifactId: org.apache.felix.http.jetty12
-    version: 1.0.12
+    version: 1.0.14
     source_classifier: source-release
     changelog: false
 
@@ -215,13 +215,13 @@ subprojects:
 
   - title: HTTP Service Inventory Printer
     artifactId: org.apache.felix.http.inventoryprinter
-    version: 1.0.0
+    version: 1.0.2
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Webconsole Plugin
     artifactId: org.apache.felix.http.webconsoleplugin
-    version: 1.1.0
+    version: 1.2.0
     source_classifier: source-release
     changelog: false
 
@@ -351,7 +351,7 @@ subprojects:
 
   - title: Web Console
     artifactId: org.apache.felix.webconsole
-    version: 5.0.4
+    version: 5.0.6
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt
 
