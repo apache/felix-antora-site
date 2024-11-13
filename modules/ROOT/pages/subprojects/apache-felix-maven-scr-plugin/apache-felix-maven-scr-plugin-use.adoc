@@ -137,14 +137,14 @@ The `maven-scr-plugin` is not directly compatible with Java 17 and 21. However, 
              </goals>
            </execution>
          </executions>
-            <dependencies>
-                <dependency>
-                    <groupId>org.ow2.asm</groupId>
-                    <artifactId>asm-analysis</artifactId>
-                    <version>9.7.1</version>
-                    <scope>compile</scope>
-                </dependency>
-            </dependencies>
+         <dependencies>
+           <dependency>
+             <groupId>org.ow2.asm</groupId>
+             <artifactId>asm-analysis</artifactId>
+             <version>9.7.1</version>
+             <scope>compile</scope>
+           </dependency>
+         </dependencies>
        </plugin>
        ...
      </plugins>
