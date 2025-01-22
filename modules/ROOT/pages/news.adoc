@@ -5,6 +5,7 @@
 * Apache Felix Http Jetty12 1.0.20, Http Jetty 5.1.28 (January 22 2025)
 ** https://issues.apache.org/jira/browse/FELIX-6746 JettyWebSocketServlet: Error during calling init()
 ** https://issues.apache.org/jira/browse/FELIX-6745 HttpService: Cannot unregister javaxwrappers.ServletWrapper
+** https://issues.apache.org/jira/browse/FELIX-6720 Enable virtual thread support in jetty12
 
 
 ## 2024
