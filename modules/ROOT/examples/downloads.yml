@@ -191,7 +191,7 @@ subprojects:
 
   - title: HTTP Service Jetty12
     artifactId: org.apache.felix.http.jetty12
-    version: 1.0.20
+    version: 1.0.22
     source_classifier: source-release
     changelog: false
 
