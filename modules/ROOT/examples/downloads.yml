@@ -221,7 +221,7 @@ subprojects:
 
   - title: HTTP Service Webconsole Plugin
     artifactId: org.apache.felix.http.webconsoleplugin
-    version: 1.2.0
+    version: 1.2.2
     source_classifier: source-release
     changelog: false
 

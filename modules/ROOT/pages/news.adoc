@@ -2,6 +2,7 @@
 
 ## 2025
 
+* Apache Felix Http Webconsole Plugin (March 12 2025)
 * Apache Felix Http Jetty12 1.0.22 (March 07 2025)
 ** https://issues.apache.org/jira/browse/FELIX-6754 Update to Jetty 12.0.17
 
