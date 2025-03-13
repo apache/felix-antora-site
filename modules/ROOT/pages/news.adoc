@@ -2,6 +2,8 @@
 
 ## 2025
 
+* Apache Felix Http Jetty12 1.0.24, HTTP Jetty 5.1.30, HTTP Wrappers 1.1.10 and 1.0.8 (March 13 2025)
+** https://issues.apache.org/jira/browse/FELIX-6756 Cookie name "Path" is a reserved token
 * Apache Felix Http Webconsole Plugin (March 12 2025)
 * Apache Felix Http Jetty12 1.0.22 (March 07 2025)
 ** https://issues.apache.org/jira/browse/FELIX-6754 Update to Jetty 12.0.17
