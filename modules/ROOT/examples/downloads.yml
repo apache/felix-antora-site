@@ -185,13 +185,13 @@ subprojects:
 
   - title: HTTP Service Jetty
     artifactId: org.apache.felix.http.jetty
-    version: 5.1.30
+    version: 5.1.32
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty12
     artifactId: org.apache.felix.http.jetty12
-    version: 1.0.24
+    version: 1.0.26
     source_classifier: source-release
     changelog: false
 
