@@ -1,10 +1,12 @@
 = Web Console RESTful API
 
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
+/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+
 WARNING: Please note that the APIs described on this page have not been standardized or stabilized yet.
 As such they cannot be relied upon.
 They are merely a description of the current code.
 In future releases these APIs will be fixed to be properly RESTful.
-
 
 
 == URL Space

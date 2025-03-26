@@ -1,5 +1,8 @@
 = Extending the Apache Felix Web Console
 
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
+/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+
 The xref:subprojects/apache-felix-web-console.adoc[Apache Felix Web Console] is extensible in various ways described no these pages:
 
 * xref:subprojects/apache-felix-web-console/extending-the-apache-felix-web-console/providing-web-console-plugins.adoc[Providing Web Console Plugins]

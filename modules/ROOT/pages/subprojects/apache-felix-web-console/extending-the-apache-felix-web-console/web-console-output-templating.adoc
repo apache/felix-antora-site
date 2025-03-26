@@ -1,5 +1,8 @@
 = Web Console Output Templating
 
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
+/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+
 Templating and Internationalization support of the Web Console is based on Java Resource Bundles loaded from the plugin bundles and is transparent to the plugin itself.
 
 == Basic Mechanism

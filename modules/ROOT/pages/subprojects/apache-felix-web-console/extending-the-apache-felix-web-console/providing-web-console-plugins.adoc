@@ -1,5 +1,8 @@
 = Providing Web Console Plugins
 
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
+/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+
 The Web Console can be extended by registering an OSGi service for the interface `javax.servlet.Servlet` with the service property `felix.webconsole.label` set to the label (last segment in the URL) of the page.
 The respective service is called a Web Console Plugin or a plugin for short.
 
