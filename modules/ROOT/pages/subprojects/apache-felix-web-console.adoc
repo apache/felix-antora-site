@@ -14,18 +14,11 @@ The following is just an incomplete list:
 * Apache Felix HTTP Service.
 This is a very basic implementation of the OSGi Http Service based on Jetty 6.1.7.
 The Apache Felix HTTP Service has not been released yet, so you would have to build it yourself.
-* {blank}
-+
-[cols=2*]
-|===
-| PAX Web Service.
-The PAX Web Service is the basis for a whole range of additions from the http://www.ops4j.org[OPS4J] project.
-The PAX Web Service is also based on Jetty 6 and may be dowloaded from the [OPS4J PAX Web
-| http://wiki.ops4j.org/confluence/display/ops4j/Pax+Web] page.
-|===
-
+* PAX Web Service.
+The PAX Web Service is the basis for a whole range of additions from the https://ops4j.github.io/ops4j/index.html[OPS4J] project.
+The PAX Web Service is also based on Jetty 6 and may be dowloaded from the https://ops4j1.jira.com/wiki/spaces/paxweb/overview[OPS4J PAX Web] page.
 * Equinox HTTP Service implementation.
-You can get more information on the Equinox implementation from the http://www.eclipse.org/equinox/server/[Server-Side Equinox] page.
+You can get more information on the Equinox implementation from the https://www.eclipse.org/equinox/server/[Server-Side Equinox] page.
 
 Apart from that Web Console has the following dependencies, which do not need to be satisfied.
 In this case the respective functionality is just missing.
@@ -66,7 +59,7 @@ NOTE: The webconsole does not provide a CSRF protection out of the box! Therefor
 
 For example using the Apache Felix shell console you might do:
 
- > install http://mirror.switch.ch/mirror/apache/dist/felix/org.apache.felix.webconsole-2.0.6.jar
+ > install https://mirror.switch.ch/mirror/apache/dist/felix/org.apache.felix.webconsole-2.0.6.jar
  bundle x
  > start x
 
@@ -172,7 +165,7 @@ The respective Http Service implementation may define additional properties to d
 By default it is probably safe to assume, that having set the `org.osgi.service.http.port` to a defined value, the Http Service implementation will listen on all interfaces for requests at the set port number and that no servlet context path actually exists.
 For example, given the `org.osgi.service.http.port` property is set to _8888_ the Web Console in the local system can be reached at : `+http://localhost:8888/system/console+`, where the `/system/console` path is configured using the `manager.root` configuration property (see the Configuration section).
 
-If you happen to deploy an OSGi framework instance inside a traditional web application and thus the Http Service implementation is actually a bridge into the existing servlet container (see for example http://www.eclipse.org/equinox/server/http*in*container.php[Equinox in a Servlet Container] or the Apache Sling Launchpad Web application), the host, port and context path are defined by your servlet container and web application deployment.
+If you happen to deploy an OSGi framework instance inside a traditional web application and thus the Http Service implementation is actually a bridge into the existing servlet container (see for example https://www.eclipse.org/equinox/server/http*in*container.php[Equinox in a Servlet Container] or the Apache Sling Launchpad Web application), the host, port and context path are defined by your servlet container and web application deployment.
 For example, if the servlet container listens on host `sample.org` at port `8888` and the web application with your OSGi container is available in the `/osgi` context, the Web Console would be accessible at `+http://sample.org:8888/osgi/system/console+`.
 
 == Configuration Manager
