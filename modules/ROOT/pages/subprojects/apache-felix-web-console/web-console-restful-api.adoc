@@ -1,7 +1,6 @@
 = Web Console RESTful API
 
-NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
-/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Web Console. For the latest version checkout https://github.com/apache/felix-dev/tree/master/webconsole[this documentation].
 
 WARNING: Please note that the APIs described on this page have not been standardized or stabilized yet.
 As such they cannot be relied upon.

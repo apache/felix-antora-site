@@ -1,7 +1,6 @@
 = Providing Resources
 
-NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
-/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Web Console. For the latest version checkout https://github.com/apache/felix-dev/tree/master/webconsole[this documentation].
 
 Extending the Apache Felix Web Console with new functionality is as easy as registering a `javax.servlet.Servlet` with at least the `felix.webconsole.label` service registration property set (see above).
 Providing resources is a bit more complex and requires more work on behalf of the plugin.

@@ -1,7 +1,6 @@
 = Web Console Security Provider
 
-NOTE: This documentation refers to the older version 4.x of the Apache Felix Webconsole. For the latest version checkout https:/
-/github.com/apache/felix-dev/tree/master/webconsole[this documentation].
+NOTE: This documentation refers to the older version 4.x of the Apache Felix Web Console. For the latest version checkout https://github.com/apache/felix-dev/tree/master/webconsole[this documentation].
 
 As of Apache Felix Web Console 3.1.0 security of the Web Console can be extended by providing a `WebConsoleSecurityProvicer` service.
 An extension to this service has been introduced with the `WebConsoleSecurityProvider2` service in Apache Felix Web Console 3.1.4.
