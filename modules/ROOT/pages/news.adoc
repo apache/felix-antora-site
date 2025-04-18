@@ -2,6 +2,8 @@
 
 ## 2025
 
+* Apache Felix Http Servlet API 6.1.0 and Http Wrappers 6.1.0 (April 18 2025)
+* Apache Felix HealthCheck Core 2.3.0 (April 18 2025)
 * Apache Felix Http Jetty12 1.0.26, HTTP Jetty 5.1.32 (March 18 2025)
 ** https://issues.apache.org/jira/browse/FELIX-6758 Update to Jetty 12.0.18 / 11.0.25
 * Apache Felix Http Jetty12 1.0.24, HTTP Jetty 5.1.30, HTTP Wrappers 1.1.10 and 1.0.8 (March 13 2025)
