@@ -2,6 +2,10 @@
 
 ## 2025
 
+* Apache Felix Http Jetty12 1.0.28, Apache Felix Http Base 5.1.12 (April 25 2025)
+** https://issues.apache.org/jira/browse/FELIX-6764 Update to Jetty 12.0.19
+** https://issues.apache.org/jira/browse/FELIX-6762 Support Jakarta Servlet 6.1
+** https://issues.apache.org/jira/browse/FELIX-6761 NullPointerException when registering a new servlet
 * Apache Felix Http Servlet API 6.1.0 and Http Wrappers 6.1.0 (April 18 2025)
 * Apache Felix HealthCheck Core 2.3.0 (April 18 2025)
 * Apache Felix Http Jetty12 1.0.26, HTTP Jetty 5.1.32 (March 18 2025)
