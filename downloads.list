@@ -55,10 +55,10 @@ Health Check API|org.apache.felix.healthcheck.api|2.0.4|project||-
 Health Check Core|org.apache.felix.healthcheck.core|2.3.0|project||-
 Health Check General Checks|org.apache.felix.healthcheck.generalchecks|3.0.8|project||-
 Health Check Webconsole Plugin|org.apache.felix.healthcheck.webconsoleplugin|2.2.0|project||-
-HTTP Service Base|org.apache.felix.http.base|5.1.12
-HTTP Service Bridge|org.apache.felix.http.bridge|5.1.8
-HTTP Service Jetty|org.apache.felix.http.jetty|5.1.32
-HTTP Service Jetty|org.apache.felix.http.jetty12|1.0.28
+HTTP Service Base|org.apache.felix.http.base|5.1.14
+HTTP Service Bridge|org.apache.felix.http.bridge|6.0.0
+HTTP Service Jetty|org.apache.felix.http.jetty|5.1.34
+HTTP Service Jetty|org.apache.felix.http.jetty12|1.0.30
 HTTP Service Proxy|org.apache.felix.http.proxy|3.0.6
 HTTP Service SSL filter|org.apache.felix.http.sslfilter|2.0.2
 HTTP Service Whiteboard|org.apache.felix.http.whiteboard|4.0.0
