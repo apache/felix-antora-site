@@ -1,7 +1,8 @@
 = News
 
 ## 2025
-
+* Apache Felix Http Jetty12 1.0.32
+** https://issues.apache.org/jira/browse/FELIX-6782 Allow adding custom headers to Jetty error pages
 * Apache Felix Http Jetty12 1.0.30, Apache Felix Http Jetty 5.1.34, Apache Felix Http Base 5.1.14, Apache Felix Bridge 6.0.0 (May 14 2025)
 ** https://issues.apache.org/jira/browse/FELIX-6770 Support new methods in Jakarta Servlet 6.1
 ** https://issues.apache.org/jira/browse/FELIX-6771 Use SLF4J 2
