@@ -2,6 +2,7 @@
 
 ## 2025
 
+* Apache Felix Http Base 5.1.16 (June 8th, 2025)
 * Apache Felix Http Jetty12 1.0.34 (June 6th, 2025)
 * Apache Felix Http Jetty12 1.0.32
 ** https://issues.apache.org/jira/browse/FELIX-6782 Allow adding custom headers to Jetty error pages

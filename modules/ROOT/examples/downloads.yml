@@ -173,7 +173,7 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 5.1.14
+    version: 5.1.16
     source_classifier: source-release
     changelog: false
 
