@@ -2,6 +2,9 @@
 
 ## 2025
 
+* Apache Felix Http Jetty12 1.1.2 (September 23nd, 2025)
+** https://issues.apache.org/jira/browse/FELIX-6805 Update to Jetty 12.0.27
+** https://issues.apache.org/jira/browse/FELIX-6803 Update to Jetty 12.0.26
 * Apache Felix Webconsole 5.0.18 (September 22nd, 2025)
 * Apache Felix Webconsole 5.0.14 (August 27th, 2025)
 * Apache Felix Http Jetty 4.2.32, Http Jetty 5.2.0, Http Jetty12 1.1.0, HTTP Bridge 6.1.0 (August 25th, 2025)
