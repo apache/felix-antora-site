@@ -1,6 +1,6 @@
 = Apache Felix Subproject Documentation
-:site-pub: https://github.com/apache/felix-site-pub
-:last-cms-subprojects: {site-pub}/blob/last-cms/documentation/subprojects
+:site-pub: https://raw.githack.com/apache/felix-site-pub
+:last-cms-subprojects: {site-pub}/last-cms/documentation/subprojects
 
 == Building Apache Felix
 
