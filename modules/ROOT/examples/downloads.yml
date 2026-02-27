@@ -191,7 +191,7 @@ subprojects:
 
   - title: HTTP Service Jetty12
     artifactId: org.apache.felix.http.jetty12
-    version: 1.1.6
+    version: 1.1.8
     source_classifier: source-release
     changelog: false
 
@@ -412,7 +412,7 @@ maven_plugins:
 
   - title: Maven Bundle Plugin
     artifactId: maven-bundle-plugin
-    version: 6.0.0
+    version: 6.0.2
     changelog: felix-dev/blob/master/tools/maven-bundle-plugin/changelog.txt
 
   - title: Maven iPOJO Plugin
