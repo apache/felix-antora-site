@@ -1,6 +1,11 @@
 = News
 
 ## 2026
+* Apache Felix Http base 5.1.18, Http Jetty 5.2.2, Http Jetty12 1.1.10 (May 22nd, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6823 Fix unrecoverable Jetty state after NPE in WhiteboardManager shutdown
+** https://issues.apache.org/jira/browse/FELIX-6824 Fix JMX MBean leak during Jetty restart cycle
+** https://issues.apache.org/jira/browse/FELIX-6826 Update to Jetty 12.0.34
+** https://issues.apache.org/jira/browse/FELIX-6827 Update to Jetty 12.0.35
 * Apache Felix Http Jetty12 1.1.8 and Maven Bundle Plugin 6.0.2 (Febuary 27th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6821 Update to Jetty 12.0.32
 ** https://issues.apache.org/jira/browse/FELIX-6816 Update to Jetty 12.0.31
