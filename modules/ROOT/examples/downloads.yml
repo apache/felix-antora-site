@@ -179,7 +179,7 @@ subprojects:
 
   - title: HTTP Service Bridge
     artifactId: org.apache.felix.http.bridge
-    version: 6.1.0
+    version: 6.1.2
     source_classifier: source-release
     changelog: false
 
