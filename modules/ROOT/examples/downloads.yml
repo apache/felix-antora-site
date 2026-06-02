@@ -189,7 +189,7 @@ subprojects:
     source_classifier: source-release
     changelog: false
 
-  - title: HTTP Service Jetty12
+  - title: HTTP Service Jetty12 (EE11)
     artifactId: org.apache.felix.http.jetty12
     version: 2.0.0
     source_classifier: source-release
