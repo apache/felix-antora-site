@@ -195,6 +195,12 @@ subprojects:
     source_classifier: source-release
     changelog: false
 
+  - title: HTTP Service Jetty12 (EE10)
+    artifactId: org.apache.felix.http.jetty12
+    version: 1.2.0
+    source_classifier: source-release
+    changelog: false
+
   - title: HTTP Service Proxy
     artifactId: org.apache.felix.http.proxy
     version: 4.0.0
