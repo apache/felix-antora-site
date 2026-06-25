@@ -1,6 +1,8 @@
 = News
 
 ## 2026
+* Apache Felix CM Json 2.0.8 (June 22nd, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6835 CommentRemovingReader incorrectly handles escaped quotes and drops characters at buffer boundaries
 * Apache Felix Http Jetty12 1.2.0 (June 2nd, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6831 Offer a EE10 compatible Jetty12 bundle with Jetty 12.1.x
 * Apache Felix Http Jetty12 2.0.0 (June 1st, 2026)
