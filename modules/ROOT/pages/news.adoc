@@ -1,6 +1,9 @@
 = News
 
 ## 2026
+* Apache Felix Http Jetty12 2.0.4 (EE11), Http Jetty12 1.2.4 (EE10) (July 27th, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6846 Felix Jetty 12: Support SNI configuration of Jetty
+** https://issues.apache.org/jira/browse/FELIX-6849 Jetty 12.1.x uses `DEFAULT_REDIRECT` instead of null, not honoring the `UriComplianceMode` setting in Felix
 * Apache Felix Log 1.3.2 (July 13th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6845 NullPointerException in Log.serviceChanged() when ServiceReference.getBundle() returns null
 * Apache Felix Http base 6.0.0, Http Jetty 5.2.4, Http Jetty12 2.0.2 (EE11), Http Jetty12 1.2.2 (EE10) (July 13th, 2026)
