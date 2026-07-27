@@ -418,7 +418,7 @@ maven_plugins:
 
   - title: Maven Bundle Plugin
     artifactId: maven-bundle-plugin
-    version: 6.0.2
+    version: 6.1.0
     changelog: felix-dev/blob/master/tools/maven-bundle-plugin/changelog.txt
 
   - title: Maven iPOJO Plugin

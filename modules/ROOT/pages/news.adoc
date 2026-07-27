@@ -1,6 +1,8 @@
 = News
 
 ## 2026
+* Apache Felix Maven Bundle Plugin 6.1.0 (July 27th, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6741 Upgrade dependencies for maven-bundle-plugin
 * Apache Felix Http Jetty12 2.0.4 (EE11), Http Jetty12 1.2.4 (EE10) (July 27th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6846 Felix Jetty 12: Support SNI configuration of Jetty
 ** https://issues.apache.org/jira/browse/FELIX-6849 Jetty 12.1.x uses `DEFAULT_REDIRECT` instead of null, not honoring the `UriComplianceMode` setting in Felix
