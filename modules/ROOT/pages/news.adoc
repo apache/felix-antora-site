@@ -1,15 +1,15 @@
 = News
 
 ## 2026
-* Apache Felix Maven Bundle Plugin 6.2.0 (September 2nd, 2026)
+* Apache Felix Maven Bundle Plugin 6.2.0 (September 18th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6858 Upgrade bndlib to 7.4.0
 ** https://issues.apache.org/jira/browse/FELIX-6830 maven-bundle-plugin includes alien resources (e.g. beans_*.xsd, validation-*.xsd) from classpath dependencies when a module-info is present
+* Apache Felix Maven Bundle Plugin 6.1.2 (September 2nd, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6857 maven-bundle-plugin: do not embed type=pom dependencies (bnd 7.3.0 fails opening the .pom as a JAR)
 * Apache Felix Http base 6.0.2, Http Jetty 5.2.6, Http Jetty12 2.0.6 (EE11), Http Jetty12 1.2.6 (EE10) (September 2nd, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6852 Felix Jetty12 techdebt improvements
 ** https://issues.apache.org/jira/browse/FELIX-6853 Preprocessors should be logged when Debug is enabled.
 ** https://issues.apache.org/jira/browse/FELIX-6856 Update to Jetty 12.1.12
-* Apache Felix Maven Bundle Plugin 6.1.2 (August 28th, 2026)
-** https://issues.apache.org/jira/browse/FELIX-6857 maven-bundle-plugin: do not embed type=pom dependencies (bnd fails opening the .pom as a JAR)
 * Apache Felix Maven Bundle Plugin 6.1.0 (July 27th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6741 Upgrade dependencies for maven-bundle-plugin
 * Apache Felix Http Jetty12 2.0.4 (EE11), Http Jetty12 1.2.4 (EE10) (July 27th, 2026)
