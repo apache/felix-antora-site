@@ -1,6 +1,9 @@
 = News
 
 ## 2026
+* Apache Felix Http Jetty12 2.0.8 (EE11), Http Jetty12 1.2.8 (EE10) (October 2nd, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6859 Jetty's preferred virtual threads setup cannot be configured
+** https://issues.apache.org/jira/browse/FELIX-6860 Update to Jetty 12.1.13
 * Apache Felix Maven Bundle Plugin 6.2.0 (September 18th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6858 Upgrade bndlib to 7.4.0
 ** https://issues.apache.org/jira/browse/FELIX-6830 maven-bundle-plugin includes alien resources (e.g. beans_*.xsd, validation-*.xsd) from classpath dependencies when a module-info is present
