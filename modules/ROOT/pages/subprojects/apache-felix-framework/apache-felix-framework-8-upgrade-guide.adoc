@@ -1,0 +1,133 @@
+= Upgrading to Framework 8 (Java 25 Support)
+:jep-486: https://openjdk.org/jeps/486
+:felix-jira: https://issues.apache.org/jira/browse/
+
+Apache Felix Framework 8.0.0 makes the framework run on current JDKs, up to and including Java 25 (link:{felix-jira}FELIX-6807[FELIX-6807]).
+It is a deliberately *breaking* release: the OSGi security layer has been removed and the minimum Java version is now 11.
+The 7.x line remains maintained for users who need the security layer or Java 8.
+
+This page explains what changed, who is affected, and how to upgrade.
+
+== Which version should I use?
+
+[cols="3*",opts="headers"]
+|===
+| |7.x |8.x
+
+|Minimum Java version
+|8
+|11
+
+|Runs on Java 24 and later
+|no
+|yes
+
+|OSGi security layer
+|supported
+|*removed*
+
+|`Require-Capability: osgi.ee`
+|`JavaSE 1.8`
+|`JavaSE 11`
+|===
+
+* Pick *7.x* if you need the security layer, or if you must run on Java 8.
+* Pick *8.x* if you need to run on Java 24 or later.
+
+Framework 8.0.0 has been verified on Java 17, 21, 23 and 25, including the OSGi Core R8 TCK.
+
+== What changed
+
+=== The OSGi security layer has been removed
+
+Java SE 24 permanently disabled the Security Manager ({jep-486}[JEP 486]).
+`System.setSecurityManager` throws `UnsupportedOperationException` and `-Djava.security.manager=allow` is a fatal startup error, so the framework can no longer install a Security Manager and no permission check can ever run.
+Rather than appear to enforce permissions while silently enforcing nothing, the framework no longer implements the security layer at all.
+
+In practice:
+
+* *Launching with `org.osgi.framework.security` set now fails* with a `SecurityException`.
+Previously the framework installed a Security Manager.
+A launcher that depends on security will refuse to start rather than start unprotected.
+* *`Bundle.hasPermission(Object)` returns `true`* unless a `SecurityProvider` has been installed explicitly.
+* *No permission checks are performed* on bundle lifecycle operations, service registration and lookup, resource and class loading, weaving, or resolution.
+* *The `org.apache.felix.framework.security` bundle is no longer built or released.*
+It existed only to provide the `PermissionAdmin` and `ConditionalPermissionAdmin` services to the framework.
+The last release is 2.8.3 and it can only be used with the 7.x framework.
+See xref:subprojects/apache-felix-framework-security.adoc[Apache Felix Framework Security].
+
+The OSGi permission API is *still exported and unchanged*: `AdminPermission`, `ServicePermission`, `PackagePermission`, `BundlePermission`, `CapabilityPermission`, `AdaptPermission`, `Bundle.hasPermission`, `ProtectionDomain` and `org.apache.felix.framework.ext.SecurityProvider` all remain.
+Bundles that reference those types continue to compile and resolve; the types simply no longer gate anything.
+
+Bundles that merely _declare_ permissions, for example by shipping `OSGI-INF/permissions.perm`, need no change.
+Only code that _relies on a permission being denied_ is affected.
+
+=== Minimum Java version raised to 11
+
+The framework inspects the caller's class context in a few places to work out which framework instance or bundle a call belongs to.
+That used to be done with a `SecurityManager` subclass, purely to reach the protected `getClassContext()` method.
+It now uses `java.lang.StackWalker`, which is the supported replacement and is available from Java 9, so Java 8 is no longer possible.
+The floor is 11 rather than 9 because 9 and 10 are non-LTS and long past end of life.
+
+The framework bundle therefore declares `Require-Capability: osgi.ee ... JavaSE 11` and will not resolve on a Java 8 VM.
+
+=== Other changes
+
+* `sun.misc.Unsafe` is still used in one place, to obtain a trusted `MethodHandles.Lookup` for taking over the JVM-wide `java.net.URL` stream handler factory.
+It is guarded and falls back to `AccessibleObject.setAccessible`, so it degrades to a warning on recent JDKs.
+* `FilterImpl.WrapperCapability`: `Filter.matches(Map)` no longer throws `UnsupportedOperationException` for a non-empty map.
+
+== Related releases
+
+The same release also removes Security Manager code paths from the other bundles that used them.
+None of them changes exported API; the minor version bumps reflect the behavioural change.
+
+[cols="3*",opts="headers"]
+|===
+|Bundle |Version |Change
+
+|Framework
+|8.0.0
+|Security layer removed, Java 11 baseline.
+
+|Main
+|8.0.0
+|Launches framework 8.0.0 and inherits its requirements, including Java 11.
+
+|Configuration Admin
+|1.10.0
+|`UpdateThread.terminate()` no longer calls `Thread.stop()` (which throws since Java 20); it interrupts the worker instead.
+
+|SCR (Declarative Services)
+|2.3.0
+|Security Manager based permission checks and `doPrivileged` wrappers removed.
+
+|Web Console
+|5.1.0
+|Security Manager based permission checks and `doPrivileged` wrappers removed.
+
+|Gogo Runtime
+|1.2.0
+|`ThreadUtils` no longer consults the Security Manager when selecting a thread group.
+|===
+
+== Upgrading
+
+. Check the Java version you run on. Framework 8 needs Java 11 or later.
+If you must stay on Java 8, stay on the 7.x line.
+. If you launch with `org.osgi.framework.security`, `java.security.policy` or `-Djava.security.manager`, remove those settings.
+Framework 8 fails at startup if `org.osgi.framework.security` is set.
+. Remove the `org.apache.felix.framework.security` bundle from your installation, and any bundles that depend on its `PermissionAdmin` or `ConditionalPermissionAdmin` services.
+. If you embed the framework or build it from source, update to `org.apache.felix.framework` 8.0.0 or `org.apache.felix.main` 8.0.0.
+. Upgrade the other bundles to the versions listed above.
+In particular, Configuration Admin 1.10.0 is needed on Java 20 and later, where the previous termination of its update thread fails.
+. Review any code that relies on a permission being denied: it will now be allowed.
+
+The security layer can't be restored on Java 24 and later, because the JDK no longer provides a Security Manager to enforce it.
+
+== Release notes
+
+The full change history is in the framework's
+https://github.com/apache/felix-dev/blob/master/framework/doc/changelog.txt[changelog],
+and the 7.x/8.x split is also documented in the
+https://github.com/apache/felix-dev/blob/master/framework/README.md[framework README].

@@ -18,7 +18,7 @@
 framework:
   - title: Framework
     artifactId: org.apache.felix.main.distribution
-    version: 7.0.5
+    version: 8.0.0
     changelog: felix-dev/blob/master/framework/doc/changelog.txt
 
 subprojects:
@@ -44,7 +44,7 @@ subprojects:
 
   - title: Configuration Admin
     artifactId: org.apache.felix.configadmin
-    version: 1.9.26
+    version: 1.10.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/configadmin/changelog.txt
 
@@ -107,7 +107,7 @@ subprojects:
 
   - title: Framework
     artifactId: org.apache.felix.framework
-    version: 7.0.5
+    version: 8.0.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/framework/doc/changelog.txt
 
@@ -131,7 +131,7 @@ subprojects:
 
   - title: Gogo Runtime
     artifactId: org.apache.felix.gogo.runtime
-    version: 1.1.4
+    version: 1.2.0
     source_classifier: project
     changelog: felix-dev/blob/master/gogo/runtime/doc/changelog.txt
 
@@ -269,7 +269,7 @@ subprojects:
 
   - title: Main
     artifactId: org.apache.felix.main
-    version: 7.0.5
+    version: 8.0.0
     source_classifier: project
     changelog: felix-dev/blob/master/main/doc/changelog.txt
 
@@ -300,7 +300,7 @@ subprojects:
 
   - title: SCR (Declarative Services)
     artifactId: org.apache.felix.scr
-    version: 2.2.0
+    version: 2.3.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/scr/changelog.txt
 
@@ -357,7 +357,7 @@ subprojects:
 
   - title: Web Console
     artifactId: org.apache.felix.webconsole
-    version: 5.0.18
+    version: 5.1.0
     source_classifier: source-release
     changelog: felix-dev/blob/master/webconsole/changelog.txt
 

@@ -1,6 +1,10 @@
 = News
 
 ## 2026
+* Apache Felix Framework 8.0.0, Main 8.0.0, Configuration Admin 1.10.0, SCR 2.3.0, Web Console 5.1.0, Gogo Runtime 1.2.0 (November 1st, 2026)
+** *Breaking release:* the OSGi security layer is removed and Java 11 is now the minimum for the framework. See xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[Upgrading to Framework 8]. The 7.x line remains available for Java 8 and the security layer.
+** https://issues.apache.org/jira/browse/FELIX-6807 Java 25 LTS support
+** https://issues.apache.org/jira/browse/FELIX-6870 Integration tests across the repository run against released bundles, not the code being built
 * Apache Felix Utils 1.11.10 (October 13th, 2026)
 ** https://issues.apache.org/jira/browse/FELIX-6863 ResourceImpl.hashCode is not cached and can make Karaf feature install/uninstall much slower after a JVM restart
 * Apache Felix Http Jetty12 2.0.8 (EE11), Http Jetty12 1.2.8 (EE10) (October 2nd, 2026)

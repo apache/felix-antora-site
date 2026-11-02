@@ -78,6 +78,7 @@
 ** xref:subprojects/apache-felix-file-install.adoc[]
 ** xref:subprojects/apache-felix-framework.adoc[]
 //indexList::[level=3,relative=subprojects/apache-felix-framework/*.adoc]
+*** xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-bundle-cache.adoc[]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-configuration-properties.adoc[]
 *** xref:subprojects/apache-felix-framework/apache-felix-framework-faq.adoc[]
