@@ -100,7 +100,7 @@ Note that the Felix framework also provides the `felix.systembundle.activators` 
 After the `init()` method completes, the follow actions have been performed:
 
 * Event handling is enabled.
-* The security manager is installed if it is enabled.
+* The security manager is installed if it is enabled (Framework 7.x only; Framework 8 does not support the security layer, see xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[Upgrading to Framework 8]).
 * The framework is set to start level 0.
 * All bundles in the bundle caches are reified and their state is set to `Bundle.INSTALLED`.
 * The framework gets a valid `BundleContext`.

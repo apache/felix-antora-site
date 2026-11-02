@@ -1,5 +1,7 @@
 = Apache Felix Framework Security
 
+IMPORTANT: The OSGi security layer is only available with the Felix Framework *7.x* line. Framework 8.0.0 and later no longer implement it, because Java 24 permanently disabled the Security Manager (JEP 486). The `org.apache.felix.framework.security` bundle is no longer released; 2.8.3 is the last version. See xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[Upgrading to Framework 8].
+
 The Felix Framework Security subproject is an implementation of the security part of the OSGi R4.2 core specification.
 
 == Installing
