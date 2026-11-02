@@ -10,6 +10,11 @@ If available, the version links to the subproject changelog.
 
 == Felix Framework Distribution
 
+NOTE: Framework 8 requires Java 11 or later and no longer includes the OSGi security layer.
+The 7.x line remains maintained for users who need Java 8 or the security layer; the latest 7.x release is listed below.
+See xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[Upgrading to Framework 8] for details.
+Releases that are no longer on the mirrors can be found in the https://archive.apache.org/dist/felix/[archive].
+
 [cols="5*",opts="headers"]
 |===
 //|Sub project
