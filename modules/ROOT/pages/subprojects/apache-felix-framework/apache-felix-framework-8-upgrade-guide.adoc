@@ -4,7 +4,7 @@
 
 Apache Felix Framework 8.0.0 makes the framework run on current JDKs, up to and including Java 25 (link:{felix-jira}FELIX-6807[FELIX-6807]).
 It is a deliberately *breaking* release: the OSGi security layer has been removed and the minimum Java version is now 11.
-The 7.x line remains maintained for users who need the security layer or Java 8.
+The 7.x line remains available for users who need the security layer or Java 8, but it only receives critical bug fixes and no new features.
 
 This page explains what changed, who is affected, and how to upgrade.
 
