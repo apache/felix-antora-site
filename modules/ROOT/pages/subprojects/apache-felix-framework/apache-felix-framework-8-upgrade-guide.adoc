@@ -34,7 +34,8 @@ This page explains what changed, who is affected, and how to upgrade.
 * Pick *7.x* if you need the security layer, or if you must run on Java 8.
 * Pick *8.x* if you need to run on Java 24 or later.
 
-Framework 8.0.0 has been verified on Java 17, 21, 23 and 25, including the OSGi Core R8 TCK.
+Framework 8.0.0 is built and tested in CI on Java 17, 21, 25 and 27.
+The OSGi Core R8 TCK was run on Java 17, 21, 23 and 25.
 
 == What changed
 
