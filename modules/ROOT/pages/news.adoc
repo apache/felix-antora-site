@@ -1,6 +1,9 @@
 = News
 
 ## 2026
+* Apache Felix Http base 6.0.4, Http Jetty12 2.0.10 (EE11), Http Jetty12 1.2.10 (EE10) (November 4th, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6873 HTTP Base: ERROR-dispatch URL-pattern filters are matched against the original request URI instead of the error servlet's path
+** https://issues.apache.org/jira/browse/FELIX-6867 Update to Jetty 12.1.14
 * Apache Felix Framework 8.0.0, Main 8.0.0, Configuration Admin 1.10.0, SCR 2.3.0, Web Console 5.1.0, Gogo Runtime 1.2.0 (November 2nd, 2026)
 ** *Breaking release:* the OSGi security layer is removed and Java 11 is now the minimum for the framework. See xref:subprojects/apache-felix-framework/apache-felix-framework-8-upgrade-guide.adoc[Upgrading to Framework 8]. The 7.x line remains available for Java 8 and the security layer.
 ** https://issues.apache.org/jira/browse/FELIX-6807 Java 25 LTS support

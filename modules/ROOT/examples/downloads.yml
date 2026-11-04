@@ -178,7 +178,7 @@ subprojects:
 
   - title: HTTP Service Base
     artifactId: org.apache.felix.http.base
-    version: 6.0.2
+    version: 6.0.4
     source_classifier: source-release
     changelog: false
 
@@ -196,13 +196,13 @@ subprojects:
 
   - title: HTTP Service Jetty12 (EE11)
     artifactId: org.apache.felix.http.jetty12
-    version: 2.0.8
+    version: 2.0.10
     source_classifier: source-release
     changelog: false
 
   - title: HTTP Service Jetty12 (EE10)
     artifactId: org.apache.felix.http.jetty12
-    version: 1.2.8
+    version: 1.2.10
     source_classifier: source-release
     changelog: false
 
