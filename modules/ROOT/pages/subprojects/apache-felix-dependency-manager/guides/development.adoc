@@ -1,48 +1,57 @@
 = Dependency Manager - Development
 
-When downloading or checking out the source code, please also consult release/resources/src/README.src for up to date instructions on how to build that particular version.
+When downloading or checking out the source code, please also consult the `README` in the `dependencymanager` directory for up to date instructions on how to build that particular version.
+
+The Dependency Manager is built with Maven since version 5, see xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-5.adoc[What's new in version 5].
+The earlier releases (r16 and older) are built with Gradle and bndtools; the instructions for those are in the `README.src` of their source release.
 
 == Prerequisites
 
-If you are using a corporate http proxy, you should set the following environment variables:
+* A recent JDK, 11 or later.
+* Maven 3.9 or later.
+* The Felix Framework, Gogo and Configuration Admin bundles which the integration tests run on have to be in the local Maven repository: either install those modules of the `felix-dev` repository first, or use released versions.
 
- $ export GRADLE_OPTS="-Dhttp.proxyHost=<your proxy ip> -Dhttp.proxyPort=<your proxy port> -Dhttps.proxyHost=<your proxy ip> -Dhttps.proxyPort=<your proxy port>"
- $ export http_proxy=<your proxy ip>:<your proxy port>
- $ export https_proxy=<your proxy ip>:<your proxy port>
+If you are using a corporate http proxy, set it up in your `~/.m2/settings.xml`.
 
-== Compilation Using gradle:
+== Compilation using Maven
 
-* Install latest Java 8 (the dm libraries has been built and tested with java 1.8.0_74)
-* Compile Dependendency Manager annotations bndtools plugin:
+All commands are run from the `dependencymanager` directory of the `felix-dev` repository.
+
+* Compile everything, run the unit tests and the OSGi integration tests:
 +
-$ ./gradlew org.apache.felix.dependencymanager.annotation:jar
+ $ mvn clean install
 
-* Compile all other bundles:
+* Compile without running the tests:
 +
-$ ./gradlew jar
+ $ mvn clean install -DskipTests
 
-* Run junit tests:
+* Build and test a single bundle, with the modules it depends on:
 +
-$ ./gradlew test
+ $ mvn clean install -pl org.apache.felix.dependencymanager.shell -am
 
-* Run integration tests:
-+
-$ ./gradlew check
+The modules are:
 
-== Compilation Using Eclipse:
+[cols="2*",opts="headers"]
+|===
+|Module |Content
 
-* Install Latest Eclipse Mars.
-* Use the dependency manager folder as the root of your workspace.
-* Configure two JREs for Java 8:
- ** Go to Windows \-> Preferences \-> Java \-> Installed JREs
- ** Add your jdk8 JRE
-* Install BndTools 3.4.0 or later version and (optionally) a subversion plugin for Eclipse.
-* Open BndTools perspective
-* Import Dependency Manager into Eclipse, and compile everything
-* if it's the first time you import the project into eclipse, it may happen that some modules that requires the Dependency Manager Annotations bnd plugin don't compile: It's a know issue.
-To work around, restart eclipse and rebuild every modules.
-* Click on org.apache.felix.dependencymanager project and run it as "JUnit test".
-* Click on org.apache.felix.dependencymanager.shell and run it as "JUnit test"
-* Click on org.apache.felix.dependencymanager.itest and run it as "Bnd OSGi Test Launcher (Junit)".
-* Click on org.apache.felix.dependencymanager.runtime.itest and run it as ""Bnd OSGi Test Launcer (Junit)".
-* Click on org.apache.felix.dependencymanager.lambda.itest and run it as ""Bnd OSGi Test Launcer (Junit)".
+|`org.apache.felix.dependencymanager` |the API and implementation
+|`org.apache.felix.dependencymanager.annotation` |the annotations and the bnd plugin that processes them
+|`org.apache.felix.dependencymanager.runtime` |loads the components declared with annotations
+|`org.apache.felix.dependencymanager.shell` |the Gogo shell commands
+|`org.apache.felix.dependencymanager.lambda` |the lambda based API
+|`org.apache.felix.dependencymanager.*.itest.*` |the integration tests, run inside a framework with the `bnd-testing-maven-plugin`
+|`org.apache.felix.dependencymanager.samples`, `org.apache.felix.dependencymanager.lambda.samples` |samples
+|`org.apache.felix.dependencymanager.benchmark` |a stress test
+|===
+
+== Using an IDE
+
+Import the `dependencymanager` directory as a Maven project, for example with m2e in Eclipse or with the Maven support of IntelliJ IDEA.
+The unit tests run as plain JUnit tests.
+The integration tests are run by Maven (`mvn verify`), because they need an OSGi framework.
+
+== Releasing
+
+A release is made with the Maven release plugin from the `dependencymanager` directory.
+`release:prepare` tags the whole build (`dependencymanager-parent-x.y.z`) and `release:perform` also tags every released bundle (`<artifactId>-<version>`).
