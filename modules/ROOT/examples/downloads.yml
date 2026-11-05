@@ -77,13 +77,46 @@ subprojects:
     source_classifier: source-release
     changelog: false
 
-  - title: Dependency Manager 4
+  # The Dependency Manager bundles are released together from one Maven reactor, but each bundle has its own version.
+  # The source release is one archive for the whole reactor, named after the parent pom, so the bundles have no
+  # source_classifier (no source links) and the sources are listed once, on their own row.
+  - title: Dependency Manager
     artifactId: org.apache.felix.dependencymanager
-    version: r16
-    source_classifier: src
-    classifier: bin
+    version: 5.0.0
     targz: false
-    changelog: felix-dev/blob/master/dependencymanager/org.apache.felix.dependencymanager/changelog.txt
+    changelog: felix-dev/blob/master/dependencymanager/changelog.txt
+
+  - title: Dependency Manager Annotations
+    artifactId: org.apache.felix.dependencymanager.annotation
+    version: 6.0.0
+    targz: false
+    changelog: felix-dev/blob/master/dependencymanager/changelog.txt
+
+  - title: Dependency Manager Lambda
+    artifactId: org.apache.felix.dependencymanager.lambda
+    version: 2.0.0
+    targz: false
+    changelog: felix-dev/blob/master/dependencymanager/changelog.txt
+
+  - title: Dependency Manager Runtime
+    artifactId: org.apache.felix.dependencymanager.runtime
+    version: 5.0.0
+    targz: false
+    changelog: felix-dev/blob/master/dependencymanager/changelog.txt
+
+  - title: Dependency Manager Shell
+    artifactId: org.apache.felix.dependencymanager.shell
+    version: 5.0.0
+    targz: false
+    changelog: felix-dev/blob/master/dependencymanager/changelog.txt
+
+  - title: Dependency Manager (source of all the bundles above)
+    artifactId: dependencymanager-parent
+    version: 1.0.0
+    jar: false
+    targz: false
+    source_classifier: source-release
+    changelog: false
 
 #TODO remove
   - title: Deployment Admin
