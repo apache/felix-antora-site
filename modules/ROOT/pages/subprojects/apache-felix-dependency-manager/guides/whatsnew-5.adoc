@@ -1,0 +1,87 @@
+= Dependency Manager - What's new in version 5
+
+This section describes the first Dependency Manager release after r16.
+It is built with Maven instead of Gradle and bndtools, it requires Java 11 or later, and every bundle now has its own version and its own release tag.
+The API and the exported packages are the same as in r16.
+The release is tracked in https://issues.apache.org/jira/browse/FELIX-6872[FELIX-6872].
+
+== Released bundles
+
+[cols="3*",opts="headers"]
+|===
+|Bundle |r16 |This release
+
+|`org.apache.felix.dependencymanager`
+|4.6.1
+|*5.0.0*
+
+|`org.apache.felix.dependencymanager.shell`
+|4.0.9
+|*5.0.0*
+
+|`org.apache.felix.dependencymanager.runtime`
+|4.0.8
+|*5.0.0*
+
+|`org.apache.felix.dependencymanager.annotation`
+|5.0.2
+|*6.0.0*
+
+|`org.apache.felix.dependencymanager.lambda`
+|1.2.2
+|*2.0.0*
+|===
+
+The major version of every bundle is raised for one reason only: the minimum Java version is now 11.
+The bundles are still compiled against OSGi R6 and the exported packages are unchanged, so their imports (and your own bundles' imports of them) have not changed.
+
+You can use the bundles from Maven Central:
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.apache.felix</groupId>
+    <artifactId>org.apache.felix.dependencymanager</artifactId>
+    <version>5.0.0</version>
+</dependency>
+<dependency>
+    <groupId>org.apache.felix</groupId>
+    <artifactId>org.apache.felix.dependencymanager.shell</artifactId>
+    <version>5.0.0</version>
+</dependency>
+----
+
+== Java 11 is the new baseline
+
+The bundles are built for Java 11 and later, and the build is tested up to Java 25.
+If you still need to run on Java 8, stay on r16.
+That release remains available from the https://archive.apache.org/dist/felix/[archive].
+
+The deprecated use of `java.security.AccessController` in the service tracker and in the runtime has been removed, because it is deprecated for removal in the current JDKs.
+This only matters if you run the Dependency Manager under a Java security manager.
+
+== Built with Maven
+
+The Gradle build, the bndtools workspace and the `gradlew` scripts are gone.
+Everything is now one Maven reactor, with the parent pom `org.apache.felix:dependencymanager-parent`:
+
+* the bundles are built with the `maven-bundle-plugin` and bnd,
+* the unit tests run with Surefire,
+* the OSGi integration tests run inside a framework with the `bnd-testing-maven-plugin`, and
+* the build is configured for reproducible output.
+
+The samples and the benchmark are Maven modules as well.
+See xref:subprojects/apache-felix-dependency-manager/guides/development.adoc[Development] for how to build and test them.
+
+== One tag per bundle
+
+The bundles are released together from one build but are versioned independently.
+Next to the tag of the whole build, `dependencymanager-parent-1.0.0`, every bundle is tagged with its own name and version, like the earlier releases were, for example `org.apache.felix.dependencymanager-5.0.0` and `org.apache.felix.dependencymanager.annotation-6.0.0`.
+There is one source release archive for the whole build, named after the parent pom (`dependencymanager-parent-1.0.0-source-release.zip`).
+
+== Upgrading from r16
+
+* Run on Java 11 or later.
+* Change the versions of the bundles you use to the ones listed above.
+No source changes are needed for the API.
+* If you build the Dependency Manager yourself, use `mvn clean install` instead of `./gradlew jar`.

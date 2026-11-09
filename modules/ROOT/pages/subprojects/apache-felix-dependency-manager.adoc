@@ -35,6 +35,7 @@ Below is the full table of contents.
 * xref:subprojects/apache-felix-dependency-manager/guides/background.adoc[Background]
 * xref:subprojects/apache-felix-dependency-manager/guides/whatsnew.adoc[What's new in DM 4]
 * xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-r15.adoc[What's new in release r15]
+* xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-5.adoc[What's new in version 5 (Maven build, Java 11)]
 * xref:subprojects/apache-felix-dependency-manager/guides/bundles-and-dependencies.adoc[Bundles and dependencies]
 * xref:subprojects/apache-felix-dependency-manager/guides/migrating-from-earlier-versions.adoc[Migrating from earlier versions]
 * xref:subprojects/apache-felix-dependency-manager/guides/performance-tuning.adoc[Performance Tuning]

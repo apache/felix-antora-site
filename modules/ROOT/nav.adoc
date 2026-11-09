@@ -47,6 +47,7 @@
 **** xref:subprojects/apache-felix-dependency-manager/guides/whatsnew.adoc[]
 **** xref:subprojects/apache-felix-dependency-manager/guides/dm-lambda.adoc[]
 **** xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-r15.adoc[]
+**** xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-5.adoc[]
 
 *** Reference
 //indexList::[level=4,relative=subprojects/apache-felix-dependency-manager/reference/*.adoc]
