@@ -120,7 +120,6 @@ subprojects:
     artifactId: dependencymanager-parent
     version: 1.0.0
     jar: false
-    targz: false
     source_classifier: source-release
     changelog: false
 
