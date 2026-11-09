@@ -1,7 +1,7 @@
 = News
 
 ## 2026
-* Apache Felix Dependency Manager 5.0.0, Annotations 6.0.0, Runtime 5.0.0, Shell 5.0.0, Lambda 2.0.0 (November ##th, 2026)
+* Apache Felix Dependency Manager 5.0.0, Annotations 6.0.0, Runtime 5.0.0, Shell 5.0.0, Lambda 2.0.0 (November 9th, 2026)
 ** *Breaking release:* Java 11 is now the minimum, which is why every bundle gets a new major version. The API and the exported packages are unchanged. See xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-5.adoc[What's new in version 5].
 ** https://issues.apache.org/jira/browse/FELIX-6872 Support current JDKs (up to Java 25) and build the Dependency Manager with Maven
 * Apache Felix Http base 6.0.4, Http Jetty12 2.0.10 (EE11), Http Jetty12 1.2.10 (EE10) (November 4th, 2026)

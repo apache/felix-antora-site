@@ -11,6 +11,7 @@
 # jar (optional) (set to false if there is no binary)
 # changelog (path from https://github.com/apache to the changelog file, or false if no changelog)
 # targz (optional) (set to false if there is no source tar.gz)
+# zip (optional) (set to false if there is no source zip, e.g. when the source is released together with other bundles)
 # source_classifier
 # classifier (optional) (not currently used in table)
 
@@ -84,30 +85,35 @@ subprojects:
     artifactId: org.apache.felix.dependencymanager
     version: 5.0.0
     targz: false
+    zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
 
   - title: Dependency Manager Annotations
     artifactId: org.apache.felix.dependencymanager.annotation
     version: 6.0.0
     targz: false
+    zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
 
   - title: Dependency Manager Lambda
     artifactId: org.apache.felix.dependencymanager.lambda
     version: 2.0.0
     targz: false
+    zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
 
   - title: Dependency Manager Runtime
     artifactId: org.apache.felix.dependencymanager.runtime
     version: 5.0.0
     targz: false
+    zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
 
   - title: Dependency Manager Shell
     artifactId: org.apache.felix.dependencymanager.shell
     version: 5.0.0
     targz: false
+    zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
 
   - title: Dependency Manager (source of all the bundles above)
