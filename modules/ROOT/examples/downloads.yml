@@ -25,7 +25,7 @@ framework:
   - title: Framework 7.x (Java 8, security layer)
     artifactId: org.apache.felix.main.distribution
     version: 7.0.5
-    changelog: felix-dev/blob/master/framework/doc/changelog.txt
+    changelog: felix-dev/blob/framework-7.x/framework/doc/changelog.txt
 
 subprojects:
 # no bundle under this name, no source-release under org.apache.felix.atomos. ???
