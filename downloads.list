@@ -39,7 +39,12 @@ Configuration Admin Interceptor Plugin|org.apache.felix.configadmin.plugin.inter
 Connect|org.apache.felix.connect|0.2.0
 Converter|org.apache.felix.converter|1.0.12
 Coordinator|org.apache.felix.coordinator|1.0.2
-Dependency Manager 4|org.apache.felix.dependencymanager|r16|src|bin
+Dependency Manager|org.apache.felix.dependencymanager|5.0.2|||dependencymanager/changelog.txt
+Dependency Manager Annotations|org.apache.felix.dependencymanager.annotation|6.0.0|||dependencymanager/changelog.txt
+Dependency Manager Lambda|org.apache.felix.dependencymanager.lambda|2.0.0|||dependencymanager/changelog.txt
+Dependency Manager Runtime|org.apache.felix.dependencymanager.runtime|5.0.0|||dependencymanager/changelog.txt
+Dependency Manager Shell|org.apache.felix.dependencymanager.shell|5.0.0|||dependencymanager/changelog.txt
+Dependency Manager (source of all the bundles above)|dependencymanager-parent|1.0.2|||-
 Deployment Admin|org.apache.felix.deploymentadmin|0.9.10|||changelog.txt
 Event Admin|org.apache.felix.eventadmin|1.6.4
 Feature|org.apache.felix.feature|1.0.2
