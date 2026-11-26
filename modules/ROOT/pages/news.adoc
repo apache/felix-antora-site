@@ -1,6 +1,10 @@
 = News
 
 ## 2026
+* Apache Felix Dependency Manager 5.0.2 (November ##th, 2026)
+** https://issues.apache.org/jira/browse/FELIX-6874 Dependency Manager: intermittent NPE in ServiceRegistryCacheManager when bundles are started concurrently
+** https://issues.apache.org/jira/browse/FELIX-6880 DM filter index sorts the shared objectClass array of a service registration in place
+** Only the core bundle is part of this release, the other Dependency Manager bundles are still released as Annotations 6.0.0, Runtime 5.0.0, Shell 5.0.0 and Lambda 2.0.0.
 * Apache Felix Dependency Manager 5.0.0, Annotations 6.0.0, Runtime 5.0.0, Shell 5.0.0, Lambda 2.0.0 (November 9th, 2026)
 ** *Breaking release:* Java 11 is now the minimum, which is why every bundle gets a new major version. The API and the exported packages are unchanged. See xref:subprojects/apache-felix-dependency-manager/guides/whatsnew-5.adoc[What's new in version 5].
 ** https://issues.apache.org/jira/browse/FELIX-6872 Support current JDKs (up to Java 25) and build the Dependency Manager with Maven
