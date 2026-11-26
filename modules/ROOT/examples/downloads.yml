@@ -83,7 +83,7 @@ subprojects:
   # source_classifier (no source links) and the sources are listed once, on their own row.
   - title: Dependency Manager
     artifactId: org.apache.felix.dependencymanager
-    version: 5.0.0
+    version: 5.0.2
     targz: false
     zip: false
     changelog: felix-dev/blob/master/dependencymanager/changelog.txt
@@ -118,7 +118,7 @@ subprojects:
 
   - title: Dependency Manager (source of all the bundles above)
     artifactId: dependencymanager-parent
-    version: 1.0.0
+    version: 1.0.2
     jar: false
     source_classifier: source-release
     changelog: false
